@@ -4,6 +4,7 @@ module tb_fir ();
 
    wire CLK_i;
    wire RST_n_i;
+   wire [15:0] DIN_i;
    wire VIN_i;
    wire [15:0] H0_i;
    wire [15:0] H1_i;
