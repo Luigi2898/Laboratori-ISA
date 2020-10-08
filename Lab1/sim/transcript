@@ -8,3 +8,23 @@
 # //  OF MENTOR GRAPHICS CORPORATION OR ITS LICENSORS
 # //  AND IS SUBJECT TO LICENSE TERMS.
 # //
+# vsim -t 10ps -novopt work.tb_fir 
+# Refreshing ./work.tb_fir
+# Loading work.tb_fir
+# Loading /software/mentor/modelsim_6.2g/linux/../std.standard
+# Loading /software/mentor/modelsim_6.2g/linux/../ieee.std_logic_1164(body)
+# Loading /software/mentor/modelsim_6.2g/linux/../ieee.std_logic_arith(body)
+# Loading /software/mentor/modelsim_6.2g/linux/../ieee.std_logic_unsigned(body)
+# Refreshing ./work.clk_gen(beh)
+# Loading work.clk_gen(beh)
+# Loading /software/mentor/modelsim_6.2g/linux/../std.textio(body)
+# Loading /software/mentor/modelsim_6.2g/linux/../ieee.std_logic_textio(body)
+# Refreshing ./work.data_maker(beh)
+# Loading work.data_maker(beh)
+# Loading /software/mentor/modelsim_6.2g/linux/../ieee.numeric_std(body)
+# Refreshing ./work.myfir1(beh)
+# Loading work.myfir1(beh)
+# ** Fatal: (vsim-3363) ../tb/tb_fir.v(40): The array length (1) of VHDL port 'dout' does not match the width (16) of its Verilog connection (9th connection).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_fir/UUT File: ../src/myfir1.vhd Line: 15
+# FATAL ERROR while loading design
+# Error loading design
