@@ -28,7 +28,7 @@ module tb_fir ();
 		 .H3(H3_i),
 		 .END_SIM(END_SIM_i));
 
-   myfir UUT(.CLK(CLK_i),
+   myfir1 UUT(.CLK(CLK_i),
 	     .RST_n(RST_n_i),
 	     .DIN(DIN_i),
              .VIN(VIN_i),
