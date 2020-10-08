@@ -1,5 +1,6 @@
-library ieee.std_logic_1164.all;
-library ieee.numeric_std.all;
+library IEEE;
+use IEEE.std_logic_1164.all;
+use IEEE.numeric_std.all;
 
 entity my_fir is
   port (
@@ -20,5 +21,5 @@ architecture beh of my_fir is
 
 begin
     DOUT <= '1010101010';
-    VOUT <= '1'
+    VOUT <= '1';
 end architecture ;
