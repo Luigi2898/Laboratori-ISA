@@ -25,7 +25,7 @@ architecture beh of data_gen is
   constant tco : time := 1 ns;
 
   signal sEndSim : std_logic;
-  signal END_SIM_i : std_logic_vector(0 to 10);  
+  --signal END_SIM_i : std_logic_vector(0 to 10);  
 
 begin  -- beh
 
@@ -63,10 +63,11 @@ begin  -- beh
       END_SIM_i <= (others => '0') after tco;
     elsif CLK'event and CLK = '1' then  -- rising clock edge
       END_SIM_i(0) <= sEndSim after tco;
-      END_SIM_i(1 to 10) <= END_SIM_i(0 to 9) after tco; 
+      --END_SIM_i(1 to 10) <= END_SIM_i(0 to 9) after tco; 
     end if;
   end process;
-
-  END_SIM <= END_SIM_i(10);  
+  
+  --END_SIM <= END_SIM_i(10);  
+  END_SIM <= END_SIM_i(0);  
 
 end beh;
