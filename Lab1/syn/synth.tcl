@@ -1,5 +1,4 @@
 
-foreach filei fileList {
-    filen = $filei + ".vhd"
-    analyze -f vhdl -lib WORK ../src/$filen
+foreach filei $(ls ../src) {
+    analyze -f vhdl -lib WORK ../src/$filei
 }
