@@ -11,8 +11,8 @@ entity data_sink is
   port (
     CLK   : in std_logic;
     RST_n : in std_logic;
-    VOUT   : in std_logic;
-    DOUT   : in std_logic_vector(10 downto 0));
+    VIN   : in std_logic;
+    DIN   : in std_logic_vector(10 downto 0));
 end data_sink;
 
 architecture beh of data_sink is
@@ -26,8 +26,8 @@ begin  -- beh
     if RST_n = '0' then                 -- asynchronous reset (active low)
       null;
     elsif CLK'event and CLK = '1' then  -- rising clock edge
-      if (VOUT = '1') then
-        write(line_out, conv_integer(signed(DOUT)));
+      if (VIN = '1') then
+        write(line_out, conv_integer(signed(DIN)));
         writeline(res_fp, line_out);
       end if;
     end if;

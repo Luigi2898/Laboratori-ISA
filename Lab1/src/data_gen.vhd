@@ -11,8 +11,8 @@ entity data_gen is
   port (
     CLK     : in  std_logic;
     RST_n   : in  std_logic;
-    VIN    : out std_logic;
-    DIN    : out std_logic_vector(10 downto 0);
+    VOUT    : out std_logic;
+    DOUT    : out std_logic_vector(10 downto 0);
 	H0      : out std_logic_vector(10 downto 0);
     H1      : out std_logic_vector(10 downto 0);
     H2      : out std_logic_vector(10 downto 0);
@@ -40,18 +40,18 @@ begin  -- beh
     variable x : integer;
   begin  -- process
     if RST_n = '0' then                 -- asynchronous reset (active low)
-      DIN <= (others => '0') after tco;      
-      VIN <= '0' after tco;
+      DOUT <= (others => '0') after tco;      
+      VOUT <= '0' after tco;
       sEndSim <= '0' after tco;
     elsif CLK'event and CLK = '1' then  -- rising clock edge
       if not endfile(fp_in) then
         readline(fp_in, line_in);
         read(line_in, x);
-        DIN <= conv_std_logic_vector(x, 11) after tco;
-        VIN <= '1' after tco;
+        DOUT <= conv_std_logic_vector(x, 11) after tco;
+        VOUT <= '1' after tco;
         sEndSim <= '0' after tco;
       else
-        VIN <= '0' after tco;        
+        VOUT <= '0' after tco;        
         sEndSim <= '1' after tco;
       end if;
     end if;
