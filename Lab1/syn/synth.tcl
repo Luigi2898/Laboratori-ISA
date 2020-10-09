@@ -1,3 +1,2 @@
-foreach arg argv {
-    analyze -f vhdl -lib WORK $arg
-}
+set power preserve rtl hier names true
+analyze -f vhdl -lib WORK ../src/*.vhd
