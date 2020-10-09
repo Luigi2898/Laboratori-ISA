@@ -1,4 +1,3 @@
-
-foreach filei $(ls ../src) {
-    analyze -f vhdl -lib WORK ../src/$filei
+foreach arg argv {
+    analyze -f vhdl -lib WORK $arg
 }
