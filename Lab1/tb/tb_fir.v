@@ -59,15 +59,15 @@ initial
 	begin
 		if(VOUT_i = '1')
 		res = DOUT_i;
-		if(! $feof(outfile0)) 
-		$fscanf(outfile0,"%d\n",resC);
-	    check_results();
-		else
-		$display("\nFILTER TESTS COMPLETED WITH %0d ERRORS!\n", error_count);
-		$fclose(outfile0);
-		$stop();
-		$finish();
-	end
+			if(! $feof(outfile0)) 
+		    $fscanf(outfile0,"%d\n",resC);
+	        check_results();
+			else
+			$display("\nFILTER TESTS COMPLETED WITH %0d ERRORS!\n", error_count);
+			$fclose(outfile0);
+			$stop();
+			$finish();
+		end
 	end
 end	
 
