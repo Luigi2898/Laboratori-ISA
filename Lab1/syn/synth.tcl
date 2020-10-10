@@ -15,18 +15,18 @@ compile -exact_map
 
 #REPORTS
 
-report_timing > ../synthReport/timing.txt
-report_area  > ../synthReport/area.txt
-report_power > ../synthReport/power.txt
-report_power -net> ../synthReport/power-net.txt
-report_power -cell> ../synthReport/power-cell.txt
-report_power -hierarchy> ../synthReport/power-hierarchy.txt
-report_power -verbose> ../synthReport/power-verbose.txt
+report_timing > synthReport/timing.txt
+report_area  > synthReport/area.txt
+report_power > synthReport/power.txt
+report_power -net> synthReport/power-net.txt
+report_power -cell> synthReport/power-cell.txt
+report_power -hierarchy> synthReport/power-hierarchy.txt
+report_power -verbose> synthReport/power-verbose.txt
 
 #SDF
 
 ungroup -all -flatten
 change names -hierarchy -rules verilog
-write_sdf ../netlist/myfir.sdf
-write -f verilog -hierarchy -output ../netlist/myfir.v
-write_sdc ../netlist/myfir.sdc
+write_sdf netlist/myfir.sdf
+write -f verilog -hierarchy -output netlist/myfir.v
+write_sdc netlist/myfir.sdc
