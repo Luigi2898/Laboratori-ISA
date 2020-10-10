@@ -20,5 +20,5 @@ source /software/scripts/init_synopsys_64.18
 design_vision -f synth.tcl
 dir="../OldRes/res_$(date +%F)"_"$(date +%T)"
 mkdir $dir
-cp "synthReport" $dir 
-cp "netlist" $dir
+cp -r synthReport $dir 
+cp -r netlist $dir
