@@ -9,3 +9,14 @@ vcom -93 -work ./work ../tb/data_maker_new.vhd
 vcom -93 -work ./work ../tb/data_sink.vhd
 vlog -work ./work ../netlist/myfir.v
 vlog -work ./work ../tb/tb fir.v
+vsim -L /software/dk/nangate45/verilog/msim6.2g -sdftyp /tb fir/UUT=../syn/netlist/myfir.sdf work.tb fir
+vsim do -f backVsim.tcl
+cd ../syn
+source /software/scripts/init_synopsys_64.18
+vcd2saif -input ../vcd/myfir_syn.vcd -output ../saif/myfir_syn.saif
+design_vision -f backSyn.tcl
+dir="../OldRes/res_$(date +%F)"_"$(date +%T)"
+mkdir $dir
+mv -r synthReport $dir 
+mv -r netlist $dir
+mv -r synthReportAfterBack $dir
