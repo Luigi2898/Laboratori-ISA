@@ -31,8 +31,8 @@ timeunit 1us; timeprecision 1us;
 
    data_gen DG(.CLK(CLK_i),
 	           .RST_n(RST_n_i),
-		       .VIN(VIN_i),
-		       .DIN(DIN_i),
+		       .VOUT(VIN_i),
+		       .DOUT(DIN_i),
 		       .END_SIM(END_SIM_i));
 
    myfir UUT(.CLK(CLK_i),
@@ -48,8 +48,8 @@ timeunit 1us; timeprecision 1us;
 
    data_sink DS(.CLK(CLK_i),
 		        .RST_n(RST_n_i),
-		        .VOUT(VOUT_i),
-		        .DOUT(DOUT_i));   
+		        .VIN(VOUT_i),
+		        .DIN(DOUT_i));   
 
 initial 
 	begin
@@ -59,15 +59,15 @@ initial
 	begin
 		if(VOUT_i = '1')
 		res = DOUT_i;
-		if(! $feof(outfile0)) 
-		$fscanf(outfile0,"%d\n",resC);
-	    check_results();
-		else
-		$display("\nFILTER TESTS COMPLETED WITH %0d ERRORS!\n", error_count);
-		$fclose(outfile0);
-		$stop();
-		$finish();
-	end
+			if(! $feof(outfile0)) 
+		    $fscanf(outfile0,"%d\n",resC);
+	        check_results();
+			else
+			$display("\nFILTER TESTS COMPLETED WITH %0d ERRORS!\n", error_count);
+			$fclose(outfile0);
+			$stop();
+			$finish();
+		end
 	end
 end	
 
