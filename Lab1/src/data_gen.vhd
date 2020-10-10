@@ -12,11 +12,11 @@ entity data_gen is
     CLK     : in  std_logic;
     RST_n   : in  std_logic;
     VOUT    : out std_logic;
-    DOUT    : out std_logic_vector(10 downto 0);
-	H0      : out std_logic_vector(10 downto 0);
-    H1      : out std_logic_vector(10 downto 0);
-    H2      : out std_logic_vector(10 downto 0);
-    H3      : out std_logic_vector(10 downto 0);
+    DOUT    : out signed(10 downto 0);
+	H0      : out signed(10 downto 0);
+    H1      : out signed(10 downto 0);
+    H2      : out signed(10 downto 0);
+    H3      : out signed(10 downto 0);
     END_SIM : out std_logic);
 end data_gen;
 
