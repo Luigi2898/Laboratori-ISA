@@ -37,8 +37,8 @@ module tb_fir ();
 
    data_gen DG(.CLK(CLK_i),
 	           .RST_n(RST_n_i),
-		       .VIN(VIN_i),
-		       .DIN(DIN_i),
+		       .VOUT(VIN_i),
+		       .DOUT(DIN_i),
 		       .END_SIM(END_SIM_i));
 
    myfir UUT(.CLK(CLK_i),
@@ -59,8 +59,8 @@ module tb_fir ();
 
    data_sink DS(.CLK(CLK_i),
 		        .RST_n(RST_n_i),
-		        .VOUT(VOUT_i),
-		        .DOUT(DOUT_i));   
+		        .VIN(VOUT_i),
+		        .DIN(DOUT_i));   
 
 initial 
 	begin
