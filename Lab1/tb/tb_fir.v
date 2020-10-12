@@ -64,7 +64,7 @@ module tb_fir ();
 
 initial 
 	begin
-	outfile0=$fopen("ResC.txt","r");
+	outfile0=$fopen("../C/resultC.txt","r");
 	@(posedge CLK_i)	
 		if(VOUT_i == 1) begin
 			if(! $feof(outfile0)) begin
