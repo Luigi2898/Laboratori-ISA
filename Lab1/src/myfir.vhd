@@ -79,7 +79,7 @@ filter: for i in 0 to 7 generate
 	first: if i=0 generate
 		sum(i) <= coeff(i) * reg_out0;
 	end generate first;	
-	others: if i > 0 generate
+	other: if i > 0 generate
 		sum(i) <= reg_out(i-1) + sum(i-1);
 	end generate others;
 end generate filter;
