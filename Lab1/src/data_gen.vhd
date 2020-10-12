@@ -12,11 +12,16 @@ entity data_gen is
     CLK     : in  std_logic;
     RST_n   : in  std_logic;
     VOUT    : out std_logic;
-    DOUT    : out std_logic_vector(10 downto 0);
-	H0      : out std_logic_vector(10 downto 0);
-    H1      : out std_logic_vector(10 downto 0);
-    H2      : out std_logic_vector(10 downto 0);
-    H3      : out std_logic_vector(10 downto 0);
+    DOUT    : out signed(10 downto 0);
+	H0      : out signed(10 downto 0);
+    H1      : out signed(10 downto 0);
+    H2      : out signed(10 downto 0);
+    H3      : out signed(10 downto 0);
+	H4      : out signed(10 downto 0);
+	H5      : out signed(10 downto 0);
+	H6      : out signed(10 downto 0);
+	H7      : out signed(10 downto 0);
+	H8      : out signed(10 downto 0);
     END_SIM : out std_logic);
 end data_gen;
 
@@ -25,17 +30,22 @@ architecture beh of data_gen is
   constant tco : time := 1 ns;
 
   signal sEndSim : std_logic;
-  --signal END_SIM_i : std_logic_vector(0 to 10);  
+  signal END_SIM_i : std_logic_vector(0 to 10);  
 
 begin  -- beh
 
-  H0 <= conv_std_logic_vector(286,11);
-  H1 <= conv_std_logic_vector(1571,11);
-  H2 <= conv_std_logic_vector(5374,11);
-  H3 <= conv_std_logic_vector(9151,11);  	
-
+  H0 <= conv_signed(-7,11);
+  H1 <= conv_signed(-14,11);
+  H2 <= conv_signed(52,11);
+  H3 <= conv_signed(272,11);
+  H4 <= conv_signed(415,11);
+  H5 <= conv_signed(272,11);
+  H6 <= conv_signed(52,11);
+  H7 <= conv_signed(-14,11);
+  H8 <= conv_signed(7,11);
+  
   process (CLK, RST_n)
-    file fp_in : text open READ_MODE is "../matlab/samples.txt";
+    file fp_in : text open READ_MODE is "..C/samples.txt";
     variable line_in : line;
     variable x : integer;
   begin  -- process
@@ -63,11 +73,11 @@ begin  -- beh
       END_SIM_i <= (others => '0') after tco;
     elsif CLK'event and CLK = '1' then  -- rising clock edge
       END_SIM_i(0) <= sEndSim after tco;
-      --END_SIM_i(1 to 10) <= END_SIM_i(0 to 9) after tco; 
+      END_SIM_i(1 to 10) <= END_SIM_i(0 to 9) after tco; 
     end if;
   end process;
   
-  --END_SIM <= END_SIM_i(10);  
-  END_SIM <= END_SIM_i(0);  
+  END_SIM <= END_SIM_i(10);  
+  --END_SIM <= END_SIM_i(0);  
 
 end beh;
