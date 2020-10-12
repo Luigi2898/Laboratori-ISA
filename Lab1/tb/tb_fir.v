@@ -39,7 +39,17 @@ module tb_fir ();
 	           .RST_n(RST_n_i),
 		       .VOUT(VIN_i),
 		       .DOUT(DIN_i),
-		       .END_SIM(END_SIM_i));
+           .H0(H0_i),
+               .H1(H1_i),
+			 .H2(H2_i),
+			 .H3(H3_i),
+			 .H4(H4_i),
+			 .H5(H5_i),
+			 .H6(H6_i),
+			 .H7(H7_i),
+			 .H8(H8_i),
+		       .END_SIM(END_SIM_i)
+           );
 
    myfir UUT(.CLK(CLK_i),
 	         .RST_n(RST_n_i),

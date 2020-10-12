@@ -3,7 +3,7 @@ m255
 cModel Technology
 d/home/isa25/Desktop/Laboratori-ISA/Lab1/sim
 Eclk_gen
-w1602523495
+w1602526065
 DP ieee std_logic_unsigned hEMVMlaNCR^<OOoVNV;m90
 DP ieee std_logic_arith GJbAT?7@hRQU9IQ702DT]2
 DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
@@ -32,7 +32,7 @@ OE;C;6.2g;35
 o-work ./work
 tExplicit 1
 Edata_gen
-w1602520194
+w1602526065
 DP std textio K]Z^fghZ6B=BjnK5NomDT3
 DP ieee std_logic_textio 8YS?iX`WD1REQG`ZRYQGB2
 DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
@@ -64,7 +64,7 @@ OE;C;6.2g;35
 o-work ./work
 tExplicit 1
 Edata_sink
-w1602514888
+w1602526065
 DP std textio K]Z^fghZ6B=BjnK5NomDT3
 DP ieee std_logic_textio 8YS?iX`WD1REQG`ZRYQGB2
 DP ieee std_logic_unsigned hEMVMlaNCR^<OOoVNV;m90
@@ -99,7 +99,7 @@ OE;C;6.2g;35
 o-work ./work
 tExplicit 1
 Eff
-w1602519013
+w1602526065
 DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
 DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
 8../src/FF.vhd
@@ -125,7 +125,7 @@ OE;C;6.2g;35
 o-work ./work
 tExplicit 1
 Emyfir
-w1602519013
+w1602526065
 DP ieee std_logic_arith GJbAT?7@hRQU9IQ702DT]2
 DP ieee std_logic_signed <9<Kcl:S52:oW`F]FQhb20
 DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
@@ -150,14 +150,14 @@ M4 ieee std_logic_1164
 M3 ieee numeric_std
 M2 ieee std_logic_signed
 M1 ieee std_logic_arith
-l50
+l52
 L25
-Vg_[J]Mb:cM5mIh3UXz37E1
+V>aNioQ;H@i5<Zec1mMhF@1
 OE;C;6.2g;35
 o-work ./work
 tExplicit 1
 Ereg
-w1602519013
+w1602526065
 DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
 DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
 8../src/reg.vhd
@@ -186,8 +186,8 @@ vtb_fir
 Vn4ToFGQLaei@:>cm_n>5j1
 r1
 31
-I2m>]=j=AJ2zh3F^QRo]mY3
-w1602523327
+I8a>ATW:@J=oTWF]PD`WNh0
+w1602526066
 8../tb/tb_fir.v
 F../tb/tb_fir.v
 L0 7

@@ -73,16 +73,16 @@ z_gen : for i in 0 to 7 generate
 			   end generate;			   
 end generate z_gen;
 		
---var <= (coeff(0) * reg_out0 + coeff(1)*reg_out(0) + coeff(2)*reg_out(1) + coeff(3)*reg_out(2) + coeff(4)*reg_out(3) + coeff(5)*reg_out(4) + coeff(6)*reg_out(5) + coeff(7)*reg_out(6) + coeff(8)*reg_out(7));
+var <= (coeff(0) * reg_out0 + coeff(1)*reg_out(0) + coeff(2)*reg_out(1) + coeff(3)*reg_out(2) + coeff(4)*reg_out(3) + coeff(5)*reg_out(4) + coeff(6)*reg_out(5) + coeff(7)*reg_out(6) + coeff(8)*reg_out(7));
 
-filter: for i in 0 to 7 generate
-	first: if i=0 generate
-		sum(i) <= coeff(i) * reg_out0;
-	end generate first;	
-	other: if i > 0 generate
-		sum(i) <= reg_out(i-1) + sum(i-1);
-	end generate others;
-end generate filter;
+--filter: for i in 0 to 7 generate
+--	first: if i=0 generate
+--		sum(i) <= coeff(i) * reg_out0;
+--	end generate first;	
+--	other: if i > 0 generate
+--		sum(i) <= reg_out(i-1) + sum(i-1);
+--	end generate other;
+--end generate filter;
 
 ff_gen : for i in 0 to 7 generate 
 	    ff1 : if(i = 0) generate 
@@ -95,6 +95,6 @@ ff_gen : for i in 0 to 7 generate
 
 VOUT <= ff_out(7);
 		
-reg3: reg port map(sum((7)(21 downto 11)), DOUT, CLK, RST_N, ff_out(7));		
-
+--reg3: reg port map(sum(7)(21 downto 11), DOUT, CLK, RST_N, ff_out(7));		
+reg3: reg port map(var(21 downto 11), DOUT, CLK, RST_N, ff_out(7));		
 end architecture;
