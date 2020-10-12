@@ -6,7 +6,7 @@
 
 module tb_fir ();
 
-timeunit 1 us;
+timeunit 1us;
 timeprecision 1us;
 
    wire CLK_i;
