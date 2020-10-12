@@ -57,7 +57,7 @@ begin  -- beh
       if not endfile(fp_in) then
         readline(fp_in, line_in);
         read(line_in, x);
-        DOUT <= signed(x, 11) after tco;
+        DOUT <= to_signed(x, 11) after tco;
         VOUT <= '1' after tco;
         sEndSim <= '0' after tco;
       else
