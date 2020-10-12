@@ -28,3 +28,14 @@ begin
     end process ; -- out
 
 end architecture ;
+
+architecture struct of my_fir is
+
+begin
+  out : process( clk )
+    begin
+        if clk'event and clk = 1 then
+            dout <= "1010100101";
+        end if ;
+    end process ; -- out
+end struct ; -- struct
