@@ -93,7 +93,7 @@ task check_results;
       $display(" - OK");
     else begin
       $display(" - ERROR: expected %d", expected, expected);
-      error_count++;
+      error_count += 1;
     end
   endtask		
 		
