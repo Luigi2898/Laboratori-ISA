@@ -1,4 +1,4 @@
 vsim -t 10ps -novopt work.tb_fir
-vsim add wave myfir/clk, myfir/din, myfir/vin, myfir/dout, myfir/vout
+add wave UUT/clk, UUT/din, UUT/vin, UUT/dout, UUT/vout
 
 run 10 ns
