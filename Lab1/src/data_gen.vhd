@@ -47,7 +47,7 @@ begin  -- beh
   H8 <= to_signed(7,11);
   
   process (CLK, RST_n)
-    file fp_in : text open READ_MODE is "..C/samples.txt";
+    file fp_in : text open READ_MODE is "../C/samples.txt";
     variable line_in : line;
     variable x : integer;
   begin  -- process
