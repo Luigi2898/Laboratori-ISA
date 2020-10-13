@@ -3,7 +3,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use ieee.std_logic_signed.all;
 
-entity cu_fir is
+entity myfir_cu is
 		port(CLK: in std_logic;
 			 RST_N: in std_logic;
 			 RST_N_FIR : out std_logic;
@@ -14,7 +14,7 @@ entity cu_fir is
 end entity;
 
 
-architecture beh of cu_fir is
+architecture beh of myfir_cu is
 
 TYPE STATE_TYPE IS (RST_S, IDLE, COUNT, WAIT_S, DATA_VALID, ELABORATE, WAIT_VIN);
 SIGNAL STATE : STATE_TYPE; 
