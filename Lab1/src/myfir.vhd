@@ -59,7 +59,7 @@ architecture beh of myfir is
 
 begin
 
-    CU : myfir_cu port map(clk => clk, rst_n => rst_n, rst_n_fir => rst_n_dp, rst_n => rst_n, vin => vin, load => ctrl_in_dp, vout => ctrl_out_dp);
+    CU : myfir_cu port map(clk => clk, rst_n => rst_n, rst_n_fir => rst_n_dp, vin => vin, load => ctrl_in_dp, vout => ctrl_out_dp);
 
     DP : myfir_dp port map(rst_n => rst_n_dp, ctrl_in => ctrl_in_dp, ctrl_out => ctrl_out_dp, clk => clk, DIN => DIN,
                            H0 => H0, H1 => H1, H2 => H2, H3 => H3, H4 => H4, H5 => H5, H6 => H6, H7 => H7, H8 => H8,

@@ -18,10 +18,10 @@ compile -exact_map
 report_timing > synthReport/timing.txt
 report_area  > synthReport/area.txt
 report_power > synthReport/power.txt
-report_power -net> synthReport/power-net.txt
-report_power -cell> synthReport/power-cell.txt
-report_power -hierarchy> synthReport/power-hierarchy.txt
-report_power -verbose> synthReport/power-verbose.txt
+report_power -net > synthReport/power-net.txt
+report_power -cell > synthReport/power-cell.txt
+report_power -hierarchy > synthReport/power-hierarchy.txt
+report_power -verbose > synthReport/power-verbose.txt
 
 #SDF
 

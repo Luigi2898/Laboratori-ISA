@@ -9,7 +9,7 @@ Report : power
         -analysis_effort low
 Design : myfir
 Version: O-2018.06-SP4
-Date   : Tue Oct 13 09:53:24 2020
+Date   : Tue Oct 13 12:11:49 2020
 ****************************************
 
 
@@ -35,12 +35,12 @@ Power-specific unit information :
     Leakage Power Units = 1nW
 
 
-  Cell Internal Power  = 957.2472 uW   (48%)
-  Net Switching Power  =   1.0362 mW   (52%)
+  Cell Internal Power  = 956.5032 uW   (48%)
+  Net Switching Power  =   1.0456 mW   (52%)
                          ---------
-Total Dynamic Power    =   1.9934 mW  (100%)
+Total Dynamic Power    =   2.0021 mW  (100%)
 
-Cell Leakage Power     = 121.6578 uW
+Cell Leakage Power     = 124.7588 uW
 
 Information: report_power power group summary does not include estimated clock tree power. (PWR-789)
 
@@ -52,8 +52,8 @@ memory             0.0000            0.0000            0.0000            0.0000 
 black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
 clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
 register           0.0000            0.0000            0.0000            0.0000  (   0.00%)
-sequential        43.5122        3.7300e-02        9.3753e+03           52.9249  (   2.50%)
-combinational    913.7345        1.0362e+03        1.1228e+05        2.0622e+03  (  97.50%)
+sequential        41.2677            0.3714        8.5168e+03           50.1559  (   2.36%)
+combinational    915.2349        1.0453e+03        1.1624e+05        2.0767e+03  (  97.64%)
 --------------------------------------------------------------------------------------------------
-Total            957.2468 uW     1.0362e+03 uW     1.2166e+05 nW     2.1151e+03 uW
+Total            956.5026 uW     1.0456e+03 uW     1.2476e+05 nW     2.1269e+03 uW
 1
