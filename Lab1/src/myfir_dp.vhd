@@ -77,6 +77,6 @@ adder : for i in 1 to 7 generate
 	sum(i) <= mult(i + 1) + sum(i - 1);
 end generate ; -- adders
 
-output_register : reg port map(reg_in => sum(7)(21 downto 11), reg_out => dout, clk => clk, rst_n = rst_n, load => crtl_out); --output register, enabled when an output is ready
+output_register : reg port map(reg_in => sum(7)(21 downto 11), reg_out => dout, clk => clk, rst_n = rst_n, load => ctrl_out); --output register, enabled when an output is ready
 
 end architecture;
