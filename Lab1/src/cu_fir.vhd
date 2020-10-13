@@ -6,6 +6,7 @@ use ieee.std_logic_signed.all;
 entity cu_fir is
 		port(CLK: in std_logic;
 			 RST_N: in std_logic;
+			 RST_N_FIR : out std_logic;
 			 VIN: in std_logic;
 			 LOAD : out std_logic;
 			 VOUT: out std_logic		
@@ -17,7 +18,7 @@ architecture beh of cu_fir is
 
 TYPE STATE_TYPE IS (RST_S, IDLE, COUNT, WAIT_S, DATA_VALID, ELABORATE, WAIT_VIN);
 SIGNAL STATE : STATE_TYPE; 
-signal cnt : unsigned(2 downto 0) := "000";
+SIGNAL CNT : INTEGER;
 
 begin
 FSM_PROCESS : PROCESS(CLK, RST_N)
@@ -32,7 +33,7 @@ IF(RST_N = '0') THEN
 								 ELSE STATE <= IDLE;
 								 END IF;
 		  WHEN COUNT      => IF(VIN = '1') THEN
-								 IF(CNT = "111") THEN
+								 IF(CNT = 7) THEN
 								   STATE <= DATA_VALID;
 								 ELSE STATE <= COUNT;
 								 END IF;
@@ -40,7 +41,7 @@ IF(RST_N = '0') THEN
 							 END IF;
 		  WHEN WAIT_S     => IF(VIN = '0') THEN
 								 STATE <= WAIT_S;
-							 ELSIF(CNT = "111") THEN 
+							 ELSIF(CNT = 7) THEN 
 								 STATE <= DATA_VALID;
 							 ELSE STATE <= COUNT;
 							 END IF;
@@ -51,6 +52,7 @@ IF(RST_N = '0') THEN
 		  WHEN WAIT_VIN	  => IF(VIN = '0') THEN
 								 STATE <= WAIT_VIN;
 							 ELSE STATE <= ELABORATE;
+							 END IF;
 		  WHEN OTHERS     => STATE <= RST_S;					 
 		  END CASE;
 END IF;
@@ -58,16 +60,17 @@ END PROCESS;
 
 OUTPUT_P: PROCESS(STATE) 
 begin
-rst_n <= '1';
+cnt <= 0;
+rst_n_fir <= '1';
 load <= '0';
 vout <= '0';
 	case STATE is
 	when RST_S => 
-		 RST_N <= '0';
+		 RST_N_FIR <= '0';
 	when IDLE  =>
-		 CNT <= "000";
+		 cnt <= 0;
 	when COUNT => 	
-		 CNT <= CNT + 1;
+		 cnt <= cnt + 1;
 		 LOAD <= '1';
 	when WAIT_S =>
 
@@ -89,6 +92,3 @@ end process;
 end architecture;
 
  
-
-
-end architecture;
