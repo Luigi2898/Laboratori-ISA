@@ -82,13 +82,7 @@ vout <= '0';
 		 LOAD <= '1';
 	end case;
 end process;
-
-
-
-
-
-
-	  
+  
 end architecture;
 
  
