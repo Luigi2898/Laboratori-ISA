@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity myfir is
+entity myfir_dp is
 	port(RST_N    : in std_logic;           -- Control unit
 		 ctrl_in  : in std_logic;           -- Control unit
 		 ctrl_out : in std_logic;           -- Control Unit
@@ -21,7 +21,7 @@ entity myfir is
 		);
 end entity;
 
-architecture beh of myfir is
+architecture beh of myfir_dp is
 
 component REG is
 	port(REG_IN : in signed(10 downto 0);
