@@ -24,12 +24,14 @@ end myfir ;
 architecture beh of myfir is
 
     component myfir_cu is
-		port(CLK       : in std_logic;
-			 RST_N     : in std_logic;
+		port(CLK: in std_logic;
+			 RST_N: in std_logic;
 			 RST_N_FIR : out std_logic;
-			 VIN       : in std_logic;
-			 LOAD      : out std_logic;
-			 VOUT      : out std_logic		
+			 VIN: in std_logic;
+			 LOAD : out std_logic;
+			 VOUT: out std_logic;
+			 TC : in std_logic;
+			 CNT_EN : out std_logic
 		);
     end component;
 
@@ -48,7 +50,9 @@ architecture beh of myfir is
              H6       : in  signed(10 downto 0); -- External
              H7       : in  signed(10 downto 0); -- External
              H8       : in  signed(10 downto 0); -- External
-             DOUT     : out signed(10 downto 0) -- External
+             DOUT     : out signed(10 downto 0); -- External
+			 TC       : out std_logic;           -- Control unit
+	         CNT_EN   : in std_logic             -- Control unit
             );
     end component;
     
@@ -56,14 +60,16 @@ architecture beh of myfir is
     signal rst_n_dp    : std_logic;
     signal ctrl_in_dp  : std_logic;
     signal ctrl_out_dp : std_logic;
-
+    signal tc          : std_logic;
+	signal cnt_en     : std_logic;
 begin
 
-    CU : myfir_cu port map(clk => clk, rst_n => rst_n, rst_n_fir => rst_n_dp, vin => vin, load => ctrl_in_dp, vout => ctrl_out_dp);
+    CU : myfir_cu port map(clk => clk, rst_n => rst_n, rst_n_fir => rst_n_dp, vin => vin, load => ctrl_in_dp, vout => ctrl_out_dp,
+	                       TC => TC, CNT_EN => CNT_EN);
 
     DP : myfir_dp port map(rst_n => rst_n_dp, ctrl_in => ctrl_in_dp, ctrl_out => ctrl_out_dp, clk => clk, DIN => DIN,
                            H0 => H0, H1 => H1, H2 => H2, H3 => H3, H4 => H4, H5 => H5, H6 => H6, H7 => H7, H8 => H8,
-                           dout => dout);
+                           dout => dout, TC => TC, CNT_EN => CNT_EN);
     
     vout <= ctrl_out_dp;
 
