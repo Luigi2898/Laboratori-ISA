@@ -1,24 +1,23 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-use ieee.std_logic_signed.all;
 
 entity myfir is
-	port(CLK: in std_logic;
-		 RST_N: in std_logic;
-		 DIN: in signed(10 downto 0);
-		 VIN: in std_logic;
-		 H0: in signed(10 downto 0);
-		 H1: in signed(10 downto 0);
-		 H2: in signed(10 downto 0);
-		 H3: in signed(10 downto 0);
-		 H4: in signed(10 downto 0);
-		 H5: in signed(10 downto 0);
-		 H6: in signed(10 downto 0);
-		 H7: in signed(10 downto 0);
-		 H8: in signed(10 downto 0);
-		 DOUT: out signed(10 downto 0);
-		 VOUT: out std_logic
+	port(RST_N    : in std_logic;           -- Control unit
+		 ctrl_in  : in std_logic;           -- Control unit
+		 ctrl_out : in std_logic;           -- Control Unit
+		 CLK      : in std_logic;           -- External
+		 DIN      : in signed(10 downto 0); -- External
+		 H0       : in signed(10 downto 0); -- External
+		 H1       : in signed(10 downto 0); -- External
+		 H2       : in signed(10 downto 0); -- External
+		 H3       : in signed(10 downto 0); -- External
+		 H4       : in signed(10 downto 0); -- External
+		 H5       : in signed(10 downto 0); -- External
+		 H6       : in signed(10 downto 0); -- External
+		 H7       : in signed(10 downto 0); -- External
+		 H8       : in signed(10 downto 0); -- External
+		 DOUT     : out signed(10 downto 0) -- External
 		);
 end entity;
 
@@ -38,16 +37,17 @@ component ff is
 	);
 end component;
 
-type vector is array (8 downto 0) of signed(10 downto 0);
-type vector2 is array (7 downto 0) of signed(10 downto 0);
-signal coeff : vector;
-signal reg_out : vector2;
-signal ff_out: signed(7 downto 0);  
-signal load : std_logic := '1';
-signal reg_out0 : signed(10 downto 0);
-signal var : signed(21 downto 0);
-type vector3 is array (7 downto 0) of signed(21 downto 0);
-signal sum : vector3;
+type registers_array is array (8 downto 0) of signed(10 downto 0); -- Array for the delay line
+type coeff_array     is array (8 downto 0) of signed(10 downto 0); -- Array for the coefficients
+type mult_array      is array (8 downto 0) of signed(21 downto 0); -- Array for the results of multiplications
+type sum_array       is array (7 downto 0) of signed(21 downto 0); -- Array for the results of additions
+
+signal coeff         : coeff_array;
+signal delay_line    : registers_array;
+signal mult          : mult_array;
+signal sum           : sum_array;
+
+signal dumb_one      : std_logic := '1';
 
 begin
 
@@ -61,40 +61,22 @@ coeff(6) <=  H6;
 coeff(7) <=  H7;
 coeff(8) <=  H8;
 
-reg0 : reg port map(DIN, reg_out0, clk, rst_N, load);
+input_register : reg port map(reg_in => DIN, reg_out => delay_line(0), clk => clk, rst_n => rst_n, load => dumb_one); --input register, always enabled
 
+registers : for i in 1 to 8 generate 
+	i_register : reg port map(reg_in => delay_line(i-1), reg_out => delay_line(i), clk => clk, rst_n => rst_n, load => ctrl_in);			   
+end generate; -- registers
 
-z_gen : for i in 0 to 7 generate 
-		reg1 : if(i = 0) generate
-				regz1 :reg port map(reg_out0, reg_out(i), clk, rst_N, VIN);
-				end generate;
-		reg2 : if(i > 0) generate		
-	           regz2: reg port map(reg_out(i-1), reg_out(i), clk, rst_n, VIN);
-			   end generate;			   
-end generate z_gen;
-		
-var <= (coeff(0) * reg_out0 + coeff(1)*reg_out(0) + coeff(2)*reg_out(1) + coeff(3)*reg_out(2) + coeff(4)*reg_out(3) + coeff(5)*reg_out(4) + coeff(6)*reg_out(5) + coeff(7)*reg_out(6) + coeff(8)*reg_out(7));
+multiplier : for i in 0 to 8 generate
+	mult(i) <= coeff(i) * delay_line(i);
+end generate; -- multipliers
 
---filter: for i in 0 to 7 generate
---	first: if i=0 generate
---		sum(i) <= coeff(i) * reg_out0;
---	end generate first;	
---	other: if i > 0 generate
---		sum(i) <= reg_out(i-1) + sum(i-1);
---	end generate other;
---end generate filter;
+sum(0) <= mult(0) + mult(1);
 
-ff_gen : for i in 0 to 7 generate 
-	    ff1 : if(i = 0) generate 
-		        ffg1 :ff port map(VIN, ff_out(i), clk, rst_n, VIN);
-				end generate;
-		ff2 : if(i > 0) generate		
-	           ffg2: ff port map(ff_out(i-1), ff_out(i), clk, rst_n, VIN);
-			   end generate;
-        end generate ff_gen;
+adder : for i in 1 to 7 generate
+	sum(i) <= mult(i + 1) + sum(i - 1);
+end generate ; -- adders
 
-VOUT <= ff_out(7);
-		
---reg3: reg port map(sum(7)(21 downto 11), DOUT, CLK, RST_N, ff_out(7));		
-reg3: reg port map(var(21 downto 11), DOUT, CLK, RST_N, ff_out(7));		
+output_register : reg port map(reg_in => sum(7)(21 downto 11), reg_out => dout, clk => clk, rst_n = rst_n, load => crtl_out); --output register, enabled when an output is ready
+
 end architecture;
