@@ -9,7 +9,9 @@ entity myfir_cu is
 			 RST_N_FIR : out std_logic;
 			 VIN: in std_logic;
 			 LOAD : out std_logic;
-			 VOUT: out std_logic		
+			 VOUT: out std_logic;
+			 TC : in std_logic;
+			 CNT_EN : out std_logic
 		);
 end entity;
 
@@ -18,7 +20,6 @@ architecture beh of myfir_cu is
 
 TYPE STATE_TYPE IS (RST_S, IDLE, COUNT, WAIT_S, DATA_VALID, ELABORATE, WAIT_VIN);
 SIGNAL STATE : STATE_TYPE; 
-SIGNAL CNT : INTEGER;
 
 begin
 FSM_PROCESS : PROCESS(CLK, RST_N)
@@ -33,7 +34,7 @@ IF(RST_N = '0') THEN
 								 ELSE STATE <= IDLE;
 								 END IF;
 		  WHEN COUNT      => IF(VIN = '1') THEN
-								 IF(CNT = 7) THEN
+								 IF(TC = '1') THEN
 								   STATE <= DATA_VALID;
 								 ELSE STATE <= COUNT;
 								 END IF;
@@ -41,7 +42,7 @@ IF(RST_N = '0') THEN
 							 END IF;
 		  WHEN WAIT_S     => IF(VIN = '0') THEN
 								 STATE <= WAIT_S;
-							 ELSIF(CNT = 7) THEN 
+							 ELSIF(TC = '1') THEN 
 								 STATE <= DATA_VALID;
 							 ELSE STATE <= COUNT;
 							 END IF;
@@ -49,6 +50,7 @@ IF(RST_N = '0') THEN
 							 STATE <= ELABORATE;
 							 ELSE STATE <= WAIT_VIN;
 							 END IF;
+          WHEN ELABORATE  => STATE <= DATA_VALID;
 		  WHEN WAIT_VIN	  => IF(VIN = '0') THEN
 								 STATE <= WAIT_VIN;
 							 ELSE STATE <= ELABORATE;
@@ -60,17 +62,17 @@ END PROCESS;
 
 OUTPUT_P: PROCESS(STATE) 
 begin
-cnt <= 0;
-rst_n_fir <= '1';
-load <= '0';
-vout <= '0';
+CNT_EN <= '0';
+RST_N_FIR <= '1';
+LOAD <= '0';
+VOUT <= '0';
 	case STATE is
 	when RST_S => 
 		 RST_N_FIR <= '0';
 	when IDLE  =>
-		 cnt <= 0;
+		 CNT_EN <= '0';
 	when COUNT => 	
-		 cnt <= cnt + 1;
+		 CNT_EN <= '1';
 		 LOAD <= '1';
 	when WAIT_S =>
 
