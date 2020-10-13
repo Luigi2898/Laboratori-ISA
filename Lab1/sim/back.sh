@@ -15,7 +15,7 @@ cd ../syn
 source /software/scripts/init_synopsys_64.18
 vcd2saif -input ../vcd/myfir_syn.vcd -output ../saif/myfir_syn.saif
 design_vision -f backSyn.tcl
-dir="../OldRes/res_$(date +%F)"_"$(date +%T)"
+dir="../OldRes/res_$(date +%F)"_"$(date +%T)_synAndBack"
 mkdir $dir
 mv -r synthReport $dir 
 mv -r netlist $dir
