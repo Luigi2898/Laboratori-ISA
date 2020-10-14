@@ -3,7 +3,7 @@ m255
 cModel Technology
 d/home/isa25/Desktop/Laboratori-ISA/Lab1/sim
 Eclk_gen
-w1602583326
+w1602166482
 DP ieee std_logic_unsigned hEMVMlaNCR^<OOoVNV;m90
 DP ieee std_logic_arith GJbAT?7@hRQU9IQ702DT]2
 DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
@@ -27,21 +27,22 @@ M2 ieee std_logic_arith
 M1 ieee std_logic_unsigned
 l19
 L13
-VKjVoTEh8g1^K1Qi4L`Bl:2
+VSZN=S5<ARZkiDjcbY83E63
 OE;C;6.2g;35
 o-work ./work
 tExplicit 1
-Edata_gen
-w1602583326
+Edata_maker
+w1602166482
 DP std textio K]Z^fghZ6B=BjnK5NomDT3
 DP ieee std_logic_textio 8YS?iX`WD1REQG`ZRYQGB2
-DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
+DP ieee std_logic_unsigned hEMVMlaNCR^<OOoVNV;m90
+DP ieee std_logic_arith GJbAT?7@hRQU9IQ702DT]2
 DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
-8../src/data_gen.vhd
-F../src/data_gen.vhd
+8../src/data_maker_new.vhd
+F../src/data_maker_new.vhd
 l0
-L12
-VdBF1lJMUnBn:3WnQO>ZAD0
+L10
+VcVMXZ@AXMl8MJen[NYEaB1
 OE;C;6.2g;35
 32
 o-work ./work
@@ -49,145 +50,66 @@ tExplicit 1
 Abeh
 DP std textio K]Z^fghZ6B=BjnK5NomDT3
 DP ieee std_logic_textio 8YS?iX`WD1REQG`ZRYQGB2
-DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
+DP ieee std_logic_unsigned hEMVMlaNCR^<OOoVNV;m90
+DP ieee std_logic_arith GJbAT?7@hRQU9IQ702DT]2
 DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
-DE work data_gen dBF1lJMUnBn:3WnQO>ZAD0
+DE work data_maker cVMXZ@AXMl8MJen[NYEaB1
 32
-M4 ieee std_logic_1164
-M3 ieee numeric_std
+M5 ieee std_logic_1164
+M4 ieee std_logic_arith
+M3 ieee std_logic_unsigned
 M2 ieee std_logic_textio
 M1 std textio
-l37
-L30
-VPeA?daZ8dgcIMVVX3_kf]3
+l30
+L23
+V7X?WT5N<WR<zLnc@JkAnf1
 OE;C;6.2g;35
 o-work ./work
 tExplicit 1
 Edata_sink
-w1602584758
-DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
+w1602166482
 DP std textio K]Z^fghZ6B=BjnK5NomDT3
 DP ieee std_logic_textio 8YS?iX`WD1REQG`ZRYQGB2
+DP ieee std_logic_unsigned hEMVMlaNCR^<OOoVNV;m90
+DP ieee std_logic_arith GJbAT?7@hRQU9IQ702DT]2
 DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
 8../src/data_sink.vhd
 F../src/data_sink.vhd
 l0
-L11
-VOBH5AmYH_Tci:OljOZ48i3
+L10
+V^;>CCe3VoSL7LzXekVz1Q2
 OE;C;6.2g;35
 32
 o-work ./work
 tExplicit 1
 Abeh
-DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
 DP std textio K]Z^fghZ6B=BjnK5NomDT3
 DP ieee std_logic_textio 8YS?iX`WD1REQG`ZRYQGB2
-DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
-DE work data_sink OBH5AmYH_Tci:OljOZ48i3
-32
-M4 ieee std_logic_1164
-M3 ieee std_logic_textio
-M2 std textio
-M1 ieee numeric_std
-l21
-L19
-VU<A:GAlE::@7@nQ_kdf6k3
-OE;C;6.2g;35
-o-work ./work
-tExplicit 1
-Eff
-w1602583326
-DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
-DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
-8../src/FF.vhd
-F../src/FF.vhd
-l0
-L5
-Vi]XifN;HI2_Z:10jjg^j32
-OE;C;6.2g;35
-32
-o-work ./work
-tExplicit 1
-Abeh
-DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
-DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
-DE work ff i]XifN;HI2_Z:10jjg^j32
-l14
-L12
-Vk=QL5@>F^gP^RlAXLY1oP2
-OE;C;6.2g;35
-32
-M2 ieee std_logic_1164
-M1 ieee numeric_std
-o-work ./work
-tExplicit 1
-Emyfir
-w1602583326
-DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
-DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
-8../src/myfir.vhd
-F../src/myfir.vhd
-l0
-L5
-V]k``]Ed]OdJC31Y^H1c501
-OE;C;6.2g;35
-32
-o-work ./work
-tExplicit 1
-Abeh
-DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
-DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
-DE work myfir ]k``]Ed]OdJC31Y^H1c501
-32
-M2 ieee std_logic_1164
-M1 ieee numeric_std
-l60
-L24
-VHoab:POTOBDnAb^NafLf62
-OE;C;6.2g;35
-o-work ./work
-tExplicit 1
-Emyfir_cu
-w1602583326
+DP ieee std_logic_unsigned hEMVMlaNCR^<OOoVNV;m90
 DP ieee std_logic_arith GJbAT?7@hRQU9IQ702DT]2
-DP ieee std_logic_signed <9<Kcl:S52:oW`F]FQhb20
-DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
 DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
-8../src/myfir_cu.vhd
-F../src/myfir_cu.vhd
-l0
-L6
-V<F3aI4cgd_:cKLM4chN8?2
+DE work data_sink ^;>CCe3VoSL7LzXekVz1Q2
+l20
+L18
+VJzfiDXi7^5TEnD`N`Yff_1
 OE;C;6.2g;35
 32
+M5 ieee std_logic_1164
+M4 ieee std_logic_arith
+M3 ieee std_logic_unsigned
+M2 ieee std_logic_textio
+M1 std textio
 o-work ./work
 tExplicit 1
-Abeh
-DP ieee std_logic_arith GJbAT?7@hRQU9IQ702DT]2
-DP ieee std_logic_signed <9<Kcl:S52:oW`F]FQhb20
+Emyfir1
+w1602171730
 DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
 DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
-DE work myfir_cu <F3aI4cgd_:cKLM4chN8?2
-32
-M4 ieee std_logic_1164
-M3 ieee numeric_std
-M2 ieee std_logic_signed
-M1 ieee std_logic_arith
-l23
-L17
-VHLnh_SiaUX720DK=U`PTg3
-OE;C;6.2g;35
-o-work ./work
-tExplicit 1
-Emyfir_dp
-w1602583326
-DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
-DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
-8../src/myfir_dp.vhd
-F../src/myfir_dp.vhd
+8../src/myfir1.vhd
+F../src/myfir1.vhd
 l0
 L5
-VdP8iL_5iQ_64Af8UKR70G2
+V852V44CR_Z2Y]I?Yd7l672
 OE;C;6.2g;35
 32
 o-work ./work
@@ -195,39 +117,13 @@ tExplicit 1
 Abeh
 DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
 DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
-DE work myfir_dp dP8iL_5iQ_64Af8UKR70G2
+DE work myfir1 852V44CR_Z2Y]I?Yd7l672
 32
 M2 ieee std_logic_1164
 M1 ieee numeric_std
-l52
-L24
-VI_`6PJC0aV`6hH57=X?Q`2
-OE;C;6.2g;35
-o-work ./work
-tExplicit 1
-Ereg
-w1602583326
-DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
-DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
-8../src/reg.vhd
-F../src/reg.vhd
-l0
-L5
-V26a`R4ZlB?BZN_9ckYVYh0
-OE;C;6.2g;35
-32
-o-work ./work
-tExplicit 1
-Abeh
-DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
-DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
-DE work reg 26a`R4ZlB?BZN_9ckYVYh0
-32
-M2 ieee std_logic_1164
-M1 ieee numeric_std
-l14
-L12
-VdP[?jN=2g95]IUDiCm=^O0
+l22
+L20
+VzXR^eIf2_l=@Mh66NE_>A3
 OE;C;6.2g;35
 o-work ./work
 tExplicit 1
@@ -235,10 +131,10 @@ vtb_fir
 Vn4ToFGQLaei@:>cm_n>5j1
 r1
 31
-I8a>ATW:@J=oTWF]PD`WNh0
-w1602583327
+Iazi3>P^>CJ]XDeR=Zk;dS3
+w1602169670
 8../tb/tb_fir.v
 F../tb/tb_fir.v
-L0 7
+L0 3
 OE;L;6.2g;35
 o-work ./work

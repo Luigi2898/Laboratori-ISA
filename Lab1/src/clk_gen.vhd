@@ -12,7 +12,7 @@ end clk_gen;
 
 architecture beh of clk_gen is
 
-  constant Ts : time := 1 us;
+  constant Ts : time := 100 us;
   
   signal CLK_i : std_logic;
   

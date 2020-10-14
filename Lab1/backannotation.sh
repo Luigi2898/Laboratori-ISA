@@ -1,2 +1,2 @@
 source ./sim/back.sh
-source ./syn
+source ./syn/
