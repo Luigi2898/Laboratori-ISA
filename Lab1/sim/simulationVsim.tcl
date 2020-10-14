@@ -1,3 +1,8 @@
-add wave myfir/clk, myfir/din, myfir/vin, myfir/dout, myfir/vout
+vsim -t 10ps -novopt work.tb_fir
+add wave  sim:/tb_fir/CLK_i
+add wave sim:/tb_fir/DIN_i
+add wave sim:/tb_fir/VIN_i
+add wave sim:/tb_fir/DOUT_i
+add wave sim:/tb_fir/VOUT_i
 
-run 10 ns
+run 1 ms

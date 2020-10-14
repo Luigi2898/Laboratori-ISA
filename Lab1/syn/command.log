@@ -1,6 +1,6 @@
 #@ # 
 #@ # Running dc_shell Version O-2018.06-SP4 for linux64 -- Nov 27, 2018
-#@ # Date:   Sat Oct 10 12:49:11 2020
+#@ # Date:   Tue Oct 13 12:11:06 2020
 #@ # Run by: isa25@localhost.localdomain
 #@ 
 
@@ -6647,12 +6647,12 @@ source -echo -verbose /home/isa25/Desktop/Laboratori-ISA/Lab1/syn/synth.tcl
 #@ uniquify
 #@ link
 #@ create clock -name MY CLK -period 10.0 CLK
-#@ set dont touch network MY CLK
-#@ set clock uncertainty 0.07 [get clocks MY CLK]
-#@ set input delay 0.5 -max -clock MY CLK [remove from collection [all inputs] CLK]
-#@ set output delay 0.5 -max -clock MY CLK [all outputs]
+#@ set_dont_touch network MY CLK
+#@ set_clock_uncertainty 0.07 [get clocks MY CLK]
+#@ set_input_delay 0.5 -max -clock MY CLK [remove from collection [all inputs] CLK]
+#@ set_output_delay 0.5 -max -clock MY CLK [all outputs]
 #@ set OLOAD [load of NangateOpenCellLibrary/BUF X4/A]
-#@ set load $OLOAD [all outputs]
+#@ set_load $OLOAD [all outputs]
 #@ compile -exact_map
 #@ #compile -exact_map -gate_clock
 #@ 
@@ -6669,7 +6669,7 @@ source -echo -verbose /home/isa25/Desktop/Laboratori-ISA/Lab1/syn/synth.tcl
 #@ #SDF
 #@ 
 #@ ungroup -all -flatten
-#@ change names -hierarchy -rules verilog
+#@ change_names -hierarchy -rules verilog
 #@ write_sdf netlist/myfir.sdf
 #@ write -f verilog -hierarchy -output netlist/myfir.v
 #@ write_sdc netlist/myfir.sdc
@@ -43036,3 +43036,7 @@ gui_start
 #@ 
 #@ # -- End source /software/synopsys/syn_current_64.18/auxx/tcllib/lib/iwidgets4.1/watch.itk
 
+change_selection [get_s myfir]
+change_selection [get_s myfir]
+gui_zoom -window [gui_get_current_window -view] -selection
+change_selection [get_s {{DP_delay_line[42]} {DP_delay_line[53]} {DP_delay_line[75]} {DP_delay_line[64]}}]

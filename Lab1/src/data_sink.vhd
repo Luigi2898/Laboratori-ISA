@@ -1,8 +1,9 @@
 library ieee;
 use ieee.std_logic_1164.all;
-use ieee.std_logic_arith.all;
-use ieee.std_logic_unsigned.all;
+--use ieee.std_logic_arith.all;
+--use ieee.std_logic_unsigned.all;
 use ieee.std_logic_textio.all;
+use ieee.numeric_std.all;
 
 library std;
 use std.textio.all;
@@ -27,7 +28,7 @@ begin  -- beh
       null;
     elsif CLK'event and CLK = '1' then  -- rising clock edge
       if (VIN = '1') then
-        write(line_out, conv_integer(signed(DIN)));
+        write(line_out, to_integer(DIN));
         writeline(res_fp, line_out);
       end if;
     end if;
