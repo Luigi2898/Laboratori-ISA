@@ -17,7 +17,9 @@ entity myfir_dp is
 		 H6       : in signed(10 downto 0); -- External
 		 H7       : in signed(10 downto 0); -- External
 		 H8       : in signed(10 downto 0); -- External
-		 DOUT     : out signed(10 downto 0) -- External
+		 DOUT     : out signed(10 downto 0); -- External
+		 TC       : out std_logic;          -- Control unit
+	     CNT_EN   : in std_logic            -- Control unit
 		);
 end entity;
 
@@ -30,11 +32,15 @@ component REG is
 	);
 end	component;
 
-component ff is
-	port(ff_in : in std_logic;
-		 ff_out : out std_logic;
-		 clk, rst, load : in std_logic	
-	);
+
+component N_COUNTER is
+		generic(N : integer:= 6; MODULE : integer := 42);
+		port(CLK : in std_logic;
+			 EN  : in std_logic;
+			 RST : in std_logic;
+			 CNT_END : out std_logic;
+			 CNT_OUT : buffer unsigned(n-1 downto 0)		
+		);
 end component;
 
 type registers_array is array (8 downto 0) of signed(10 downto 0); -- Array for the delay line
@@ -48,6 +54,8 @@ signal mult          : mult_array;
 signal sum           : sum_array;
 
 signal dumb_one      : std_logic := '1';
+signal cnt_out       : unsigned(2 downto 0);
+
 
 begin
 
@@ -78,5 +86,9 @@ adder : for i in 1 to 7 generate
 end generate ; -- adders
 
 output_register : reg port map(reg_in => sum(7)(21 downto 11), reg_out => dout, clk => clk, rst_n => rst_n, load => ctrl_out); --output register, enabled when an output is ready
+
+counter : N_COUNTER generic map(N => 3, MODULE => 9) 
+                    port map(clk => clk, en => cnt_en, rst => rst_n, cnt_end => TC, cnt_out => cnt_out);
+
 
 end architecture;
