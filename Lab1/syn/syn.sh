@@ -9,19 +9,8 @@ else
     echo "La cartella work non è presente, la creo"
     mkdir work
 fi
-if [ ! -d synthReport ]    # ← see 'man bash' for valid conditional statements.
-then
-    mkdir synthReport
-else
-    dir="../OldRes/res_$(date +%F)"_"$(date +%T)_justSyn"
-    mkdir $dir
-    mv synthReport $dir 
-fi
-if [ ! -d netlist ]    # ← see 'man bash' for valid conditional statements.
-then
-    mkdir netlist
-else
-    mv netlist $dir
-fi
 source /software/scripts/init_synopsys_64.18
 design_vision -f synth.tcl
+dir="../OldRes/res_$(date +%F)"_"$(date +%T)_justSyn"
+cp -r synthReport $dir
+cp -r netlist $dir
