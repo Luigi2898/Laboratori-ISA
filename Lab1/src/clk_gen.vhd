@@ -5,7 +5,7 @@ use ieee.std_logic_unsigned.all;
 
 entity clk_gen is
   port (
-    END_SIM : in  std_logic;
+    END_SIM : in std_logic;
     CLK     : out std_logic;
     RST_n   : out std_logic);
 end clk_gen;
@@ -13,13 +13,13 @@ end clk_gen;
 architecture beh of clk_gen is
 
   constant Ts : time := 1 us;
-  
+
   signal CLK_i : std_logic;
-  
-begin  -- beh
+
+begin -- beh
 
   process
-  begin  -- process
+  begin -- process
     if (CLK_i = 'U') then
       CLK_i <= '0';
     else
@@ -31,9 +31,9 @@ begin  -- beh
   CLK <= CLK_i and not(END_SIM);
 
   process
-  begin  -- process
+  begin -- process
     RST_n <= '0';
-    wait for 3*Ts/2;
+    wait for 3 * Ts/2;
     RST_n <= '1';
     wait;
   end process;

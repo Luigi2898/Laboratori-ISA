@@ -89,3 +89,5 @@ begin
 			LOAD <= '1';
 	end case;
 end process;
+
+end;
