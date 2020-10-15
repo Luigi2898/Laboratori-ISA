@@ -26,11 +26,29 @@ module tb_fir ();
    wire END_SIM_i;
    
    integer error_count = 0;
-   integer resC, res;
+   integer resC, res, a;
    integer outfile0,outfile1; //file descriptors
    
    //timeunit 1us;  timeprecision 1us;	
-
+initial 
+	begin
+	outfile0=$fopen("../C/resultC11.txt","r");
+  $display("Ho aperto il file");
+	@(posedge CLK_i)	//Guardare simulazione
+		if(VOUT_i == 1) begin
+			if(! $feof(outfile0)) begin
+			res = DOUT_i;
+			a = $fscanf(outfile0,"%d\n",resC);
+			check_results(); end
+	        else begin
+			$display("\nFILTER TESTS COMPLETED WITH %0d ERRORS!\n", error_count);
+			$fclose(outfile0);
+			$stop();
+			$finish();
+			end
+		end	
+  
+end
    clk_gen CG(.END_SIM(END_SIM_i),
   	          .CLK(CLK_i),
 	          .RST_n(RST_n_i));
@@ -72,23 +90,7 @@ module tb_fir ();
 		        .VIN(VOUT_i),
 		        .DIN(DOUT_i));   
 
-initial 
-	begin
-	outfile0=$fopen("../C/resultC11.txt","r");
-	@(posedge CLK_i)	
-		if(VOUT_i == 1) begin
-			if(! $feof(outfile0)) begin
-			res = DOUT_i;
-			$fscanf(outfile0,"%d\n",resC);
-			check_results(); end
-	        else begin
-			$display("\nFILTER TESTS COMPLETED WITH %0d ERRORS!\n", error_count);
-			$fclose(outfile0);
-			$stop();
-			$finish();
-			end
-		end	
-end
+
 
 
 task check_results;

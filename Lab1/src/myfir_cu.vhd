@@ -17,7 +17,7 @@ entity myfir_cu is
 end entity;
 architecture beh of myfir_cu is
 
-	type STATE_TYPE is (RST_S, IDLE, COUNT, WAIT_S, DATA_VALID, ELABORATE, WAIT_VIN);
+	type STATE_TYPE is (RST_S, IDLE, COUNT, DATA_VALID, WAIT_VIN);
 	signal STATE : STATE_TYPE;
 
 begin
@@ -40,25 +40,17 @@ begin
 				STATE <= COUNT;
 			end if;
 		else
-			STATE <= WAIT_S;
+			STATE <= IDLE;
 		end if;
-		when WAIT_S => if (VIN = '0') then
-		STATE <= WAIT_S;
-	elsif (TC = '1') then
+		when DATA_VALID => if (VIN = '1') then
 		STATE <= DATA_VALID;
 	else
-		STATE <= COUNT;
+		STATE <= WAIT_VIN;
 	end if;
-	when DATA_VALID => if (VIN = '1') then
-	STATE <= ELABORATE;
-else
+	when WAIT_VIN => if (VIN = '0') then
 	STATE <= WAIT_VIN;
-end if;
-when ELABORATE => STATE <= DATA_VALID;
-when WAIT_VIN  => if (VIN = '0') then
-STATE <= WAIT_VIN;
 else
-STATE <= ELABORATE;
+	STATE <= DATA_VALID;
 end if;
 when others => STATE <= RST_S;
 end case;
@@ -79,14 +71,9 @@ begin
 		when COUNT =>
 			CNT_EN <= '1';
 			LOAD   <= '1';
-		when WAIT_S =>
-
 		when DATA_VALID =>
 			VOUT <= '1';
 		when WAIT_VIN =>
-
-		when ELABORATE =>
-			LOAD <= '1';
 	end case;
 end process;
 
