@@ -73,6 +73,7 @@ begin
 			LOAD   <= '1';
 		when DATA_VALID =>
 			VOUT <= '1';
+			LOAD <= '1';
 		when WAIT_VIN =>
 	end case;
 end process;

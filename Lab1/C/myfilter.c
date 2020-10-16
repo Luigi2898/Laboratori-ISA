@@ -32,7 +32,9 @@ int myfilter(int x)
   for (i = NT - 1; i > 0; i--)
     sx[i] = sx[i - 1];
   sx[0] = x;
-
+  for (i = 0; i < NT - 1; i ++)
+    printf("%d\n", sx[i]);
+  printf("--------\n");
   /// make the convolution
   /// Moving average part
   y = 0;
@@ -57,6 +59,7 @@ int main(int argc, char **argv)
 
   int x;
   int y;
+  int cnt;
 
   /// check the command line
   if (argc != 3)
@@ -76,10 +79,13 @@ int main(int argc, char **argv)
 
   /// get samples and apply filter
   fscanf(fp_in, "%d", &x);
+  cnt = 0;
   do
   {
+    cnt++;
     y = myfilter(x);
-    fprintf(fp_out, "%d\n", y);
+    if(cnt>NT-1)
+      fprintf(fp_out, "%d\n", y);
     fscanf(fp_in, "%d", &x);
   } while (!feof(fp_in));
 

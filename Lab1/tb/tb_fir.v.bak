@@ -33,7 +33,7 @@ module tb_fir ();
    //timeunit 1us;  timeprecision 1us;	
 initial 
 	begin
-	outfile0=$fopen("../C/resultC.txt","r");
+	outfile0=$fopen("../C/resultC11.txt","r");
   $display("Ho aperto il file");
   while(1) begin
 	@(posedge CLK_i)	//Guardare simulazione
