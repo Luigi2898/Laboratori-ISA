@@ -56,8 +56,10 @@ architecture beh of myfir_dp is
 	signal mult       : mult_array;
 	signal sum        : sum_array;
 
-	signal dumb_one : std_logic := '1';
 	signal cnt_out  : unsigned(2 downto 0);
+	signal buff_out : signed(10 downto 0);
+
+	signal dumb_one : std_logic := '1';
 begin
 
 	coeff(0) <= H0;
@@ -86,7 +88,8 @@ begin
 		sum(i) <= mult(i + 1) + sum(i - 1);
 	end generate; -- adders
 
-	output_register : reg port map(reg_in => sum(7)(21 downto 11), reg_out => dout, clk => clk, rst_n => rst_n, load => ctrl_out); --output register, enabled when an output is ready
+	--output_buffer   : reg port map(reg_in => sum(7)(21 downto 11), reg_out => buff_out, clk => clk, rst_n => rst_n, load => ctrl_out); --output register, enabled when an output is ready
+	output_register : reg port map(reg_in => sum(7)(20 downto 10), reg_out => dout, clk => clk, rst_n => rst_n, load => ctrl_out); --output register, enabled when an output is ready
 
 	counter : N_COUNTER generic map(N => 3, MODULE => 9)
 	port map(clk => clk, en => cnt_en, rst => rst_n, cnt_end => TC, cnt_out => cnt_out);

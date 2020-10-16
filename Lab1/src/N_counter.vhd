@@ -28,16 +28,16 @@ begin
 				CNT_END <= '0';
 				CNT_OUTv := 0;
 			elsif (EN = '1') then
-				CNT_END <= '0';
+				--CNT_END <= '0';
 				CNT_OUTv := to_integer(CNT_OUT) + 1;
+				if (CNT_OUTv = MODULE - 1) then
+					CNT_END <= '1';
+				end if;
+			else
+				CNT_OUTv := to_integer(CNT_OUT);
 			end if;
-			if (CNT_OUTv = TO_UNSIGNED(MODULE - 2, N) and EN = '1') then
-				CNT_END <= '1';
-			elsif (CNT_OUTv = MODULE - 1 and EN = '1') then
-				CNT_OUTv := 0;
-			end if;
-			CNT_OUT <= to_unsigned(CNT_OUTv, N);
 		end if;
+		CNT_OUT <= to_unsigned(CNT_OUTv, N);
 	end process;
 
 end architecture;

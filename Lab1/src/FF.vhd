@@ -1,27 +1,28 @@
-LIBRARY IEEE;
-USE IEEE.STD_LOGIC_1164.ALL;
-USE IEEE.NUMERIC_STD.ALL;
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+use IEEE.NUMERIC_STD.all;
 
-ENTITY FF IS
-	PORT(FF_IN : IN STD_LOGIC;
-		 FF_OUT : OUT STD_LOGIC;
-		 CLK, RST, LOAD : IN STD_LOGIC	
+entity FF is
+	port (
+		FF_IN          : in STD_LOGIC;
+		FF_OUT         : out STD_LOGIC;
+		CLK, RST, LOAD : in STD_LOGIC
 	);
-END ENTITY;
+end entity;
 
-ARCHITECTURE BEH OF FF IS
+architecture BEH of FF is
 
-BEGIN
-REGPROC: PROCESS(CLK, RST)
-BEGIN
-IF(RST = '0') THEN
-	FF_OUT <= '0';
-     ELSIF(CLK'EVENT AND CLK = '1') THEN
-		 IF(LOAD = '1') THEN
-		 FF_OUT <= FF_IN;
-		 END IF;
-END IF;
+begin
+	REGPROC : process (CLK, RST)
+	begin
+		if (RST = '0') then
+			FF_OUT <= '0';
+		elsif (CLK'EVENT and CLK = '1') then
+			if (LOAD = '1') then
+				FF_OUT <= FF_IN;
+			end if;
+		end if;
 
-END PROCESS;
+	end process;
 
-END ARCHITECTURE;
+end architecture;

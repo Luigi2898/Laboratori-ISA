@@ -20,6 +20,18 @@ architecture beh of myfir_cu is
 	type STATE_TYPE is (RST_S, IDLE, COUNT, DATA_VALID, WAIT_VIN);
 	signal STATE : STATE_TYPE;
 
+	component FF is
+		port (
+			FF_IN          : in STD_LOGIC;
+			FF_OUT         : out STD_LOGIC;
+			CLK, RST, LOAD : in STD_LOGIC
+		);
+	end component;
+
+	signal vout_d : std_logic;
+
+	signal d1 : std_logic := '1';
+
 begin
 	FSM_PROCESS : process (CLK, RST_N)
 	begin
@@ -62,7 +74,7 @@ begin
 	CNT_EN    <= '0';
 	RST_N_FIR <= '1';
 	LOAD      <= '0';
-	VOUT      <= '0';
+	VOUT_d    <= '0';
 	case STATE is
 		when RST_S =>
 			RST_N_FIR <= '0';
@@ -72,10 +84,12 @@ begin
 			CNT_EN <= '1';
 			LOAD   <= '1';
 		when DATA_VALID =>
-			VOUT <= '1';
-			LOAD <= '1';
+			VOUT_d <= '1';
+			LOAD   <= '1';
 		when WAIT_VIN =>
 	end case;
 end process;
+
+FlipFlop : FF port map(vout_d, vout, clk, d1, d1);
 
 end;
