@@ -24,6 +24,14 @@ end myfir;
 
 architecture beh of myfir is
 
+  component FF is
+    port (
+      FF_IN          : in STD_LOGIC;
+      FF_OUT         : out STD_LOGIC;
+      CLK, RST, LOAD : in STD_LOGIC
+    );
+  end component;
+
   component myfir_cu is
     port (
       CLK       : in std_logic;
@@ -65,6 +73,8 @@ architecture beh of myfir is
   signal ctrl_out_dp : std_logic;
   signal tc          : std_logic;
   signal cnt_en      : std_logic;
+
+  signal d1 : std_logic := '1';
 begin
 
   CU : myfir_cu port map(
@@ -76,6 +86,5 @@ begin
     H0 => H0, H1 => H1, H2 => H2, H3 => H3, H4 => H4, H5 => H5, H6 => H6, H7 => H7, H8 => H8,
     dout => dout, TC => TC, CNT_EN => CNT_EN);
 
-  vout <= ctrl_out_dp;
-
+  FlipFlop : FF port map(ctrl_out_dp, vout, clk, d1, d1);
 end architecture;
