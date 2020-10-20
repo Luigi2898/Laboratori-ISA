@@ -106,7 +106,7 @@ begin
 
                               
         when state_update1 => load_state <= '1';
-                              flush_cnt <= '1';
+                              --flush_cnt <= '1';
                               load_buff <= '1';
 
         when load_res0 =>     load_res <= '1';

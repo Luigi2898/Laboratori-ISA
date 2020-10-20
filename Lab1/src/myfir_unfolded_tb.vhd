@@ -39,9 +39,9 @@ begin
 
     clk_process: process
     begin
-        clk <= '0';
-        wait for 5 ns;
         clk <= '1';
+        wait for 5 ns;
+        clk <= '0';
         wait for 5 ns;        
     end process clk_process;
     
@@ -76,7 +76,7 @@ begin
         variable n : std_logic_vector (11 downto 0);
 
         begin
-            wait for 30 ns;
+            wait for 31 ns;
             while (endfile(inFile) = false) loop
             readline(inFile, l);
             read(l,n);

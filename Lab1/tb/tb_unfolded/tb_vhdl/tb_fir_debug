@@ -7,20 +7,23 @@ add wave -noupdate /tb_myfir_unfolded/dut/vout
 add wave -noupdate -radix decimal /tb_myfir_unfolded/dout
 add wave -noupdate /tb_myfir_unfolded/rst_n
 add wave -noupdate /tb_myfir_unfolded/dut/datapath/load_buff
-add wave -noupdate /tb_myfir_unfolded/dut/datapath/buff_on
-add wave -noupdate /tb_myfir_unfolded/dut/datapath/flush
+add wave -noupdate /tb_myfir_unfolded/dut/datapath/input_buffer/cnt/cnt
+add wave -noupdate /tb_myfir_unfolded/dut/datapath/buff_full
 add wave -noupdate /tb_myfir_unfolded/dut/datapath/load_state
 add wave -noupdate /tb_myfir_unfolded/dut/datapath/load_out
-add wave -noupdate /tb_myfir_unfolded/dut/datapath/load_res
 add wave -noupdate /tb_myfir_unfolded/dut/datapath/en_cnt_mux
-add wave -noupdate /tb_myfir_unfolded/dut/datapath/buff_full
+add wave -noupdate /tb_myfir_unfolded/dut/datapath/flush
+add wave -noupdate /tb_myfir_unfolded/dut/datapath/load_res
 add wave -noupdate /tb_myfir_unfolded/dut/datapath/tc_cnt_mux
 add wave -noupdate /tb_myfir_unfolded/dut/cu_inputs/state
 add wave -noupdate /tb_myfir_unfolded/dut/cu_outputs/state
+add wave -noupdate /tb_myfir_unfolded/dut/cu_inputs/flush_cnt
+add wave -noupdate /tb_myfir_unfolded/dut/datapath/flush_cnt
+add wave -noupdate /tb_myfir_unfolded/dut/datapath/mux_cnt/cnt
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {6513481 ps} 0}
+WaveRestoreCursors {{Cursor 1} {169570 ps} 0}
 configure wave -namecolwidth 272
-configure wave -valuecolwidth 90
+configure wave -valuecolwidth 92
 configure wave -justifyvalue left
 configure wave -signalnamewidth 0
 configure wave -snapdistance 10
@@ -33,4 +36,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {6409721 ps} {6720031 ps}
+WaveRestoreZoom {45148 ps} {270898 ps}

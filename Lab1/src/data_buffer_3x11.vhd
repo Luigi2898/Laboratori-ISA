@@ -30,15 +30,16 @@ component reg is
 	);
 end component;
 
-component N_counter is
-generic(N : integer:= 12; MODULE : integer:= 2604);
-	port(clk : in std_logic;
-		 en  : in std_logic;
-		 rst_n : in std_logic;
-		 rst0_rst1n : in std_logic;
-		 cnt_end : out std_logic;
-		 cnt_out : buffer unsigned(N-1 downto 0)		
-	);
+component counter_modulo_n is
+generic (n: positive:=4;
+		f: unsigned:="1111");	
+port (
+	enable: in std_logic;
+	clock_50 : in std_logic;
+	reset_0: in std_logic;
+	reset_1: in std_logic;
+	tc: out std_logic;
+	cnt: buffer unsigned (n-1 downto 0));
 end component;
 --------------------------------------------------
 type buffer_type is array (W+1 downto 0) of signed (B-1 downto 0);
@@ -61,7 +62,7 @@ buff_reg_gen : for i in 0 to W+1 generate
 	end generate;
 end generate buff_reg_gen;
 -------------------------------------------------------------------------------------
-cnt : N_counter generic map (N=>2,MODULE=>4) port map (clk=>clk,en=>load,rst_n=>rst_n_cnt,rst0_rst1N=>vdd,cnt_end=>buff_full);
+cnt : counter_modulo_n generic map (2,"11") port map (load,clk,rst_n_cnt,gnd,buff_full,cnt_out);
 -------------------------------------------------------------------------------------
 rst_n_internal <= not(not(rst_n) or flush);
 rst_n_cnt <= not(not(rst_n) or flush) or flush_cnt;
