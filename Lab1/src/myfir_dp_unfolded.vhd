@@ -68,13 +68,14 @@ port(
 end component data_buffer_3x11;
 
 component counter_modulo_n is
-generic (n: positive:=2;
-         f: unsigned:="11");
+	generic (n: positive:=4;
+	f: unsigned:="1111";
+	s: integer:=0);
 			
 port ( enable: in std_logic;
 				 clock_50 : in std_logic;
-				 reset_0: in std_logic;
-				 reset_1: in std_logic;
+				 reset_0n: in std_logic;
+				 reset_1n: in std_logic;
 				 tc: out std_logic;
 				 cnt: buffer unsigned (n-1 downto 0));
 end component;
@@ -145,7 +146,7 @@ output_buffer : reg port map (out_mux_out,DOUT,clk,rst_N,load_out);
 
 out_mux : mux3x11to1x11 port map (out_mux_in(0),out_mux_in(1),out_mux_in(2),out_mux_out,out_cnt_mux);
 
-mux_cnt : counter_modulo_n generic map (2,"11") port map (en_cnt_mux,clk,rst_n,gnd,tc_cnt_mux,out_cnt_mux);
+mux_cnt : counter_modulo_n generic map (2,"10",0) port map (en_cnt_mux,clk,rst_n,vdd,tc_cnt_mux,out_cnt_mux);
 
 evaluation_process : process (state_vector, coeff)
 variable tmp : tmp_vect_type;

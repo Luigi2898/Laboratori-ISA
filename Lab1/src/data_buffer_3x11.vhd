@@ -31,13 +31,14 @@ component reg is
 end component;
 
 component counter_modulo_n is
-generic (n: positive:=4;
-		f: unsigned:="1111");	
+	generic (n: positive:=4;
+	f: unsigned:="1111";
+	s: integer:=0);
 port (
 	enable: in std_logic;
 	clock_50 : in std_logic;
-	reset_0: in std_logic;
-	reset_1: in std_logic;
+	reset_0n: in std_logic;
+	reset_1n: in std_logic;
 	tc: out std_logic;
 	cnt: buffer unsigned (n-1 downto 0));
 end component;
@@ -62,10 +63,10 @@ buff_reg_gen : for i in 0 to W+1 generate
 	end generate;
 end generate buff_reg_gen;
 -------------------------------------------------------------------------------------
-cnt : counter_modulo_n generic map (2,"11") port map (load,clk,rst_n_cnt,gnd,buff_full,cnt_out);
+cnt : counter_modulo_n generic map (2,"11",1) port map (load,clk,rst_n_cnt,vdd,buff_full,cnt_out);
 -------------------------------------------------------------------------------------
 rst_n_internal <= not(not(rst_n) or flush);
-rst_n_cnt <= not(not(rst_n) or flush) or flush_cnt;
+rst_n_cnt <= (rst_n and not(flush) and not(flush_cnt));
 data_out0 <= buffer_content(2);
 data_out1 <= buffer_content(3);
 data_out2 <= buffer_content(4);

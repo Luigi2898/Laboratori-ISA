@@ -20,7 +20,7 @@ end entity myfir_cuinputs_unfolded;
 
 architecture beh of myfir_cuinputs_unfolded is
 
-    type state_type is (rst,idle,load_buffs,state_update0,state_update1,load_res0,load_res1);
+    type state_type is (rst,idle,load_buffs,state_update0,state_update0_flush,state_update1,load_res0,load_res1);
     signal state : state_type;
 
 begin
@@ -37,7 +37,7 @@ begin
                               state <= load_buffs;
                             else
                               if (buff_full = '1') then
-                                state <= state_update0;
+                                state <= state_update0_flush;
                               else
                                 state <= idle;    
                               end if;
@@ -62,6 +62,12 @@ begin
                                 else
                                   state <= load_res0;
                                 end if;
+
+          when state_update0_flush => if (vin = '1') then
+                                  state <= load_res1;
+                                else
+                                  state <= load_res0;
+                                end if;                      
                                 
           when state_update1 => if (vin = '1') then
                                   state <= load_res1;
@@ -101,8 +107,13 @@ begin
 
         when load_buffs =>     load_buff <= '1';
 
-        when state_update0 => load_state <= '1';
-                              flush_cnt <= '1';
+        when state_update0  => load_state <= '1';
+                                load_buff <= '1';
+                          
+
+        when state_update0_flush => load_state <= '1';
+                                    flush_cnt <= '1';
+                                    load_buff <= '1';                           
 
                               
         when state_update1 => load_state <= '1';

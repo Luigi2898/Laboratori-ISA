@@ -106,14 +106,11 @@ plot(samples,'Linewidth',1.5);
 legend('VHDL Results','Matlab Results','Input Samples');
 
 %matlab partial results
-clc
-k = 1;
-i = 1;
-while i < length(samples)-2
-    input0(k) = samples(i);
-    input1(k) = samples(i+1);
-    input2(k) = samples(i+2);
+for i=1:length(simin_dec)-2
+    input0(k) = simin_dec(i);
+    input1(k) = simin_dec(i+1);
+    input2(k) = simin_dec(i+2);
     k = k + 1;
     i = i + 3;
 end
-[input0' input1' input2']
+[input0 input1 input2]

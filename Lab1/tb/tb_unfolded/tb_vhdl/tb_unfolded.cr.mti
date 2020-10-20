@@ -14,25 +14,13 @@ Model Technology ModelSim ALTERA vcom 6.6d Compiler 2010.11 Nov  2 2010
 -- Compiling entity myfir_unfolded
 -- Compiling architecture beh of myfir_unfolded
 
-} {} {}} C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/COUNTER_MODULO_N.vhd {1 {vcom -work work -2002 -explicit {C:\Users\Francesco\Documents\GitHub\Laboratori-ISA\Lab1\src\COUNTER_MODULO_N.vhd}
+} {} {}} C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/COUNTER_MODULO_N.vhd {1 {vcom -work work -2002 -explicit C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/COUNTER_MODULO_N.vhd
 Model Technology ModelSim ALTERA vcom 6.6d Compiler 2010.11 Nov  2 2010
 -- Loading package standard
 -- Loading package std_logic_1164
 -- Loading package numeric_std
 -- Compiling entity counter_modulo_n
 -- Compiling architecture behavior of counter_modulo_n
-
-} {} {}} C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/myfir_unfolded_tb.vhd {2 {vcom -work work -2002 -explicit {C:\Users\Francesco\Documents\GitHub\Laboratori-ISA\Lab1\src\myfir_unfolded_tb.vhd}
-Model Technology ModelSim ALTERA vcom 6.6d Compiler 2010.11 Nov  2 2010
--- Loading package standard
--- Loading package std_logic_1164
--- Loading package numeric_std
--- Loading package textio
--- Loading package std_logic_textio
--- Compiling entity tb_myfir_unfolded
--- Compiling architecture beh of tb_myfir_unfolded
-** Warning: C:\Users\Francesco\Documents\GitHub\Laboratori-ISA\Lab1\src\myfir_unfolded_tb.vhd(74): (vcom-1194) FILE declaration was written using VHDL 1987 syntax.
-** Warning: C:\Users\Francesco\Documents\GitHub\Laboratori-ISA\Lab1\src\myfir_unfolded_tb.vhd(93): (vcom-1194) FILE declaration was written using VHDL 1987 syntax.
 
 } {} {}} C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/FF.vhd {1 {vcom -work work -2002 -explicit C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/FF.vhd
 Model Technology ModelSim ALTERA vcom 6.6d Compiler 2010.11 Nov  2 2010
@@ -42,13 +30,17 @@ Model Technology ModelSim ALTERA vcom 6.6d Compiler 2010.11 Nov  2 2010
 -- Compiling entity ff
 -- Compiling architecture beh of ff
 
-} {} {}} C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/myfir_cuinputs_unfolded.vhd {1 {vcom -work work -2002 -explicit C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/myfir_cuinputs_unfolded.vhd
+} {} {}} C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/myfir_unfolded_tb.vhd {2 {vcom -work work -2002 -explicit C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/myfir_unfolded_tb.vhd
 Model Technology ModelSim ALTERA vcom 6.6d Compiler 2010.11 Nov  2 2010
 -- Loading package standard
 -- Loading package std_logic_1164
 -- Loading package numeric_std
--- Compiling entity myfir_cuinputs_unfolded
--- Compiling architecture beh of myfir_cuinputs_unfolded
+-- Loading package textio
+-- Loading package std_logic_textio
+-- Compiling entity tb_myfir_unfolded
+-- Compiling architecture beh of tb_myfir_unfolded
+** Warning: C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/myfir_unfolded_tb.vhd(74): (vcom-1194) FILE declaration was written using VHDL 1987 syntax.
+** Warning: C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/myfir_unfolded_tb.vhd(93): (vcom-1194) FILE declaration was written using VHDL 1987 syntax.
 
 } {} {}} C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/mux3x11to1x11.vhd {1 {vcom -work work -2002 -explicit C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/mux3x11to1x11.vhd
 Model Technology ModelSim ALTERA vcom 6.6d Compiler 2010.11 Nov  2 2010
@@ -58,13 +50,15 @@ Model Technology ModelSim ALTERA vcom 6.6d Compiler 2010.11 Nov  2 2010
 -- Compiling entity mux3x11to1x11
 -- Compiling architecture beh of mux3x11to1x11
 
-} {} {}} C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/reg.vhd {1 {vcom -work work -2002 -explicit C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/reg.vhd
+} {} {}} C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/myfir_dp_unfolded.vhd {1 {vcom -work work -2002 -explicit C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/myfir_dp_unfolded.vhd
 Model Technology ModelSim ALTERA vcom 6.6d Compiler 2010.11 Nov  2 2010
 -- Loading package standard
 -- Loading package std_logic_1164
 -- Loading package numeric_std
--- Compiling entity reg
--- Compiling architecture beh of reg
+-- Loading package std_logic_arith
+-- Loading package std_logic_signed
+-- Compiling entity myfir_dp_unfolded
+-- Compiling architecture beh of myfir_dp_unfolded
 
 } {} {}} C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/myfir_cuoutputs_unfolded.vhd {1 {vcom -work work -2002 -explicit C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/myfir_cuoutputs_unfolded.vhd
 Model Technology ModelSim ALTERA vcom 6.6d Compiler 2010.11 Nov  2 2010
@@ -73,5 +67,13 @@ Model Technology ModelSim ALTERA vcom 6.6d Compiler 2010.11 Nov  2 2010
 -- Loading package numeric_std
 -- Compiling entity myfir_cuoutputs_unfolded
 -- Compiling architecture beh of myfir_cuoutputs_unfolded
+
+} {} {}} C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/reg.vhd {1 {vcom -work work -2002 -explicit C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/reg.vhd
+Model Technology ModelSim ALTERA vcom 6.6d Compiler 2010.11 Nov  2 2010
+-- Loading package standard
+-- Loading package std_logic_1164
+-- Loading package numeric_std
+-- Compiling entity reg
+-- Compiling architecture beh of reg
 
 } {} {}}
