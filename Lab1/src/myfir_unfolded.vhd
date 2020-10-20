@@ -22,9 +22,6 @@ entity myfir_unfolded is
     );
 end entity myfir_unfolded;
 
--- @todo ciao stronzi
-
-
 architecture beh of myfir_unfolded is
     
     component myfir_dp_unfolded is
