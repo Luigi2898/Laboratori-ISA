@@ -1,3 +1,10 @@
 
 Lab1/matlab/my_fir_filter.m
 Lab1/src/Verilog1.v
+Lab1/src/myfir.vhd
+Lab1/src/myfir_cu.vhd
+Lab1/src/myfir_cu.vhd.bak
+Lab1/src/clk_gen.vhd
+Lab1/src/data_gen.vhd
+Lab1/src/data_sink.vhd
+Lab1/src/data_sink.vhd

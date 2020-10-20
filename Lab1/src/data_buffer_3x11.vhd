@@ -12,7 +12,6 @@ port(
 	buff_on : in std_logic;
 	load : in std_logic;
 	flush : in std_logic;
-	flush_cnt : in std_logic;
 	rst_n : in std_logic;
 	data_out0 : out signed (11-1 downto 0);
 	data_out1 : out signed (11-1 downto 0);
@@ -30,25 +29,22 @@ component reg is
 	);
 end component;
 
-component counter_modulo_n is
-	generic (n: positive:=4;
-	f: unsigned:="1111";
-	s: integer:=0);
-port (
-	enable: in std_logic;
-	clock_50 : in std_logic;
-	reset_0n: in std_logic;
-	reset_1n: in std_logic;
-	tc: out std_logic;
-	cnt: buffer unsigned (n-1 downto 0));
+component N_counter is
+generic(N : integer:= 12; MODULE : integer:= 2604);
+	port(clk : in std_logic;
+		 en  : in std_logic;
+		 rst_n : in std_logic;
+		 rst0_rst1n : in std_logic;
+		 cnt_end : out std_logic;
+		 cnt_out : buffer unsigned(N-1 downto 0)		
+	);
 end component;
 --------------------------------------------------
 type buffer_type is array (W+1 downto 0) of signed (B-1 downto 0);
 signal buffer_content : buffer_type;
 signal cnt_out : unsigned (log2W-1 downto 0);
-signal rst_signal,rst_n_internal,rst_n_cnt : std_logic;
+signal rst_signal,rst_n_internal : std_logic;
 signal gnd : std_logic := '0';
-signal vdd : std_logic := '1';
 -------------------------------------------------------------------------------------
 begin 
 -------------------------------------------------------------------------------------
@@ -63,10 +59,9 @@ buff_reg_gen : for i in 0 to W+1 generate
 	end generate;
 end generate buff_reg_gen;
 -------------------------------------------------------------------------------------
-cnt : counter_modulo_n generic map (2,"11",1) port map (load,clk,rst_n_cnt,vdd,buff_full,cnt_out);
+cnt : N_counter generic map (N=>2,MODULE=>4) port map (clk=>clk,en=>load,rst_n=>rst_n,rst0_rst1N=>gnd,cnt_end=>buff_full);
 -------------------------------------------------------------------------------------
 rst_n_internal <= not(not(rst_n) or flush);
-rst_n_cnt <= (rst_n and not(flush) and not(flush_cnt));
 data_out0 <= buffer_content(2);
 data_out1 <= buffer_content(3);
 data_out2 <= buffer_content(4);

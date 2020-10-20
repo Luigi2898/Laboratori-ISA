@@ -11,7 +11,6 @@ entity myfir_dp_unfolded is
 	LOAD_BUFF : in std_logic;
 	BUFF_ON : in std_logic;
 	FLUSH : in std_logic;
-	FLUSH_CNT : in std_logic;
 	LOAD_STATE : in std_logic;
 	LOAD_OUT : in std_logic;
 	LOAD_RES : in std_logic;
@@ -58,7 +57,6 @@ port(
 	buff_on : in std_logic;
 	load : in std_logic;
 	flush : in std_logic;
-	flush_cnt : in std_logic;
 	rst_n : in std_logic;
 	data_out0 : out signed (11-1 downto 0);
 	data_out1 : out signed (11-1 downto 0);
@@ -67,17 +65,18 @@ port(
 	);
 end component data_buffer_3x11;
 
-component counter_modulo_n is
-	generic (n: positive:=4;
-	f: unsigned:="1111";
-	s: integer:=0);
-			
-port ( enable: in std_logic;
-				 clock_50 : in std_logic;
-				 reset_0n: in std_logic;
-				 reset_1n: in std_logic;
-				 tc: out std_logic;
-				 cnt: buffer unsigned (n-1 downto 0));
+component N_COUNTER is
+	generic (
+		N      : integer := 6;
+		MODULE : integer := 42);
+	port (
+		CLK     : in STD_LOGIC;
+		EN      : in STD_LOGIC;
+		RST_N     : in STD_LOGIC;
+		RST0_RST1N : in std_logic;
+		CNT_END : out STD_LOGIC;
+		CNT_OUT : buffer UNSIGNED(N - 1 downto 0)
+	);
 end component;
 
 
@@ -140,13 +139,13 @@ result_reg_gen : for i in 0 to 2 generate
 		result_reg : reg port map(out_vect(i), out_mux_in(i), clk, rst_n, load_res);
 	end generate result_reg_gen;		
 	
-input_buffer : data_buffer_3x11 port map (clk,DIN,buff_on,LOAD_BUFF,gnd,flush_cnt,rst_N,input_buff_out0,
+input_buffer : data_buffer_3x11 port map (clk,DIN,buff_on,LOAD_BUFF,gnd,rst_N,input_buff_out0,
 											input_buff_out1,input_buff_out2,buff_full);
 output_buffer : reg port map (out_mux_out,DOUT,clk,rst_N,load_out);
 
 out_mux : mux3x11to1x11 port map (out_mux_in(0),out_mux_in(1),out_mux_in(2),out_mux_out,out_cnt_mux);
 
-mux_cnt : counter_modulo_n generic map (2,"10",0) port map (en_cnt_mux,clk,rst_n,vdd,tc_cnt_mux,out_cnt_mux);
+mux_cnt : N_counter generic map (2,3) port map (clk,en_cnt_mux,rst_n,vdd,tc_cnt_mux,out_cnt_mux);
 
 evaluation_process : process (state_vector, coeff)
 variable tmp : tmp_vect_type;
