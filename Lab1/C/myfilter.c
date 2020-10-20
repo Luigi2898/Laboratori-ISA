@@ -3,7 +3,7 @@
 
 #define NT 9  /// number of coeffs
 #define NB 11 /// number of bits
-#define NI 7  /// internal number of bits
+#define NI 5  /// internal number of bits
 
 const int b[NT] = {-7, -14, 52, 272, 415, 272, 52, -14, -7}; /// b array
 const int a[NT - 1] = {0};                                   /// a array
@@ -33,9 +33,6 @@ int myfilter(int x)
   for (i = NT - 1; i > 0; i--)
     sx[i] = sx[i - 1];
   sx[0] = x;
-  for (i = 0; i < NT - 1; i++)
-    printf("%d\n", sx[i]);
-  printf("--------\n");
   /// make the convolution
   /// Moving average part
   y = 0;
@@ -45,11 +42,10 @@ int myfilter(int x)
   //for (i = 0; i < NT - 1; i++)
   //y -= (sy[i] * a[i]) >> (NB - 1);
 
-  /// update the y shift register
+  /*/// update the y shift register
   for (i = NT - 2; i > 0; i--)
     sy[i] = sy[i - 1];
-  sy[0] = y * 2 * 2;
-
+  sy[0] = y * 2 * 2;*/
   return y;
 }
 
@@ -85,7 +81,7 @@ int main(int argc, char **argv)
   {
     cnt++;
     y = myfilter(x);
-    if (cnt > NT)
+    if (cnt > NT - 1)
       fprintf(fp_out, "%d\n", y);
     fscanf(fp_in, "%d", &x);
   } while (!feof(fp_in));

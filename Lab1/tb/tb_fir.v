@@ -37,8 +37,7 @@ initial
   $display("Ho aperto il file");
   while(1) begin
 	@(posedge CLK_i)	//Guardare simulazione
-        
-			if(VOUT_i == 1 && !a == 0) begin
+			if(VOUT_i == 1 && !$feof(outfile0)) begin
 			a = $fscanf(outfile0,"%d\n",resC);
 			res = DOUT_i;
 			check_results(); end          

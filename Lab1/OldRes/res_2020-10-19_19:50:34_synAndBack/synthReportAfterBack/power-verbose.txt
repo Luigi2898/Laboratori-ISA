@@ -1,0 +1,53 @@
+ 
+****************************************
+Report : power
+        -analysis_effort low
+        -verbose
+Design : myfir
+Version: O-2018.06-SP4
+Date   : Mon Oct 19 19:50:10 2020
+****************************************
+
+
+Library(s) Used:
+
+    NangateOpenCellLibrary (File: /software/dk/nangate45/synopsys/NangateOpenCellLibrary_typical_ecsm_nowlm.db)
+
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+Design        Wire Load Model            Library
+------------------------------------------------
+myfir                  5K_hvratio_1_1    NangateOpenCellLibrary
+
+
+Global Operating Voltage = 1.1  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000ff
+    Time Units = 1ns
+    Dynamic Power Units = 1uW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+  Cell Internal Power  = 874.6643 nW   (90%)
+  Net Switching Power  =  99.3369 nW   (10%)
+                         ---------
+Total Dynamic Power    = 974.0012 nW  (100%)
+
+Cell Leakage Power     = 111.6617 uW
+
+                 Internal         Switching           Leakage            Total                         Cell
+Power Group      Power            Power               Power              Power   (   %    )  Attrs  Count
+---------------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)            0
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)            0
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)            0
+clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)            0
+register           0.8567        2.8463e-03        8.9697e+03            9.8293  (   8.73%)            118
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)            0
+combinational  1.7954e-02        9.6491e-02        1.0269e+05          102.8064  (  91.27%)            2603
+---------------------------------------------------------------------------------------------------------
+Total              0.8747 uW     9.9337e-02 uW     1.1166e+05 nW       112.6357 uW
+1

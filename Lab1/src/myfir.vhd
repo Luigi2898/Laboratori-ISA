@@ -4,7 +4,7 @@ use ieee.numeric_std.all;
 
 entity myfir is
   port (
-    RST_N : in std_logic;            -- External
+    RST_n : in std_logic;            -- External
     CLK   : in std_logic;            -- External
     VIN   : in std_logic;            -- External
     DIN   : in signed(10 downto 0);  -- External

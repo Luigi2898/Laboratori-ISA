@@ -1,0 +1,50 @@
+ 
+****************************************
+Report : power
+        -cell
+        -analysis_effort low
+        -sort_mode cell_internal_power
+Design : myfir
+Version: O-2018.06-SP4
+Date   : Mon Oct 19 19:28:27 2020
+****************************************
+
+
+Library(s) Used:
+
+    NangateOpenCellLibrary (File: /software/dk/nangate45/synopsys/NangateOpenCellLibrary_typical_ecsm_nowlm.db)
+
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+Design        Wire Load Model            Library
+------------------------------------------------
+myfir                  5K_hvratio_1_1    NangateOpenCellLibrary
+
+
+Global Operating Voltage = 1.1  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000ff
+    Time Units = 1ns
+    Dynamic Power Units = 1uW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+
+  Attributes
+  ----------
+      h  -  Hierarchical cell
+
+                        Cell      Driven Net  Tot Dynamic      Cell
+                        Internal  Switching   Power            Leakage
+Cell                    Power     Power       (% Cell/Tot)     Power      Attrs
+--------------------------------------------------------------------------------
+DP                       171.9244       N/A        N/A (N/A)   111823.0000
+                                                                          h
+CU                         2.3888       N/A        N/A (N/A)    555.9097  h
+FlipFlop                   0.7164       N/A        N/A (N/A)    114.3436  h
+--------------------------------------------------------------------------------
+Totals (3 cells)         175.030uW     N/A         N/A (N/A)    112.493uW
+1
