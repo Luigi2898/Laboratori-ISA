@@ -6,4 +6,4 @@ report_power -net > ./synthReportAfterBack/power-net.txt
 report_power -cell > ./synthReportAfterBack/power-cell.txt
 report_power -hierarchy > ./synthReportAfterBack/power-hierarchy.txt
 report_power -verbose > ./synthReportAfterBack/power-verbose.txt
-
+exit

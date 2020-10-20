@@ -1,0 +1,100 @@
+Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : myfir
+Version: O-2018.06-SP4
+Date   : Tue Oct 20 12:43:15 2020
+****************************************
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+  Startpoint: H3[3] (input port clocked by MY_NEW_CLK)
+  Endpoint: DP_output_register_REG_OUT_reg_10_
+            (rising edge-triggered flip-flop clocked by MY_NEW_CLK)
+  Path Group: MY_NEW_CLK
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  myfir              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock MY_NEW_CLK (rise edge)                            0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    0.50       0.50 f
+  H3[3] (in)                                              0.00       0.50 f
+  U7078/ZN (INV_X1)                                       0.11       0.61 r
+  U4350/Z (XOR2_X2)                                       0.17       0.78 r
+  U7063/ZN (NAND2_X1)                                     0.11       0.89 f
+  U5946/ZN (AOI21_X1)                                     0.08       0.97 r
+  U4033/Z (XOR2_X1)                                       0.10       1.06 r
+  U4030/Z (XOR2_X1)                                       0.08       1.15 r
+  U5967/ZN (AOI221_X1)                                    0.03       1.18 f
+  U5964/ZN (AOI21_X1)                                     0.07       1.25 r
+  U4961/ZN (AOI221_X1)                                    0.04       1.29 f
+  U4960/ZN (INV_X1)                                       0.03       1.32 r
+  U4959/ZN (OAI21_X1)                                     0.04       1.36 f
+  U4928/ZN (OAI221_X1)                                    0.05       1.41 r
+  U4927/ZN (INV_X1)                                       0.02       1.43 f
+  U4926/ZN (AOI21_X1)                                     0.06       1.49 r
+  U4973/ZN (AOI221_X1)                                    0.04       1.53 f
+  U4972/ZN (INV_X1)                                       0.03       1.56 r
+  U4971/ZN (OAI21_X1)                                     0.04       1.59 f
+  U4548/ZN (OAI21_X1)                                     0.05       1.64 r
+  U4547/ZN (INV_X1)                                       0.02       1.67 f
+  U4546/ZN (AOI21_X1)                                     0.06       1.73 r
+  U4399/ZN (INV_X1)                                       0.03       1.76 f
+  U4375/ZN (OAI22_X1)                                     0.07       1.83 r
+  U4382/ZN (OR2_X1)                                       0.05       1.87 r
+  U4381/ZN (AOI22_X1)                                     0.04       1.92 f
+  U4389/ZN (AOI21_X1)                                     0.05       1.97 r
+  U4388/ZN (INV_X1)                                       0.02       1.99 f
+  U4387/ZN (OAI21_X1)                                     0.04       2.03 r
+  U4528/ZN (NOR2_X1)                                      0.03       2.06 f
+  U4526/ZN (OAI22_X1)                                     0.06       2.11 r
+  U4525/ZN (INV_X1)                                       0.03       2.14 f
+  U4562/ZN (AND2_X1)                                      0.04       2.19 f
+  U4561/ZN (OAI22_X1)                                     0.07       2.25 r
+  U4539/ZN (NOR2_X1)                                      0.03       2.28 f
+  U4537/ZN (OAI22_X1)                                     0.07       2.35 r
+  U4402/ZN (INV_X1)                                       0.03       2.38 f
+  U4520/ZN (AOI21_X1)                                     0.05       2.43 r
+  U4519/ZN (AOI21_X1)                                     0.03       2.46 f
+  U4940/ZN (AND2_X1)                                      0.05       2.51 f
+  U4939/ZN (OAI22_X1)                                     0.05       2.56 r
+  U4938/ZN (INV_X1)                                       0.03       2.59 f
+  U4984/ZN (AND2_X1)                                      0.04       2.64 f
+  U4983/ZN (OAI22_X1)                                     0.07       2.70 r
+  U4558/ZN (INV_X1)                                       0.03       2.73 f
+  U4947/ZN (XNOR2_X1)                                     0.06       2.79 f
+  U4950/ZN (XNOR2_X1)                                     0.06       2.85 f
+  DP_add_7_root_add_0_root_add_89_G7_U1_9/S (FA_X1)       0.15       3.00 r
+  DP_add_2_root_add_0_root_add_89_G7_U1_9/S (FA_X1)       0.12       3.13 f
+  DP_add_1_root_add_0_root_add_89_G7_U1_9/CO (FA_X1)      0.10       3.23 f
+  DP_add_1_root_add_0_root_add_89_G7_U1_10/S (FA_X1)      0.14       3.37 r
+  DP_add_0_root_add_0_root_add_89_G7_U1_10/S (FA_X1)      0.12       3.48 f
+  U7082/ZN (NAND2_X1)                                     0.03       3.51 r
+  U7081/ZN (OAI21_X1)                                     0.03       3.54 f
+  DP_output_register_REG_OUT_reg_10_/D (DFFR_X1)          0.01       3.55 f
+  data arrival time                                                  3.55
+
+  clock MY_NEW_CLK (rise edge)                           14.12      14.12
+  clock network delay (ideal)                             0.00      14.12
+  clock uncertainty                                      -0.07      14.05
+  DP_output_register_REG_OUT_reg_10_/CK (DFFR_X1)         0.00      14.05 r
+  library setup time                                     -0.04      14.01
+  data required time                                                14.01
+  --------------------------------------------------------------------------
+  data required time                                                14.01
+  data arrival time                                                 -3.55
+  --------------------------------------------------------------------------
+  slack (MET)                                                       10.46
+
+
+1
