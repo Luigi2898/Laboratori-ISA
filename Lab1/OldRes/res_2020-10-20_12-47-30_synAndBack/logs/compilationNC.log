@@ -1,0 +1,91 @@
+
+Information: There are 8 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'myfir'
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+
+  Beginning Mapping Optimizations  (Medium effort)
+  -------------------------------
+Information: The register 'FlipFlop_FF_OUT_reg' is a constant and will be removed. (OPT-1206)
+Information: The register 'DP_input_register_REG_OUT_reg_10_' is a constant and will be removed. (OPT-1206)
+Information: The register 'DP_input_register_REG_OUT_reg_9_' is a constant and will be removed. (OPT-1206)
+Information: The register 'DP_input_register_REG_OUT_reg_8_' is a constant and will be removed. (OPT-1206)
+Information: The register 'DP_input_register_REG_OUT_reg_7_' is a constant and will be removed. (OPT-1206)
+Information: The register 'DP_input_register_REG_OUT_reg_6_' is a constant and will be removed. (OPT-1206)
+Information: The register 'DP_input_register_REG_OUT_reg_5_' is a constant and will be removed. (OPT-1206)
+Information: The register 'DP_input_register_REG_OUT_reg_4_' is a constant and will be removed. (OPT-1206)
+Information: The register 'DP_input_register_REG_OUT_reg_3_' is a constant and will be removed. (OPT-1206)
+Information: The register 'DP_input_register_REG_OUT_reg_2_' is a constant and will be removed. (OPT-1206)
+Information: The register 'DP_input_register_REG_OUT_reg_1_' is a constant and will be removed. (OPT-1206)
+Information: The register 'DP_input_register_REG_OUT_reg_0_' is a constant and will be removed. (OPT-1206)
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:27    8874.0      0.00       0.0     417.5                          
+    0:00:27    8874.0      0.00       0.0     417.5                          
+    0:00:27    8874.0      0.00       0.0     417.5                          
+    0:00:27    8874.0      0.00       0.0     417.5                          
+    0:00:27    8874.0      0.00       0.0     417.5                          
+    0:00:46    6112.7      0.00       0.0      81.8                          
+    0:00:47    6112.7      0.00       0.0      81.8                          
+    0:00:47    6112.7      0.00       0.0      81.8                          
+    0:00:47    6112.7      0.00       0.0      81.8                          
+    0:00:47    6112.7      0.00       0.0      81.8                          
+    0:00:48    6125.4      0.00       0.0       0.0                          
+    0:00:48    6125.4      0.00       0.0       0.0                          
+    0:00:48    6125.4      0.00       0.0       0.0                          
+    0:00:48    6125.4      0.00       0.0       0.0                          
+
+
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:48    6125.4      0.00       0.0       0.0                          
+    0:00:48    6125.4      0.00       0.0       0.0                          
+    0:00:48    6125.4      0.00       0.0       0.0                          
+
+
+  Beginning Area-Recovery Phase  (cleanup)
+  -----------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:48    6125.4      0.00       0.0       0.0                          
+    0:00:49    6125.4      0.00       0.0       0.0                          
+    0:00:50    6115.9      0.00       0.0       0.0                          
+    0:00:51    6115.3      0.00       0.0       0.0                          
+    0:00:51    6114.8      0.00       0.0       0.0                          
+    0:00:51    6114.3      0.00       0.0       0.0                          
+    0:00:51    6113.7      0.00       0.0       0.0                          
+    0:00:51    6113.7      0.00       0.0       0.0                          
+    0:00:52    6113.7      0.00       0.0       0.0                          
+    0:00:52    6113.7      0.00       0.0       0.0                          
+    0:00:52    6113.7      0.00       0.0       0.0                          
+    0:00:52    6113.7      0.00       0.0       0.0                          
+    0:00:52    6113.7      0.00       0.0       0.0                          
+    0:00:52    6113.7      0.00       0.0       0.0                          
+    0:00:55    6042.5      0.00       0.0       0.0                          
+Loading db file '/software/dk/nangate45/synopsys/NangateOpenCellLibrary_typical_ecsm_nowlm.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+1
