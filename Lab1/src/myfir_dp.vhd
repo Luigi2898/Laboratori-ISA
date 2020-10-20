@@ -35,16 +35,16 @@ architecture beh of myfir_dp is
 	end component;
 	component N_COUNTER is
 		generic (
-		N      : integer := 6;
-		MODULE : integer := 42);
-	port (
-		CLK     : in STD_LOGIC;
-		EN      : in STD_LOGIC;
-		RST_N     : in STD_LOGIC;
-		RST0_RST1N : in std_logic;
-		CNT_END : out STD_LOGIC;
-		CNT_OUT : buffer UNSIGNED(N - 1 downto 0)
-	);
+			N      : integer := 6;
+			MODULE : integer := 42);
+		port (
+			CLK        : in std_logic;
+			EN         : in std_logic;
+			RST_N      : in std_logic;
+			RST0_RST1N : in std_logic;
+			CNT_END    : out std_logic;
+			CNT_OUT    : buffer UNSIGNED(N - 1 downto 0)
+		);
 	end component;
 
 	type registers_array is array (8 downto 0) of signed(10 downto 0); -- Array for the delay line
@@ -57,9 +57,9 @@ architecture beh of myfir_dp is
 	signal mult       : mult_array;
 	signal sum        : sum_array;
 
-	signal cnt_out  : unsigned(2 downto 0);
-	signal buff_out : signed(10 downto 0);
-	signal sum_out  : signed(10 downto 0);
+	signal cnt_out    : unsigned(2 downto 0);
+	signal buff_out   : signed(10 downto 0);
+	signal sum_out    : signed(10 downto 0);
 	signal RST0_RST1N : std_logic;
 
 	signal dumb_one : std_logic;
@@ -74,8 +74,8 @@ begin
 	coeff(6) <= H6;
 	coeff(7) <= H7;
 	coeff(8) <= H8;
-	
-	dumb_one <= '1';
+
+	dumb_one   <= '1';
 	RST0_RST1N <= '1';
 
 	input_register : reg port map(reg_in => DIN, reg_out => delay_line(0), clk => clk, rst_n => rst_n, load => dumb_one); --input register, always enabled
