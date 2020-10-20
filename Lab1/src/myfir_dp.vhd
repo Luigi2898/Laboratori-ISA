@@ -60,9 +60,9 @@ architecture beh of myfir_dp is
 	signal cnt_out  : unsigned(2 downto 0);
 	signal buff_out : signed(10 downto 0);
 	signal sum_out  : signed(10 downto 0);
-	signal RST0_RST1N : std_logic := '1';
+	signal RST0_RST1N : std_logic;
 
-	signal dumb_one : std_logic := '1';
+	signal dumb_one : std_logic;
 begin
 
 	coeff(0) <= H0;
@@ -74,6 +74,9 @@ begin
 	coeff(6) <= H6;
 	coeff(7) <= H7;
 	coeff(8) <= H8;
+	
+	dumb_one <= '1';
+	RST0_RST1N <= '1';
 
 	input_register : reg port map(reg_in => DIN, reg_out => delay_line(0), clk => clk, rst_n => rst_n, load => dumb_one); --input register, always enabled
 
