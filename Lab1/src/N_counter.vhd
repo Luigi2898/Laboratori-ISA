@@ -9,7 +9,8 @@ entity N_COUNTER is
 	port (
 		CLK     : in STD_LOGIC;
 		EN      : in STD_LOGIC;
-		RST     : in STD_LOGIC;
+		RST_N     : in STD_LOGIC;
+		RST0_RST1N : in std_logic;
 		CNT_END : out STD_LOGIC;
 		CNT_OUT : buffer UNSIGNED(N - 1 downto 0)
 	);
@@ -24,15 +25,24 @@ begin
 	begin
 
 		if (CLK'EVENT and CLK = '1') then
-			if (RST = '0') then
+			if (RST_N = '0') then
 				CNT_END <= '0';
 				CNT_OUTv := 0;
 			elsif (EN = '1') then
 				--CNT_END <= '0';
 				CNT_OUTv := to_integer(CNT_OUT) + 1;
-				if (CNT_OUTv = MODULE - 1) then
+				if (CNT_OUTv = MODULE) then
+					if (RST0_RST1N = '1') then
+						CNT_OUTv := 0;
+						CNT_END <= '0';
+						else
+						CNT_OUTv := 1;
+						CNT_END <= '0';
+					end if ;
+				elsif (CNT_OUTv = MODULE - 1) then
 					CNT_END <= '1';
 				end if;
+			--end if;
 			else
 				CNT_OUTv := to_integer(CNT_OUT);
 			end if;
