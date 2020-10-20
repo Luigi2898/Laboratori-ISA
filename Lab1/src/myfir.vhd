@@ -74,9 +74,10 @@ architecture beh of myfir is
   signal tc          : std_logic;
   signal cnt_en      : std_logic;
 
-  signal d1 : std_logic := '1';
+  signal d1 : std_logic;
 begin
-
+  d1 <= '1';	
+	
   CU : myfir_cu port map(
     clk => clk, rst_n => rst_n, rst_n_fir => rst_n_dp, vin => vin, load => ctrl_in_dp, vout => ctrl_out_dp,
     TC => TC, CNT_EN => CNT_EN);
