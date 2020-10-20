@@ -1,0 +1,80 @@
+Loading db file '/software/dk/nangate45/synopsys/NangateOpenCellLibrary_typical_ecsm_nowlm.db'
+Loading db file '/software/synopsys/syn_current_64.18/libraries/syn/dw_foundation.sldb'
+Loading db file '/software/synopsys/syn_current_64.18/libraries/syn/gtech.db'
+Loading db file '/software/synopsys/syn_current_64.18/libraries/syn/standard.sldb'
+  Loading link library 'NangateOpenCellLibrary'
+  Loading link library 'gtech'
+Running PRESTO HDLC
+Warning:  /home/isa25/Desktop/Laboratori-ISA/Lab1/src/myfir.vhd:77: The initial value for signal 'd1' is not supported for synthesis. Presto ignores it.  (ELAB-130)
+Warning:  /home/isa25/Desktop/Laboratori-ISA/Lab1/src/myfir.vhd:89: Floating pin 'RST of cell FlipFlop' connected to ground. (ELAB-294)
+Warning:  /home/isa25/Desktop/Laboratori-ISA/Lab1/src/myfir.vhd:89: Floating pin 'LOAD of cell FlipFlop' connected to ground. (ELAB-294)
+Presto compilation completed successfully.
+Elaborated 1 design.
+Current design is now 'myfir'.
+Information: Building the design 'myfir_cu'. (HDL-193)
+
+Statistics for case statements in always block at line 24 in file
+	'/home/isa25/Desktop/Laboratori-ISA/Lab1/src/myfir_cu.vhd'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            29            |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 60 in file
+	'/home/isa25/Desktop/Laboratori-ISA/Lab1/src/myfir_cu.vhd'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            66            |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+	in routine myfir_cu line 24 in file
+		'/home/isa25/Desktop/Laboratori-ISA/Lab1/src/myfir_cu.vhd'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      STATE_reg      | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 'myfir_dp'. (HDL-193)
+Presto compilation completed successfully.
+Information: Building the design 'FF'. (HDL-193)
+
+Inferred memory devices in process
+	in routine FF line 16 in file
+		'/home/isa25/Desktop/Laboratori-ISA/Lab1/src/FF.vhd'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     FF_OUT_reg      | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 'REG'. (HDL-193)
+
+Inferred memory devices in process
+	in routine REG line 15 in file
+		'/home/isa25/Desktop/Laboratori-ISA/Lab1/src/reg.vhd'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     REG_OUT_reg     | Flip-flop |  11   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 'N_COUNTER' instantiated from design 'myfir_dp' with
+	the parameters "N=3,MODULE=9". (HDL-193)
+Warning:  /home/isa25/Desktop/Laboratori-ISA/Lab1/src/N_counter.vhd:23: Initial values for signals/variables are not supported for synthesis by default. They are ignored. (VHD-7)
+Warning:  /home/isa25/Desktop/Laboratori-ISA/Lab1/src/N_counter.vhd:50: implicit truncation caused by range overflow. (ELAB-931)
+
+Inferred memory devices in process
+	in routine N_COUNTER_N3_MODULE9 line 23 in file
+		'/home/isa25/Desktop/Laboratori-ISA/Lab1/src/N_counter.vhd'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    CNT_OUTv_reg     | Flip-flop |   3   |  Y  | N  | N  | N  | N  | N  | N  |
+|     CNT_END_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+1
