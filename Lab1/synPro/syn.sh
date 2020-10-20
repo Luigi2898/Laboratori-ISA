@@ -30,8 +30,4 @@ then
     mkdir logs
 fi
 source /software/scripts/init_synopsys_64.18
-dc_shell-xg-t -f synth.tcl
-dir="../OldRes/res_$(date +%F)"_"$(date +%T)_justSyn"
-cp -r synthReport $dir
-cp -r netlist $dir
-cp -r logs $dir
+design_vision -f synth.tcl
