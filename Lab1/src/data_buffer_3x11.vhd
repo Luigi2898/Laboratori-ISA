@@ -12,6 +12,7 @@ port(
 	buff_on : in std_logic;
 	load : in std_logic;
 	flush : in std_logic;
+	flush_cnt : in std_logic;
 	rst_n : in std_logic;
 	data_out0 : out signed (11-1 downto 0);
 	data_out1 : out signed (11-1 downto 0);
@@ -43,8 +44,9 @@ end component;
 type buffer_type is array (W+1 downto 0) of signed (B-1 downto 0);
 signal buffer_content : buffer_type;
 signal cnt_out : unsigned (log2W-1 downto 0);
-signal rst_signal,rst_n_internal : std_logic;
+signal rst_signal,rst_n_internal,rst_n_cnt : std_logic;
 signal gnd : std_logic := '0';
+signal vdd : std_logic := '1';
 -------------------------------------------------------------------------------------
 begin 
 -------------------------------------------------------------------------------------
@@ -59,9 +61,10 @@ buff_reg_gen : for i in 0 to W+1 generate
 	end generate;
 end generate buff_reg_gen;
 -------------------------------------------------------------------------------------
-cnt : N_counter generic map (N=>2,MODULE=>4) port map (clk=>clk,en=>load,rst_n=>rst_n,rst0_rst1N=>gnd,cnt_end=>buff_full);
+cnt : N_counter generic map (N=>2,MODULE=>4) port map (clk=>clk,en=>load,rst_n=>rst_n_cnt,rst0_rst1N=>vdd,cnt_end=>buff_full);
 -------------------------------------------------------------------------------------
 rst_n_internal <= not(not(rst_n) or flush);
+rst_n_cnt <= not(not(rst_n) or flush) or flush_cnt;
 data_out0 <= buffer_content(2);
 data_out1 <= buffer_content(3);
 data_out2 <= buffer_content(4);

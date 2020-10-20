@@ -11,6 +11,7 @@ entity myfir_dp_unfolded is
 	LOAD_BUFF : in std_logic;
 	BUFF_ON : in std_logic;
 	FLUSH : in std_logic;
+	FLUSH_CNT : in std_logic;
 	LOAD_STATE : in std_logic;
 	LOAD_OUT : in std_logic;
 	LOAD_RES : in std_logic;
@@ -57,6 +58,7 @@ port(
 	buff_on : in std_logic;
 	load : in std_logic;
 	flush : in std_logic;
+	flush_cnt : in std_logic;
 	rst_n : in std_logic;
 	data_out0 : out signed (11-1 downto 0);
 	data_out1 : out signed (11-1 downto 0);
@@ -139,7 +141,7 @@ result_reg_gen : for i in 0 to 2 generate
 		result_reg : reg port map(out_vect(i), out_mux_in(i), clk, rst_n, load_res);
 	end generate result_reg_gen;		
 	
-input_buffer : data_buffer_3x11 port map (clk,DIN,buff_on,LOAD_BUFF,gnd,rst_N,input_buff_out0,
+input_buffer : data_buffer_3x11 port map (clk,DIN,buff_on,LOAD_BUFF,gnd,flush_cnt,rst_N,input_buff_out0,
 											input_buff_out1,input_buff_out2,buff_full);
 output_buffer : reg port map (out_mux_out,DOUT,clk,rst_N,load_out);
 
