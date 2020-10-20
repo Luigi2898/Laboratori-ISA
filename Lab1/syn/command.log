@@ -1,6 +1,6 @@
 #@ # 
 #@ # Running dc_shell Version O-2018.06-SP4 for linux64 -- Nov 27, 2018
-#@ # Date:   Tue Oct 13 12:11:06 2020
+#@ # Date:   Mon Oct 19 20:05:04 2020
 #@ # Run by: isa25@localhost.localdomain
 #@ 
 
@@ -6638,42 +6638,19 @@ source /home/isa25/Desktop/Laboratori-ISA/Lab1/syn/.synopsys_dc.setup
 #@ set synthetic_library [list "dw_foundation.sldb" ]
 #@ # -- End source /home/isa25/Desktop/Laboratori-ISA/Lab1/syn/.synopsys_dc.setup
 
-source -echo -verbose /home/isa25/Desktop/Laboratori-ISA/Lab1/syn/synth.tcl
-#@ # -- Starting source /home/isa25/Desktop/Laboratori-ISA/Lab1/syn/synth.tcl
+source -echo -verbose /home/isa25/Desktop/Laboratori-ISA/Lab1/syn/backSyn.tcl
+#@ # -- Starting source /home/isa25/Desktop/Laboratori-ISA/Lab1/syn/backSyn.tcl
 
-#@ set power preserve rtl hier names true
-#@ analyze -f vhdl -lib WORK -autoread {../src}
-#@ elaborate myfir -arch beh -lib WORK
-#@ uniquify
-#@ link
-#@ create clock -name MY CLK -period 10.0 CLK
-#@ set_dont_touch network MY CLK
-#@ set_clock_uncertainty 0.07 [get clocks MY CLK]
-#@ set_input_delay 0.5 -max -clock MY CLK [remove from collection [all inputs] CLK]
-#@ set_output_delay 0.5 -max -clock MY CLK [all outputs]
-#@ set OLOAD [load of NangateOpenCellLibrary/BUF X4/A]
-#@ set_load $OLOAD [all outputs]
-#@ compile -exact_map
-#@ #compile -exact_map -gate_clock
+#@ read_verilog -netlist ./netlist/myfir.v
+#@ read_saif -input ../saif/myfir_syn.saif -instance tb_fir/UUT -unit ns -scale 1
+#@ create_clock -name MY_CLK -period 10.0 CLK
+#@ report_power > ./synthReportAfterBack/power.txt
+#@ report_power -net > ./synthReportAfterBack/power-net.txt
+#@ report_power -cell > ./synthReportAfterBack/power-cell.txt
+#@ report_power -hierarchy > ./synthReportAfterBack/power-hierarchy.txt
+#@ report_power -verbose > ./synthReportAfterBack/power-verbose.txt
 #@ 
-#@ #REPORTS
-#@ 
-#@ report_timing > synthReport/timing.txt
-#@ report_area  > synthReport/area.txt
-#@ report_power > synthReport/power.txt
-#@ report_power -net> synthReport/power-net.txt
-#@ report_power -cell> synthReport/power-cell.txt
-#@ report_power -hierarchy> synthReport/power-hierarchy.txt
-#@ report_power -verbose> synthReport/power-verbose.txt
-#@ 
-#@ #SDF
-#@ 
-#@ ungroup -all -flatten
-#@ change_names -hierarchy -rules verilog
-#@ write_sdf netlist/myfir.sdf
-#@ write -f verilog -hierarchy -output netlist/myfir.v
-#@ write_sdc netlist/myfir.sdc
-#@ # -- End source /home/isa25/Desktop/Laboratori-ISA/Lab1/syn/synth.tcl
+#@ # -- End source /home/isa25/Desktop/Laboratori-ISA/Lab1/syn/backSyn.tcl
 
 gui_start
 #@ # -- Starting source /software/synopsys/syn_current_64.18/auxx/tcllib/lib/itk4.0.1/itk.tcl
@@ -43036,7 +43013,4 @@ gui_start
 #@ 
 #@ # -- End source /software/synopsys/syn_current_64.18/auxx/tcllib/lib/iwidgets4.1/watch.itk
 
-change_selection [get_s myfir]
-change_selection [get_s myfir]
-gui_zoom -window [gui_get_current_window -view] -selection
-change_selection [get_s {{DP_delay_line[42]} {DP_delay_line[53]} {DP_delay_line[75]} {DP_delay_line[64]}}]
+quit

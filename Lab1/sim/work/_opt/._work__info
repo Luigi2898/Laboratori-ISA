@@ -1,0 +1,127 @@
+m255
+13
+cModel Technology
+d/home/isa25/Desktop/Laboratori-ISA/Lab1/sim
+T_opt
+V>dWjPN^m[e5DT0z]2m[2z2
+06 6 4 ./work tb_fir fast 0
+o-quiet -auto_acc_if_foreign -work work -L /software/dk/nangate45/verilog/msim6.2g -sdftyp /tb_fir/UUT=../syn/netlist/myfir.sdf -suppress 1948
+tExplicit 1
+OE;O;6.2g;35
+Eclk_gen
+w1603122319
+DP ieee std_logic_unsigned hEMVMlaNCR^<OOoVNV;m90
+DP ieee std_logic_arith GJbAT?7@hRQU9IQ702DT]2
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+31
+8../src/clk_gen.vhd
+F../src/clk_gen.vhd
+l0
+L6
+VlKk0OVG2Lg8n7K0PBj]Ka2
+OE;C;6.2g;35
+o-93 -work ./work
+tExplicit 1
+Abeh
+DP ieee std_logic_unsigned hEMVMlaNCR^<OOoVNV;m90
+DP ieee std_logic_arith GJbAT?7@hRQU9IQ702DT]2
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+DE work clk_gen lKk0OVG2Lg8n7K0PBj]Ka2
+31
+M3 ieee std_logic_1164
+M2 ieee std_logic_arith
+M1 ieee std_logic_unsigned
+l19
+L13
+V8HJkPVPG@a@YR=mjFzOk00
+OE;C;6.2g;35
+o-93 -work ./work
+tExplicit 1
+Edata_gen
+w1603122319
+DP std textio K]Z^fghZ6B=BjnK5NomDT3
+DP ieee std_logic_textio 8YS?iX`WD1REQG`ZRYQGB2
+DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+31
+8../src/data_gen.vhd
+F../src/data_gen.vhd
+l0
+L12
+VNU0SN_6m1H:ZjY73=I<mO2
+OE;C;6.2g;35
+o-93 -work ./work
+tExplicit 1
+Abeh
+DP std textio K]Z^fghZ6B=BjnK5NomDT3
+DP ieee std_logic_textio 8YS?iX`WD1REQG`ZRYQGB2
+DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+DE work data_gen NU0SN_6m1H:ZjY73=I<mO2
+31
+M4 ieee std_logic_1164
+M3 ieee numeric_std
+M2 ieee std_logic_textio
+M1 std textio
+l37
+L30
+VjlcK`mY5eVP07O8CIN8h@2
+OE;C;6.2g;35
+o-93 -work ./work
+tExplicit 1
+Edata_sink
+w1603122320
+DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
+DP std textio K]Z^fghZ6B=BjnK5NomDT3
+DP ieee std_logic_textio 8YS?iX`WD1REQG`ZRYQGB2
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+31
+8../src/data_sink.vhd
+F../src/data_sink.vhd
+l0
+L11
+VAhAkDS:^Q7k;4eKPY`=F^3
+OE;C;6.2g;35
+o-93 -work ./work
+tExplicit 1
+Abeh
+DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
+DP std textio K]Z^fghZ6B=BjnK5NomDT3
+DP ieee std_logic_textio 8YS?iX`WD1REQG`ZRYQGB2
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+DE work data_sink AhAkDS:^Q7k;4eKPY`=F^3
+31
+M4 ieee std_logic_1164
+M3 ieee std_logic_textio
+M2 std textio
+M1 ieee numeric_std
+l21
+L19
+VF[H4LVClJ8eFzW3@<fRN<3
+OE;C;6.2g;35
+o-93 -work ./work
+tExplicit 1
+vmyfir
+I<nJMXE[5fUHzhP:dzl@?A3
+VR?0[hTRX@=P5Fm7?mBCfB3
+w1603130676
+8../syn/netlist/myfir.v
+F../syn/netlist/myfir.v
+L0 8
+VR?0[hTRX@=P5Fm7?mBCfB3
+OE;L;6.2g;35
+r1
+31
+o-work ./work
+vtb_fir
+I^_Bn@B:_f]^OQ4W3K4;2V0
+Vn4ToFGQLaei@:>cm_n>5j1
+w1603122321
+8../tb/tb_fir.v
+F../tb/tb_fir.v
+L0 7
+Vn4ToFGQLaei@:>cm_n>5j1
+OE;L;6.2g;35
+r1
+31
+o-work ./work
