@@ -99,6 +99,6 @@ begin
 	--output_buffer   : reg port map(reg_in => sum(7)(21 downto 11), reg_out => buff_out, clk => clk, rst_n => rst_n, load => ctrl_out); --output register, enabled when an output is ready
 	output_register : reg port map(reg_in => sum_out, reg_out => dout, clk => clk, rst_n => rst_n, load => ctrl_out); --output register, enabled when an output is ready
 
-	counter : N_COUNTER generic map(N => 3, MODULE => 9)
+	counter : N_COUNTER generic map(N => 3, MODULE => 8)
 	port map(clk => clk, en => cnt_en, rst_n => rst_n, RST0_RST1N => RST0_RST1N, cnt_end => TC, cnt_out => cnt_out);
 end architecture;
