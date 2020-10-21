@@ -44,7 +44,7 @@ initial
 	else if (VOUT_i == 0 && $feof(outfile0)) begin
     $display("\nFILTER TESTS COMPLETED WITH %0d ERRORS!\n", error_count);
     $fclose(outfile0);
-    $stop();
+    //$stop();
 	end
   end      
 end
