@@ -8,3 +8,10 @@ Lab1/src/clk_gen.vhd
 Lab1/src/data_gen.vhd
 Lab1/src/data_sink.vhd
 Lab1/src/data_sink.vhd
+Lab1/src/clk_gen.vhd
+Lab1/src/data_gen.vhd
+Lab1/src/data_sink.vhd
+Lab1/src/FF.vhd
+Lab1/src/myfir.vhd
+Lab1/src/myfir_cu.vhd
+Lab1/src/myfir_dp.vhd

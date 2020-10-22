@@ -14,6 +14,8 @@ entity myfir_dp_unfolded is
 	LOAD_STATE : in std_logic;
 	LOAD_OUT : in std_logic;
 	LOAD_RES : in std_logic;
+	RST_CNT_0 : in std_logic;
+	RST_CNT_1 : in std_logic;
 	EN_CNT_MUX : in std_logic;
 	H0: in signed(10 downto 0);
 	H1: in signed(10 downto 0);
@@ -58,6 +60,8 @@ port(
 	load : in std_logic;
 	flush : in std_logic;
 	rst_n : in std_logic;
+	rst_cnt_0 : in std_logic;
+	rst_cnt_1 : in std_logic;
 	data_out0 : out signed (11-1 downto 0);
 	data_out1 : out signed (11-1 downto 0);
 	data_out2 : out signed (11-1 downto 0);
@@ -79,6 +83,19 @@ component N_COUNTER is
 	);
 end component;
 
+component counter_modulo_n is
+generic(n: positive:=4;
+		f: unsigned:="1111";
+		s: integer:=0);
+				
+port ( 	
+	enable: in std_logic;
+	clock_50 : in std_logic;
+	reset_0n: in std_logic;
+	reset_1n: in std_logic;
+	tc: out std_logic;
+	cnt: buffer unsigned (n-1 downto 0));
+end component;
 
 ------------------------------------------------------------------------
 type vector is array (8 downto 0) of signed(10 downto 0);
@@ -93,10 +110,13 @@ signal out_cnt_mux : unsigned (1 downto 0);
 signal ff_out: signed(7 downto 0);  
 signal reg_out0,out_mux_out,input_buff_out2,input_buff_out1,input_buff_out0 : signed(10 downto 0);
 signal var : signed(21 downto 0);
-signal vdd : std_logic := '1';
-signal gnd : std_logic := '0';
+signal vdd : std_logic;
+signal gnd : std_logic;
 ------------------------------------------------------------------------
 begin
+
+vdd <= '1';
+gnd <= '0';
 
 coeff(0) <=  H0;
 coeff(1) <=  H1;
@@ -139,7 +159,7 @@ result_reg_gen : for i in 0 to 2 generate
 		result_reg : reg port map(out_vect(i), out_mux_in(i), clk, rst_n, load_res);
 	end generate result_reg_gen;		
 	
-input_buffer : data_buffer_3x11 port map (clk,DIN,buff_on,LOAD_BUFF,gnd,rst_N,input_buff_out0,
+input_buffer : data_buffer_3x11 port map (clk,DIN,buff_on,LOAD_BUFF,gnd,rst_N,rst_cnt_0,rst_cnt_1,input_buff_out0,
 											input_buff_out1,input_buff_out2,buff_full);
 output_buffer : reg port map (out_mux_out,DOUT,clk,rst_N,load_out);
 

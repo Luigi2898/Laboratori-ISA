@@ -34,7 +34,7 @@ architecture beh of tb_myfir_unfolded is
     signal dout,din : signed (10 downto 0);
     signal clk, rst_n : std_logic;
     signal H0,H1,H2,H3,H4,H5,H6,H7,H8 : signed (10 downto 0);
-
+    signal cnt_ins, cnt_outs : unsigned (7 downto 0);
 begin
 
     clk_process: process
@@ -74,6 +74,7 @@ begin
         file inFile : text is in "C:\Users\Francesco\Documents\GitHub\Laboratori-ISA\Lab1\tb\tb_unfolded\tb_vhdl\matlab\input_samples_random.txt";
         variable l : line;
         variable n : std_logic_vector (11 downto 0);
+        variable cnt_in : integer := 0;
 
         begin
             wait for 30 ns;
@@ -82,6 +83,10 @@ begin
             read(l,n);
             DIN <= signed(n(10 downto 0));
             VIN <= n(11);
+            if VIN = '1' then
+                cnt_in := cnt_in + 1;
+            end if;
+            cnt_ins <= to_unsigned(cnt_in,8);
             wait for 10 ns;
             end loop;
             VIN <= '0';
@@ -93,12 +98,15 @@ begin
         file outfile : text is out "C:\Users\Francesco\Documents\GitHub\Laboratori-ISA\Lab1\tb\tb_unfolded\tb_vhdl\matlab\output_samples_sim_random.txt";
         variable l : line;
         variable n : std_logic_vector (10 downto 0) ;
-        variable i : integer := 0;	
+        variable i : integer := 0;
+        variable cnt_out : integer := 0;	
         begin
         if (clk'event and clk = '1' and VOUT = '1') then
             n := std_logic_vector(DOUT);
             write(l,n);
             writeline(outfile, l);
+            cnt_out := cnt_out + 1;
+            cnt_outs <= to_unsigned(cnt_out,8);
             end if;
     end process;
 

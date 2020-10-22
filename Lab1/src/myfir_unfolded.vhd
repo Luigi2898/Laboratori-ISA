@@ -35,6 +35,8 @@ architecture beh of myfir_unfolded is
         LOAD_STATE : in std_logic;
         LOAD_OUT : in std_logic;
         LOAD_RES : in std_logic;
+        RST_CNT_0 : in std_logic;
+	    RST_CNT_1 : in std_logic;
         EN_CNT_MUX : in std_logic;
         H0: in signed(10 downto 0);
         H1: in signed(10 downto 0);
@@ -57,6 +59,8 @@ architecture beh of myfir_unfolded is
           rst_n : in std_logic;
           buff_full : in std_logic;
           vin : in std_logic;
+          rst_cnt_0 : out std_logic;
+          rst_cnt_1 : out std_logic;
           load_state : out std_logic;
           load_buff : out std_logic;
           load_res : out std_logic;
@@ -79,15 +83,15 @@ architecture beh of myfir_unfolded is
     end component myfir_cuoutputs_unfolded;
 
     signal LOAD_BUFF, BUFF_ON, FLUSH, LOAD_STATE, LOAD_OUT, LOAD_RES, EN_CNT_MUX,
-    BUFF_FULL, TC_CNT_MUX, start_out : std_logic;
+    BUFF_FULL, TC_CNT_MUX, start_out, RST_CNT_0, RST_CNT_1 : std_logic;
 
 begin
 
     datapath : myfir_dp_unfolded port map (clk,rst_n,DIN,load_buff,buff_on,flush,
-                load_state,load_out,load_res,en_cnt_mux,H0,H1,H2,H3,H4,H5,H6,H7,H8,
+                load_state,load_out,load_res,RST_CNT_0,RST_CNT_1,en_cnt_mux,H0,H1,H2,H3,H4,H5,H6,H7,H8,
                 buff_full,tc_cnt_mux,DOUT);
 
-    cu_inputs : myfir_cuinputs_unfolded port map (clk,rst_n,buff_full,VIN,load_state,
+    cu_inputs : myfir_cuinputs_unfolded port map (clk,rst_n,buff_full,VIN,RST_CNT_0,RST_CNT_1,load_state,
                 load_buff,load_res,buff_on,flush,start_out);
 
     cu_outputs : myfir_cuoutputs_unfolded port map (clk,rst_n,start_out,tc_cnt_mux,en_cnt_mux,load_out,VOUT);
