@@ -1,9 +1,11 @@
+#define _ISOC99_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
+#include <fenv.h>
 
 #define NT 9  /// number of coeffs
 #define NB 11 /// number of bits
-#define NI 5  /// internal number of bits
+#define NI 10
 
 const int b[NT] = {-7, -14, 52, 272, 415, 272, 52, -14, -7}; /// b array
 
@@ -50,6 +52,7 @@ int myfilter(int x)
 
 int main(int argc, char **argv)
 {
+  fesetround(FE_DOWNWARD);
   FILE *fp_in;
   FILE *fp_out;
 

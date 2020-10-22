@@ -88,10 +88,10 @@ begin
 		mult(i) <= coeff(i) * delay_line(i);
 	end generate; -- multipliers
 
-	sum(0) <= mult(0)(21 downto 11) + mult(1)(21 downto 11);
+	sum(0) <= mult(0)(20 downto 10) + mult(1)(20 downto 10);
 
 	adder : for i in 1 to 7 generate
-		sum(i) <= mult(i + 1)(21 downto 11) + sum(i - 1);
+		sum(i) <= mult(i + 1)(20 downto 10) + sum(i - 1);
 	end generate; -- adders
 
 	sum_out <= sum(7);
