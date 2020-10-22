@@ -1,5 +1,6 @@
 set power_preserve_rtl_hier_names true
-analyze -f vhdl -lib WORK -autoread {../src}
+analyze -f vhdl -lib WORK -autoread {../src/commonComponents}
+analyze -f vhdl -lib WORK -autoread {../src/fir}
 elaborate myfir -arch beh -lib WORK > ./logs/elaboration.log
 uniquify
 link

@@ -1,5 +1,4 @@
 cd syn
-echo "Ho iniziato"
 if [ -d work ]    # ← see 'man test' for available unary and binary operators.
 then
     echo "Ho trovato la cartella work, per rendere deterministici i risultati procedo con la rimozione e la creazione della cartella"
@@ -31,9 +30,7 @@ then
     echo "La cartella logs non è presente, la creo"
     mkdir logs
 fi
-echo "Ho fatto"
 source /software/scripts/init_synopsys_64.18
-echo "Ho letto"
 dc_shell-xg-t -f synth.tcl
 cd ../sim
 if [ -d "work" ]; then
@@ -42,9 +39,9 @@ if [ -d "work" ]; then
 fi
 source /software/scripts/init_msim6.2g
 vlib work
-vcom -93 -work ./work ../src/clk_gen.vhd
-vcom -93 -work ./work ../src/data_gen.vhd
-vcom -93 -work ./work ../src/data_sink.vhd
+vcom -93 -work ./work ../src/simulationComponents/clk_gen.vhd
+vcom -93 -work ./work ../src/simulationComponents/data_gen.vhd
+vcom -93 -work ./work ../src/simulationComponents/data_sink.vhd
 vlog -work ./work ../syn/netlist/myfir.v
 vlog -work ./work ../tb/tb_fir.v
 vsim -do backVsim.tcl
@@ -54,9 +51,9 @@ if [ -d "work" ]; then
 fi
 source /software/scripts/init_msim6.2g
 vlib work
-vcom -93 -work ./work ../src/clk_gen.vhd
-vcom -93 -work ./work ../src/data_gen.vhd
-vcom -93 -work ./work ../src/data_sink.vhd
+vcom -93 -work ./work ../src/simulationComponents/clk_gen.vhd
+vcom -93 -work ./work ../src/simulationComponents/data_gen.vhd
+vcom -93 -work ./work ../src/simulationComponents/data_sink.vhd
 vlog -work ./work ../syn/netlist/myfirNC.v
 vlog -work ./work ../tb/tb_fir.v
 vsim -do backVsimNC.tcl

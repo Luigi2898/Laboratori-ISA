@@ -2,26 +2,27 @@ clear variables
 close all
 clc
 
-outputVHD = importdata('results.txt')*2^-10;
-outputC = importdata('../C/resultC.new5')*2^(-11-5);
-outputC2 = importdata('../C/resultC.new')*2^(-10);
-outputM = importdata('../C/resultsm.txt')*2^-10;
-samp = importdata('samples.txt')*2^-10;
+outputVHD = importdata('../sim/results.txt');
+outputC11 = importdata('../C/resultC11.txt');
+outputC11b = importdata('../C/resultC11b.txt');
+outputC5 = importdata('../C/resultC5.txt');
+outputC6 = importdata('../C/resultC6.txt');
+outputC7 = importdata('../C/resultC7.txt');
+samp = importdata('samples.txt');
 figure
-plot(outputVHD)
+plot(outputVHD/max(abs(outputVHD)))
 hold on
-plot(outputC(2:end))
-plot(outputM(10:end))
-plot(outputC2(2:end))
+plot(outputC11/max(abs(outputC11)))
+plot(outputC11b/max(abs(outputC11b)))
+plot(outputC5/max(abs(outputC5)))
+plot(outputC6/max(abs(outputC6)))
+plot(outputC7/max(abs(outputC7)))
 
 figure
-plot(samp(6:end))
+thd(outputC11/max(abs(outputC11)))
 hold on
-plot(outputVHD)
-hold off
-
-figure
-thd(outputC)
-hold on
-pause()
-thd(outputC2)
+thd(outputC5/max(abs(outputC5)))
+thd(outputC6/max(abs(outputC6)))
+thd(outputC7/max(abs(outputC7)))
+thd(outputC11b/max(abs(outputC11b)))
+thd(outputVHD/max(abs(outputVHD)))

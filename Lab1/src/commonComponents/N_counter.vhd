@@ -7,12 +7,12 @@ entity N_COUNTER is
 		N      : integer := 6;
 		MODULE : integer := 42);
 	port (
-		CLK     : in STD_LOGIC;
-		EN      : in STD_LOGIC;
-		RST_N     : in STD_LOGIC;
+		CLK        : in std_logic;
+		EN         : in std_logic;
+		RST_N      : in std_logic;
 		RST0_RST1N : in std_logic;
-		CNT_END : out STD_LOGIC;
-		CNT_OUT : buffer UNSIGNED(N - 1 downto 0)
+		CNT_END    : out std_logic;
+		CNT_OUT    : buffer UNSIGNED(N - 1 downto 0)
 	);
 end entity;
 
@@ -35,14 +35,14 @@ begin
 					if (RST0_RST1N = '1') then
 						CNT_OUTv := 0;
 						CNT_END <= '0';
-						else
+					else
 						CNT_OUTv := 1;
 						CNT_END <= '0';
-					end if ;
+					end if;
 				elsif (CNT_OUTv = MODULE - 1) then
 					CNT_END <= '1';
 				end if;
-			--end if;
+				--end if;
 			else
 				CNT_OUTv := to_integer(CNT_OUT);
 			end if;

@@ -31,10 +31,9 @@ module tb_fir ();
    integer outfile0,outfile1; //file descriptors
    
    //timeunit 1us;  timeprecision 1us;	
-initial 
-	begin
+always 
+	begin  : infinite
 	outfile0=$fopen("../C/resultC.txt","r");
-  $display("Ho aperto il file");
   while(1) begin
 	@(posedge CLK_i)	//Guardare simulazione
 			if(VOUT_i == 1 && !$feof(outfile0)) begin
@@ -44,7 +43,8 @@ initial
 	else if (VOUT_i == 0 && $feof(outfile0)) begin
     $display("\nFILTER TESTS COMPLETED WITH %0d ERRORS!\n", error_count);
     $fclose(outfile0);
-    $stop();
+    //$stop();
+    disable infinite;
 	end
   end      
 end
