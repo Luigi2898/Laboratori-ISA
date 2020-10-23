@@ -38,9 +38,12 @@ int myfilter(int x)
   y = 0;
   for (i = 0; i < NT; i++)
   {
-    y += (sx[i] * b[i]) >> (NB - 1);
+    tmp = (sx[i] * b[i]) >> (NB - 1);
+    y += tmp;
+    printf("%d\n", tmp);
   }
 
+  printf("----------------------\n\n");
   /// Auto regressive part
   //for (i = 0; i < NT - 1; i++)
   //y -= (sy[i] * a[i]) >> (NB - 1);

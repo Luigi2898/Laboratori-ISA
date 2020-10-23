@@ -98,10 +98,10 @@ begin
 		deb(i)      <= mult(i)(20 downto 10);
 	end generate; -- multipliers with correction
 
-	sum(0) <= mult(0)(20 downto 10) + mult(1)(20 downto 10);
+	sum(0) <= deb(0) + deb(1);
 
 	adder : for i in 1 to 7 generate
-		sum(i) <= mult(i + 1)(20 downto 10) + sum(i - 1);
+		sum(i) <= deb(i + 1) + sum(i - 1);
 	end generate; -- adders
 
 	sum_out <= sum(7);
