@@ -3,10 +3,15 @@
 
 int main(int argc, char const *argv[])
 {
-    int a = 183;
-    long int b;
-    b = a * 152 >> (5);
-    printf("%d \n", b);
-    printf("%d     %d\n", sizeof(int), sizeof(long int));
+    int a, b, o;
+    while(1){
+	    printf("A:\t");
+	    scanf("%d", &a);
+   	    printf("B:\t");
+	    scanf("%d", &b);
+	    o = (a * b) >> (11 - 1);
+	    printf("%d\n", o);
+    }
+
     return 0;
 }

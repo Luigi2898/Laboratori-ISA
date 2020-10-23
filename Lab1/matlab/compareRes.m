@@ -26,3 +26,13 @@ thd(outputC6/max(abs(outputC6)))
 thd(outputC7/max(abs(outputC7)))
 thd(outputC11b/max(abs(outputC11b)))
 thd(outputVHD/max(abs(outputVHD)))
+
+%%
+
+resM = importdata('results.txt');
+resC = importdata('out.GG');
+
+figure
+plot(resM)
+hold on
+plot(resC)

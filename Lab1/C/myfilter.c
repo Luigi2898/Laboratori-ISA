@@ -1,7 +1,5 @@
-#define _ISOC99_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
-#include <fenv.h>
 
 #define NT 9  /// number of coeffs
 #define NB 11 /// number of bits
@@ -19,6 +17,7 @@ int myfilter(int x)
   static int first_run = 0; /// for cleaning shift registers
   int i;                    /// index
   int y;                    /// output sample
+  int tmp;
 
   /// clean the buffers
   if (first_run == 0)
@@ -38,7 +37,10 @@ int myfilter(int x)
   /// Moving average part
   y = 0;
   for (i = 0; i < NT; i++)
+  {
     y += (sx[i] * b[i]) >> (NB - 1);
+  }
+
   /// Auto regressive part
   //for (i = 0; i < NT - 1; i++)
   //y -= (sy[i] * a[i]) >> (NB - 1);
@@ -52,7 +54,6 @@ int myfilter(int x)
 
 int main(int argc, char **argv)
 {
-  fesetround(FE_DOWNWARD);
   FILE *fp_in;
   FILE *fp_out;
 
