@@ -139,12 +139,17 @@ state_vect2_gen : for i in 0 to 3 generate
 		state_2 : if(i > 0) generate		
 	           state_2 : reg port map(state_vector(3*i-3), state_vector(3*i), clk, rst_n, load_state2);
 			   end generate;			   
-        end generate state_vect2_gen;	
+		end generate state_vect2_gen;	
+		
 
+
+--------------- PIPE STARTS HERE ---------------
 result_reg_gen : for i in 0 to 2 generate 
 		result_reg : reg port map(out_vect(i), out_mux_in(i), clk, rst_n, load_res);
 	end generate result_reg_gen;		
+--------------- PIPE  ENDS  HERE ---------------
 	
+
 input_buffer1 : reg port map (DIN,input_buff_out1,clk,rst_n,BUFF_ON);
 
 input_buffer2 : reg port map (input_buff_out1,input_buff_out2,clk,rst_n,LOAD_BUFF);

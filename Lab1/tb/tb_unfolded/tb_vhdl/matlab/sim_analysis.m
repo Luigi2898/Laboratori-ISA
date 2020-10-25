@@ -89,25 +89,13 @@ simin_dec = q2dec(char(simin_t),10,0,'bin');
 fclose(fid);
 
 
-correct_results = importdata("C:\Users\Francesco\Documents\GitHub\Laboratori-ISA\Lab1\matlab\results_untouched.txt");
-
-count = 0;
-for i=1:length(correct_results)
-    if vin_vect(i) == 1
-        count = count + 1;
-    end
-end
-fprintf('The number of processed samples is %d, it should be %d.\n',length(simout_dec),length(correct_results))
-for i=1:length(correct_results)
-    if (i>length(simout_dec))
-        fprintf('VHDL:\t%UUU\tC:\t%d\n',correct_results(i)*(1024/0.5));
-    else
-        fprintf('VHDL:\t\t%d\t\tC:\t\t%d\n',simout_dec(i),correct_results(i)*(1024/0.5));
-    end
-end
-plot(simout_dec./2,'Linewidth',1.5);
+correct_results = importdata("C:\Users\Francesco\Documents\GitHub\Laboratori-ISA\Lab1\C\resultC.txt");
+correct_results = [zeros(1,8) correct_results'];
+plot(simout_dec,'Linewidth',1.5);
 hold on;
-plot(correct_results.*(290/0.5),'Linewidth',1.5);
+plot(correct_results,'Linewidth',1.5);
+legend('Sim-Out','C-Out');
+
 %plot(samples,'Linewidth',1.5);
 %legend('VHDL Results','Matlab Results','Input Samples');
 
