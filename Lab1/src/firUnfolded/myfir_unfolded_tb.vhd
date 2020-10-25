@@ -24,6 +24,8 @@ architecture beh of tb_myfir_unfolded is
             H6: in signed(10 downto 0);
             H7: in signed(10 downto 0);
             H8: in signed(10 downto 0);
+            STATE0_DEBUG,STATE1_DEBUG,STATE2_DEBUG : out signed (10 downto 0); -- DEBUG SIGNALS
+            start_pipe_debug : out std_logic; -- DEBUG SIGNAL
             DOUT : out signed (10 downto 0);
             VOUT : out std_logic             
         );
@@ -35,6 +37,8 @@ architecture beh of tb_myfir_unfolded is
     signal clk, rst_n : std_logic;
     signal H0,H1,H2,H3,H4,H5,H6,H7,H8 : signed (10 downto 0);
     signal cnt_ins, cnt_outs : unsigned (7 downto 0);
+    signal start_pipe_debug : std_logic; -- DEBUG SIGNAL
+    signal STATE0_DEBUG,STATE1_DEBUG,STATE2_DEBUG : signed (10 downto 0); -- DEBUG
 begin
 
     clk_process: process
@@ -110,7 +114,45 @@ begin
             end if;
     end process;
 
+    state_reg_verification_process : process (start_pipe_debug)
+
+    file inFile : text is in "C:\Users\Francesco\Documents\GitHub\Laboratori-ISA\Lab1\tb\tb_unfolded\tb_vhdl\matlab\input_samples_triplets.txt";
+    variable l : line;
+    variable n0 : std_logic_vector (10 downto 0);
+    variable n1 : std_logic_vector (10 downto 0);
+    variable n2 : std_logic_vector (10 downto 0);
+
+    begin
+
+        if (start_pipe_debug'event and start_pipe_debug = '1') then
+            if (endfile(inFile) = false) then
+
+                readline(inFile, l);
+                read(l,n0);                
+                assert (std_logic_vector(STATE0_DEBUG) = n0)
+                    report "STATE 0 CONTENT IS WRONG - SHOULD BE" & integer'image(to_integer(signed(n0))) &
+                           "\t INSTEAD IS " & integer'image(to_integer(STATE0_DEBUG)) 
+                    severity error;  
+
+                readline(inFile, l);
+                read(l,n1);
+                assert (std_logic_vector(STATE1_DEBUG) = n1)
+                    report "STATE 1 CONTENT IS WRONG \t SHOULD BE " & integer'image(to_integer(signed(n1))) &
+                           "\t INSTEAD IS " & integer'image(to_integer(STATE1_DEBUG)) 
+                    severity error;  
+
+                readline(inFile, l);
+                read(l,n2);   
+                assert (std_logic_vector(STATE2_DEBUG) = n2)
+                    report "STATE 2 CONTENT IS WRONG - SHOULD BE" & integer'image(to_integer(signed(n2))) &
+                           "\t INSTEAD IS " & integer'image(to_integer(STATE2_DEBUG)) 
+                    severity error;  
+
+            end if;
+        end if;      
+    end process;
+
     DUT : myfir_unfolded port map (clk,rst_n,DIN,VIN,H0,H1,H2,
-                                    H3,H4,H5,H6,H7,H8,DOUT,VOUT);
+                                    H3,H4,H5,H6,H7,H8,STATE0_DEBUG,STATE1_DEBUG,STATE2_DEBUG,start_pipe_debug,DOUT,VOUT);
 
 end architecture beh;

@@ -6,24 +6,24 @@ entity myfir_cuinputs_unfolded is
   port (
     clk : in std_logic;
     rst_n : in std_logic;
-    buff_full : in std_logic;
+    tc_cnt_in : in std_logic;
     vin : in std_logic;
-    rst_cnt_0 : out std_logic;
-    rst_cnt_1 : out std_logic;    
-    load_state : buffer std_logic;
     load_buff : out std_logic;
-    load_res : out std_logic;
+    state_load : out std_logic;
+    en_cnt_in : out std_logic;
     buff_on : out std_logic;
-    flush : out std_logic;
-    start_out : out std_logic    
+    tc_ack_in : out std_logic;
+    load_first_res : out std_logic;
+    start_pipe : out std_logic    
   ) ;
 end entity myfir_cuinputs_unfolded;
 
 architecture beh of myfir_cuinputs_unfolded is
 
-    type state_type is (rst,idle,load_buffs,ready_zero,ready_one);
+    type state_type is (rst,idle,load_buffs,load_state,load_res,load_buff_res,
+                        load_buff_state,load_buff_state_res,load_state_res);
     signal state : state_type;
-    signal vdd,load_res_in : std_logic;
+    signal vdd : std_logic;
 
 begin
 
@@ -35,54 +35,94 @@ begin
         case state is
           when rst =>       state <= idle;
 
-          when idle =>        if (vin = '1' and buff_full  ='1') then
-                                state <= ready_one;
-                              elsif (vin = '0' and buff_full  ='1') then
-                                state <= ready_zero;  
-                              elsif (vin = '0' and buff_full  ='0') then
-                                state <= idle;
-                              elsif (vin = '1' and buff_full  ='0') then
+          when idle =>        if (vin = '1' and tc_cnt_in = '0') then
                                 state <= load_buffs;
+                              elsif (vin = '1' and tc_cnt_in = '1') then
+                                state <= load_buff_res;
+                              elsif (vin = '0' and tc_cnt_in = '1') then
+                                state <= load_res;
+                              elsif (vin = '0' and tc_cnt_in = '0') then
+                                state <= idle;
+                              else
+                                state <= idle;
+                              end if;
+
+          when load_buffs =>  if (vin = '1' and tc_cnt_in = '0') then
+                                state <= load_buff_state;
+                              elsif (vin = '1' and tc_cnt_in = '1') then
+                                state <= load_buff_state_res;
+                              elsif (vin = '0' and tc_cnt_in = '1') then
+                                state <= load_state_res;
+                              elsif (vin = '0' and tc_cnt_in = '0') then
+                                state <= load_state;
+                              else
+                                state <= load_state;
                               end if;
 
 
-          when load_buffs =>  if (vin = '1' and buff_full  ='1') then
-                                state <= ready_one;
-                              elsif (load_state = '0' and buff_full  ='1') then
-                                state <= ready_zero;  
-                              elsif (load_state = '0' and buff_full  ='0') then
-                                state <= idle;
-                              elsif (vin = '1' and buff_full  ='0') then
+          when load_state =>  if (vin = '1' and tc_cnt_in = '0') then
                                 state <= load_buffs;
+                              elsif (vin = '1' and tc_cnt_in = '1') then
+                                state <= load_buff_res;
+                              elsif (vin = '0' and tc_cnt_in = '1') then
+                                state <= load_res;
+                              elsif (vin = '0' and tc_cnt_in = '0') then
+                                state <= idle;
+                              else
+                                state <= idle;
                               end if; 
+                              
+                              
+          when load_buff_state =>   if (vin = '1' and tc_cnt_in = '0') then
+                                      state <= load_buff_state;
+                                    elsif (vin = '1' and tc_cnt_in = '1') then
+                                      state <= load_buff_state_res;
+                                    elsif (vin = '0' and tc_cnt_in = '1') then
+                                      state <= load_state_res;
+                                    elsif (vin = '0' and tc_cnt_in = '0') then
+                                      state <= load_state;
+                                    else
+                                      state <= load_state;
+                                    end if; 
 
-          when ready_one =>   if vin = '1' then
-                                state <= load_buffs;
-                              else
-                                state <= idle;
-                              end if;
-                          
-          when ready_zero =>   if vin = '1' then
-                                state <= load_buffs;
-                              else
-                                state <= idle;
-                              end if;
-        end case;
+          when load_buff_state_res => if (vin = '1') then
+                                        state <= load_buff_state;
+                                      else
+                                        state <= load_state;
+                                      end if; 
+
+          when load_state_res =>      if (vin = '1') then
+                                        state <= load_buffs;
+                                      else
+                                        state <= idle;
+                                      end if; 
+
+          when load_buff_res =>       if (vin = '1') then
+                                        state <= load_buff_state;
+                                      else
+                                        state <= load_state;
+                                      end if; 
+
+          when load_res =>            if (vin = '1') then
+                                        state <= load_buffs;
+                                      else
+                                        state <= idle;
+                                      end if; 
+          end case;
       end if;
     end process;
 
-    output_evaluation_process: process(buff_full,state)
+    output_evaluation_process: process(state)
     begin
 
-    load_state <= '0';
     load_buff <= '0';
-    load_res <= '0';
     buff_on <= '1';
-    flush  <= '0';
-    start_out <= '0';
-    rst_cnt_0 <= '0';
-    rst_cnt_1 <= '0';
-    load_state <= buff_full;
+    start_pipe  <= '0';
+    tc_ack_in <= '0';
+    load_first_res <= '0';
+    state_load <= '0';
+    en_cnt_in <= '0';
+  
 
 
       case state is
@@ -92,19 +132,37 @@ begin
         when idle =>        
 
         when load_buffs =>  load_buff <= '1';
+                            en_cnt_in <= '1';
                             
+        when load_state =>  state_load <= '1';
+                            
+                            
+        when load_buff_state =>   load_buff <= '1';
+                                  en_cnt_in <= '1';
+                                  state_load <= '1';
 
-        when ready_one =>   --rst_cnt_1 <= '1';
-                            load_buff <= '1';
-                            load_res <= '1';
-                            start_out <= '1';
-                              
-        when ready_zero =>  rst_cnt_0 <= '1';
-        --load_buff <= '1';
-                            load_res <= '1';
-                            start_out <= '1';
+        when load_buff_state_res => load_buff <= '1';
+                                    en_cnt_in <= '1';
+                                    state_load <= '1';
+                                    tc_ack_in <= '1';
+                                    load_first_res <= '1';
+                                    start_pipe <= '1';
 
-      end case;
+        when load_state_res =>      state_load <= '1';
+                                    tc_ack_in <= '1';
+                                    load_first_res <= '1';
+                                    start_pipe <= '1';
+
+        when load_buff_res =>       load_buff <= '1';
+                                    en_cnt_in <= '1';
+                                    tc_ack_in <= '1';
+                                    load_first_res <= '1';
+                                    start_pipe <= '1';
+
+        when load_res =>            tc_ack_in <= '1';
+                                    load_first_res <= '1';
+                                    start_pipe <= '1';
+        end case;
 
     end process output_evaluation_process;
 

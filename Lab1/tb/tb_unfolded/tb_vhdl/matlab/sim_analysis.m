@@ -58,12 +58,18 @@ for i=1:numel(samples_bin_rand(:,1))
 end
 fclose(fileID);
 
+fileID = fopen("input_samples_triplets.txt",'w');
+for i=1:numel(samples_bin_straight(:,1))
+    fprintf(fileID,'%s\n',samples_bin_straight(i,:));
+end
+fclose(fileID);
+    
+
 fileID = fopen("input_samples_random_n.txt",'w');
 for i=1:numel(samples_bin_rand(:,1))
     fprintf(fileID,'%s\n',strcat(samples_bin_rand(i,:)));
 end
 fclose(fileID);
-    
 
 
 %% data analysis from simulation
@@ -99,9 +105,9 @@ for i=1:length(correct_results)
         fprintf('VHDL:\t\t%d\t\tC:\t\t%d\n',simout_dec(i),correct_results(i)*(1024/0.5));
     end
 end
-plot(simout_dec,'Linewidth',1.5);
-%hold on;
-%plot(correct_results.*(1024/0.5),'Linewidth',1.5);
+plot(simout_dec./2,'Linewidth',1.5);
+hold on;
+plot(correct_results.*(290/0.5),'Linewidth',1.5);
 %plot(samples,'Linewidth',1.5);
 %legend('VHDL Results','Matlab Results','Input Samples');
 

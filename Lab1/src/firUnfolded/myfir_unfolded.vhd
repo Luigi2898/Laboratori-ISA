@@ -17,6 +17,8 @@ entity myfir_unfolded is
         H6: in signed(10 downto 0);
         H7: in signed(10 downto 0);
         H8: in signed(10 downto 0);
+        STATE0_DEBUG,STATE1_DEBUG,STATE2_DEBUG : out signed (10 downto 0); -- DEBUG SIGNALS
+        start_pipe_debug : out std_logic; -- DEBUG SIGNAL
         DOUT : out signed (10 downto 0);
         VOUT : out std_logic             
     );
@@ -25,19 +27,18 @@ end entity myfir_unfolded;
 architecture beh of myfir_unfolded is
     
     component myfir_dp_unfolded is
-        port(
+      port(
         CLK: in std_logic;
         RST_N: in std_logic;
         DIN: in signed(10 downto 0);
         LOAD_BUFF : in std_logic;
-        BUFF_ON : in std_logic;
-        FLUSH : in std_logic;
         LOAD_STATE : in std_logic;
+        BUFF_ON : in std_logic;
         LOAD_OUT : in std_logic;
         LOAD_RES : in std_logic;
-        RST_CNT_0 : in std_logic;
-	    RST_CNT_1 : in std_logic;
+        TC_ACK_IN : in std_logic;
         EN_CNT_MUX : in std_logic;
+        EN_CNT_IN : in std_logic;
         H0: in signed(10 downto 0);
         H1: in signed(10 downto 0);
         H2: in signed(10 downto 0);
@@ -47,30 +48,30 @@ architecture beh of myfir_unfolded is
         H6: in signed(10 downto 0);
         H7: in signed(10 downto 0);
         H8: in signed(10 downto 0);
-        BUFF_FULL : out std_logic;
+        STATE0_DEBUG,STATE1_DEBUG,STATE2_DEBUG : out signed (10 downto 0); -- DEBUG SIGNALS
+        TC_CNT_IN : out std_logic;
         TC_CNT_MUX : out std_logic;
         DOUT: out signed(10 downto 0)
-            );
+          );
     end component myfir_dp_unfolded;
 
     component myfir_cuinputs_unfolded is
-        port (
-          clk : in std_logic;
-          rst_n : in std_logic;
-          buff_full : in std_logic;
-          vin : in std_logic;
-          rst_cnt_0 : out std_logic;
-          rst_cnt_1 : out std_logic;
-          load_state : out std_logic;
-          load_buff : out std_logic;
-          load_res : out std_logic;
-          buff_on : out std_logic;
-          flush : out std_logic;
-          start_out : out std_logic    
+      port (
+        clk : in std_logic;
+        rst_n : in std_logic;
+        tc_cnt_in : in std_logic;
+        vin : in std_logic;
+        load_buff : out std_logic;
+        state_load : out std_logic;
+        en_cnt_in : out std_logic;
+        buff_on : out std_logic;
+        tc_ack_in : out std_logic;
+        load_first_res : out std_logic;
+        start_pipe : out std_logic    
         ) ;
-    end component myfir_cuinputs_unfolded;
+      end component myfir_cuinputs_unfolded;
 
-    component myfir_cuoutputs_unfolded is
+      component myfir_cuoutputs_unfolded is
         port (
           clk : in std_logic;
           rst_n : in std_logic;
@@ -80,23 +81,25 @@ architecture beh of myfir_unfolded is
           load_out : inout std_logic;
           vout : out std_logic    
         ) ;
-    end component myfir_cuoutputs_unfolded;
+      end component myfir_cuoutputs_unfolded;
 
-    signal LOAD_BUFF, BUFF_ON, FLUSH, LOAD_STATE, LOAD_OUT, LOAD_RES, EN_CNT_MUX,
-    BUFF_FULL, TC_CNT_MUX, start_out, RST_CNT_0, RST_CNT_1 : std_logic;
+    signal LOAD_BUFF, BUFF_ON, FLUSH, LOAD_OUT, LOAD_RES, EN_CNT_MUX,
+    TC_ACK_IN, TC_CNT_MUX, TC_CNT_IN, START_OUT, RST_CNT_1, STATE_LOAD,
+    EN_CNT_IN : std_logic;
+
+    --signal STATE0_DEBUG,STATE1_DEBUG,STATE2_DEBUG : signed (10 downto 0);
 
 begin
 
-    datapath : myfir_dp_unfolded port map (clk,rst_n,DIN,load_buff,buff_on,flush,
-                load_state,load_out,load_res,RST_CNT_0,RST_CNT_1,en_cnt_mux,H0,H1,H2,H3,H4,H5,H6,H7,H8,
-                buff_full,tc_cnt_mux,DOUT);
+    datapath : myfir_dp_unfolded port map (clk,rst_n,DIN,load_buff,state_load,buff_on,load_out,
+                load_res,tc_ack_in,en_cnt_mux,en_cnt_in,H0,H1,H2,H3,H4,H5,H6,H7,H8,STATE0_DEBUG,STATE1_DEBUG,STATE2_DEBUG,tc_cnt_in,tc_cnt_mux,DOUT);
 
-    cu_inputs : myfir_cuinputs_unfolded port map (clk,rst_n,buff_full,VIN,RST_CNT_0,RST_CNT_1,load_state,
-                load_buff,load_res,buff_on,flush,start_out);
+    cu_inputs : myfir_cuinputs_unfolded port map (clk,rst_n,tc_cnt_in,VIN,load_buff,state_load,en_cnt_in,buff_on,
+                tc_ack_in,load_res,start_out);
 
     cu_outputs : myfir_cuoutputs_unfolded port map (clk,rst_n,start_out,tc_cnt_mux,en_cnt_mux,load_out,VOUT);
 
-
+    start_pipe_debug <= start_out;
     
     
     

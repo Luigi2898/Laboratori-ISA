@@ -24,7 +24,7 @@ begin
 
     variable flag : std_logic := '1';
     variable tcv : std_logic := '0';
-    variable cnt,cnt_prev : integer := 0;
+    variable cnt : integer := 0;
     
     begin
 
@@ -33,14 +33,12 @@ begin
     if (rstn = '0') then
         cnt := 0;
         tcv := '0';
-        cnt_prev := 0;
         flag := '1';
     elsif (clk'event and clk = '1') then
         if (en_cnt = '1') then
-            cnt_prev := cnt;
             cnt := cnt + 1;
             if (cnt = MODULE + 1) then
-                cnt := 0;
+                cnt := 1;
             end if;
         else
             cnt := cnt;
@@ -62,9 +60,14 @@ begin
         flag := '1';
     end if;
     
-    if (tc_ack = '1') then
+    if (tc_ack'event and tc_ack = '1') then
+        if (cnt = 1) then
+            flag := '0';
+        else
         flag := '0';
         tcv := '0';
+        cnt := 0;
+        end if;
     end if;
 
     tc <= tcv;
