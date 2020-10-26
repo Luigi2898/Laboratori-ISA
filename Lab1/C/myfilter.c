@@ -82,13 +82,10 @@ int main(int argc, char **argv)
 
   /// get samples and apply filter
   fscanf(fp_in, "%d", &x);
-  cnt = 0;
   do
   {
-    cnt++;
     y = myfilter(x);
-    if (cnt > NT - 1)
-      fprintf(fp_out, "%d\n", y);
+    fprintf(fp_out, "%d\n", y);
     fscanf(fp_in, "%d", &x);
   } while (!feof(fp_in));
 

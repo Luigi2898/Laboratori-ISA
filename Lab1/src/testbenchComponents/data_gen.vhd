@@ -44,7 +44,7 @@ begin -- beh
   H5 <= to_signed(272, 11);
   H6 <= to_signed(52, 11);
   H7 <= to_signed(-14, 11);
-  H8 <= to_signed(7, 11);
+  H8 <= to_signed(-7, 11);
 
   process (CLK, RST_n)
     file fp_in       : text open READ_MODE is "../C/samples.txt";
@@ -59,8 +59,8 @@ begin -- beh
       if not endfile(fp_in) then
         readline(fp_in, line_in);
         read(line_in, x);
-        DOUT    <= to_signed(x,11) after tco;
-        VOUT    <= 1 after tco;
+        DOUT    <= to_signed(x, 11) after tco;
+        VOUT    <= '1' after tco;
         sEndSim <= '0' after tco;
       else
         VOUT    <= '0' after tco;

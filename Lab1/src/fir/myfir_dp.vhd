@@ -32,15 +32,6 @@ architecture beh of myfir_dp is
 		);
 	end component;
 
-	component Cmult is
-		generic (N : integer := 8);
-		port (
-			in1 : in signed(N - 1 downto 0);
-			in2 : in signed(N - 1 downto 0);
-			res : out signed(N - 1 downto 0)
-		);
-	end component;
-
 	type registers_array is array (8 downto 0) of signed(10 downto 0); -- Array for the delay line
 	type coeff_array is array (8 downto 0) of signed(10 downto 0);     -- Array for the coefficients
 	type mult_array is array (8 downto 0) of signed(21 downto 0);      -- Array for the results of multiplications
@@ -49,18 +40,13 @@ architecture beh of myfir_dp is
 	signal coeff      : coeff_array;
 	signal delay_line : registers_array;
 	signal mult       : mult_array;
-	signal multTemp   : mult_array;
 	signal sum        : sum_array;
-	signal temp       : coeff_array;
 
 	signal cnt_out  : unsigned(2 downto 0);
 	signal buff_out : signed(10 downto 0);
 	signal sum_out  : signed(10 downto 0);
 	signal dumb_one : std_logic;
 
-	signal bothNeg : std_logic_vector(8 downto 0);
-
-	signal deb : registers_array;
 begin
 
 	coeff(0) <= H0;
@@ -81,19 +67,13 @@ begin
 	end generate; -- registers
 
 	multiplier : for i in 0 to 8 generate
-		--bothNeg(i)  <= coeff(i)(10) and delay_line(i)(10);
-		--temp(i)     <= (coeff(i) xor (coeff(i)'range => bothNeg(i))) + ((10 downto 1 => '0') & bothNeg(i));
-		--multTemp(i) <= temp(i) * delay_line(i);
-		--mult(i)     <= (multTemp(i) xor (multTemp(i)'range => bothNeg(i))) + ((10 downto 1 => '0') & bothNeg(i));
-		--deb(i)      <= mult(i)(20 downto 10);
-		i_mult : Cmult generic map(11)
-		port map(in1 => coeff(i), in2 => delay_line(i), res => deb(i));
+		mult(i) <= coeff(i) * delay_line(i);
 	end generate; -- multipliers with correction
 
-	sum(0) <= deb(0) + deb(1);
+	sum(0) <= mult(0)(20 downto 10) + mult(1)(20 downto 10);
 
 	adder : for i in 1 to 7 generate
-		sum(i) <= deb(i + 1) + sum(i - 1);
+		sum(i) <= mult(i + 1)(20 downto 10) + sum(i - 1);
 	end generate; -- adders
 
 	sum_out <= sum(7);
