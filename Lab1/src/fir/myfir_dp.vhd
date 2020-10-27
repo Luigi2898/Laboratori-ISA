@@ -35,7 +35,7 @@ architecture beh of myfir_dp is
 	type registers_array is array (8 downto 0) of signed(10 downto 0); -- Array for the delay line
 	type coeff_array is array (8 downto 0) of signed(10 downto 0);     -- Array for the coefficients
 	type mult_array is array (8 downto 0) of signed(21 downto 0);      -- Array for the results of multiplications
-	type sum_array is array (7 downto 0) of signed(10 downto 0);       -- Array for the results of additions
+	type sum_array is array (7 downto 0) of signed(7 downto 0);        -- Array for the results of additions
 
 	signal coeff      : coeff_array;
 	signal delay_line : registers_array;
@@ -70,13 +70,13 @@ begin
 		mult(i) <= coeff(i) * delay_line(i);
 	end generate; -- multipliers with correction
 
-	sum(0) <= mult(0)(20 downto 10) + mult(1)(20 downto 10);
+	sum(0) <= mult(0)(20 downto 13) + mult(1)(20 downto 13);
 
 	adder : for i in 1 to 7 generate
-		sum(i) <= mult(i + 1)(20 downto 10) + sum(i - 1);
+		sum(i) <= mult(i + 1)(20 downto 13) + sum(i - 1);
 	end generate; -- adders
 
-	sum_out <= sum(7);
+	sum_out <= (2 downto 0 => sum(7)(7)) & sum(7);
 
 	--output_buffer   : reg port map(reg_in => sum(7)(21 downto 11), reg_out => buff_out, clk => clk, rst_n => rst_n, load => ctrl_out); --output register, enabled when an output is ready
 	output_register : reg port map(reg_in => sum_out, reg_out => dout, clk => clk, rst_n => rst_n, load => ctrl_out); --output register, enabled when an output is ready

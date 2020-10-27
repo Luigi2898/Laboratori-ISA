@@ -3,7 +3,7 @@
 
 #define NT 9  /// number of coeffs
 #define NB 11 /// number of bits
-#define NI 10
+#define NI 3
 
 const int b[NT] = {-7, -14, 52, 272, 415, 272, 52, -14, -7}; /// b array
 
@@ -37,21 +37,7 @@ int myfilter(int x)
   /// Moving average part
   y = 0;
   for (i = 0; i < NT; i++)
-  {
-    tmp = (sx[i] * b[i]) >> (NB - 1);
-    y += tmp;
-    printf("%d\n", tmp);
-  }
-
-  printf("----------------------\n\n");
-  /// Auto regressive part
-  //for (i = 0; i < NT - 1; i++)
-  //y -= (sy[i] * a[i]) >> (NB - 1);
-
-  /*/// update the y shift register
-  for (i = NT - 2; i > 0; i--)
-    sy[i] = sy[i - 1];
-  sy[0] = y * 2 * 2;*/
+    y += (sx[i] * b[i]) >> (NB + NI - 1);
   return y;
 }
 
