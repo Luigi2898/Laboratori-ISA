@@ -40,37 +40,21 @@ begin
             if (cnt = MODULE + 1) then
                 cnt := 1;
             end if;
-        else
-            cnt := cnt;
-            flag := flag;
         end if;
-    else
-        cnt := cnt; 
-        flag := flag;
     end if;
 
     if (cnt = MODULE) then
-        if (flag = '1') then   
-            tcv := '1';
-        else
-            tcv := '0';
-        end if;
+        tcv := '1';
     else
         tcv := '0';
         flag := '1';
     end if;
     
-    if (tc_ack'event and tc_ack = '1') then
-        if (cnt = 1) then
-            flag := '0';
-        else
+    if (tc_ack = '1') then
         flag := '0';
-        tcv := '0';
-        cnt := 0;
-        end if;
     end if;
 
-    tc <= tcv;
+    tc <= tcv and flag;
     cnt_out <= to_unsigned(cnt,N);
 
 end process;

@@ -58,9 +58,9 @@ void myfilter(int x0, int x1, int x2, int *y0, int *y1, int *y2)
 
     for (i = 0; i < NT; i++)
     {
-    tmp0[i] = (sx[i + 2] * b[i]) >> (NB - 1);
-    tmp1[i] = (sx[i + 1] * b[i]) >> (NB - 1);
-    tmp2[i] = (sx[i + 0] * b[i]) >> (NB - 1);
+    tmp0[i] = (sx[i + 2] * b[i]) >> (NB + 2);
+    tmp1[i] = (sx[i + 1] * b[i]) >> (NB + 2);
+    tmp2[i] = (sx[i + 0] * b[i]) >> (NB + 2);
     }
 
     for (i = 0; i < NT; i++) {
@@ -78,8 +78,8 @@ void myfilter(int x0, int x1, int x2, int *y0, int *y1, int *y2)
 }
 
 
-int main(int argc, char **argv)
-//int main ()
+//int main(int argc, char **argv)
+int main ()
 {
   FILE *fp_in;
   FILE *fp_out;
@@ -89,22 +89,22 @@ int main(int argc, char **argv)
   int cnt;
 
   /// check the command line
-  if (argc != 3)
-  {
-    printf("Use: %s <input_file> <output_file>\n", argv[0]);
-    exit(1);
-  }
+  //if (argc != 3)
+  //{
+  //  printf("Use: %s <input_file> <output_file>\n", argv[0]);
+  //  exit(1);
+  //}
 
   /// open files
-  fp_in = fopen(argv[1], "r");
-  //fp_in = fopen("samples.txt", "r");
+  //fp_in = fopen(argv[1], "r");
+  fp_in = fopen("samples.txt", "r");
   if (fp_in == NULL)
   {
     printf("Error: cannot open file\n");
     exit(2);
   }
-  fp_out = fopen(argv[2], "w");
-  //fp_out = fopen("resultC_unfolded.txt", "w");
+  //fp_out = fopen(argv[2], "w");
+  fp_out = fopen("resultC_unfolded.txt", "w");
 
   /// get triplet of samples and apply filter unfolded
   fscanf(fp_in, "%d", &x0);
