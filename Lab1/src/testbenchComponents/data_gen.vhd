@@ -47,9 +47,9 @@ begin -- beh
   H8 <= to_signed(-7, 11);
 
   process (CLK, RST_n)
-    file fp_in       : text open READ_MODE is "../C/samples.txt";
+    file fp_in       : text open READ_MODE is "../C/input_samples_random.txt";
     variable line_in : line;
-    variable x       : integer;
+    variable x       : std_logic_vector(11 downto 0);
   begin               -- process
     if RST_n = '0' then -- asynchronous reset (active low)
       DOUT    <= (others => '0') after tco;
@@ -59,8 +59,8 @@ begin -- beh
       if not endfile(fp_in) then
         readline(fp_in, line_in);
         read(line_in, x);
-        DOUT    <= to_signed(x, 11) after tco;
-        VOUT    <= '1' after tco;
+        DOUT    <= signed(x(10 downto 0)) after tco;
+        VOUT    <= x(11) after tco;
         sEndSim <= '0' after tco;
       else
         VOUT    <= '0' after tco;

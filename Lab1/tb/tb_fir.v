@@ -22,6 +22,7 @@ module tb_fir ();
    wire signed [10:0] H7_i;
    wire signed [10:0] H8_i;
    wire signed [10:0] DOUT_i;
+   wire signed [10:0] DOUT_i_unfolded;
    wire VOUT_i;
    wire END_SIM_i;
    
@@ -31,45 +32,42 @@ module tb_fir ();
    integer outfile0,outfile1; //file descriptors
    
    //timeunit 1us;  timeprecision 1us;	
-always 
-	begin  : infinite
+always begin  : infinite
 	outfile0=$fopen("../C/resultC.txt","r");
   while(1) begin
-	@(posedge CLK_i)	//Guardare simulazione
-			if(VOUT_i == 1 && !$feof(outfile0)) begin
-			a = $fscanf(outfile0,"%d\n",resC);
-			res = DOUT_i;
-			check_results(); end          
-	else if (VOUT_i == 0 && $feof(outfile0)) begin
-    $display("\nFILTER TESTS COMPLETED WITH %0d ERRORS!\n", error_count);
-    $fclose(outfile0);
-    //$stop();
-    disable infinite;
-	end
-  end      
+	  @(posedge CLK_i)	//Guardare simulazione
+	    if(VOUT_i == 1 && !$feof(outfile0)) begin
+		    a = $fscanf(outfile0,"%d\n",resC);
+		    res = DOUT_i;
+		    check_results(); end          
+	    else if (VOUT_i == 0 && $feof(outfile0)) begin
+        $display("\nFILTER TESTS COMPLETED WITH %0d ERRORS!\n", error_count);
+        $fclose(outfile0);
+        disable infinite;
+     	end
+    end      
 end
    clk_gen CG(.END_SIM(END_SIM_i),
   	          .CLK(CLK_i),
-	          .RST_n(RST_n_i));
+	            .RST_n(RST_n_i));
 
    data_gen DG(.CLK(CLK_i),
-	           .RST_n(RST_n_i),
-		       .VOUT(VIN_i),
-		       .DOUT(DIN_i),
-           .H0(H0_i),
+	             .RST_n(RST_n_i),
+               .VOUT(VIN_i),
+	             .DOUT(DIN_i),
+               .H0(H0_i),
                .H1(H1_i),
-			 .H2(H2_i),
-			 .H3(H3_i),
-			 .H4(H4_i),
-			 .H5(H5_i),
-			 .H6(H6_i),
-			 .H7(H7_i),
-			 .H8(H8_i),
-		       .END_SIM(END_SIM_i)
-           );
+	 	           .H2(H2_i),
+	 	           .H3(H3_i),
+	 	           .H4(H4_i),
+	 	           .H5(H5_i),
+	 	           .H6(H6_i),
+	 	           .H7(H7_i),
+	 	           .H8(H8_i),
+   	           .END_SIM(END_SIM_i));
 
    myfir UUT(.CLK(CLK_i),
-	         .RST_n(RST_n_i),
+	           .RST_n(RST_n_i),
 	         .DIN(DIN_i),
              .VIN(VIN_i),
 			 .H0(H0_i),

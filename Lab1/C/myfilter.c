@@ -38,6 +38,7 @@ int myfilter(int x)
   y = 0;
   for (i = 0; i < NT; i++)
     y += (sx[i] * b[i]) >> (NB + NI - 1);
+  y = y << NI;
   return y;
 }
 

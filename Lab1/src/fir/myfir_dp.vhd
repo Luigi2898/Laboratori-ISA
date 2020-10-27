@@ -76,8 +76,7 @@ begin
 		sum(i) <= mult(i + 1)(20 downto 13) + sum(i - 1);
 	end generate; -- adders
 
-	sum_out <= (2 downto 0 => sum(7)(7)) & sum(7);
+	sum_out <= sum(7) & (2 downto 0 => '0');
 
-	--output_buffer   : reg port map(reg_in => sum(7)(21 downto 11), reg_out => buff_out, clk => clk, rst_n => rst_n, load => ctrl_out); --output register, enabled when an output is ready
 	output_register : reg port map(reg_in => sum_out, reg_out => dout, clk => clk, rst_n => rst_n, load => ctrl_out); --output register, enabled when an output is ready
 end architecture;
