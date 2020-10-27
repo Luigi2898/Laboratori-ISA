@@ -61,7 +61,7 @@ int myfilter(int x)
         y2 += tmp2;
         //printf("%d\n", tmp);
     }
-    y = y0+y1+y2:
+    y = y0+y1+y2;
 
     printf("----------------------\n\n");
     /// Auto regressive part
