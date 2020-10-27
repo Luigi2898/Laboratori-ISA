@@ -17,10 +17,10 @@ int myfilter(int x)
   static int sy[NT - 1];    /// y shift register
   static int first_run = 0; /// for cleaning shift registers
   int i;                    /// index
-  int y,y0,y1,y2;                    /// output sample
-  int tmp0,tmp1,tmp2;       /// partial products
+  int y,y0,y1,y2 = 0;                    /// output sample
+  int tmp0,tmp1,tmp2 = 0;       /// partial products
   int state_rdy = 0;           ///state ready flag
-  int state_x[NF];
+  int state_x[NF] = { 0 };
 
   /// clean the buffers
   if (first_run == 0)
@@ -36,7 +36,7 @@ int myfilter(int x)
   ///wait to acquire 3 samples before starting
 
   state_x[state_rdy] = x;
-  x += 1;
+  state_rdy += 1;
 
   if (state_rdy == 3){
       state_rdy = 0;
