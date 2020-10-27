@@ -217,7 +217,7 @@ tmp2 := (others => (others => 0));
 	end loop;
 state0_pipe1_in <= tmp0(20 downto 10);
 state1_pipe1_in <= tmp1(20 downto 10);
-state2_pipe1_in <= tmp2(20 downto 10);
+state2_pipe1_in <= tmp2(20 downto 10);c 
 end process pipe1_evaluation_process;
 
 

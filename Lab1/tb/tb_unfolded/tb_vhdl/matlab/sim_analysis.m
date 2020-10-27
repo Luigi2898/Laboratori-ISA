@@ -89,7 +89,7 @@ simin_dec = q2dec(char(simin_t),10,0,'bin');
 fclose(fid);
 
 
-correct_results = importdata("C:\Users\Francesco\Documents\GitHub\Laboratori-ISA\Lab1\C\resultC.txt");
+correct_results = importdata("C:\Users\Francesco\Desktop\POLITO\V_ANNO\Integrated_System_Architecture\Lab1\C\myfir_unfolded\resultC_unfolded.txt",'r'); 
 correct_results = [correct_results'];
 plot(simout_dec,'Linewidth',1.5);
 hold on;
@@ -111,3 +111,16 @@ while i < length(samples)-2
     i = i + 3;
 end
 [input0' input1' input2']
+
+%% C result debug
+clc
+close all
+clear all
+
+simout_C = importdata("C:\Users\Francesco\Desktop\POLITO\V_ANNO\Integrated_System_Architecture\Lab1\C\myfir_unfolded\resultC_unfolded.txt",'r'); 
+%simout_C = textread(fid,'%d'); 
+%fclose(fid);
+plot(simout_C);
+
+
+

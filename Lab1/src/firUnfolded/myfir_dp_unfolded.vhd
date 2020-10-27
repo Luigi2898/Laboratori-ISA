@@ -186,19 +186,22 @@ end process;
 				
 
 evaluation_process : process (state_vector, coeff)
-variable tmp : tmp_vect_type;
+variable tmp : out_vect_type;
+variable tmp_mult : signed (21 downto 0);
 begin
 tmp(0) := (others => '0');
 tmp(1) := (others => '0');
 tmp(2) := (others => '0');
+tmp_mult := (others => '0');
 	for i in 0 to 2 loop
 		for j in 0 to 8 loop
-			tmp(i) := tmp(i) + coeff(j)*state_vector(i+j);
+			tmp_mult := (coeff(j)*state_vector(i+j));
+			tmp(i) := tmp(i) + tmp_mult(20 downto 10);
 		end loop;
 	end loop;
-out_vect(2) <= tmp(0)(20 downto 10);
-out_vect(1) <= tmp(1)(20 downto 10);
-out_vect(0) <= tmp(2)(20 downto 10);
+out_vect(2) <= tmp(0);
+out_vect(1) <= tmp(1);
+out_vect(0) <= tmp(2);
 end process evaluation_process;
 
 ------------------------------------------------------------------------
