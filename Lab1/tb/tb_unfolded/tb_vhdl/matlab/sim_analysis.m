@@ -90,7 +90,7 @@ fclose(fid);
 
 
 correct_results = importdata("C:\Users\Francesco\Documents\GitHub\Laboratori-ISA\Lab1\C\resultC.txt");
-correct_results = [zeros(1,8) correct_results'];
+correct_results = [correct_results'];
 plot(simout_dec,'Linewidth',1.5);
 hold on;
 plot(correct_results,'Linewidth',1.5);

@@ -211,13 +211,13 @@ tmp2 := (others => (others => 0));
 
 -- partial results : multiplications --
 	for i in 0 to 8 loop
-        tmp0(i) := (coeff(i)*state_vector(i+2))(20 downto 10);
-        tmp1(i) := (coeff(i)*state_vector(i+1))(20 downto 10);
-        tmp2(i) := (coeff(i)*state_vector(i))(20 downto 10);
+        tmp0(i) := (coeff(i)*state_vector(i+2));
+        tmp1(i) := (coeff(i)*state_vector(i+1));
+        tmp2(i) := (coeff(i)*state_vector(i));
 	end loop;
-state0_pipe1_in <= tmp0;
-state1_pipe1_in <= tmp1;
-state2_pipe1_in <= tmp2;
+state0_pipe1_in <= tmp0(20 downto 10);
+state1_pipe1_in <= tmp1(20 downto 10);
+state2_pipe1_in <= tmp2(20 downto 10);
 end process pipe1_evaluation_process;
 
 

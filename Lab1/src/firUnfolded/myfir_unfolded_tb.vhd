@@ -70,7 +70,7 @@ begin
     H5 <= to_signed(272, 11);
     H6 <= to_signed(52, 11);
     H7 <= to_signed(-14, 11);
-    H8 <= to_signed(7, 11);
+    H8 <= to_signed(-7, 11);
 
 
     data_gen_process : process
@@ -150,6 +150,44 @@ begin
 
             end if;
         end if;      
+    end process;
+
+    output_verification_process : process (clk)
+
+    file inFile : text is in "C:\Users\Francesco\Documents\GitHub\Laboratori-ISA\Lab1\C\resultC.txt";
+    variable l : line;
+    variable n_sim : integer;
+    variable n_C : integer;
+    variable i : integer := 0;
+    variable cnt_out : integer := 0;
+    variable cnt_err : integer := 0;
+    variable end_sim : std_logic := '0';	
+    begin
+    
+    if (cnt_out = 201 and end_sim = '0') then
+        report "SIMULATION ENDED WITH " & INTEGER'image(cnt_err) & " WRONG RESULTS."
+            severity error;  
+    end_sim := '1';
+    end if;
+
+    if (clk'event and clk = '1' and VOUT = '1') then
+
+        n_sim := to_integer(DOUT);
+        cnt_out := cnt_out + 1;
+
+        if (endfile(inFile) = false) then
+
+            readline(inFile, l);
+            read(l,n_C);                
+            assert (n_sim = n_C)
+                report "RESULT No" & integer'image(cnt_out) & " IS WRONG:      C] " &
+                 integer'image(n_C) & "      SIM] " & integer'image(n_sim) 
+                severity error;  
+            if (n_C /= n_sim) then
+                cnt_err := cnt_err+1;
+            end if;               
+        end if;
+    end if;      
     end process;
 
     DUT : myfir_unfolded port map (clk,rst_n,DIN,VIN,H0,H1,H2,
