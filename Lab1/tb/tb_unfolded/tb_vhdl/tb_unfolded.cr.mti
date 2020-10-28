@@ -80,6 +80,20 @@ Model Technology ModelSim ALTERA vcom 6.6d Compiler 2010.11 Nov  2 2010
 -- Compiling entity reg
 -- Compiling architecture beh of reg
 
+} {} {}} C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfolded/myfir_unfolded_tb.vhd {2 {vcom -work work -2002 -explicit C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfolded/myfir_unfolded_tb.vhd
+Model Technology ModelSim ALTERA vcom 6.6d Compiler 2010.11 Nov  2 2010
+-- Loading package standard
+-- Loading package std_logic_1164
+-- Loading package numeric_std
+-- Loading package textio
+-- Loading package std_logic_textio
+-- Compiling entity tb_myfir_unfolded
+-- Compiling architecture beh of tb_myfir_unfolded
+** Warning: C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfolded/myfir_unfolded_tb.vhd(80): (vcom-1194) FILE declaration was written using VHDL 1987 syntax.
+** Warning: C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfolded/myfir_unfolded_tb.vhd(104): (vcom-1194) FILE declaration was written using VHDL 1987 syntax.
+** Warning: C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfolded/myfir_unfolded_tb.vhd(121): (vcom-1194) FILE declaration was written using VHDL 1987 syntax.
+** Warning: C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfolded/myfir_unfolded_tb.vhd(160): (vcom-1194) FILE declaration was written using VHDL 1987 syntax.
+
 } {} {}} C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfolded/myfir_cupipe_unfolded.vhd {1 {vcom -work work -2002 -explicit C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfolded/myfir_cupipe_unfolded.vhd
 Model Technology ModelSim ALTERA vcom 6.6d Compiler 2010.11 Nov  2 2010
 -- Loading package standard

@@ -89,28 +89,19 @@ simin_dec = q2dec(char(simin_t),10,0,'bin');
 fclose(fid);
 
 
-correct_results = importdata("C:\Users\Francesco\Desktop\POLITO\V_ANNO\Integrated_System_Architecture\Lab1\C\myfir_unfolded\resultC_unfolded.txt",'r'); 
+correct_results = importdata("C:\Users\Francesco\Desktop\POLITO\V_ANNO\Integrated_System_Architecture\Lab1\C\myfir_unfolded\resultC_unfolded8.txt",'r'); 
 correct_results = [correct_results'];
 plot(simout_dec,'Linewidth',1.5);
 hold on;
 plot(correct_results,'Linewidth',1.5);
 legend('Sim-Out','C-Out');
 
-%plot(samples,'Linewidth',1.5);
-%legend('VHDL Results','Matlab Results','Input Samples');
+figure
+subplot(1,2,1)
+thd(simout_dec,10000,10);
+subplot(1,2,2)
+sinad(simout_dec,10000);
 
-%matlab partial results
-clc
-k = 1;
-i = 1;
-while i < length(samples)-2
-    input0(k) = samples(i);
-    input1(k) = samples(i+1);
-    input2(k) = samples(i+2);
-    k = k + 1;
-    i = i + 3;
-end
-[input0' input1' input2']
 
 %% C result debug
 clc
