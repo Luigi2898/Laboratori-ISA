@@ -24,7 +24,7 @@ architecture beh of tb_myfir_unfolded is
             H6: in signed(10 downto 0);
             H7: in signed(10 downto 0);
             H8: in signed(10 downto 0);
-            --STATE0_DEBUG,STATE1_DEBUG,STATE2_DEBUG : out signed (10 downto 0); -- DEBUG SIGNALS
+            STATE0_DEBUG,STATE1_DEBUG,STATE2_DEBUG : out signed (10 downto 0); -- DEBUG SIGNALS
             start_pipe_debug : out std_logic; -- DEBUG SIGNAL
             DOUT : out signed (10 downto 0);
             VOUT : out std_logic             
@@ -37,7 +37,7 @@ architecture beh of tb_myfir_unfolded is
     signal clk, rst_n : std_logic;
     signal H0,H1,H2,H3,H4,H5,H6,H7,H8 : signed (10 downto 0);
     signal cnt_ins, cnt_outs : unsigned (7 downto 0);
-    signal start_pipe_debug, state_ver : std_logic; -- DEBUG SIGNAL
+    signal start_pipe_debug : std_logic; -- DEBUG SIGNAL
     signal STATE0_DEBUG,STATE1_DEBUG,STATE2_DEBUG : signed (10 downto 0); -- DEBUG
 begin
 
@@ -71,8 +71,6 @@ begin
     H6 <= to_signed(52, 11);
     H7 <= to_signed(-14, 11);
     H8 <= to_signed(-7, 11);
-
-    state_ver <= '0'; -- set to 1 in order to monitor state register contents
 
 
     data_gen_process : process
@@ -125,7 +123,7 @@ begin
     variable n2 : std_logic_vector (10 downto 0);
 
     begin
-    if (state_ver = '1') then    
+
         if (start_pipe_debug'event and start_pipe_debug = '1') then
             if (endfile(inFile) = false) then
 
@@ -151,13 +149,12 @@ begin
                     severity error;  
 
             end if;
-        end if;
-    end if;      
+        end if;      
     end process;
 
     output_verification_process : process (clk)
 
-    file inFile : text is in "C:\Users\Francesco\Desktop\POLITO\V_ANNO\Integrated_System_Architecture\Lab1\C\myfir_unfolded\resultC_unfolded8.txt";
+    file inFile : text is in "C:\Users\Francesco\Desktop\POLITO\V_ANNO\Integrated_System_Architecture\Lab1\C\myfir_unfolded\resultC_unfolded.txt";
     variable l : line;
     variable n_sim : integer;
     variable n_C : integer;
@@ -194,6 +191,6 @@ begin
     end process;
 
     DUT : myfir_unfolded port map (clk,rst_n,DIN,VIN,H0,H1,H2,
-                                    H3,H4,H5,H6,H7,H8,start_pipe_debug,DOUT,VOUT);
+                                    H3,H4,H5,H6,H7,H8,STATE0_DEBUG,STATE1_DEBUG,STATE2_DEBUG,start_pipe_debug,DOUT,VOUT);
 
 end architecture beh;
