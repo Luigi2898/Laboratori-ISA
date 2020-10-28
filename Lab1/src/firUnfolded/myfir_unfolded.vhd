@@ -18,8 +18,6 @@ entity MYFIR_UNFOLDED is
     H6                                       : in    signed(10 downto 0);
     H7                                       : in    signed(10 downto 0);
     H8                                       : in    signed(10 downto 0);
-    --STATE0_DEBUG, STATE1_DEBUG, STATE2_DEBUG : out signed (10 downto 0); -- DEBUG SIGNALS
-    START_PIPE_DEBUG                         : out   std_logic;            -- DEBUG SIGNAL
     DOUT                                     : out   signed (10 downto 0);
     VOUT                                     : out   std_logic
   );
@@ -49,7 +47,6 @@ architecture BEH of MYFIR_UNFOLDED is
       H6                                       : in    signed(10 downto 0);
       H7                                       : in    signed(10 downto 0);
       H8                                       : in    signed(10 downto 0);
-      --STATE0_DEBUG, STATE1_DEBUG, STATE2_DEBUG : out signed (10 downto 0); -- DEBUG SIGNALS
       TC_CNT_IN                                : out   std_logic;
       TC_CNT_MUX                               : out   std_logic;
       DOUT                                     : out   signed(10 downto 0)
@@ -98,8 +95,6 @@ architecture BEH of MYFIR_UNFOLDED is
   signal state_load : std_logic;
   signal en_cnt_in  : std_logic;
 
-  --signal STATE0_DEBUG,STATE1_DEBUG,STATE2_DEBUG : signed (10 downto 0);
-
 begin
 
   DATAPATH : MYFIR_DP_UNFOLDED
@@ -114,7 +109,5 @@ begin
 
   CU_OUTPUTS : MYFIR_CUOUTPUTS_UNFOLDED
     port map (clk, rst_n, start_out, tc_cnt_mux, en_cnt_mux, load_out, VOUT);
-
-  start_pipe_debug <= start_out;
 
 end architecture BEH;

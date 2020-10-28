@@ -59,7 +59,7 @@ architecture BEH of MYFIR_DP_UNFOLDED is
       OUT_MUX : out   signed (N - 1 downto 0);
       SEL_MUX : in    unsigned (1 downto 0)
     );
-  end component mux3xnto1xn;
+  end component;
 
   component N_COUNTER is
     generic (
@@ -91,8 +91,6 @@ architecture BEH of MYFIR_DP_UNFOLDED is
     );
   end component cnt_mod;
 
-  ------------------------------------------------------------------------
-
   type vector is array (8 downto 0) of signed(7 downto 0);
 
   type state_vector_type is array (10 downto 0) of signed(7 downto 0);
@@ -103,7 +101,6 @@ architecture BEH of MYFIR_DP_UNFOLDED is
   signal state_vector            : state_vector_type;
   signal out_vect,    out_mux_in : out_vect_type;
   signal out_cnt_mux, cnt_out    : unsigned (1 downto 0);
-  --signal reg_out : vector2;
   signal din8                    : signed(7 downto 0);
   signal reg_out0                : signed(7 downto 0);
   signal input_buff_out1         : signed(7 downto 0);
@@ -116,7 +113,6 @@ architecture BEH of MYFIR_DP_UNFOLDED is
   signal load_state2             : std_logic;
   signal vdd                     : std_logic;
   signal gnd                     : std_logic;
-  ------------------------------------------------------------------------
 
 begin
 
@@ -133,10 +129,6 @@ begin
   coeff(6) <= H6(10 downto 3);
   coeff(7) <= H7(10 downto 3);
   coeff(8) <= H8(10 downto 3);
-
-  --STATE0_DEBUG <= state_vector(2);
-  --STATE1_DEBUG <= state_vector(1);
-  --STATE2_DEBUG <= state_vector(0);
 
   output_buff_in <= out_mux_out & "000";
 
@@ -194,8 +186,6 @@ begin
 
   end generate STATE_VECT2_GEN;
 
-  --------------- PIPE STARTS HERE ---------------
-
   RESULT_REG_GEN : for i in 0 to 2 generate
 
     RESULT_REG : REG
@@ -204,8 +194,6 @@ begin
       port map (out_vect(i), out_mux_in(i), clk, rst_n, load_res;
   )
       end generate RESULT_REG_GEN;
-
-      --------------- PIPE  ENDS  HERE ---------------
 
       INPUT_BUFFER1 : REG
         port map (DIN8, input_buff_out1, clk, rst_n, BUFF_ON);
@@ -286,5 +274,4 @@ begin
 
                   end process EVALUATION_PROCESS;
 
-                  ------------------------------------------------------------------------
 end architecture BEH;
