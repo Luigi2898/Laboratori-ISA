@@ -32,6 +32,8 @@ write_sdf netlist/myfir.sdf
 write -f verilog -hierarchy -output netlist/myfir.v
 write_sdc netlist/myfir.sdc
 
+write -hierarchy -format ddc -output savings/myfir.ddc
+
 set pathW [get_timing_paths -nworst 1]
 set sl [ get_attribute $pathW slack ]
 set per [ get_attribute [ get_clocks MY_CLK ] period ]
@@ -64,6 +66,8 @@ change_names -hierarchy -rules verilog
 write_sdf netlist/myfirNC.sdf
 write -f verilog -hierarchy -output netlist/myfirNC.v
 write_sdc netlist/myfirNC.sdc
+
+write -hierarchy -format ddc -output savings/myfirNC.ddc
 
 set fp [open "newPer.outGG" w]
 puts $fp $newPer
