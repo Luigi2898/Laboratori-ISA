@@ -25,12 +25,10 @@ architecture BEH of TB_MYFIR_UNFOLDED is
       H6               : in    signed(10 downto 0);
       H7               : in    signed(10 downto 0);
       H8               : in    signed(10 downto 0);
-      --STATE0_DEBUG,STATE1_DEBUG,STATE2_DEBUG : out signed (10 downto 0); -- DEBUG SIGNALS
-      START_PIPE_DEBUG : out   std_logic;
       DOUT             : out   signed (10 downto 0);
       VOUT             : out   std_logic
     );
-  end component myfir_unfolded;
+  end component;
 
   signal initialized                 : std_logic := '0';
   signal vout,             vin       : std_logic;
