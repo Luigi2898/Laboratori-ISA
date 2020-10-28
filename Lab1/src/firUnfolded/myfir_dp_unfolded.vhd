@@ -25,7 +25,7 @@ entity myfir_dp_unfolded is
 	H6: in signed(10 downto 0);
 	H7: in signed(10 downto 0);
 	H8: in signed(10 downto 0);
-	STATE0_DEBUG,STATE1_DEBUG,STATE2_DEBUG : out signed (10 downto 0); -- DEBUG SIGNALS
+	--STATE0_DEBUG,STATE1_DEBUG,STATE2_DEBUG : out signed (7 downto 0); -- DEBUG SIGNALS
 	TC_CNT_IN : out std_logic;
 	TC_CNT_MUX : out std_logic;
 	DOUT: out signed(10 downto 0)
@@ -37,7 +37,7 @@ architecture beh of myfir_dp_unfolded is
 
 component REG IS
 GENERIC(
-	N : INTEGER := 11
+	N : INTEGER := 8
 );
 	PORT(
 		REG_IN : IN signed(N-1 DOWNTO 0);
@@ -48,7 +48,7 @@ END component;
 
 component mux3xNto1xN is
 	generic(
-	  N : integer := 11
+	  N : integer := 8
 	);
 	  port(
 	  in_mux0,in_mux1,in_mux2 : in signed (N-1 downto 0);
@@ -87,16 +87,17 @@ component cnt_mod is
 end component cnt_mod;
 
 ------------------------------------------------------------------------
-type vector is array (8 downto 0) of signed(10 downto 0);
-type state_vector_type is array (10 downto 0) of signed(10 downto 0);
+type vector is array (8 downto 0) of signed(7 downto 0);
+type state_vector_type is array (10 downto 0) of signed(7 downto 0);
 type out_vect_type is array (2 downto 0) of signed(7 downto 0);
 signal coeff : vector;
 signal state_vector : state_vector_type;
 signal out_vect,out_mux_in : out_vect_type; 
 signal out_cnt_mux,cnt_out : unsigned (1 downto 0);
 --signal reg_out : vector2;
-signal ff_out: signed(7 downto 0);  
-signal reg_out0,input_buff_out1,input_buff_out2,output_buff_in : signed(10 downto 0);
+signal DIN8: signed(7 downto 0);  
+signal reg_out0,input_buff_out1,input_buff_out2 : signed(7 downto 0);
+signal output_buff_in : signed (10 downto 0);
 signal out_mux_out : signed (7 downto 0);
 signal var : signed(21 downto 0);
 signal load_state0,load_state1,load_state2 : std_logic;
@@ -108,21 +109,22 @@ begin
 vdd <= '1';
 gnd <= '0';
 
-coeff(0) <=  H0;
-coeff(1) <=  H1;
-coeff(2) <=  H2;
-coeff(3) <=  H3;
-coeff(4) <=  H4;
-coeff(5) <=  H5;
-coeff(6) <=  H6;
-coeff(7) <=  H7;
-coeff(8) <=  H8;
+DIN8 <= DIN(10 downto 3);
+coeff(0) <=  H0(10 downto 3);
+coeff(1) <=  H1(10 downto 3);
+coeff(2) <=  H2(10 downto 3);
+coeff(3) <=  H3(10 downto 3);
+coeff(4) <=  H4(10 downto 3);
+coeff(5) <=  H5(10 downto 3);
+coeff(6) <=  H6(10 downto 3);
+coeff(7) <=  H7(10 downto 3);
+coeff(8) <=  H8(10 downto 3);
 
-STATE0_DEBUG <= state_vector(2);
-STATE1_DEBUG <= state_vector(1);
-STATE2_DEBUG <= state_vector(0);
+--STATE0_DEBUG <= state_vector(2);
+--STATE1_DEBUG <= state_vector(1);
+--STATE2_DEBUG <= state_vector(0);
 
-output_buff_in <= out_mux_out(7) & out_mux_out(7) & out_mux_out(7) & out_mux_out;
+output_buff_in <= out_mux_out & "000";
 
 state_vect0_gen : for i in 0 to 2 generate 
 	    state_0_in : if (i = 0) generate 
@@ -160,15 +162,15 @@ result_reg_gen : for i in 0 to 2 generate
 --------------- PIPE  ENDS  HERE ---------------
 	
 
-input_buffer1 : reg generic map (11)  port map (DIN,input_buff_out1,clk,rst_n,BUFF_ON);
+input_buffer1 : reg port map (DIN8,input_buff_out1,clk,rst_n,BUFF_ON);
 
-input_buffer2 : reg generic map (11)  port map (input_buff_out1,input_buff_out2,clk,rst_n,LOAD_BUFF);
+input_buffer2 : reg port map (input_buff_out1,input_buff_out2,clk,rst_n,LOAD_BUFF);
 
 cnt_in : cnt_mod generic map (2,3) port map (clk,rst_n,EN_CNT_IN,TC_ACK_IN,TC_CNT_IN,cnt_out);
 
-output_buffer : reg generic map (11)  port map (output_buff_in,DOUT,clk,rst_N,load_out);
+output_buffer : reg generic map (11) port map (output_buff_in,DOUT,clk,rst_N,load_out);
 
-out_mux : mux3xNto1xN generic map (8) port map (out_mux_in(0),out_mux_in(1),out_mux_in(2),out_mux_out,out_cnt_mux);
+out_mux : mux3xNto1xN port map (out_mux_in(0),out_mux_in(1),out_mux_in(2),out_mux_out,out_cnt_mux);
 
 mux_cnt : N_counter generic map (2,3) port map (clk,en_cnt_mux,rst_n,vdd,tc_cnt_mux,out_cnt_mux);
 
@@ -197,7 +199,7 @@ end process;
 
 evaluation_process : process (state_vector, coeff)
 variable tmp : out_vect_type;
-variable tmp_mult : signed (21 downto 0);
+variable tmp_mult : signed (15 downto 0);
 begin
 tmp(0) := (others => '0');
 tmp(1) := (others => '0');
@@ -206,7 +208,7 @@ tmp_mult := (others => '0');
 	for i in 0 to 2 loop
 		for j in 0 to 8 loop
 			tmp_mult := (coeff(j)*state_vector(i+j));
-			tmp(i) := tmp(i) + tmp_mult(20 downto 13);
+			tmp(i) := tmp(i) + tmp_mult(14 downto 7);
 		end loop;
 	end loop;
 out_vect(2) <= tmp(0);

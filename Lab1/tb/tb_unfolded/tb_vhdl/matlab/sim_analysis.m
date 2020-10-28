@@ -117,10 +117,59 @@ clc
 close all
 clear all
 
-simout_C = importdata("C:\Users\Francesco\Desktop\POLITO\V_ANNO\Integrated_System_Architecture\Lab1\C\myfir_unfolded\resultC_unfolded.txt",'r'); 
-%simout_C = textread(fid,'%d'); 
-%fclose(fid);
-plot(simout_C);
+simout_C8 = importdata("C:\Users\Francesco\Desktop\POLITO\V_ANNO\Integrated_System_Architecture\Lab1\C\myfir_unfolded\resultC_unfolded8.txt",'r'); 
+simout_C8then7 = importdata("C:\Users\Francesco\Desktop\POLITO\V_ANNO\Integrated_System_Architecture\Lab1\C\myfir_unfolded\resultC_unfolded8then7.txt",'r'); 
+simout_C11then8 = importdata("C:\Users\Francesco\Desktop\POLITO\V_ANNO\Integrated_System_Architecture\Lab1\C\myfir_unfolded\resultC_unfolded11then8.txt",'r'); 
+
+plot(simout_C11then8);
+hold on;
+plot(simout_C8);
+plot(simout_C8then7)
+legend('11->8','8','8->7');
+
+
+% [r8,harmpow8,harmfreq8] = thd(correct_results,1e4,10);
+% [r8a,harmpow8a,harmfreq8a] = thd(simout_C8all,1e4,10);
+% [r7a,harmpow7a,harmfreq7a] = thd(simout_C7all,1e4,10);
+% 
+% dist8 = 0;
+% dist8a = 0;
+% dist7a = 0;
+% harmpow8_lin = 10.^(harmpow8(2:end)./10);
+% harmpow8a_lin = 10.^(harmpow8a(2:end)./10);
+% harmpow7a_lin = 10.^(harmpow7a(2:end)./10);
+% dist8 = sum(harmpow8_lin);
+% dist8a = sum(harmpow8a_lin);
+% dist7a = sum(harmpow7a_lin);
+figure 
+
+subplot(2,3,1)
+thd(simout_C11then8,1e4,10);
+%title('8 bits - Trunc after mpy - THD = ',);
+subplot(2,3,2)
+thd(simout_C8,1e4,10);
+%title('8 bits - Trunc after inputs');
+subplot(2,3,3)
+thd(simout_C8then7,1e4,10);
+%title('7 bits - Trunc after inputs');
+subplot(2,3,4)
+sinad(simout_C11then8,1e4);
+%title('8 bits - Trunc after mpy');
+subplot(2,3,5)
+sinad(simout_C8,1e4);
+%title('8 bits - Trunc after inputs');
+subplot(2,3,6)
+sinad(simout_C8then7,1e4);
+%title('7 bits - Trunc after inputs');
+
+    
+%% NUMBER OF BITS SIMULATOR
+clc
+clear all
+close all
+
+insamples = importdata("samples.txt");
+
 
 
 

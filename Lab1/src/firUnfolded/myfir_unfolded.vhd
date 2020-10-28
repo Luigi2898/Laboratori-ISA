@@ -17,7 +17,7 @@ entity myfir_unfolded is
     H6                                       : in signed(10 downto 0);
     H7                                       : in signed(10 downto 0);
     H8                                       : in signed(10 downto 0);
-    STATE0_DEBUG, STATE1_DEBUG, STATE2_DEBUG : out signed (10 downto 0); -- DEBUG SIGNALS
+    --STATE0_DEBUG, STATE1_DEBUG, STATE2_DEBUG : out signed (10 downto 0); -- DEBUG SIGNALS
     start_pipe_debug                         : out std_logic;            -- DEBUG SIGNAL
     DOUT                                     : out signed (10 downto 0);
     VOUT                                     : out std_logic
@@ -48,7 +48,7 @@ architecture beh of myfir_unfolded is
       H6                                       : in signed(10 downto 0);
       H7                                       : in signed(10 downto 0);
       H8                                       : in signed(10 downto 0);
-      STATE0_DEBUG, STATE1_DEBUG, STATE2_DEBUG : out signed (10 downto 0); -- DEBUG SIGNALS
+      --STATE0_DEBUG, STATE1_DEBUG, STATE2_DEBUG : out signed (10 downto 0); -- DEBUG SIGNALS
       TC_CNT_IN                                : out std_logic;
       TC_CNT_MUX                               : out std_logic;
       DOUT                                     : out signed(10 downto 0)
@@ -93,7 +93,7 @@ begin
 
   datapath : myfir_dp_unfolded port map(
     clk, rst_n, DIN, load_buff, state_load, buff_on, load_out,
-    load_res, tc_ack_in, en_cnt_mux, en_cnt_in, H0, H1, H2, H3, H4, H5, H6, H7, H8, STATE0_DEBUG, STATE1_DEBUG, STATE2_DEBUG, tc_cnt_in, tc_cnt_mux, DOUT);
+    load_res, tc_ack_in, en_cnt_mux, en_cnt_in, H0, H1, H2, H3, H4, H5, H6, H7, H8, tc_cnt_in, tc_cnt_mux, DOUT);
 
   cu_inputs : myfir_cuinputs_unfolded port map(
     clk, rst_n, tc_cnt_in, VIN, load_buff, state_load, en_cnt_in, buff_on,
