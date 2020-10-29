@@ -42,8 +42,8 @@ architecture BEH of MYFIR_DP_UNFOLDED is
     port (
       REG_IN  : in    signed(N - 1 downto 0);
       REG_OUT : out   signed(N - 1 downto 0);
-      CLK     : in    std_logic
-      RST_N   : in    std_logic
+      CLK     : in    std_logic;
+      RST_N   : in    std_logic;
       LOAD    : in    std_logic
     );
   end component;
@@ -191,8 +191,7 @@ begin
     RESULT_REG : REG
       generic map (8
       )
-      port map (out_vect(i), out_mux_in(i), clk, rst_n, load_res;
-  )
+      port map (out_vect(i), out_mux_in(i), clk, rst_n, load_res);
       end generate RESULT_REG_GEN;
 
       INPUT_BUFFER1 : REG
@@ -204,14 +203,12 @@ begin
       CNT_IN : CNT_MOD
         generic map (2, 3
         )
-        port map (clk, rst_n, EN_CNT_IN, TC_ACK_IN, TC_CNT_IN, cnt_out;
-  )
+        port map (clk, rst_n, EN_CNT_IN, TC_ACK_IN, TC_CNT_IN, cnt_out);
 
           OUTPUT_BUFFER : REG
             generic map (11
             )
-            port map (output_buff_in, DOUT, clk, rst_N, load_out;
-  )
+            port map (output_buff_in, DOUT, clk, rst_N, load_out);
 
               OUT_MUX : MUX3XNTO1XN
                 port map (out_mux_in(0), out_mux_in(1), out_mux_in(2), out_mux_out, out_cnt_mux);
@@ -219,8 +216,7 @@ begin
               MUX_CNT : N_COUNTER
                 generic map (2, 3
                 )
-                port map (clk, en_cnt_mux, rst_n, vdd, tc_cnt_mux, out_cnt_mux;
-  )
+                port map (clk, en_cnt_mux, rst_n, vdd, tc_cnt_mux, out_cnt_mux);
 
                   CNT_DECODE_PROCESS : process (cnt_out, LOAD_STATE) is
                   begin

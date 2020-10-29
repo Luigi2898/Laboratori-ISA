@@ -25,8 +25,8 @@ entity myfir_dp_piped_unfolded is
 	H6: in signed(10 downto 0);
 	H7: in signed(10 downto 0);
 	H8: in signed(10 downto 0);
-	LOAD_RES1,LOAD_RES2,LOAD_RES3,LOAD_RES4,LOAD_RES5 : in std_logic;
-	STATE0_DEBUG,STATE1_DEBUG,STATE2_DEBUG : out signed (10 downto 0); -- DEBUG SIGNALS
+	LOAD_RES2,LOAD_RES3,LOAD_RES4,LOAD_RES5 : in std_logic;
+	--STATE0_DEBUG,STATE1_DEBUG,STATE2_DEBUG : out signed (10 downto 0); -- DEBUG SIGNALS
 	TC_CNT_IN : out std_logic;
 	TC_CNT_MUX : out std_logic;
 	DOUT: out signed(10 downto 0)
@@ -231,17 +231,17 @@ end process pipe1_evaluation_process;
 
 -- pipe1 state 0 reg generate -- N.B.] ENABLE WITH LOAD_RES
 pipe1_state0_gen : for i in 0 to 8 generate 
-    pipe1_state0 : reg port map(state0_pipe1_in(i), state0_pipe1_out(i), clk, rst_n, load_res1);
+    pipe1_state0 : reg port map(state0_pipe1_in(i), state0_pipe1_out(i), clk, rst_n, load_res);
 end generate pipe1_state0_gen;	
 
 -- pipe1 state 1 reg generate -- N.B.] ENABLE WITH LOAD_RES
 pipe1_state1_gen : for i in 0 to 8 generate 
-    pipe1_state1 : reg port map(state1_pipe1_in(i), state1_pipe1_out(i), clk, rst_n, load_res1);
+    pipe1_state1 : reg port map(state1_pipe1_in(i), state1_pipe1_out(i), clk, rst_n, load_res);
 end generate pipe1_state1_gen;		
 
 -- pipe1 state 2 reg generate -- N.B.] ENABLE WITH LOAD_RES
 pipe1_state2_gen : for i in 0 to 8 generate 
-    pipe1_state2 : reg port map(state2_pipe1_in(i), state2_pipe1_out(i), clk, rst_n, load_res1);
+    pipe1_state2 : reg port map(state2_pipe1_in(i), state2_pipe1_out(i), clk, rst_n, load_res);
 end generate pipe1_state2_gen;		
 
 -----------------------------------------------------------------------------------------------------
@@ -258,8 +258,9 @@ tmp1 := (others => (others => '0'));
 tmp2 := (others => (others => '0'));
 
 i := 0;
+k := 0;
 -- partial results : sum --
-	while (i < 8) loop
+	while (i < 7) loop
         tmp0(k) := (state0_pipe1_out(i)+state0_pipe1_out(i+1));
         tmp1(k) := (state1_pipe1_out(i)+state1_pipe1_out(i+1));
         tmp2(k) := (state2_pipe1_out(i)+state2_pipe1_out(i+1));

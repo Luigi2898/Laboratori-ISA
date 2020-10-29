@@ -214,7 +214,6 @@ begin
   end process OUTPUT_VERIFICATION_PROCESS;
 
   DUT : MYFIR_UNFOLDED
-    port map (clk, rst_n, DIN, VIN, H0, H1, H2,
-    H3, H4, H5, H6, H7, H8, start_pipe_debug, DOUT, VOUT);
+    port map (clk, rst_n, DIN, VIN, H0, H1, H2, H3, H4, H5, H6, H7, H8, DOUT, VOUT);
 
 end architecture BEH;

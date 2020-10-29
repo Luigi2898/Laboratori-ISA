@@ -218,6 +218,114 @@ void myfilter3(int x0, int x1, int x2, int* y0, int* y1, int* y2)
     return;
 }
 
+// myfilterpipe : returns partial pipe contents for VHDL debug
+void myfilter2(int x0, int x1, int x2, int* y0, int* y1, int* y2)
+{
+    static int sx[NT + 2];       /// x shift register
+    static int first_run = 0;  /// for cleaning shift registers
+    int i;                     /// index
+    int tmp0[NT];              /// partial products - state 0
+    int tmp1[NT];              /// partial products - state 1
+    int tmp2[NT];              /// partial products - state 2
+    int tmps0 = 0;              /// partial sum - state 0
+    int tmps1 = 0;              /// partial sum - state 1
+    int tmps2 = 0;              /// partial sum - state 2
+    static int state_x[NF];    /// special arrangement for different samples
+
+    /// clean the buffers
+    if (first_run == 0)
+    {
+        first_run = 1;
+        for (i = 0; i < NT + 1; i++)
+            sx[i] = 0;
+        //for (i = 0; i < NT - 1; i++)
+          //sy[i] = 0;
+    }
+
+    /// shift and insert new sample in x shift register
+    for (i = 3; i > 0; i--) {
+        if ((3 * i + 2) > 10) {}
+        else {
+            sx[3 * i + 2] = sx[3 * (i - 1) + 2];
+        }
+        sx[3 * i + 1] = sx[3 * (i - 1) + 1];
+        sx[3 * i + 0] = sx[3 * (i - 1) + 0];
+    }
+    sx[0] = x2 >> 3;
+    sx[1] = x1 >> 3;
+    sx[2] = x0 >> 3;
+
+    /// make the convolution
+    *y0 = 0;
+    *y1 = 0;
+    *y2 = 0;
+    for (i = 0; i < NT; i++) {
+        tmp0[i] = 0;
+        tmp1[i] = 0;
+        tmp2[i] = 0;
+    }
+
+    // partial products - output of pipe 1
+    for (i = 0; i < NT; i++)
+    {
+        tmp0[i] = (sx[i + 2] * (b[i] >> 3)) >> (NB2 - 1);
+        tmp1[i] = (sx[i + 1] * (b[i] >> 3)) >> (NB2 - 1);
+        tmp2[i] = (sx[i + 0] * (b[i] >> 3)) >> (NB2 - 1);
+    }
+
+    // partial sum 1 - output of pipe 2
+
+    k = 0;
+
+    for (i = 0; i < 4; i = i + 2) {
+        tmps0_1[k] = tmp0[i] + tmp0[i + 1];
+        tmps1_1[k] = tmp1[i] + tmp1[i + 1];
+        tmps2_1[k] = tmp2[i] + tmp2[i + 1];
+        k++;
+    }
+    tmps0_1[4] = tmp0[8];
+    tmps1_1[4] = tmp1[8];
+    tmps2_1[4] = tmp2[8];
+
+    // partial sum 2 - output of pipe 3
+
+    k = 0;
+
+    for (i = 0; i < 2; i = i + 2) {
+        tmps0_2[k] = tmps0_1[i] + tmps0_1[i + 1];
+        tmps1_2[k] = tmps1_1[i] + tmps1_1[i + 1];
+        tmps2_2[k] = tmps2_1[i] + tmps2_1[i + 1];
+        k++;
+    }
+    tmps0_2[1] = tmps0_1[4];
+    tmps1_2[1] = tmps1_1[4];
+    tmps2_2[1] = tmps2_1[4];
+
+
+    // partial sum 2 - output of pipe 3
+
+    for (i = 0; i < 3; i = i++) {
+        tmps0_3[k] = tmps0_2[0] + tmps0_1[1];
+        tmps1_3[k] = tmps1_2[0] + tmps1_1[1];
+        tmps2_3[k] = tmps2_2[0] + tmps2_1[1];
+    }
+    tmps0_2[1] = tmps0_1[4];
+    tmps1_2[1] = tmps1_1[4];
+    tmps2_2[1] = tmps2_1[4];
+
+
+    *y0 = tmps0 << 3;
+    *y1 = tmps1 << 3;
+    *y2 = tmps2 << 3;
+
+    printf("%d\t%d\t%d\n", *y0, *y1, *y2);
+    //printf("----------------------\n\n");
+
+    return;
+}
+
+
+
 //int main(int argc, char **argv)
 int main ()
 {
