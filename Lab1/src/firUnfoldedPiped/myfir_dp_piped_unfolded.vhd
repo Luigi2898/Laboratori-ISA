@@ -305,12 +305,14 @@ tmp1 := (others => (others => '0'));
 tmp2 := (others => (others => '0'));
 
 i := 0;
+k := 0;
 -- partial results : sum --
 	while (i < 3) loop
-        tmp0(i) := state0_pipe2_out(i)+state0_pipe2_out(i+1);
-        tmp1(i) := state1_pipe2_out(i)+state1_pipe2_out(i+1);
-        tmp2(i) := state2_pipe2_out(i)+state2_pipe2_out(i+1);
-        i := i + 2;
+        tmp0(k) := state0_pipe2_out(i)+state0_pipe2_out(i+1);
+        tmp1(k) := state1_pipe2_out(i)+state1_pipe2_out(i+1);
+        tmp2(k) := state2_pipe2_out(i)+state2_pipe2_out(i+1);
+		i := i + 2;
+		k := k + 1;
     end loop;
     tmp0(2) := state0_pipe2_out(4);
     tmp1(2) := state1_pipe2_out(4);

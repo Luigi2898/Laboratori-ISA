@@ -219,18 +219,22 @@ void myfilter3(int x0, int x1, int x2, int* y0, int* y1, int* y2)
 }
 
 // myfilterpipe : returns partial pipe contents for VHDL debug
-void myfilter2(int x0, int x1, int x2, int* y0, int* y1, int* y2)
+void myfilterP(int x0, int x1, int x2, int* y0, int* y1, int* y2, FILE *outfilepipe)
 {
     static int sx[NT + 2];       /// x shift register
     static int first_run = 0;  /// for cleaning shift registers
-    int i;                     /// index
-    int tmp0[NT];              /// partial products - state 0
-    int tmp1[NT];              /// partial products - state 1
-    int tmp2[NT];              /// partial products - state 2
-    int tmps0 = 0;              /// partial sum - state 0
-    int tmps1 = 0;              /// partial sum - state 1
-    int tmps2 = 0;              /// partial sum - state 2
+    int i,k;                     /// index
+    int tmp0[NT] = {0};              /// partial products - state 0
+    int tmp1[NT] = { 0 };              /// partial products - state 1
+    int tmp2[NT] = { 0 };              /// partial products - state 2
+    int tmps0_1[5] = { 0 }, tmps1_1[5] = { 0 }, tmps2_1[5] = { 0 };
+    int tmps0_2[3] = { 0 }, tmps1_2[3] = { 0 }, tmps2_2[3] = { 0 };
+    int tmps0_3[2] = { 0 }, tmps1_3[2] = { 0 }, tmps2_3[2] = { 0 };
+    int res0, res1, res2;
+
     static int state_x[NF];    /// special arrangement for different samples
+
+    outfilepipe = fopen("pipeContent.txt", "a");
 
     /// clean the buffers
     if (first_run == 0)
@@ -273,11 +277,27 @@ void myfilter2(int x0, int x1, int x2, int* y0, int* y1, int* y2)
         tmp2[i] = (sx[i + 0] * (b[i] >> 3)) >> (NB2 - 1);
     }
 
+    for (i = 0; i < NT; i++)
+    {
+        fprintf(outfilepipe, "%d\t", tmp0[i]);
+    }
+    fprintf(outfilepipe, "\t\t");
+    for (i = 0; i < NT; i++)
+    {
+        fprintf(outfilepipe, "%d\t", tmp1[i]);
+    }
+    fprintf(outfilepipe, "\t\t");
+    for (i = 0; i < NT; i++)
+    {
+        fprintf(outfilepipe, "%d\t", tmp2[i]);
+    }
+    fprintf(outfilepipe, "\n");
+
     // partial sum 1 - output of pipe 2
 
     k = 0;
 
-    for (i = 0; i < 4; i = i + 2) {
+    for (i = 0; i < 7; i = i + 2) {
         tmps0_1[k] = tmp0[i] + tmp0[i + 1];
         tmps1_1[k] = tmp1[i] + tmp1[i + 1];
         tmps2_1[k] = tmp2[i] + tmp2[i + 1];
@@ -287,36 +307,102 @@ void myfilter2(int x0, int x1, int x2, int* y0, int* y1, int* y2)
     tmps1_1[4] = tmp1[8];
     tmps2_1[4] = tmp2[8];
 
+    for (i = 0; i < 5; i++)
+    {
+        fprintf(outfilepipe, "%d\t", tmps0_1[i]);
+    }
+    fprintf(outfilepipe, "\t\t\t\t\t\t");
+    for (i = 0; i < 5; i++)
+    {
+        fprintf(outfilepipe, "%d\t", tmps1_1[i]);
+    }
+    fprintf(outfilepipe, "\t\t\t\t\t\t");
+    for (i = 0; i < 5; i++)
+    {
+        fprintf(outfilepipe, "%d\t", tmps1_1[i]);
+    }
+    fprintf(outfilepipe, "\n");
+
     // partial sum 2 - output of pipe 3
 
     k = 0;
 
-    for (i = 0; i < 2; i = i + 2) {
+    for (i = 0; i < 4; i = i + 2) {
         tmps0_2[k] = tmps0_1[i] + tmps0_1[i + 1];
         tmps1_2[k] = tmps1_1[i] + tmps1_1[i + 1];
         tmps2_2[k] = tmps2_1[i] + tmps2_1[i + 1];
         k++;
     }
-    tmps0_2[1] = tmps0_1[4];
-    tmps1_2[1] = tmps1_1[4];
-    tmps2_2[1] = tmps2_1[4];
+    tmps0_2[2] = tmps0_1[4];
+    tmps1_2[2] = tmps1_1[4];
+    tmps2_2[2] = tmps2_1[4];
 
 
-    // partial sum 2 - output of pipe 3
-
-    for (i = 0; i < 3; i = i++) {
-        tmps0_3[k] = tmps0_2[0] + tmps0_1[1];
-        tmps1_3[k] = tmps1_2[0] + tmps1_1[1];
-        tmps2_3[k] = tmps2_2[0] + tmps2_1[1];
+    for (i = 0; i < 3; i++)
+    {
+        fprintf(outfilepipe, "%d\t", tmps0_2[i]);
     }
-    tmps0_2[1] = tmps0_1[4];
-    tmps1_2[1] = tmps1_1[4];
-    tmps2_2[1] = tmps2_1[4];
+    fprintf(outfilepipe, "\t\t\t\t\t\t\t\t");
+    for (i = 0; i < 3; i++)
+    {
+        fprintf(outfilepipe, "%d\t", tmps1_2[i]);
+    }
+    fprintf(outfilepipe, "\t\t\t\t\t\t\t\t");
+    for (i = 0; i < 3; i++)
+    {
+        fprintf(outfilepipe, "%d\t", tmps1_2[i]);
+    }
+    fprintf(outfilepipe, "\n");
 
 
-    *y0 = tmps0 << 3;
-    *y1 = tmps1 << 3;
-    *y2 = tmps2 << 3;
+    // partial sum 2 - output of pipe 4
+
+    tmps0_3[0] = tmps0_2[0] + tmps0_2[1];
+    tmps1_3[0] = tmps1_2[0] + tmps1_2[1];
+    tmps2_3[0] = tmps2_2[0] + tmps2_2[1];
+    tmps0_3[1] = tmps0_2[2];
+    tmps1_3[1] = tmps1_2[2];
+    tmps2_3[1] = tmps2_2[2];
+
+    for (i = 0; i < 2; i++)
+    {
+        fprintf(outfilepipe, "%d\t", tmps0_3[i]);
+    }
+    fprintf(outfilepipe, "\t\t\t\t\t\t\t\t\t");
+    for (i = 0; i < 2; i++)
+    {
+        fprintf(outfilepipe, "%d\t", tmps1_3[i]);
+    }
+    fprintf(outfilepipe, "\t\t\t\t\t\t\t\t\t");
+    for (i = 0; i < 2; i++)
+    {
+        fprintf(outfilepipe, "%d\t", tmps1_3[i]);
+    }
+    fprintf(outfilepipe, "\n");
+
+    // final result - output of result reg
+
+    res0 = tmps0_3[0] + tmps0_3[1];
+    res1 = tmps1_3[0] + tmps1_3[1];
+    res2 = tmps2_3[0] + tmps2_3[1];
+
+   
+    fprintf(outfilepipe, "%d\t",res0);
+    fprintf(outfilepipe, "\t\t\t\t\t\t\t\t\t\t"); 
+    fprintf(outfilepipe, "%d\t", res1);
+    fprintf(outfilepipe, "\t\t\t\t\t\t\t\t\t\t");  
+    fprintf(outfilepipe, "%d\t",res2);
+    fprintf(outfilepipe, "\n");
+
+    fprintf(outfilepipe, "\n\n\n");
+
+    fclose(outfilepipe);
+
+    // shift to move from Q1.7 to Q1.10
+
+    *y0 = res0 << 3;
+    *y1 = res1 << 3;
+    *y2 = res2 << 3;
 
     printf("%d\t%d\t%d\n", *y0, *y1, *y2);
     //printf("----------------------\n\n");
@@ -331,6 +417,7 @@ int main ()
 {
   FILE *fp_in;
   FILE *fp_out1,*fp_out2,*fp_out3;
+  FILE *outfilepipe, *resultCPipe;
 
   int x0,x1,x2;
   int y0,y1,y2;
@@ -354,11 +441,19 @@ int main ()
   fp_out1 = fopen("resultC_unfolded11then8.txt", "w");
   fp_out2 = fopen("resultC_unfolded8.txt", "w");
   fp_out3 = fopen("resultC_unfolded8then7.txt", "w");
+  resultCPipe = fopen("resultC_Pipe.txt", "w");
   if ((fp_out1 == NULL) || (fp_out2 == NULL) || (fp_out3 == NULL))
   {
       printf("Error: cannot open one of the output files.\n");
       exit(3);
   }
+
+  outfilepipe = fopen("pipeContent.txt", "w");
+  fclose(outfilepipe);
+
+
+
+
   /// get triplet of samples and apply filter unfolded
   fscanf(fp_in, "%d", &x0);
   fscanf(fp_in, "%d", &x1);
@@ -366,20 +461,25 @@ int main ()
 
   do
   {
-    myfilter1(x0,x1,x2,&y0,&y1,&y2);
-    fprintf(fp_out1, "%d\n", y0);
-    fprintf(fp_out1, "%d\n", y1);
-    fprintf(fp_out1, "%d\n", y2);
+    //myfilter1(x0,x1,x2,&y0,&y1,&y2);
+    //fprintf(fp_out1, "%d\n", y0);
+    //fprintf(fp_out1, "%d\n", y1);
+    //fprintf(fp_out1, "%d\n", y2);
 
     myfilter2(x0, x1, x2, &y0, &y1, &y2);
     fprintf(fp_out2, "%d\n", y0);
     fprintf(fp_out2, "%d\n", y1);
     fprintf(fp_out2, "%d\n", y2);
 
-    myfilter3(x0, x1, x2, &y0, &y1, &y2);
-    fprintf(fp_out3, "%d\n", y0);
-    fprintf(fp_out3, "%d\n", y1);
-    fprintf(fp_out3, "%d\n", y2);
+    myfilterP(x0, x1, x2, &y0, &y1, &y2, outfilepipe);
+    fprintf(resultCPipe, "%d\n", y0);
+    fprintf(resultCPipe, "%d\n", y1);
+    fprintf(resultCPipe, "%d\n", y2);
+
+    //myfilter3(x0, x1, x2, &y0, &y1, &y2);
+    //fprintf(fp_out3, "%d\n", y0);
+    //fprintf(fp_out3, "%d\n", y1);
+    //fprintf(fp_out3, "%d\n", y2);
 
     fscanf(fp_in, "%d", &x0);
     fscanf(fp_in, "%d", &x1);

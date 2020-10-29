@@ -4,6 +4,7 @@ add wave -noupdate /tb_myfir_piped_unfolded/dut/cu_inputs/clk
 add wave -noupdate /tb_myfir_piped_unfolded/dut/cu_outputs/rst_n
 add wave -noupdate /tb_myfir_piped_unfolded/dut/cu_inputs/vin
 add wave -noupdate -radix decimal /tb_myfir_piped_unfolded/dut/din
+add wave -noupdate -radix decimal /tb_myfir_piped_unfolded/dut/datapath/din8
 add wave -noupdate /tb_myfir_piped_unfolded/dut/cu_inputs/state
 add wave -noupdate -radix decimal /tb_myfir_piped_unfolded/dut/datapath/input_buffer1/reg_out
 add wave -noupdate /tb_myfir_piped_unfolded/dut/cu_inputs/load_buff
@@ -20,6 +21,30 @@ add wave -noupdate -radix decimal /tb_myfir_piped_unfolded/dut/datapath/state_ve
 add wave -noupdate -radix decimal /tb_myfir_piped_unfolded/dut/datapath/state_vect1_gen(0)/state_1_in/state_1/reg_out
 add wave -noupdate -radix decimal /tb_myfir_piped_unfolded/dut/datapath/state_vect2_gen(0)/state_2_in/state_2/reg_out
 add wave -noupdate /tb_myfir_piped_unfolded/dut/cu_inputs/start_pipe
+add wave -noupdate /tb_myfir_piped_unfolded/dut/datapath/state0_pipe1_in
+add wave -noupdate /tb_myfir_piped_unfolded/dut/datapath/state1_pipe1_in
+add wave -noupdate /tb_myfir_piped_unfolded/dut/datapath/state2_pipe1_in
+add wave -noupdate /tb_myfir_piped_unfolded/dut/datapath/state0_pipe1_out
+add wave -noupdate /tb_myfir_piped_unfolded/dut/datapath/state1_pipe1_out
+add wave -noupdate /tb_myfir_piped_unfolded/dut/datapath/state2_pipe1_out
+add wave -noupdate /tb_myfir_piped_unfolded/dut/datapath/state0_pipe2_in
+add wave -noupdate /tb_myfir_piped_unfolded/dut/datapath/state1_pipe2_in
+add wave -noupdate /tb_myfir_piped_unfolded/dut/datapath/state2_pipe2_in
+add wave -noupdate /tb_myfir_piped_unfolded/dut/datapath/state0_pipe2_out
+add wave -noupdate /tb_myfir_piped_unfolded/dut/datapath/state1_pipe2_out
+add wave -noupdate /tb_myfir_piped_unfolded/dut/datapath/state2_pipe2_out
+add wave -noupdate /tb_myfir_piped_unfolded/dut/datapath/state0_pipe3_in
+add wave -noupdate /tb_myfir_piped_unfolded/dut/datapath/state1_pipe3_in
+add wave -noupdate /tb_myfir_piped_unfolded/dut/datapath/state2_pipe3_in
+add wave -noupdate /tb_myfir_piped_unfolded/dut/datapath/state0_pipe3_out
+add wave -noupdate /tb_myfir_piped_unfolded/dut/datapath/state1_pipe3_out
+add wave -noupdate /tb_myfir_piped_unfolded/dut/datapath/state2_pipe3_out
+add wave -noupdate /tb_myfir_piped_unfolded/dut/datapath/state0_pipe4_in
+add wave -noupdate /tb_myfir_piped_unfolded/dut/datapath/state1_pipe4_in
+add wave -noupdate /tb_myfir_piped_unfolded/dut/datapath/state2_pipe4_in
+add wave -noupdate /tb_myfir_piped_unfolded/dut/datapath/state0_pipe4_out
+add wave -noupdate /tb_myfir_piped_unfolded/dut/datapath/state1_pipe4_out
+add wave -noupdate /tb_myfir_piped_unfolded/dut/datapath/state2_pipe4_out
 add wave -noupdate /tb_myfir_piped_unfolded/dut/cu_inputs/load_first_res
 add wave -noupdate /tb_myfir_piped_unfolded/dut/cu_pipe/load_res2
 add wave -noupdate /tb_myfir_piped_unfolded/dut/cu_pipe/load_res3
@@ -37,9 +62,8 @@ add wave -noupdate /tb_myfir_piped_unfolded/dut/cu_outputs/en_cnt_mux
 add wave -noupdate /tb_myfir_piped_unfolded/dut/cu_outputs/load_out
 add wave -noupdate /tb_myfir_piped_unfolded/dut/cu_outputs/vout
 add wave -noupdate /tb_myfir_piped_unfolded/dut/cu_outputs/state
-add wave -noupdate /tb_myfir_piped_unfolded/dut/datapath/din8
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {74819 ps} 0}
+WaveRestoreCursors {{Cursor 1} {97384 ps} 0}
 configure wave -namecolwidth 307
 configure wave -valuecolwidth 100
 configure wave -justifyvalue left
@@ -54,4 +78,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {0 ps} {758680 ps}
+WaveRestoreZoom {0 ps} {360620 ps}

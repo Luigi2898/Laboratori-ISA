@@ -177,7 +177,7 @@ end process STATE_REG_VERIFICATION_PROCESS;
 
 OUTPUT_VERIFICATION_PROCESS : process (clk) is
 
-  file     inFile  : text is in "C:\Users\Francesco\Desktop\POLITO\V_ANNO\Integrated_System_Architecture\Lab1\C\myfir_unfolded\resultC_unfolded8.txt";
+  file     inFile  : text is in "C:\Users\Francesco\Desktop\POLITO\V_ANNO\Integrated_System_Architecture\Lab1\C\myfir_unfolded\resultC_Pipe.txt";
   variable l       : line;
   variable n_sim   : integer;
   variable n_c     : integer;
