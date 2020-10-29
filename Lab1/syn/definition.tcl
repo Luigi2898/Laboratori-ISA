@@ -13,7 +13,8 @@ variable unfoldede "myfir_unfolded"
 proc synth {ent dir odir per} {
     set power_preserve_rtl_hier_names true
     analyze -f vhdl -lib WORK -autoread {../src/commonComponents}
-    analyze -f vhdl -lib WORK -autoread {../src/$dir}
+    variable analdir "{../src/$dir}"
+    analyze -f vhdl -lib WORK -autoread "$analdir"
     elaborate $ent -arch beh -lib WORK > ./logs/elaboration.log
     uniquify
     link
