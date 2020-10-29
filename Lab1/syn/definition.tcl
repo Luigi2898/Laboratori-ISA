@@ -12,10 +12,16 @@ variable unfoldede "myfir_unfolded"
 
 proc synth {ent dir odir per} {
     set power_preserve_rtl_hier_names true
-    analyze -f vhdl -lib WORK -autoread {../src/commonComponents}
+    catch {analyze -f vhdl -lib WORK -autoread {../src/commonComponents} > ./logs/$odir/analyzeCC.log} analCC
+    if { analCC == 0 } {
+        puts "Analisi di ../src/commonComponents avvenuta con successo"
+    } else {
+        puts "Analisi di ../src/commonComponents NON avvenuta con successo"
+    }
+    
     variable analdir "{../src/$dir}"
-    analyze -f vhdl -lib WORK -autoread "$analdir"
-    elaborate $ent -arch beh -lib WORK > ./logs/elaboration.log
+    analyze -f vhdl -lib WORK -autoread "$analdir" > ./logs/$odir/$dir.log
+    elaborate $ent -arch beh -lib WORK > ./logs/$odir/elaboration.log
     uniquify
     link
     create_clock -name MY_CLK -period $per CLK
