@@ -29,8 +29,8 @@ architecture BEH of MYFIR is
     port (
       FF_IN  : in    std_logic;
       FF_OUT : out   std_logic;
-      CLK    : in    std_logic
-      RST    : in    std_logic
+      CLK    : in    std_logic;
+      RST    : in    std_logic;
       LOAD   : in    std_logic
     );
   end component;

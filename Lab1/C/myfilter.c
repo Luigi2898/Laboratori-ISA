@@ -3,6 +3,7 @@
 
 #define NT 9  /// number of coeffs
 #define NB 11 /// number of bits
+#define NB2 8 /// number of bits
 #define NI 3
 
 const int b[NT] = {-7, -14, 52, 272, 415, 272, 52, -14, -7}; /// b array
@@ -32,12 +33,12 @@ int myfilter(int x)
   /// shift and insert new sample in x shift register
   for (i = NT - 1; i > 0; i--)
     sx[i] = sx[i - 1];
-  sx[0] = x;
+  sx[0] = x >> NI;
   /// make the convolution
   /// Moving average part
   y = 0;
   for (i = 0; i < NT; i++)
-    y += (sx[i] * b[i]) >> (NB + NI - 1);
+    y += (sx[i] * (b[i] >> NI)) >> (NB2 - 1);
   y = y << NI;
   return y;
 }
