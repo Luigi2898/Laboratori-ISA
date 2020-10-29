@@ -53,6 +53,17 @@ then
     mkdir firUnfoldedNC
     cd ..
 fi
+if [ ! -d savings ]    # ← see 'man test' for available unary and binary operators.
+then
+    echo "La cartella savings non è presente, la creo"
+    mkdir savings
+    cd savings
+    mkdir fir
+    mkdir firUnfolded
+    mkdir firNC
+    mkdir firUnfoldedNC
+    cd ..
+fi
 source /software/scripts/init_synopsys_64.18
 dc_shell-xg-t -f synth.tcl
 dir="../OldRes/res_$(date +%F)"_"$(date +%T)_justSyn"

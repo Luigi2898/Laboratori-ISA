@@ -5,7 +5,7 @@ set newPer [synth $norme $normdir $normdir 10.0]
 
 synth $norme $normdir $normdirNC $newPer
 
-set fp [open "newPer"$normaltag".outGG" w]
+set fp [open "newPer$normaltag.outGG" w]
 puts $fp $newPer
 close $fp
 
@@ -13,7 +13,7 @@ set newPer [synth $unfoldede $unfoldeddir $unfoldeddir 10.0]
 
 synth $unfoldede $unfoldeddir $unfoldeddirNC $newPer
 
-set fp [open "newPer"$unfoldedtag".outGG" w]
+set fp [open "newPer$unfoldedtag.outGG" w]
 puts $fp $newPer
 close $fp
 
