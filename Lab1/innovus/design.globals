@@ -1,9 +1,9 @@
 ## CUSTOMIZE
 
-set IN_DIR "../netlist"
-set TopLevelDesign "myfir"
-set in_verilog_filename "${IN_DIR}/${TopLevelDesign}.v"
-set in_sdc_filename "${IN_DIR}/${TopLevelDesign}.sdc"
+set IN_DIR "../syn/netlist/firNC"
+set TopLevelDesign "MYFIR"
+set in_verilog_filename "${IN_DIR}/myfir.v"
+set in_sdc_filename "${IN_DIR}/myfir.sdc"
 
 ## DO NOT TOUCH
 
