@@ -76,9 +76,9 @@ if [ -d "work" ]; then
 fi
 source /software/scripts/init_msim6.2g
 vlib work
-vcom -93 -work ./work ../src/simulationComponents/clk_gen.vhd
-vcom -93 -work ./work ../src/simulationComponents/data_gen.vhd
-vcom -93 -work ./work ../src/simulationComponents/data_sink.vhd
+vcom -93 -work ./work ../src/testbenchComponents/clk_gen.vhd
+vcom -93 -work ./work ../src/testbenchComponents/data_gen.vhd
+vcom -93 -work ./work ../src/testbenchComponents/data_sink.vhd
 vlog -work ./work ../syn/netlist/fir/myfir.v
 vlog -work ./work ../tb/tb_fir.v
 vsim -do backVsim.tcl
@@ -91,9 +91,9 @@ fi
 python3 setPer.py ../src/simulationComponents/clk_gen.vhd "normal"
 source /software/scripts/init_msim6.2g
 vlib work
-vcom -93 -work ./work ../src/simulationComponents/clk_genNC.vhd
-vcom -93 -work ./work ../src/simulationComponents/data_gen.vhd
-vcom -93 -work ./work ../src/simulationComponents/data_sink.vhd
+vcom -93 -work ./work ../src/testbenchComponents/clk_genNC.vhd
+vcom -93 -work ./work ../src/testbenchComponents/data_gen.vhd
+vcom -93 -work ./work ../src/testbenchComponents/data_sink.vhd
 vlog -work ./work ../syn/netlist/firNC/myfirNC.v
 vlog -work ./work ../tb/tb_fir.v
 vsim -do backVsimNC.tcl

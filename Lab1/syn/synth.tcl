@@ -17,4 +17,13 @@ set fp [open "newPer$unfoldedtag.outGG" w]
 puts $fp $newPer
 close $fp
 
+
+set newPer [synth $pipede $pipedir $pipedir 10.0]
+
+synth $pipede $pipedir $pipedirNC $newPer
+
+set fp [open "newPer$pipedtag.outGG" w]
+puts $fp $newPer
+close $fp
+
 exit

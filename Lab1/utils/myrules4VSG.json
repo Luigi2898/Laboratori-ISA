@@ -1,0 +1,13 @@
+{
+	"rule":	{
+		"instantiotion_005":	{
+			"disable":true
+			}
+		}
+}
+{"rule":{"global":{"indentSize":4}}}
+{"rule":{"global":{"compact_alignement":true}}}
+{"rule":{"global":{"blank_line_ends_group":true}}}
+{"rule":{"global":{"comment_line_ends_group":true}}}
+{"rule":{"global":{"if_control_statements_end_group":true}}}
+

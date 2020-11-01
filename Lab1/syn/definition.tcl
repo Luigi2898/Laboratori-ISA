@@ -1,14 +1,18 @@
 variable unfoldeddir "firUnfolded"
 variable normdir "fir"
+variable pipedir "firUnfoldedPiped"
 
 variable unfoldeddirNC "firUnfoldedNC"
 variable normdirNC "firNC"
+variable pipeddirNC "firUnfoldedPipedNC"
 
 variable unfoldedtag "_UNFOLDED_"
 variable normaltag "_NORMAL_"
+variable pipedtag "_PIPED_"
 
 variable norme "myfir"
 variable unfoldede "myfir_unfolded"
+variable pipede "myfir_unfolded_piped"
 
 proc synth {ent dir odir per} {
     set power_preserve_rtl_hier_names true

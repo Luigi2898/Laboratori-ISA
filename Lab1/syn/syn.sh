@@ -18,6 +18,8 @@ then
     mkdir firUnfolded
     mkdir firNC
     mkdir firUnfoldedNC
+    mkdir firUnfoldedPiped
+    mkdir firUnfoldedPipedNC
     cd ..
 fi
 if [ ! -d netlist ]    # ← see 'man test' for available unary and binary operators.
@@ -29,6 +31,8 @@ then
     mkdir firUnfolded
     mkdir firNC
     mkdir firUnfoldedNC
+    mkdir firUnfoldedPiped
+    mkdir firUnfoldedPipedNC
     cd ..
 fi
 if [ ! -d synthReportAfterBack ]    # ← see 'man test' for available unary and binary operators.
@@ -40,6 +44,8 @@ then
     mkdir firUnfolded
     mkdir firNC
     mkdir firUnfoldedNC
+    mkdir firUnfoldedPiped
+    mkdir firUnfoldedPipedNC
     cd ..
 fi
 if [ ! -d logs ]    # ← see 'man test' for available unary and binary operators.
@@ -51,6 +57,8 @@ then
     mkdir firUnfolded
     mkdir firNC
     mkdir firUnfoldedNC
+    mkdir firUnfoldedPiped
+    mkdir firUnfoldedPipedNC
     cd ..
 fi
 if [ ! -d savings ]    # ← see 'man test' for available unary and binary operators.
@@ -62,6 +70,8 @@ then
     mkdir firUnfolded
     mkdir firNC
     mkdir firUnfoldedNC
+    mkdir firUnfoldedPiped
+    mkdir firUnfoldedPipedNC
     cd ..
 fi
 source /software/scripts/init_synopsys_64.18
