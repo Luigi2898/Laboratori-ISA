@@ -24,9 +24,9 @@ close $fp
 
 #UNFOLDED & PIPED architecture
 
-set newPer [synth $pipede $pipedir $pipedir 10.0]
+set newPer [synth $pipede $pipeddir $pipeddir 10.0]
 
-synth $pipede $pipedir $pipedirNC $newPer
+synth $pipede $pipeddir $pipeddirNC $newPer
 
 set fp [open "newPer$pipedtag.outGG" w]
 puts $fp $newPer
