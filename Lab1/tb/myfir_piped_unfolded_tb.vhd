@@ -138,7 +138,7 @@ end process DATA_SINK_PROCESS;
 
 STATE_REG_VERIFICATION_PROCESS : process (start_pipe_debug) is
 
-  file     inFile : text is in "C:\Users\Francesco\Documents\GitHub\Laboratori-ISA\Lab1\tb\tb_unfolded\tb_vhdl\matlab\input_samples_triplets.txt";
+  file     inFile : text is in "C:\Users\Francesco\Documents\GitHub\Laboratori-ISA\Lab1\tb\tb_unfolded\tb_vhdl\input_samples_straight.txt";
   variable l      : line;
   variable n0     : std_logic_vector(10 downto 0);
   variable n1     : std_logic_vector(10 downto 0);
@@ -177,7 +177,7 @@ end process STATE_REG_VERIFICATION_PROCESS;
 
 OUTPUT_VERIFICATION_PROCESS : process (clk) is
 
-  file     inFile  : text is in "C:\Users\Francesco\Desktop\POLITO\V_ANNO\Integrated_System_Architecture\Lab1\C\myfir_unfolded\resultC_Pipe.txt";
+  file     inFile  : text is in "C:\Users\Francesco\Desktop\POLITO\V_ANNO\Integrated_System_Architecture\Lab1\C\myfir_unfolded\resultC_Pipe_straight.txt";
   variable l       : line;
   variable n_sim   : integer;
   variable n_c     : integer;
