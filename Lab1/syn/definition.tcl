@@ -38,6 +38,7 @@ proc synth {ent dir odir per} {
         puts "Elaborazione di ../src/$dir NON avvenuta con successo"
         puts $elabo
     }
+    write -hierarchy -format ddc -output savings/$odir/$ent.beforesyn.ddc
     uniquify
     link
     create_clock -name MY_CLK -period $per CLK
