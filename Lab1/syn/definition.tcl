@@ -15,7 +15,8 @@ variable unfoldede "myfir_unfolded"
 variable pipede "myfir_piped_unfolded"
 
 proc synth {ent dir odir per CKG} {
-    set power_preserve_rtl_hier_names true
+    if { $CKG == 1 } {
+        set power_preserve_rtl_hier_names true
     catch {analyze -f vhdl -lib WORK -autoread {../src/commonComponents} > ./logs/$odir/analyzeCC.log} analCC
     if { $analCC == ""} {
         puts "Analisi di ../src/commonComponents avvenuta con successo"
@@ -38,7 +39,7 @@ proc synth {ent dir odir per CKG} {
         puts "Elaborazione di ../src/$dir NON avvenuta con successo"
         puts $elabo
     }
-    write -hierarchy -format ddc -output savings/$odir/$ent.beforesyn.ddc
+    write -hierarchy -format ddc -output savings/gating/$odir/$ent.beforesyn.ddc
     uniquify
     link
     create_clock -name MY_CLK -period $per CLK
@@ -48,7 +49,6 @@ proc synth {ent dir odir per CKG} {
     set_output_delay 0.5 -max -clock MY_CLK [all_outputs]
     set OLOAD [load_of NangateOpenCellLibrary/BUF_X4/A]
     set_load $OLOAD [all_outputs]
-    if { $CKG == 1 } {
         catch {compile -exact_map > ./logs/$odir/compilation.log} compo
         if { $compo == ""} {
             puts "Compilazione di ../src/$dir avvenuta con successo"
@@ -56,19 +56,19 @@ proc synth {ent dir odir per CKG} {
             puts "Compilazione di ../src/$dir NON avvenuta con successo"
             puts $compo
         }
-        report_timing > synthReport/$odir/timing.txt
-        report_area  > synthReport/$odir/area.txt
-        report_power > synthReport/$odir/power.txt
-        report_power -net > synthReport/$odir/power-net.txt
-        report_power -cell > synthReport/$odir/power-cell.txt
-        report_power -hierarchy > synthReport/$odir/power-hierarchy.txt
-        report_power -verbose > synthReport/$odir/power-verbose.txt
+        report_timing > synthReport/gating/$odir/timing.txt
+        report_area  > synthReport/gating/$odir/area.txt
+        report_power > synthReport/gating/$odir/power.txt
+        report_power -net > synthReport/gating/$odir/power-net.txt
+        report_power -cell > synthReport/gating/$odir/power-cell.txt
+        report_power -hierarchy > synthReport/gating/$odir/power-hierarchy.txt
+        report_power -verbose > synthReport/gating/$odir/power-verbose.txt
         ungroup -all -flatten
         change_names -hierarchy -rules verilog
-        write_sdf netlist/$odir/$ent.sdf
-        write -f verilog -hierarchy -output netlist/$odir/$ent.v
+        write_sdf netlist/gating/$odir/$ent.sdf
+        write -f verilog -hierarchy -output netlist/gating/$odir/$ent.v
         write_sdc netlist/$odir/$ent.sdc
-        write -hierarchy -format ddc -output savings/$odir/$ent.ddc
+        write -hierarchy -format ddc -output savings/gating/$odir/$ent.ddc
         set pathW [get_timing_paths -nworst 1]
         set sl [ get_attribute $pathW slack ]
         set per [ get_attribute [ get_clocks MY_CLK ] period ]
