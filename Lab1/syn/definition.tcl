@@ -1,6 +1,6 @@
 variable unfoldeddir "firUnfolded"
 variable normdir "fir"
-variable pipedir "firUnfoldedPiped"
+variable pipeddir "firUnfoldedPiped"
 
 variable unfoldeddirNC "firUnfoldedNC"
 variable normdirNC "firNC"
