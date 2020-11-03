@@ -1,9 +1,24 @@
-if [ ! -d work ]    # ← see 'man test' for available unary and binary operators.
+if [ ! -d vcd ]    # ← see 'man test' for available unary and binary operators.
 then
-    echo "WARNING!! Work directory is not present in synthesis directory, go to ./syn and execute syn.sh to perform synthesis"
+    echo "WARNING!! ./vcd directory is not present in main directory, go to ./syn and execute syn.sh to perform synthesis"
 else
-    echo "Work directory is present in synthesis directory! I'll test all the others directory!"
+    echo "./vcd directory is present in synthesis directory! I'll test all the others directory!"
 fi
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 cd ../sim
 if [ -d "work" ]; then
