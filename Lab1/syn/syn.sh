@@ -1,5 +1,6 @@
 #Checks for correct directory configuration and fixes it
-if [ -d work ] then
+if [ -d work ]
+then
     echo "Ho trovato la cartella work, per rendere deterministici i risultati procedo con la rimozione e la creazione della cartella"
     rm *.log
     rm *.svf
@@ -9,7 +10,8 @@ else
     echo "La cartella work non è presente, la creo"
     mkdir work
 fi
-if [ ! -d synthReport ] then
+if [ ! -d synthReport ]
+then
     echo "La cartella synthreport non è presente, la creo"
     mkdir synthReport
     cd synthReport
@@ -33,7 +35,8 @@ else
     mkdir firUnfoldedPipedNC
     cd ..
 fi
-if [ ! -d netlist ] then
+if [ ! -d netlist ]
+then
     echo "La cartella netlist non è presente, la creo"
     mkdir netlist
     cd netlist
@@ -56,7 +59,8 @@ else
     mkdir firUnfoldedPipedNC
     cd ..
 fi
-if [ ! -d synthReportAfterBack ] then
+if [ ! -d synthReportAfterBack ]
+then
     echo "La cartella synthReportAfterBack non è presente, la creo"
     mkdir synthReportAfterBack
     cd synthReportAfterBack
@@ -79,7 +83,8 @@ else
     mkdir firUnfoldedPipedNC
     cd ..
 fi
-if [ ! -d logs ] then
+if [ ! -d logs ]
+then
     echo "La cartella logs non è presente, la creo"
     mkdir logs
     cd logs
@@ -102,7 +107,8 @@ else
     mkdir firUnfoldedPipedNC
     cd ..
 fi
-if [ ! -d savings ] then
+if [ ! -d savings ]
+then
     echo "La cartella savings non è presente, la creo"
     mkdir savings
     cd savings
