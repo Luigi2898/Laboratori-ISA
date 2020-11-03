@@ -1,73 +1,9 @@
-cd syn
-if [ -d work ]    # ← see 'man test' for available unary and binary operators.
+if [ ! -d work ]    # ← see 'man test' for available unary and binary operators.
 then
-    echo "Ho trovato la cartella work, per rendere deterministici i risultati procedo con la rimozione e la creazione della cartella"
-    #rm *.log
-    #rm *.svf
-    rm -rf work
-    mkdir work
+    echo "WARNING!! Work directory is not present in synthesis directory, go to ./syn and execute syn.sh to perform synthesis"
 else
-    echo "La cartella work non è presente, la creo"
-    mkdir work
+    echo "Work directory is present in synthesis directory! I'll test all the others directory!"
 fi
-if [ ! -d synthReport ]    # ← see 'man test' for available unary and binary operators.
-then
-    echo "La cartella synthreport non è presente, la creo"
-    mkdir synthReport
-    cd synthReport
-    mkdir fir
-    mkdir firUnfolded
-    mkdir firNC
-    mkdir firUnfoldedNC
-    cd ..
-fi
-if [ ! -d netlist ]    # ← see 'man test' for available unary and binary operators.
-then
-    echo "La cartella netlist non è presente, la creo"
-    mkdir netlist
-    cd netlist
-    mkdir fir
-    mkdir firUnfolded
-    mkdir firNC
-    mkdir firUnfoldedNC
-    cd ..
-fi
-if [ ! -d synthReportAfterBack ]    # ← see 'man test' for available unary and binary operators.
-then
-    echo "La cartella synthReportAfterBack non è presente, la creo"
-    mkdir synthReportAfterBack
-    cd synthReportAfterBack
-    mkdir fir
-    mkdir firUnfolded
-    mkdir firNC
-    mkdir firUnfoldedNC
-    cd ..
-fi
-if [ ! -d logs ]    # ← see 'man test' for available unary and binary operators.
-then
-    echo "La cartella logs non è presente, la creo"
-    mkdir logs
-    cd logs
-    mkdir fir
-    mkdir firUnfolded
-    mkdir firNC
-    mkdir firUnfoldedNC
-    cd ..
-fi
-if [ ! -d savings ]    # ← see 'man test' for available unary and binary operators.
-then
-    echo "La cartella savings non è presente, la creo"
-    mkdir savings
-    cd savings
-    mkdir fir
-    mkdir firUnfolded
-    mkdir firNC
-    mkdir firUnfoldedNC
-    cd ..
-fi
-source /software/scripts/init_synopsys_64.18
-dc_shell-xg-t -f synth.tcl
-
 
 cd ../sim
 if [ -d "work" ]; then
