@@ -25,6 +25,7 @@ then
     mkdir firUnfoldedPipedNC
     cd ..
     mkdir noGating
+    cd noGating
     mkdir fir
     mkdir firUnfolded
     mkdir firNC
@@ -48,6 +49,7 @@ else
     mkdir firUnfoldedPipedNC
     cd ..
     mkdir noGating
+    cd noGating
     mkdir fir
     mkdir firUnfolded
     mkdir firNC
@@ -72,6 +74,7 @@ then
     mkdir firUnfoldedPipedNC
     cd ..
     mkdir noGating
+    cd noGating
     mkdir fir
     mkdir firUnfolded
     mkdir firNC
@@ -94,6 +97,7 @@ else
     mkdir firUnfoldedPipedNC
     cd ..
     mkdir noGating
+    cd noGating
     mkdir fir
     mkdir firUnfolded
     mkdir firNC
@@ -118,6 +122,7 @@ then
     mkdir firUnfoldedPipedNC
     cd ..
     mkdir noGating
+    cd noGating
     mkdir fir
     mkdir firUnfolded
     mkdir firNC
@@ -140,6 +145,7 @@ else
     mkdir firUnfoldedPipedNC
     cd ..
     mkdir noGating
+    cd noGating
     mkdir fir
     mkdir firUnfolded
     mkdir firNC
@@ -164,6 +170,7 @@ then
     mkdir firUnfoldedPipedNC
     cd ..
     mkdir noGating
+    cd noGating
     mkdir fir
     mkdir firUnfolded
     mkdir firNC
@@ -186,6 +193,7 @@ else
     mkdir firUnfoldedPipedNC
     cd ..
     mkdir noGating
+    cd noGating
     mkdir fir
     mkdir firUnfolded
     mkdir firNC
@@ -210,6 +218,7 @@ then
     mkdir firUnfoldedPipedNC
     cd ..
     mkdir noGating
+    cd noGating
     mkdir fir
     mkdir firUnfolded
     mkdir firNC
@@ -232,6 +241,7 @@ else
     mkdir firUnfoldedPipedNC
     cd ..
     mkdir noGating
+    cd noGating
     mkdir fir
     mkdir firUnfolded
     mkdir firNC
@@ -243,45 +253,10 @@ else
 fi
 echo "Select an option to synthesize:\n 1 - FIR - direct form (no gating)\n 2 - FIR - unfolded (no gating)\n 3 - FIR - unfolded and piped (no gating)\n 4 - synthesize all (no gating)\n 5 - FIR - direct form (gating)\n 6 - FIR - unfolded (gating)\n 7 - FIR - unfolded and piped (gating)\n 8 - synthesize all (gating)\n 9 - synthesize all (gating and no gating)"
 read response
-case $response
-    1)
-        source /software/scripts/init_synopsys_64.18
-        dc_shell-xg-t -f synthFIR.tcl
-    ;;
-    2)
-        source /software/scripts/init_synopsys_64.18
-        dc_shell-xg-t -f synthUNF.tcl
-    ;;
-    3)
+
         source /software/scripts/init_synopsys_64.18
         dc_shell-xg-t -f synthPIPE.tcl
-    ;;
-    4)
-        source /software/scripts/init_synopsys_64.18
-        dc_shell-xg-t -f synth.tcl
-    ;
-    5)
-        source /software/scripts/init_synopsys_64.18
-        dc_shell-xg-t -f synthFIRCK.tcl
-    ;;
-    6)
-        source /software/scripts/init_synopsys_64.18
-        dc_shell-xg-t -f synthUNFCKG.tcl
-    ;;
-    7)
-        source /software/scripts/init_synopsys_64.18
-        dc_shell-xg-t -f synthPIPECKG.tcl
-    ;;
-    8)
-        source /software/scripts/init_synopsys_64.18
-        dc_shell-xg-t -f synthCKG.tcl
-    ;;
-    9)
-        source /software/scripts/init_synopsys_64.18
-        dc_shell-xg-t -f synth&CKG.tcl
-    ;;
-
-esac
+    
 
 dir="../OldRes/res_$(date +%F)"_"$(date +%T)_justSyn"
 cp -r synthReport $dir
