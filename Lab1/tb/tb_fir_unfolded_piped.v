@@ -4,7 +4,7 @@
 		
 
 
-module tb_fir_unfolded ();
+module tb_fir_unfolded_piped ();
 
 
 
@@ -22,7 +22,7 @@ module tb_fir_unfolded ();
    wire signed [10:0] H7_i;
    wire signed [10:0] H8_i;
    wire signed [10:0] DOUT_i;
-   wire signed [10:0] DOUT_i_unfolded;
+   wire signed [10:0] DOUT_i_unfolded_piped;
    wire               VOUT_i;
    wire               END_SIM_i;
    
@@ -38,7 +38,7 @@ always begin  : infinite
 	  @(posedge CLK_i)
 	    if(VOUT_i == 1 && !$feof(outfile0)) begin
 		    a = $fscanf(outfile0,"%d\n",resC);
-		    res = DOUT_i_unfolded;
+		    res = DOUT_i_unfolded_piped;
 		    check_results(); end          
 	    else if (VOUT_i == 0 && $feof(outfile0)) begin
         $display("\nFILTER TESTS COMPLETED WITH %0d ERRORS!\n", error_count);
@@ -66,7 +66,7 @@ end
 	 	       .H8(H8_i),
    	           .END_SIM(END_SIM_i));
 
-   myfir_unfolded UUT(.CLK(CLK_i),
+   myfir_unfolded_piped UUT(.CLK(CLK_i),
 	                  .RST_n(RST_n_i),
 	                  .DIN(DIN_i),
                       .VIN(VIN_i),
@@ -79,13 +79,13 @@ end
 			          .H6(H6_i),
 			          .H7(H7_i),
 			          .H8(H8_i),
-                      .DOUT(DOUT_i_unfolded),
+                      .DOUT(DOUT_i_unfolded_piped),
                       .VOUT(VOUT_i));
 
    data_sink DS(.CLK(CLK_i),
 		        .RST_n(RST_n_i),
 		        .VIN(VOUT_i),
-		        .DIN(DOUT_i_unfolded));   
+		        .DIN(DOUT_i_unfolded_piped));   
 
 
 
