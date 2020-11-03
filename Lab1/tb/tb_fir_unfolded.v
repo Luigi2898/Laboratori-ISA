@@ -4,7 +4,7 @@
 		
 
 
-module tb_fir ();
+module tb_fir_unfolded ();
 
 
 
@@ -38,7 +38,7 @@ always begin  : infinite
 	  @(posedge CLK_i)
 	    if(VOUT_i == 1 && !$feof(outfile0)) begin
 		    a = $fscanf(outfile0,"%d\n",resC);
-		    res = DOUT_i;
+		    res = DOUT_i_unfolded;
 		    check_results(); end          
 	    else if (VOUT_i == 0 && $feof(outfile0)) begin
         $display("\nFILTER TESTS COMPLETED WITH %0d ERRORS!\n", error_count);
@@ -79,13 +79,13 @@ end
 			          .H6(H6_i),
 			          .H7(H7_i),
 			          .H8(H8_i),
-                      .DOUT(DOUT_i),
+                      .DOUT(DOUT_i_unfolded),
                       .VOUT(VOUT_i));
 
    data_sink DS(.CLK(CLK_i),
 		        .RST_n(RST_n_i),
 		        .VIN(VOUT_i),
-		        .DIN(DOUT_i));   
+		        .DIN(DOUT_i_unfolded));   
 
 
 

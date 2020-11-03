@@ -1,14 +1,18 @@
 variable unfoldeddir "firUnfolded"
 variable normdir "fir"
+variable pipeddir "firUnfoldedPiped"
 
 variable unfoldeddirNC "firUnfoldedNC"
 variable normdirNC "firNC"
+variable pipeddirNC "firUnfoldedPipedNC"
 
 variable unfoldedtag "_UNFOLDED_"
 variable normaltag "_NORMAL_"
+variable pipedtag "_PIPED_"
 
 variable norme "myfir"
 variable unfoldede "myfir_unfolded"
+variable pipede "myfir_unfolded_piped"
 
 proc synth {ent dir odir per} {
     set power_preserve_rtl_hier_names true
@@ -34,6 +38,7 @@ proc synth {ent dir odir per} {
         puts "Elaborazione di ../src/$dir NON avvenuta con successo"
         puts $elabo
     }
+    write -hierarchy -format ddc -output savings/$odir/$ent.beforesyn.ddc
     uniquify
     link
     create_clock -name MY_CLK -period $per CLK
