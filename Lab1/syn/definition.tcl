@@ -12,7 +12,7 @@ variable pipedtag "_PIPED_"
 
 variable norme "myfir"
 variable unfoldede "myfir_unfolded"
-variable pipede "myfir_unfolded_piped"
+variable pipede "myfir_piped_unfolded"
 
 proc synth {ent dir odir per} {
     set power_preserve_rtl_hier_names true
