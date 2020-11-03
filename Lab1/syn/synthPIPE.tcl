@@ -2,9 +2,9 @@
 
 source ./definition.tcl
 
-set newPer [synth $pipede $pipeddir $pipeddir 10.0]
+set newPer [synth $pipede $pipeddir $pipeddir 10.0 1]
 
-synth $pipede $pipeddir $pipeddirNC $newPer
+synth $pipede $pipeddir $pipeddirNC $newPer 1
 
 set fp [open "NoCKGnewPer$pipedtag.outGG" w]
 puts $fp $newPer
