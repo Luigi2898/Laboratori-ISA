@@ -72,7 +72,7 @@ int myfilter2(int x)
   y = 0;
   for (i = 0; i < NT; i++)
     y += (sx[i] * (b[i] >> NI)) >> (NB2);
-  y = y << NI;
+  y = y << (NI+1);
   return y;
 }
 // myfilter3 : 11 bits truncated to 8 after multiplication
@@ -105,7 +105,7 @@ int myfilter3(int x)
   for (i = 0; i < NT; i++)
     y += (sx[i] * b[i]) >> (NB + 2);
   
-  return y;
+  return y << NI;
 }
 
 int main(int argc, char **argv)
