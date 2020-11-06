@@ -67,7 +67,7 @@ end
    	           .END_SIM(END_SIM_i));
 
    myfir UUT(.CLK(CLK_i),
-	           .RST_n(RST_n_i),
+	           .RST_N(RST_n_i),
 	         .DIN(DIN_i),
              .VIN(VIN_i),
 			 .H0(H0_i),

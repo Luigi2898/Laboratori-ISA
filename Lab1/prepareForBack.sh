@@ -1,0 +1,22 @@
+mkdir vcd
+cd vcd
+    mkdir gating
+    cd gating
+        mkdir fir
+        mkdir firUnfolded
+        mkdir firNC
+        mkdir firUnfoldedNC
+        mkdir firUnfoldedPiped
+        mkdir firUnfoldedPipedNC
+    cd ..
+    mkdir noGating
+    cd noGating
+        mkdir fir
+        mkdir firUnfolded
+        mkdir firNC
+        mkdir firUnfoldedNC
+        mkdir firUnfoldedPiped
+        mkdir firUnfoldedPipedNC
+    cd ..
+cd ..
+echo "All is ready for back annotation :)"
