@@ -66,6 +66,7 @@ begin
 	
 
 	dumb_one <= '1';
+	-- TODO : 8 bit prima o dopo mult?
 	input_register : reg generic map(8) port map(reg_in => DIN8, reg_out => delay_line(0), clk => clk, rst_n => rst_n, load => dumb_one); --input register, always enabled
 
 	registers : for i in 1 to 8 generate

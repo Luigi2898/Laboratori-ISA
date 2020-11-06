@@ -16,8 +16,12 @@ variable pipede "myfir_piped_unfolded"
 
 proc synth {ent dir odir per CKG} {
     if { $CKG == 1 } {
-        set power_preserve_rtl_hier_names true
-    catch {analyze -f vhdl -lib WORK -autoread {../src/commonComponents} > ./logs/$odir/analyzeCC.log} analCC
+        variable gated "gating"
+    } else {
+        variable gated "noGating"
+    }
+    set power_preserve_rtl_hier_names true
+    catch {analyze -f vhdl -lib WORK -autoread {../src/commonComponents} > ./logs/$gated/$odir/analyzeCC.log} analCC
     if { $analCC == ""} {
         puts "Analisi di ../src/commonComponents avvenuta con successo"
     } else {
@@ -25,21 +29,21 @@ proc synth {ent dir odir per CKG} {
         puts $analCC
     }
     variable analdir "{../src/$dir}"
-    catch {analyze -f vhdl -lib WORK -autoread "$analdir" > ./logs/$odir/$dir.log} analdes
+    catch {analyze -f vhdl -lib WORK -autoread "$analdir" > ./logs/$gated/$odir/$dir.log} analdes
     if { $analdes == ""} {
         puts "Analisi di ../src/$dir avvenuta con successo"
     } else {
         puts "Analisi di ../src/$dir NON avvenuta con successo"
         puts $analdes
     }
-    catch {elaborate $ent -arch beh -lib WORK > ./logs/$odir/elaboration.log} elabo
+    catch {elaborate $ent -arch beh -lib WORK > ./logs/$gated/$odir/elaboration.log} elabo
     if { $elabo == ""} {
         puts "Elaborazione di ../src/$dir avvenuta con successo"
     } else {
         puts "Elaborazione di ../src/$dir NON avvenuta con successo"
         puts $elabo
     }
-    write -hierarchy -format ddc -output savings/gating/$odir/$ent.beforesyn.ddc
+    write -hierarchy -format ddc -output savings/$gated/$odir/$ent.beforesyn.ddc
     uniquify
     link
     create_clock -name MY_CLK -period $per CLK
@@ -49,32 +53,30 @@ proc synth {ent dir odir per CKG} {
     set_output_delay 0.5 -max -clock MY_CLK [all_outputs]
     set OLOAD [load_of NangateOpenCellLibrary/BUF_X4/A]
     set_load $OLOAD [all_outputs]
-        catch {compile -exact_map > ./logs/$odir/compilation.log} compo
-        if { $compo == ""} {
-            puts "Compilazione di ../src/$dir avvenuta con successo"
-        } else {
-            puts "Compilazione di ../src/$dir NON avvenuta con successo"
-            puts $compo
-        }
-        report_timing > synthReport/gating/$odir/timing.txt
-        report_area  > synthReport/gating/$odir/area.txt
-        report_power > synthReport/gating/$odir/power.txt
-        report_power -net > synthReport/gating/$odir/power-net.txt
-        report_power -cell > synthReport/gating/$odir/power-cell.txt
-        report_power -hierarchy > synthReport/gating/$odir/power-hierarchy.txt
-        report_power -verbose > synthReport/gating/$odir/power-verbose.txt
-        ungroup -all -flatten
-        change_names -hierarchy -rules verilog
-        write_sdf netlist/gating/$odir/$ent.sdf
-        write -f verilog -hierarchy -output netlist/gating/$odir/$ent.v
-        write_sdc netlist/$odir/$ent.sdc
-        write -hierarchy -format ddc -output savings/gating/$odir/$ent.ddc
-        set pathW [get_timing_paths -nworst 1]
-        set sl [ get_attribute $pathW slack ]
-        set per [ get_attribute [ get_clocks MY_CLK ] period ]
-        set dat [expr $per - $sl]
-        set newPer [expr $dat * 4.0]
-        return $newPer
+    catch {compile -exact_map > ./logs/$gated/$odir/compilation.log} compo
+    if { $compo == ""} {
+        puts "Compilazione di ../src/$dir avvenuta con successo"
+    } else {
+        puts "Compilazione di ../src/$dir NON avvenuta con successo"
+        puts $compo
     }
-
+    report_timing > synthReport/$gated/$odir/timing.txt
+    report_area  > synthReport/$gated/$odir/area.txt
+    report_power > synthReport/$gated/$odir/power.txt
+    report_power -net > synthReport/$gated/$odir/power-net.txt
+    report_power -cell > synthReport/$gated/$odir/power-cell.txt
+    report_power -hierarchy > synthReport/$gated/$odir/power-hierarchy.txt
+    report_power -verbose > synthReport/$gated/$odir/power-verbose.txt
+    ungroup -all -flatten
+    change_names -hierarchy -rules verilog
+    write_sdf netlist/$gated/$odir/$ent.sdf
+    write -f verilog -hierarchy -output netlist/$gated/$odir/$ent.v
+    write_sdc netlist/$gated/$odir/$ent.sdc
+    write -hierarchy -format ddc -output savings/$gated/$odir/$ent.ddc
+    set pathW [get_timing_paths -nworst 1]
+    set sl [ get_attribute $pathW slack ]
+    set per [ get_attribute [ get_clocks MY_CLK ] period ]
+    set dat [expr $per - $sl]
+    set newPer [expr $dat * 4.0]
+    return $newPer
 }
