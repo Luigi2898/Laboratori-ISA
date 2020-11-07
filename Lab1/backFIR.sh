@@ -44,28 +44,30 @@ vlib work
 vcom -93 -work ./work ../src/testbenchComponents/clk_gen.vhd
 vcom -93 -work ./work ../src/testbenchComponents/data_gen.vhd
 vcom -93 -work ./work ../src/testbenchComponents/data_sink.vhd
-vlog -work ./work ../syn/netlist/myfir.v
+vlog -work ./work ./netlist/myfir.v
 vlog -work ./work ../tb/tb_fir.v
 vsim -do backVsim.tcl
 rm -r netlist
 
 mkdir netlist
 cp ../syn/netlist/noGating/firNC/* ./netlist
+cp ../syn/newPer_NORMAL_.outGG ./
+mv newPer_NORMAL_.outGG newPer.outGG 
 if [ -d "work" ]; then
 	rm -r work
 fi
 source /software/scripts/init_msim6.2g
 vlib work
-vcom -93 -work ./work ../src/testbenchComponents/clk_genNC.vhd
+vcom -93 -work ./work ../src/testbenchComponents/clk_gen.vhd
 vcom -93 -work ./work ../src/testbenchComponents/data_gen.vhd
 vcom -93 -work ./work ../src/testbenchComponents/data_sink.vhd
-vlog -work ./work ../syn/netlist/myfirNC.v
+vlog -work ./work ./netlist/myfir.v
 vlog -work ./work ../tb/tb_fir.v
 vsim -do backVsimNC.tcl
 rm -r netlist
 echo "Simulation ended"
 echo "I will satisfy my OCD messing a bit with files :)"
 cd ../vcd
-mv myfir_syn.vcd ./noGated/fir
-mv myfir_synNC.vcd ./noGated/firNC
+mv myfir_syn.vcd ./noGating/fir
+mv myfir_synNC.vcd ./noGating/firNC
 cd ..

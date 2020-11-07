@@ -1,13 +1,11 @@
 /***********************************************************************
  * Test bench for the 8-order FIR  11 bit coefficients.
  **********************************************************************/
-		
 
 
 module tb_fir ();
-
-
-
+parameter period = 10000;
+// TODO : La back vogliamo farla a 10 ns o con il periodo diviso?
    wire CLK_i;
    wire RST_n_i;
    wire signed [10:0] DIN_i;
@@ -31,7 +29,7 @@ module tb_fir ();
    integer endL = 0;
    integer outfile0,outfile1; //file descriptors
    
-   //timeunit 1us;  timeprecision 1us;	
+	
 always begin  : infinite
 	outfile0=$fopen("../C/resultC.txt","r");
   while(1) begin
@@ -47,7 +45,8 @@ always begin  : infinite
      	end
     end      
 end
-   clk_gen CG(.END_SIM(END_SIM_i),
+   clk_gen #(.ts(period))
+   CG(.END_SIM(END_SIM_i),
   	          .CLK(CLK_i),
 	            .RST_n(RST_n_i));
 
@@ -66,7 +65,7 @@ end
 	 	           .H8(H8_i),
    	           .END_SIM(END_SIM_i));
 
-   myfir UUT(.CLK(CLK_i),
+   MYFIR UUT(.CLK(CLK_i),
 	           .RST_N(RST_n_i),
 	         .DIN(DIN_i),
              .VIN(VIN_i),

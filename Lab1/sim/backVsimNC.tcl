@@ -1,12 +1,12 @@
 source ../syn/definition.tcl
 
-set fp [open "newPer$normaltag.outGG" r]
+vsim -L /software/dk/nangate45/verilog/msim6.2g -sdftyp /tb_fir/UUT=./netlist/myfir.sdf -t ps work.tb_fir
+set fp [open "./newPer.outGG" r]
 set newPer [read $fp]
 close $fp
-
-change sim:tb_fir/CG/Ts {{$newPer ps}}
-vsim -L /software/dk/nangate45/verilog/msim6.2g -sdftyp /tb_fir/UUT=../syn/netlist/myfir.sdf work.tb_fir
+set tb_fir/CG/ts { $newPer ns }
 vcd file ../vcd/myfir_synNC.vcd
 vcd add /tb_fir/UUT/*
-run 2 us
-quit -f
+add wave *
+run 8 us
+#quit -f
