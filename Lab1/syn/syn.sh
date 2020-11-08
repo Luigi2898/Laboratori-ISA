@@ -292,6 +292,7 @@ case $response in
         dc_shell-xg-t -f synthandCKG.tcl
     ;;  
 esac
+python3 changeCLK.py ../src/testbenchComponents/clk_gen.vhd *.outGG
 dir="../OldRes/res_$(date +%F)"_"$(date +%T)_justSyn"
 cp -r synthReport $dir
 cp -r netlist $dir

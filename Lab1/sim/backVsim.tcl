@@ -3,4 +3,4 @@ vcd file ../vcd/myfir_syn.vcd
 vcd add /tb_fir/UUT/*
 add wave *
 run 8 us
-#quit -f
+quit -f

@@ -4,7 +4,7 @@
 
 
 module tb_fir ();
-parameter period = 10000;
+
 // TODO : La back vogliamo farla a 10 ns o con il periodo diviso?
    wire CLK_i;
    wire RST_n_i;
@@ -45,8 +45,7 @@ always begin  : infinite
      	end
     end      
 end
-   clk_gen #(.ts(period))
-   CG(.END_SIM(END_SIM_i),
+   clk_gen CG(.END_SIM(END_SIM_i),
   	          .CLK(CLK_i),
 	            .RST_n(RST_n_i));
 

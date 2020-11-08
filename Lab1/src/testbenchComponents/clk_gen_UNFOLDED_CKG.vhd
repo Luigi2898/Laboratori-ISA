@@ -14,7 +14,7 @@ architecture beh of clk_gen is
 
   signal CLK_i : std_logic;
 
-  constant ts : time := 10 ns;
+  constant ts : time := 11.28884 ns;
 
 begin -- beh
 
@@ -33,7 +33,7 @@ begin -- beh
   process
   begin -- process
     RST_n <= '0';
-    wait for 2.5 * ts/2;
+    wait for 3 * ts/2;
     RST_n <= '1';
     wait;
   end process;
