@@ -16,6 +16,11 @@ readonly pipedtagCKG="_PIPED_CKG"
 readonly gated="gating"
 readonly noGated="noGating"
 
+readonly tbtagNormal=""
+readonly tbtagUnfolded="_unfolded"
+readonly tbtagPiped="_unfolded_piped"
+
+
 backAnn () {
 
     #$1 gating or not
@@ -74,7 +79,7 @@ vcom -93 -work ./work ../src/testbenchComponents/clk_gen.vhd
 vcom -93 -work ./work ../src/testbenchComponents/data_gen.vhd
 vcom -93 -work ./work ../src/testbenchComponents/data_sink.vhd
 vlog -work ./work ./netlist/myfir.v
-vlog -work ./work ../tb/tb_fir.v
+vlog -work ./work ../tb/tb_fir$5.v
 vsim -do backVsim.tcl
 rm -r netlist
 
@@ -89,7 +94,7 @@ vcom -93 -work ./work ../src/testbenchComponents/clk_gen$4.vhd
 vcom -93 -work ./work ../src/testbenchComponents/data_gen.vhd
 vcom -93 -work ./work ../src/testbenchComponents/data_sink.vhd
 vlog -work ./work ./netlist/myfir.v
-vlog -work ./work ../tb/tb_fir.v
+vlog -work ./work ../tb/tb_fir$5.v
 vsim -do backVsimNC.tcl
 rm -r netlist
 echo "Simulation ended"
@@ -111,6 +116,7 @@ vcd2saif -input ../vcd/$1/$2/myfir_synNC.vcd -output ../saif/$1/$2/myfir_syn.sai
 cp ../saif/$1/$2/myfir_syn.saif ./netlistToBack
 dc_shell-xg-t -f backSynNC.tcl
 mv ./synthReportAfterBack/*.txt ./synthReportAfterBack/$1/$2
+cd ..
 
 return
 

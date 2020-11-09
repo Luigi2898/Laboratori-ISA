@@ -33,7 +33,7 @@ begin -- beh
   process
   begin -- process
     RST_n <= '0';
-    wait for 3 * ts/2;
+    wait for 2.5 * ts/2;
     RST_n <= '1';
     wait;
   end process;

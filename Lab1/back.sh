@@ -15,48 +15,48 @@ echo " 9 - backannotate all (gating and no gating)"
 read response
 case $response in
     1)
-        backAnn $noGated $normdir $normdirNC $normaltag
+        backAnn $noGated $normdir $normdirNC $normaltag $tbtagNormal
     ;;
     2)
-        backAnn $noGated $unfoldeddir $unfoldeddirNC $unfoldedtag
+        backAnn $noGated $unfoldeddir $unfoldeddirNC $unfoldedtag $tbtagUnfolded
     ;;
     3)
-        backAnn $noGated $pipeddir $pipeddirNC $pipedtag
+        backAnn $noGated $pipeddir $pipeddirNC $pipedtag $tbtagPiped
     ;;
     4)
-        backAnn $noGated $normdir $normdirNC $normaltag
-        backAnn $noGated $unfoldeddir $unfoldeddirNC $unfoldedtag
-        backAnn $noGated $pipeddir $pipeddirNC $pipedtag
+        backAnn $noGated $normdir $normdirNC $normaltag $tbtagNormal
+        backAnn $noGated $unfoldeddir $unfoldeddirNC $unfoldedtag $tbtagUnfolded
+        backAnn $noGated $pipeddir $pipeddirNC $pipedtag $tbtagPiped
     ;;
     5)
-        backAnn $gated $normdir $normdirNC $normaltagCKG
+        backAnn $gated $normdir $normdirNC $normaltagCKG $tbtagNormal
     ;;
     6)
-        backAnn $gated $unfoldeddir $unfoldeddirNC $unfoldedtagCKG
+        backAnn $gated $unfoldeddir $unfoldeddirNC $unfoldedtagCKG $tbtagUnfolded
     ;;
     7)
-        backAnn $gated $pipeddir $pipeddirNC $pipedtagCKG
+        backAnn $gated $pipeddir $pipeddirNC $pipedtagCKG $tbtagPiped
     ;;
     8)
-        backAnn $gated $normdir $normdirNC $normaltagCKG
-        backAnn $gated $unfoldeddir $unfoldeddirNC $unfoldedtagCKG
-        backAnn $gated $pipeddir $pipeddirNC $pipedtagCKG
+        backAnn $gated $normdir $normdirNC $normaltagCKG $tbtagNormal
+        backAnn $gated $unfoldeddir $unfoldeddirNC $unfoldedtagCKG $tbtagUnfolded
+        backAnn $gated $pipeddir $pipeddirNC $pipedtagCKG $tbtagPiped
     ;;
     9)
-        backAnn $noGated $normdir $normdirNC $normaltag
-        backAnn $noGated $unfoldeddir $unfoldeddirNC $unfoldedtag
-        backAnn $noGated $pipeddir $pipeddirNC $pipedtag
-        backAnn $gated $normdir $normdirNC $normaltagCKG
-        backAnn $gated $unfoldeddir $unfoldeddirNC $unfoldedtagCKG
-        backAnn $gated $pipeddir $pipeddirNC $pipedtagCKG
+        backAnn $noGated $normdir $normdirNC $normaltag $tbtagNormal
+        backAnn $noGated $unfoldeddir $unfoldeddirNC $unfoldedtag $tbtagUnfolded
+        backAnn $noGated $pipeddir $pipeddirNC $pipedtag $tbtagPiped
+        backAnn $gated $normdir $normdirNC $normaltagCKG $tbtagNormal
+        backAnn $gated $unfoldeddir $unfoldeddirNC $unfoldedtagCKG $tbtagUnfolded
+        backAnn $gated $pipeddir $pipeddirNC $pipedtagCKG $tbtagPiped
     ;;  
 esac
 
 dir="../OldRes/res_$(date +%F)"_"$(date +%H)"-"$(date +%M)"-"$(date +%S)_synAndBack"
 mkdir $dir
-cp -r ./synthReport $dir 
-cp -r ./netlist $dir
-cp -r ./logs $dir
-cp -r ./synthReportAfterBack $dir
-cp -r ../vcd $dir
-cp -r ../saif $dir
+cp -r ./syn/synthReport $dir 
+cp -r ./syn/netlist $dir
+cp -r ./syn/logs $dir
+cp -r ./syn/synthReportAfterBack $dir
+cp -r ./vcd $dir
+cp -r ./saif $dir
