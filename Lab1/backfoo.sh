@@ -1,3 +1,21 @@
+readonly unfoldeddir="firUnfolded"
+readonly normdir="fir"
+readonly pipeddir="firUnfoldedPiped"
+
+readonly unfoldeddirNC="firUnfoldedNC"
+readonly normdirNC="firNC"
+readonly pipeddirNC="firUnfoldedPipedNC"
+
+readonly unfoldedtag="_UNFOLDED_"
+readonly normaltag="_NORMAL_"
+readonly pipedtag="_PIPED_"
+readonly unfoldedtagCKG="_UNFOLDED_CKG"
+readonly normaltagCKG="_NORMAL_CKG"
+readonly pipedtagCKG="_PIPED_CKG"
+
+readonly gated="gating"
+readonly noGated="noGating"
+
 backAnn () {
 
     #$1 gating or not
@@ -9,24 +27,28 @@ backAnn () {
     if [ ! -d netlist ]    # ← see 'man test' for available unary and binary operators.
     then
         echo "WARNING!! ./syn/netlist directory is not present in main directory, go to ./syn and execute syn.sh to perform synthesis"
+        return
     else
         echo "./syn/netlist directory is present in synthesis directory! I'll test all the others directory!"
 	    cd netlist
 	    if [ ! -d $1 ]
 	    then
 		    echo "WARNING!! ./syn/netlist directory does not contains $1 directory, go to ./syn and execute syn.sh to perform synthesis"
+            return
 	    else
 		    echo "./syn/netlist/$1 is present, I continue checking"
             cd $1
         if [ ! -d $2 ]
         then
             echo "There is no ./syn/netlist/$1/$2 directory!"
+            return
         else
             echo "./syn/netlist/$1/$2 found, will I find some useful files inside it?"
             cd $2
             if [ ! -f myfir.v ]
             then
                 echo "WARNING!!! There is no verilog netlist of myfir, go to ./syn and execute syn.sh to perform synthesis"
+                return
             else
                 echo "I found everything I need :)"
                 cd ..
@@ -90,12 +112,6 @@ cp ../saif/$1/$2/myfir_syn.saif ./netlistToBack
 dc_shell-xg-t -f backSynNC.tcl
 mv ./synthReportAfterBack/*.txt ./synthReportAfterBack/$1/$2
 
-dir="../OldRes/res_$(date +%F)"_"$(date +%H)"-"$(date +%M)"-"$(date +%S)_synAndBack"
-mkdir $dir
-cp -r ./synthReport $dir 
-cp -r ./netlist $dir
-cp -r ./logs $dir
-cp -r ./synthReportAfterBack $dir
-cp -r ../vcd $dir
-cp -r ../saif $dir
+return
+
 }
