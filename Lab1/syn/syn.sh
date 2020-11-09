@@ -251,13 +251,48 @@ else
     cd ..
     cd ..
 fi
-echo "Select an option to synthesize:\n 1 - FIR - direct form (no gating)\n 2 - FIR - unfolded (no gating)\n 3 - FIR - unfolded and piped (no gating)\n 4 - synthesize all (no gating)\n 5 - FIR - direct form (gating)\n 6 - FIR - unfolded (gating)\n 7 - FIR - unfolded and piped (gating)\n 8 - synthesize all (gating)\n 9 - synthesize all (gating and no gating)"
+echo "Select an option to synthesize:"
+echo " 1 - FIR - direct form (no gating)"
+echo " 2 - FIR - unfolded (no gating)"
+echo " 3 - FIR - unfolded and piped (no gating)"
+echo " 4 - synthesize all (no gating)"
+echo " 5 - FIR - direct form (gating)"
+echo " 6 - FIR - unfolded (gating)"
+echo " 7 - FIR - unfolded and piped (gating)"
+echo " 8 - synthesize all (gating)"
+echo " 9 - synthesize all (gating and no gating)"
 read response
-
-        source /software/scripts/init_synopsys_64.18
+source /software/scripts/init_synopsys_64.18
+case $response in
+    1)
+        dc_shell-xg-t -f synthFIR.tcl
+    ;;
+    2)
+        dc_shell-xg-t -f synthUNF.tcl
+    ;;
+    3)
         dc_shell-xg-t -f synthPIPE.tcl
-    
-
+    ;;
+    4)
+        dc_shell-xg-t -f synth.tcl
+    ;;
+    5)
+        dc_shell-xg-t -f synthFIRCKG.tcl
+    ;;
+    6)
+        dc_shell-xg-t -f synthUNFCKG.tcl
+    ;;
+    7)
+        dc_shell-xg-t -f synthPIPECKG.tcl
+    ;;
+    8)
+        dc_shell-xg-t -f synthCKG.tcl
+    ;;
+    9)
+        dc_shell-xg-t -f synthandCKG.tcl
+    ;;  
+esac
+python3 changeCLK.py ../src/testbenchComponents/clk_gen.vhd *.outGG
 dir="../OldRes/res_$(date +%F)"_"$(date +%T)_justSyn"
 cp -r synthReport $dir
 cp -r netlist $dir

@@ -1,5 +1,6 @@
-vsim -L /software/dk/nangate45/verilog/msim6.2g -sdftyp /tb_fir/UUT=../syn/netlist/fir/myfir.sdf work.tb_fir
-vcd file ../vcd/fir/myfir.vcd
+vsim -L /software/dk/nangate45/verilog/msim6.2g -sdftyp /tb_fir/UUT=./netlist/myfir.sdf -t ps work.tb_fir
+vcd file ../vcd/myfir_syn.vcd
 vcd add /tb_fir/UUT/*
-run 2 us
+add wave *
+run 8 us
 quit -f
