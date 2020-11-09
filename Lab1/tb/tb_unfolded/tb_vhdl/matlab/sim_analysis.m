@@ -179,8 +179,17 @@ clc
 clear all
 close all
 
-insamples = importdata("samples.txt");
+resUnfC = importdata("C:\Users\Francesco\Desktop\POLITO\V_ANNO\Integrated_System_Architecture\Lab1\C\myfir_unfolded\resultC_unfolded8.txt",'r');
+resC = importdata("C:\Users\Francesco\Documents\GitHub\Laboratori-ISA\Lab1\C\resultC8.txt",'r');
 
+time = 1e-1*[0:1:numel(resC)-1];
 
-
-
+figure()
+plot(time,resC,'k--*','Linewidth',1.5,'MarkerSize',12);
+hold on
+plot(time,resUnfC,'k-.^','Linewidth',1.5,'MarkerSize',13);
+grid minor
+legend('C Results - Direct Form','C Results - Unfolded');
+xlabel('t [ms]');
+ylabel('Samples');
+title('Reference Model Comparison: Direct Form vs Unfolding'); 

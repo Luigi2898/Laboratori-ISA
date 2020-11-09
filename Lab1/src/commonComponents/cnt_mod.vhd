@@ -26,7 +26,7 @@ begin
 
     variable flag : std_logic := '1';
     variable tcv  : std_logic := '0';
-    variable cnt  : unsigned (N-1 downto 0) := (others => '0');
+    variable cnt  : unsigned (N downto 0) := (others => '0');
 
   begin
 
@@ -38,7 +38,7 @@ begin
       if (en_cnt = '1') then
         cnt := cnt + 1;
         if (cnt = MODULE + 1) then
-          cnt := to_unsigned(1,N);
+          cnt := to_unsigned(1,N+1);
         end if;
       end if;
     end if;
@@ -55,7 +55,7 @@ begin
     end if;
 
     tc      <= tcv and flag;
-    cnt_out <= cnt;
+    cnt_out <= cnt(N-1 downto 0);
 
   end process CNT_PROCESS;
 

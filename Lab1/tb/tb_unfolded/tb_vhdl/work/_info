@@ -4,12 +4,12 @@ K3
 cModel Technology
 dC:\Users\Francesco\Documents\GitHub\Laboratori-ISA\Lab1\src
 Ecnt_mod
-Z0 w1603908396
+Z0 w1604924879
 Z1 DPx4 ieee 11 numeric_std 0 22 =NSdli^?T5OD8;4F<blj<3
 Z2 DPx4 ieee 14 std_logic_1164 0 22 GH1=`jDDBJ=`LM;:Ak`kf2
 Z3 dC:\Users\Francesco\Documents\GitHub\Laboratori-ISA\Lab1\tb\tb_unfolded\tb_vhdl
-Z4 8C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfolded/cnt_mod.vhd
-Z5 FC:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfolded/cnt_mod.vhd
+Z4 8C:\Users\Francesco\Documents\GitHub\Laboratori-ISA\Lab1\src\commonComponents\cnt_mod.vhd
+Z5 FC:\Users\Francesco\Documents\GitHub\Laboratori-ISA\Lab1\src\commonComponents\cnt_mod.vhd
 l0
 L6
 VU:9Vei@]5F9^PQC5?^gKZ3
@@ -24,14 +24,14 @@ R2
 DEx4 work 7 cnt_mod 0 22 U:9Vei@]5F9^PQC5?^gKZ3
 l23
 L21
-V5U?o8SM;naQX<abFcQZii2
+VD@>6VW:UU8`zTFMmo3^@J2
 R6
 32
 Z9 Mx2 4 ieee 14 std_logic_1164
 Z10 Mx1 4 ieee 11 numeric_std
 R7
 R8
-!s100 A1lGeoOST?zggzb5c<Pki2
+!s100 _R2F4fXcnmbg0I8mS<[8[2
 Ecounter_modulo_n
 Z11 w1603299467
 R1
@@ -149,12 +149,12 @@ R7
 R8
 !s100 ijHDOjYP99[TFneW@0ioI1
 Emux3xnto1xn
-Z21 w1603908396
+Z21 w1604397046
 R1
 R2
 R3
-Z22 8C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfolded/mux3xNto1xN.vhd
-Z23 FC:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfolded/mux3xNto1xN.vhd
+Z22 8C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/commonComponents/mux3xNto1xN.vhd
+Z23 FC:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/commonComponents/mux3xNto1xN.vhd
 l0
 L6
 Vcli_mIGo2QojgTN9loL2L2
@@ -182,8 +182,8 @@ R21
 R1
 R2
 R3
-Z24 8C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfolded/myfir_cuinputs_unfolded.vhd
-Z25 FC:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfolded/myfir_cuinputs_unfolded.vhd
+Z24 8C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/commonComponents/myfir_cuinputs_unfolded.vhd
+Z25 FC:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/commonComponents/myfir_cuinputs_unfolded.vhd
 l0
 L6
 V_W04AoAM`G=1c][D7AAeI2
@@ -207,12 +207,12 @@ R7
 R8
 !s100 <b:[A4aE@Y_E:IN9dQ<Z;1
 Emyfir_cuoutputs_unfolded
-Z26 w1603969729
+R21
 R1
 R2
 R3
-Z27 8C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfolded/myfir_cuoutputs_unfolded.vhd
-Z28 FC:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfolded/myfir_cuoutputs_unfolded.vhd
+Z26 8C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/commonComponents/myfir_cuoutputs_unfolded.vhd
+Z27 FC:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/commonComponents/myfir_cuoutputs_unfolded.vhd
 l0
 L6
 VU;^SB0Qma0N70YhiT]Mk`3
@@ -236,12 +236,12 @@ R7
 R8
 !s100 1JMCKgd5F^W08J2BFY>oU1
 Emyfir_cupipe_unfolded
-Z29 w1603970884
+Z28 w1603970884
 R1
 R2
 R3
-Z30 8C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfoldedPiped/myfir_cupipe_unfolded.vhd
-Z31 FC:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfoldedPiped/myfir_cupipe_unfolded.vhd
+Z29 8C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfoldedPiped/myfir_cupipe_unfolded.vhd
+Z30 FC:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfoldedPiped/myfir_cupipe_unfolded.vhd
 l0
 L5
 VabMg=@BDgaQe:OGe<A0Wk0
@@ -264,15 +264,44 @@ R10
 R7
 R8
 !s100 @H623^aX6jCLSdLa5M>j90
-Emyfir_dp_piped_unfolded
-Z32 w1603999998
-Z33 DPx4 ieee 15 std_logic_arith 0 22 GJbAT?7@hRQU9IQ702DT]2
-Z34 DPx4 ieee 16 std_logic_signed 0 22 <9<Kcl:S52:oW`F]FQhb20
+Emyfir_cupipe_unfolded_v2
+Z31 w1604921568
 R1
 R2
 R3
-Z35 8C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfoldedPiped/myfir_dp_piped_unfolded.vhd
-Z36 FC:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfoldedPiped/myfir_dp_piped_unfolded.vhd
+Z32 8C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfoldedPiped/myfir_cupipe_unfolded_v2.vhd
+Z33 FC:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfoldedPiped/myfir_cupipe_unfolded_v2.vhd
+l0
+L5
+VnD=<nFDE7^G23VbWk97IN2
+R6
+32
+R7
+R8
+!s100 `@WmRdKGIXAzjdmW`I1@A1
+Abeh
+R1
+R2
+DEx4 work 24 myfir_cupipe_unfolded_v2 0 22 nD=<nFDE7^G23VbWk97IN2
+l27
+L15
+V;SV<lf@_ljRW@f`2@QSB;0
+R6
+32
+R9
+R10
+R7
+R8
+!s100 S=h8KgL```E[0>W><O=Kj0
+Emyfir_dp_piped_unfolded
+Z34 w1603999998
+Z35 DPx4 ieee 15 std_logic_arith 0 22 GJbAT?7@hRQU9IQ702DT]2
+Z36 DPx4 ieee 16 std_logic_signed 0 22 <9<Kcl:S52:oW`F]FQhb20
+R1
+R2
+R3
+Z37 8C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfoldedPiped/myfir_dp_piped_unfolded.vhd
+Z38 FC:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfoldedPiped/myfir_dp_piped_unfolded.vhd
 l0
 L6
 V7R?XN<@fzfaTW2a5Hi?DC2
@@ -282,8 +311,8 @@ R7
 R8
 !s100 @a1873Szk;mJjWPof8gDO3
 Abeh
-R33
-R34
+R35
+R36
 R1
 R2
 DEx4 work 23 myfir_dp_piped_unfolded 0 22 7R?XN<@fzfaTW2a5Hi?DC2
@@ -292,22 +321,57 @@ L36
 V;6k2mE8;LD3znPO<BaP:?2
 R6
 32
-Z37 Mx4 4 ieee 14 std_logic_1164
-Z38 Mx3 4 ieee 11 numeric_std
-Z39 Mx2 4 ieee 16 std_logic_signed
-Z40 Mx1 4 ieee 15 std_logic_arith
+Z39 Mx4 4 ieee 14 std_logic_1164
+Z40 Mx3 4 ieee 11 numeric_std
+Z41 Mx2 4 ieee 16 std_logic_signed
+Z42 Mx1 4 ieee 15 std_logic_arith
 R7
 R8
 !s100 bjn`HMN3K8_kRJj3eU6Wk1
-Emyfir_dp_unfolded
-Z41 w1603969709
-R33
-R34
+Emyfir_dp_piped_unfolded_v2
+Z43 w1604925711
+R35
+R36
 R1
 R2
 R3
-Z42 8C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfolded/myfir_dp_unfolded.vhd
-Z43 FC:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfolded/myfir_dp_unfolded.vhd
+Z44 8C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfoldedPiped/myfir_dp_piped_unfolded_v2.vhd
+Z45 FC:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfoldedPiped/myfir_dp_piped_unfolded_v2.vhd
+l0
+L6
+VRS;OF6WSeDWKcC;_>anzQ3
+R6
+32
+R7
+R8
+!s100 7fk][^16c2KJ>C=UkG4Tg0
+Abeh
+R35
+R36
+R1
+R2
+DEx4 work 26 myfir_dp_piped_unfolded_v2 0 22 RS;OF6WSeDWKcC;_>anzQ3
+l124
+L36
+VAzmTjL]2m8nDl1jfa6z`]3
+R6
+32
+R39
+R40
+R41
+R42
+R7
+R8
+!s100 :nlh7eDm0g<5;DZEz`Ddo0
+Emyfir_dp_unfolded
+Z46 w1603969709
+R35
+R36
+R1
+R2
+R3
+Z47 8C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfolded/myfir_dp_unfolded.vhd
+Z48 FC:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfolded/myfir_dp_unfolded.vhd
 l0
 L8
 V<@clR?PC<mf?G4H[SFU=E3
@@ -317,8 +381,8 @@ R7
 R8
 !s100 fbH`z40j_oG9T9?^g;Zmh2
 Abeh
-R33
-R34
+R35
+R36
 R1
 R2
 DEx4 work 17 myfir_dp_unfolded 0 22 <@clR?PC<mf?G4H[SFU=E3
@@ -327,20 +391,20 @@ L36
 VlRiB1cJ>OSY]9P0SClMJf0
 R6
 32
-R37
-R38
 R39
 R40
+R41
+R42
 R7
 R8
 !s100 WR?Ad1SWVZ0Uzi1[AzcIB1
 Emyfir_piped_unfolded
-Z44 w1603971594
+Z49 w1603971594
 R1
 R2
 R3
-Z45 8C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfoldedPiped/myfir_piped_unfolded.vhd
-Z46 FC:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfoldedPiped/myfir_piped_unfolded.vhd
+Z50 8C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfoldedPiped/myfir_piped_unfolded.vhd
+Z51 FC:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfoldedPiped/myfir_piped_unfolded.vhd
 l0
 L6
 VhZIYO>TBYMQn0gR0ccMT60
@@ -363,13 +427,42 @@ R10
 R7
 R8
 !s100 fSe5:_GLUeQ0=NhAeUkzZ1
-Emyfir_unfolded
-R21
+Emyfir_piped_unfolded_v2
+Z52 w1604921478
 R1
 R2
 R3
-Z47 8C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfolded/myfir_unfolded.vhd
-Z48 FC:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfolded/myfir_unfolded.vhd
+Z53 8C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfoldedPiped/myfir_piped_unfolded_v2.vhd
+Z54 FC:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfoldedPiped/myfir_piped_unfolded_v2.vhd
+l0
+L6
+VJeY88V9g3]AkCPM]TCF=f2
+R6
+32
+R7
+R8
+!s100 h_=P5KYZg4<mWV90Plo2R2
+Abeh
+R1
+R2
+DEx4 work 23 myfir_piped_unfolded_v2 0 22 JeY88V9g3]AkCPM]TCF=f2
+l111
+L26
+V>F:moiHY5f:08^X]j`Od`1
+R6
+32
+R9
+R10
+R7
+R8
+!s100 W;cG_`b71HG@N=KCZa_oI2
+Emyfir_unfolded
+Z55 w1603908396
+R1
+R2
+R3
+Z56 8C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfolded/myfir_unfolded.vhd
+Z57 FC:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfolded/myfir_unfolded.vhd
 l0
 L6
 VTjOVdl4EM=Zc2d<VPM2@B3
@@ -397,8 +490,8 @@ R14
 R1
 R2
 R3
-Z49 8C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/commonComponents/N_counter.vhd
-Z50 FC:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/commonComponents/N_counter.vhd
+Z58 8C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/commonComponents/N_counter.vhd
+Z59 FC:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/commonComponents/N_counter.vhd
 l0
 L5
 VedSc]KU^^DFk@a2bC40Zo2
@@ -422,12 +515,12 @@ R7
 R8
 !s100 I8`c]HFQKCjQAHjHSZ>I>1
 Ereg
-Z51 w1603825001
+Z60 w1603825001
 R1
 R2
 R3
-Z52 8C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/commonComponents/reg.vhd
-Z53 FC:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/commonComponents/reg.vhd
+Z61 8C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/commonComponents/reg.vhd
+Z62 FC:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/commonComponents/reg.vhd
 l0
 L6
 VVXW2]jBGhXGEi]Fom@W[e0
@@ -451,12 +544,12 @@ R7
 R8
 !s100 MiTibhSHWf2O0^fGjKhnk3
 Etb_cnt_mod
-Z54 w1603384914
+Z63 w1603384914
 R1
 R2
 R3
-Z55 8C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfolded/tb_cnt_mod.vhd
-Z56 FC:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfolded/tb_cnt_mod.vhd
+Z64 8C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfolded/tb_cnt_mod.vhd
+Z65 FC:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfolded/tb_cnt_mod.vhd
 l0
 L5
 Vob03D]]SIlkjnJ>716zoQ0
@@ -480,72 +573,107 @@ R7
 R8
 !s100 iPWBQ1FTA@85OH5?=CW0D1
 Etb_myfir_piped_unfolded
-Z57 w1604392671
-Z58 DPx3 std 6 textio 0 22 m2KQDRRhmF833<<DjYdL70
-Z59 DPx4 ieee 16 std_logic_textio 0 22 8ONYdGiICLK<GeVc1o<IF0
+Z66 w1604392671
+Z67 DPx3 std 6 textio 0 22 m2KQDRRhmF833<<DjYdL70
+Z68 DPx4 ieee 16 std_logic_textio 0 22 8ONYdGiICLK<GeVc1o<IF0
 R1
 R2
 R3
-Z60 8C:\Users\Francesco\Documents\GitHub\Laboratori-ISA\Lab1\tb\myfir_piped_unfolded_tb.vhd
-Z61 FC:\Users\Francesco\Documents\GitHub\Laboratori-ISA\Lab1\tb\myfir_piped_unfolded_tb.vhd
+Z69 8C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/tb/myfir_piped_unfolded_tb.vhd
+Z70 FC:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/tb/myfir_piped_unfolded_tb.vhd
 l0
 L8
 VMm:@j0=j<Eg4FT>6D]H@T1
-!s100 am?z^kbHmL=0`0;6[T5zH2
 R6
 32
 R7
 R8
+!s100 am?z^kbHmL=0`0;6[T5zH2
 Abeh
-R58
-R59
+R67
+R68
 R1
 R2
-Z62 DEx4 work 23 tb_myfir_piped_unfolded 0 22 Mm:@j0=j<Eg4FT>6D]H@T1
+DEx4 work 23 tb_myfir_piped_unfolded 0 22 Mm:@j0=j<Eg4FT>6D]H@T1
 l52
 L11
 V6;UK2`fjBE:2@zNIKoCSA0
-!s100 W:C[HlfAB5g8[k]0OJlWV2
 R6
 32
-R37
-R38
-Z63 Mx2 4 ieee 16 std_logic_textio
-Z64 Mx1 3 std 6 textio
+R39
+R40
+Z71 Mx2 4 ieee 16 std_logic_textio
+Z72 Mx1 3 std 6 textio
 R7
 R8
-Etb_myfir_unfolded
-Z65 w1603972238
-R58
-R59
+!s100 W:C[HlfAB5g8[k]0OJlWV2
+Etb_myfir_piped_unfolded_v2
+Z73 w1604922410
+R67
+R68
 R1
 R2
 R3
-Z66 8C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/tb/myfir_unfolded_tb.vhd
-Z67 FC:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/tb/myfir_unfolded_tb.vhd
+Z74 8C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/tb/myfir_piped_unfolded_v2_tb.vhd
+Z75 FC:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/tb/myfir_piped_unfolded_v2_tb.vhd
+l0
+L8
+V_IUeNX^NMKjzAn[7^<H6_0
+R6
+32
+R7
+R8
+!s100 MEM2DZ;NQZ[HRd:V91AzD1
+Abeh
+R67
+R68
+R1
+R2
+DEx4 work 26 tb_myfir_piped_unfolded_v2 0 22 _IUeNX^NMKjzAn[7^<H6_0
+l52
+L11
+VO:e^Z5jLX_1iY^@5[_HZ92
+!s100 _GQV=cFldCPG31<0h6fXk3
+R6
+32
+R39
+R40
+R71
+R72
+R7
+R8
+Etb_myfir_unfolded
+Z76 w1603972238
+R67
+R68
+R1
+R2
+R3
+Z77 8C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/tb/myfir_unfolded_tb.vhd
+Z78 FC:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/tb/myfir_unfolded_tb.vhd
 l0
 L8
 VCNVQEM4LU=e6^P?obY;B41
+!s100 _JImoVN2KHB]lPeFD3[gF0
 R6
 32
 R7
 R8
-!s100 _JImoVN2KHB]lPeFD3[gF0
 Abeh
-R58
-R59
+R67
+R68
 R1
 R2
-DEx4 work 17 tb_myfir_unfolded 0 22 CNVQEM4LU=e6^P?obY;B41
+Z79 DEx4 work 17 tb_myfir_unfolded 0 22 CNVQEM4LU=e6^P?obY;B41
 l52
 L11
-Vn3eN;CjN4U6CJkNfTc?Eh3
+Z80 Vn3eN;CjN4U6CJkNfTc?Eh3
+Z81 !s100 ]kb=^Pj?2;I66hLiD3ziO0
 R6
 32
-R37
-R38
-R63
-R64
+R39
+R40
+R71
+R72
 R7
 R8
-!s100 ]kb=^Pj?2;I66hLiD3ziO0
