@@ -3,7 +3,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use ieee.std_logic_signed.all;
 ------------------------------------------------------------------------
-entity myfir_dp_piped_unfolded is
+entity myfir_dp_piped_unfolded_v2 is
 	port(
 	CLK: in std_logic;
 	RST_N: in std_logic;
@@ -25,15 +25,15 @@ entity myfir_dp_piped_unfolded is
 	H6: in signed(10 downto 0);
 	H7: in signed(10 downto 0);
 	H8: in signed(10 downto 0);
-	LOAD_RES2,LOAD_RES3,LOAD_RES4,LOAD_RES5 : in std_logic;
+	LOAD_RES2 : in std_logic;
 	--STATE0_DEBUG,STATE1_DEBUG,STATE2_DEBUG : out signed (10 downto 0); -- DEBUG SIGNALS
 	TC_CNT_IN : out std_logic;
 	TC_CNT_MUX : out std_logic;
 	DOUT: out signed(10 downto 0)
 		);
-end entity myfir_dp_piped_unfolded;
+end entity myfir_dp_piped_unfolded_v2;
 ------------------------------------------------------------------------
-architecture beh of myfir_dp_piped_unfolded is
+architecture beh of myfir_dp_piped_unfolded_v2 is
 ------------------------------------------------------------------------
 component REG IS
 GENERIC(
@@ -245,164 +245,26 @@ pipe1_state2_gen : for i in 0 to 8 generate
 end generate pipe1_state2_gen;		
 
 -----------------------------------------------------------------------------------------------------
--- 2nd PIPE --
-pipe2_evaluation_process : process (state0_pipe1_out,state1_pipe1_out,state2_pipe1_out, coeff)
-variable tmp0 : tmp_vect_type_pipe2;
-variable tmp1 : tmp_vect_type_pipe2;
-variable tmp2 : tmp_vect_type_pipe2;
-variable i,k: integer := 0;
+--2nd PIPE
+
+pipe2_evaluation_process : process (state0_pipe1_out,state1_pipe1_out,state2_pipe1_out)
+	variable tmp_res0, tmp_res1, tmp_res2 : signed (7 downto 0);
 begin
-
-tmp0 := (others => (others => '0'));
-tmp1 := (others => (others => '0'));
-tmp2 := (others => (others => '0'));
-
-i := 0;
-k := 0;
--- partial results : sum --
-	while (i < 7) loop
-        tmp0(k) := (state0_pipe1_out(i)+state0_pipe1_out(i+1));
-        tmp1(k) := (state1_pipe1_out(i)+state1_pipe1_out(i+1));
-        tmp2(k) := (state2_pipe1_out(i)+state2_pipe1_out(i+1));
-        i := i + 2;
-        k := k + 1;
-    end loop;
-    tmp0(4) := (state0_pipe1_out(8));
-    tmp1(4) := (state1_pipe1_out(8));
-    tmp2(4) := (state2_pipe1_out(8));
-state0_pipe2_in <= tmp0;
-state1_pipe2_in <= tmp1;
-state2_pipe2_in <= tmp2;
-end process pipe2_evaluation_process;
-
--- pipe2 state 0 reg generate -- N.B.] ENABLE WITH LOAD_RES2
-    pipe2_state0_gen : for i in 0 to 4 generate 
-        pipe2_state0 : reg port map(state0_pipe2_in(i), state0_pipe2_out(i), clk, rst_n, load_res2);
-    end generate pipe2_state0_gen;	
-    
--- pipe2 state 1 reg generate -- N.B.] ENABLE WITH LOAD_RES2
-pipe2_state1_gen : for i in 0 to 4 generate 
-    pipe2_state1 : reg port map(state1_pipe2_in(i), state1_pipe2_out(i), clk, rst_n, load_res2);
-end generate pipe2_state1_gen;		
-
--- pipe2 state 2 reg generate -- N.B.] ENABLE WITH LOAD_RES2
-pipe2_state2_gen : for i in 0 to 4 generate 
-    pipe2_state2 : reg port map(state2_pipe2_in(i), state2_pipe2_out(i), clk, rst_n, load_res2);
-end generate pipe2_state2_gen;		
-
-------------------------------------------------------------------------
--- 3rd PIPE --
-
-pipe3_evaluation_process : process (state0_pipe2_out,state1_pipe2_out,state2_pipe2_out,coeff)
-variable tmp0 : tmp_vect_type_pipe3;
-variable tmp1 : tmp_vect_type_pipe3;
-variable tmp2 : tmp_vect_type_pipe3;
-variable i,k : integer := 0;
-begin
-
-tmp0 := (others => (others => '0'));
-tmp1 := (others => (others => '0'));
-tmp2 := (others => (others => '0'));
-
-i := 0;
-k := 0;
--- partial results : sum --
-	while (i < 3) loop
-        tmp0(k) := state0_pipe2_out(i)+state0_pipe2_out(i+1);
-        tmp1(k) := state1_pipe2_out(i)+state1_pipe2_out(i+1);
-        tmp2(k) := state2_pipe2_out(i)+state2_pipe2_out(i+1);
-		i := i + 2;
-		k := k + 1;
-    end loop;
-    tmp0(2) := state0_pipe2_out(4);
-    tmp1(2) := state1_pipe2_out(4);
-    tmp2(2) := state2_pipe2_out(4);
-state0_pipe3_in <= tmp0;
-state1_pipe3_in <= tmp1;
-state2_pipe3_in <= tmp2;
-end process pipe3_evaluation_process;
-
--- pipe3 state 0 reg generate -- N.B.] ENABLE WITH LOAD_RES2
-    pipe3_state0_gen : for i in 0 to 2 generate 
-        pipe3_state0 : reg port map(state0_pipe3_in(i), state0_pipe3_out(i), clk, rst_n, load_res3);
-    end generate pipe3_state0_gen;	
-    
--- pipe3 state 1 reg generate -- N.B.] ENABLE WITH LOAD_RES2
-pipe3_state1_gen : for i in 0 to 2 generate 
-    pipe3_state1 : reg port map(state1_pipe3_in(i), state1_pipe3_out(i), clk, rst_n, load_res3);
-end generate pipe3_state1_gen;		
-
--- pipe3 state 2 reg generate -- N.B.] ENABLE WITH LOAD_RES2
-pipe3_state2_gen : for i in 0 to 2 generate 
-    pipe3_state2 : reg port map(state2_pipe3_in(i), state2_pipe3_out(i), clk, rst_n, load_res3);
-end generate pipe3_state2_gen;		
-
-
-------------------------------------------------------------------------
--- 4th PIPE --
-
-pipe4_evaluation_process : process (state0_pipe3_out,state1_pipe3_out,state2_pipe3_out,coeff)
-variable tmp0 : tmp_vect_type_pipe4;
-variable tmp1 : tmp_vect_type_pipe4;
-variable tmp2 : tmp_vect_type_pipe4;
-begin
-
-tmp0 := (others => (others => '0'));
-tmp1 := (others => (others => '0'));
-tmp2 := (others => (others => '0'));
-
--- partial results : sum --
-    tmp0(0) := state0_pipe3_out(0)+state0_pipe3_out(1);
-    tmp1(0) := state1_pipe3_out(0)+state1_pipe3_out(1);
-    tmp2(0) := state2_pipe3_out(0)+state2_pipe3_out(1);
-    tmp0(1) := state0_pipe3_out(2);
-    tmp1(1) := state1_pipe3_out(2);
-    tmp2(1) := state2_pipe3_out(2);
-state0_pipe4_in <= tmp0;
-state1_pipe4_in <= tmp1;
-state2_pipe4_in <= tmp2;
-end process pipe4_evaluation_process;
-
--- pipe3 state 0 reg generate -- N.B.] ENABLE WITH LOAD_RES4
-    pipe4_state0_gen : for i in 0 to 1 generate 
-        pipe4_state0 : reg port map(state0_pipe4_in(i), state0_pipe4_out(i), clk, rst_n, load_res4);
-    end generate pipe4_state0_gen;	
-    
--- pipe3 state 1 reg generate -- N.B.] ENABLE WITH LOAD_RES4
-pipe4_state1_gen : for i in 0 to 1 generate 
-    pipe4_state1 : reg port map(state1_pipe4_in(i), state1_pipe4_out(i), clk, rst_n, load_res4);
-end generate pipe4_state1_gen;		
-
--- pipe3 state 2 reg generate -- N.B.] ENABLE WITH LOAD_RES4
-pipe4_state2_gen : for i in 0 to 1 generate 
-    pipe4_state2 : reg port map(state2_pipe4_in(i), state2_pipe4_out(i), clk, rst_n, load_res4);
-end generate pipe4_state2_gen;		
-
-
-------------------------------------------------------------------------
--- 5th PIPE --
-
-pipe5_evaluation_process : process (state0_pipe4_out,state1_pipe4_out,state2_pipe4_out,coeff)
-variable tmp0 : signed (7 downto 0);
-variable tmp1 : signed (7 downto 0);
-variable tmp2 : signed (7 downto 0);
-begin
-
-tmp0 := (others => '0');
-tmp1 := (others => '0');
-tmp2 := (others => '0');
-
--- partial results : sum --
-    tmp0 := state0_pipe4_out(0)+state0_pipe4_out(1);
-    tmp1 := state1_pipe4_out(0)+state1_pipe4_out(1);
-    tmp2 := state2_pipe4_out(0)+state2_pipe4_out(1);
-out_vect(0) <= tmp0;
-out_vect(1) <= tmp1;
-out_vect(2) <= tmp2;
-end process pipe5_evaluation_process;
+	tmp_res0 := (others => '0');
+	tmp_res1 := (others => '0');
+	tmp_res2 := (others => '0');
+	for i in 0 to 8 loop
+		tmp_res0 := tmp_res0 + state0_pipe1_in(i);
+		tmp_res1 := tmp_res1 + state1_pipe1_in(i);
+		tmp_res2 := tmp_res2 + state2_pipe1_in(i);
+	end loop;
+	out_vect(0) <= tmp_res0;
+	out_vect(1) <= tmp_res1;
+	out_vect(2) <= tmp_res2;
+end process;
 
 result_reg_gen : for i in 0 to 2 generate 
-    result_reg : reg port map(out_vect(i), out_mux_in(i), clk, rst_n, load_res5);
+    result_reg : reg port map(out_vect(i), out_mux_in(i), clk, rst_n, load_res2);
 end generate result_reg_gen;		
 
 end architecture;
