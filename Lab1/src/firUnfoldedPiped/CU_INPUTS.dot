@@ -1,0 +1,45 @@
+ digraph CU_INPUTS{
+    graph [pad="", nodesep="0.4", ranksep="0.5"];
+    rankdir=BT;
+    RST [shape=box];
+    IDLE [shape=circle];
+    LOAD_RES [shape=circle];
+    LOAD_BUFF [shape=circle];
+    LOAD_BUFF_RES [shape=circle];
+    LOAD_BUFF_STATE [shape=circle];
+    LOAD_STATE_RES [shape=circle];
+    LOAD_STATE [shape=circle];
+    LOAD_BUFF_STATE_RES [shape=circle];
+    RST -> IDLE;
+    IDLE -> LOAD_BUFF [label = "VIN = 1\nTC = 0" ];
+    LOAD_BUFF -> LOAD_BUFF_STATE_RES [label = "VIN = 1\nTC = 1" ];
+    LOAD_BUFF -> LOAD_BUFF_STATE [label = "VIN = 1\nTC = 0" ];
+    LOAD_BUFF -> LOAD_STATE_RES [label = "VIN = 0\nTC = 1" ];
+    LOAD_BUFF -> LOAD_STATE [label = "VIN = 0\nTC = 0" ];
+    IDLE -> LOAD_RES [label = "VIN = 0\nTC = 1" ];
+    IDLE -> LOAD_BUFF_RES [label = "VIN = 1\nTC = 1" ];
+    IDLE -> IDLE [label = "VIN = 0\nTC = 0" ];
+    LOAD_RES -> LOAD_BUFF [label = "VIN = 1" ];
+    LOAD_RES -> IDLE [label = "VIN = 0" ];
+    LOAD_BUFF_RES -> LOAD_BUFF_STATE [label = "VIN = 1" ];
+    LOAD_BUFF_RES -> LOAD_STATE [label = "VIN = 0" ];
+    LOAD_STATE -> LOAD_BUFF_RES [label = "VIN = 1\nTC = 1" ];
+    LOAD_STATE -> LOAD_BUFF [label = "VIN = 1\nTC = 0" ];
+    LOAD_STATE -> LOAD_RES [label = "VIN = 0\nTC = 1" ];
+    LOAD_STATE -> IDLE [label = "VIN = 0\nTC = 0" ];
+    LOAD_STATE_RES -> IDLE [label = "VIN = 0" ];
+    LOAD_STATE_RES -> LOAD_BUFF [label = "VIN = 1" ];
+    LOAD_BUFF_STATE -> LOAD_BUFF_STATE_RES [label = "VIN = 1\nTC = 1" ];
+    LOAD_BUFF_STATE -> LOAD_BUFF_STATE [label = "VIN = 1\nTC = 0" ];
+    LOAD_BUFF_STATE -> LOAD_STATE_RES [label = "  VIN = 0\nTC = 1" ];
+    LOAD_BUFF_STATE -> LOAD_STATE [label = "VIN = 0\nTC = 0" ];
+    LOAD_BUFF_STATE_RES -> LOAD_STATE [label = "VIN = 0" ];
+    LOAD_BUFF_STATE_RES -> LOAD_BUFF_STATE [label = "VIN = 1" ];
+
+   subgraph sub2 {
+    rank="max"
+    IDLE
+    RST
+}
+
+}

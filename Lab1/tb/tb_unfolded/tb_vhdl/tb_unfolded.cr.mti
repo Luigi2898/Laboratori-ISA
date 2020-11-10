@@ -106,13 +106,13 @@ Model Technology ModelSim ALTERA vcom 6.6d Compiler 2010.11 Nov  2 2010
 -- Compiling entity ff
 -- Compiling architecture beh of ff
 
-} {} {}} C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/commonComponents/N_counter.vhd {1 {vcom -work work -2002 -explicit C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/commonComponents/N_counter.vhd
+} {} {}} C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfoldedPiped/myfir_piped_unfolded.vhd {1 {vcom -work work -2002 -explicit C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfoldedPiped/myfir_piped_unfolded.vhd
 Model Technology ModelSim ALTERA vcom 6.6d Compiler 2010.11 Nov  2 2010
 -- Loading package standard
 -- Loading package std_logic_1164
 -- Loading package numeric_std
--- Compiling entity n_counter
--- Compiling architecture behavioral of n_counter
+-- Compiling entity myfir_piped_unfolded
+-- Compiling architecture beh of myfir_piped_unfolded
 
 } {} {}} C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/commonComponents/mux3xNto1xN.vhd {1 {vcom -work work -2002 -explicit C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/commonComponents/mux3xNto1xN.vhd
 Model Technology ModelSim ALTERA vcom 6.6d Compiler 2010.11 Nov  2 2010
@@ -122,13 +122,13 @@ Model Technology ModelSim ALTERA vcom 6.6d Compiler 2010.11 Nov  2 2010
 -- Compiling entity mux3xnto1xn
 -- Compiling architecture beh of mux3xnto1xn
 
-} {} {}} C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfoldedPiped/myfir_piped_unfolded.vhd {1 {vcom -work work -2002 -explicit C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfoldedPiped/myfir_piped_unfolded.vhd
+} {} {}} C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/commonComponents/N_counter.vhd {1 {vcom -work work -2002 -explicit C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/commonComponents/N_counter.vhd
 Model Technology ModelSim ALTERA vcom 6.6d Compiler 2010.11 Nov  2 2010
 -- Loading package standard
 -- Loading package std_logic_1164
 -- Loading package numeric_std
--- Compiling entity myfir_piped_unfolded
--- Compiling architecture beh of myfir_piped_unfolded
+-- Compiling entity n_counter
+-- Compiling architecture behavioral of n_counter
 
 } {} {}} C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/commonComponents/reg.vhd {1 {vcom -work work -2002 -explicit C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/commonComponents/reg.vhd
 Model Technology ModelSim ALTERA vcom 6.6d Compiler 2010.11 Nov  2 2010
@@ -138,16 +138,13 @@ Model Technology ModelSim ALTERA vcom 6.6d Compiler 2010.11 Nov  2 2010
 -- Compiling entity reg
 -- Compiling architecture beh of reg
 
-} {} {}} C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfoldedPiped/myfir_dp_piped_unfolded_v2.vhd {2 {vcom -work work -2002 -explicit C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfoldedPiped/myfir_dp_piped_unfolded_v2.vhd
+} {} {}} C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfoldedPiped/myfir_cupipe_unfolded_v2.vhd {1 {vcom -work work -2002 -explicit C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfoldedPiped/myfir_cupipe_unfolded_v2.vhd
 Model Technology ModelSim ALTERA vcom 6.6d Compiler 2010.11 Nov  2 2010
 -- Loading package standard
 -- Loading package std_logic_1164
 -- Loading package numeric_std
--- Loading package std_logic_arith
--- Loading package std_logic_signed
--- Compiling entity myfir_dp_piped_unfolded_v2
--- Compiling architecture beh of myfir_dp_piped_unfolded_v2
-** Warning: [4] C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfoldedPiped/myfir_dp_piped_unfolded_v2.vhd(96): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+-- Compiling entity myfir_cupipe_unfolded_v2
+-- Compiling architecture beh of myfir_cupipe_unfolded_v2
 
 } {} {}} C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfoldedPiped/myfir_dp_piped_unfolded.vhd {2 {vcom -work work -2002 -explicit C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfoldedPiped/myfir_dp_piped_unfolded.vhd
 Model Technology ModelSim ALTERA vcom 6.6d Compiler 2010.11 Nov  2 2010
@@ -159,13 +156,5 @@ Model Technology ModelSim ALTERA vcom 6.6d Compiler 2010.11 Nov  2 2010
 -- Compiling entity myfir_dp_piped_unfolded
 -- Compiling architecture beh of myfir_dp_piped_unfolded
 ** Warning: [4] C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfoldedPiped/myfir_dp_piped_unfolded.vhd(96): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-
-} {} {}} C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfoldedPiped/myfir_cupipe_unfolded_v2.vhd {1 {vcom -work work -2002 -explicit C:/Users/Francesco/Documents/GitHub/Laboratori-ISA/Lab1/src/firUnfoldedPiped/myfir_cupipe_unfolded_v2.vhd
-Model Technology ModelSim ALTERA vcom 6.6d Compiler 2010.11 Nov  2 2010
--- Loading package standard
--- Loading package std_logic_1164
--- Loading package numeric_std
--- Compiling entity myfir_cupipe_unfolded_v2
--- Compiling architecture beh of myfir_cupipe_unfolded_v2
 
 } {} {}}

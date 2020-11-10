@@ -24,9 +24,9 @@ begin
 
   CNT_PROCESS : process (clk, rstn, tc_ack) is
 
-    variable flag : std_logic := '1';
-    variable tcv  : std_logic := '0';
-    variable cnt  : unsigned (N downto 0) := (others => '0');
+    variable flag : std_logic;
+    variable tcv  : std_logic;
+    variable cnt  : unsigned (N downto 0);
 
   begin
 
