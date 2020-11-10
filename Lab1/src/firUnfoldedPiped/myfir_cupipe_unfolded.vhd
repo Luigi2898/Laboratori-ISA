@@ -2,17 +2,17 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.all;
 use IEEE.NUMERIC_STD.all;
 
-entity myfir_cupipe_unfolded_v2 is
+entity myfir_cupipe_unfolded is
   port (
     clk : in std_logic;
     rst_n : in std_logic;
     start_pipe : in std_logic;
     load_res2 : out std_logic;
-    start_out : buffer std_logic
+    start_out : inout std_logic
   ) ;
-end entity myfir_cupipe_unfolded_v2;
+end entity myfir_cupipe_unfolded;
 
-architecture beh of myfir_cupipe_unfolded_v2 is
+architecture beh of myfir_cupipe_unfolded is
 
   component FF is
     port (

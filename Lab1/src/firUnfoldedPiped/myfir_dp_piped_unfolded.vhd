@@ -3,7 +3,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use ieee.std_logic_signed.all;
 ------------------------------------------------------------------------
-entity myfir_dp_piped_unfolded_v2 is
+entity myfir_dp_piped_unfolded is
 	port(
 	CLK: in std_logic;
 	RST_N: in std_logic;
@@ -31,9 +31,9 @@ entity myfir_dp_piped_unfolded_v2 is
 	TC_CNT_MUX : out std_logic;
 	DOUT: out signed(10 downto 0)
 		);
-end entity myfir_dp_piped_unfolded_v2;
+end entity myfir_dp_piped_unfolded;
 ------------------------------------------------------------------------
-architecture beh of myfir_dp_piped_unfolded_v2 is
+architecture beh of myfir_dp_piped_unfolded is
 ------------------------------------------------------------------------
 component REG IS
 GENERIC(
@@ -254,9 +254,9 @@ begin
 	tmp_res1 := (others => '0');
 	tmp_res2 := (others => '0');
 	for i in 0 to 8 loop
-		tmp_res0 := tmp_res0 + state0_pipe1_in(i);
-		tmp_res1 := tmp_res1 + state1_pipe1_in(i);
-		tmp_res2 := tmp_res2 + state2_pipe1_in(i);
+		tmp_res0 := tmp_res0 + state0_pipe1_out(i);
+		tmp_res1 := tmp_res1 + state1_pipe1_out(i);
+		tmp_res2 := tmp_res2 + state2_pipe1_out(i);
 	end loop;
 	out_vect(0) <= tmp_res0;
 	out_vect(1) <= tmp_res1;

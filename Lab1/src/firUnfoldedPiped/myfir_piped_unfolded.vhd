@@ -3,7 +3,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.all;
 use IEEE.NUMERIC_STD.all;
 
-entity MYFIR_PIPED_UNFOLDED_V2 is
+entity MYFIR_PIPED_UNFOLDED is
 port (
   CLK                                      : in    std_logic;
   RST_N                                    : in    std_logic;
@@ -21,11 +21,11 @@ port (
   DOUT                                     : out   signed (10 downto 0);
   VOUT                                     : out   std_logic
 );
-end entity MYFIR_PIPED_UNFOLDED_V2;
+end entity MYFIR_PIPED_UNFOLDED;
 
-architecture BEH of MYFIR_PIPED_UNFOLDED_V2 is
+architecture BEH of MYFIR_PIPED_UNFOLDED is
 
-    component myfir_dp_piped_unfolded_v2 is
+    component myfir_dp_piped_unfolded is
         port(
         CLK: in std_logic;
         RST_N: in std_logic;
@@ -53,7 +53,7 @@ architecture BEH of MYFIR_PIPED_UNFOLDED_V2 is
         TC_CNT_MUX : out std_logic;
         DOUT: out signed(10 downto 0)
             );
-    end component myfir_dp_piped_unfolded_v2;
+    end component myfir_dp_piped_unfolded;
 
 component MYFIR_CUINPUTS_UNFOLDED is
   port (
@@ -71,15 +71,15 @@ component MYFIR_CUINPUTS_UNFOLDED is
   );
 end component myfir_cuinputs_unfolded;
 
-component myfir_cupipe_unfolded_v2 is
+component myfir_cupipe_unfolded is
     port (
       clk : in std_logic;
       rst_n : in std_logic;
       start_pipe : in std_logic;
       load_res2 : out std_logic;
-      start_out : out std_logic
+      start_out : inout std_logic
     ) ;
-  end component myfir_cupipe_unfolded_v2;
+  end component myfir_cupipe_unfolded;
 
 component MYFIR_CUOUTPUTS_UNFOLDED is
   port (
@@ -110,7 +110,7 @@ signal load_res2  : std_logic;
 
 begin
 
-DATAPATH : myfir_dp_piped_unfolded_v2
+DATAPATH : myfir_dp_piped_unfolded
   port map (
   clk, rst_n, DIN, load_buff, state_load, buff_on, load_out,
   load_res, tc_ack_in, en_cnt_mux, en_cnt_in, H0, H1, H2, H3,
@@ -121,7 +121,7 @@ CU_INPUTS : MYFIR_CUINPUTS_UNFOLDED
   clk, rst_n, tc_cnt_in, VIN, load_buff, state_load, en_cnt_in, buff_on,
   tc_ack_in, load_res, start_pipe);
 
-CU_PIPE : myfir_cupipe_unfolded_v2
+CU_PIPE : myfir_cupipe_unfolded
 port map (clk,rst_n,start_pipe,load_res2,start_out);
 
 CU_OUTPUTS : MYFIR_CUOUTPUTS_UNFOLDED
