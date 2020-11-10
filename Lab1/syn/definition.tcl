@@ -69,9 +69,9 @@ proc synth {ent dir odir per CKG} {
     report_power -verbose > synthReport/$gated/$odir/power-verbose.txt
     ungroup -all -flatten
     change_names -hierarchy -rules verilog
-    write_sdf netlist/$gated/$odir/$ent.sdf
-    write -f verilog -hierarchy -output netlist/$gated/$odir/$ent.v
-    write_sdc netlist/$gated/$odir/$ent.sdc
+    write_sdf netlist/$gated/$odir/myfir.sdf
+    write -f verilog -hierarchy -output netlist/$gated/$odir/myfir.v
+    write_sdc netlist/$gated/$odir/myfir.sdc
     write -hierarchy -format ddc -output savings/$gated/$odir/$ent.ddc
     set pathW [get_timing_paths -nworst 1]
     set sl [ get_attribute $pathW slack ]

@@ -4,7 +4,7 @@
 		
 
 
-module tb_fir_unfolded_piped ();
+module tb_fir ();
 
 
 
@@ -66,8 +66,8 @@ end
 	 	       .H8(H8_i),
    	           .END_SIM(END_SIM_i));
 
-   myfir_unfolded_piped UUT(.CLK(CLK_i),
-	                  .RST_n(RST_n_i),
+   MYFIR_PIPED_UNFOLDED UUT(.CLK(CLK_i),
+	                  .RST_N(RST_n_i),
 	                  .DIN(DIN_i),
                       .VIN(VIN_i),
 			          .H0(H0_i),
