@@ -52,7 +52,7 @@ case $response in
     ;;  
 esac
 
-dir="../OldRes/res_$(date +%F)"_"$(date +%H)"-"$(date +%M)"-"$(date +%S)_synAndBack"
+dir="./OldRes/res_$(date +%F)"_"$(date +%H)"-"$(date +%M)"-"$(date +%S)_synAndBack"
 mkdir $dir
 cp -r ./syn/synthReport $dir 
 cp -r ./syn/netlist $dir
