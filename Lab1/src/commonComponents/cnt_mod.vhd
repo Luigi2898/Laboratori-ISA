@@ -20,9 +20,20 @@ end entity CNT_MOD;
 
 architecture BEH of CNT_MOD is
 
+  component SRLATCH is
+    port (
+      S   : in std_logic;
+      r   : in std_logic;
+      q   : buffer std_logic
+    );
+  end component;
+
+  signal tc_internal : std_logic;
+  signal rst_internal : std_logic;
+
 begin
 
-  CNT_PROCESS : process (clk, rstn, tc_ack) is
+  CNT_PROCESS : process (clk, rstn) is
 
     variable flag : std_logic;
     variable tcv  : std_logic;
@@ -33,30 +44,24 @@ begin
     if (rstn = '0') then
       cnt  := (others => '0');
       tcv  := '0';
-      flag := '1';
     elsif (clk'event and clk = '1') then
       if (en_cnt = '1') then
         cnt := cnt + 1;
         if (cnt = MODULE + 1) then
           cnt := to_unsigned(1,N+1);
+          tcv := '0';
+        elsif (cnt = MODULE) then
+          tcv := '1';
+        else
+          tcv := '0';
         end if;
-      end if;
+        end if;
+      tcv := tcv and not (tc_ack);
     end if;
 
-    if (cnt = MODULE) then
-      tcv := '1';
-    else
-      tcv  := '0';
-      flag := '1';
-    end if;
-
-    if (tc_ack = '1') then
-      flag := '0';
-    end if;
-
-    tc      <= tcv and flag;
     cnt_out <= cnt(N-1 downto 0);
-
+    tc <= tcv;
   end process CNT_PROCESS;
+
 
 end architecture BEH;

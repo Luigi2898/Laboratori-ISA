@@ -90,7 +90,7 @@ begin
 
   DATA_GEN_PROCESS : process
 
-    file     inFile : text is in "C:\Users\Francesco\Documents\GitHub\Laboratori-ISA\Lab1\tb\tb_unfolded\tb_vhdl\matlab\input_samples_random.txt";
+    file     inFile : text is in "C:\Users\Francesco\Documents\GitHub\Laboratori-ISA\Lab1\tb\tb_unfolded\tb_vhdl\matlab\input_samples_straight.txt";
     variable l      : line;
     variable n      : std_logic_vector(11 downto 0);
     variable cnt_in : integer := 0;
