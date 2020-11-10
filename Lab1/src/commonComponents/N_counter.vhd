@@ -21,7 +21,7 @@ architecture BEHAVIORAL of N_COUNTER is
 begin
 
 	CNT : process (CLK)
-		variable CNT_OUTv : integer := 0;
+		variable CNT_OUTv : integer;
 	begin
 
 		if (CLK'EVENT and CLK = '1') then
