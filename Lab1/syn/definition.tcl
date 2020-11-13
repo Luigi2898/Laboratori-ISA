@@ -53,7 +53,12 @@ proc synth {ent dir odir per CKG} {
     set_output_delay 0.5 -max -clock MY_CLK [all_outputs]
     set OLOAD [load_of NangateOpenCellLibrary/BUF_X4/A]
     set_load $OLOAD [all_outputs]
-    catch {compile -exact_map > ./logs/$gated/$odir/compilation.log} compo
+    if { $CKG == 1 } {
+	catch {compile -exact_map -gate_clock > ./logs/$gated/$odir/compilation.log} compo
+    } else {
+	catch {compile -exact_map > ./logs/$gated/$odir/compilation.log} compo
+    }
+    
     if { $compo == ""} {
         puts "Compilazione di ../src/$dir avvenuta con successo"
     } else {

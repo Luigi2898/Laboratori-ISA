@@ -115,7 +115,7 @@ cp ./netlist/$1/$2/* ./netlistToBack
 vcd2saif -input ../vcd/$1/$2/myfir_synNC.vcd -output ../saif/$1/$2/myfir_syn.saif
 cp ../saif/$1/$2/myfir_syn.saif ./netlistToBack
 dc_shell-xg-t -f backSynNC.tcl
-mv ./synthReportAfterBack/*.txt ./synthReportAfterBack/$1/$2
+mv ./synthReportAfterBack/*.txt ./synthReportAfterBack/$1/$3
 cd ..
 
 return

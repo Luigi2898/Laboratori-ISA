@@ -1,0 +1,166 @@
+ 
+****************************************
+Report : power
+        -hier
+        -analysis_effort low
+Design : MYFIR_UNFOLDED
+Version: O-2018.06-SP4
+Date   : Thu Nov 12 14:02:37 2020
+****************************************
+
+
+Library(s) Used:
+
+    NangateOpenCellLibrary (File: /software/dk/nangate45/synopsys/NangateOpenCellLibrary_typical_ecsm_nowlm.db)
+
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+Design        Wire Load Model            Library
+------------------------------------------------
+MYFIR_UNFOLDED         5K_hvratio_1_1    NangateOpenCellLibrary
+
+
+Global Operating Voltage = 1.1  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000ff
+    Time Units = 1ns
+    Dynamic Power Units = 1uW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+--------------------------------------------------------------------------------
+                                       Switch   Int      Leak     Total
+Hierarchy                              Power    Power    Power    Power    %
+--------------------------------------------------------------------------------
+MYFIR_UNFOLDED                          175.743  203.212 1.63e+05  541.839 100.0
+  CU_OUTPUTS (MYFIR_CUOUTPUTS_UNFOLDED)
+                                          0.203    1.993  523.411    2.719   0.5
+    DELAY_REG (FF)                     2.09e-02    0.632  131.618    0.785   0.1
+  CU_INPUTS (MYFIR_CUINPUTS_UNFOLDED)     0.934    3.127 1.14e+03    5.203   1.0
+  DATAPATH (MYFIR_DP_UNFOLDED)          174.605  198.093 1.61e+05  533.916  98.5
+    add_0_root_add_0_root_add_264_I9_I1 (MYFIR_DP_UNFOLDED_DW01_add_0)
+                                          0.355    1.010  432.269    1.797   0.3
+    add_1_root_add_0_root_add_264_I9_I1 (MYFIR_DP_UNFOLDED_DW01_add_1)
+                                          0.540    0.932  432.319    1.904   0.4
+    add_5_root_add_0_root_add_264_I9_I1 (MYFIR_DP_UNFOLDED_DW01_add_2)
+                                          0.345    0.555  428.192    1.329   0.2
+    add_3_root_add_0_root_add_264_I9_I1 (MYFIR_DP_UNFOLDED_DW01_add_3)
+                                          0.388    0.632  425.352    1.445   0.3
+    add_4_root_add_0_root_add_264_I9_I1 (MYFIR_DP_UNFOLDED_DW01_add_4)
+                                          0.257    0.436  418.781    1.113   0.2
+    mult_263_I9_I1 (MYFIR_DP_UNFOLDED_DW_mult_tc_0)
+                                          5.544    5.190 5.07e+03   15.804   2.9
+    mult_263_I7_I1 (MYFIR_DP_UNFOLDED_DW_mult_tc_1)
+                                          5.686    5.383 5.07e+03   16.138   3.0
+    add_2_root_add_0_root_add_264_I9_I1 (MYFIR_DP_UNFOLDED_DW01_add_5)
+                                          0.422    0.724  425.621    1.572   0.3
+    add_6_root_add_0_root_add_264_I9_I1 (MYFIR_DP_UNFOLDED_DW01_add_6)
+                                          0.321    0.529  428.901    1.279   0.2
+    mult_263_I8_I1 (MYFIR_DP_UNFOLDED_DW_mult_tc_2)
+                                          5.850    5.580 5.06e+03   16.493   3.0
+    mult_263_I5_I1 (MYFIR_DP_UNFOLDED_DW_mult_tc_3)
+                                          5.887    5.624 5.06e+03   16.575   3.1
+    add_7_root_add_0_root_add_264_I9_I1 (MYFIR_DP_UNFOLDED_DW01_add_7)
+                                          0.263    0.446  419.192    1.128   0.2
+    mult_263_I6_I1 (MYFIR_DP_UNFOLDED_DW_mult_tc_4)
+                                          5.527    5.184 5.07e+03   15.779   2.9
+    mult_263_I4_I1 (MYFIR_DP_UNFOLDED_DW_mult_tc_5)
+                                          5.727    5.417 5.06e+03   16.209   3.0
+    mult_263_I3_I1 (MYFIR_DP_UNFOLDED_DW_mult_tc_6)
+                                          5.992    5.771 5.06e+03   16.827   3.1
+    mult_263_I2_I1 (MYFIR_DP_UNFOLDED_DW_mult_tc_7)
+                                          5.850    5.591 5.06e+03   16.504   3.0
+    mult_263 (MYFIR_DP_UNFOLDED_DW_mult_tc_8)
+                                          5.672    5.348 5.07e+03   16.086   3.0
+    add_0_root_add_0_root_add_264_I9_I2 (MYFIR_DP_UNFOLDED_DW01_add_8)
+                                          0.357    1.015  432.276    1.804   0.3
+    add_1_root_add_0_root_add_264_I9_I2 (MYFIR_DP_UNFOLDED_DW01_add_9)
+                                          0.539    0.931  432.064    1.902   0.4
+    add_5_root_add_0_root_add_264_I9_I2 (MYFIR_DP_UNFOLDED_DW01_add_10)
+                                          0.323    0.525  425.227    1.273   0.2
+    add_3_root_add_0_root_add_264_I9_I2 (MYFIR_DP_UNFOLDED_DW01_add_11)
+                                          0.372    0.597  421.714    1.392   0.3
+    add_4_root_add_0_root_add_264_I9_I2 (MYFIR_DP_UNFOLDED_DW01_add_12)
+                                          0.307    0.522  425.286    1.255   0.2
+    mult_263_I9_I2 (MYFIR_DP_UNFOLDED_DW_mult_tc_9)
+                                          5.691    5.370 5.07e+03   16.129   3.0
+    mult_263_I7_I2 (MYFIR_DP_UNFOLDED_DW_mult_tc_10)
+                                          5.847    5.589 5.07e+03   16.502   3.0
+    add_2_root_add_0_root_add_264_I9_I2 (MYFIR_DP_UNFOLDED_DW01_add_13)
+                                          0.475    0.815  432.192    1.722   0.3
+    add_6_root_add_0_root_add_264_I9_I2 (MYFIR_DP_UNFOLDED_DW01_add_14)
+                                          0.301    0.480  424.198    1.205   0.2
+    mult_263_I8_I2 (MYFIR_DP_UNFOLDED_DW_mult_tc_11)
+                                          5.555    5.202 5.07e+03   15.825   2.9
+    mult_263_I5_I2 (MYFIR_DP_UNFOLDED_DW_mult_tc_12)
+                                          5.577    5.228 5.07e+03   15.874   2.9
+    add_7_root_add_0_root_add_264_I9_I2 (MYFIR_DP_UNFOLDED_DW01_add_15)
+                                          0.309    0.524  425.265    1.258   0.2
+    mult_263_I6_I2 (MYFIR_DP_UNFOLDED_DW_mult_tc_13)
+                                          5.679    5.378 5.07e+03   16.124   3.0
+    mult_263_I4_I2 (MYFIR_DP_UNFOLDED_DW_mult_tc_14)
+                                          5.894    5.632 5.06e+03   16.589   3.1
+    mult_263_I3_I2 (MYFIR_DP_UNFOLDED_DW_mult_tc_15)
+                                          5.687    5.379 5.07e+03   16.135   3.0
+    mult_263_I2_I2 (MYFIR_DP_UNFOLDED_DW_mult_tc_16)
+                                          6.000    5.797 5.06e+03   16.857   3.1
+    mult_263_I2 (MYFIR_DP_UNFOLDED_DW_mult_tc_17)
+                                          5.823    5.548 5.06e+03   16.435   3.0
+    add_0_root_add_0_root_add_264_I9_I3 (MYFIR_DP_UNFOLDED_DW01_add_16)
+                                          0.352    1.002  432.256    1.787   0.3
+    add_1_root_add_0_root_add_264_I9_I3 (MYFIR_DP_UNFOLDED_DW01_add_17)
+                                          0.533    0.918  432.674    1.884   0.3
+    add_5_root_add_0_root_add_264_I9_I3 (MYFIR_DP_UNFOLDED_DW01_add_18)
+                                          0.373    0.607  432.050    1.412   0.3
+    add_3_root_add_0_root_add_264_I9_I3 (MYFIR_DP_UNFOLDED_DW01_add_19)
+                                          0.391    0.638  425.218    1.454   0.3
+    add_4_root_add_0_root_add_264_I9_I3 (MYFIR_DP_UNFOLDED_DW01_add_20)
+                                          0.278    0.469  421.177    1.168   0.2
+    mult_263_I9_I3 (MYFIR_DP_UNFOLDED_DW_mult_tc_18)
+                                          5.838    5.549 5.07e+03   16.454   3.0
+    mult_263_I7_I3 (MYFIR_DP_UNFOLDED_DW_mult_tc_19)
+                                          5.536    5.189 5.07e+03   15.795   2.9
+    add_2_root_add_0_root_add_264_I9_I3 (MYFIR_DP_UNFOLDED_DW01_add_21)
+                                          0.417    0.715  425.410    1.557   0.3
+    add_6_root_add_0_root_add_264_I9_I3 (MYFIR_DP_UNFOLDED_DW01_add_22)
+                                          0.278    0.458  422.464    1.159   0.2
+    mult_263_I8_I3 (MYFIR_DP_UNFOLDED_DW_mult_tc_20)
+                                          5.694    5.368 5.07e+03   16.127   3.0
+    mult_263_I5_I3 (MYFIR_DP_UNFOLDED_DW_mult_tc_21)
+                                          5.729    5.423 5.07e+03   16.219   3.0
+    add_7_root_add_0_root_add_264_I9_I3 (MYFIR_DP_UNFOLDED_DW01_add_23)
+                                          0.282    0.475  421.411    1.178   0.2
+    mult_263_I6_I3 (MYFIR_DP_UNFOLDED_DW_mult_tc_22)
+                                          5.834    5.580 5.06e+03   16.479   3.0
+    mult_263_I4_I3 (MYFIR_DP_UNFOLDED_DW_mult_tc_23)
+                                          5.595    5.250 5.07e+03   15.912   2.9
+    mult_263_I3_I3 (MYFIR_DP_UNFOLDED_DW_mult_tc_24)
+                                          5.837    5.572 5.07e+03   16.475   3.0
+    mult_263_I2_I3 (MYFIR_DP_UNFOLDED_DW_mult_tc_25)
+                                          5.697    5.407 5.07e+03   16.170   3.0
+    mult_263_I3 (MYFIR_DP_UNFOLDED_DW_mult_tc_26)
+                                          5.978    5.759 5.06e+03   16.798   3.1
+    MUX_CNT (N_COUNTER_N2_MODULE3)        0.470    2.188  517.594    3.176   0.6
+    OUT_MUX (MUX3XNTO1XN_N8)              0.196    0.245  421.408    0.862   0.2
+    OUTPUT_BUFFER (REG_N11)               0.332    2.170  929.939    3.432   0.6
+    CNT_IN (CNT_MOD_N2_MODULE3)           0.507    2.494  631.141    3.632   0.7
+    INPUT_BUFFER2 (REG_N8_0)              0.393    2.358  714.753    3.465   0.6
+    INPUT_BUFFER1 (REG_N8_1)              1.355    6.606  741.186    8.703   1.6
+    RESULT_REG_2 (REG_N8_2)            9.74e-02    1.592  700.325    2.390   0.4
+    RESULT_REG_1 (REG_N8_3)            9.56e-02    1.587  700.408    2.383   0.4
+    RESULT_REG_0 (REG_N8_4)            9.62e-02    1.587  700.294    2.384   0.4
+    STATE_2_3 (REG_N8_5)                  0.319    1.147  699.627    2.166   0.4
+    STATE_2_2 (REG_N8_6)                  0.462    1.147  699.627    2.309   0.4
+    STATE_2_1 (REG_N8_7)                  0.462    1.146  699.627    2.307   0.4
+    STATE_2_0 (REG_N8_8)                  0.213    1.202  702.575    2.118   0.4
+    STATE_1_3 (REG_N8_9)                  0.227    1.247  702.466    2.176   0.4
+    STATE_1_2 (REG_N8_10)                 0.542    1.242  702.466    2.487   0.5
+    STATE_1_1 (REG_N8_11)                 0.542    1.241  702.466    2.486   0.5
+    STATE_1_0 (REG_N8_12)                 0.398    1.281  704.371    2.384   0.4
+    STATE_0_2 (REG_N8_13)                 0.409    1.242  697.114    2.348   0.4
+    STATE_0_1 (REG_N8_14)                 0.430    1.294  700.211    2.425   0.4
+    STATE_0_0 (REG_N8_15)                 0.619    1.366  706.444    2.691   0.5
+1

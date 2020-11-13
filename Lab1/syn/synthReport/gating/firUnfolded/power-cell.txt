@@ -1,0 +1,50 @@
+ 
+****************************************
+Report : power
+        -cell
+        -analysis_effort low
+        -sort_mode cell_internal_power
+Design : MYFIR_UNFOLDED
+Version: O-2018.06-SP4
+Date   : Thu Nov 12 13:58:53 2020
+****************************************
+
+
+Library(s) Used:
+
+    NangateOpenCellLibrary (File: /software/dk/nangate45/synopsys/NangateOpenCellLibrary_typical_ecsm_nowlm.db)
+
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+Design        Wire Load Model            Library
+------------------------------------------------
+MYFIR_UNFOLDED         5K_hvratio_1_1    NangateOpenCellLibrary
+
+
+Global Operating Voltage = 1.1  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000ff
+    Time Units = 1ns
+    Dynamic Power Units = 1uW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+
+  Attributes
+  ----------
+      h  -  Hierarchical cell
+
+                        Cell      Driven Net  Tot Dynamic      Cell
+                        Internal  Switching   Power            Leakage
+Cell                    Power     Power       (% Cell/Tot)     Power      Attrs
+--------------------------------------------------------------------------------
+DATAPATH                 218.7290       N/A        N/A (N/A)   161218.2344
+                                                                          h
+CU_INPUTS                  3.4525       N/A        N/A (N/A)   1142.6481  h
+CU_OUTPUTS                 2.2001       N/A        N/A (N/A)    523.4111  h
+--------------------------------------------------------------------------------
+Totals (3 cells)         224.382uW     N/A         N/A (N/A)    162.884uW
+1

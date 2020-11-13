@@ -1,0 +1,77 @@
+ 
+****************************************
+Report : power
+        -hier
+        -analysis_effort low
+Design : MYFIR
+Version: O-2018.06-SP4
+Date   : Thu Nov 12 13:54:08 2020
+****************************************
+
+
+Library(s) Used:
+
+    NangateOpenCellLibrary (File: /software/dk/nangate45/synopsys/NangateOpenCellLibrary_typical_ecsm_nowlm.db)
+
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+Design        Wire Load Model            Library
+------------------------------------------------
+MYFIR                  5K_hvratio_1_1    NangateOpenCellLibrary
+
+
+Global Operating Voltage = 1.1  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000ff
+    Time Units = 1ns
+    Dynamic Power Units = 1uW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+--------------------------------------------------------------------------------
+                                       Switch   Int      Leak     Total
+Hierarchy                              Power    Power    Power    Power    %
+--------------------------------------------------------------------------------
+MYFIR                                    76.509  104.599 5.68e+04  237.905 100.0
+  FLIPFLOP (FF)                        4.49e-02    0.597  135.831    0.778   0.3
+  DP (myfir_dp)                          76.255  102.411 5.64e+04  235.038  98.8
+    add_0_root_add_0_root_add_83_G7 (myfir_dp_DW01_add_0)
+                                          0.556    1.636  458.292    2.651   1.1
+    add_1_root_add_0_root_add_83_G7 (myfir_dp_DW01_add_1)
+                                          0.900    1.527  458.235    2.885   1.2
+    add_2_root_add_0_root_add_83_G7 (myfir_dp_DW01_add_2)
+                                          0.830    1.412  459.540    2.702   1.1
+    add_7_root_add_0_root_add_83_G7 (myfir_dp_DW01_add_3)
+                                          0.470    0.809  441.713    1.721   0.7
+    add_6_root_add_0_root_add_83_G7 (myfir_dp_DW01_add_4)
+                                          0.719    1.149  458.408    2.327   1.0
+    mult_77_G8 (myfir_dp_DW_mult_tc_0)    6.818    6.779 5.04e+03   18.639   7.8
+    mult_77_G6 (myfir_dp_DW_mult_tc_1)    6.818    6.775 5.04e+03   18.632   7.8
+    add_3_root_add_0_root_add_83_G7 (myfir_dp_DW01_add_5)
+                                          0.575    0.951  441.502    1.968   0.8
+    add_4_root_add_0_root_add_83_G7 (myfir_dp_DW01_add_6)
+                                          0.459    0.791  440.876    1.692   0.7
+    mult_77_G5 (myfir_dp_DW_mult_tc_2)    6.830    6.777 5.04e+03   18.644   7.8
+    mult_77_G4 (myfir_dp_DW_mult_tc_3)    6.865    6.839 5.04e+03   18.741   7.9
+    add_5_root_add_0_root_add_83_G7 (myfir_dp_DW01_add_7)
+                                          0.484    0.798  441.177    1.723   0.7
+    mult_77_G7 (myfir_dp_DW_mult_tc_4)    6.804    6.766 5.04e+03   18.608   7.8
+    mult_77_G9 (myfir_dp_DW_mult_tc_5)    6.881    6.837 5.04e+03   18.754   7.9
+    mult_77_G3 (myfir_dp_DW_mult_tc_6)    6.809    6.747 5.04e+03   18.596   7.8
+    mult_77_G2 (myfir_dp_DW_mult_tc_7)    6.812    6.786 5.04e+03   18.636   7.8
+    mult_77 (myfir_dp_DW_mult_tc_8)       8.302    8.653 5.02e+03   21.980   9.2
+    output_register (REG_N11)             0.607    3.995  947.905    5.550   2.3
+    i_register_8 (REG_N8_0)               0.531    2.353  708.983    3.593   1.5
+    i_register_7 (REG_N8_1)               0.568    2.354  708.983    3.631   1.5
+    i_register_6 (REG_N8_2)               0.568    2.354  708.983    3.631   1.5
+    i_register_5 (REG_N8_3)               0.568    2.349  708.983    3.627   1.5
+    i_register_4 (REG_N8_4)               0.568    2.349  708.983    3.627   1.5
+    i_register_3 (REG_N8_5)               0.568    2.349  708.983    3.627   1.5
+    i_register_2 (REG_N8_6)               0.568    2.349  708.983    3.627   1.5
+    i_register_1 (REG_N8_7)               0.568    2.535  714.678    3.818   1.6
+    input_register (REG_N8_8)             1.928    7.286  741.211    9.956   4.2
+  CU (myfir_cu)                           0.209    1.591  288.814    2.089   0.9
+1
