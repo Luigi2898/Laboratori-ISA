@@ -1,7 +1,0 @@
-digraph CIAO {
-    rst -> idle;
-    idle -> load_buff;
-    idle -> load_res;
-    idle -> load_state;
-    idle -> idle;
-}
