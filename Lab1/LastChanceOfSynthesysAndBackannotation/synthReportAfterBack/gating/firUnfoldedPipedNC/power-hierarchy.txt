@@ -1,0 +1,40 @@
+ 
+****************************************
+Report : power
+        -hier
+        -analysis_effort low
+Design : SNPS_CLOCK_GATE_HIGH_REG_N8_0_67
+Version: O-2018.06-SP4
+Date   : Thu Nov 12 16:06:58 2020
+****************************************
+
+
+Library(s) Used:
+
+    NangateOpenCellLibrary (File: /software/dk/nangate45/synopsys/NangateOpenCellLibrary_typical_ecsm_nowlm.db)
+
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+Design        Wire Load Model            Library
+------------------------------------------------
+SNPS_CLOCK_GATE_HIGH_REG_N8_0_67
+                       5K_hvratio_1_1    NangateOpenCellLibrary
+
+
+Global Operating Voltage = 1.1  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000ff
+    Time Units = 1ns
+    Dynamic Power Units = 1uW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+--------------------------------------------------------------------------------
+                                       Switch   Int      Leak     Total
+Hierarchy                              Power    Power    Power    Power    %
+--------------------------------------------------------------------------------
+SNPS_CLOCK_GATE_HIGH_REG_N8_0_67       2.54e-02    1.069   58.591    1.153 100.0
+1

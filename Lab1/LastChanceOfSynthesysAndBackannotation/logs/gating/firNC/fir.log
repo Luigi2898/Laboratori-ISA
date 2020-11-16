@@ -1,0 +1,34 @@
+== ANALYZE autoread all files ==
+
+Starting ANALYZE autoread mode...
+Information: Adding '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/fir'.  (AUTOREAD-100)
+Warning: Adding missing directory to search_path - '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/fir'. (AUTOREAD-105)
+Information: Adding '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/fir/myfir_dp.vhd'.  (AUTOREAD-100)
+Information: Adding '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/fir/myfir_cu.vhd'.  (AUTOREAD-100)
+Information: Adding '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/fir/myfir.vhd'.  (AUTOREAD-100)
+Information: Removing from autoread database '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents'.  (AUTOREAD-101)
+Information: Removing from autoread database '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/FF.vhd'.  (AUTOREAD-101)
+Information: Removing from autoread database '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/N_counter.vhd'.  (AUTOREAD-101)
+Information: Removing from autoread database '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/SRLATCH.vhd'.  (AUTOREAD-101)
+Information: Removing from autoread database '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/cnt_mod.vhd'.  (AUTOREAD-101)
+Information: Removing from autoread database '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/mux3xNto1xN.vhd'.  (AUTOREAD-101)
+Information: Removing from autoread database '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/myfir_cuinputs_unfolded.vhd'.  (AUTOREAD-101)
+Information: Removing from autoread database '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/myfir_cuoutputs_unfolded.vhd'.  (AUTOREAD-101)
+Information: Removing from autoread database '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/reg.vhd'.  (AUTOREAD-101)
+Information: Scanning file { myfir_dp.vhd }. (AUTOREAD-303)
+Information: Scanning file { myfir_cu.vhd }. (AUTOREAD-303)
+Information: Scanning file { myfir.vhd }. (AUTOREAD-303)
+Compiling Entity Declaration MYFIR_DP
+Compiling Architecture BEH of MYFIR_DP
+Warning:  /home/isa25/Desktop/Laboratori-ISA/Lab1/src/fir/myfir_dp.vhd:25: The architecture beh has already been analyzed. It is being replaced. (VHD-4)
+Presto compilation completed successfully.
+Compiling Entity Declaration MYFIR_CU
+Compiling Architecture BEH of MYFIR_CU
+Warning:  /home/isa25/Desktop/Laboratori-ISA/Lab1/src/fir/myfir_cu.vhd:15: The architecture beh has already been analyzed. It is being replaced. (VHD-4)
+Presto compilation completed successfully.
+Compiling Entity Declaration MYFIR
+Compiling Architecture BEH of MYFIR
+Warning:  /home/isa25/Desktop/Laboratori-ISA/Lab1/src/fir/myfir.vhd:26: The architecture BEH has already been analyzed. It is being replaced. (VHD-4)
+Presto compilation completed successfully.
+Autoread command completed successfully.
+1

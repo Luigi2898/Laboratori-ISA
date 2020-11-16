@@ -1,0 +1,296 @@
+
+Information: There are 44 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'FF_0'
+  Processing 'MYFIR_CUOUTPUTS_UNFOLDED'
+  Processing 'myfir_cupipe_unfolded'
+  Processing 'MYFIR_CUINPUTS_UNFOLDED'
+  Processing 'SNPS_CLOCK_GATE_HIGH_REG_N8_0_25'
+  Mapping integrated clock gating circuitry
+  Processing 'REG_N8_0'
+  Processing 'N_COUNTER_N2_MODULE3'
+Information: Added key list 'DesignWare' to design 'N_COUNTER_N2_MODULE3'. (DDB-72)
+  Processing 'MUX3XNTO1XN_N8'
+  Processing 'SNPS_CLOCK_GATE_HIGH_REG_N11'
+  Processing 'REG_N11'
+  Processing 'SNPS_CLOCK_GATE_HIGH_CNT_MOD_N2_MODULE3'
+  Processing 'CNT_MOD_N2_MODULE3'
+  Processing 'myfir_dp_piped_unfolded'
+  Processing 'MYFIR_PIPED_UNFOLDED'
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+
+  Beginning Implementation Selection
+  ----------------------------------
+  Processing 'myfir_dp_piped_unfolded_DW01_add_0'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_1'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_2'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_3'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_4'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_5'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_6'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_7'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_8'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_9'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_10'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_11'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_12'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_13'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_14'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_15'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_16'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_17'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_18'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_19'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_20'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_21'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_22'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_23'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_0'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_1'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_2'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_3'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_4'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_5'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_6'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_7'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_8'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_9'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_10'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_11'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_12'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_13'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_14'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_15'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_16'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_17'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_18'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_19'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_20'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_21'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_22'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_23'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_24'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_25'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_26'
+Information: Skipping clock gating on design MYFIR_PIPED_UNFOLDED, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_cupipe_unfolded, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design MUX3XNTO1XN_N8, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_67, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_CNT_MOD_N2_MODULE3, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N11, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_25, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_26, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_27, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_28, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_29, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_30, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_31, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_32, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_33, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_34, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_35, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_36, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_37, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_38, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_39, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_40, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_41, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_42, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_43, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_44, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_45, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_46, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_47, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_48, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_49, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_50, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_51, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_52, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_53, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_54, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_55, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_56, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_57, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_58, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_59, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_60, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_61, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_62, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_63, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_64, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_65, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_66, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW01_add_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW01_add_1, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW01_add_2, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW01_add_3, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW01_add_4, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW01_add_5, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW01_add_6, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW01_add_7, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW01_add_8, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW01_add_9, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW01_add_10, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW01_add_11, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW01_add_12, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW01_add_13, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW01_add_14, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW01_add_15, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW01_add_16, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW01_add_17, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW01_add_18, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW01_add_19, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW01_add_20, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW01_add_21, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW01_add_22, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW01_add_23, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW_mult_tc_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW_mult_tc_1, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW_mult_tc_2, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW_mult_tc_3, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW_mult_tc_4, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW_mult_tc_5, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW_mult_tc_6, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW_mult_tc_7, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW_mult_tc_8, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW_mult_tc_9, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW_mult_tc_10, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW_mult_tc_11, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW_mult_tc_12, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW_mult_tc_13, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW_mult_tc_14, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW_mult_tc_15, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW_mult_tc_16, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW_mult_tc_17, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW_mult_tc_18, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW_mult_tc_19, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW_mult_tc_20, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW_mult_tc_21, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW_mult_tc_22, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW_mult_tc_23, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW_mult_tc_24, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW_mult_tc_25, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_piped_unfolded_DW_mult_tc_26, since there are no registers. (PWR-806)
+Information: Performing clock-gating on design MYFIR_CUINPUTS_UNFOLDED. (PWR-730)
+Information: Performing clock-gating on design MYFIR_CUOUTPUTS_UNFOLDED. (PWR-730)
+Information: Performing clock-gating on design REG_N8_42. (PWR-730)
+Information: Performing clock-gating on design CNT_MOD_N2_MODULE3. (PWR-730)
+Information: Performing clock-gating on design REG_N11. (PWR-730)
+Information: Performing clock-gating on design N_COUNTER_N2_MODULE3. (PWR-730)
+Information: Performing clock-gating on design FF_1. (PWR-730)
+Information: Performing clock-gating on design REG_N8_0. (PWR-730)
+Information: Performing clock-gating on design REG_N8_1. (PWR-730)
+Information: Performing clock-gating on design REG_N8_2. (PWR-730)
+Information: Performing clock-gating on design REG_N8_3. (PWR-730)
+Information: Performing clock-gating on design REG_N8_4. (PWR-730)
+Information: Performing clock-gating on design REG_N8_5. (PWR-730)
+Information: Performing clock-gating on design REG_N8_6. (PWR-730)
+Information: Performing clock-gating on design REG_N8_7. (PWR-730)
+Information: Performing clock-gating on design REG_N8_8. (PWR-730)
+Information: Performing clock-gating on design REG_N8_9. (PWR-730)
+Information: Performing clock-gating on design REG_N8_10. (PWR-730)
+Information: Performing clock-gating on design REG_N8_11. (PWR-730)
+Information: Performing clock-gating on design REG_N8_12. (PWR-730)
+Information: Performing clock-gating on design REG_N8_13. (PWR-730)
+Information: Performing clock-gating on design REG_N8_14. (PWR-730)
+Information: Performing clock-gating on design REG_N8_15. (PWR-730)
+Information: Performing clock-gating on design REG_N8_16. (PWR-730)
+Information: Performing clock-gating on design REG_N8_17. (PWR-730)
+Information: Performing clock-gating on design REG_N8_18. (PWR-730)
+Information: Performing clock-gating on design REG_N8_19. (PWR-730)
+Information: Performing clock-gating on design REG_N8_20. (PWR-730)
+Information: Performing clock-gating on design REG_N8_21. (PWR-730)
+Information: Performing clock-gating on design REG_N8_22. (PWR-730)
+Information: Performing clock-gating on design REG_N8_23. (PWR-730)
+Information: Performing clock-gating on design REG_N8_24. (PWR-730)
+Information: Performing clock-gating on design REG_N8_25. (PWR-730)
+Information: Performing clock-gating on design REG_N8_26. (PWR-730)
+Information: Performing clock-gating on design REG_N8_27. (PWR-730)
+Information: Performing clock-gating on design REG_N8_28. (PWR-730)
+Information: Performing clock-gating on design REG_N8_29. (PWR-730)
+Information: Performing clock-gating on design REG_N8_30. (PWR-730)
+Information: Performing clock-gating on design REG_N8_31. (PWR-730)
+Information: Performing clock-gating on design REG_N8_32. (PWR-730)
+Information: Performing clock-gating on design REG_N8_33. (PWR-730)
+Information: Performing clock-gating on design REG_N8_34. (PWR-730)
+Information: Performing clock-gating on design REG_N8_35. (PWR-730)
+Information: Performing clock-gating on design REG_N8_36. (PWR-730)
+Information: Performing clock-gating on design REG_N8_37. (PWR-730)
+Information: Performing clock-gating on design REG_N8_38. (PWR-730)
+Information: Performing clock-gating on design REG_N8_39. (PWR-730)
+Information: Performing clock-gating on design REG_N8_40. (PWR-730)
+Information: Performing clock-gating on design REG_N8_41. (PWR-730)
+Information: Performing clock-gating on design FF_0. (PWR-730)
+
+  Beginning Mapping Optimizations  (Medium effort)
+  -------------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:01:50   10106.9      0.00       0.0       0.0                          
+    0:01:50   10106.9      0.00       0.0       0.0                          
+    0:01:50   10106.9      0.00       0.0       0.0                          
+    0:01:50   10106.9      0.00       0.0       0.0                          
+    0:01:51   10106.9      0.00       0.0       0.0                          
+    0:02:01    9472.8      0.00       0.0       0.0                          
+    0:02:03    9470.4      0.00       0.0       0.0                          
+    0:02:13    9470.4      0.00       0.0       0.0                          
+    0:02:14    9470.4      0.00       0.0       0.0                          
+    0:02:15    9470.4      0.00       0.0       0.0                          
+    0:02:15    9470.4      0.00       0.0       0.0                          
+    0:02:15    9470.4      0.00       0.0       0.0                          
+    0:02:15    9470.4      0.00       0.0       0.0                          
+    0:02:15    9470.4      0.00       0.0       0.0                          
+
+
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:02:15    9470.4      0.00       0.0       0.0                          
+    0:02:15    9470.4      0.00       0.0       0.0                          
+    0:02:15    9470.4      0.00       0.0       0.0                          
+
+
+  Beginning Area-Recovery Phase  (cleanup)
+  -----------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:02:16    9470.4      0.00       0.0       0.0                          
+    0:02:16    9470.4      0.00       0.0       0.0                          
+    0:02:21    9456.0      0.00       0.0       0.0                          
+    0:02:22    9441.7      0.00       0.0       0.0                          
+    0:02:22    9441.7      0.00       0.0       0.0                          
+    0:02:22    9441.7      0.00       0.0       0.0                          
+    0:02:23    9441.7      0.00       0.0       0.0                          
+    0:02:23    9441.7      0.00       0.0       0.0                          
+    0:02:23    9441.7      0.00       0.0       0.0                          
+    0:02:23    9441.7      0.00       0.0       0.0                          
+    0:02:23    9441.7      0.00       0.0       0.0                          
+    0:02:24    9441.7      0.00       0.0       0.0                          
+    0:02:26    9441.7      0.00       0.0       0.0                          
+Loading db file '/software/dk/nangate45/synopsys/NangateOpenCellLibrary_typical_ecsm_nowlm.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+1

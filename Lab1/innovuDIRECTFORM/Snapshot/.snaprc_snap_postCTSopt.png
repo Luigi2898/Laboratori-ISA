@@ -1,0 +1,21 @@
+#----------------------------------------------------------
+# Snapshot/.snaprc_snap_postCTSopt.png : snapshot resource file                          
+# label = snap_postCTSopt.png                                      
+#----------------------------------------------------------
+set tmpstr ""
+set tmpbar ""
+lappend tmpstr "dir" $sdir
+lappend tmpstr "label" snap_postCTSopt.png
+lappend tmpstr "fplan" $sdir/ss_snap_postCTSopt.png.fplan.gif
+lappend tmpstr "amoeba" $sdir/ss_snap_postCTSopt.png.amoeba.gif
+lappend tmpstr "place" $sdir/ss_snap_postCTSopt.png.place.gif
+lappend tmpstr "trgGlbOverflowPctH" 0
+lappend tmpstr "trgGlbOverflowPctV" 0
+lappend tmpbar "Congestion"
+lappend tmpstr "Congestion" 0
+lappend tmpbar WNS
+lappend tmpstr WNS 8.378
+lappend tmpbar TNS
+lappend tmpstr TNS 0.0
+lappend tmpbar Overlap
+lappend tmpstr Overlap 0
