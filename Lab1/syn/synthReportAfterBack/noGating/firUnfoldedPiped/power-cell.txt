@@ -6,7 +6,7 @@ Report : power
         -sort_mode cell_internal_power
 Design : MYFIR_PIPED_UNFOLDED
 Version: O-2018.06-SP4
-Date   : Thu Nov 12 15:47:19 2020
+Date   : Tue Nov 17 14:31:25 2020
 ****************************************
 
 

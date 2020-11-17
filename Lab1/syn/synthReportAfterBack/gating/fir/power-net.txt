@@ -6,7 +6,7 @@ Report : power
         -sort_mode net_switching_power
 Design : MYFIR
 Version: O-2018.06-SP4
-Date   : Mon Nov 16 22:37:12 2020
+Date   : Tue Nov 17 14:37:15 2020
 ****************************************
 
 

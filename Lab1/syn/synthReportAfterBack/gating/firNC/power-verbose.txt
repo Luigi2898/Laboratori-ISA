@@ -5,7 +5,7 @@ Report : power
         -verbose
 Design : MYFIR
 Version: O-2018.06-SP4
-Date   : Mon Nov 16 22:38:19 2020
+Date   : Tue Nov 17 14:38:34 2020
 ****************************************
 
 
@@ -31,10 +31,10 @@ Power-specific unit information :
     Leakage Power Units = 1nW
 
 
-  Cell Internal Power  = 102.5260 uW   (63%)
-  Net Switching Power  =  59.3503 uW   (37%)
+  Cell Internal Power  = 100.4574 uW   (63%)
+  Net Switching Power  =  58.0763 uW   (37%)
                          ---------
-Total Dynamic Power    = 161.8763 uW  (100%)
+Total Dynamic Power    = 158.5337 uW  (100%)
 
 Cell Leakage Power     =  58.3039 uW
 
@@ -44,10 +44,10 @@ Power Group      Power            Power               Power              Power  
 io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)            0
 memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)            0
 black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)            0
-clock_network      9.6072            4.7087          592.3873           14.9083  (   6.77%)            10
-register          27.5962            8.0054        7.5769e+03           43.1785  (  19.61%)            86
+clock_network      9.4690            4.7063          592.3812           14.7677  (   6.81%)            10
+register          27.1809            7.8191        7.5769e+03           42.5768  (  19.64%)            86
 sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)            0
-combinational     65.3226           46.6361        5.0135e+04          162.0933  (  73.62%)            1296
+combinational     63.8075           45.5510        5.0135e+04          159.4931  (  73.55%)            1296
 ---------------------------------------------------------------------------------------------------------
-Total            102.5260 uW        59.3502 uW     5.8304e+04 nW       220.1801 uW
+Total            100.4574 uW        58.0763 uW     5.8304e+04 nW       216.8376 uW
 1

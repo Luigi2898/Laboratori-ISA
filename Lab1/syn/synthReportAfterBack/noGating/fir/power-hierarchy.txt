@@ -5,7 +5,7 @@ Report : power
         -analysis_effort low
 Design : MYFIR
 Version: O-2018.06-SP4
-Date   : Thu Nov 12 15:34:40 2020
+Date   : Tue Nov 17 14:18:40 2020
 ****************************************
 
 

@@ -5,7 +5,7 @@ Report : power
         -verbose
 Design : MYFIR_PIPED_UNFOLDED
 Version: O-2018.06-SP4
-Date   : Thu Nov 12 15:48:51 2020
+Date   : Tue Nov 17 14:32:40 2020
 ****************************************
 
 
@@ -31,12 +31,12 @@ Power-specific unit information :
     Leakage Power Units = 1nW
 
 
-  Cell Internal Power  = 278.0495 uW   (75%)
-  Net Switching Power  =  90.6178 uW   (25%)
+  Cell Internal Power  = 278.0574 uW   (75%)
+  Net Switching Power  =  90.6184 uW   (25%)
                          ---------
-Total Dynamic Power    = 368.6673 uW  (100%)
+Total Dynamic Power    = 368.6758 uW  (100%)
 
-Cell Leakage Power     = 201.2951 uW
+Cell Leakage Power     = 201.2950 uW
 
                  Internal         Switching           Leakage            Total                         Cell
 Power Group      Power            Power               Power              Power   (   %    )  Attrs  Count
@@ -47,7 +47,7 @@ black_box          0.0000            0.0000            0.0000            0.0000 
 clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)            0
 register         190.8141           15.3464        3.2480e+04          238.6399  (  41.87%)            369
 sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)            0
-combinational     87.2355           75.2714        1.6882e+05          331.3226  (  58.13%)            4785
+combinational     87.2434           75.2720        1.6882e+05          331.3309  (  58.13%)            4785
 ---------------------------------------------------------------------------------------------------------
-Total            278.0496 uW        90.6178 uW     2.0130e+05 nW       569.9625 uW
+Total            278.0575 uW        90.6184 uW     2.0129e+05 nW       569.9708 uW
 1

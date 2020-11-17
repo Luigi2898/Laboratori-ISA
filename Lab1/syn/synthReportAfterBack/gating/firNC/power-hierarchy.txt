@@ -5,7 +5,7 @@ Report : power
         -analysis_effort low
 Design : MYFIR
 Version: O-2018.06-SP4
-Date   : Mon Nov 16 22:38:19 2020
+Date   : Tue Nov 17 14:38:33 2020
 ****************************************
 
 
@@ -35,25 +35,25 @@ Power-specific unit information :
                                        Switch   Int      Leak     Total
 Hierarchy                              Power    Power    Power    Power    %
 --------------------------------------------------------------------------------
-MYFIR                                    59.350  102.526 5.83e+04  220.180 100.0
+MYFIR                                    58.076  100.457 5.83e+04  216.838 100.0
   DP_output_register_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N11)
-                                          0.479    0.927   59.632    1.465   0.7
+                                          0.478    0.912   59.631    1.451   0.7
   DP_i_register_8_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_0)
-                                          0.365    0.927   59.632    1.351   0.6
+                                          0.364    0.912   59.631    1.336   0.6
   DP_i_register_7_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_1)
-                                          0.365    0.927   59.632    1.351   0.6
+                                          0.364    0.912   59.631    1.336   0.6
   DP_i_register_6_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_2)
-                                          0.365    0.927   59.632    1.351   0.6
+                                          0.364    0.912   59.631    1.336   0.6
   DP_i_register_5_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_3)
-                                          0.365    0.927   59.632    1.351   0.6
+                                          0.364    0.912   59.631    1.336   0.6
   DP_i_register_4_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_4)
-                                          0.365    0.927   59.632    1.351   0.6
+                                          0.364    0.912   59.631    1.336   0.6
   DP_i_register_3_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_5)
-                                          0.365    0.927   59.632    1.351   0.6
+                                          0.364    0.912   59.631    1.336   0.6
   DP_i_register_2_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_6)
-                                          0.365    0.927   59.632    1.351   0.6
+                                          0.364    0.912   59.631    1.336   0.6
   DP_i_register_1_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_7)
-                                          0.365    0.927   59.632    1.351   0.6
+                                          0.364    0.912   59.631    1.336   0.6
   DP_input_register_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_8)
-                                          1.312    1.268   55.702    2.636   1.2
+                                          1.312    1.260   55.702    2.628   1.2
 1

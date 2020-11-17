@@ -3,9 +3,9 @@
 Report : power
         -hier
         -analysis_effort low
-Design : SNPS_CLOCK_GATE_HIGH_REG_N8_0_67
+Design : MYFIR_PIPED_UNFOLDED
 Version: O-2018.06-SP4
-Date   : Mon Nov 16 22:49:25 2020
+Date   : Tue Nov 17 14:54:40 2020
 ****************************************
 
 
@@ -19,8 +19,7 @@ Wire Load Model Mode: top
 
 Design        Wire Load Model            Library
 ------------------------------------------------
-SNPS_CLOCK_GATE_HIGH_REG_N8_0_67
-                       5K_hvratio_1_1    NangateOpenCellLibrary
+MYFIR_PIPED_UNFOLDED   5K_hvratio_1_1    NangateOpenCellLibrary
 
 
 Global Operating Voltage = 1.1  
@@ -36,5 +35,95 @@ Power-specific unit information :
                                        Switch   Int      Leak     Total
 Hierarchy                              Power    Power    Power    Power    %
 --------------------------------------------------------------------------------
-SNPS_CLOCK_GATE_HIGH_REG_N8_0_67       2.54e-02    1.069   58.591    1.153 100.0
+MYFIR_PIPED_UNFOLDED                     65.663  160.745 1.87e+05  413.496 100.0
+  DATAPATH_result_reg_2_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_25)
+                                          0.139    0.809   60.611    1.008   0.2
+  DATAPATH_result_reg_1_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_26)
+                                          0.139    0.809   60.611    1.008   0.2
+  DATAPATH_result_reg_0_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_27)
+                                          0.139    0.809   60.611    1.008   0.2
+  DATAPATH_pipe1_state2_8_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_28)
+                                          0.138    0.809   60.616    1.007   0.2
+  DATAPATH_pipe1_state2_7_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_29)
+                                          0.138    0.809   60.616    1.007   0.2
+  DATAPATH_pipe1_state2_6_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_30)
+                                          0.138    0.809   60.616    1.007   0.2
+  DATAPATH_pipe1_state2_5_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_31)
+                                          0.138    0.809   60.616    1.007   0.2
+  DATAPATH_pipe1_state2_4_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_32)
+                                          0.138    0.809   60.616    1.007   0.2
+  DATAPATH_pipe1_state2_3_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_33)
+                                          0.138    0.809   60.616    1.007   0.2
+  DATAPATH_pipe1_state2_2_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_34)
+                                          0.138    0.809   60.616    1.007   0.2
+  DATAPATH_pipe1_state2_1_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_35)
+                                          0.138    0.809   60.616    1.007   0.2
+  DATAPATH_pipe1_state2_0_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_36)
+                                          0.138    0.809   60.616    1.007   0.2
+  DATAPATH_pipe1_state1_8_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_37)
+                                          0.138    0.809   60.616    1.007   0.2
+  DATAPATH_pipe1_state1_7_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_38)
+                                          0.138    0.809   60.616    1.007   0.2
+  DATAPATH_pipe1_state1_6_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_39)
+                                          0.145    0.813   60.626    1.018   0.2
+  DATAPATH_pipe1_state1_5_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_40)
+                                          0.145    0.813   60.626    1.018   0.2
+  DATAPATH_pipe1_state1_4_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_41)
+                                          0.145    0.813   60.626    1.018   0.2
+  DATAPATH_pipe1_state1_3_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_42)
+                                          0.145    0.813   60.626    1.018   0.2
+  DATAPATH_pipe1_state1_2_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_43)
+                                          0.145    0.813   60.626    1.018   0.2
+  DATAPATH_pipe1_state1_1_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_44)
+                                          0.145    0.813   60.626    1.018   0.2
+  DATAPATH_pipe1_state1_0_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_45)
+                                          0.145    0.813   60.626    1.018   0.2
+  DATAPATH_pipe1_state0_8_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_46)
+                                          0.145    0.813   60.626    1.018   0.2
+  DATAPATH_pipe1_state0_7_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_47)
+                                          0.145    0.813   60.626    1.018   0.2
+  DATAPATH_pipe1_state0_6_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_48)
+                                          0.145    0.813   60.626    1.018   0.2
+  DATAPATH_pipe1_state0_5_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_49)
+                                          0.145    0.813   60.626    1.018   0.2
+  DATAPATH_pipe1_state0_4_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_50)
+                                          0.145    0.813   60.626    1.019   0.2
+  DATAPATH_pipe1_state0_3_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_51)
+                                          0.145    0.813   60.626    1.019   0.2
+  DATAPATH_pipe1_state0_2_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_52)
+                                          0.145    0.813   60.626    1.019   0.2
+  DATAPATH_pipe1_state0_1_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_53)
+                                          0.145    0.813   60.626    1.019   0.2
+  DATAPATH_pipe1_state0_0_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_54)
+                                          0.145    0.813   60.626    1.019   0.2
+  DATAPATH_output_buffer_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N11)
+                                          0.579    1.019   59.636    1.658   0.4
+  DATAPATH_cnt_in_clk_gate_cnt_reg (SNPS_CLOCK_GATE_HIGH_CNT_MOD_N2_MODULE3)
+                                          0.149    1.111   59.625    1.320   0.3
+  DATAPATH_input_buffer2_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_55)
+                                          0.432    1.126   59.625    1.618   0.4
+  DATAPATH_input_buffer1_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_56)
+                                          1.572    1.509   55.702    3.137   0.8
+  DATAPATH_state_2_3_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_57)
+                                          0.146    0.815   60.626    1.022   0.2
+  DATAPATH_state_2_2_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_58)
+                                          0.146    0.815   60.626    1.022   0.2
+  DATAPATH_state_2_1_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_59)
+                                          0.146    0.815   60.626    1.022   0.2
+  DATAPATH_state_2_0_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_60)
+                                          0.146    0.815   60.626    1.022   0.2
+  DATAPATH_state_1_3_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_61)
+                                          0.145    0.814   60.625    1.019   0.2
+  DATAPATH_state_1_2_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_62)
+                                          0.145    0.814   60.625    1.019   0.2
+  DATAPATH_state_1_1_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_63)
+                                          0.145    0.814   60.625    1.019   0.2
+  DATAPATH_state_1_0_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_64)
+                                          0.145    0.814   60.625    1.019   0.2
+  DATAPATH_state_0_2_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_65)
+                                          0.140    0.827   60.617    1.027   0.2
+  DATAPATH_state_0_1_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_66)
+                                          0.140    0.827   60.617    1.027   0.2
+  DATAPATH_state_0_0_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_67)
+                                          0.140    0.827   60.617    1.027   0.2
 1

@@ -6,7 +6,7 @@ Report : power
         -analysis_effort low
 Design : MYFIR_UNFOLDED
 Version: O-2018.06-SP4
-Date   : Thu Nov 12 15:40:38 2020
+Date   : Tue Nov 17 14:24:57 2020
 ****************************************
 
 
