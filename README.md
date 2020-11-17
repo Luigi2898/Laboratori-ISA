@@ -1,2 +1,1 @@
-# Laboratori-ISA
-Laboratori di Integrated System Architecture
+# Repository of the group 25
