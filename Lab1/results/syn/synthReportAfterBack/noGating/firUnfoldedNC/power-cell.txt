@@ -6,7 +6,7 @@ Report : power
         -sort_mode cell_internal_power
 Design : MYFIR_UNFOLDED
 Version: O-2018.06-SP4
-Date   : Thu Nov 12 15:42:00 2020
+Date   : Tue Nov 17 14:26:19 2020
 ****************************************
 
 
@@ -369,9 +369,9 @@ DATAPATH_add_0_root_add_0_root_add_264_I9_I3_U1_4
 DATAPATH_add_0_root_add_0_root_add_264_I9_I1_U1_1
                            0.2380    0.0982      0.336 (71%)     72.2458   
 DATAPATH_add_0_root_add_0_root_add_264_I9_I3_U1_7
-                           0.2338    0.0380      0.272 (86%)     75.1341   
+                           0.2331    0.0380      0.271 (86%)     75.1341   
 DATAPATH_add_0_root_add_0_root_add_264_I9_I2_U1_7
-                           0.2325    0.0365      0.269 (86%)     76.1817   
+                           0.2318    0.0365      0.268 (86%)     76.1817   
 DATAPATH_add_0_root_add_0_root_add_264_I9_I1_U1_6
                            0.2263    0.0930      0.319 (71%)     74.7035   
 DATAPATH_add_0_root_add_0_root_add_264_I9_I2_U1_1
@@ -385,19 +385,19 @@ DATAPATH_add_1_root_add_0_root_add_264_I9_I1_U1_2
 DATAPATH_add_1_root_add_0_root_add_264_I9_I2_U1_5
                            0.2061    0.1224      0.329 (63%)     76.4227   
 DATAPATH_add_0_root_add_0_root_add_264_I9_I1_U1_7
-                           0.2037    0.0313      0.235 (87%)     74.4321   
+                           0.2034    0.0313      0.235 (87%)     74.4321   
 CU_INPUTS_U15              0.2033    0.0548      0.258 (79%)     33.3263   
 DATAPATH_add_1_root_add_0_root_add_264_I9_I1_U1_3
                            0.2021    0.1199      0.322 (63%)     76.0848   
 DATAPATH_add_1_root_add_0_root_add_264_I9_I1_U1_1
-                           0.1991    0.1180      0.317 (63%)     73.6354   
+                           0.1991    0.1180      0.317 (63%)     73.6875   
 DATAPATH_add_1_root_add_0_root_add_264_I9_I1_U1_5
                            0.1949    0.1176      0.312 (62%)     75.4469   
 DATAPATH_add_1_root_add_0_root_add_264_I9_I1_U1_4
                            0.1913    0.1138      0.305 (63%)     77.2744   
 CU_INPUTS_U4               0.1874    0.0635      0.251 (75%)     54.6873   
 DATAPATH_add_1_root_add_0_root_add_264_I9_I2_U1_1
-                           0.1840    0.1091      0.293 (63%)     74.8792   
+                           0.1840    0.1091      0.293 (63%)     74.9085   
 DATAPATH_add_1_root_add_0_root_add_264_I9_I3_U1_2
                            0.1807    0.1071      0.288 (63%)     74.2494   
 DATAPATH_add_1_root_add_0_root_add_264_I9_I2_U1_2
@@ -405,15 +405,15 @@ DATAPATH_add_1_root_add_0_root_add_264_I9_I2_U1_2
 DATAPATH_add_1_root_add_0_root_add_264_I9_I2_U1_4
                            0.1784    0.1045      0.283 (63%)     77.2739   
 DATAPATH_add_1_root_add_0_root_add_264_I9_I3_U1_1
-                           0.1779    0.1060      0.284 (63%)     73.6268   
+                           0.1779    0.1060      0.284 (63%)     73.6021   
 DATAPATH_add_1_root_add_0_root_add_264_I9_I3_U1_7
-                           0.1759    0.0552      0.231 (76%)     76.6765   
+                           0.1764    0.0552      0.232 (76%)     76.6765   
 DATAPATH_add_1_root_add_0_root_add_264_I9_I2_U1_6
                            0.1749    0.1033      0.278 (63%)     77.1198   
 DATAPATH_add_1_root_add_0_root_add_264_I9_I2_U1_3
                            0.1742    0.1019      0.276 (63%)     78.1497   
 DATAPATH_add_1_root_add_0_root_add_264_I9_I2_U1_7
-                           0.1737    0.0523      0.226 (77%)     77.0995   
+                           0.1738    0.0523      0.226 (77%)     77.0995   
 DATAPATH_add_1_root_add_0_root_add_264_I9_I3_U1_6
                            0.1730    0.1023      0.275 (63%)     76.6995   
 DATAPATH_add_1_root_add_0_root_add_264_I9_I3_U1_3
@@ -421,15 +421,15 @@ DATAPATH_add_1_root_add_0_root_add_264_I9_I3_U1_3
 DATAPATH_add_1_root_add_0_root_add_264_I9_I3_U1_4
                            0.1638    0.0957      0.260 (63%)     78.3599   
 DATAPATH_add_3_root_add_0_root_add_264_I9_I1_U1_7
-                           0.1536    0.0592      0.213 (72%)     74.6972   
+                           0.1535    0.0592      0.213 (72%)     74.6972   
 DATAPATH_add_3_root_add_0_root_add_264_I9_I3_U1_7
                            0.1506    0.0521      0.203 (74%)     72.2104   
 DATAPATH_add_3_root_add_0_root_add_264_I9_I3_U1_4
                            0.1451    0.0912      0.236 (61%)     71.5384   
 DATAPATH_add_3_root_add_0_root_add_264_I9_I2_U1_7
-                           0.1445    0.0604      0.205 (71%)     69.2808   
+                           0.1441    0.0604      0.204 (70%)     69.2808   
 DATAPATH_add_1_root_add_0_root_add_264_I9_I1_U1_7
-                           0.1436    0.0403      0.184 (78%)     75.6917   
+                           0.1437    0.0403      0.184 (78%)     75.6917   
 DATAPATH_add_2_root_add_0_root_add_264_I9_I3_U1_5
                            0.1421    0.0892      0.231 (61%)     68.7354   
 DATAPATH_add_1_root_add_0_root_add_264_I9_I1_U1_6
@@ -437,7 +437,7 @@ DATAPATH_add_1_root_add_0_root_add_264_I9_I1_U1_6
 DATAPATH_add_3_root_add_0_root_add_264_I9_I3_U1_3
                            0.1399    0.0886      0.229 (61%)     73.1502   
 DATAPATH_add_7_root_add_0_root_add_264_I9_I1_U1_7
-                           0.1350    0.0398      0.175 (77%)     70.0222   
+                           0.1354    0.0398      0.175 (77%)     70.0222   
 DATAPATH_add_3_root_add_0_root_add_264_I9_I3_U1_6
                            0.1347    0.0830      0.218 (62%)     72.2259   
 DATAPATH_add_2_root_add_0_root_add_264_I9_I2_U1_5
@@ -455,7 +455,7 @@ DATAPATH_add_3_root_add_0_root_add_264_I9_I2_U1_3
 DATAPATH_add_3_root_add_0_root_add_264_I9_I1_U1_6
                            0.1291    0.0825      0.212 (61%)     74.7097   
 DATAPATH_add_7_root_add_0_root_add_264_I9_I2_U1_7
-                           0.1284    0.0346      0.163 (79%)     72.2907   
+                           0.1281    0.0346      0.163 (79%)     72.2907   
 DATAPATH_add_2_root_add_0_root_add_264_I9_I1_U1_1
                            0.1279    0.0783      0.206 (62%)     66.0157   
 DATAPATH_add_2_root_add_0_root_add_264_I9_I3_U1_3
@@ -468,7 +468,7 @@ CU_OUTPUTS_U6              0.1274    0.0415      0.169 (75%)     32.0038
 DATAPATH_add_0_root_add_0_root_add_264_I9_I1_U1
                            0.1273    0.0484      0.176 (72%)     34.0492   
 DATAPATH_add_7_root_add_0_root_add_264_I9_I3_U1_7
-                           0.1271    0.0375      0.165 (77%)     68.7187   
+                           0.1270    0.0375      0.165 (77%)     68.7187   
 DATAPATH_add_7_root_add_0_root_add_264_I9_I1_U1_5
                            0.1269    0.0769      0.204 (62%)     70.8887   
 DATAPATH_add_2_root_add_0_root_add_264_I9_I1_U1_2
@@ -502,17 +502,17 @@ DATAPATH_add_2_root_add_0_root_add_264_I9_I2_U1_1
 DATAPATH_add_3_root_add_0_root_add_264_I9_I2_U1_2
                            0.1178    0.0769      0.195 (61%)     70.2313   
 DATAPATH_add_3_root_add_0_root_add_264_I9_I3_U1_1
-                           0.1168    0.0738      0.191 (61%)     71.2506   
+                           0.1168    0.0738      0.191 (61%)     71.3841   
 DATAPATH_add_2_root_add_0_root_add_264_I9_I3_U1_1
                            0.1155    0.0712      0.187 (62%)     63.4563   
 DATAPATH_add_3_root_add_0_root_add_264_I9_I2_U1_1
-                           0.1154    0.0739      0.189 (61%)     68.8034   
+                           0.1154    0.0739      0.189 (61%)     68.8060   
 DATAPATH_add_3_root_add_0_root_add_264_I9_I1_U1_1
-                           0.1148    0.0719      0.187 (61%)     73.0085   
-DATAPATH_add_2_root_add_0_root_add_264_I9_I2_U1_7
-                           0.1147    0.0483      0.163 (70%)     67.7878   
+                           0.1148    0.0719      0.187 (61%)     73.0626   
 DATAPATH_add_2_root_add_0_root_add_264_I9_I1_U1_3
                            0.1146    0.0714      0.186 (62%)     69.6057   
+DATAPATH_add_2_root_add_0_root_add_264_I9_I2_U1_7
+                           0.1145    0.0483      0.163 (70%)     67.7878   
 DATAPATH_add_2_root_add_0_root_add_264_I9_I1_U1_5
                            0.1141    0.0717      0.186 (61%)     70.5132   
 DATAPATH_add_7_root_add_0_root_add_264_I9_I3_U1_4
@@ -524,7 +524,7 @@ DATAPATH_add_7_root_add_0_root_add_264_I9_I3_U1_3
 DATAPATH_add_3_root_add_0_root_add_264_I9_I1_U1_2
                            0.1111    0.0713      0.182 (61%)     73.5718   
 DATAPATH_add_2_root_add_0_root_add_264_I9_I3_U1_7
-                           0.1109    0.0460      0.157 (71%)     67.2317   
+                           0.1107    0.0460      0.157 (71%)     67.2317   
 DATAPATH_add_7_root_add_0_root_add_264_I9_I1_U1_3
                            0.1106    0.0668      0.177 (62%)     71.6992   
 DATAPATH_add_7_root_add_0_root_add_264_I9_I1_U1_4
@@ -558,10 +558,10 @@ DATAPATH_INPUT_BUFFER1_U12
                            0.0990    0.0376      0.137 (72%)     23.9179   
 DATAPATH_add_1_root_add_0_root_add_264_I9_I1_U2
                            0.0983    0.0745      0.173 (57%)     34.4334   
-DATAPATH_add_2_root_add_0_root_add_264_I9_I1_U1_7
-                           0.0976    0.0340      0.132 (74%)     69.7792   
 DATAPATH_CNT_IN_U9         0.0975    0.0360      0.133 (73%)     38.9117   
 DATAPATH_CNT_IN_U6         0.0972    0.0358      0.133 (73%)     23.1353   
+DATAPATH_add_2_root_add_0_root_add_264_I9_I1_U1_7
+                           0.0970    0.0340      0.131 (74%)     69.7792   
 DATAPATH_add_7_root_add_0_root_add_264_I9_I1_U1_2
                            0.0960    0.0576      0.154 (62%)     69.5787   
 CU_INPUTS_U11              0.0960    0.0958      0.192 (50%)     33.2886   
@@ -574,15 +574,15 @@ DATAPATH_mult_263_I5_I1_U3
 DATAPATH_add_1_root_add_0_root_add_264_I9_I2_U2
                            0.0902    0.0713      0.162 (56%)     36.5254   
 DATAPATH_add_5_root_add_0_root_add_264_I9_I3_U1_7
-                           0.0891    0.0390      0.128 (70%)     66.8041   
-DATAPATH_add_5_root_add_0_root_add_264_I9_I2_U1_7
-                           0.0888    0.0396      0.128 (69%)     66.4287   
+                           0.0896    0.0390      0.129 (70%)     66.8041   
 DATAPATH_add_7_root_add_0_root_add_264_I9_I3_U1_1
-                           0.0888    0.0526      0.141 (63%)     69.7626   
+                           0.0888    0.0526      0.141 (63%)     69.7936   
+DATAPATH_add_5_root_add_0_root_add_264_I9_I1_U1_7
+                           0.0884    0.0402      0.129 (69%)     68.4539   
+DATAPATH_add_5_root_add_0_root_add_264_I9_I2_U1_7
+                           0.0883    0.0396      0.128 (69%)     66.4287   
 DATAPATH_add_4_root_add_0_root_add_264_I9_I1_U1_7
                            0.0877    0.0380      0.126 (70%)     64.0327   
-DATAPATH_add_5_root_add_0_root_add_264_I9_I1_U1_7
-                           0.0876    0.0402      0.128 (69%)     68.4539   
 DATAPATH_mult_263_I5_I1_U4
                            0.0866    0.0522      0.139 (62%)     76.1987   
 DATAPATH_add_7_root_add_0_root_add_264_I9_I1_U1_6
@@ -602,7 +602,7 @@ DATAPATH_INPUT_BUFFER2_U14
 DATAPATH_INPUT_BUFFER2_U8
                            0.0843    0.0353      0.120 (70%)     33.6312   
 DATAPATH_add_7_root_add_0_root_add_264_I9_I1_U1_1
-                           0.0843    0.0505      0.135 (63%)     70.2875   
+                           0.0843    0.0505      0.135 (63%)     70.2627   
 DATAPATH_INPUT_BUFFER2_U6
                            0.0839    0.0348      0.119 (71%)     33.1791   
 DATAPATH_add_4_root_add_0_root_add_264_I9_I3_U1_7
@@ -638,13 +638,13 @@ DATAPATH_mult_263_I6_I2_U6
 DATAPATH_add_5_root_add_0_root_add_264_I9_I2_U1_4
                            0.0809    0.0518      0.133 (61%)     66.4399   
 DATAPATH_add_7_root_add_0_root_add_264_I9_I2_U1_1
-                           0.0805    0.0474      0.128 (63%)     71.3761   
+                           0.0805    0.0474      0.128 (63%)     71.3876   
 DATAPATH_INPUT_BUFFER2_U4
                            0.0802    0.0333      0.113 (71%)     33.1812   
 DATAPATH_add_5_root_add_0_root_add_264_I9_I3_U1_2
                            0.0801    0.0509      0.131 (61%)     66.3815   
 DATAPATH_add_4_root_add_0_root_add_264_I9_I2_U1_7
-                           0.0795    0.0352      0.115 (69%)     64.3602   
+                           0.0796    0.0352      0.115 (69%)     64.3602   
 DATAPATH_mult_263_I4_I2_U5
                            0.0795    0.0472      0.127 (63%)     76.4623   
 DATAPATH_add_5_root_add_0_root_add_264_I9_I3_U1_5
@@ -659,7 +659,7 @@ DATAPATH_mult_263_I6_I1_U6
 DATAPATH_mult_263_I5_I1_U6
                            0.0789    0.0483      0.127 (62%)     75.8030   
 DATAPATH_add_4_root_add_0_root_add_264_I9_I1_U1_1
-                           0.0788    0.0474      0.126 (62%)     63.7266   
+                           0.0788    0.0474      0.126 (62%)     63.7273   
 DATAPATH_add_5_root_add_0_root_add_264_I9_I3_U1_1
                            0.0787    0.0496      0.128 (61%)     66.2299   
 DATAPATH_add_5_root_add_0_root_add_264_I9_I2_U1_5
@@ -752,7 +752,7 @@ DATAPATH_mult_263_I6_I3_U4
 DATAPATH_mult_263_I4_I2_U3
                            0.0718    0.0364      0.108 (66%)     75.9965   
 DATAPATH_add_4_root_add_0_root_add_264_I9_I3_U1_1
-                           0.0715    0.0436      0.115 (62%)     63.1819   
+                           0.0715    0.0436      0.115 (62%)     63.2274   
 DATAPATH_add_4_root_add_0_root_add_264_I9_I3_U1_3
                            0.0713    0.0440      0.115 (62%)     63.8690   
 DATAPATH_add_4_root_add_0_root_add_264_I9_I2_U1_6
@@ -774,7 +774,7 @@ DATAPATH_mult_263_I6_I3_U3
 DATAPATH_mult_263_I7_I3_U4
                            0.0699    0.0422      0.112 (62%)     76.2510   
 DATAPATH_add_4_root_add_0_root_add_264_I9_I2_U1_1
-                           0.0698    0.0424      0.112 (62%)     63.3307   
+                           0.0698    0.0424      0.112 (62%)     63.2834   
 DATAPATH_mult_263_I3_I2_U4
                            0.0698    0.0403      0.110 (63%)     76.6815   
 DATAPATH_add_5_root_add_0_root_add_264_I9_I1_U1_3
@@ -1116,6 +1116,8 @@ DATAPATH_INPUT_BUFFER1_U16
                            0.0428    0.0174   6.02e-02 (71%)     40.8932   
 DATAPATH_mult_263_I5_I2_U20
                            0.0427    0.0288   7.16e-02 (60%)     74.2653   
+DATAPATH_add_1_root_add_0_root_add_264_I9_I3_U1
+                           0.0427    0.0311   7.38e-02 (58%)     25.3122   
 DATAPATH_mult_263_I8_I3_U7
                            0.0426    0.0250   6.77e-02 (63%)     85.0696   
 DATAPATH_mult_263_I4_I3_U179
@@ -1126,8 +1128,6 @@ DATAPATH_mult_263_I7_I1_U8
                            0.0425    0.0266   6.91e-02 (61%)     66.9984   
 DATAPATH_RESULT_REG_1_U14
                            0.0423    0.0187   6.10e-02 (69%)     35.1249   
-DATAPATH_add_1_root_add_0_root_add_264_I9_I3_U1
-                           0.0423    0.0308   7.31e-02 (58%)     25.3122   
 DATAPATH_OUT_MUX_U15       0.0422    0.0149   5.71e-02 (74%)     38.0658   
 DATAPATH_mult_263_I9_I2_U5
                            0.0422    0.0244   6.65e-02 (63%)     79.9016   
@@ -1137,8 +1137,6 @@ DATAPATH_RESULT_REG_1_U12
                            0.0421    0.0193   6.13e-02 (69%)     35.8293   
 DATAPATH_add_6_root_add_0_root_add_264_I9_I3_U1_1
                            0.0420    0.0268   6.88e-02 (61%)     60.0022   
-DATAPATH_add_1_root_add_0_root_add_264_I9_I2_U1
-                           0.0420    0.0307   7.27e-02 (58%)     25.3202   
 DATAPATH_RESULT_REG_0_U10
                            0.0420    0.0189   6.09e-02 (69%)     34.9784   
 CU_INPUTS_U8               0.0420    0.0932      0.135 (31%)     15.6114   
@@ -1152,6 +1150,8 @@ DATAPATH_RESULT_REG_1_U2
                            0.0417    0.2486      0.290 (14%)     23.1998   
 DATAPATH_RESULT_REG_2_U2
                            0.0417    0.2486      0.290 (14%)     23.1998   
+DATAPATH_add_1_root_add_0_root_add_264_I9_I2_U1
+                           0.0417    0.0305   7.22e-02 (58%)     25.3202   
 DATAPATH_mult_263_I3_I1_U25
                            0.0416    0.0282   6.98e-02 (60%)     64.7768   
 DATAPATH_mult_263_I3_U9    0.0415    0.0262   6.77e-02 (61%)     62.7219   
@@ -1201,11 +1201,11 @@ DATAPATH_mult_263_I2_I1_U6
 DATAPATH_MUX_CNT_U11       0.0402    0.0199   6.01e-02 (67%)     29.7889   
 DATAPATH_mult_263_I6_I2_U18
                            0.0402    0.0276   6.78e-02 (59%)     72.9443   
+DATAPATH_add_1_root_add_0_root_add_264_I9_I1_U1
+                           0.0401    0.0292   6.94e-02 (58%)     24.3089   
 DATAPATH_mult_263_I5_I3_U179
                            0.0401    0.0257   6.58e-02 (61%)     38.1537   
 CU_OUTPUTS_U7              0.0400    0.0190   5.89e-02 (68%)     22.9220   
-DATAPATH_add_1_root_add_0_root_add_264_I9_I1_U1
-                           0.0399    0.0291   6.90e-02 (58%)     24.3089   
 DATAPATH_RESULT_REG_2_U6
                            0.0398    0.0184   5.82e-02 (68%)     34.9913   
 DATAPATH_mult_263_I7_I1_U25
@@ -1355,6 +1355,8 @@ DATAPATH_mult_263_I6_I1_U21
                            0.0348    0.0181   5.29e-02 (66%)     75.4953   
 DATAPATH_RESULT_REG_1_U13
                            0.0348    0.0267   6.14e-02 (57%)      6.3297   
+DATAPATH_add_6_root_add_0_root_add_264_I9_I1_U1_7
+                           0.0347    0.0129   4.76e-02 (73%)     62.0400   
 CU_OUTPUTS_DELAY_REG_U2    0.0347    0.0137   4.84e-02 (72%)     33.7403   
 DATAPATH_mult_263_I2_I1_U8
                            0.0347    0.0207   5.54e-02 (63%)     62.1019   
@@ -1368,8 +1370,6 @@ DATAPATH_mult_263_I3_I1_U178
                            0.0345    0.0197   5.43e-02 (64%)     31.5122   
 DATAPATH_mult_263_I3_I2_U178
                            0.0345    0.0197   5.43e-02 (64%)     31.5854   
-DATAPATH_add_6_root_add_0_root_add_264_I9_I1_U1_7
-                           0.0344    0.0129   4.73e-02 (73%)     62.0400   
 CU_OUTPUTS_U10             0.0343    0.0182   5.25e-02 (65%)     29.5977   
 DATAPATH_mult_263_I7_I3_U36
                            0.0343    0.0233   5.75e-02 (60%)     65.1539   
@@ -1443,10 +1443,10 @@ DATAPATH_mult_263_I2_I3_U8
                            0.0329    0.0197   5.26e-02 (63%)     63.6103   
 DATAPATH_mult_263_I3_I2_U34
                            0.0329    0.0184   5.13e-02 (64%)     71.7774   
-DATAPATH_mult_263_I4_I2_U29
-                           0.0326    0.0217   5.43e-02 (60%)     73.9285   
 DATAPATH_add_6_root_add_0_root_add_264_I9_I2_U1_7
                            0.0326    0.0123   4.49e-02 (73%)     61.3662   
+DATAPATH_mult_263_I4_I2_U29
+                           0.0326    0.0217   5.43e-02 (60%)     73.9285   
 DATAPATH_mult_263_I4_I1_U29
                            0.0326    0.0217   5.43e-02 (60%)     74.0577   
 DATAPATH_STATE_2_1_U10     0.0326    0.0148   4.74e-02 (69%)     35.3828   
@@ -1573,12 +1573,12 @@ DATAPATH_mult_263_I2_I1_U5
 DATAPATH_mult_263_I2_I2_U5
                            0.0305    0.0176   4.81e-02 (63%)     78.9957   
 DATAPATH_STATE_1_1_U16     0.0305    0.0144   4.49e-02 (68%)     35.4483   
-DATAPATH_add_6_root_add_0_root_add_264_I9_I3_U1_7
-                           0.0305    0.0120   4.24e-02 (72%)     59.7618   
 DATAPATH_mult_263_I4_I2_U30
                            0.0304    0.0183   4.88e-02 (62%)     77.2657   
 DATAPATH_mult_263_I6_I2_U33
                            0.0304    0.0183   4.88e-02 (62%)     74.9787   
+DATAPATH_add_6_root_add_0_root_add_264_I9_I3_U1_7
+                           0.0304    0.0120   4.24e-02 (72%)     59.7618   
 DATAPATH_mult_263_I6_I3_U30
                            0.0304    0.0183   4.88e-02 (62%)     76.1760   
 DATAPATH_mult_263_I4_I2_U34
@@ -1814,21 +1814,21 @@ DATAPATH_mult_263_I3_U178
 DATAPATH_mult_263_U178     0.0251    0.0153   4.04e-02 (62%)     34.1421   
 DATAPATH_mult_263_I5_I3_U23
                            0.0250    0.0151   4.01e-02 (62%)     75.0102   
+DATAPATH_add_3_root_add_0_root_add_264_I9_I1_U2
+                           0.0249    0.0181   4.30e-02 (58%)     24.6565   
 DATAPATH_OUT_MUX_U8        0.0249    0.0248   4.97e-02 (50%)     14.1191   
 DATAPATH_MUX_CNT_U5        0.0248    0.0143   3.91e-02 (64%)     34.2186   
 DATAPATH_OUTPUT_BUFFER_U11
                            0.0247    0.0171   4.17e-02 (59%)     10.6603   
+DATAPATH_add_3_root_add_0_root_add_264_I9_I3_U2
+                           0.0246    0.0179   4.24e-02 (58%)     24.8917   
 DATAPATH_mult_263_I9_I1_U178
                            0.0245    0.0140   3.85e-02 (64%)     35.5493   
-DATAPATH_add_3_root_add_0_root_add_264_I9_I1_U2
-                           0.0244    0.0177   4.22e-02 (58%)     24.6565   
 DATAPATH_U4                0.0244    0.1171      0.142 (17%)     25.8530   
 DATAPATH_RESULT_REG_0_U5
                            0.0241    0.0183   4.24e-02 (57%)      6.2642   
 CU_INPUTS_U25              0.0241    0.0682   9.23e-02 (26%)     20.2621   
 CU_INPUTS_U6               0.0241    0.1298      0.154 (16%)     34.6703   
-DATAPATH_add_3_root_add_0_root_add_264_I9_I3_U2
-                           0.0240    0.0175   4.15e-02 (58%)     24.8917   
 DATAPATH_OUT_MUX_U1        0.0239    0.1671      0.191 (13%)     19.8319   
 DATAPATH_mult_263_I5_I2_U35
                            0.0238    0.0191   4.29e-02 (55%)     63.4133   
@@ -2720,6 +2720,8 @@ DATAPATH_mult_263_I2_I1_U251
                            0.0168    0.0142   3.10e-02 (54%)     24.9476   
 DATAPATH_mult_263_I2_U251
                            0.0168    0.0142   3.10e-02 (54%)     24.9476   
+DATAPATH_add_7_root_add_0_root_add_264_I9_I3_U2
+                           0.0168    0.0122   2.90e-02 (58%)     24.2735   
 DATAPATH_mult_263_I7_I3_U30
                            0.0168 9.721e-03   2.65e-02 (63%)     65.6628   
 DATAPATH_mult_263_I9_I3_U264
@@ -2872,8 +2874,6 @@ DATAPATH_mult_263_I3_I1_U29
 DATAPATH_STATE_1_0_U17     0.0163    0.0117   2.79e-02 (58%)      6.3165   
 DATAPATH_STATE_1_0_U7      0.0162    0.0117   2.79e-02 (58%)      6.2501   
 DATAPATH_STATE_1_0_U9      0.0162    0.0117   2.79e-02 (58%)      6.2501   
-DATAPATH_add_7_root_add_0_root_add_264_I9_I3_U2
-                           0.0162    0.0118   2.80e-02 (58%)     24.2735   
 DATAPATH_mult_263_I4_I1_U31
                            0.0162 8.581e-03   2.48e-02 (65%)     59.4880   
 DATAPATH_mult_263_I5_I3_U31
@@ -2881,8 +2881,6 @@ DATAPATH_mult_263_I5_I3_U31
 DATAPATH_mult_263_I6_I2_U31
                            0.0162 8.581e-03   2.48e-02 (65%)     59.1056   
 DATAPATH_mult_263_U36      0.0162    0.0108   2.70e-02 (60%)     58.6428   
-DATAPATH_add_7_root_add_0_root_add_264_I9_I1_U2
-                           0.0162    0.0119   2.80e-02 (58%)     25.0077   
 DATAPATH_mult_263_I2_I2_U33
                            0.0161 8.364e-03   2.45e-02 (66%)     57.5209   
 DATAPATH_mult_263_I3_I1_U245
@@ -2928,6 +2926,8 @@ DATAPATH_mult_263_I9_I3_U251
                            0.0160    0.0137   2.98e-02 (54%)     25.0071   
 DATAPATH_mult_263_I7_I2_U201
                            0.0160    0.0201   3.62e-02 (44%)     58.8238   
+DATAPATH_add_7_root_add_0_root_add_264_I9_I1_U2
+                           0.0160    0.0118   2.78e-02 (58%)     25.0077   
 DATAPATH_mult_263_I2_I3_U178
                            0.0160 9.153e-03   2.52e-02 (64%)     35.5289   
 DATAPATH_mult_263_I3_I2_U191
@@ -3148,6 +3148,8 @@ DATAPATH_mult_263_I9_I1_U264
                            0.0153 8.546e-03   2.38e-02 (64%)     37.0816   
 DATAPATH_mult_263_I9_I1_U266
                            0.0153 8.546e-03   2.38e-02 (64%)     37.0816   
+DATAPATH_add_7_root_add_0_root_add_264_I9_I2_U2
+                           0.0153    0.0112   2.65e-02 (58%)     24.7602   
 DATAPATH_mult_263_U26      0.0153 7.899e-03   2.32e-02 (66%)     56.5707   
 DATAPATH_mult_263_I7_I2_U198
                            0.0153    0.0102   2.55e-02 (60%)     57.9549   
@@ -3168,8 +3170,6 @@ DATAPATH_mult_263_I8_I2_U187
                            0.0152    0.0127   2.79e-02 (54%)     36.6665   
 DATAPATH_mult_263_I9_I1_U187
                            0.0152    0.0127   2.79e-02 (54%)     36.6665   
-DATAPATH_add_7_root_add_0_root_add_264_I9_I2_U2
-                           0.0152    0.0111   2.63e-02 (58%)     24.7602   
 DATAPATH_mult_263_I5_I2_U200
                            0.0151 6.537e-03   2.17e-02 (70%)     44.2598   
 DATAPATH_mult_263_I3_I2_U20
@@ -3795,6 +3795,8 @@ DATAPATH_mult_263_I6_I2_U196
                            0.0110 6.970e-03   1.80e-02 (61%)     26.2763   
 DATAPATH_mult_263_I5_I2_U250
                            0.0110    0.0129   2.39e-02 (46%)     19.7340   
+DATAPATH_add_4_root_add_0_root_add_264_I9_I3_U2
+                           0.0110 8.174e-03   1.92e-02 (57%)     24.8090   
 DATAPATH_mult_263_I5_I2_U233
                            0.0110 9.253e-03   2.03e-02 (54%)     19.4504   
 DATAPATH_mult_263_I5_I2_U216
@@ -3812,8 +3814,6 @@ DATAPATH_mult_263_I5_I2_U214
 DATAPATH_mult_263_U261     0.0109    0.0102   2.11e-02 (52%)     24.4048   
 DATAPATH_mult_263_I9_I1_U207
                            0.0109    0.0105   2.13e-02 (51%)     22.0104   
-DATAPATH_add_4_root_add_0_root_add_264_I9_I3_U2
-                           0.0109 8.057e-03   1.89e-02 (57%)     24.8090   
 DATAPATH_mult_263_I9_I1_U181
                            0.0108    0.0100   2.09e-02 (52%)     22.0593   
 DATAPATH_mult_263_I5_I2_U207
@@ -3870,6 +3870,8 @@ DATAPATH_mult_263_I5_I1_U207
                            0.0105    0.0102   2.06e-02 (51%)     24.3728   
 DATAPATH_mult_263_I5_I1_U181
                            0.0104 9.725e-03   2.02e-02 (52%)     24.3994   
+DATAPATH_add_4_root_add_0_root_add_264_I9_I1_U2
+                           0.0104 7.717e-03   1.81e-02 (57%)     24.8826   
 DATAPATH_mult_263_U184     0.0104 9.725e-03   2.01e-02 (52%)     23.5882   
 DATAPATH_mult_263_I2_I1_U186
                            0.0104 4.713e-03   1.51e-02 (69%)     24.4964   
@@ -3898,8 +3900,6 @@ DATAPATH_mult_263_I9_I3_U182
                            0.0102    0.0101   2.03e-02 (50%)     23.9010   
 DATAPATH_mult_263_I9_I3_U207
                            0.0102 9.867e-03   2.00e-02 (51%)     23.0307   
-DATAPATH_add_4_root_add_0_root_add_264_I9_I1_U2
-                           0.0102 7.543e-03   1.77e-02 (57%)     24.8826   
 DATAPATH_mult_263_I5_I1_U261
                            0.0101 9.378e-03   1.95e-02 (52%)     24.5557   
 DATAPATH_mult_263_I9_I2_U261
@@ -3940,8 +3940,6 @@ DATAPATH_mult_263_I9_I3_U261
                         9.859e-03 9.094e-03   1.90e-02 (52%)     24.2436   
 DATAPATH_mult_263_I6_I3_U237
                         9.850e-03 7.437e-03   1.73e-02 (57%)     36.0970   
-DATAPATH_add_4_root_add_0_root_add_264_I9_I2_U2
-                        9.818e-03 7.278e-03   1.71e-02 (57%)     24.6631   
 DATAPATH_mult_263_I9_I3_U263
                         9.798e-03 9.815e-03   1.96e-02 (50%)     24.4258   
 DATAPATH_mult_263_I9_I3_U198
@@ -3966,6 +3964,8 @@ DATAPATH_mult_263_I5_I2_U237
                         9.591e-03 7.437e-03   1.70e-02 (56%)     37.8540   
 DATAPATH_mult_263_I6_I1_U237
                         9.591e-03 7.437e-03   1.70e-02 (56%)     37.8540   
+DATAPATH_add_4_root_add_0_root_add_264_I9_I2_U2
+                        9.583e-03 7.104e-03   1.67e-02 (57%)     24.6631   
 DATAPATH_mult_263_I9_I2_U182
                         9.535e-03 9.508e-03   1.90e-02 (50%)     23.4310   
 DATAPATH_mult_263_I2_U184
@@ -8478,5 +8478,5 @@ DATAPATH_mult_263_U258     0.0000    0.0000      0.000 (N/A)     51.8913
 DATAPATH_mult_263_U259     0.0000    0.0000      0.000 (N/A)     51.8913   
 DATAPATH_mult_263_U265     0.0000    0.0000      0.000 (N/A)      4.0850   
 --------------------------------------------------------------------------------
-Totals (4445 cells)      140.430uW  66.095uW   206.526uW (68%)  171.752uW
+Totals (4445 cells)      140.431uW  66.097uW   206.528uW (68%)  171.753uW
 1

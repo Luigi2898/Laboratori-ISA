@@ -1,14 +1,12 @@
 Information: Updating design information... (UID-85)
 Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
-Warning: Design has unannotated primary inputs. (PWR-414)
-Warning: Design has unannotated sequential cell outputs. (PWR-415)
  
 ****************************************
 Report : power
         -analysis_effort low
-Design : SNPS_CLOCK_GATE_HIGH_REG_N8_0_8
+Design : MYFIR
 Version: O-2018.06-SP4
-Date   : Thu Nov 12 15:53:00 2020
+Date   : Tue Nov 17 14:37:15 2020
 ****************************************
 
 
@@ -22,8 +20,7 @@ Wire Load Model Mode: top
 
 Design        Wire Load Model            Library
 ------------------------------------------------
-SNPS_CLOCK_GATE_HIGH_REG_N8_0_8
-                       5K_hvratio_1_1    NangateOpenCellLibrary
+MYFIR                  5K_hvratio_1_1    NangateOpenCellLibrary
 
 
 Global Operating Voltage = 1.1  
@@ -35,12 +32,12 @@ Power-specific unit information :
     Leakage Power Units = 1nW
 
 
-  Cell Internal Power  =   1.0812 uW   (97%)
-  Net Switching Power  =  27.7521 nW    (3%)
+  Cell Internal Power  = 109.5559 uW   (63%)
+  Net Switching Power  =  63.3490 uW   (37%)
                          ---------
-Total Dynamic Power    =   1.1090 uW  (100%)
+Total Dynamic Power    = 172.9049 uW  (100%)
 
-Cell Leakage Power     =  58.5913 nW
+Cell Leakage Power     =  58.3040 uW
 
 
                  Internal         Switching           Leakage            Total
@@ -49,10 +46,10 @@ Power Group      Power            Power               Power              Power  
 io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
 memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
 black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
-clock_network      1.0812        2.7752e-02           58.5913            1.1676  ( 100.00%)
-register           0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network     10.3146            5.1068          592.3382           16.0138  (   6.93%)
+register          29.5993            8.5305        7.5769e+03           45.7067  (  19.77%)
 sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
-combinational      0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational     69.6420           49.7117        5.0135e+04          169.4885  (  73.31%)
 --------------------------------------------------------------------------------------------------
-Total              1.0812 uW     2.7752e-02 uW        58.5913 nW         1.1676 uW
+Total            109.5559 uW        63.3490 uW     5.8304e+04 nW       231.2089 uW
 1

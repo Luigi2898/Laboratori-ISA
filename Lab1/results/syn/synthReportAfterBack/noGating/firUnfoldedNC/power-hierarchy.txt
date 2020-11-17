@@ -5,7 +5,7 @@ Report : power
         -analysis_effort low
 Design : MYFIR_UNFOLDED
 Version: O-2018.06-SP4
-Date   : Thu Nov 12 15:42:04 2020
+Date   : Tue Nov 17 14:26:22 2020
 ****************************************
 
 
@@ -35,5 +35,5 @@ Power-specific unit information :
                                        Switch   Int      Leak     Total
 Hierarchy                              Power    Power    Power    Power    %
 --------------------------------------------------------------------------------
-MYFIR_UNFOLDED                           66.095  140.430 1.72e+05  378.276 100.0
+MYFIR_UNFOLDED                           66.097  140.431 1.72e+05  378.278 100.0
 1

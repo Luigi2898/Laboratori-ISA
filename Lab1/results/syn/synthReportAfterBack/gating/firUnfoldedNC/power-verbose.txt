@@ -3,9 +3,9 @@
 Report : power
         -analysis_effort low
         -verbose
-Design : SNPS_CLOCK_GATE_HIGH_REG_N8_0_24
+Design : MYFIR_UNFOLDED
 Version: O-2018.06-SP4
-Date   : Thu Nov 12 16:00:31 2020
+Date   : Tue Nov 17 14:46:23 2020
 ****************************************
 
 
@@ -19,8 +19,7 @@ Wire Load Model Mode: top
 
 Design        Wire Load Model            Library
 ------------------------------------------------
-SNPS_CLOCK_GATE_HIGH_REG_N8_0_24
-                       5K_hvratio_1_1    NangateOpenCellLibrary
+MYFIR_UNFOLDED         5K_hvratio_1_1    NangateOpenCellLibrary
 
 
 Global Operating Voltage = 1.1  
@@ -32,12 +31,12 @@ Power-specific unit information :
     Leakage Power Units = 1nW
 
 
-  Cell Internal Power  = 984.8536 nW   (97%)
-  Net Switching Power  =  25.5674 nW    (3%)
+  Cell Internal Power  = 106.9525 uW   (65%)
+  Net Switching Power  =  57.1538 uW   (35%)
                          ---------
-Total Dynamic Power    =   1.0104 uW  (100%)
+Total Dynamic Power    = 164.1063 uW  (100%)
 
-Cell Leakage Power     =  58.6191 nW
+Cell Leakage Power     = 166.3176 uW
 
                  Internal         Switching           Leakage            Total                         Cell
 Power Group      Power            Power               Power              Power   (   %    )  Attrs  Count
@@ -45,10 +44,10 @@ Power Group      Power            Power               Power              Power  
 io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)            0
 memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)            0
 black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)            0
-clock_network      0.9849        2.5567e-02           58.6191            1.0690  ( 100.00%)            1
-register           0.0000            0.0000            0.0000            0.0000  (   0.00%)            0
+clock_network     13.0629            3.8129        1.0831e+03           17.9590  (   5.44%)            18
+register          29.1901            7.8888        1.3460e+04           50.5389  (  15.30%)            153
 sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)            0
-combinational      0.0000            0.0000            0.0000            0.0000  (   0.00%)            0
+combinational     64.6996           45.4521        1.5177e+05          261.9261  (  79.27%)            3989
 ---------------------------------------------------------------------------------------------------------
-Total              0.9849 uW     2.5567e-02 uW        58.6191 nW         1.0690 uW
+Total            106.9526 uW        57.1538 uW     1.6632e+05 nW       330.4240 uW
 1
