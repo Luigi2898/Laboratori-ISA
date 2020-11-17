@@ -85,8 +85,4 @@ proc synth {ent dir odir per CKG} {
     set newPer [expr $dat * 4.0]
     return $newPer
 }
-    set per [ get_attribute [ get_clocks MY_CLK ] period ]
-    set dat [expr $per - $sl]
-    set newPer [expr $dat * 4.0]
-    return $newPer
-}
+

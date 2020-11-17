@@ -15,40 +15,40 @@ echo " 9 - backannotate all (gating and no gating)"
 read response
 case $response in
     1)
-        backAnn $noGated $normdir $normdirNC $normaltag $tbtagNormal
+        backAnn $noGated $normdir $normdirNC $normaltag $normaltagNC $tbtagNormal
     ;;
     2)
-        backAnn $noGated $unfoldeddir $unfoldeddirNC $unfoldedtag $tbtagUnfolded
+        backAnn $noGated $unfoldeddir $unfoldeddirNC $unfoldedtag $unfoldedtagNC $tbtagUnfolded
     ;;
     3)
-        backAnn $noGated $pipeddir $pipeddirNC $pipedtag $tbtagPiped
+        backAnn $noGated $pipeddir $pipeddirNC $pipedtag $pipedtagNC $tbtagPiped
     ;;
     4)
-        backAnn $noGated $normdir $normdirNC $normaltag $tbtagNormal
-        backAnn $noGated $unfoldeddir $unfoldeddirNC $unfoldedtag $tbtagUnfolded
-        backAnn $noGated $pipeddir $pipeddirNC $pipedtag $tbtagPiped
+        backAnn $noGated $normdir $normdirNC $normaltag $normaltagNC $tbtagNormal
+        backAnn $noGated $unfoldeddir $unfoldeddirNC $unfoldedtag $unfoldedtagNC $tbtagUnfolded
+        backAnn $noGated $pipeddir $pipeddirNC $pipedtag $tbtagPipedNC $tbtagPiped
     ;;
     5)
-        backAnn $gated $normdir $normdirNC $normaltagCKG $tbtagNormal
+        backAnn $gated $normdir $normdirNC $normaltagCKG $normaltagCKGNC $tbtagNormal
     ;;
     6)
-        backAnn $gated $unfoldeddir $unfoldeddirNC $unfoldedtagCKG $tbtagUnfolded
+        backAnn $gated $unfoldeddir $unfoldeddirNC $unfoldedtagCKG $unfoldedtagCKGNC $tbtagUnfolded
     ;;
     7)
-        backAnn $gated $pipeddir $pipeddirNC $pipedtagCKG $tbtagPiped
+        backAnn $gated $pipeddir $pipeddirNC $pipedtagCKG $pipedtagCKGNC $tbtagPiped
     ;;
     8)
-        backAnn $gated $normdir $normdirNC $normaltagCKG $tbtagNormal
-        backAnn $gated $unfoldeddir $unfoldeddirNC $unfoldedtagCKG $tbtagUnfolded
-        backAnn $gated $pipeddir $pipeddirNC $pipedtagCKG $tbtagPiped
+        backAnn $gated $normdir $normdirNC $normaltagCKG $normaltagCKGNC $tbtagNormal
+        backAnn $gated $unfoldeddir $unfoldeddirNC $unfoldedtagCKG $unfoldedtagCKGNC $tbtagUnfolded
+        backAnn $gated $pipeddir $pipeddirNC $pipedtagCKG $pipedtagCKGNC $tbtagPiped
     ;;
     9)
-        backAnn $noGated $normdir $normdirNC $normaltag $tbtagNormal
-        backAnn $noGated $unfoldeddir $unfoldeddirNC $unfoldedtag $tbtagUnfolded
-        backAnn $noGated $pipeddir $pipeddirNC $pipedtag $tbtagPiped
-        backAnn $gated $normdir $normdirNC $normaltagCKG $tbtagNormal
-        backAnn $gated $unfoldeddir $unfoldeddirNC $unfoldedtagCKG $tbtagUnfolded
-        backAnn $gated $pipeddir $pipeddirNC $pipedtagCKG $tbtagPiped
+        backAnn $noGated $normdir $normdirNC $normaltag $normaltagNC $tbtagNormal
+        backAnn $noGated $unfoldeddir $unfoldeddirNC $unfoldedtag $unfoldedtagNC $tbtagUnfolded
+        backAnn $noGated $pipeddir $pipeddirNC $pipedtag $pipedtagNC $tbtagPiped
+        backAnn $gated $normdir $normdirNC $normaltagCKG $normaltagCKGNC $tbtagNormal
+        backAnn $gated $unfoldeddir $unfoldeddirNC $unfoldedtagCKG $unfoldedtagCKGNC $tbtagUnfolded
+        backAnn $gated $pipeddir $pipeddirNC $pipedtagCKG $pipedtagCKGNC $tbtagPiped
     ;;  
 esac
 

@@ -1,4 +1,7 @@
 read_verilog -netlist ./netlistToBack/myfir.v
+current_design MYFIR
+current_design MYFIR_UNFOLDED
+current_design MYFIR_PIPED_UNFOLDED
 read_saif -input ./netlistToBack/myfir_syn.saif -instance tb_fir/UUT -unit ns -scale 1
 create_clock -name MY_CLK -period 10.0 CLK
 report_power > ./synthReportAfterBack/power.txt

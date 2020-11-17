@@ -13,6 +13,13 @@ readonly unfoldedtagCKG="_UNFOLDED_CKG"
 readonly normaltagCKG="_NORMAL_CKG"
 readonly pipedtagCKG="_PIPED_CKG"
 
+readonly unfoldedtagNC="_UNFOLDED_"
+readonly normaltagNC="_NORMAL_"
+readonly pipedtagNC="_PIPED_"
+readonly unfoldedtagCKGNC="_UNFOLDED_.CKG"
+readonly normaltagCKGNC="_NORMAL_.CKG"
+readonly pipedtagCKGNC="_PIPED_.CKG"
+
 readonly gated="gating"
 readonly noGated="noGating"
 
@@ -27,7 +34,8 @@ backAnn () {
     #$2 type of fir
     #$3 type of fir NC
     #$4 tag clk_gen
-
+    #$6 tb tag
+    #$6 tag NC
     cd syn
     if [ ! -d netlist ]    # ← see 'man test' for available unary and binary operators.
     then
@@ -79,7 +87,7 @@ vcom -93 -work ./work ../src/testbenchComponents/clk_gen.vhd
 vcom -93 -work ./work ../src/testbenchComponents/data_gen.vhd
 vcom -93 -work ./work ../src/testbenchComponents/data_sink.vhd
 vlog -work ./work ./netlist/myfir.v
-vlog -work ./work ../tb/tb_fir$5.v
+vlog -work ./work ../tb/tb_fir$6.v
 vsim -do backVsim.tcl
 rm -r netlist
 
@@ -94,7 +102,7 @@ vcom -93 -work ./work ../src/testbenchComponents/clk_gen$4.vhd
 vcom -93 -work ./work ../src/testbenchComponents/data_gen.vhd
 vcom -93 -work ./work ../src/testbenchComponents/data_sink.vhd
 vlog -work ./work ./netlist/myfir.v
-vlog -work ./work ../tb/tb_fir$5.v
+vlog -work ./work ../tb/tb_fir$6.v
 vsim -do backVsimNC.tcl
 rm -r netlist
 echo "Simulation ended"
@@ -112,6 +120,7 @@ dc_shell-xg-t -f backSyn.tcl
 mv ./synthReportAfterBack/*.txt ./synthReportAfterBack/$1/$2
 
 cp ./netlist/$1/$2/* ./netlistToBack
+cp ./newPer$5.outGG ./newPer.outGG
 vcd2saif -input ../vcd/$1/$2/myfir_synNC.vcd -output ../saif/$1/$2/myfir_syn.saif
 cp ../saif/$1/$2/myfir_syn.saif ./netlistToBack
 dc_shell-xg-t -f backSynNC.tcl
