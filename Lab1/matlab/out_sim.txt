@@ -1,0 +1,605 @@
+# At                 4500:  resC=          0  res=          0
+#  - OK
+# 
+# At                 7500:  resC=         -8  res=         -8
+#  - OK
+# 
+# At                12500:  resC=         -8  res=         -8
+#  - OK
+# 
+# At                15500:  resC=          0  res=          0
+#  - OK
+# 
+# At                18500:  resC=         64  res=         64
+#  - OK
+# 
+# At                19500:  resC=        144  res=        144
+#  - OK
+# 
+# At                22500:  resC=        280  res=        280
+#  - OK
+# 
+# At                32500:  resC=        368  res=        368
+#  - OK
+# 
+# At                48500:  resC=        448  res=        448
+#  - OK
+# 
+# At                50500:  resC=        440  res=        440
+#  - OK
+# 
+# At                51500:  resC=        440  res=        440
+#  - OK
+# 
+# At                54500:  resC=        352  res=        352
+#  - OK
+# 
+# At                56500:  resC=        256  res=        256
+#  - OK
+# 
+# At                58500:  resC=        112  res=        112
+#  - OK
+# 
+# At                70500:  resC=        -40  res=        -40
+#  - OK
+# 
+# At                71500:  resC=       -176  res=       -176
+#  - OK
+# 
+# At                73500:  resC=       -328  res=       -328
+#  - OK
+# 
+# At                75500:  resC=       -424  res=       -424
+#  - OK
+# 
+# At                76500:  resC=       -504  res=       -504
+#  - OK
+# 
+# At                81500:  resC=       -496  res=       -496
+#  - OK
+# 
+# At                85500:  resC=       -496  res=       -496
+#  - OK
+# 
+# At                87500:  resC=       -408  res=       -408
+#  - OK
+# 
+# At                90500:  resC=       -304  res=       -304
+#  - OK
+# 
+# At                92500:  resC=       -160  res=       -160
+#  - OK
+# 
+# At                99500:  resC=        -16  res=        -16
+#  - OK
+# 
+# At               103500:  resC=        128  res=        128
+#  - OK
+# 
+# At               106500:  resC=        280  res=        280
+#  - OK
+# 
+# At               111500:  resC=        368  res=        368
+#  - OK
+# 
+# At               118500:  resC=        448  res=        448
+#  - OK
+# 
+# At               126500:  resC=        440  res=        440
+#  - OK
+# 
+# At               131500:  resC=        440  res=        440
+#  - OK
+# 
+# At               135500:  resC=        352  res=        352
+#  - OK
+# 
+# At               148500:  resC=        256  res=        256
+#  - OK
+# 
+# At               155500:  resC=        112  res=        112
+#  - OK
+# 
+# At               156500:  resC=        -40  res=        -40
+#  - OK
+# 
+# At               157500:  resC=       -176  res=       -176
+#  - OK
+# 
+# At               158500:  resC=       -328  res=       -328
+#  - OK
+# 
+# At               160500:  resC=       -424  res=       -424
+#  - OK
+# 
+# At               162500:  resC=       -504  res=       -504
+#  - OK
+# 
+# At               168500:  resC=       -496  res=       -496
+#  - OK
+# 
+# At               174500:  resC=       -496  res=       -496
+#  - OK
+# 
+# At               178500:  resC=       -408  res=       -408
+#  - OK
+# 
+# At               194500:  resC=       -304  res=       -304
+#  - OK
+# 
+# At               198500:  resC=       -160  res=       -160
+#  - OK
+# 
+# At               201500:  resC=        -16  res=        -16
+#  - OK
+# 
+# At               202500:  resC=        128  res=        128
+#  - OK
+# 
+# At               203500:  resC=        280  res=        280
+#  - OK
+# 
+# At               204500:  resC=        368  res=        368
+#  - OK
+# 
+# At               214500:  resC=        456  res=        456
+#  - OK
+# 
+# At               218500:  resC=        448  res=        448
+#  - OK
+# 
+# At               231500:  resC=        448  res=        448
+#  - OK
+# 
+# At               232500:  resC=        360  res=        360
+#  - OK
+# 
+# At               234500:  resC=        272  res=        272
+#  - OK
+# 
+# At               237500:  resC=        120  res=        120
+#  - OK
+# 
+# At               240500:  resC=        -32  res=        -32
+#  - OK
+# 
+# At               241500:  resC=       -168  res=       -168
+#  - OK
+# 
+# At               242500:  resC=       -320  res=       -320
+#  - OK
+# 
+# At               243500:  resC=       -424  res=       -424
+#  - OK
+# 
+# At               244500:  resC=       -504  res=       -504
+#  - OK
+# 
+# At               245500:  resC=       -496  res=       -496
+#  - OK
+# 
+# At               246500:  resC=       -496  res=       -496
+#  - OK
+# 
+# At               251500:  resC=       -408  res=       -408
+#  - OK
+# 
+# At               253500:  resC=       -304  res=       -304
+#  - OK
+# 
+# At               256500:  resC=       -160  res=       -160
+#  - OK
+# 
+# At               259500:  resC=        -16  res=        -16
+#  - OK
+# 
+# At               269500:  resC=        128  res=        128
+#  - OK
+# 
+# At               274500:  resC=        280  res=        280
+#  - OK
+# 
+# At               275500:  resC=        368  res=        368
+#  - OK
+# 
+# At               276500:  resC=        456  res=        456
+#  - OK
+# 
+# At               279500:  resC=        448  res=        448
+#  - OK
+# 
+# At               281500:  resC=        448  res=        448
+#  - OK
+# 
+# At               288500:  resC=        360  res=        360
+#  - OK
+# 
+# At               290500:  resC=        264  res=        264
+#  - OK
+# 
+# At               291500:  resC=        112  res=        112
+#  - OK
+# 
+# At               292500:  resC=        -40  res=        -40
+#  - OK
+# 
+# At               295500:  resC=       -176  res=       -176
+#  - OK
+# 
+# At               305500:  resC=       -328  res=       -328
+#  - OK
+# 
+# At               306500:  resC=       -424  res=       -424
+#  - OK
+# 
+# At               309500:  resC=       -504  res=       -504
+#  - OK
+# 
+# At               310500:  resC=       -496  res=       -496
+#  - OK
+# 
+# At               313500:  resC=       -496  res=       -496
+#  - OK
+# 
+# At               315500:  resC=       -408  res=       -408
+#  - OK
+# 
+# At               319500:  resC=       -304  res=       -304
+#  - OK
+# 
+# At               321500:  resC=       -160  res=       -160
+#  - OK
+# 
+# At               323500:  resC=        -16  res=        -16
+#  - OK
+# 
+# At               326500:  resC=        128  res=        128
+#  - OK
+# 
+# At               330500:  resC=        280  res=        280
+#  - OK
+# 
+# At               331500:  resC=        368  res=        368
+#  - OK
+# 
+# At               334500:  resC=        448  res=        448
+#  - OK
+# 
+# At               337500:  resC=        440  res=        440
+#  - OK
+# 
+# At               339500:  resC=        440  res=        440
+#  - OK
+# 
+# At               345500:  resC=        352  res=        352
+#  - OK
+# 
+# At               346500:  resC=        256  res=        256
+#  - OK
+# 
+# At               349500:  resC=        112  res=        112
+#  - OK
+# 
+# At               352500:  resC=        -32  res=        -32
+#  - OK
+# 
+# At               359500:  resC=       -168  res=       -168
+#  - OK
+# 
+# At               362500:  resC=       -312  res=       -312
+#  - OK
+# 
+# At               363500:  resC=       -408  res=       -408
+#  - OK
+# 
+# At               366500:  resC=       -488  res=       -488
+#  - OK
+# 
+# At               376500:  resC=       -488  res=       -488
+#  - OK
+# 
+# At               383500:  resC=       -496  res=       -496
+#  - OK
+# 
+# At               385500:  resC=       -416  res=       -416
+#  - OK
+# 
+# At               397500:  resC=       -320  res=       -320
+#  - OK
+# 
+# At               398500:  resC=       -176  res=       -176
+#  - OK
+# 
+# At               403500:  resC=        -32  res=        -32
+#  - OK
+# 
+# At               407500:  resC=        120  res=        120
+#  - OK
+# 
+# At               408500:  resC=        264  res=        264
+#  - OK
+# 
+# At               409500:  resC=        360  res=        360
+#  - OK
+# 
+# At               410500:  resC=        440  res=        440
+#  - OK
+# 
+# At               413500:  resC=        432  res=        432
+#  - OK
+# 
+# At               425500:  resC=        432  res=        432
+#  - OK
+# 
+# At               426500:  resC=        352  res=        352
+#  - OK
+# 
+# At               429500:  resC=        256  res=        256
+#  - OK
+# 
+# At               430500:  resC=        112  res=        112
+#  - OK
+# 
+# At               431500:  resC=        -40  res=        -40
+#  - OK
+# 
+# At               433500:  resC=       -176  res=       -176
+#  - OK
+# 
+# At               437500:  resC=       -328  res=       -328
+#  - OK
+# 
+# At               438500:  resC=       -424  res=       -424
+#  - OK
+# 
+# At               442500:  resC=       -512  res=       -512
+#  - OK
+# 
+# At               443500:  resC=       -504  res=       -504
+#  - OK
+# 
+# At               447500:  resC=       -512  res=       -512
+#  - OK
+# 
+# At               454500:  resC=       -424  res=       -424
+#  - OK
+# 
+# At               455500:  resC=       -320  res=       -320
+#  - OK
+# 
+# At               456500:  resC=       -168  res=       -168
+#  - OK
+# 
+# At               460500:  resC=        -32  res=        -32
+#  - OK
+# 
+# At               462500:  resC=        120  res=        120
+#  - OK
+# 
+# At               464500:  resC=        272  res=        272
+#  - OK
+# 
+# At               466500:  resC=        360  res=        360
+#  - OK
+# 
+# At               467500:  resC=        448  res=        448
+#  - OK
+# 
+# At               470500:  resC=        448  res=        448
+#  - OK
+# 
+# At               475500:  resC=        456  res=        456
+#  - OK
+# 
+# At               483500:  resC=        368  res=        368
+#  - OK
+# 
+# At               485500:  resC=        272  res=        272
+#  - OK
+# 
+# At               487500:  resC=        120  res=        120
+#  - OK
+# 
+# At               492500:  resC=        -24  res=        -24
+#  - OK
+# 
+# At               493500:  resC=       -168  res=       -168
+#  - OK
+# 
+# At               495500:  resC=       -312  res=       -312
+#  - OK
+# 
+# At               498500:  resC=       -408  res=       -408
+#  - OK
+# 
+# At               502500:  resC=       -488  res=       -488
+#  - OK
+# 
+# At               507500:  resC=       -488  res=       -488
+#  - OK
+# 
+# At               512500:  resC=       -496  res=       -496
+#  - OK
+# 
+# At               514500:  resC=       -416  res=       -416
+#  - OK
+# 
+# At               523500:  resC=       -312  res=       -312
+#  - OK
+# 
+# At               528500:  resC=       -168  res=       -168
+#  - OK
+# 
+# At               529500:  resC=        -24  res=        -24
+#  - OK
+# 
+# At               530500:  resC=        128  res=        128
+#  - OK
+# 
+# At               537500:  resC=        280  res=        280
+#  - OK
+# 
+# At               539500:  resC=        368  res=        368
+#  - OK
+# 
+# At               544500:  resC=        448  res=        448
+#  - OK
+# 
+# At               548500:  resC=        440  res=        440
+#  - OK
+# 
+# At               553500:  resC=        440  res=        440
+#  - OK
+# 
+# At               555500:  resC=        352  res=        352
+#  - OK
+# 
+# At               558500:  resC=        264  res=        264
+#  - OK
+# 
+# At               569500:  resC=        120  res=        120
+#  - OK
+# 
+# At               572500:  resC=        -32  res=        -32
+#  - OK
+# 
+# At               575500:  resC=       -168  res=       -168
+#  - OK
+# 
+# At               579500:  resC=       -320  res=       -320
+#  - OK
+# 
+# At               592500:  resC=       -424  res=       -424
+#  - OK
+# 
+# At               596500:  resC=       -512  res=       -512
+#  - OK
+# 
+# At               598500:  resC=       -504  res=       -504
+#  - OK
+# 
+# At               600500:  resC=       -504  res=       -504
+#  - OK
+# 
+# At               602500:  resC=       -416  res=       -416
+#  - OK
+# 
+# At               603500:  resC=       -312  res=       -312
+#  - OK
+# 
+# At               606500:  resC=       -160  res=       -160
+#  - OK
+# 
+# At               607500:  resC=        -24  res=        -24
+#  - OK
+# 
+# At               612500:  resC=        120  res=        120
+#  - OK
+# 
+# At               617500:  resC=        272  res=        272
+#  - OK
+# 
+# At               619500:  resC=        360  res=        360
+#  - OK
+# 
+# At               623500:  resC=        448  res=        448
+#  - OK
+# 
+# At               624500:  resC=        448  res=        448
+#  - OK
+# 
+# At               629500:  resC=        456  res=        456
+#  - OK
+# 
+# At               637500:  resC=        368  res=        368
+#  - OK
+# 
+# At               638500:  resC=        272  res=        272
+#  - OK
+# 
+# At               642500:  resC=        120  res=        120
+#  - OK
+# 
+# At               647500:  resC=        -32  res=        -32
+#  - OK
+# 
+# At               648500:  resC=       -176  res=       -176
+#  - OK
+# 
+# At               653500:  resC=       -320  res=       -320
+#  - OK
+# 
+# At               656500:  resC=       -416  res=       -416
+#  - OK
+# 
+# At               658500:  resC=       -496  res=       -496
+#  - OK
+# 
+# At               659500:  resC=       -488  res=       -488
+#  - OK
+# 
+# At               668500:  resC=       -488  res=       -488
+#  - OK
+# 
+# At               670500:  resC=       -408  res=       -408
+#  - OK
+# 
+# At               671500:  resC=       -304  res=       -304
+#  - OK
+# 
+# At               672500:  resC=       -160  res=       -160
+#  - OK
+# 
+# At               681500:  resC=        -16  res=        -16
+#  - OK
+# 
+# At               686500:  resC=        128  res=        128
+#  - OK
+# 
+# At               691500:  resC=        272  res=        272
+#  - OK
+# 
+# At               692500:  resC=        360  res=        360
+#  - OK
+# 
+# At               693500:  resC=        440  res=        440
+#  - OK
+# 
+# At               695500:  resC=        432  res=        432
+#  - OK
+# 
+# At               697500:  resC=        440  res=        440
+#  - OK
+# 
+# At               698500:  resC=        360  res=        360
+#  - OK
+# 
+# At               699500:  resC=        272  res=        272
+#  - OK
+# 
+# At               701500:  resC=        128  res=        128
+#  - OK
+# 
+# At               702500:  resC=        -24  res=        -24
+#  - OK
+# 
+# At               703500:  resC=       -168  res=       -168
+#  - OK
+# 
+# At               708500:  resC=       -312  res=       -312
+#  - OK
+# 
+# At               709500:  resC=       -416  res=       -416
+#  - OK
+# 
+# At               711500:  resC=       -504  res=       -504
+#  - OK
+# 
+# At               713500:  resC=       -496  res=       -496
+#  - OK
+# 
+# At               720500:  resC=       -496  res=       -496
+#  - OK
+# 
+# 
+# FILTER TESTS COMPLETED WITH 0 ERRORS!

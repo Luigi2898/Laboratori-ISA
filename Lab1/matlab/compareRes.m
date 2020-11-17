@@ -3,7 +3,7 @@ clc
 close all
 clear all
 
-simout_mat = importdata('../C/resultsm.txt');
+simout_mat = importdata('../matlab/resultsm.txt');
 simout_C11 = importdata('../C/resultC11.txt');
 simout_C8 = importdata('../C/resultC8.txt');
 simout_C8then7 = importdata('../C/resultC8then7.txt');
