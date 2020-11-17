@@ -1,0 +1,59 @@
+ 
+****************************************
+Report : power
+        -hier
+        -analysis_effort low
+Design : MYFIR
+Version: O-2018.06-SP4
+Date   : Mon Nov 16 22:37:14 2020
+****************************************
+
+
+Library(s) Used:
+
+    NangateOpenCellLibrary (File: /software/dk/nangate45/synopsys/NangateOpenCellLibrary_typical_ecsm_nowlm.db)
+
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+Design        Wire Load Model            Library
+------------------------------------------------
+MYFIR                  5K_hvratio_1_1    NangateOpenCellLibrary
+
+
+Global Operating Voltage = 1.1  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000ff
+    Time Units = 1ns
+    Dynamic Power Units = 1uW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+--------------------------------------------------------------------------------
+                                       Switch   Int      Leak     Total
+Hierarchy                              Power    Power    Power    Power    %
+--------------------------------------------------------------------------------
+MYFIR                                    63.349  109.556 5.83e+04  231.209 100.0
+  DP_output_register_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N11)
+                                          0.518    0.994   59.626    1.571   0.7
+  DP_i_register_8_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_0)
+                                          0.395    0.993   59.626    1.447   0.6
+  DP_i_register_7_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_1)
+                                          0.395    0.993   59.626    1.447   0.6
+  DP_i_register_6_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_2)
+                                          0.395    0.993   59.626    1.447   0.6
+  DP_i_register_5_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_3)
+                                          0.395    0.993   59.626    1.447   0.6
+  DP_i_register_4_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_4)
+                                          0.395    0.993   59.626    1.447   0.6
+  DP_i_register_3_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_5)
+                                          0.395    0.993   59.626    1.447   0.6
+  DP_i_register_2_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_6)
+                                          0.395    0.993   59.626    1.447   0.6
+  DP_i_register_1_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_7)
+                                          0.395    0.993   59.626    1.447   0.6
+  DP_input_register_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_8)
+                                          1.433    1.376   55.702    2.864   1.2
+1

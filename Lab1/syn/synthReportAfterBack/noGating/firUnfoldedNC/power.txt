@@ -1,0 +1,56 @@
+Information: Updating design information... (UID-85)
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: The derived toggle rate value (0.183311) for the clock net 'CLK' conflicts with the annotated value (0.177143). Using the annotated value. (PWR-12)
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : MYFIR_UNFOLDED
+Version: O-2018.06-SP4
+Date   : Thu Nov 12 15:41:55 2020
+****************************************
+
+
+Library(s) Used:
+
+    NangateOpenCellLibrary (File: /software/dk/nangate45/synopsys/NangateOpenCellLibrary_typical_ecsm_nowlm.db)
+
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+Design        Wire Load Model            Library
+------------------------------------------------
+MYFIR_UNFOLDED         5K_hvratio_1_1    NangateOpenCellLibrary
+
+
+Global Operating Voltage = 1.1  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000ff
+    Time Units = 1ns
+    Dynamic Power Units = 1uW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+  Cell Internal Power  = 140.4300 uW   (68%)
+  Net Switching Power  =  66.0951 uW   (32%)
+                         ---------
+Total Dynamic Power    = 206.5251 uW  (100%)
+
+Cell Leakage Power     = 171.7507 uW
+
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
+register          65.7766            9.2964        1.3369e+04           88.4423  (  23.38%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational     74.6536           56.7988        1.5838e+05          289.8332  (  76.62%)
+--------------------------------------------------------------------------------------------------
+Total            140.4302 uW        66.0952 uW     1.7175e+05 nW       378.2755 uW
+1

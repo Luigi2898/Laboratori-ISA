@@ -1,0 +1,48 @@
+ 
+****************************************
+Report : power
+        -net
+        -analysis_effort low
+        -sort_mode net_switching_power
+Design : SNPS_CLOCK_GATE_HIGH_REG_N8_0_67
+Version: O-2018.06-SP4
+Date   : Mon Nov 16 22:49:25 2020
+****************************************
+
+
+Library(s) Used:
+
+    NangateOpenCellLibrary (File: /software/dk/nangate45/synopsys/NangateOpenCellLibrary_typical_ecsm_nowlm.db)
+
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+Design        Wire Load Model            Library
+------------------------------------------------
+SNPS_CLOCK_GATE_HIGH_REG_N8_0_67
+                       5K_hvratio_1_1    NangateOpenCellLibrary
+
+
+Global Operating Voltage = 1.1  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000ff
+    Time Units = 1ns
+    Dynamic Power Units = 1uW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+
+  Attributes
+  ----------
+      a  -  Switching activity information annotated on net
+      d  -  Default switching activity information on net
+
+                             Total      Static   Toggle   Switching
+Net                          Net Load   Prob.    Rate     Power      Attrs
+--------------------------------------------------------------------------------
+ENCLK                          0.310    0.370    0.1357      0.0254  
+--------------------------------------------------------------------------------
+Total (1 net)                                               25.4364 nW
+1

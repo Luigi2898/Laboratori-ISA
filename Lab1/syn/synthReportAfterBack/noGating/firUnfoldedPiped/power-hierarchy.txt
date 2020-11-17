@@ -1,0 +1,39 @@
+ 
+****************************************
+Report : power
+        -hier
+        -analysis_effort low
+Design : MYFIR_PIPED_UNFOLDED
+Version: O-2018.06-SP4
+Date   : Thu Nov 12 15:47:23 2020
+****************************************
+
+
+Library(s) Used:
+
+    NangateOpenCellLibrary (File: /software/dk/nangate45/synopsys/NangateOpenCellLibrary_typical_ecsm_nowlm.db)
+
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+Design        Wire Load Model            Library
+------------------------------------------------
+MYFIR_PIPED_UNFOLDED   5K_hvratio_1_1    NangateOpenCellLibrary
+
+
+Global Operating Voltage = 1.1  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000ff
+    Time Units = 1ns
+    Dynamic Power Units = 1uW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+--------------------------------------------------------------------------------
+                                       Switch   Int      Leak     Total
+Hierarchy                              Power    Power    Power    Power    %
+--------------------------------------------------------------------------------
+MYFIR_PIPED_UNFOLDED                     82.521  253.233 2.01e+05  537.050 100.0
+1
