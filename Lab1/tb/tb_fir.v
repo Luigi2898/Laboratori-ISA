@@ -33,7 +33,7 @@ module tb_fir ();
 always begin  : infinite
 	outfile0=$fopen("../C/resultC.txt","r");
   while(1) begin
-	  @(posedge CLK_i)	//Guardare simulazione
+	  @(posedge CLK_i)
 	    if(VOUT_i == 1 && !$feof(outfile0)) begin
 		    a = $fscanf(outfile0,"%d\n",resC);
 		    res = DOUT_i;
