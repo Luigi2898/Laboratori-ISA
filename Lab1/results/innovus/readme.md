@@ -1,1 +1,1 @@
-### Subdirectories here contains report and logs produced by used tools.
+### Subdirectories here contains report and logs produced by Innovus, they are essentially power, area and timing reports; they are divided by architecture.
