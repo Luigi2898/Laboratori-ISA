@@ -21,3 +21,5 @@ legend("post-syntesis", "post-place&route", 'Location', 'northwest')
 ylabel("Area [\mum^2]")
 saveas(f, "./result/AreaGraphs/AreaBar_comp.jpg")
 imwrite(rgb2gray(imread("./result/AreaGraphs/AreaBar_comp.jpg")), "./result/AreaGraphs/AreaBar_comp_gray.jpg")
+
+AreaPR./AreaPR'

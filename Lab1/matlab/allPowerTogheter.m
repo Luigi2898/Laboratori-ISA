@@ -56,3 +56,6 @@ legend("post-syntesis", "post-place&route",'Location','northwest')
 ylabel("Leakage power [\muW]")
 saveas(f, "./result/powerGraphs/power_conf_LEAK.jpg")
 imwrite(rgb2gray(imread("./result/powerGraphs/power_conf_LEAK.jpg")), "./result/powerGraphs/power_conf_LEAK_gray.jpg")
+
+powerPR./powerPR'
+
