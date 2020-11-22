@@ -5,12 +5,12 @@ USE ieee.numeric_std.all;
 ENTITY HA IS
 PORT(
 		A, B : IN STD_LOGIC;
-		SUM, CARRY : OUT STD_LOGIC
+		S, Co : OUT STD_LOGIC
 	 );
 END HA;
 
 ARCHITECTURE struct OF HA IS
 BEGIN
-SUM <= A XOR B;
-CARRY <= A AND B;
-END BEHAVIOUR;
+S <= A XOR B;
+Co <= A AND B;
+END struct;
