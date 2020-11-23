@@ -61,14 +61,21 @@ ARCHITECTURE struct OF FPmul_stage2 IS
    -- Architecture declarations
 
    -- Internal signal declarations
-   SIGNAL EXP_in_int  : std_logic_vector(7 DOWNTO 0);
-   SIGNAL EXP_neg_int : std_logic;
-   SIGNAL EXP_pos_int : std_logic;
-   SIGNAL SIG_in_int  : std_logic_vector(27 DOWNTO 0);
-   SIGNAL dout        : std_logic;
-   SIGNAL dout1       : std_logic_vector(7 DOWNTO 0);
-   SIGNAL prod        : std_logic_vector(63 DOWNTO 0);
-
+   SIGNAL EXP_in_int          : std_logic_vector(7 DOWNTO 0);
+   SIGNAL EXP_neg_int         : std_logic;
+   SIGNAL EXP_pos_int         : std_logic;
+   SIGNAL SIG_in_int          : std_logic_vector(27 DOWNTO 0);
+   SIGNAL dout                : std_logic;
+   SIGNAL dout1               : std_logic_vector(7 DOWNTO 0);
+   SIGNAL prod                : std_logic_vector(63 DOWNTO 0);
+   SIGNAL EXP_in_REG          : std_logic_vector(7 DOWNTO 0);
+   SIGNAL SIG_in_REG          : std_logic_vector(27 DOWNTO 0);
+   SIGNAL EXP_pos_stage2_REG  : std_logic;
+   SIGNAL EXP_neg_stage2_REG  : std_logic;
+   SIGNAL isINF_stage2_REG    : std_logic;
+   SIGNAL isNaN_stage2_REG    : std_logic;
+   SIGNAL isZ_tab_stage2_REG  : std_logic;  
+   SIGNAL SIGN_out_stage2_REG : std_logic;   
 
 
 BEGIN
@@ -87,10 +94,20 @@ BEGIN
    PROCESS(clk)
    BEGIN
       IF RISING_EDGE(clk) THEN
-         EXP_in <= EXP_in_int;
-         SIG_in <= SIG_in_int;
-         EXP_pos_stage2 <= EXP_pos_int;
-         EXP_neg_stage2 <= EXP_neg_int;
+         EXP_in_REG <= EXP_in_int;
+         SIG_in_REG <= SIG_in_int;
+         EXP_pos_stage2_REG <= EXP_pos_int;
+         EXP_neg_stage2_REG <= EXP_neg_int;
+      END IF;
+   END PROCESS;
+
+   PROCESS(clk)
+   BEGIN
+      IF RISING_EDGE(clk) THEN
+         EXP_in <= EXP_in_REG;
+         SIG_in <= SIG_in_REG;
+         EXP_pos_stage2 <= EXP_pos_stage2_REG;
+         EXP_neg_stage2 <= EXP_neg_stage2_REG;
       END IF;
    END PROCESS;
 
@@ -99,10 +116,20 @@ BEGIN
    PROCESS(clk)
    BEGIN
       IF RISING_EDGE(clk) THEN
-         isINF_stage2 <= isINF_stage1;
-         isNaN_stage2 <= isNaN_stage1;
-         isZ_tab_stage2 <= isZ_tab_stage1;
-         SIGN_out_stage2 <= SIGN_out_stage1;
+         isINF_stage2_REG <= isINF_stage1;
+         isNaN_stage2_REG <= isNaN_stage1;
+         isZ_tab_stage2_REG <= isZ_tab_stage1;
+         SIGN_out_stage2_REG <= SIGN_out_stage1;
+      END IF;
+   END PROCESS;
+
+   PROCESS(clk)
+   BEGIN
+      IF RISING_EDGE(clk) THEN
+         isINF_stage2 <= isINF_stage2_REG;
+         isNaN_stage2 <= isNaN_stage2_REG;
+         isZ_tab_stage2 <= isZ_tab_stage2_REG;
+         SIGN_out_stage2 <= SIGN_out_stage2_REG;
       END IF;
    END PROCESS;
 
