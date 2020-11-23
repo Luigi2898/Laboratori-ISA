@@ -72,6 +72,7 @@ ARCHITECTURE pipeline OF FPmul IS
    SIGNAL isZ_tab         : std_logic;
    SIGNAL isZ_tab_stage1  : std_logic;
    SIGNAL isZ_tab_stage2  : std_logic;
+   SIGNAL FP_Ad1,FP_Bd1   : std_logic_vector (31 DOWNTO 0);
 
 
    -- Component Declarations
@@ -158,11 +159,20 @@ ARCHITECTURE pipeline OF FPmul IS
 
 BEGIN
 
+   input_reg_process : process (clk)
+   begin
+   if (clk'event and clk = '1') then
+      FP_Ad1 <= FP_A;
+      FP_Bd1 <= FP_B;
+   end if;
+   end process input_reg_process;
+
+
    -- Instance port mappings.
    I1 : FPmul_stage1
       PORT MAP (
-         FP_A            => FP_A,
-         FP_B            => FP_B,
+         FP_A            => FP_Ad1,
+         FP_B            => FP_Bd1,
          clk             => clk,
          A_EXP           => A_EXP,
          A_SIG           => A_SIG,
