@@ -24,7 +24,7 @@ COMPONENT signExtender is
     PP_sign : in  std_logic_vector (N / 2 downto 0);
     PP_ext  : out PP_array_ext
   ) ;
-COMPONENT signExtender ; 
+END COMPONENT signExtender ; 
  
 signal a_1 : std_logic_vector(N-1 downto 0);
 signal b_1 : std_logic_vector(N-1 downto 0);
