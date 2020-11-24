@@ -62,7 +62,7 @@ end
    clk_gen CG(.CLK(CLK_i),.RST_n(RST_n_i));
 
   //
-   DUT MBE_mult(.A(IN_A),.B(IN_B),.MPY_OUT(OUT_MPY));
+   DUT MBE_mult_uns(.A(IN_A),.B(IN_B),.MPY_OUT(OUT_MPY));
 
    
 //Result verification task
