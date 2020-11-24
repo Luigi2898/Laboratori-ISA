@@ -17,7 +17,7 @@ l.append(2)
 j = 0
 
 while l[j] < 17:
-    l.append(math.ceil((3/2) * l[j-1]))
+    l.append(math.floor((3/2) * l[j-1]))
     j = j + 1
 
 print("L = ", l.__len__() - 1)
