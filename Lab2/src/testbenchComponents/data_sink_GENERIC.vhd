@@ -8,9 +8,11 @@ library std;
 use std.textio.all;
 
 entity data_sink is
+  generic(N_bit : integer := 8;
+          fileName : string := "");
   port (
     CLK      : in std_logic;
-    DATA     : in std_logic_vector(31 downto 0)
+    DATA     : in std_logic_vector(N_bit - 1 downto 0)
 	);
 end data_sink;
 
@@ -19,11 +21,11 @@ architecture beh of data_sink is
 begin  -- beh
 
   process (CLK)
-    file res_fp : text open WRITE_MODE is "../file/fp_prod_tb.hex";
+    file res_fp : text open WRITE_MODE is fileName;
     variable line_out : line; 	
   begin  -- process
     if CLK'event and CLK = '1' then  -- rising clock edge
-        hwrite(line_out, DATA);
+        write(line_out, DATA);
         writeline(res_fp, line_out);
     end if;
   end process;

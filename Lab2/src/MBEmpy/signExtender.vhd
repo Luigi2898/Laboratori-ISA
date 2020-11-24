@@ -1,8 +1,7 @@
 library ieee ;
-library ieee_proposed;
     use ieee.std_logic_1164.all ;
     use ieee.numeric_std.all ;
-    use ieee_proposed.array_std.all;
+    use work.array_std.all;
 
 entity signExtender is
   generic(N : integer := 32);
@@ -24,26 +23,28 @@ architecture structural of signExtender is
 
 begin
 
-  first_LSB_half_adder : HA port map(PP(0)(0), PP_sign(0), PP_ext(0)(0), PP_ext(1)(1));
-  PP_ext(0)(N + 3 downto 1) <= not(PP_sign(0)) & PP_sign(0) & PP_sign(0) & PP(0)(N downto 1);
+  PP_ext(0)(0)              <= '0';
+  PP_ext(0)(N + 4 downto 1) <= not(PP_sign(0)) & PP_sign(0) & PP_sign(0) & PP(0)(N downto 0);
 
   sign_extender : for i in 1 to N_pp_array - 3 generate
-
-    LSB_half_adder : HA port map(PP(i)(0), PP_sign(i), PP_ext(i)(0), PP_ext(i + 1)(1));
-    PP_ext(i)(N + 2) <= '1';
-    PP_ext(i)(N + 1) <= PP_sign(i);
-    PP_ext(i)(N downto 1) <= PP(i)(N downto 1);
-  
+    
+    PP_ext(i)(0)              <= PP_sign(i - 1);
+    PP_ext(i)(1)              <= '0';
+    PP_ext(i)(N + 2 downto 2) <= PP(i)(N downto 0);
+    PP_ext(i)(N + 3)          <= not(PP_sign(i));
+    PP_ext(i)(N + 4)          <= '1';
+    
   end generate ; -- sign_extender
   
-  almost_last_LSB_half_adder : HA port map(PP(N_PP_array - 2)(0), PP_sign(N_PP_array - 2), PP_ext(N_PP_array - 2)(0), PP_ext(N_PP_array - 2)(1));
-  PP_ext(N_PP_array - 2)(N + 2) <= '0';
-  PP_ext(N_PP_array - 2)(N + 1) <= PP_sign(N_PP_array - 2);
-  PP_ext(N_PP_array - 2)(N downto 1) <= PP(N_PP_array - 2)(N downto 1);
+  PP_ext(N_PP_array - 2)(0)              <= PP_sign(N_PP_array - 3);
+  PP_ext(N_PP_array - 2)(1)              <= '0';
+  PP_ext(N_PP_array - 2)(N + 2 downto 2) <= PP(N_PP_array - 2)(N downto 0);
+  PP_ext(N_PP_array - 2)(N + 3)          <= not(PP_sign(N_PP_array - 2));
+  PP_ext(N_PP_array - 2)(N + 4)          <= '0';
 
-  last_LSB_half_adder : HA port map(PP(N_PP_array - 1)(0), PP_sign(N_PP_array - 1), PP_ext(N_PP_array - 1)(0), open);
-  PP_ext(N_PP_array - 1)(N + 2) <= '0';
-  PP_ext(N_PP_array - 1)(N + 1) <= '0';
-  PP_ext(N_PP_array - 1)(N downto 1) <= PP(N_PP_array - 2)(N downto 1);
+  PP_ext(N_PP_array - 1)(0)                  <= PP_sign(N_PP_array - 2);
+  PP_ext(N_PP_array - 1)(1)                  <= '0';
+  PP_ext(N_PP_array - 1)(N + 2 downto 2)     <= PP(N_PP_array - 1)(N downto 0);
+  PP_ext(N_PP_array - 1)(N + 4 downto N + 3) <= "00";
 
 end architecture ;
