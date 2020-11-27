@@ -6,9 +6,9 @@ library ieee;
 
 entity MBE_mult_uns is
     port (
-        IN_A : in unsigned (31 downto 0);
-        IN_B : in unsigned (31 downto 0);
-        OUT_MPY : out unsigned (63 downto 0)        
+        IN_A    : in std_logic_vector (31 downto 0);
+        IN_B    : in std_logic_vector (31 downto 0);
+        OUT_MPY : out std_logic_vector (63 downto 0)        
     );
 end entity MBE_mult_uns;  
 
@@ -39,7 +39,7 @@ architecture CSA_tree of MBE_mult_uns is
 
 begin
 
-    MBEU_PP : MBE_PPG port map (IN_A,IN_n,sign_out,pp_out);
+    MBEU_PP : MBE_PPG port map (IN_A,IN_B,sign_out,pp_out);
     DADDA_TREE : DADDA port map (pp_out,sign_out,OUT_MPY);
     
 end architecture CSA_tree;
