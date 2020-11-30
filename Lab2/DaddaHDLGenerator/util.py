@@ -8,9 +8,15 @@ SIGNAL       = "signal %s : %s"
 SLV          = "std_logic_vector(%d downto 0);"
 STDL         = "std_logic;"
 PP_EXT       = "PP_ext(%d)(%s)"
-INTERNAL_sig = "from_%d_to_%d"
+INTERNAL_SIG = "internal_%d_%d"
+PP           = "PP(%d)(%s)"
 
-
+def countDot(list):
+    cnt = 0
+    for aDot in list:
+        if aDot == 1:
+            cnt += 1
+    return cnt
 
 class DotMatrix:
 
@@ -147,6 +153,12 @@ class Dot:
 
     def __gt__(self, other):
         return(self.v > other.v)
+    
+    def __eq__(self, other):
+        if isinstance(other, Dot):
+            return self.v == other.v
+        else:
+            return self.v == other
 
 class Dadda:
     
@@ -170,7 +182,6 @@ class Dadda:
         dotMatrix.populate(33)
         dotMatrix.compress()
         self.tree.append(dotMatrix)
-        self.printMatrix(self.tree[0].matrix)
         self.operators = [] # first row FA second row HA
         
     def printMatrix(self, matrixToPrint):
@@ -185,39 +196,13 @@ class Dadda:
             of.write('\n')
     
     def reductTree(self):
-        for i in reversed(range(0, self.L)):
-            nl, op = self.tree[i - self.L].reduct(self.l[i])
+        for i in range(1, self.L):
+            nl, op = self.tree[i - 1].reduct(self.l[self.L - (i - 1)]) #FIXME: out of range!!
             self.tree.append(nl)
             self.operators.append(op)
-            self.printMatrix(self.tree[i - self.L].matrix)
 
-    def print2VHD(self):
-        CSAindex = 1
-        HAindex = 1
-        for level, op in enumerate(self.operators):
-            FullA = op[1]
-            while not(FullA.count(0) == len(FullA)):
-                CSApar = 0
-                first = True
-                for i, _ in enumerate(reversed(FullA)):
-                    if not(FullA[i] == 0):
-                        if first:
-                            firstI = i
-                            first = False
-                        FullA[i] = FullA[i] - 1
-                        CSApar = CSApar + 1
-                if not(CSApar == 0):
-                    if level == 0:
-                        print(CSA % (CSAindex, CSApar, PP_EXT % (self.tree[level].matrix[0][firstI + CSApar].w, str(firstI + CSApar) + " downto " + str(firstI) ), PP_EXT % (self.tree[level].matrix[1][firstI + CSApar].w, str(firstI + CSApar) + " downto " + str(firstI) ), PP_EXT % (self.tree[level].matrix[2][firstI + CSApar].w, str(firstI + CSApar) + " downto " + str(firstI) ), "asd", "asd"))
-                        CSAindex = CSAindex + 1
-            HalfA = op[0]
-            while not(HalfA.count(0) == len(HalfA)):
-                for i, _ in enumerate(reversed(HalfA)):
-                    if not(HalfA[i] == 0):
-                        HalfA[i] = HalfA[i] - 1
-                        print(HA % (HAindex, "asd", "asd", "asd", "asd"))
-                        HAindex = HAindex + 1
-        
+
+    
         
                 
 
@@ -225,6 +210,3 @@ class Dadda:
         
             
 
-d = Dadda(17, 33)
-d.reductTree()
-d.print2VHD()
