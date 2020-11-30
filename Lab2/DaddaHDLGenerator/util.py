@@ -5,22 +5,12 @@ import numpy as np
 CSA          = "CSA_%d : CSA generic map(%d)\n            port map(%s, %s, %s, %s, %s);"
 HA           = "HA_%d : HA port map(%s, %s, %s, %s);"
 SIGNAL       = "signal %s : %s"
-SLV          = "std_logic_vectro(%d downto 0);"
+SLV          = "std_logic_vector(%d downto 0);"
 STDL         = "std_logic;"
-PP_EXT       = "PP_ext(%d)(%d)"
+PP_EXT       = "PP_ext(%d)(%s)"
 INTERNAL_sig = "from_%d_to_%d"
 
-'''
-while non ci sono zeri:
-    par = 0
-    for el in operators:
-        if el != 0:
-            el--
-            par++
-    Poi metto il CSA con il parallelismo giusto
-'''
 
-print(SLV)
 
 class DotMatrix:
 
@@ -88,7 +78,17 @@ class DotMatrix:
                             if deleted == toDel:
                                 break
         return nextLevel, operators
-     
+
+    def compress(self):
+        emptyDot = Dot()
+        for c in range(self.W):
+            col = [row[c] for row in self.matrix]
+            while not(next((x for x in col if x.t == "none"), None)):
+                for i in range(len(col) - 1):
+                    col[i] = col[i + 1]
+                
+
+
 class Dot:
 
     def __init__(self):
@@ -165,18 +165,20 @@ class Dadda:
         self.tree = []
         dotMatrix = DotMatrix(W=self.W, H=self.H)
         dotMatrix.populate(33)
+        #dotMatrix.compress()
         self.tree.append(dotMatrix)
         self.printMatrix(self.tree[0].matrix)
         self.operators = [] # first row FA second row HA
         
     def printMatrix(self, matrixToPrint):
-        with open("out.txt", "a") as of:
+        with open("outDotNotation.txt", "a") as of:
             for row in matrixToPrint:
                 for el in row:
-                    of.write(el.__str__() + ' ')
+                    of.write(el.__str__() + ',')
                 of.write('\n')
-            for _ in range(len(row)):
-                of.write('**')
+            of.write("2,")
+            for _ in range(len(row)-1):
+                of.write('0,')
             of.write('\n')
     
     def reductTree(self):
@@ -185,6 +187,35 @@ class Dadda:
             self.tree.append(nl)
             self.operators.append(op)
             self.printMatrix(self.tree[i - self.L].matrix)
+
+    def print2VHD(self):
+        CSAindex = 1
+        HAindex = 1
+        for level, op in enumerate(self.operators):
+            FullA = op[1]
+            while not(FullA.count(0) == len(FullA)):
+                CSApar = 0
+                first = True
+                for i, _ in enumerate(reversed(FullA)):
+                    if not(FullA[i] == 0):
+                        if first:
+                            firstI = i
+                            first = False
+                        FullA[i] = FullA[i] - 1
+                        CSApar = CSApar + 1
+                if not(CSApar == 0):
+                    if level == 0:
+                        print(CSA % (CSAindex, CSApar, PP_EXT % (self.tree[level].matrix[0][firstI + CSApar].w, str(firstI + CSApar) + " downto " + str(firstI) ), PP_EXT % (self.tree[level].matrix[1][firstI + CSApar].w, str(firstI + CSApar) + " downto " + str(firstI) ), PP_EXT % (self.tree[level].matrix[2][firstI + CSApar].w, str(firstI + CSApar) + " downto " + str(firstI) ), "asd", "asd"))
+                        CSAindex = CSAindex + 1
+            HalfA = op[0]
+            while not(HalfA.count(0) == len(HalfA)):
+                for i, _ in enumerate(reversed(HalfA)):
+                    if not(HalfA[i] == 0):
+                        HalfA[i] = HalfA[i] - 1
+                        print(HA % (HAindex, "asd", "asd", "asd", "asd"))
+                        HAindex = HAindex + 1
+        
+        
                 
 
 
@@ -193,3 +224,4 @@ class Dadda:
 
 d = Dadda(17, 33)
 d.reductTree()
+d.print2VHD()
