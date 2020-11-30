@@ -80,12 +80,12 @@ class DotMatrix:
         return nextLevel, operators
 
     def compress(self):
-        emptyDot = Dot()
         for c in range(self.W):
             col = [row[c] for row in self.matrix]
-            while not(next((x for x in col if x.t == "none"), None)):
-                for i in range(len(col) - 1):
-                    col[i] = col[i + 1]
+            col = sorted(col ,reverse=True)
+            for i, el in enumerate(col):
+                self.matrix[i][c] = el
+
                 
 
 
@@ -145,6 +145,9 @@ class Dot:
     def __radd__(self, other):
         return int(self.v) + other
 
+    def __gt__(self, other):
+        return(self.v > other.v)
+
 class Dadda:
     
     def __init__(self, height, parallelism): 
@@ -165,7 +168,7 @@ class Dadda:
         self.tree = []
         dotMatrix = DotMatrix(W=self.W, H=self.H)
         dotMatrix.populate(33)
-        #dotMatrix.compress()
+        dotMatrix.compress()
         self.tree.append(dotMatrix)
         self.printMatrix(self.tree[0].matrix)
         self.operators = [] # first row FA second row HA
