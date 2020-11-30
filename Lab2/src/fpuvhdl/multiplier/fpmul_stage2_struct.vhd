@@ -59,6 +59,13 @@ USE ieee.std_logic_arith.all;
 ARCHITECTURE struct OF FPmul_stage2 IS
 
    -- Architecture declarations
+   COMPONENT MBE_mult_uns is
+    port (
+        IN_A    : in std_logic_vector (31 downto 0);
+        IN_B    : in std_logic_vector (31 downto 0);
+        OUT_MPY : out std_logic_vector (63 downto 0)        
+    );
+   END COMPONENT MBE_mult_uns;
 
    -- Internal signal declarations
    SIGNAL EXP_in_int          : std_logic_vector(7 DOWNTO 0);
@@ -155,16 +162,17 @@ BEGIN
    END PROCESS I4combo;
 
    -- ModuleWare code(v1.1) for instance 'I2' of 'mult'
-   I2combo : PROCESS (A_SIG, B_SIG)
-   VARIABLE dtemp : unsigned(63 DOWNTO 0);
-   BEGIN
-      dtemp := (unsigned(A_SIG) * unsigned(B_SIG));
-      prod <= std_logic_vector(dtemp);
-   END PROCESS I2combo;
+   -- I2combo : PROCESS (A_SIG, B_SIG)
+   -- VARIABLE dtemp : unsigned(63 DOWNTO 0);
+   -- BEGIN
+      -- dtemp := (unsigned(A_SIG) * unsigned(B_SIG));
+      -- prod <= std_logic_vector(dtemp);
+   -- END PROCESS I2combo;
 
    -- ModuleWare code(v1.1) for instance 'I6' of 'vdd'
    dout <= '1';
 
    -- Instance port mappings.
-
+   mbe_mult : MBE_mult_uns port map(A_SIG, B_SIG, prod);
+   
 END struct;
