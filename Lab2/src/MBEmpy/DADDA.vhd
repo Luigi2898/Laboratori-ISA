@@ -1,8 +1,7 @@
 library ieee ;
-library ieee_proposed;
     use ieee.std_logic_1164.all ;
     use ieee.numeric_std.all ;
-    use ieee_proposed.array_std.all;
+    use work.array_std.all;
 
 
 entity DADDA is

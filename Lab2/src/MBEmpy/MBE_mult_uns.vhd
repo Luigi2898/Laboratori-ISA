@@ -27,6 +27,7 @@ architecture CSA_tree of MBE_mult_uns is
 
     -- Partial products sum via Dadda-Tree
     component DADDA is
+	    generic(N : integer := 32; N_pp : integer := 17);
         port (
           PP      : in  PP_array;
           PP_sign : in  std_logic_vector (N / 2 downto 0); -- Last one is 0, please give me a 0

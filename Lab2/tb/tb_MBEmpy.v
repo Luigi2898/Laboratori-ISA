@@ -10,7 +10,7 @@ module tb_MBEmpy ();
    wire RST_n_i;
    wire unsigned [31:0] IN_A;
    wire unsigned [31:0] IN_B;
-   wire unsigned [63:0] OUT_MPY
+   wire unsigned [63:0] OUT_MPY;
    wire END_SIM_i;
    
    integer error_count = 0;
