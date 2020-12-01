@@ -52,5 +52,9 @@ from util import Dadda
 
 d = Dadda(17, 33)
 d.reductTree()
-for matrix in d.tree:
-    d.printMatrix(matrix.matrix)
+with open("outGG.txt", 'w') as of:
+    pass
+for el in d.tree:
+    d.printMatrix(el.matrix)
+for op in d.operators:
+    print(op)

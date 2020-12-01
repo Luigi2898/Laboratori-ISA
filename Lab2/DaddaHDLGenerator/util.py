@@ -1,5 +1,6 @@
 import math as m
 import numpy as np
+from copy import deepcopy
 
 
 CSA          = "CSA_%d : CSA generic map(%d)\n            port map(%s, %s, %s, %s, %s);"
@@ -60,9 +61,9 @@ class DotMatrix:
         for aDot in self.matrix[-1][1 : parallelism]:
             aDot.setBlack(self.H - 1)
         self.matrix[-1][parallelism + 1].setSign(self.H - 1)
-                            
+
     def reduct(self, lTarget):
-        nextLevel = DotMatrix(matrix=self.matrix)
+        nextLevel = deepcopy(self)
         operators = [[0] * (self.W - 1), [0] * (self.W - 1)]
         reminder = 0
         for c in reversed(range(self.W)):
@@ -71,13 +72,23 @@ class DotMatrix:
                 red = (sum(col) + reminder) - lTarget
                 HalfAdders = int(red % 2)
                 FullAdders = int(red / 2)
-                reminder = HalfAdders + FullAdders
                 operators[0][c] =  HalfAdders
                 operators[1][c] = FullAdders
+                toAdd = reminder
+                reminder = HalfAdders + FullAdders
                 toDel = sum(col) - lTarget
+                if toAdd > 0:
+                    added = 0
+                    for aDot in reversed(col):
+                        if not(aDot.isPresent()):
+                            aDot.setCarry()
+                            added = added + 1
+                            if added == toAdd:
+                                break
+                self.compress()
                 if toDel > 0:
                     deleted = 0
-                    for aDot in reversed(col):
+                    for aDot in col:
                         if aDot.isPresent():
                             aDot.setEmpty()
                             deleted = deleted + 1
@@ -91,9 +102,6 @@ class DotMatrix:
             col = sorted(col ,reverse=True)
             for i, el in enumerate(col):
                 self.matrix[i][c] = el
-
-                
-
 
 class Dot:
 
@@ -142,6 +150,12 @@ class Dot:
     def isPresent(self):
         return (self.v == 1)
 
+    def setCarry(self):
+        self.t = "carry"
+        self.w = 0
+        self.v = 1
+        self.one = 0
+        
     def __str__(self):
         return str(self.v)
 
@@ -177,15 +191,14 @@ class Dadda:
                 j = j + 1
         self.l = self.l[:-1]
         self.L = len(self.l)
-        self.tree = []
         dotMatrix = DotMatrix(W=self.W, H=self.H)
-        dotMatrix.populate(33)
+        dotMatrix.populate(self.P)
         dotMatrix.compress()
-        self.tree.append(dotMatrix)
+        self.tree = [dotMatrix]
         self.operators = [] # first row FA second row HA
         
     def printMatrix(self, matrixToPrint):
-        with open("outDotNotation.txt", "a") as of:
+        with open("outGG.txt", "a") as of:
             for row in matrixToPrint:
                 for el in row:
                     of.write(el.__str__() + ',')
@@ -196,10 +209,13 @@ class Dadda:
             of.write('\n')
     
     def reductTree(self):
-        for i in range(1, self.L):
-            nl, op = self.tree[i - 1].reduct(self.l[self.L - (i - 1)]) #FIXME: out of range!!
+        for i in range(1, self.L + 1):
+            nl, op = self.tree[i - 1].reduct(self.l[self.L - i])
+            nl.compress()
             self.tree.append(nl)
-            self.operators.append(op)
+            self.operators.append(op.copy())
+            
+
 
 
     
