@@ -117,32 +117,32 @@ HA_47 : HA port map(asd, asd, asd, asd);
 HA_48 : HA port map(asd, asd, asd, asd);
 HA_49 : HA port map(asd, asd, asd, asd);
 CSA_1 : CSA generic map(16)
-            port map(input1, input2, input3, outS, outC);
+            port map(internal_0_0( 39 downto 23 ), internal_0_1( 39 downto 23 ), internal_0_2( 39 downto 23 ), outS, outC);
 CSA_2 : CSA generic map(12)
-            port map(input1, input2, input3, outS, outC);
+            port map(internal_0_3( 37 downto 25 ), internal_0_4( 37 downto 25 ), internal_0_5( 37 downto 25 ), outS, outC);
 CSA_3 : CSA generic map(8)
-            port map(input1, input2, input3, outS, outC);
+            port map(internal_0_6( 35 downto 27 ), internal_0_7( 35 downto 27 ), internal_0_8( 35 downto 27 ), outS, outC);
 CSA_4 : CSA generic map(4)
-            port map(input1, input2, input3, outS, outC);
+            port map(internal_0_9( 33 downto 29 ), internal_0_10( 33 downto 29 ), internal_0_11( 33 downto 29 ), outS, outC);
 CSA_5 : CSA generic map(32)
-            port map(input1, input2, input3, outS, outC);
+            port map(internal_1_0( 47 downto 15 ), internal_1_1( 47 downto 15 ), internal_1_2( 47 downto 15 ), outS, outC);
 CSA_6 : CSA generic map(28)
-            port map(input1, input2, input3, outS, outC);
+            port map(internal_1_3( 45 downto 17 ), internal_1_4( 45 downto 17 ), internal_1_5( 45 downto 17 ), outS, outC);
 CSA_7 : CSA generic map(24)
-            port map(input1, input2, input3, outS, outC);
+            port map(internal_1_6( 43 downto 19 ), internal_1_7( 43 downto 19 ), internal_1_8( 43 downto 19 ), outS, outC);
 CSA_8 : CSA generic map(19)
-            port map(input1, input2, input3, outS, outC);
+            port map(internal_1_9( 41 downto 22 ), internal_1_10( 41 downto 22 ), internal_1_11( 41 downto 22 ), outS, outC);
 CSA_9 : CSA generic map(44)
-            port map(input1, input2, input3, outS, outC);
+            port map(internal_2_0( 53 downto 9 ), internal_2_1( 53 downto 9 ), internal_2_2( 53 downto 9 ), outS, outC);
 CSA_10 : CSA generic map(40)
-            port map(input1, input2, input3, outS, outC);
+            port map(internal_2_3( 51 downto 11 ), internal_2_4( 51 downto 11 ), internal_2_5( 51 downto 11 ), outS, outC);
 CSA_11 : CSA generic map(35)
-            port map(input1, input2, input3, outS, outC);
+            port map(internal_2_6( 49 downto 14 ), internal_2_7( 49 downto 14 ), internal_2_8( 49 downto 14 ), outS, outC);
 CSA_12 : CSA generic map(52)
-            port map(input1, input2, input3, outS, outC);
+            port map(internal_3_0( 57 downto 5 ), internal_3_1( 57 downto 5 ), internal_3_2( 57 downto 5 ), outS, outC);
 CSA_13 : CSA generic map(47)
-            port map(input1, input2, input3, outS, outC);
+            port map(internal_3_3( 55 downto 8 ), internal_3_4( 55 downto 8 ), internal_3_5( 55 downto 8 ), outS, outC);
 CSA_14 : CSA generic map(55)
-            port map(input1, input2, input3, outS, outC);
+            port map(internal_4_0( 59 downto 4 ), internal_4_1( 59 downto 4 ), internal_4_2( 59 downto 4 ), outS, outC);
 CSA_15 : CSA generic map(59)
-            port map(input1, input2, input3, outS, outC);
+            port map(internal_5_0( 61 downto 2 ), internal_5_1( 61 downto 2 ), internal_5_2( 61 downto 2 ), outS, outC);

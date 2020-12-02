@@ -29,7 +29,8 @@ def assign(target, source):
     return assignement
 
 def downto(signal, end, start):
-    signal = signal + "( " + end + " downto " + start + " )"
+    signal_dt = signal + "( " + str(end) + " downto " + str(start) + " )"
+    return signal_dt
 
 class DotMatrix:
 

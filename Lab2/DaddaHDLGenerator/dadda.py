@@ -75,7 +75,8 @@ for level in range(d.L):
             declarations.append(dec)
     signals.append(row)
 
-#Handling of the first level
+#Sign extension
+
 assignements = []
 for i, aRow in enumerate(d.tree[0].matrix):
     inBit = []
@@ -93,10 +94,14 @@ for i, aRow in enumerate(d.tree[0].matrix):
             b = "\'1\'"
             inBit.append(b)
     assignements.append(u.assign(signals[0][i], inBit))
+
+#Definition of operands
+
 CSAtree = []
 HAtree = []
 for level, op in enumerate(d.operators):
     FullA = op[1]
+    h = 0
     while not(FullA.count(0) == len(FullA)):
         CSApar = 0
         first = True
@@ -108,13 +113,14 @@ for level, op in enumerate(d.operators):
                 FullA[i] = FullA[i] - 1
                 CSApar = CSApar + 1
         if not(CSApar == 0):
-            #input1 = u.downto(signals[level][h])
-            #input2 = u.downto(signals[level][h + 1])
-            #input3 = u.downto(signals[level][h + 2])
+            input1 = u.downto(signals[level][h], firstI + CSApar, firstI)
+            input2 = u.downto(signals[level][h + 1], firstI + CSApar, firstI)
+            input3 = u.downto(signals[level][h + 2], firstI + CSApar, firstI)
             #outS
             #outC
-            CSAtree.append(u.CSA % (CSAindex, CSApar, "input1", "input2", "input3", "outS", "outC"))
+            CSAtree.append(u.CSA % (CSAindex, CSApar, input1, input2, input3, "outS", "outC"))
             CSAindex = CSAindex + 1
+        h = h + 3
     HalfA = op[0]
     while not(HalfA.count(0) == len(HalfA)):
         for i, _ in enumerate(reversed(HalfA)):
