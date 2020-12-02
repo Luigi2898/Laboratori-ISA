@@ -64,7 +64,7 @@ signals = []
 
 #Definitions of signals
 
-for level in range(d.L):
+for level in range(d.L + 1):
     row = []
     for i in range(d.H):
         name = u.INTERNAL_SIG %(level, i)
@@ -95,11 +95,17 @@ for i, aRow in enumerate(d.tree[0].matrix):
             inBit.append(b)
     assignements.append(u.assign(signals[0][i], inBit))
 
+with open("first.vhd", 'w') as of:
+    for de in declarations:
+        of.write(de + "\n")
+    for ass in assignements:
+        of.write(ass + "\n")
+
 #Definition of operands
 
 CSAtree = []
 HAtree = []
-for level in range(d.L - 1):
+for level in range(d.L):
     FullA = d.operators[level][1]
     h = 0
     while not(FullA.count(0) == len(FullA)):
@@ -119,6 +125,8 @@ for level in range(d.L - 1):
             outS = u.downto(signals[level + 1][h - 2], firstI + CSApar, firstI)
             outC = u.downto(signals[level + 1][h - 1], firstI + CSApar - 1, firstI - 1)
             CSAtree.append(u.CSA % (CSAindex, CSApar, input1, input2, input3, outS, outC))
+            with open("first.vhd", 'a') as of:
+                of.write(u.CSA % (CSAindex, CSApar, input1, input2, input3, outS, outC) + '\n')
             CSAindex = CSAindex + 1
         h = h + 3
     HalfA = d.operators[level][0]
@@ -127,14 +135,6 @@ for level in range(d.L - 1):
             if not(HalfA[i] == 0):
                 HalfA[i] = HalfA[i] - 1
                 HAtree.append(u.HA % (HAindex, "asd", "asd", "asd", "asd"))
+                with open("first.vhd", 'a') as of:
+                    of.write(u.HA % (HAindex, "asd", "asd", "asd", "asd") + '\n')
                 HAindex = HAindex + 1
-
-with open("first.vhd", 'w') as of:
-    for d in declarations:
-        of.write(d + "\n")
-    for ass in assignements:
-        of.write(ass + "\n")
-    for ha in HAtree:
-        of.write(ha + "\n")
-    for csa in CSAtree:
-        of.write(csa + "\n")

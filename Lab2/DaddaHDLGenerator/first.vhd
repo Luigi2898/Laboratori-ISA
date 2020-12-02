@@ -50,6 +50,8 @@ signal internal_4_3 : std_logic_vector(56 downto 0);
 signal internal_5_0 : std_logic_vector(64 downto 0);
 signal internal_5_1 : std_logic_vector(63 downto 0);
 signal internal_5_2 : std_logic_vector(60 downto 0);
+signal internal_6_0 : std_logic_vector(64 downto 0);
+signal internal_6_1 : std_logic_vector(63 downto 0);
 internal_0_0 <= '1' & '1' & not(S(14)) & '1' & not(S(13)) & '1' & not(S(12)) & '1' & not(S(11)) & '1' & not(S(10)) & '1' & not(S(9)) & '1' & not(S(8)) & '1' & not(S(7)) & '1' & not(S(6)) & '1' & not(S(5)) & '1' & not(S(4)) & '1' & not(S(3)) & '1' & not(S(2)) & '1' & not(S(0)) & S(0) & S(0) & PP(0)(32) & PP(0)(31) & PP(0)(30) & PP(0)(29) & PP(0)(28) & PP(0)(27) & PP(0)(26) & PP(0)(25) & PP(0)(24) & PP(0)(23) & PP(0)(22) & PP(0)(21) & PP(0)(20) & PP(0)(19) & PP(0)(18) & PP(0)(17) & PP(0)(16) & PP(0)(15) & PP(0)(14) & PP(0)(13) & PP(0)(12) & PP(0)(11) & PP(0)(10) & PP(0)(9) & PP(0)(8) & PP(0)(7) & PP(0)(6) & PP(0)(5) & PP(0)(4) & PP(0)(3) & PP(0)(2) & PP(0)(1) & PP(0)(0)
 internal_0_1 <= PP(16)(0) & PP(15)(0) & PP(15)(1) & PP(14)(32) & PP(14)(31) & PP(13)(32) & PP(13)(31) & PP(12)(32) & PP(12)(31) & PP(11)(32) & PP(11)(31) & PP(10)(32) & PP(10)(31) & PP(9)(32) & PP(9)(31) & PP(8)(32) & PP(8)(31) & PP(7)(32) & PP(7)(31) & PP(6)(32) & PP(6)(31) & PP(5)(32) & PP(5)(31) & PP(4)(32) & PP(4)(31) & PP(3)(32) & PP(3)(31) & PP(2)(32) & not(S(1)) & PP(1)(32) & PP(1)(31) & PP(1)(30) & PP(1)(29) & PP(1)(28) & PP(1)(27) & PP(1)(26) & PP(1)(25) & PP(1)(24) & PP(1)(23) & PP(1)(22) & PP(1)(21) & PP(1)(20) & PP(1)(19) & PP(1)(18) & PP(1)(17) & PP(1)(16) & PP(1)(15) & PP(1)(14) & PP(1)(13) & PP(1)(12) & PP(1)(11) & PP(1)(10) & PP(1)(9) & PP(1)(8) & PP(1)(7) & PP(1)(6) & PP(1)(5) & PP(1)(4) & PP(1)(3) & PP(1)(2) & PP(1)(1) & PP(1)(0) & S(0)
 internal_0_2 <= PP(16)(1) & PP(16)(2) & PP(15)(2) & PP(15)(3) & PP(14)(30) & PP(14)(29) & PP(13)(30) & PP(13)(29) & PP(12)(30) & PP(12)(29) & PP(11)(30) & PP(11)(29) & PP(10)(30) & PP(10)(29) & PP(9)(30) & PP(9)(29) & PP(8)(30) & PP(8)(29) & PP(7)(30) & PP(7)(29) & PP(6)(30) & PP(6)(29) & PP(5)(30) & PP(5)(29) & PP(4)(30) & PP(4)(29) & PP(3)(30) & PP(2)(31) & PP(2)(30) & PP(2)(29) & PP(2)(28) & PP(2)(27) & PP(2)(26) & PP(2)(25) & PP(2)(24) & PP(2)(23) & PP(2)(22) & PP(2)(21) & PP(2)(20) & PP(2)(19) & PP(2)(18) & PP(2)(17) & PP(2)(16) & PP(2)(15) & PP(2)(14) & PP(2)(13) & PP(2)(12) & PP(2)(11) & PP(2)(10) & PP(2)(9) & PP(2)(8) & PP(2)(7) & PP(2)(6) & PP(2)(5) & PP(2)(4) & PP(2)(3) & PP(2)(2) & PP(2)(1) & PP(2)(0) & S(1)
@@ -67,6 +69,14 @@ internal_0_13 <= PP(16)(23) & PP(16)(24) & PP(15)(24) & PP(15)(25) & PP(14)(8) &
 internal_0_14 <= PP(16)(25) & PP(16)(26) & PP(15)(26) & PP(14)(7) & PP(14)(6) & PP(14)(5) & PP(14)(4) & PP(14)(3) & PP(14)(2) & PP(14)(1) & PP(14)(0) & S(13)
 internal_0_15 <= PP(16)(27) & PP(15)(27) & PP(15)(28) & PP(15)(29) & PP(15)(30) & PP(15)(31) & PP(15)(32) & S(14)
 internal_0_16 <= PP(16)(28) & PP(16)(29) & PP(16)(30) & PP(16)(31) & S(16)
+CSA_1 : CSA generic map(16)
+            port map(internal_0_0( 39 downto 23 ), internal_0_1( 39 downto 23 ), internal_0_2( 39 downto 23 ), internal_1_11( 39 downto 23 ), internal_1_12( 38 downto 22 ));
+CSA_2 : CSA generic map(12)
+            port map(internal_0_3( 37 downto 25 ), internal_0_4( 37 downto 25 ), internal_0_5( 37 downto 25 ), internal_1_1( 37 downto 25 ), internal_1_2( 36 downto 24 ));
+CSA_3 : CSA generic map(8)
+            port map(internal_0_6( 35 downto 27 ), internal_0_7( 35 downto 27 ), internal_0_8( 35 downto 27 ), internal_1_4( 35 downto 27 ), internal_1_5( 34 downto 26 ));
+CSA_4 : CSA generic map(4)
+            port map(internal_0_9( 33 downto 29 ), internal_0_10( 33 downto 29 ), internal_0_11( 33 downto 29 ), internal_1_7( 33 downto 29 ), internal_1_8( 32 downto 28 ));
 HA_1 : HA port map(asd, asd, asd, asd);
 HA_2 : HA port map(asd, asd, asd, asd);
 HA_3 : HA port map(asd, asd, asd, asd);
@@ -79,6 +89,14 @@ HA_9 : HA port map(asd, asd, asd, asd);
 HA_10 : HA port map(asd, asd, asd, asd);
 HA_11 : HA port map(asd, asd, asd, asd);
 HA_12 : HA port map(asd, asd, asd, asd);
+CSA_5 : CSA generic map(32)
+            port map(internal_1_0( 47 downto 15 ), internal_1_1( 47 downto 15 ), internal_1_2( 47 downto 15 ), internal_2_7( 47 downto 15 ), internal_2_8( 46 downto 14 ));
+CSA_6 : CSA generic map(28)
+            port map(internal_1_3( 45 downto 17 ), internal_1_4( 45 downto 17 ), internal_1_5( 45 downto 17 ), internal_2_1( 45 downto 17 ), internal_2_2( 44 downto 16 ));
+CSA_7 : CSA generic map(24)
+            port map(internal_1_6( 43 downto 19 ), internal_1_7( 43 downto 19 ), internal_1_8( 43 downto 19 ), internal_2_4( 43 downto 19 ), internal_2_5( 42 downto 18 ));
+CSA_8 : CSA generic map(19)
+            port map(internal_1_9( 41 downto 22 ), internal_1_10( 41 downto 22 ), internal_1_11( 41 downto 22 ), internal_2_7( 41 downto 22 ), internal_2_8( 40 downto 21 ));
 HA_13 : HA port map(asd, asd, asd, asd);
 HA_14 : HA port map(asd, asd, asd, asd);
 HA_15 : HA port map(asd, asd, asd, asd);
@@ -92,6 +110,12 @@ HA_22 : HA port map(asd, asd, asd, asd);
 HA_23 : HA port map(asd, asd, asd, asd);
 HA_24 : HA port map(asd, asd, asd, asd);
 HA_25 : HA port map(asd, asd, asd, asd);
+CSA_9 : CSA generic map(44)
+            port map(internal_2_0( 53 downto 9 ), internal_2_1( 53 downto 9 ), internal_2_2( 53 downto 9 ), internal_3_4( 53 downto 9 ), internal_3_5( 52 downto 8 ));
+CSA_10 : CSA generic map(40)
+            port map(internal_2_3( 51 downto 11 ), internal_2_4( 51 downto 11 ), internal_2_5( 51 downto 11 ), internal_3_1( 51 downto 11 ), internal_3_2( 50 downto 10 ));
+CSA_11 : CSA generic map(35)
+            port map(internal_2_6( 49 downto 14 ), internal_2_7( 49 downto 14 ), internal_2_8( 49 downto 14 ), internal_3_4( 49 downto 14 ), internal_3_5( 48 downto 13 ));
 HA_26 : HA port map(asd, asd, asd, asd);
 HA_27 : HA port map(asd, asd, asd, asd);
 HA_28 : HA port map(asd, asd, asd, asd);
@@ -102,6 +126,10 @@ HA_32 : HA port map(asd, asd, asd, asd);
 HA_33 : HA port map(asd, asd, asd, asd);
 HA_34 : HA port map(asd, asd, asd, asd);
 HA_35 : HA port map(asd, asd, asd, asd);
+CSA_12 : CSA generic map(52)
+            port map(internal_3_0( 57 downto 5 ), internal_3_1( 57 downto 5 ), internal_3_2( 57 downto 5 ), internal_4_2( 57 downto 5 ), internal_4_3( 56 downto 4 ));
+CSA_13 : CSA generic map(47)
+            port map(internal_3_3( 55 downto 8 ), internal_3_4( 55 downto 8 ), internal_3_5( 55 downto 8 ), internal_4_1( 55 downto 8 ), internal_4_2( 54 downto 7 ));
 HA_36 : HA port map(asd, asd, asd, asd);
 HA_37 : HA port map(asd, asd, asd, asd);
 HA_38 : HA port map(asd, asd, asd, asd);
@@ -109,35 +137,14 @@ HA_39 : HA port map(asd, asd, asd, asd);
 HA_40 : HA port map(asd, asd, asd, asd);
 HA_41 : HA port map(asd, asd, asd, asd);
 HA_42 : HA port map(asd, asd, asd, asd);
+CSA_14 : CSA generic map(55)
+            port map(internal_4_0( 59 downto 4 ), internal_4_1( 59 downto 4 ), internal_4_2( 59 downto 4 ), internal_5_1( 59 downto 4 ), internal_5_2( 58 downto 3 ));
 HA_43 : HA port map(asd, asd, asd, asd);
 HA_44 : HA port map(asd, asd, asd, asd);
 HA_45 : HA port map(asd, asd, asd, asd);
 HA_46 : HA port map(asd, asd, asd, asd);
-CSA_1 : CSA generic map(16)
-            port map(internal_0_0( 39 downto 23 ), internal_0_1( 39 downto 23 ), internal_0_2( 39 downto 23 ), internal_1_11( 39 downto 23 ), internal_1_12( 38 downto 22 ));
-CSA_2 : CSA generic map(12)
-            port map(internal_0_3( 37 downto 25 ), internal_0_4( 37 downto 25 ), internal_0_5( 37 downto 25 ), internal_1_1( 37 downto 25 ), internal_1_2( 36 downto 24 ));
-CSA_3 : CSA generic map(8)
-            port map(internal_0_6( 35 downto 27 ), internal_0_7( 35 downto 27 ), internal_0_8( 35 downto 27 ), internal_1_4( 35 downto 27 ), internal_1_5( 34 downto 26 ));
-CSA_4 : CSA generic map(4)
-            port map(internal_0_9( 33 downto 29 ), internal_0_10( 33 downto 29 ), internal_0_11( 33 downto 29 ), internal_1_7( 33 downto 29 ), internal_1_8( 32 downto 28 ));
-CSA_5 : CSA generic map(32)
-            port map(internal_1_0( 47 downto 15 ), internal_1_1( 47 downto 15 ), internal_1_2( 47 downto 15 ), internal_2_7( 47 downto 15 ), internal_2_8( 46 downto 14 ));
-CSA_6 : CSA generic map(28)
-            port map(internal_1_3( 45 downto 17 ), internal_1_4( 45 downto 17 ), internal_1_5( 45 downto 17 ), internal_2_1( 45 downto 17 ), internal_2_2( 44 downto 16 ));
-CSA_7 : CSA generic map(24)
-            port map(internal_1_6( 43 downto 19 ), internal_1_7( 43 downto 19 ), internal_1_8( 43 downto 19 ), internal_2_4( 43 downto 19 ), internal_2_5( 42 downto 18 ));
-CSA_8 : CSA generic map(19)
-            port map(internal_1_9( 41 downto 22 ), internal_1_10( 41 downto 22 ), internal_1_11( 41 downto 22 ), internal_2_7( 41 downto 22 ), internal_2_8( 40 downto 21 ));
-CSA_9 : CSA generic map(44)
-            port map(internal_2_0( 53 downto 9 ), internal_2_1( 53 downto 9 ), internal_2_2( 53 downto 9 ), internal_3_4( 53 downto 9 ), internal_3_5( 52 downto 8 ));
-CSA_10 : CSA generic map(40)
-            port map(internal_2_3( 51 downto 11 ), internal_2_4( 51 downto 11 ), internal_2_5( 51 downto 11 ), internal_3_1( 51 downto 11 ), internal_3_2( 50 downto 10 ));
-CSA_11 : CSA generic map(35)
-            port map(internal_2_6( 49 downto 14 ), internal_2_7( 49 downto 14 ), internal_2_8( 49 downto 14 ), internal_3_4( 49 downto 14 ), internal_3_5( 48 downto 13 ));
-CSA_12 : CSA generic map(52)
-            port map(internal_3_0( 57 downto 5 ), internal_3_1( 57 downto 5 ), internal_3_2( 57 downto 5 ), internal_4_2( 57 downto 5 ), internal_4_3( 56 downto 4 ));
-CSA_13 : CSA generic map(47)
-            port map(internal_3_3( 55 downto 8 ), internal_3_4( 55 downto 8 ), internal_3_5( 55 downto 8 ), internal_4_1( 55 downto 8 ), internal_4_2( 54 downto 7 ));
-CSA_14 : CSA generic map(55)
-            port map(internal_4_0( 59 downto 4 ), internal_4_1( 59 downto 4 ), internal_4_2( 59 downto 4 ), internal_5_1( 59 downto 4 ), internal_5_2( 58 downto 3 ));
+CSA_15 : CSA generic map(59)
+            port map(internal_5_0( 61 downto 2 ), internal_5_1( 61 downto 2 ), internal_5_2( 61 downto 2 ), internal_6_0( 61 downto 2 ), internal_6_1( 60 downto 1 ));
+HA_47 : HA port map(asd, asd, asd, asd);
+HA_48 : HA port map(asd, asd, asd, asd);
+HA_49 : HA port map(asd, asd, asd, asd);
