@@ -68,9 +68,11 @@ for level in range(d.L):
     row = []
     for i in range(d.H):
         name = u.INTERNAL_SIG %(level, i)
-        dec = u.SIGNAL %(name, u.SLV % u.countDot(d.tree[level].matrix[:][i]))
-        row.append(name)
-        declarations.append(dec)
+        dots = u.countDot(d.tree[level].matrix[:][i])
+        if not(dots == 0):
+            dec = u.SIGNAL %(name, u.SLV % dots)
+            row.append(name)
+            declarations.append(dec)
     signals.append(row)
 
 #Handling of the first level
@@ -106,16 +108,11 @@ for level, op in enumerate(d.operators):
                 FullA[i] = FullA[i] - 1
                 CSApar = CSApar + 1
         if not(CSApar == 0):
-        #        #input1 = INTERNAL_SIG % (self.tree[level][][].w, self.tree[level][][].w, self.self.tree[level][][].t)
-        #        input2
-        #        input3
-        #        outS
-        #        outC
-        #        declarations.append(input1)
-        #        declarations.append(input2)
-        #        declarations.append(input3)
-        #        declarations.append(outS)
-        #        declarations.append(outC)
+            #input1 = u.downto(signals[level][h])
+            #input2 = u.downto(signals[level][h + 1])
+            #input3 = u.downto(signals[level][h + 2])
+            #outS
+            #outC
             CSAtree.append(u.CSA % (CSAindex, CSApar, "input1", "input2", "input3", "outS", "outC"))
             CSAindex = CSAindex + 1
     HalfA = op[0]
@@ -127,6 +124,8 @@ for level, op in enumerate(d.operators):
                 HAindex = HAindex + 1
 
 with open("first.vhd", 'w') as of:
+    for d in declarations:
+        of.write(d + "\n")
     for ass in assignements:
         of.write(ass + "\n")
     for ha in HAtree:
