@@ -99,8 +99,8 @@ for i, aRow in enumerate(d.tree[0].matrix):
 
 CSAtree = []
 HAtree = []
-for level, op in enumerate(d.operators):
-    FullA = op[1]
+for level in range(d.L - 1):
+    FullA = d.operators[level][1]
     h = 0
     while not(FullA.count(0) == len(FullA)):
         CSApar = 0
@@ -116,12 +116,12 @@ for level, op in enumerate(d.operators):
             input1 = u.downto(signals[level][h], firstI + CSApar, firstI)
             input2 = u.downto(signals[level][h + 1], firstI + CSApar, firstI)
             input3 = u.downto(signals[level][h + 2], firstI + CSApar, firstI)
-            #outS
-            #outC
-            CSAtree.append(u.CSA % (CSAindex, CSApar, input1, input2, input3, "outS", "outC"))
+            outS = u.downto(signals[level + 1][h - 2], firstI + CSApar, firstI)
+            outC = u.downto(signals[level + 1][h - 1], firstI + CSApar - 1, firstI - 1)
+            CSAtree.append(u.CSA % (CSAindex, CSApar, input1, input2, input3, outS, outC))
             CSAindex = CSAindex + 1
         h = h + 3
-    HalfA = op[0]
+    HalfA = d.operators[level][0]
     while not(HalfA.count(0) == len(HalfA)):
         for i, _ in enumerate(reversed(HalfA)):
             if not(HalfA[i] == 0):
