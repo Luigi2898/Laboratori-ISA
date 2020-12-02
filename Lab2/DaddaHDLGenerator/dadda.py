@@ -1,6 +1,6 @@
 from util import Dadda
+import util as u
 
-#            self.printMatrix(self.tree[i - self.L].matrix)
 #
 #            def print2VHD(self):
 #        CSAindex = 1
@@ -52,9 +52,84 @@ from util import Dadda
 
 d = Dadda(17, 33)
 d.reductTree()
-with open("outGG.txt", 'w') as of:
-    pass
-for el in d.tree:
-    d.printMatrix(el.matrix)
-for op in d.operators:
-    print(op)
+with open("outDotNotation.txt", 'w') as of:
+    for el in d.tree:
+        d.printMatrix(el.matrix, of)
+
+
+CSAindex = 1
+HAindex = 1
+declarations = []
+signals = []
+
+#Definitions of signals
+
+for level in range(d.L):
+    row = []
+    for i in range(d.H):
+        name = u.INTERNAL_SIG %(level, i)
+        dec = u.SIGNAL %(name, u.SLV % u.countDot(d.tree[level].matrix[:][i]))
+        row.append(name)
+        declarations.append(dec)
+    signals.append(row)
+
+#Handling of the first level
+assignements = []
+for i, aRow in enumerate(d.tree[0].matrix):
+    inBit = []
+    for aDot in aRow:
+        if aDot.isSign():
+            b = "S(" + str(aDot.w) + ")"
+            inBit.append(b)
+        elif aDot.isSignNeg():
+            b = "not(S(" + str(aDot.w) + "))"
+            inBit.append(b)
+        elif aDot.isBlack():
+            b = "PP(" + str(aDot.h) + ")" + "(" + str(aDot.w) + ")"
+            inBit.append(b)
+        elif aDot.isOne():
+            b = "\'1\'"
+            inBit.append(b)
+    assignements.append(u.assign(signals[0][i], inBit))
+CSAtree = []
+HAtree = []
+for level, op in enumerate(d.operators):
+    FullA = op[1]
+    while not(FullA.count(0) == len(FullA)):
+        CSApar = 0
+        first = True
+        for i, _ in enumerate(reversed(FullA)):
+            if not(FullA[i] == 0):
+                if first:
+                    firstI = i
+                    first = False
+                FullA[i] = FullA[i] - 1
+                CSApar = CSApar + 1
+        if not(CSApar == 0):
+        #        #input1 = INTERNAL_SIG % (self.tree[level][][].w, self.tree[level][][].w, self.self.tree[level][][].t)
+        #        input2
+        #        input3
+        #        outS
+        #        outC
+        #        declarations.append(input1)
+        #        declarations.append(input2)
+        #        declarations.append(input3)
+        #        declarations.append(outS)
+        #        declarations.append(outC)
+            CSAtree.append(u.CSA % (CSAindex, CSApar, "input1", "input2", "input3", "outS", "outC"))
+            CSAindex = CSAindex + 1
+    HalfA = op[0]
+    while not(HalfA.count(0) == len(HalfA)):
+        for i, _ in enumerate(reversed(HalfA)):
+            if not(HalfA[i] == 0):
+                HalfA[i] = HalfA[i] - 1
+                HAtree.append(u.HA % (HAindex, "asd", "asd", "asd", "asd"))
+                HAindex = HAindex + 1
+
+with open("first.vhd", 'w') as of:
+    for ass in assignements:
+        of.write(ass + "\n")
+    for ha in HAtree:
+        of.write(ha + "\n")
+    for csa in CSAtree:
+        of.write(csa + "\n")

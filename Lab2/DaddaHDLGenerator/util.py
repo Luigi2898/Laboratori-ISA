@@ -19,6 +19,18 @@ def countDot(list):
             cnt += 1
     return cnt
 
+def assign(target, source):
+    assignement = target + ' <= '
+    for i, aPiece in enumerate(source):
+        if i == len(source) - 1:
+            assignement = assignement + aPiece
+        else:
+            assignement = assignement + aPiece + ' & '
+    return assignement
+
+def downto(signal, end, start):
+    signal = signal + "( " + end + " downto " + start + " )"
+
 class DotMatrix:
 
     def __init__(self, W = None, H = None, matrix = None):
@@ -39,27 +51,36 @@ class DotMatrix:
             self.W = len(matrix[0][:])
 
     def populate(self, parallelism):
-        for aDot in reversed(self.matrix[0][self.W - parallelism : self.W]):
-            aDot.setBlack(0)
+        #signals = []
+       # ass = []
+        for i, aDot in enumerate(reversed(self.matrix[0][self.W - parallelism : self.W])):
+            aDot.setBlack( i, 0)
+        #row = "PP(0)"
         self.matrix[0][self.W - parallelism - 1].setSign(0)
+        #row = "S(0) & " + row 
         self.matrix[0][self.W - parallelism - 2].setSign(0)
+       # row = "S(0) & " + row
         self.matrix[0][self.W - parallelism - 3].setSignNeg(0)
+        #row = "not(S(0)) & " + row
+        #signals.append(deepcopy(row))
         for pos, row in enumerate(self.matrix[1:-2][:]):
+            i = 0
             for index, aDot in enumerate(reversed(row)):
                 if index == 2 * (pos + 1) - 2:
                     aDot.setSign(pos)
                 if index >= 2 * (pos + 1) and index < 2 * (pos + 1) + parallelism:
-                    aDot.setBlack(pos + 1)
+                    aDot.setBlack( i,pos + 1)
+                    i = i + 1
                 if index == 2 * (pos + 1) + parallelism:
                     aDot.setSignNeg(pos + 1)
                 if index == 2 * (pos + 1) + parallelism + 1:
                     aDot.setOne(pos + 1)
-        for aDot in self.matrix[-2][2 : parallelism + 2]:
-            aDot.setBlack(self.H - 2)
+        for index, aDot in enumerate(self.matrix[-2][2 : parallelism + 2]):
+            aDot.setBlack( index, self.H - 2)
         self.matrix[-2][parallelism + 3].setSign(self.H - 3)
         self.matrix[-2][1].setOne(self.H - 2)
-        for aDot in self.matrix[-1][1 : parallelism]:
-            aDot.setBlack(self.H - 1)
+        for index, aDot in enumerate(self.matrix[-1][1 : parallelism]):
+            aDot.setBlack( index, self.H - 1)
         self.matrix[-1][parallelism + 1].setSign(self.H - 1)
 
     def reduct(self, lTarget):
@@ -74,18 +95,8 @@ class DotMatrix:
                 FullAdders = int(red / 2)
                 operators[0][c] =  HalfAdders
                 operators[1][c] = FullAdders
-                toAdd = reminder
                 reminder = HalfAdders + FullAdders
                 toDel = sum(col) - lTarget
-                if toAdd > 0:
-                    added = 0
-                    for aDot in reversed(col):
-                        if not(aDot.isPresent()):
-                            aDot.setCarry()
-                            added = added + 1
-                            if added == toAdd:
-                                break
-                self.compress()
                 if toDel > 0:
                     deleted = 0
                     for aDot in col:
@@ -110,12 +121,14 @@ class Dot:
         self.w = 0
         self.v = 0
         self.one = 0
+        self.h = 0
     
-    def setBlack(self, w):
+    def setBlack(self, w, h):
         self.t = "dot"
         self.w = w
         self.v = 1
         self.one = 0
+        self.h = h
 
     def setOne(self, w):
         self.t = "one"
@@ -150,12 +163,27 @@ class Dot:
     def isPresent(self):
         return (self.v == 1)
 
+    def isOne(self):
+        return self.t == "one"
+
+    def isSign(self):
+        return self.t == "sign"
+
+    def isSignNeg(self):
+        return self.t == "!sign"
+
+    def isEmpty(self):
+        return self.t == "none"
+
+    def isBlack(self):
+        return self.t == "dot"
+
     def setCarry(self):
         self.t = "carry"
         self.w = 0
         self.v = 1
         self.one = 0
-        
+
     def __str__(self):
         return str(self.v)
 
@@ -197,16 +225,15 @@ class Dadda:
         self.tree = [dotMatrix]
         self.operators = [] # first row FA second row HA
         
-    def printMatrix(self, matrixToPrint):
-        with open("outGG.txt", "a") as of:
-            for row in matrixToPrint:
-                for el in row:
-                    of.write(el.__str__() + ',')
-                of.write('\n')
-            of.write("2,")
-            for _ in range(len(row)-1):
-                of.write('0,')
+    def printMatrix(self, matrixToPrint, of):
+        for row in matrixToPrint:
+            for el in row:
+                of.write(el.__str__() + ',')
             of.write('\n')
+        of.write("2,")
+        for _ in range(len(row)-1):
+            of.write('0,')
+        of.write('\n')
     
     def reductTree(self):
         for i in range(1, self.L + 1):
