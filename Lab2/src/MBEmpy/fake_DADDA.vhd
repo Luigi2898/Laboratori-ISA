@@ -9,7 +9,7 @@ entity fake_DADDA is
   port (
     PP      : in  PP_array;
     PP_sign : in  std_logic_vector (N / 2 downto 0);
-    SUM     : out std_logic_vector (2 * N - 1 downto 0)
+    SUM     : out std_logic_vector (2 * N - 3 downto 0)
   ) ;
 end fake_DADDA;
 
@@ -31,7 +31,7 @@ begin
             end if;
             tmp_sum := tmp_sum + to_integer(unsigned(normal_inputs(i)));
         end loop;
-    SUM <= std_logic_vector(to_unsigned(tmp_sum,2*N));
+    SUM <= std_logic_vector(to_unsigned(tmp_sum,2*N - 2));
     end process;
 
     
