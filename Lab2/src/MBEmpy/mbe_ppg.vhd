@@ -1,6 +1,7 @@
 LIBRARY ieee;
 USE ieee.std_logic_1164.all;
-USE ieee.std_logic_arith.all;
+--USE ieee.std_logic_arith.all;
+USE ieee.numeric_std.all;
 use work.array_std.all;
 
 
@@ -50,7 +51,7 @@ BEGIN
 
 in0 <= (others => '0');
 in1 <= ('0' & A);
-in2 <= ('0' & A(N-2 downto 0) & '0');
+in2 <= A(N-1) & std_logic_vector(SHIFT_LEFT(unsigned(A),1));
 y_triplets <= "00" & B;
 y_triplet0 <= y_triplets(1 downto 0) & '0';
 

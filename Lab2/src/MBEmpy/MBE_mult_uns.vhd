@@ -26,14 +26,14 @@ architecture CSA_tree of MBE_mult_uns is
     end component;
 
     -- Partial products sum via Dadda-Tree
-    component DADDA is
-	    generic(N : integer := 32; N_pp : integer := 17);
-        port (
-          PP      : in  PP_array;
-          PP_sign : in  std_logic_vector (N / 2 downto 0); -- Last one is 0, please give me a 0
-          SUM     : out std_logic_vector (2 * N - 1 downto 0)
-        ) ;
-    end component;
+    component fake_DADDA is
+    generic(N : integer := 33; N_PP : integer := 17);
+    port (
+    PP      : in  PP_array;
+    PP_sign : in  std_logic_vector (N / 2 downto 0);
+    SUM     : out std_logic_vector (2 * N - 3 downto 0)
+    ) ;
+    end component fake_DADDA;
 
     signal sign_out : std_logic_vector (16 downto 0);
     signal pp_out : pp_array;
@@ -41,6 +41,6 @@ architecture CSA_tree of MBE_mult_uns is
 begin
 
     MBEU_PP : MBE_PPG port map (IN_A,IN_B,sign_out,pp_out);
-    DADDA_TREE : DADDA port map (pp_out,sign_out,OUT_MPY);
+    DADDA_TREE : fake_DADDA port map (pp_out,sign_out,OUT_MPY);
     
 end architecture CSA_tree;

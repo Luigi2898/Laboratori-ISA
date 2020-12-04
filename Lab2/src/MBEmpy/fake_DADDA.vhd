@@ -15,24 +15,45 @@ end fake_DADDA;
 
 architecture structural of fake_DADDA is
   
-    signal normal_inputs : PP_array;
-
+  
+    type pp_out_ext is array (16 downto 0) of signed(63 downto 0);
+    type pp_out_sign is array (16 downto 0) of signed(32 downto 0);
+    signal tmp2, tmp3 : pp_out_ext;
+    signal tmp1 : pp_out_sign;
+   
 begin
 
-    MBE_decoder : process (PP_sign,PP)
-    variable tmp_sum : integer;
-    begin
-        tmp_sum := 0; 
-        for i in 0 to N_PP-1 loop
-            if (PP_sign(i) = '0') then
-                normal_inputs(i) <= PP(i);
-            else
-                normal_inputs(i) <= not(PP(i));
-            end if;
-            tmp_sum := tmp_sum + to_integer(unsigned(normal_inputs(i)));
-        end loop;
-    SUM <= std_logic_vector(to_unsigned(tmp_sum,2*N - 2));
-    end process;
+
+
+    MBE_decoder : process(PP, PP_sign)
+          variable pp_out_2scomp : pp_out_sign;
+          variable pp_out_2scomp_ext : pp_out_ext;
+		  variable add_out : pp_out_ext;
+		  begin
+		  
+		  for i in 0 to 16 loop
+		  if(PP_sign(i) = '1') then
+			pp_out_2scomp(i) := signed(PP(i)) + 1;
+		  else
+		    pp_out_2scomp(i) := signed(PP(i));	
+		  end if;
+          tmp1(i) <= pp_out_2scomp(i); 
+		  if(to_integer(tmp1(i)(31 downto 0)) = 0) then
+			pp_out_2scomp_ext(i)(63 downto 33) := (others => '0');		     
+          else pp_out_2scomp_ext(i)(63 downto 33) := (others => PP_sign(i));
+          end if;
+          pp_out_2scomp_ext(i)(32 downto 0) := pp_out_2scomp(i);
+          tmp2(i) <= pp_out_2scomp_ext(i);
+		  end loop;
+		  
+		  add_out(0) := pp_out_2scomp_ext(0);
+          tmp3(0) <= add_out(0);
+		  for i in 1 to 16 loop
+		  add_out(i) := add_out(i-1) + SHIFT_LEFT(pp_out_2scomp_ext(i), 2*i);
+          tmp3(i) <= add_out(i);
+		  end loop;	  
+		  SUM <= std_logic_vector(add_out(16));
+		  end process;
 
     
 

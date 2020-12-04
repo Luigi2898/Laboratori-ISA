@@ -53,8 +53,8 @@ I2combo : PROCESS (d_in)
 		  
 		  
 process (clk1)
-    file res_mbe : text open WRITE_MODE is "../file/prod_tb_mbe.hex";
-	file res_beh : text open WRITE_MODE is "../file/prod_tb_beh.hex";
+    file res_mbe : text open WRITE_MODE is "../prod_tb_mbe.hex";
+	file res_beh : text open WRITE_MODE is "../prod_tb_beh.hex";
     variable line_out1 : line;
     variable line_out2 : line; 	
   begin  -- process
