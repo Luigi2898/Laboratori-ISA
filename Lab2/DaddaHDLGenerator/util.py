@@ -23,13 +23,16 @@ def assign(target, source):
     assignement = target + ' <= '
     for i, aPiece in enumerate(source):
         if i == len(source) - 1:
-            assignement = assignement + aPiece
+            assignement = assignement + aPiece + ' ;'
         else:
             assignement = assignement + aPiece + ' & '
     return assignement
 
-def downto(signal, end, start):
-    signal_dt = signal + "( " + str(end) + " downto " + str(start) + " )"
+def downto(signal, r):
+    if r[0] == r[1]:
+        signal_dt = signal + "( " + str(r[0]) + " )"
+    else:
+        signal_dt = signal + "( " + str(r[0]) + " downto " + str(r[1]) + " )"
     return signal_dt
 
 class DotMatrix:
@@ -114,6 +117,11 @@ class DotMatrix:
             col = sorted(col ,reverse=True)
             for i, el in enumerate(col):
                 self.matrix[i][c] = el
+
+    def getFirstNonEmpty(self, row):
+        for i, aDot in enumerate(reversed(self.matrix[:][row])):
+            if aDot.isBlack():
+                return i
 
 class Dot:
 
@@ -243,7 +251,27 @@ class Dadda:
             self.tree.append(nl)
             self.operators.append(op.copy())
             
+class signal():
+    
+    def __init__(self):
+        self.start = 0
+        self.name = ""
+        self.p = 0
+    
+    def setName(self, name):
 
+        self.name = name
+
+    def setPar(self, par):
+
+        self.p = par
+
+    def setStart(self, start):
+        self.start = start
+
+    def downto(self, offset, bit):
+        
+        return (offset + bit - self.start, abs(self.start - offset))
 
 
     
