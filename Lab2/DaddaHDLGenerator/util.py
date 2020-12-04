@@ -270,8 +270,14 @@ class signal():
         self.start = start
 
     def downto(self, offset, bit):
-        
-        return (offset + bit - self.start, abs(self.start - offset))
+        start = offset - self.start
+        if start < 0:
+            end = offset + bit - self.start - start
+            start = 0
+        else:
+            end = offset + bit - self.start
+
+        return (end, start)
 
 
     

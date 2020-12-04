@@ -55,6 +55,7 @@ set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name VHDL_FILE "../../../../../../Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/src/MBEmpy/HA.vhd"
 set_global_assignment -name VHDL_FILE "../../../../../../Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd"
 set_global_assignment -name VHDL_FILE "../../../../../../Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/src/MBEmpy/ieee_proposed/array_std.vhd"
 set_global_assignment -name VHDL_FILE "../../../../../../Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/src/MBEmpy/FA.vhd"

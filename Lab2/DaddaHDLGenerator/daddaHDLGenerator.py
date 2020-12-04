@@ -61,7 +61,10 @@ for level in range(d.L + 1):
         start = d.tree[level].getFirstNonEmpty(i)
         sig.setStart(start)
         if not(dots == 0):
-            sig.setPar(dots)
+            if level == 0 and i == 0:
+                sig.setPar(dots)
+            else:
+                sig.setPar(dots + 1)
             dec = u.SIGNAL %(sig.name, u.SLV % (sig.p - 1))
             row.append(deepcopy(sig))
             declarations.append(dec)
@@ -74,6 +77,9 @@ for i, aRow in enumerate(d.tree[0].matrix):
     inBit = []
     for aDot in aRow:
         if aDot.isSign():
+            if i != 0:
+                b = "\'0\'"
+                inBit.append(b)
             b = "PP_sign(" + str(aDot.w) + ")"
             inBit.append(b)
         elif aDot.isSignNeg():
@@ -148,4 +154,6 @@ with open("DADDA.vhd", 'w') as of:
             of.write('\n\n')
         else:
             of.write(l)
+
+with open("DADDA.vhd", 'a') as of:
     of.write("\n\nend architecture ;")
