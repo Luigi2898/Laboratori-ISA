@@ -3,52 +3,7 @@ import util as u
 from copy import deepcopy
 
 with open("DADDA.vhd", 'w') as of:
-    of.write("""library ieee ;
-    use ieee.std_logic_1164.all ;
-    use ieee.numeric_std.all ;
-    use work.array_std.all;
-
-
-entity DADDA is
-  generic(N : integer := 32; N_PP : integer := 17);
-  port (
-    PP1      : in  std_logic_vector (N downto 0);
-    PP2      : in  std_logic_vector (N downto 0);
-    PP3      : in  std_logic_vector (N downto 0);
-    PP4      : in  std_logic_vector (N downto 0);
-    PP5      : in  std_logic_vector (N downto 0);
-    PP6      : in  std_logic_vector (N downto 0);
-    PP7      : in  std_logic_vector (N downto 0);
-    PP8      : in  std_logic_vector (N downto 0);
-    PP9      : in  std_logic_vector (N downto 0);
-    PP10     : in  std_logic_vector (N downto 0);
-    PP11     : in  std_logic_vector (N downto 0);
-    PP12     : in  std_logic_vector (N downto 0);
-    PP13     : in  std_logic_vector (N downto 0);
-    PP14     : in  std_logic_vector (N downto 0);
-    PP15     : in  std_logic_vector (N downto 0);
-    PP16     : in  std_logic_vector (N downto 0);
-    PP17     : in  std_logic_vector (N downto 0);
-    PP_sign : in  std_logic_vector (N / 2 downto 0);
-    SUM     : out std_logic_vector (2 * N - 1 downto 0)
-  ) ;
-end DADDA;
-
-architecture structural of DADDA is
-  
-  component FA IS
-    port(
-		A, B, Cin : IN STD_LOGIC;
-		S, Co : OUT STD_LOGIC
-	);	
-  end component FA;
-
-  component HA is
-    port(
-		    A, B  : in  std_logic;
-		    S, Co : out std_logic
-    );
-  end component HA;\n\n""")
+    of.write(u.START)
 
 d = Dadda(17, 33)
 d.reductTree()
@@ -67,10 +22,10 @@ signals = []
 for level in range(d.L + 1):
     row = []
     for i in range(d.H):
-        sig = u.INTERNAL_SIG %(level, i)
+        sig = (u.INTERNAL_SIG %(level, i), 0, 0)
         dots = u.countDot(d.tree[level].matrix[:][i])
         if not(dots == 0):
-            dec = u.SIGNAL %(sig, u.SLV % (65 - 1))
+            dec = u.SIGNAL %(sig[0], u.SLV % (65 - 1))
             row.append(sig)
             declarations.append(dec)
     signals.append(row)
@@ -96,7 +51,7 @@ for i, aRow in enumerate(d.tree[0].matrix):
         elif aDot.isOne():
             b = "\'1\'"
             inBit.append(b)
-    assignements.append(u.assign(signals[0][i], inBit))
+    assignements.append(u.assign(signals[0][i][0], inBit))
 
 with open("DADDA.vhd", 'a') as of:
     of.write("\nbegin\n\n")
@@ -108,34 +63,74 @@ with open("DADDA.vhd", 'a') as of:
 
 FAindex = 0
 HAindex = 0
+outSig = []
 for level in range(d.L):
-    FullA = reversed(d.operators[level][1])
-    HalfA = reversed(d.operators[level][0])
+    FullA = list(reversed(d.operators[level][1]))
+    HalfA = list(reversed(d.operators[level][0]))
     i = 0
     for fA, hA in zip(FullA, HalfA):
-        i += 1
         if fA != 0:
             for j in range(fA):
-                i1 = u.downto(signals[level][3 * j], i, i)
-                i2 = u.downto(signals[level][3 * j + 1], i, i)
-                i3 = u.downto(signals[level][3 * j + 2], i, i)
-                os = u.downto(signals[level + 1][j // 3], i, i)
-                oc = u.downto(signals[level + 1][j // 3 + 1], i + 1, i + 1)
+                i1 = u.downto(signals[level][3 * j][0], i, i)
+                i2 = u.downto(signals[level][3 * j + 1][0], i, i)
+                i3 = u.downto(signals[level][3 * j + 2][0], i, i)
+                d.tree[level].matrix[3*j][i].touch()
+                d.tree[level].matrix[3*j + 1][i].touch()
+                d.tree[level].matrix[3*j + 2][i].touch()
+                os = u.downto(signals[level + 1][j // 3][0], i, i)
+                oc = u.downto(signals[level + 1][j // 3 + 1][0], i + 1, i + 1)
+                k = 0
+                while os in outSig:
+                    os = u.downto(signals[level + 1][j // 3 + k][0], i, i)
+                    k += 1
+                outSig.append(os)
+
+                k = 0
+                while oc in outSig:
+                    oc = u.downto(signals[level + 1][j // 3 + 1 + k][0], i + 1, i + 1)
+                    k += 1
+                outSig.append(oc)
                 with open("DADDA.vhd", 'a') as of:
                     of.write(u.FA % (FAindex, i1, i2, i3, os, oc) + '\n')
                 FAindex += 1
         if hA != 0:
             for j in range(hA):
-                i1 = u.downto(signals[level][3 * j + 3 * fA], i, i)
-                i2 = u.downto(signals[level][3 * j + 1 + 3 * fA], i, i)
-                os = u.downto(signals[level + 1][j // 3 + fA], i, i)
-                oc = u.downto(signals[level + 1][j // 3 + 1 + fA], i + 1, i + 1)
+                i1 = u.downto(signals[level][2 * j + 3 * fA][0], i, i)
+                i2 = u.downto(signals[level][2 * j + 1 + 3 * fA][0], i, i)
+                d.tree[level].matrix[2 * j + 3 * fA][i].touch()
+                d.tree[level].matrix[2 * j + 1 + 3 * fA][i].touch()
+                os = u.downto(signals[level + 1][j // 2 + fA][0], i, i)
+                oc = u.downto(signals[level + 1][j // 2 + 1 + fA][0], i + 1, i + 1)
+                k = 0
+                while os in outSig:
+                    os = u.downto(signals[level + 1][j // 3 + k][0], i, i)
+                    k += 1
+                outSig.append(os)
+                k = 0
+                while oc in outSig:
+                    oc = u.downto(signals[level + 1][j // 3 + 1 + k][0], i + 1, i + 1)
+                    k += 1
+                outSig.append(oc)
                 with open("DADDA.vhd", 'a') as of:
                     of.write(u.HA % (HAindex, i1, i2, os, oc) + '\n')
                 HAindex += 1
+        i += 1
         
-            
-            
+    for j, row in enumerate(d.tree[level].matrix):
+        for i, aDot in enumerate(reversed(row)):
+            try:
+                if not(aDot.isTouched()):
+                    o = u.downto(signals[level + 1][j - 3 * FullA[i] - HalfA[i]][0], i, i)
+                    k = 0
+                    while o in outSig:
+                        o = u.downto(signals[level + 1][j - 3 * FullA[i] - HalfA[i] + k][0], i, i)
+                        k += 1
+                    outSig.append(o)
+                    with open("DADDA.vhd", 'a') as of:
+                        of.write(u.assignS( o, u.downto(signals[level][j][0], i, i)) + ';\n')
+            except:
+                pass
+           
 
 
 lines = []
@@ -155,4 +150,5 @@ with open("DADDA.vhd", 'w') as of:
 
 
 with open("DADDA.vhd", 'a') as of:
+    of.write("\n\nSUM <= unsigned( " + signals[6][0][0] + " ) + unsigned( " + signals[6][1][0] + " ) ;\n")
     of.write("\n\nend architecture ;")

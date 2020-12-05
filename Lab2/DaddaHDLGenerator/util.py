@@ -128,7 +128,7 @@ class Dot:
         self.v = 0
         self.one = 0
         self.h = 0
-        
+        self.touched = False
     
     def setBlack(self, w, h):
         self.t = "dot"
@@ -136,6 +136,7 @@ class Dot:
         self.v = 1
         self.one = 0
         self.h = h
+        
 
     def setOne(self, w):
         self.t = "one"
@@ -190,6 +191,12 @@ class Dot:
         self.w = 0
         self.v = 1
         self.one = 0
+
+    def touch(self):
+        self.touched = True
+
+    def isTouched(self):
+        return self.touched
 
     def __str__(self):
         return str(self.v)
@@ -247,42 +254,52 @@ class Dadda:
             nl, op = self.tree[i - 1].reduct(self.l[self.L - i])
             nl.compress()
             self.tree.append(nl)
-            self.operators.append(op.copy())
-            
-class signal():
-    
-    def __init__(self):
-        self.start = 0
-        self.name = ""
-        self.p = 0
-    
-    def setName(self, name):
-
-        self.name = name
-
-    def setPar(self, par):
-
-        self.p = par
-
-    def setStart(self, start):
-        self.start = start
-
-    def downto(self, offset, bit):
-        start = offset - self.start
-        if start < 0:
-            end = offset + bit - self.start - start
-            start = 0
-        else:
-            end = offset + bit - self.start
-
-        return (end, start)
-
-
-    
-        
-                
-
-
-        
+            self.operators.append(deepcopy(op))
             
 
+START = """
+library ieee ;
+    use ieee.std_logic_1164.all ;
+    use ieee.numeric_std.all ;
+
+
+entity DADDA is
+  generic(N : integer := 32; N_PP : integer := 17);
+  port (
+    PP1      : in  std_logic_vector (N downto 0);
+    PP2      : in  std_logic_vector (N downto 0);
+    PP3      : in  std_logic_vector (N downto 0);
+    PP4      : in  std_logic_vector (N downto 0);
+    PP5      : in  std_logic_vector (N downto 0);
+    PP6      : in  std_logic_vector (N downto 0);
+    PP7      : in  std_logic_vector (N downto 0);
+    PP8      : in  std_logic_vector (N downto 0);
+    PP9      : in  std_logic_vector (N downto 0);
+    PP10     : in  std_logic_vector (N downto 0);
+    PP11     : in  std_logic_vector (N downto 0);
+    PP12     : in  std_logic_vector (N downto 0);
+    PP13     : in  std_logic_vector (N downto 0);
+    PP14     : in  std_logic_vector (N downto 0);
+    PP15     : in  std_logic_vector (N downto 0);
+    PP16     : in  std_logic_vector (N downto 0);
+    PP17     : in  std_logic_vector (N downto 0);
+    PP_sign : in  std_logic_vector (N / 2 downto 0);
+    SUM     : out unsigned (2 * N downto 0)
+  ) ;
+end DADDA;
+
+architecture structural of DADDA is
+  
+  component FA IS
+    port(
+		A, B, Cin : IN STD_LOGIC;
+		S, Co : OUT STD_LOGIC
+	);	
+  end component FA;
+
+  component HA is
+    port(
+		    A, B  : in  std_logic;
+		    S, Co : out std_logic
+    );
+  end component HA;\n\n"""
