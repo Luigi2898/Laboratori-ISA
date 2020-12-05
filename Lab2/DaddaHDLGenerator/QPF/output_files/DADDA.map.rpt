@@ -1,5 +1,5 @@
 Analysis & Elaboration report for DADDA
-Fri Dec  4 16:15:20 2020
+Fri Dec  4 18:22:10 2020
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -9,73 +9,8 @@ Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
   1. Legal Notice
   2. Analysis & Elaboration Summary
   3. Parallel Compilation
-  4. Parameter Settings for User Entity Instance: Top-level Entity: |DADDA
-  5. Parameter Settings for User Entity Instance: CSA:CSA_1
-  6. Parameter Settings for User Entity Instance: CSA:CSA_2
-  7. Parameter Settings for User Entity Instance: CSA:CSA_3
-  8. Parameter Settings for User Entity Instance: CSA:CSA_4
-  9. Parameter Settings for User Entity Instance: CSA:CSA_5
- 10. Parameter Settings for User Entity Instance: CSA:CSA_6
- 11. Parameter Settings for User Entity Instance: CSA:CSA_7
- 12. Parameter Settings for User Entity Instance: CSA:CSA_8
- 13. Parameter Settings for User Entity Instance: CSA:CSA_9
- 14. Parameter Settings for User Entity Instance: CSA:CSA_10
- 15. Parameter Settings for User Entity Instance: CSA:CSA_11
- 16. Parameter Settings for User Entity Instance: CSA:CSA_12
- 17. Parameter Settings for User Entity Instance: CSA:CSA_13
- 18. Parameter Settings for User Entity Instance: CSA:CSA_14
- 19. Parameter Settings for User Entity Instance: CSA:CSA_15
- 20. Analysis & Elaboration Settings
- 21. Port Connectivity Checks: "HA:HA_49"
- 22. Port Connectivity Checks: "HA:HA_48"
- 23. Port Connectivity Checks: "HA:HA_47"
- 24. Port Connectivity Checks: "CSA:CSA_15"
- 25. Port Connectivity Checks: "HA:HA_46"
- 26. Port Connectivity Checks: "HA:HA_45"
- 27. Port Connectivity Checks: "HA:HA_44"
- 28. Port Connectivity Checks: "HA:HA_43"
- 29. Port Connectivity Checks: "CSA:CSA_14"
- 30. Port Connectivity Checks: "HA:HA_42"
- 31. Port Connectivity Checks: "HA:HA_41"
- 32. Port Connectivity Checks: "HA:HA_40"
- 33. Port Connectivity Checks: "HA:HA_39"
- 34. Port Connectivity Checks: "HA:HA_38"
- 35. Port Connectivity Checks: "HA:HA_37"
- 36. Port Connectivity Checks: "HA:HA_36"
- 37. Port Connectivity Checks: "CSA:CSA_13"
- 38. Port Connectivity Checks: "CSA:CSA_12"
- 39. Port Connectivity Checks: "HA:HA_35"
- 40. Port Connectivity Checks: "HA:HA_34"
- 41. Port Connectivity Checks: "HA:HA_33"
- 42. Port Connectivity Checks: "HA:HA_32"
- 43. Port Connectivity Checks: "HA:HA_31"
- 44. Port Connectivity Checks: "HA:HA_30"
- 45. Port Connectivity Checks: "HA:HA_29"
- 46. Port Connectivity Checks: "HA:HA_28"
- 47. Port Connectivity Checks: "HA:HA_27"
- 48. Port Connectivity Checks: "HA:HA_26"
- 49. Port Connectivity Checks: "CSA:CSA_10"
- 50. Port Connectivity Checks: "CSA:CSA_9"
- 51. Port Connectivity Checks: "HA:HA_25"
- 52. Port Connectivity Checks: "HA:HA_24"
- 53. Port Connectivity Checks: "HA:HA_23"
- 54. Port Connectivity Checks: "HA:HA_22"
- 55. Port Connectivity Checks: "HA:HA_21"
- 56. Port Connectivity Checks: "HA:HA_20"
- 57. Port Connectivity Checks: "HA:HA_19"
- 58. Port Connectivity Checks: "HA:HA_18"
- 59. Port Connectivity Checks: "HA:HA_17"
- 60. Port Connectivity Checks: "HA:HA_16"
- 61. Port Connectivity Checks: "HA:HA_15"
- 62. Port Connectivity Checks: "HA:HA_14"
- 63. Port Connectivity Checks: "HA:HA_13"
- 64. Port Connectivity Checks: "CSA:CSA_6"
- 65. Port Connectivity Checks: "CSA:CSA_5"
- 66. Port Connectivity Checks: "HA:HA_12"
- 67. Port Connectivity Checks: "HA:HA_10"
- 68. Port Connectivity Checks: "HA:HA_8"
- 69. Port Connectivity Checks: "CSA:CSA_1"
- 70. Analysis & Elaboration Messages
+  4. Analysis & Elaboration Settings
+  5. Analysis & Elaboration Messages
 
 
 
@@ -102,7 +37,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Elaboration Summary                                                   ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Elaboration Status      ; Successful - Fri Dec  4 16:15:20 2020       ;
+; Analysis & Elaboration Status      ; Failed - Fri Dec  4 18:22:10 2020           ;
 ; Quartus Prime Version              ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
 ; Revision Name                      ; DADDA                                       ;
 ; Top-level Entity Name              ; DADDA                                       ;
@@ -133,167 +68,6 @@ https://fpgasoftware.intel.com/eula.
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
 +----------------------------+-------------+
-
-
-+-----------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: Top-level Entity: |DADDA ;
-+----------------+-------+----------------------------------------------+
-; Parameter Name ; Value ; Type                                         ;
-+----------------+-------+----------------------------------------------+
-; N              ; 32    ; Signed Integer                               ;
-; N_PP           ; 17    ; Signed Integer                               ;
-+----------------+-------+----------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+--------------------------------------------------------+
-; Parameter Settings for User Entity Instance: CSA:CSA_1 ;
-+----------------+-------+-------------------------------+
-; Parameter Name ; Value ; Type                          ;
-+----------------+-------+-------------------------------+
-; n              ; 17    ; Signed Integer                ;
-+----------------+-------+-------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+--------------------------------------------------------+
-; Parameter Settings for User Entity Instance: CSA:CSA_2 ;
-+----------------+-------+-------------------------------+
-; Parameter Name ; Value ; Type                          ;
-+----------------+-------+-------------------------------+
-; n              ; 13    ; Signed Integer                ;
-+----------------+-------+-------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+--------------------------------------------------------+
-; Parameter Settings for User Entity Instance: CSA:CSA_3 ;
-+----------------+-------+-------------------------------+
-; Parameter Name ; Value ; Type                          ;
-+----------------+-------+-------------------------------+
-; n              ; 9     ; Signed Integer                ;
-+----------------+-------+-------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+--------------------------------------------------------+
-; Parameter Settings for User Entity Instance: CSA:CSA_4 ;
-+----------------+-------+-------------------------------+
-; Parameter Name ; Value ; Type                          ;
-+----------------+-------+-------------------------------+
-; n              ; 5     ; Signed Integer                ;
-+----------------+-------+-------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+--------------------------------------------------------+
-; Parameter Settings for User Entity Instance: CSA:CSA_5 ;
-+----------------+-------+-------------------------------+
-; Parameter Name ; Value ; Type                          ;
-+----------------+-------+-------------------------------+
-; n              ; 33    ; Signed Integer                ;
-+----------------+-------+-------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+--------------------------------------------------------+
-; Parameter Settings for User Entity Instance: CSA:CSA_6 ;
-+----------------+-------+-------------------------------+
-; Parameter Name ; Value ; Type                          ;
-+----------------+-------+-------------------------------+
-; n              ; 29    ; Signed Integer                ;
-+----------------+-------+-------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+--------------------------------------------------------+
-; Parameter Settings for User Entity Instance: CSA:CSA_7 ;
-+----------------+-------+-------------------------------+
-; Parameter Name ; Value ; Type                          ;
-+----------------+-------+-------------------------------+
-; n              ; 25    ; Signed Integer                ;
-+----------------+-------+-------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+--------------------------------------------------------+
-; Parameter Settings for User Entity Instance: CSA:CSA_8 ;
-+----------------+-------+-------------------------------+
-; Parameter Name ; Value ; Type                          ;
-+----------------+-------+-------------------------------+
-; n              ; 20    ; Signed Integer                ;
-+----------------+-------+-------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+--------------------------------------------------------+
-; Parameter Settings for User Entity Instance: CSA:CSA_9 ;
-+----------------+-------+-------------------------------+
-; Parameter Name ; Value ; Type                          ;
-+----------------+-------+-------------------------------+
-; n              ; 45    ; Signed Integer                ;
-+----------------+-------+-------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+---------------------------------------------------------+
-; Parameter Settings for User Entity Instance: CSA:CSA_10 ;
-+----------------+-------+--------------------------------+
-; Parameter Name ; Value ; Type                           ;
-+----------------+-------+--------------------------------+
-; n              ; 41    ; Signed Integer                 ;
-+----------------+-------+--------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+---------------------------------------------------------+
-; Parameter Settings for User Entity Instance: CSA:CSA_11 ;
-+----------------+-------+--------------------------------+
-; Parameter Name ; Value ; Type                           ;
-+----------------+-------+--------------------------------+
-; n              ; 36    ; Signed Integer                 ;
-+----------------+-------+--------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+---------------------------------------------------------+
-; Parameter Settings for User Entity Instance: CSA:CSA_12 ;
-+----------------+-------+--------------------------------+
-; Parameter Name ; Value ; Type                           ;
-+----------------+-------+--------------------------------+
-; n              ; 53    ; Signed Integer                 ;
-+----------------+-------+--------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+---------------------------------------------------------+
-; Parameter Settings for User Entity Instance: CSA:CSA_13 ;
-+----------------+-------+--------------------------------+
-; Parameter Name ; Value ; Type                           ;
-+----------------+-------+--------------------------------+
-; n              ; 48    ; Signed Integer                 ;
-+----------------+-------+--------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+---------------------------------------------------------+
-; Parameter Settings for User Entity Instance: CSA:CSA_14 ;
-+----------------+-------+--------------------------------+
-; Parameter Name ; Value ; Type                           ;
-+----------------+-------+--------------------------------+
-; n              ; 56    ; Signed Integer                 ;
-+----------------+-------+--------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+---------------------------------------------------------+
-; Parameter Settings for User Entity Instance: CSA:CSA_15 ;
-+----------------+-------+--------------------------------+
-; Parameter Name ; Value ; Type                           ;
-+----------------+-------+--------------------------------+
-; n              ; 60    ; Signed Integer                 ;
-+----------------+-------+--------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
 +------------------------------------------------------------------------------------------------------------+
@@ -381,518 +155,13 @@ Note: In order to hide this table in the UI and the text report file, please set
 +------------------------------------------------------------------+--------------------+--------------------+
 
 
-+----------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "HA:HA_49"                                                                           ;
-+------+--------+----------+-------------------------------------------------------------------------------------+
-; Port ; Type   ; Severity ; Details                                                                             ;
-+------+--------+----------+-------------------------------------------------------------------------------------+
-; a    ; Input  ; Info     ; Stuck at GND                                                                        ;
-; b    ; Input  ; Info     ; Stuck at GND                                                                        ;
-; s    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; co   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+------+--------+----------+-------------------------------------------------------------------------------------+
-
-
-+----------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "HA:HA_48"                                                                           ;
-+------+--------+----------+-------------------------------------------------------------------------------------+
-; Port ; Type   ; Severity ; Details                                                                             ;
-+------+--------+----------+-------------------------------------------------------------------------------------+
-; a    ; Input  ; Info     ; Stuck at GND                                                                        ;
-; b    ; Input  ; Info     ; Stuck at GND                                                                        ;
-; s    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; co   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+------+--------+----------+-------------------------------------------------------------------------------------+
-
-
-+----------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "HA:HA_47"                                                                           ;
-+------+--------+----------+-------------------------------------------------------------------------------------+
-; Port ; Type   ; Severity ; Details                                                                             ;
-+------+--------+----------+-------------------------------------------------------------------------------------+
-; a    ; Input  ; Info     ; Stuck at GND                                                                        ;
-; s    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; co   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+------+--------+----------+-------------------------------------------------------------------------------------+
-
-
-+-----------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "CSA:CSA_15"                                                                                ;
-+-------------+--------+----------+-------------------------------------------------------------------------------------+
-; Port        ; Type   ; Severity ; Details                                                                             ;
-+-------------+--------+----------+-------------------------------------------------------------------------------------+
-; in0[59]     ; Input  ; Info     ; Stuck at GND                                                                        ;
-; in1[59..58] ; Input  ; Info     ; Stuck at GND                                                                        ;
-; s           ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; c           ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+-------------+--------+----------+-------------------------------------------------------------------------------------+
-
-
-+----------------------------------------+
-; Port Connectivity Checks: "HA:HA_46"   ;
-+------+-------+----------+--------------+
-; Port ; Type  ; Severity ; Details      ;
-+------+-------+----------+--------------+
-; a    ; Input ; Info     ; Stuck at GND ;
-; b    ; Input ; Info     ; Stuck at GND ;
-+------+-------+----------+--------------+
-
-
-+----------------------------------------+
-; Port Connectivity Checks: "HA:HA_45"   ;
-+------+-------+----------+--------------+
-; Port ; Type  ; Severity ; Details      ;
-+------+-------+----------+--------------+
-; a    ; Input ; Info     ; Stuck at GND ;
-; b    ; Input ; Info     ; Stuck at GND ;
-+------+-------+----------+--------------+
-
-
-+----------------------------------------+
-; Port Connectivity Checks: "HA:HA_44"   ;
-+------+-------+----------+--------------+
-; Port ; Type  ; Severity ; Details      ;
-+------+-------+----------+--------------+
-; a    ; Input ; Info     ; Stuck at GND ;
-+------+-------+----------+--------------+
-
-
-+----------------------------------------+
-; Port Connectivity Checks: "HA:HA_43"   ;
-+------+-------+----------+--------------+
-; Port ; Type  ; Severity ; Details      ;
-+------+-------+----------+--------------+
-; a    ; Input ; Info     ; Stuck at GND ;
-+------+-------+----------+--------------+
-
-
-+-----------------------------------------------+
-; Port Connectivity Checks: "CSA:CSA_14"        ;
-+-------------+-------+----------+--------------+
-; Port        ; Type  ; Severity ; Details      ;
-+-------------+-------+----------+--------------+
-; in0[55]     ; Input ; Info     ; Stuck at GND ;
-; in1[55..54] ; Input ; Info     ; Stuck at GND ;
-; in2[55..51] ; Input ; Info     ; Stuck at GND ;
-; in2[2..0]   ; Input ; Info     ; Stuck at GND ;
-+-------------+-------+----------+--------------+
-
-
-+----------------------------------------+
-; Port Connectivity Checks: "HA:HA_42"   ;
-+------+-------+----------+--------------+
-; Port ; Type  ; Severity ; Details      ;
-+------+-------+----------+--------------+
-; a    ; Input ; Info     ; Stuck at GND ;
-; b    ; Input ; Info     ; Stuck at GND ;
-+------+-------+----------+--------------+
-
-
-+----------------------------------------+
-; Port Connectivity Checks: "HA:HA_41"   ;
-+------+-------+----------+--------------+
-; Port ; Type  ; Severity ; Details      ;
-+------+-------+----------+--------------+
-; a    ; Input ; Info     ; Stuck at GND ;
-; b    ; Input ; Info     ; Stuck at GND ;
-+------+-------+----------+--------------+
-
-
-+----------------------------------------+
-; Port Connectivity Checks: "HA:HA_40"   ;
-+------+-------+----------+--------------+
-; Port ; Type  ; Severity ; Details      ;
-+------+-------+----------+--------------+
-; a    ; Input ; Info     ; Stuck at GND ;
-; b    ; Input ; Info     ; Stuck at GND ;
-+------+-------+----------+--------------+
-
-
-+----------------------------------------+
-; Port Connectivity Checks: "HA:HA_39"   ;
-+------+-------+----------+--------------+
-; Port ; Type  ; Severity ; Details      ;
-+------+-------+----------+--------------+
-; a    ; Input ; Info     ; Stuck at GND ;
-; b    ; Input ; Info     ; Stuck at GND ;
-+------+-------+----------+--------------+
-
-
-+----------------------------------------+
-; Port Connectivity Checks: "HA:HA_38"   ;
-+------+-------+----------+--------------+
-; Port ; Type  ; Severity ; Details      ;
-+------+-------+----------+--------------+
-; a    ; Input ; Info     ; Stuck at GND ;
-+------+-------+----------+--------------+
-
-
-+----------------------------------------+
-; Port Connectivity Checks: "HA:HA_37"   ;
-+------+-------+----------+--------------+
-; Port ; Type  ; Severity ; Details      ;
-+------+-------+----------+--------------+
-; a    ; Input ; Info     ; Stuck at GND ;
-+------+-------+----------+--------------+
-
-
-+----------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "HA:HA_36"                                                                           ;
-+------+--------+----------+-------------------------------------------------------------------------------------+
-; Port ; Type   ; Severity ; Details                                                                             ;
-+------+--------+----------+-------------------------------------------------------------------------------------+
-; a    ; Input  ; Info     ; Stuck at GND                                                                        ;
-; b    ; Input  ; Info     ; Stuck at GND                                                                        ;
-; co   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+------+--------+----------+-------------------------------------------------------------------------------------+
-
-
-+-----------------------------------------------+
-; Port Connectivity Checks: "CSA:CSA_13"        ;
-+-------------+-------+----------+--------------+
-; Port        ; Type  ; Severity ; Details      ;
-+-------------+-------+----------+--------------+
-; in0[47..41] ; Input ; Info     ; Stuck at GND ;
-; in0[4..0]   ; Input ; Info     ; Stuck at GND ;
-+-------------+-------+----------+--------------+
-
-
-+-----------------------------------------------+
-; Port Connectivity Checks: "CSA:CSA_12"        ;
-+-------------+-------+----------+--------------+
-; Port        ; Type  ; Severity ; Details      ;
-+-------------+-------+----------+--------------+
-; in0[52..50] ; Input ; Info     ; Stuck at GND ;
-; in0[2..0]   ; Input ; Info     ; Stuck at GND ;
-; in1[52..49] ; Input ; Info     ; Stuck at GND ;
-; in1[1..0]   ; Input ; Info     ; Stuck at GND ;
-; in2[52..46] ; Input ; Info     ; Stuck at GND ;
-; in2[4..0]   ; Input ; Info     ; Stuck at GND ;
-+-------------+-------+----------+--------------+
-
-
-+----------------------------------------+
-; Port Connectivity Checks: "HA:HA_35"   ;
-+------+-------+----------+--------------+
-; Port ; Type  ; Severity ; Details      ;
-+------+-------+----------+--------------+
-; a    ; Input ; Info     ; Stuck at GND ;
-; b    ; Input ; Info     ; Stuck at GND ;
-+------+-------+----------+--------------+
-
-
-+----------------------------------------+
-; Port Connectivity Checks: "HA:HA_34"   ;
-+------+-------+----------+--------------+
-; Port ; Type  ; Severity ; Details      ;
-+------+-------+----------+--------------+
-; a    ; Input ; Info     ; Stuck at GND ;
-; b    ; Input ; Info     ; Stuck at GND ;
-+------+-------+----------+--------------+
-
-
-+----------------------------------------+
-; Port Connectivity Checks: "HA:HA_33"   ;
-+------+-------+----------+--------------+
-; Port ; Type  ; Severity ; Details      ;
-+------+-------+----------+--------------+
-; a    ; Input ; Info     ; Stuck at GND ;
-; b    ; Input ; Info     ; Stuck at GND ;
-+------+-------+----------+--------------+
-
-
-+----------------------------------------+
-; Port Connectivity Checks: "HA:HA_32"   ;
-+------+-------+----------+--------------+
-; Port ; Type  ; Severity ; Details      ;
-+------+-------+----------+--------------+
-; a    ; Input ; Info     ; Stuck at GND ;
-; b    ; Input ; Info     ; Stuck at GND ;
-+------+-------+----------+--------------+
-
-
-+----------------------------------------+
-; Port Connectivity Checks: "HA:HA_31"   ;
-+------+-------+----------+--------------+
-; Port ; Type  ; Severity ; Details      ;
-+------+-------+----------+--------------+
-; a    ; Input ; Info     ; Stuck at GND ;
-; b    ; Input ; Info     ; Stuck at GND ;
-+------+-------+----------+--------------+
-
-
-+----------------------------------------+
-; Port Connectivity Checks: "HA:HA_30"   ;
-+------+-------+----------+--------------+
-; Port ; Type  ; Severity ; Details      ;
-+------+-------+----------+--------------+
-; a    ; Input ; Info     ; Stuck at GND ;
-; b    ; Input ; Info     ; Stuck at GND ;
-+------+-------+----------+--------------+
-
-
-+----------------------------------------+
-; Port Connectivity Checks: "HA:HA_29"   ;
-+------+-------+----------+--------------+
-; Port ; Type  ; Severity ; Details      ;
-+------+-------+----------+--------------+
-; a    ; Input ; Info     ; Stuck at GND ;
-+------+-------+----------+--------------+
-
-
-+----------------------------------------+
-; Port Connectivity Checks: "HA:HA_28"   ;
-+------+-------+----------+--------------+
-; Port ; Type  ; Severity ; Details      ;
-+------+-------+----------+--------------+
-; a    ; Input ; Info     ; Stuck at GND ;
-+------+-------+----------+--------------+
-
-
-+----------------------------------------+
-; Port Connectivity Checks: "HA:HA_27"   ;
-+------+-------+----------+--------------+
-; Port ; Type  ; Severity ; Details      ;
-+------+-------+----------+--------------+
-; a    ; Input ; Info     ; Stuck at GND ;
-; b    ; Input ; Info     ; Stuck at GND ;
-+------+-------+----------+--------------+
-
-
-+----------------------------------------+
-; Port Connectivity Checks: "HA:HA_26"   ;
-+------+-------+----------+--------------+
-; Port ; Type  ; Severity ; Details      ;
-+------+-------+----------+--------------+
-; a    ; Input ; Info     ; Stuck at GND ;
-; b    ; Input ; Info     ; Stuck at GND ;
-+------+-------+----------+--------------+
-
-
-+-----------------------------------------------+
-; Port Connectivity Checks: "CSA:CSA_10"        ;
-+-------------+-------+----------+--------------+
-; Port        ; Type  ; Severity ; Details      ;
-+-------------+-------+----------+--------------+
-; in0[40..32] ; Input ; Info     ; Stuck at GND ;
-; in0[6..0]   ; Input ; Info     ; Stuck at GND ;
-; in1[40..30] ; Input ; Info     ; Stuck at GND ;
-; in1[9..0]   ; Input ; Info     ; Stuck at GND ;
-+-------------+-------+----------+--------------+
-
-
-+-----------------------------------------------+
-; Port Connectivity Checks: "CSA:CSA_9"         ;
-+-------------+-------+----------+--------------+
-; Port        ; Type  ; Severity ; Details      ;
-+-------------+-------+----------+--------------+
-; in0[44..40] ; Input ; Info     ; Stuck at GND ;
-; in0[4..0]   ; Input ; Info     ; Stuck at GND ;
-; in1[44..39] ; Input ; Info     ; Stuck at GND ;
-; in1[3..0]   ; Input ; Info     ; Stuck at GND ;
-; in2[44..36] ; Input ; Info     ; Stuck at GND ;
-; in2[6..0]   ; Input ; Info     ; Stuck at GND ;
-+-------------+-------+----------+--------------+
-
-
-+----------------------------------------+
-; Port Connectivity Checks: "HA:HA_25"   ;
-+------+-------+----------+--------------+
-; Port ; Type  ; Severity ; Details      ;
-+------+-------+----------+--------------+
-; a    ; Input ; Info     ; Stuck at GND ;
-; b    ; Input ; Info     ; Stuck at GND ;
-+------+-------+----------+--------------+
-
-
-+----------------------------------------+
-; Port Connectivity Checks: "HA:HA_24"   ;
-+------+-------+----------+--------------+
-; Port ; Type  ; Severity ; Details      ;
-+------+-------+----------+--------------+
-; a    ; Input ; Info     ; Stuck at GND ;
-; b    ; Input ; Info     ; Stuck at GND ;
-+------+-------+----------+--------------+
-
-
-+----------------------------------------+
-; Port Connectivity Checks: "HA:HA_23"   ;
-+------+-------+----------+--------------+
-; Port ; Type  ; Severity ; Details      ;
-+------+-------+----------+--------------+
-; a    ; Input ; Info     ; Stuck at GND ;
-; b    ; Input ; Info     ; Stuck at GND ;
-+------+-------+----------+--------------+
-
-
-+----------------------------------------+
-; Port Connectivity Checks: "HA:HA_22"   ;
-+------+-------+----------+--------------+
-; Port ; Type  ; Severity ; Details      ;
-+------+-------+----------+--------------+
-; a    ; Input ; Info     ; Stuck at GND ;
-; b    ; Input ; Info     ; Stuck at GND ;
-+------+-------+----------+--------------+
-
-
-+----------------------------------------+
-; Port Connectivity Checks: "HA:HA_21"   ;
-+------+-------+----------+--------------+
-; Port ; Type  ; Severity ; Details      ;
-+------+-------+----------+--------------+
-; a    ; Input ; Info     ; Stuck at GND ;
-; b    ; Input ; Info     ; Stuck at GND ;
-+------+-------+----------+--------------+
-
-
-+----------------------------------------+
-; Port Connectivity Checks: "HA:HA_20"   ;
-+------+-------+----------+--------------+
-; Port ; Type  ; Severity ; Details      ;
-+------+-------+----------+--------------+
-; a    ; Input ; Info     ; Stuck at GND ;
-; b    ; Input ; Info     ; Stuck at GND ;
-+------+-------+----------+--------------+
-
-
-+----------------------------------------+
-; Port Connectivity Checks: "HA:HA_19"   ;
-+------+-------+----------+--------------+
-; Port ; Type  ; Severity ; Details      ;
-+------+-------+----------+--------------+
-; a    ; Input ; Info     ; Stuck at GND ;
-; b    ; Input ; Info     ; Stuck at GND ;
-+------+-------+----------+--------------+
-
-
-+----------------------------------------+
-; Port Connectivity Checks: "HA:HA_18"   ;
-+------+-------+----------+--------------+
-; Port ; Type  ; Severity ; Details      ;
-+------+-------+----------+--------------+
-; a    ; Input ; Info     ; Stuck at GND ;
-; b    ; Input ; Info     ; Stuck at GND ;
-+------+-------+----------+--------------+
-
-
-+----------------------------------------+
-; Port Connectivity Checks: "HA:HA_17"   ;
-+------+-------+----------+--------------+
-; Port ; Type  ; Severity ; Details      ;
-+------+-------+----------+--------------+
-; a    ; Input ; Info     ; Stuck at GND ;
-+------+-------+----------+--------------+
-
-
-+----------------------------------------+
-; Port Connectivity Checks: "HA:HA_16"   ;
-+------+-------+----------+--------------+
-; Port ; Type  ; Severity ; Details      ;
-+------+-------+----------+--------------+
-; a    ; Input ; Info     ; Stuck at GND ;
-+------+-------+----------+--------------+
-
-
-+----------------------------------------+
-; Port Connectivity Checks: "HA:HA_15"   ;
-+------+-------+----------+--------------+
-; Port ; Type  ; Severity ; Details      ;
-+------+-------+----------+--------------+
-; a    ; Input ; Info     ; Stuck at GND ;
-; b    ; Input ; Info     ; Stuck at GND ;
-+------+-------+----------+--------------+
-
-
-+----------------------------------------+
-; Port Connectivity Checks: "HA:HA_14"   ;
-+------+-------+----------+--------------+
-; Port ; Type  ; Severity ; Details      ;
-+------+-------+----------+--------------+
-; a    ; Input ; Info     ; Stuck at GND ;
-; b    ; Input ; Info     ; Stuck at GND ;
-+------+-------+----------+--------------+
-
-
-+----------------------------------------+
-; Port Connectivity Checks: "HA:HA_13"   ;
-+------+-------+----------+--------------+
-; Port ; Type  ; Severity ; Details      ;
-+------+-------+----------+--------------+
-; a    ; Input ; Info     ; Stuck at GND ;
-; b    ; Input ; Info     ; Stuck at GND ;
-+------+-------+----------+--------------+
-
-
-+-----------------------------------------------+
-; Port Connectivity Checks: "CSA:CSA_6"         ;
-+-------------+-------+----------+--------------+
-; Port        ; Type  ; Severity ; Details      ;
-+-------------+-------+----------+--------------+
-; in0[28..18] ; Input ; Info     ; Stuck at GND ;
-; in0[8..0]   ; Input ; Info     ; Stuck at GND ;
-; in1[28..16] ; Input ; Info     ; Stuck at GND ;
-; in1[10..0]  ; Input ; Info     ; Stuck at GND ;
-+-------------+-------+----------+--------------+
-
-
-+-----------------------------------------------+
-; Port Connectivity Checks: "CSA:CSA_5"         ;
-+-------------+-------+----------+--------------+
-; Port        ; Type  ; Severity ; Details      ;
-+-------------+-------+----------+--------------+
-; in0[32..26] ; Input ; Info     ; Stuck at GND ;
-; in0[6..0]   ; Input ; Info     ; Stuck at GND ;
-; in1[32..25] ; Input ; Info     ; Stuck at GND ;
-; in1[5..0]   ; Input ; Info     ; Stuck at GND ;
-; in2[32..22] ; Input ; Info     ; Stuck at GND ;
-; in2[8..0]   ; Input ; Info     ; Stuck at GND ;
-+-------------+-------+----------+--------------+
-
-
-+----------------------------------------+
-; Port Connectivity Checks: "HA:HA_12"   ;
-+------+-------+----------+--------------+
-; Port ; Type  ; Severity ; Details      ;
-+------+-------+----------+--------------+
-; a    ; Input ; Info     ; Stuck at VCC ;
-+------+-------+----------+--------------+
-
-
-+----------------------------------------+
-; Port Connectivity Checks: "HA:HA_10"   ;
-+------+-------+----------+--------------+
-; Port ; Type  ; Severity ; Details      ;
-+------+-------+----------+--------------+
-; a    ; Input ; Info     ; Stuck at VCC ;
-+------+-------+----------+--------------+
-
-
-+----------------------------------------+
-; Port Connectivity Checks: "HA:HA_8"    ;
-+------+-------+----------+--------------+
-; Port ; Type  ; Severity ; Details      ;
-+------+-------+----------+--------------+
-; a    ; Input ; Info     ; Stuck at VCC ;
-+------+-------+----------+--------------+
-
-
-+-------------------------------------------+
-; Port Connectivity Checks: "CSA:CSA_1"     ;
-+---------+-------+----------+--------------+
-; Port    ; Type  ; Severity ; Details      ;
-+---------+-------+----------+--------------+
-; in0[15] ; Input ; Info     ; Stuck at VCC ;
-; in0[13] ; Input ; Info     ; Stuck at VCC ;
-+---------+-------+----------+--------------+
-
-
 +---------------------------------+
 ; Analysis & Elaboration Messages ;
 +---------------------------------+
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Elaboration
     Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
-    Info: Processing started: Fri Dec  4 16:15:09 2020
+    Info: Processing started: Fri Dec  4 18:22:00 2020
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off DADDA -c DADDA --analysis_and_elaboration
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
@@ -900,7 +169,7 @@ Info (12021): Found 2 design units, including 1 entities, in source file /home/l
     Info (12022): Found design unit 1: HA-struct File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/src/MBEmpy/HA.vhd Line: 12
     Info (12023): Found entity 1: HA File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/src/MBEmpy/HA.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd
-    Info (12022): Found design unit 1: DADDA-structural File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 16
+    Info (12022): Found design unit 1: DADDA-structural File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 32
     Info (12023): Found entity 1: DADDA File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 7
 Info (12021): Found 1 design units, including 0 entities, in source file /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/src/MBEmpy/ieee_proposed/array_std.vhd
     Info (12022): Found design unit 1: array_std File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/src/MBEmpy/ieee_proposed/array_std.vhd Line: 7
@@ -911,87 +180,67 @@ Info (12021): Found 2 design units, including 1 entities, in source file /home/l
     Info (12022): Found design unit 1: CSA-structural File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/src/MBEmpy/CSA.vhd Line: 17
     Info (12023): Found entity 1: CSA File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/src/MBEmpy/CSA.vhd Line: 6
 Info (12127): Elaborating entity "DADDA" for the top level hierarchy
-Warning (10541): VHDL Signal Declaration warning at DADDA.vhd(12): used implicit default value for signal "SUM" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 12
-Warning (10036): Verilog HDL or VHDL warning at DADDA.vhd(47): object "internal_0_12" assigned a value but never read File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 47
-Warning (10036): Verilog HDL or VHDL warning at DADDA.vhd(48): object "internal_0_13" assigned a value but never read File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 48
-Warning (10036): Verilog HDL or VHDL warning at DADDA.vhd(49): object "internal_0_14" assigned a value but never read File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 49
-Warning (10036): Verilog HDL or VHDL warning at DADDA.vhd(50): object "internal_0_15" assigned a value but never read File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 50
-Warning (10036): Verilog HDL or VHDL warning at DADDA.vhd(51): object "internal_0_16" assigned a value but never read File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 51
-Warning (10541): VHDL Signal Declaration warning at DADDA.vhd(57): used implicit default value for signal "internal_1_5" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 57
-Warning (10541): VHDL Signal Declaration warning at DADDA.vhd(58): used implicit default value for signal "internal_1_6" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 58
-Warning (10541): VHDL Signal Declaration warning at DADDA.vhd(59): used implicit default value for signal "internal_1_7" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 59
-Warning (10541): VHDL Signal Declaration warning at DADDA.vhd(60): used implicit default value for signal "internal_1_8" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 60
-Warning (10541): VHDL Signal Declaration warning at DADDA.vhd(61): used implicit default value for signal "internal_1_9" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 61
-Warning (10541): VHDL Signal Declaration warning at DADDA.vhd(62): used implicit default value for signal "internal_1_10" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 62
-Warning (10541): VHDL Signal Declaration warning at DADDA.vhd(63): used implicit default value for signal "internal_1_11" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 63
-Warning (10541): VHDL Signal Declaration warning at DADDA.vhd(70): used implicit default value for signal "internal_2_5" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 70
-Warning (10541): VHDL Signal Declaration warning at DADDA.vhd(71): used implicit default value for signal "internal_2_6" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 71
-Warning (10541): VHDL Signal Declaration warning at DADDA.vhd(72): used implicit default value for signal "internal_2_7" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 72
-Warning (10541): VHDL Signal Declaration warning at DADDA.vhd(73): used implicit default value for signal "internal_2_8" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 73
-Warning (10541): VHDL Signal Declaration warning at DADDA.vhd(78): used implicit default value for signal "internal_3_4" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 78
-Warning (10541): VHDL Signal Declaration warning at DADDA.vhd(79): used implicit default value for signal "internal_3_5" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 79
-Warning (10541): VHDL Signal Declaration warning at DADDA.vhd(86): used implicit default value for signal "internal_5_2" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 86
-Warning (10036): Verilog HDL or VHDL warning at DADDA.vhd(87): object "internal_6_0" assigned a value but never read File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 87
-Warning (10036): Verilog HDL or VHDL warning at DADDA.vhd(88): object "internal_6_1" assigned a value but never read File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 88
-Warning (10873): Using initial value X (don't care) for net "internal_1_0[48..41]" at DADDA.vhd(52) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 52
-Warning (10873): Using initial value X (don't care) for net "internal_1_0[21..14]" at DADDA.vhd(52) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 52
-Warning (10873): Using initial value X (don't care) for net "internal_1_1[48..38]" at DADDA.vhd(53) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 53
-Warning (10873): Using initial value X (don't care) for net "internal_1_1[18..13]" at DADDA.vhd(53) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 53
-Warning (10873): Using initial value X (don't care) for net "internal_1_2[43..33]" at DADDA.vhd(54) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 54
-Warning (10873): Using initial value X (don't care) for net "internal_1_2[19..11]" at DADDA.vhd(54) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 54
-Warning (10873): Using initial value X (don't care) for net "internal_1_3[39..29]" at DADDA.vhd(55) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 55
-Warning (10873): Using initial value X (don't care) for net "internal_1_3[19..11]" at DADDA.vhd(55) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 55
-Warning (10873): Using initial value X (don't care) for net "internal_1_4[37..25]" at DADDA.vhd(56) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 56
-Warning (10873): Using initial value X (don't care) for net "internal_1_4[19..9]" at DADDA.vhd(56) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 56
-Warning (10873): Using initial value X (don't care) for net "internal_2_0[54..49]" at DADDA.vhd(65) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 65
-Warning (10873): Using initial value X (don't care) for net "internal_2_0[13..8]" at DADDA.vhd(65) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 65
-Warning (10873): Using initial value X (don't care) for net "internal_2_1[54..46]" at DADDA.vhd(66) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 66
-Warning (10873): Using initial value X (don't care) for net "internal_2_1[10..7]" at DADDA.vhd(66) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 66
-Warning (10873): Using initial value X (don't care) for net "internal_2_2[49..41]" at DADDA.vhd(67) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 67
-Warning (10873): Using initial value X (don't care) for net "internal_2_2[11..5]" at DADDA.vhd(67) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 67
-Warning (10873): Using initial value X (don't care) for net "internal_2_3[45..37]" at DADDA.vhd(68) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 68
-Warning (10873): Using initial value X (don't care) for net "internal_2_3[11..5]" at DADDA.vhd(68) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 68
-Warning (10873): Using initial value X (don't care) for net "internal_2_4[43..33]" at DADDA.vhd(69) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 69
-Warning (10873): Using initial value X (don't care) for net "internal_2_4[12..3]" at DADDA.vhd(69) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 69
-Warning (10873): Using initial value X (don't care) for net "internal_3_0[58..55]" at DADDA.vhd(74) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 74
-Warning (10873): Using initial value X (don't care) for net "internal_3_0[7..4]" at DADDA.vhd(74) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 74
-Warning (10873): Using initial value X (don't care) for net "internal_3_1[58..52]" at DADDA.vhd(75) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 75
-Warning (10873): Using initial value X (don't care) for net "internal_3_1[4..3]" at DADDA.vhd(75) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 75
-Warning (10873): Using initial value X (don't care) for net "internal_3_2[53..47]" at DADDA.vhd(76) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 76
-Warning (10873): Using initial value X (don't care) for net "internal_3_2[5..1]" at DADDA.vhd(76) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 76
-Warning (10873): Using initial value X (don't care) for net "internal_3_3[49..43]" at DADDA.vhd(77) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 77
-Warning (10873): Using initial value X (don't care) for net "internal_3_3[6..2]" at DADDA.vhd(77) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 77
-Warning (10873): Using initial value X (don't care) for net "internal_4_0[60..59]" at DADDA.vhd(80) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 80
-Warning (10873): Using initial value X (don't care) for net "internal_4_0[3..2]" at DADDA.vhd(80) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 80
-Warning (10873): Using initial value X (don't care) for net "internal_4_1[60..59]" at DADDA.vhd(81) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 81
-Warning (10873): Using initial value X (don't care) for net "internal_4_1[57..56]" at DADDA.vhd(81) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 81
-Warning (10873): Using initial value X (don't care) for net "internal_4_2[55..51]" at DADDA.vhd(82) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 82
-Warning (10873): Using initial value X (don't care) for net "internal_4_2[2..0]" at DADDA.vhd(82) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 82
-Warning (10873): Using initial value X (don't care) for net "internal_5_0[62..61]" at DADDA.vhd(84) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 84
-Warning (10873): Using initial value X (don't care) for net "internal_5_0[1]" at DADDA.vhd(84) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 84
-Warning (10873): Using initial value X (don't care) for net "internal_5_1[62..61]" at DADDA.vhd(85) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 85
-Warning (10873): Using initial value X (don't care) for net "internal_5_1[59..58]" at DADDA.vhd(85) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 85
-Info (12128): Elaborating entity "CSA" for hierarchy "CSA:CSA_1" File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 112
-Info (12128): Elaborating entity "FA" for hierarchy "CSA:CSA_1|FA:\compressor_generate:0:compr" File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/src/MBEmpy/CSA.vhd Line: 29
-Info (12128): Elaborating entity "HA" for hierarchy "CSA:CSA_1|FA:\compressor_generate:0:compr|HA:HALF1" File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/src/MBEmpy/FA.vhd Line: 25
-Info (12128): Elaborating entity "CSA" for hierarchy "CSA:CSA_2" File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 114
-Info (12128): Elaborating entity "CSA" for hierarchy "CSA:CSA_3" File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 116
-Info (12128): Elaborating entity "CSA" for hierarchy "CSA:CSA_4" File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 118
-Info (12128): Elaborating entity "CSA" for hierarchy "CSA:CSA_5" File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 132
-Info (12128): Elaborating entity "CSA" for hierarchy "CSA:CSA_6" File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 134
-Info (12128): Elaborating entity "CSA" for hierarchy "CSA:CSA_7" File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 136
-Info (12128): Elaborating entity "CSA" for hierarchy "CSA:CSA_8" File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 138
-Info (12128): Elaborating entity "CSA" for hierarchy "CSA:CSA_9" File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 153
-Info (12128): Elaborating entity "CSA" for hierarchy "CSA:CSA_10" File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 155
-Info (12128): Elaborating entity "CSA" for hierarchy "CSA:CSA_11" File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 157
-Info (12128): Elaborating entity "CSA" for hierarchy "CSA:CSA_12" File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 169
-Info (12128): Elaborating entity "CSA" for hierarchy "CSA:CSA_13" File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 171
-Info (12128): Elaborating entity "CSA" for hierarchy "CSA:CSA_14" File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 180
-Info (12128): Elaborating entity "CSA" for hierarchy "CSA:CSA_15" File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 186
-Info: Quartus Prime Analysis & Elaboration was successful. 0 errors, 61 warnings
-    Info: Peak virtual memory: 755 megabytes
-    Info: Processing ended: Fri Dec  4 16:15:20 2020
-    Info: Elapsed time: 00:00:11
-    Info: Total CPU time (on all processors): 00:00:24
+Warning (10541): VHDL Signal Declaration warning at DADDA.vhd(28): used implicit default value for signal "SUM" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 28
+Warning (10036): Verilog HDL or VHDL warning at DADDA.vhd(63): object "internal_0_12" assigned a value but never read File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 63
+Warning (10036): Verilog HDL or VHDL warning at DADDA.vhd(64): object "internal_0_13" assigned a value but never read File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 64
+Warning (10036): Verilog HDL or VHDL warning at DADDA.vhd(65): object "internal_0_14" assigned a value but never read File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 65
+Warning (10036): Verilog HDL or VHDL warning at DADDA.vhd(66): object "internal_0_15" assigned a value but never read File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 66
+Warning (10036): Verilog HDL or VHDL warning at DADDA.vhd(67): object "internal_0_16" assigned a value but never read File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 67
+Warning (10036): Verilog HDL or VHDL warning at DADDA.vhd(104): object "internal_6_1" assigned a value but never read File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 104
+Warning (10873): Using initial value X (don't care) for net "internal_1_0[46..41]" at DADDA.vhd(68) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 68
+Warning (10873): Using initial value X (don't care) for net "internal_1_0[21..16]" at DADDA.vhd(68) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 68
+Warning (10873): Using initial value X (don't care) for net "internal_1_1[46..40]" at DADDA.vhd(69) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 69
+Warning (10873): Using initial value X (don't care) for net "internal_1_1[20..16]" at DADDA.vhd(69) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 69
+Warning (10873): Using initial value X (don't care) for net "internal_1_2[46..37]" at DADDA.vhd(70) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 70
+Warning (10873): Using initial value X (don't care) for net "internal_1_2[23..16]" at DADDA.vhd(70) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 70
+Warning (10873): Using initial value X (don't care) for net "internal_1_3[44..35]" at DADDA.vhd(71) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 71
+Warning (10873): Using initial value X (don't care) for net "internal_1_3[25..18]" at DADDA.vhd(71) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 71
+Warning (10873): Using initial value X (don't care) for net "internal_1_4[44..33]" at DADDA.vhd(72) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 72
+Warning (10873): Using initial value X (don't care) for net "internal_1_4[27..18]" at DADDA.vhd(72) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 72
+Warning (10873): Using initial value X (don't care) for net "internal_1_5[44..18]" at DADDA.vhd(73) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 73
+Warning (10873): Using initial value X (don't care) for net "internal_1_6[42..20]" at DADDA.vhd(74) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 74
+Warning (10873): Using initial value X (don't care) for net "internal_1_7[42..20]" at DADDA.vhd(75) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 75
+Warning (10873): Using initial value X (don't care) for net "internal_1_8[42..20]" at DADDA.vhd(76) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 76
+Warning (10873): Using initial value X (don't care) for net "internal_1_9[40..23]" at DADDA.vhd(77) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 77
+Warning (10873): Using initial value X (don't care) for net "internal_1_10[40..23]" at DADDA.vhd(78) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 78
+Warning (10873): Using initial value X (don't care) for net "internal_1_11[40..23]" at DADDA.vhd(79) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 79
+Warning (10873): Using initial value X (don't care) for net "internal_2_0[52..49]" at DADDA.vhd(81) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 81
+Warning (10873): Using initial value X (don't care) for net "internal_2_0[13..10]" at DADDA.vhd(81) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 81
+Warning (10873): Using initial value X (don't care) for net "internal_2_1[52..48]" at DADDA.vhd(82) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 82
+Warning (10873): Using initial value X (don't care) for net "internal_2_1[12..10]" at DADDA.vhd(82) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 82
+Warning (10873): Using initial value X (don't care) for net "internal_2_2[52..45]" at DADDA.vhd(83) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 83
+Warning (10873): Using initial value X (don't care) for net "internal_2_2[15..10]" at DADDA.vhd(83) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 83
+Warning (10873): Using initial value X (don't care) for net "internal_2_3[50..43]" at DADDA.vhd(84) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 84
+Warning (10873): Using initial value X (don't care) for net "internal_2_3[17..12]" at DADDA.vhd(84) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 84
+Warning (10873): Using initial value X (don't care) for net "internal_2_4[50..41]" at DADDA.vhd(85) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 85
+Warning (10873): Using initial value X (don't care) for net "internal_2_4[20..12]" at DADDA.vhd(85) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 85
+Warning (10873): Using initial value X (don't care) for net "internal_2_5[50..12]" at DADDA.vhd(86) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 86
+Warning (10873): Using initial value X (don't care) for net "internal_2_6[48..15]" at DADDA.vhd(87) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 87
+Warning (10873): Using initial value X (don't care) for net "internal_2_7[48..15]" at DADDA.vhd(88) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 88
+Warning (10873): Using initial value X (don't care) for net "internal_2_8[48..15]" at DADDA.vhd(89) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 89
+Warning (10873): Using initial value X (don't care) for net "internal_3_0[56..55]" at DADDA.vhd(90) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 90
+Warning (10873): Using initial value X (don't care) for net "internal_3_0[7..6]" at DADDA.vhd(90) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 90
+Warning (10873): Using initial value X (don't care) for net "internal_3_1[56..54]" at DADDA.vhd(91) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 91
+Warning (10873): Using initial value X (don't care) for net "internal_3_1[6]" at DADDA.vhd(91) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 91
+Warning (10873): Using initial value X (don't care) for net "internal_3_2[56..51]" at DADDA.vhd(92) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 92
+Warning (10873): Using initial value X (don't care) for net "internal_3_2[9..6]" at DADDA.vhd(92) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 92
+Warning (10873): Using initial value X (don't care) for net "internal_3_3[54..49]" at DADDA.vhd(93) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 93
+Warning (10873): Using initial value X (don't care) for net "internal_3_3[12..9]" at DADDA.vhd(93) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 93
+Warning (10873): Using initial value X (don't care) for net "internal_3_4[54..9]" at DADDA.vhd(94) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 94
+Warning (10873): Using initial value X (don't care) for net "internal_3_5[54..9]" at DADDA.vhd(95) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 95
+Warning (10873): Using initial value X (don't care) for net "internal_4_1[58]" at DADDA.vhd(97) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 97
+Warning (10873): Using initial value X (don't care) for net "internal_4_2[58..55]" at DADDA.vhd(98) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 98
+Warning (10873): Using initial value X (don't care) for net "internal_4_2[6..5]" at DADDA.vhd(98) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 98
+Warning (10873): Using initial value X (don't care) for net "internal_5_1[60]" at DADDA.vhd(101) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 101
+Warning (10873): Using initial value X (don't care) for net "internal_5_2[60..3]" at DADDA.vhd(102) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 102
+Error (10028): Can't resolve multiple constant drivers for net "internal_0_0[40]" at DADDA.vhd(131) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 131
+Error (10029): Constant driver at DADDA.vhd(111) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 111
+Error (10028): Can't resolve multiple constant drivers for net "internal_0_0[39]" at DADDA.vhd(131) File: /home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/DaddaHDLGenerator/DADDA.vhd Line: 131
+Error (12153): Can't elaborate top-level user hierarchy
+Error: Quartus Prime Analysis & Elaboration was unsuccessful. 4 errors, 54 warnings
+    Error: Peak virtual memory: 748 megabytes
+    Error: Processing ended: Fri Dec  4 18:22:10 2020
+    Error: Elapsed time: 00:00:10
+    Error: Total CPU time (on all processors): 00:00:24
 
 

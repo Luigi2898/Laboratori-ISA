@@ -3,7 +3,7 @@ import numpy as np
 from copy import deepcopy
 
 
-CSA          = "CSA_%d : CSA generic map(%d)\n            port map(%s, %s, %s, %s, %s);"
+FA          = "FA_%d : FA port map(%s, %s, %s, %s, %s);"
 HA           = "HA_%d : HA port map(%s, %s, %s, %s);"
 SIGNAL       = "signal %s : %s"
 SLV          = "std_logic_vector(%d downto 0);"
@@ -19,6 +19,10 @@ def countDot(list):
             cnt += 1
     return cnt
 
+def assignS(target, source):
+    assignement = target + " <= " + source
+    return assignement    
+
 def assign(target, source):
     assignement = target + ' <= '
     for i, aPiece in enumerate(source):
@@ -28,11 +32,11 @@ def assign(target, source):
             assignement = assignement + aPiece + ' & '
     return assignement
 
-def downto(signal, r):
-    if r[0] == r[1]:
-        signal_dt = signal + "( " + str(r[0]) + " )"
+def downto(signal, start, end):
+    if start == end:
+        signal_dt = signal + "( " + str(start) + " )"
     else:
-        signal_dt = signal + "( " + str(r[0]) + " downto " + str(r[1]) + " )"
+        signal_dt = signal + "( " + str(end) + " downto " + str(start) + " )"
     return signal_dt
 
 class DotMatrix:
@@ -55,18 +59,11 @@ class DotMatrix:
             self.W = len(matrix[0][:])
 
     def populate(self, parallelism):
-        #signals = []
-       # ass = []
         for i, aDot in enumerate(reversed(self.matrix[0][self.W - parallelism : self.W])):
             aDot.setBlack( i, 0)
-        #row = "PP(0)"
         self.matrix[0][self.W - parallelism - 1].setSign(0)
-        #row = "S(0) & " + row 
         self.matrix[0][self.W - parallelism - 2].setSign(0)
-       # row = "S(0) & " + row
         self.matrix[0][self.W - parallelism - 3].setSignNeg(0)
-        #row = "not(S(0)) & " + row
-        #signals.append(deepcopy(row))
         for pos, row in enumerate(self.matrix[1:-2][:]):
             i = 0
             for index, aDot in enumerate(reversed(row)):
@@ -79,13 +76,13 @@ class DotMatrix:
                     aDot.setSignNeg(pos + 1)
                 if index == 2 * (pos + 1) + parallelism + 1:
                     aDot.setOne(pos + 1)
-        for index, aDot in enumerate(self.matrix[-2][2 : parallelism + 2]):
+        for index, aDot in enumerate(reversed(self.matrix[-2][2 : parallelism + 2])):
             aDot.setBlack( index, self.H - 2)
         self.matrix[-2][parallelism + 3].setSign(self.H - 3)
-        self.matrix[-2][1].setOne(self.H - 2)
-        for index, aDot in enumerate(self.matrix[-1][1 : parallelism]):
+        self.matrix[-2][1].setSignNeg(self.H - 2)
+        for index, aDot in enumerate(reversed(self.matrix[-1][1 : parallelism])):
             aDot.setBlack( index, self.H - 1)
-        self.matrix[-1][parallelism + 1].setSign(self.H - 1)
+        self.matrix[-1][parallelism + 1].setSign(self.H - 2)
 
     def reduct(self, lTarget):
         nextLevel = deepcopy(self)
@@ -131,6 +128,7 @@ class Dot:
         self.v = 0
         self.one = 0
         self.h = 0
+        
     
     def setBlack(self, w, h):
         self.t = "dot"
