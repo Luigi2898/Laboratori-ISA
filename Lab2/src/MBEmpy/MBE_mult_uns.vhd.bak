@@ -7,7 +7,7 @@ entity MBE_mult_uns is
     port (
         IN_A    : in std_logic_vector (31 downto 0);
         IN_B    : in std_logic_vector (31 downto 0);
-        OUT_MPY : out std_logic_vector (64 downto 0)        
+        OUT_MPY : out std_logic_vector (63 downto 0)        
     );
 end entity MBE_mult_uns;  
 

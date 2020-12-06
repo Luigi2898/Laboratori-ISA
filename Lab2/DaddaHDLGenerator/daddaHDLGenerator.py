@@ -67,16 +67,15 @@ outSig = []
 for level in range(d.L):
     FullA = list(reversed(d.operators[level][1]))
     HalfA = list(reversed(d.operators[level][0]))
-    i = 0
-    for fA, hA in zip(FullA, HalfA):
+    for i, fA, hA in zip(range(d.W), FullA, HalfA):
         if fA != 0:
             for j in range(fA):
                 i1 = u.downto(signals[level][3 * j][0], i, i)
                 i2 = u.downto(signals[level][3 * j + 1][0], i, i)
                 i3 = u.downto(signals[level][3 * j + 2][0], i, i)
-                d.tree[level].matrix[3*j][i].touch()
-                d.tree[level].matrix[3*j + 1][i].touch()
-                d.tree[level].matrix[3*j + 2][i].touch()
+                d.tree[level].matrix[3*j][d.W - 1 - i].touch()
+                d.tree[level].matrix[3*j + 1][d.W - 1 - i].touch()
+                d.tree[level].matrix[3*j + 2][d.W - 1 - i].touch()
                 os = u.downto(signals[level + 1][j // 3][0], i, i)
                 oc = u.downto(signals[level + 1][j // 3 + 1][0], i + 1, i + 1)
                 k = 0
@@ -97,8 +96,8 @@ for level in range(d.L):
             for j in range(hA):
                 i1 = u.downto(signals[level][2 * j + 3 * fA][0], i, i)
                 i2 = u.downto(signals[level][2 * j + 1 + 3 * fA][0], i, i)
-                d.tree[level].matrix[2 * j + 3 * fA][i].touch()
-                d.tree[level].matrix[2 * j + 1 + 3 * fA][i].touch()
+                d.tree[level].matrix[2 * j + 3 * fA][d.W - 1 - i].touch()
+                d.tree[level].matrix[2 * j + 1 + 3 * fA][d.W - 1 - i].touch()
                 os = u.downto(signals[level + 1][j // 2 + fA][0], i, i)
                 oc = u.downto(signals[level + 1][j // 2 + 1 + fA][0], i + 1, i + 1)
                 k = 0
@@ -114,7 +113,6 @@ for level in range(d.L):
                 with open("DADDA.vhd", 'a') as of:
                     of.write(u.HA % (HAindex, i1, i2, os, oc) + '\n')
                 HAindex += 1
-        i += 1
         
     for j, row in enumerate(d.tree[level].matrix):
         for i, aDot in enumerate(reversed(row)):

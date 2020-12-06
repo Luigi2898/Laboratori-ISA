@@ -86,7 +86,7 @@ class DotMatrix:
 
     def reduct(self, lTarget):
         nextLevel = deepcopy(self)
-        operators = [[0] * (self.W - 1), [0] * (self.W - 1)]
+        operators = [[0] * (self.W), [0] * (self.W)]
         reminder = 0
         for c in reversed(range(self.W)):
             col = [row[c] for row in nextLevel.matrix]
@@ -266,25 +266,25 @@ library ieee ;
 entity DADDA is
   generic(N : integer := 32; N_PP : integer := 17);
   port (
-    PP1      : in  std_logic_vector (N downto 0);
-    PP2      : in  std_logic_vector (N downto 0);
-    PP3      : in  std_logic_vector (N downto 0);
-    PP4      : in  std_logic_vector (N downto 0);
-    PP5      : in  std_logic_vector (N downto 0);
-    PP6      : in  std_logic_vector (N downto 0);
-    PP7      : in  std_logic_vector (N downto 0);
-    PP8      : in  std_logic_vector (N downto 0);
-    PP9      : in  std_logic_vector (N downto 0);
-    PP10     : in  std_logic_vector (N downto 0);
-    PP11     : in  std_logic_vector (N downto 0);
-    PP12     : in  std_logic_vector (N downto 0);
-    PP13     : in  std_logic_vector (N downto 0);
-    PP14     : in  std_logic_vector (N downto 0);
-    PP15     : in  std_logic_vector (N downto 0);
-    PP16     : in  std_logic_vector (N downto 0);
-    PP17     : in  std_logic_vector (N downto 0);
-    PP_sign : in  std_logic_vector (N / 2 downto 0);
-    SUM     : out unsigned (2 * N downto 0)
+    PP1      : in  std_logic_vector (N - 1 downto 0);
+    PP2      : in  std_logic_vector (N - 1 downto 0);
+    PP3      : in  std_logic_vector (N - 1 downto 0);
+    PP4      : in  std_logic_vector (N - 1 downto 0);
+    PP5      : in  std_logic_vector (N - 1 downto 0);
+    PP6      : in  std_logic_vector (N - 1 downto 0);
+    PP7      : in  std_logic_vector (N - 1 downto 0);
+    PP8      : in  std_logic_vector (N - 1 downto 0);
+    PP9      : in  std_logic_vector (N - 1 downto 0);
+    PP10     : in  std_logic_vector (N - 1 downto 0);
+    PP11     : in  std_logic_vector (N - 1 downto 0);
+    PP12     : in  std_logic_vector (N - 1 downto 0);
+    PP13     : in  std_logic_vector (N - 1 downto 0);
+    PP14     : in  std_logic_vector (N - 1 downto 0);
+    PP15     : in  std_logic_vector (N - 1 downto 0);
+    PP16     : in  std_logic_vector (N - 1 downto 0);
+    PP17     : in  std_logic_vector (N - 1 downto 0);
+    PP_sign : in  std_logic_vector ((N - 1)/ 2 downto 0);
+    SUM     : out unsigned (2 * N - 2 downto 0)
   ) ;
 end DADDA;
 
