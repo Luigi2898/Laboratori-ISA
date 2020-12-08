@@ -4,7 +4,7 @@ library ieee ;
 
 
 entity DADDA is
-  generic(N : integer := 32; N_PP : integer := 17);
+  generic(N : integer := 33; N_PP : integer := 17);
   port (
     PP1      : in  std_logic_vector(N - 1 downto 0);
     PP2      : in  std_logic_vector(N - 1 downto 0);
@@ -62,13 +62,99 @@ architecture structural of DADDA is
 
   type level is array (integer range <>) of unsigned(64 downto 0);
   signal level0 : level(0 to 16);
-  signal level1 : level(0 to 12);
 
+  -- OUTPUTS of different levels
 
+  signal outS_01 : unsigned(19 downto 0);
+  signal outC_01 : unsigned(17 downto 0);
+  signal outS_02 : unsigned(15 downto 0);
+  signal outC_02 : unsigned(13 downto 0);
+  signal outS_03 : unsigned(11 downto 0);
+  signal outC_03 : unsigned(9 downto 0);
+  signal outS_04 : unsigned(7 downto 0);
+  signal outC_04 : unsigned(5 downto 0);
+
+  signal outS_11 : unsigned(35 downto 0);
+  signal outC_11 : unsigned(33 downto 0);
+  signal outS_12 : unsigned(31 downto 0);
+  signal outC_12 : unsigned(29 downto 0);
+  signal outS_13 : unsigned(27 downto 0);
+  signal outC_13 : unsigned(25 downto 0);
+  signal outS_14 : unsigned(23 downto 0);
+  signal outC_14 : unsigned(21 downto 0);
+
+  signal outS_21 : unsigned(47 downto 0);
+  signal outC_21 : unsigned(45 downto 0);
+  signal outS_22 : unsigned(43 downto 0);
+  signal outC_22 : unsigned(41 downto 0);
+  signal outS_23 : unsigned(39 downto 0);
+  signal outC_23 : unsigned(37 downto 0);
+
+  signal outS_31 : unsigned(55 downto 0);
+  signal outC_31 : unsigned(53 downto 0);
+  signal outS_32 : unsigned(51 downto 0);
+  signal outC_32 : unsigned(49 downto 0);
+
+  signal outS_41 : unsigned(59 downto 0);
+  signal outC_41 : unsigned(57 downto 0);
+
+  signal outS_51 : unsigned(61 downto 0);
+  signal outC_51 : unsigned(61 downto 0);
+
+-- INPUTS of different CSA
+
+  signal in11_1 : unsigned(31 downto 0);
+  signal in11_2 : unsigned(31 downto 0);
+  signal in11_3 : unsigned(31 downto 0);
+
+  signal in12_1 : unsigned(27 downto 0);
+  signal in12_2 : unsigned(27 downto 0);
+  signal in12_3 : unsigned(27 downto 0);
+
+  signal in13_1 : unsigned(23 downto 0);
+  signal in13_2 : unsigned(23 downto 0);
+  signal in13_3 : unsigned(23 downto 0);
+
+  signal in14_1 : unsigned(19 downto 0);
+  signal in14_2 : unsigned(19 downto 0);
+  signal in14_3 : unsigned(19 downto 0);
+
+  signal in21_1 : unsigned(43 downto 0);
+  signal in21_2 : unsigned(43 downto 0);
+  signal in21_3 : unsigned(43 downto 0);
+
+  signal in22_1 : unsigned(39 downto 0);
+  signal in22_2 : unsigned(39 downto 0);
+  signal in22_3 : unsigned(39 downto 0);
+
+  signal in23_1 : unsigned(35 downto 0);
+  signal in23_2 : unsigned(35 downto 0);
+  signal in23_3 : unsigned(35 downto 0);
+
+  signal in31_1 : unsigned(51 downto 0);
+  signal in31_2 : unsigned(51 downto 0);
+  signal in31_3 : unsigned(51 downto 0);
+
+  signal in32_1 : unsigned(47 downto 0);
+  signal in32_2 : unsigned(47 downto 0);
+  signal in32_3 : unsigned(47 downto 0);
+
+  signal in41_1 : unsigned(55 downto 0);
+  signal in41_2 : unsigned(55 downto 0);
+  signal in41_3 : unsigned(55 downto 0);
+
+  signal in51_1 : unsigned(59 downto 0);
+  signal in51_2 : unsigned(59 downto 0);
+  signal in51_3 : unsigned(59 downto 0);
+
+  -- SUM inputs
+
+  signal inSUM_1 : unsigned(64 downto 0);
+  signal inSUM_2 : unsigned(64 downto 0);
 
 begin
 
-  -- Sign extension -----------------------
+  -- Sign extension --------------------------
 
   level0(0) <= '0' & not(PP_sign(15)) & '1' & not(PP_sign(14)) & '1' & not(PP_sign(13)) & '1' & not(PP_sign(12)) & '1' & not(PP_sign(11)) & '1' & not(PP_sign(10)) & '1' & not(PP_sign(9)) & '1' & not(PP_sign(8)) & '1' & not(PP_sign(7)) & '1' & not(PP_sign(6)) & '1' & not(PP_sign(5)) & '1' & not(PP_sign(4)) & '1' & not(PP_sign(3)) & '1' & not(PP_sign(2)) & '1' & not(PP_sign(0)) & PP_sign(0) & PP_sign(0) & PP1(32) & PP1(31) & PP1(30) & PP1(29) & PP1(28) & PP1(27) & PP1(26) & PP1(25) & PP1(24) & PP1(23) & PP1(22) & PP1(21) & PP1(20) & PP1(19) & PP1(18) & PP1(17) & PP1(16) & PP1(15) & PP1(14) & PP1(13) & PP1(12) & PP1(11) & PP1(10) & PP1(9) & PP1(8) & PP1(7) & PP1(6) & PP1(5) & PP1(4) & PP1(3) & PP1(2) & PP1(1) & PP1(0) ;
   level0(1) <= '0' & PP17(31) & PP16(32) & PP16(31) & PP15(32) & PP15(31) & PP14(32) & PP14(31) & PP13(32) & PP13(31) & PP12(32) & PP12(31) & PP11(32) & PP11(31) & PP10(32) & PP10(31) & PP9(32) & PP9(31) & PP8(32) & PP8(31) & PP7(32) & PP7(31) & PP6(32) & PP6(31) & PP5(32) & PP5(31) & PP4(32) & PP4(31) & PP3(32) & not(PP_sign(1)) & PP2(32) & PP2(31) & PP2(30) & PP2(29) & PP2(28) & PP2(27) & PP2(26) & PP2(25) & PP2(24) & PP2(23) & PP2(22) & PP2(21) & PP2(20) & PP2(19) & PP2(18) & PP2(17) & PP2(16) & PP2(15) & PP2(14) & PP2(13) & PP2(12) & PP2(11) & PP2(10) & PP2(9) & PP2(8) & PP2(7) & PP2(6) & PP2(5) & PP2(4) & PP2(3) & PP2(2) & PP2(1) & PP2(0) & '0' & PP_sign(0) ;
@@ -88,79 +174,143 @@ begin
   level0(15) <= '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & PP17(4) & PP16(5) & PP16(4) & PP16(3) & PP16(2) & PP16(1) & PP16(0) & '0' & PP_sign(14) & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' ;
   level0(16) <= '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & PP17(3) & PP17(2) & PP17(1) & PP17(0) & '0' & PP_sign(15) & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' & '0' ;
 
-  -- First level --------------------------
+  -- First level -----------------------------
 
   HA_01  : HAbank generic map (2)
-                  port map (level0(0)(26 downto 24), level0(1)(26 downto 24), level1(0)(26 downto 24), level1(1)(27 downto 25));
+                port map (level0(0)(25 downto 24), level0(1)(25 downto 24), outS_01(1 downto 0), outC_01(1 downto 0));
   CSA_01 : CSA    generic map (16)
-                  port map (level0(0)(42 downto 26), level0(1)(42 downto 26), level0(2)(42 downto 26), level1(0)(42 downto 26), level1(1)(43 downto 27));
-  HA_02  : HA     port map (level0(0)(42), level0(1)(42), level1(0)(42), level1(0)(43));
+                port map (level0(0)(41 downto 26), level0(1)(41 downto 26), level0(2)(41 downto 26), outS_01(17 downto 2), outC_01(17 downto 2));
+  HA_02  : HA     port map (level0(0)(42), level0(1)(42), outS_01(18), outS_01(19));
 
   HA_03  : HAbank generic map (2)
-                  port map (level0(inc)(28 downto 26), level0(inc + 1)(28 downto 26), level1(2)(28 downto 26), level1(3)(29 downto 27));
+                port map (level0(inc)(27 downto 26), level0(inc + 1)(27 downto 26), outS_02(1 downto 0), outC_02(1 downto 0));
   CSA_02 : CSA    generic map (12)
-                  port map (level0(inc)(41 downto 28), level0(inc + 1)(41 downto 28), level0(inc + 2)(41 downto 28), level1(2)(41 downto 28), level1(3)(42 downto 29));
-  HA_04  : HA     port map (level0(inc)(41), level0(inc + 1)(41), level1(2)(41), level1(2)(42));
+                port map (level0(inc)(39 downto 28), level0(inc + 1)(39 downto 28), level0(inc + 2)(39 downto 28), outS_02(13 downto 2), outC_02(13 downto 2));
+  HA_04  : HA     port map (level0(inc)(40), level0(inc + 1)(40), outS_02(14), outS_02(15));
 
   HA_05  : HAbank generic map (2)
-                  port map (level0(2 * inc)(30 downto 28), level0(2 * inc + 1)(30 downto 28), level1(4)(30 downto 28), level1(5)(31 downto 29));
+                port map (level0(2 * inc)(29 downto 28), level0(2 * inc + 1)(29 downto 28), outS_03(1 downto 0), outC_03(1 downto 0));
   CSA_03 : CSA    generic map (8)
-                  port map (level0(2 * inc)(38 downto 30), level0(2 * inc + 1)(38 downto 30), level0(2 * inc + 2)(38 downto 30), level1(4)(38 downto 30), level1(5)(39 downto 31));
-  HA_06  : HA     port map (level0(2 * inc)(38), level0(2 * inc + 1)(38), level1(4)(38), level1(4)(39));
-
+                port map (level0(2 * inc)(37 downto 30), level0(2 * inc + 1)(37 downto 30), level0(2 * inc + 2)(37 downto 30), outS_03(9 downto 2), outC_03(9 downto 2));
+  HA_06  : HA     port map (level0(2 * inc)(38), level0(2 * inc + 1)(38), outS_03(10), outS_03(11));
   HA_07  : HAbank generic map (2)
-                  port map (level0(3 * inc)(32 downto 30), level0(3 * inc + 1)(32 downto 30), level1(6)(32 downto 30), level1(7)(33 downto 31));
+                port map (level0(3 * inc)(31 downto 30), level0(3 * inc + 1)(31 downto 30), outS_04(1 downto 0), outC_04(1 downto 0));
   CSA_04 : CSA    generic map (4)
-                  port map (level0(3 * inc)(36 downto 32), level0(3 * inc + 1)(36 downto 32), level0(3 * inc + 2)(36 downto 32), level1(6)(36 downto 32), level1(7)(37 downto 33));
-  HA_08  : HA     port map (level0(3 * inc)(36), level0(3 * inc + 1)(36), level1(6)(36), level1(6)(37));
+                port map (level0(3 * inc)(35 downto 32), level0(3 * inc + 1)(35 downto 32), level0(3 * inc + 2)(35 downto 32), outS_04(5 downto 2), outC_04(5 downto 2));
+  HA_08  : HA     port map (level0(3 * inc)(36), level0(3 * inc + 1)(36), outS_04(6), outS_04(7));
 
-  level1(0)(24 downto 0) <= level0(0)(24 downto 0);
-  level1(0)(64 downto 44) <= level0(0)(64 downto 44);
+-- Second level ----------------------------
 
-  level1(1)(64 downto 43) <= level0(1)(64 downto 44) & level0(1)(43);
-  level1(1)(25 downto 0) <= level0(13)(24) & level0(1)(24 downto 0);
+  HA_11  : HAbank generic map (2)
+                port map (level0(0)(17 downto 16), level0(1)(17 downto 16), outS_11(1 downto 0), outC_11(1 downto 0));
+  in11_1 <= level0(0)(49 downto 44) & outS_01 & level0(0)(23 downto 18);
+  in11_2 <= level0(1)(49 downto 44) & level0(0)(43) & outC_01 & level0(13)(24) & level0(1)(23 downto 18);
+  in11_3 <= level0(2)(49 downto 42) & outS_02 & level0(2)(25 downto 18);
+  CSA_11 : CSA    generic map (32)
+                port map (in11_1, in11_2, in11_3, outS_11(33 downto 2), outC_11(33 downto 2));
+  HA_12  : HA     port map (level0(0)(50), level0(1)(50), outS_11(34), outS_11(35));
 
-  level1(2)(64 downto 42) <= level0(2)(64 downto 42);
-  level1(2)(26 downto 0) <= level0(2)(26 downto 0);
+  HA_13  : HAbank generic map (2)
+                port map (level0(3)(19 downto 18), level0(5)(19 downto 18), outS_12(1 downto 0), outC_12(1 downto 0));
+  in12_1 <= level0(3)(47 downto 41) & outC_02 & level0(14)(26) & level0(3)(25 downto 20);
+  in12_2 <= level0(5)(47 downto 40) & outS_03 & level0(5)(27 downto 20);
+  in12_3 <= level0(6)(47 downto 39) & outC_03 & level0(15)(28) & level0(6)(27 downto 20);
+  CSA_12 : CSA    generic map (28)
+                port map (in12_1, in12_2, in12_3, outS_12(29 downto 2), outC_12(29 downto 2));
+  HA_14  : HA     port map (level0(3)(48), level0(5)(48), outS_12(30), outS_12(31));
 
-  level1(3)(64 downto 41) <= level0(3)(64 downto 41);
-  level1(3)(26) <= level0(14)(26);
-  level1(3)(26 downto 0) <= level0(3)(26 downto 0);
+  HA_15  : HAbank generic map (2)
+                port map (level0(8)(21 downto 20), level0(9)(21 downto 20), outS_13(1 downto 0), outC_13(1 downto 0));
+  in13_1 <= level0(8)(45 downto 38) & outS_04 & level0(8)(29 downto 22);
+  in13_2 <= level0(9)(45 downto 37) & outC_04 & level0(16)(30) & level0(9)(29 downto 22);
+  in13_3 <= level0(3)(45 downto 39) & level0(14)(38 downto 28) & level0(3)(27 downto 26) & level0(4)(25 downto 22);
+  CSA_13 : CSA    generic map (24)
+                port map (in13_1, in13_2, in13_3, outS_13(25 downto 2), outC_13(25 downto 2));
+  HA_16  : HA     port map (level0(8)(46), level0(9)(46), outS_13(26), outS_13(27));
 
-  level1(4)(64 downto 57) <= level0(4)(64 downto 57);
-  level1(4)(57 downto 40) <= level0(5)(57 downto 40);
-  level1(4)(28 downto 10) <= level0(5)(28 downto 10);
-  level1(4)(9) <= level0(4)(9);
-  level1(4)(9 downto 7) <= level1(5)(9 downto 7);
-  level1(4)(7 downto 0) <= level1(4)(7 downto 0);
+  HA_17  : HAbank generic map (2)
+                port map (level0(7)(23 downto 22), level0(10)(23 downto 22), outS_14(1 downto 0), outC_14(1 downto 0));
+  in14_1 <= level0(4)(43 downto 41) & level0(13)(40 downto 26) & level0(3)(25 downto 24);
+  in14_2 <= level0(10)(43 downto 37) & level0(15)(36 downto 30) & level0(10)(29 downto 24);
+  in14_3 <= level0(11)(43 downto 36) & level0(16)(35 downto 32) & level0(10)(31 downto 24);
+  CSA_14 : CSA    generic map (20)
+                port map (in14_1, in14_2, in14_3, outS_14(21 downto 2), outC_14(21 downto 2));
+  HA_18  : HA     port map (level0(4)(44), level0(10)(44), outS_14(22), outS_14(23));
 
-  level1(5)(64 downto 55) <= level1(4)(64 downto 55);
-  level1(5)(55 downto 39) <= level0(6)(55 downto 39);
-  level1(5)(28) <= level0(15)(28);
-  level1(5)(28 downto 12) <= level0(6)(28 downto 12);
-  level1(5)(11) <= level0(4)(11);
-  level1(5)(11 downto 9) <= level0(6)(11 downto 9);
-  level1(5)(9 downto 0) <= level0(4)(9 downto 0);
+-- Third level ----------------------------
 
-  level1(6)(64 downto 51) <= level0(4)(64 downto 51);
-  level1(6)(51 downto 38) <= level0(8)(51 downto 38);
-  level1(6)(30 downto 16) <= level0(8)(30 downto 16);
-  level1(6)(15) <= level0(4)(15);
-  level1(6)(14) <= level0(8)(14);
-  level1(6)(13 downto 0) <= level0(4)(13 downto 0);
+  HA_21  : HAbank generic map (2)
+                  port map (level0(0)(11 downto 10), level0(1)(11 downto 10), outS_21(1 downto 0), outC_21(1 downto 0));
+  in21_1 <= level0(0)(55 downto 52) & outS_11 & level0(0)(15 downto 12);
+  in21_2 <= level0(1)(55 downto 52) & level0(0)(51) & outC_11 & level0(7)(16) & level0(1)(15 downto 12);
+  in21_3 <= level0(2)(55 downto 50) & outS_12 & level0(2)(17 downto 12);
+  CSA_21 : CSA    generic map (44)
+                  port map (in21_1, in21_2, in21_3, outS_21(45 downto 2), outC_21(45 downto 2));
+  HA_22  : HA     port map (level0(0)(56), level0(1)(56), outS_21(46), outS_21(47));
 
-  level1(7)(64 downto 51) <= level0(7)(64 downto 51);
-  level1(7)(51 downto 49) <= level1(7)(51 downto 49);
-  level1(7)(49 downto 37) <= level0(9)(49 downto 37);
-  level1(7)(30) <= level0(16)(30);
-  level1(7)(30 downto 18) <= level0(9)(30 downto 18);
-  level1(7)(17) <= level0(7)(17);
-  level1(7)(16) <= level0(9)(16);
-  level1(7)(16 downto 0) <= level0(7)(16 downto 0);
+  HA_23  : HAbank generic map (2)
+                  port map (level0(3)(13 downto 12), level0(6)(13 downto 12), outS_22(1 downto 0), outC_22(1 downto 0));
+  in22_1 <= level0(3)(53 downto 49) & outC_12 & level0(10)(18) & level0(3)(17 downto 14);
+  in22_2 <= level0(6)(53 downto 48) & outS_13 & level0(6)(19 downto 14);
+  in22_3 <= level0(4)(53) & level0(7)(52 downto 51) & level0(4)(50 downto 49) & level0(9)(48 downto 47) & outC_13 & level0(4)(20 downto 14);
+  CSA_22 : CSA    generic map (40)
+                  port map (in22_1, in22_2, in22_3, outS_22(41 downto 2), outC_22(41 downto 2));
+  HA_24  : HA     port map (level0(3)(54), level0(6)(54), outS_22(42), outS_22(43));
 
-  level1(8)(64 downto 39) <= level0(7)(64 downto 39);
-  level1(8)(39 downto 28) <= level0(14)(39 downto 28);
-  level1(8)(28 downto 26) <= level0(8)(28 downto 26);
+  HA_25  : HAbank generic map (2)
+                  port map (level0(5)(15 downto 14), level0(7)(15 downto 14), outS_23(1 downto 0), outC_23(1 downto 0));
+  in23_1 <= level0(4)(51) & level0(7)(50 downto 46) & outS_14 & level0(7)(21 downto 18) & level0(5)(17 downto 16);
+  in23_2 <= level0(5)(51 downto 49) & level0(4)(48 downto 45) & outC_14 & level0(11)(22) & level0(10)(21 downto 20) & level0(10)(19 downto 18) & level0(7)(17) & level0(10)(16);
+  in23_3 <= level0(1)(51) & level0(8)(50 downto 47) & level0(10)(46 downto 45) & level0(11)(44) & level0(1)(43) & level0(13)(42 downto 24) & level0(11)(23) & level0(13)(22) & level0(4)(21) & level0(11)(20) & level0(8)(19 downto 16);
+  CSA_23 : CSA    generic map (36)
+                  port map (in23_1, in23_2, in23_3, outS_23(37 downto 2), outC_23(37 downto 2));
+  HA_26  : HA     port map (level0(4)(52), level0(5)(52), outS_23(38), outS_23(39));
 
+-- Fourth level ----------------------------
+
+  HA_31  : HAbank generic map (2)
+                  port map (level0(0)(7 downto 6), level0(1)(7 downto 6), outS_31(1 downto 0), outC_31(1 downto 0));
+  in31_1 <= level0(0)(59 downto 58) & outS_21 & level0(0)(9 downto 8);
+  in31_2 <= level0(1)(59 downto 57) & outC_21 & level0(6)(10) & level0(1)(9 downto 8);
+  in31_3 <= level0(2)(59 downto 56) & outS_22 & level0(2)(11 downto 8);
+  CSA_31 : CSA    generic map (52)
+                  port map (in31_1, in31_2, in31_3, outS_31(53 downto 2), outC_31(53 downto 2));
+  HA_32  : HA     port map (level0(0)(60), level0(1)(60), outS_31(54), outS_31(55));
+
+  HA_33  : HAbank generic map (2)
+                  port map (level0(3)(9 downto 8), level0(4)(9 downto 8), outS_32(1 downto 0), outC_32(1 downto 0));
+  in32_1 <= level0(3)(57 downto 55) & outC_22 & level0(8)(12) & level0(3)(11 downto 10);
+  in32_2 <= level0(4)(57 downto 54) & outS_23 & level0(4)(13 downto 10);
+  in32_3 <= level0(0)(57) & level0(5)(56 downto 53) & outC_23 & level0(8)(14) & level0(5)(13 downto 10);
+  CSA_32 : CSA    generic map (48)
+                  port map (in32_1, in32_2, in32_3, outS_32(49 downto 2), outC_32(49 downto 2));
+  HA_34  : HA     port map (level0(3)(58), level0(4)(58), outS_32(50), outS_32(51));
+
+-- Fifth level ----------------------------
+
+  HA_41  : HAbank generic map (2)
+                  port map (level0(0)(5 downto 4), level0(1)(5 downto 4), outS_41(1 downto 0), outC_41(1 downto 0));
+  in41_1 <= outS_31;
+  in41_2 <= level0(1)(61) & outC_31 & level0(3)(6);
+  in41_3 <= level0(2)(61 downto 60) & outS_32 & level0(2)(7 downto 6);
+  CSA_41 : CSA    generic map (56)
+                  port map (in41_1, in41_2, in41_3, outS_41(57 downto 2), outC_41(57 downto 2));
+  HA_42  : HA     port map (level0(0)(60), level0(1)(60), outS_41(58), outS_41(59));
+
+-- Sixth level ----------------------------
+
+  HA_51  : HAbank generic map (2)
+                  port map (level0(0)(3 downto 2), level0(1)(3 downto 2), outS_51(1 downto 0), outC_51(1 downto 0));
+  in51_1 <= outS_41;
+  in51_2 <= level0(0)(63) & outC_41 & level0(2)(4);
+  in51_3 <= level0(1)(63) & level0(2)(62) & level0(0)(61) & level0(3)(60 downto 59) & outC_32 & level0(5)(8) & level0(3)(7) & level0(4)(6) & level0(2)(5) & level0(3)(4);
+  CSA_51 : CSA    generic map (60)
+                  port map (in51_1, in51_2, in51_3, outS_51(61 downto 2), outC_51(61 downto 2));
+
+-- Seventh level aka the behavioural adder --
+
+  inSUM_1 <= '0' & outS_51 & level0(0)(1 downto 0);
+  inSUM_2 <= outC_51 & level0(2)(2) & '0' & level0(1)(0);
+  SUM <= std_logic_vector(inSUM_1 + inSUM_2);
 
 end architecture ;
