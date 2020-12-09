@@ -10,22 +10,20 @@ max_items_L(1) = 2;
 bitWidth = Nbit+((Ninputs-1)*2);
 
 i = 1;
-type_tree = string(input('Choose DADDA or WALLACE: ','s'));
+type_tree = input('Choose DADDA or WALLACE: ','s');
 
 while max_items_L(end) < Ninputs
         max_items_L(i+1) = floor((3/2)*max_items_L(i));
         i = i + 1;
 end
 
-Nlevels = numel(max_items_L);
-
-if type_tree == "DADDA"
-       
-elseif type_tree == "WALLACE"
+if type_tree == 'DADDA'
+    
+else
     max_items_L = zeros(1,Nlevels);
 end
 
-
+Nlevels = numel(max_items_L);
 
 levels_tensor_items = zeros(Ninputs,bitWidth,Nlevels);
 
