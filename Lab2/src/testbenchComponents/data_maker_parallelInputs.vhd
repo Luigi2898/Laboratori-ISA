@@ -3,7 +3,7 @@ use ieee.std_logic_1164.all;
 use ieee.std_logic_arith.all;
 use ieee.std_logic_unsigned.all;
 use ieee.std_logic_textio.all;
-use work.array_std.all;
+--use work.array_std.all;
 
 library std;
 use std.textio.all;
@@ -26,7 +26,15 @@ entity data_maker_parallelInputs is
     STARTstimuli : in std_logic;
     ENDEDstimuli : out std_logic;
     CLK  : in  std_logic;
-    DATA : out array_DATAGEN
+    DATA1 : out std_logic_vector (32 downto 0);
+DATA1 : out std_logic_vector (32 downto 0);
+DATA1 : out std_logic_vector (32 downto 0);
+DATA1 : out std_logic_vector (32 downto 0);
+DATA1 : out std_logic_vector (32 downto 0);
+DATA1 : out std_logic_vector (32 downto 0);
+DATA1 : out std_logic_vector (32 downto 0);
+DATA1 : out std_logic_vector (32 downto 0);
+
     );
 end data_maker_parallelInputs;
 

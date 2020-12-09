@@ -23,7 +23,24 @@ entity data_maker_parallelInputs is
     STARTstimuli : in std_logic;
     ENDEDstimuli : out std_logic;
     CLK  : in  std_logic;
-    DATA : out std_logic_vector(31 downto 0));
+    DATA1 : out std_logic_vector(32 downto 0);
+    DATA2 : out std_logic_vector(32 downto 0);
+    DATA3 : out std_logic_vector(32 downto 0);
+    DATA4 : out std_logic_vector(32 downto 0);
+    DATA5 : out std_logic_vector(32 downto 0);
+    DATA6 : out std_logic_vector(32 downto 0);
+    DATA7 : out std_logic_vector(32 downto 0);
+    DATA8 : out std_logic_vector(32 downto 0);
+    DATA9 : out std_logic_vector(32 downto 0);
+    DATA10 : out std_logic_vector(32 downto 0);
+    DATA11 : out std_logic_vector(32 downto 0);
+    DATA12 : out std_logic_vector(32 downto 0);
+    DATA13 : out std_logic_vector(32 downto 0);
+    DATA14 : out std_logic_vector(32 downto 0);
+    DATA15 : out std_logic_vector(32 downto 0);
+    DATA16 : out std_logic_vector(32 downto 0);
+    DATA17 : out std_logic_vector(32 downto 0);
+    );
 end data_maker_parallelInputs;
 
 architecture beh of data_maker_parallelInputs is
@@ -47,6 +64,23 @@ begin  -- beh
       for i in range 1 to N_inputs loop
         parallel_inputs(i-1) <= line_tmp(i*N_bit-1 downto (i-1)*N_bit);
       end loop;
+      DATA1  <= parallel_inputs(0);
+      DATA2  <= parallel_inputs(1);
+      DATA3  <= parallel_inputs(2);
+      DATA4  <= parallel_inputs(3);
+      DATA5  <= parallel_inputs(4);
+      DATA6  <= parallel_inputs(5);
+      DATA7  <= parallel_inputs(6);
+      DATA8  <= parallel_inputs(7);
+      DATA9  <= parallel_inputs(8);
+      DATA10 <= parallel_inputs(9);
+      DATA11 <= parallel_inputs(10;
+      DATA12 <= parallel_inputs(11;
+      DATA13 <= parallel_inputs(12;
+      DATA14 <= parallel_inputs(13;
+      DATA15 <= parallel_inputs(14;
+      DATA16 <= parallel_inputs(15;
+      DATA17 <= parallel_inputs(16;
     else
       ENDEDstimuli <= '1';
     end if;
