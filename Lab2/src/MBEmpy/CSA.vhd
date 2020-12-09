@@ -6,11 +6,11 @@ library ieee;
   entity CSA is
     generic (N : integer := 32);
       port (
-          IN0 : in unsigned (N-1 downto 0);
-          IN1 : in unsigned (N-1 downto 0);
-          IN2 : in unsigned (N-1 downto 0); 
-          S : out unsigned (N-1 downto 0);
-          C : out unsigned (N-1 downto 0)
+          IN0 : in std_logic_vector (N-1 downto 0);
+          IN1 : in std_logic_vector (N-1 downto 0);
+          IN2 : in std_logic_vector (N-1 downto 0); 
+          S : out std_logic_vector (N-1 downto 0);
+          C : out std_logic_vector (N-1 downto 0)
       );
   end entity CSA;
 

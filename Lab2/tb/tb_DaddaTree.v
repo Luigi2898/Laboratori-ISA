@@ -11,14 +11,14 @@ module tb_DaddaTree ();
    wire rst_n;
    reg sim_start;
    wire sim_end;
-   reg [32:0] DIN_file [16:0];
+   wire [32:0] DIN_file [16:0];
    wire signed [32:0] DIN_dadda [16:0];
    wire [16:0] SIGNIN_dadda;
-   wire unsigned [65:0] DOUT_dadda;
-   wire unsigned [65:0] DOUT_correct;
-   reg [31:0] infileName = "../tb/stimuli_files/DaddaTestInputs.txt";     /*INSERT HERE INPUT FILE PATH AND NAME */
-   reg [31:0] outfileNameBin = "../tb/stimuli_files/DaddaTestOutputs_bin.txt"; /*INSERT HERE BINARY OUTPUT FILE PATH AND NAME */
-   reg [31:0] outfileNameInt = "../tb/stimuli_files/DaddaTestOutputs_int.txt"; /*INSERT HERE INTEGER OUTPUT FILE PATH AND NAME */
+   wire unsigned [64:0] DOUT_dadda;
+   wire unsigned [64:0] DOUT_correct;
+   reg [31:0] infileName = "../tb/stimulus_files/DaddaTestInputs.txt";     /*INSERT HERE INPUT FILE PATH AND NAME */
+   reg [31:0] outfileNameBin = "../tb/stimulus_files/DaddaTestOutputs_bin.txt"; /*INSERT HERE BINARY OUTPUT FILE PATH AND NAME */
+   reg [31:0] outfileNameInt = "../tb/stimulus_files/DaddaTestOutputs_int.txt"; /*INSERT HERE INTEGER OUTPUT FILE PATH AND NAME */
    integer wrong_res = 0;
    integer i = 0;
 
@@ -31,9 +31,9 @@ module tb_DaddaTree ();
 
     data_maker_parallelInputs 
         # (
-        .N_input(17),
+        .N_inputs(17),
         .N_bit(33),
-        .fileName("../tb/stimuli_files/DaddaTestInputs.txt")
+        .fileName("../tb/stimulus_files/DaddaTestInputs.txt")
         )
         DG (
         .STARTstimuli(sim_start),
@@ -55,14 +55,14 @@ module tb_DaddaTree ();
         .DATA14(DIN_file[13]),
         .DATA15(DIN_file[14]),
         .DATA16(DIN_file[15]),
-        .DATA17(DIN_file[16]),
+        .DATA17(DIN_file[16])
         );
 
 
     data_sink_GENERIC
         # (
-        .N_bit(66),
-        .fileName("../tb/stimuli_files/DaddaTestOutputs.txt")
+        .N_bit(65),
+        .fileName("../tb/stimulus_files/DaddaTestOutputs.txt")
         )
         DS (
         .STARTsink(sim_start),
@@ -70,7 +70,7 @@ module tb_DaddaTree ();
         .DATA(DOUT_dadda)
         );
 
-    fake_DADDA
+    DADDA
         # (
             .N(33),
             .N_PP(17)
@@ -100,7 +100,7 @@ module tb_DaddaTree ();
 
     /* INPUT DATA MODULATOR FOR DADDA INPUTS, GENERATES NEGATED DATA AND SIGN BITS */
 	function [32:0] DIN_dadda_single;
-		input [32:0] DIN_normal_single;
+		input [32:0] DIN_normal_single, i;
         if (DIN_file[i] > 0)
         begin
             DIN_dadda_single[i] = DIN_normal_single[i];
@@ -112,7 +112,7 @@ module tb_DaddaTree ();
 	endfunction
 
 	function [32:0] SIGNIN_dadda_f;
-		input [32:0] DIN_normal;
+		input [32:0] DIN_normal, i;
             if (DIN_file[i] > 0)
             begin
                 SIGNIN_dadda_f[i] = 1'b0;
@@ -124,47 +124,47 @@ module tb_DaddaTree ();
     endfunction
 
 
-	assign DIN_dadda[0] = DIN_dadda_single(DIN_file[0]);
-	assign SIGNIN_dadda[0] = SIGNIN_dadda_f(DIN_file[0]);
-	assign DIN_dadda[1] = DIN_dadda_single(DIN_file[1]);
-	assign SIGNIN_dadda[1] = SIGNIN_dadda_f(DIN_file[1]);
-	assign DIN_dadda[2] = DIN_dadda_single(DIN_file[2]);
-	assign SIGNIN_dadda[2] = SIGNIN_dadda_f(DIN_file[2]);
-	assign DIN_dadda[3] = DIN_dadda_single(DIN_file[3]);
-	assign SIGNIN_dadda[3] = SIGNIN_dadda_f(DIN_file[3]);
-	assign DIN_dadda[4] = DIN_dadda_single(DIN_file[4]);
-	assign SIGNIN_dadda[4] = SIGNIN_dadda_f(DIN_file[4]);
-	assign DIN_dadda[5] = DIN_dadda_single(DIN_file[5]);
-	assign SIGNIN_dadda[5] = SIGNIN_dadda_f(DIN_file[5]);
-	assign DIN_dadda[6] = DIN_dadda_single(DIN_file[6]);
-	assign SIGNIN_dadda[6] = SIGNIN_dadda_f(DIN_file[6]);
-	assign DIN_dadda[7] = DIN_dadda_single(DIN_file[7]);
-	assign SIGNIN_dadda[7] = SIGNIN_dadda_f(DIN_file[7]);
-	assign DIN_dadda[8] = DIN_dadda_single(DIN_file[8]);
-	assign SIGNIN_dadda[8] = SIGNIN_dadda_f(DIN_file[8]);
-	assign DIN_dadda[9] = DIN_dadda_single(DIN_file[9]);
-	assign SIGNIN_dadda[9] = SIGNIN_dadda_f(DIN_file[9]);
-	assign DIN_dadda[10] = DIN_dadda_single(DIN_file[10]);
-	assign SIGNIN_dadda[10] = SIGNIN_dadda_f(DIN_file[10]);
-	assign DIN_dadda[11] = DIN_dadda_single(DIN_file[11]);
-	assign SIGNIN_dadda[11] = SIGNIN_dadda_f(DIN_file[11]);
-	assign DIN_dadda[12] = DIN_dadda_single(DIN_file[12]);
-	assign SIGNIN_dadda[12] = SIGNIN_dadda_f(DIN_file[12]);
-	assign SIGNIN_dadda[13] = SIGNIN_dadda_f(DIN_file[13]);
-	assign DIN_dadda[13] = DIN_dadda_single(DIN_file[13]);
-	assign SIGNIN_dadda[14] = SIGNIN_dadda_f(DIN_file[14]);
-	assign DIN_dadda[14] = DIN_dadda_single(DIN_file[14]);
-	assign SIGNIN_dadda[15] = SIGNIN_dadda_f(DIN_file[15]);
-	assign DIN_dadda[15] = DIN_dadda_single(DIN_file[15]);
-	assign SIGNIN_dadda[16] = SIGNIN_dadda_f(DIN_file[16]);
-	assign DIN_dadda[16] = SIGNIN_dadda_f(DIN_file[16]);
+	assign DIN_dadda[0] = DIN_dadda_single(DIN_file[0], 0);
+	assign SIGNIN_dadda[0] = SIGNIN_dadda_f(DIN_file[0], 0);
+	assign DIN_dadda[1] = DIN_dadda_single(DIN_file[1], 1);
+	assign SIGNIN_dadda[1] = SIGNIN_dadda_f(DIN_file[1], 1);
+	assign DIN_dadda[2] = DIN_dadda_single(DIN_file[2], 2);
+	assign SIGNIN_dadda[2] = SIGNIN_dadda_f(DIN_file[2], 2);
+	assign DIN_dadda[3] = DIN_dadda_single(DIN_file[3], 3);
+	assign SIGNIN_dadda[3] = SIGNIN_dadda_f(DIN_file[3], 3);
+	assign DIN_dadda[4] = DIN_dadda_single(DIN_file[4], 4);
+	assign SIGNIN_dadda[4] = SIGNIN_dadda_f(DIN_file[4], 4);
+	assign DIN_dadda[5] = DIN_dadda_single(DIN_file[5], 5);
+	assign SIGNIN_dadda[5] = SIGNIN_dadda_f(DIN_file[5], 5);
+	assign DIN_dadda[6] = DIN_dadda_single(DIN_file[6], 6);
+	assign SIGNIN_dadda[6] = SIGNIN_dadda_f(DIN_file[6], 6);
+	assign DIN_dadda[7] = DIN_dadda_single(DIN_file[7], 7);
+	assign SIGNIN_dadda[7] = SIGNIN_dadda_f(DIN_file[7], 7);
+	assign DIN_dadda[8] = DIN_dadda_single(DIN_file[8], 8);
+	assign SIGNIN_dadda[8] = SIGNIN_dadda_f(DIN_file[8], 8);
+	assign DIN_dadda[9] = DIN_dadda_single(DIN_file[9], 9);
+	assign SIGNIN_dadda[9] = SIGNIN_dadda_f(DIN_file[9], 9);
+	assign DIN_dadda[10] = DIN_dadda_single(DIN_file[10], 10);
+	assign SIGNIN_dadda[10] = SIGNIN_dadda_f(DIN_file[10], 10);
+	assign DIN_dadda[11] = DIN_dadda_single(DIN_file[11], 11);
+	assign SIGNIN_dadda[11] = SIGNIN_dadda_f(DIN_file[11], 11);
+	assign DIN_dadda[12] = DIN_dadda_single(DIN_file[12], 12);
+	assign SIGNIN_dadda[12] = SIGNIN_dadda_f(DIN_file[12], 12);
+	assign SIGNIN_dadda[13] = SIGNIN_dadda_f(DIN_file[13], 13);
+	assign DIN_dadda[13] = DIN_dadda_single(DIN_file[13], 13);
+	assign SIGNIN_dadda[14] = SIGNIN_dadda_f(DIN_file[14], 14);
+	assign DIN_dadda[14] = DIN_dadda_single(DIN_file[14], 14);
+	assign SIGNIN_dadda[15] = SIGNIN_dadda_f(DIN_file[15], 15);
+	assign DIN_dadda[15] = DIN_dadda_single(DIN_file[15], 15);
+	assign SIGNIN_dadda[16] = SIGNIN_dadda_f(DIN_file[16], 16);
+	assign DIN_dadda[16] = SIGNIN_dadda_f(DIN_file[16], 16);
 	
 		
 
     /* SIMULATION INITIALIZATION */
     initial
     begin
-        #2 sim_start <= 1'b1;
+        #2 sim_start = 1'b1;
         $display($time," Simulation initialized and started.\nInput stimuli will be taken from the following binary file:\n\t%s",infileName);
     end
 
@@ -172,7 +172,7 @@ module tb_DaddaTree ();
     /* SIMULATION ENDING AND BEHAVIOUR CHECKING */
     always @ (posedge sim_end)
     begin
-        sim_start <= 1'b0;
+        sim_start = 1'b0;
         $display("Simulation ended with %d wrong results.\n",wrong_res);
         if (wrong_res == 0)
         begin
@@ -188,13 +188,13 @@ module tb_DaddaTree ();
     end
 
 	/* CORRECT RESULTS GENERATION */
-	assign	DOUT_correct = DIN_file[0]+DIN_file[1]+DIN_file[2]+DIN_file[3]+DIN_file[4]+DIN_file[5]+ 
+	assign	DOUT_correct = DIN_file[0]+4*DIN_file[1]+16*DIN_file[2]+16*DIN_file[3]+32*DIN_file[4]+DIN_file[5]+ 
         DIN_file[6]+DIN_file[7]+DIN_file[8]+DIN_file[9]+DIN_file[10]+DIN_file[11]+DIN_file[12]+
         DIN_file[13]+DIN_file[14]+DIN_file[15]+DIN_file[16];
 
 
     /* DATA MONITOR AND RESULT CHECKING*/
-    always
+    always @ (DOUT_dadda)
     begin
         $monitor("Input data to Dadda are:\n
         \t 1] %d\n

@@ -3,7 +3,7 @@ import numpy as np
 from copy import deepcopy
 
 
-CSA          = "CSA_%d : CSA generic map(%d)\n            port map(%s, %s, %s, %s, %s);"
+FA          = "FA_%d : FA port map(%s, %s, %s, %s, %s);"
 HA           = "HA_%d : HA port map(%s, %s, %s, %s);"
 SIGNAL       = "signal %s : %s"
 SLV          = "std_logic_vector(%d downto 0);"
@@ -19,17 +19,24 @@ def countDot(list):
             cnt += 1
     return cnt
 
+def assignS(target, source):
+    assignement = target + " <= " + source
+    return assignement    
+
 def assign(target, source):
     assignement = target + ' <= '
     for i, aPiece in enumerate(source):
         if i == len(source) - 1:
-            assignement = assignement + aPiece
+            assignement = assignement + aPiece + ' ;'
         else:
             assignement = assignement + aPiece + ' & '
     return assignement
 
-def downto(signal, end, start):
-    signal_dt = signal + "( " + str(end) + " downto " + str(start) + " )"
+def downto(signal, start, end):
+    if start == end:
+        signal_dt = signal + "( " + str(start) + " )"
+    else:
+        signal_dt = signal + "( " + str(end) + " downto " + str(start) + " )"
     return signal_dt
 
 class DotMatrix:
@@ -52,18 +59,11 @@ class DotMatrix:
             self.W = len(matrix[0][:])
 
     def populate(self, parallelism):
-        #signals = []
-       # ass = []
         for i, aDot in enumerate(reversed(self.matrix[0][self.W - parallelism : self.W])):
             aDot.setBlack( i, 0)
-        #row = "PP(0)"
         self.matrix[0][self.W - parallelism - 1].setSign(0)
-        #row = "S(0) & " + row 
         self.matrix[0][self.W - parallelism - 2].setSign(0)
-       # row = "S(0) & " + row
         self.matrix[0][self.W - parallelism - 3].setSignNeg(0)
-        #row = "not(S(0)) & " + row
-        #signals.append(deepcopy(row))
         for pos, row in enumerate(self.matrix[1:-2][:]):
             i = 0
             for index, aDot in enumerate(reversed(row)):
@@ -76,17 +76,17 @@ class DotMatrix:
                     aDot.setSignNeg(pos + 1)
                 if index == 2 * (pos + 1) + parallelism + 1:
                     aDot.setOne(pos + 1)
-        for index, aDot in enumerate(self.matrix[-2][2 : parallelism + 2]):
+        for index, aDot in enumerate(reversed(self.matrix[-2][2 : parallelism + 2])):
             aDot.setBlack( index, self.H - 2)
         self.matrix[-2][parallelism + 3].setSign(self.H - 3)
-        self.matrix[-2][1].setOne(self.H - 2)
-        for index, aDot in enumerate(self.matrix[-1][1 : parallelism]):
+        self.matrix[-2][1].setSignNeg(self.H - 2)
+        for index, aDot in enumerate(reversed(self.matrix[-1][1 : parallelism])):
             aDot.setBlack( index, self.H - 1)
-        self.matrix[-1][parallelism + 1].setSign(self.H - 1)
+        self.matrix[-1][parallelism + 1].setSign(self.H - 2)
 
     def reduct(self, lTarget):
         nextLevel = deepcopy(self)
-        operators = [[0] * (self.W - 1), [0] * (self.W - 1)]
+        operators = [[0] * (self.W), [0] * (self.W)]
         reminder = 0
         for c in reversed(range(self.W)):
             col = [row[c] for row in nextLevel.matrix]
@@ -115,6 +115,11 @@ class DotMatrix:
             for i, el in enumerate(col):
                 self.matrix[i][c] = el
 
+    def getFirstNonEmpty(self, row):
+        for i, aDot in enumerate(reversed(self.matrix[:][row])):
+            if aDot.isBlack():
+                return i
+
 class Dot:
 
     def __init__(self):
@@ -123,6 +128,7 @@ class Dot:
         self.v = 0
         self.one = 0
         self.h = 0
+        self.touched = False
     
     def setBlack(self, w, h):
         self.t = "dot"
@@ -130,6 +136,7 @@ class Dot:
         self.v = 1
         self.one = 0
         self.h = h
+        
 
     def setOne(self, w):
         self.t = "one"
@@ -184,6 +191,12 @@ class Dot:
         self.w = 0
         self.v = 1
         self.one = 0
+
+    def touch(self):
+        self.touched = True
+
+    def isTouched(self):
+        return self.touched
 
     def __str__(self):
         return str(self.v)
@@ -241,16 +254,52 @@ class Dadda:
             nl, op = self.tree[i - 1].reduct(self.l[self.L - i])
             nl.compress()
             self.tree.append(nl)
-            self.operators.append(op.copy())
+            self.operators.append(deepcopy(op))
             
 
+START = """
+library ieee ;
+    use ieee.std_logic_1164.all ;
+    use ieee.numeric_std.all ;
 
 
-    
-        
-                
+entity DADDA is
+  generic(N : integer := 32; N_PP : integer := 17);
+  port (
+    PP1      : in  std_logic_vector (N - 1 downto 0);
+    PP2      : in  std_logic_vector (N - 1 downto 0);
+    PP3      : in  std_logic_vector (N - 1 downto 0);
+    PP4      : in  std_logic_vector (N - 1 downto 0);
+    PP5      : in  std_logic_vector (N - 1 downto 0);
+    PP6      : in  std_logic_vector (N - 1 downto 0);
+    PP7      : in  std_logic_vector (N - 1 downto 0);
+    PP8      : in  std_logic_vector (N - 1 downto 0);
+    PP9      : in  std_logic_vector (N - 1 downto 0);
+    PP10     : in  std_logic_vector (N - 1 downto 0);
+    PP11     : in  std_logic_vector (N - 1 downto 0);
+    PP12     : in  std_logic_vector (N - 1 downto 0);
+    PP13     : in  std_logic_vector (N - 1 downto 0);
+    PP14     : in  std_logic_vector (N - 1 downto 0);
+    PP15     : in  std_logic_vector (N - 1 downto 0);
+    PP16     : in  std_logic_vector (N - 1 downto 0);
+    PP17     : in  std_logic_vector (N - 1 downto 0);
+    PP_sign : in  std_logic_vector ((N - 1)/ 2 downto 0);
+    SUM     : out unsigned (2 * N - 2 downto 0)
+  ) ;
+end DADDA;
 
+architecture structural of DADDA is
+  
+  component FA IS
+    port(
+		A, B, Cin : IN STD_LOGIC;
+		S, Co : OUT STD_LOGIC
+	);	
+  end component FA;
 
-        
-            
-
+  component HA is
+    port(
+		    A, B  : in  std_logic;
+		    S, Co : out std_logic
+    );
+  end component HA;\n\n"""
