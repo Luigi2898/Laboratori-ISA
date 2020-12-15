@@ -1,7 +1,9 @@
-sh rm -r ./WORK
-sh mkdir WORK
-sh mkdir reports/csa
-sh mkdir reports/csa/netlist
+sh rm -r ./work
+sh mkdir work
+sh mkdir logs/CSA
+sh mkdir reports/CSA
+sh mkdir reports/CSA/netlist
+
 analyze -library WORK -format vhdl -autoread {../src/fpuvhdl/common/}
 analyze -library WORK -format vhdl {../src/fpuvhdl/multiplier/fpmul_stage4_struct.vhd}
 analyze -library WORK -format vhdl {../src/fpuvhdl/multiplier/fpmul_stage3_struct.vhd}
@@ -9,7 +11,7 @@ analyze -library WORK -format vhdl {../src/fpuvhdl/multiplier/fpmul_stage2_struc
 analyze -library WORK -format vhdl {../src/fpuvhdl/multiplier/fpmul_stage1_struct.vhd}
 analyze -library WORK -format vhdl {../src/fpuvhdl/multiplier/fpmul_single_cycle.vhd}
 analyze -library WORK -format vhdl {../src/fpuvhdl/multiplier/fpmul_pipeline.vhd}
-elaborate FPMUL -architecture PIPELINE -library WORK -update
+elaborate FPMUL -architecture PIPELINE -library WORK > logs/CSA/elaboration.txt
 # setting design constrains
 create_clock -name MY_CLK -period 10.0 clk
 set_dont_touch_network MY_CLK
@@ -21,15 +23,13 @@ set_load $OLOAD [all_outputs]
 ungroup -all -flatten
 # setting the mpy implementation
 set_implementation DW02_mult/csa [find cell *mult*]
-compile -exact_map
-report_resources
-report_timing -nworst 10 > ./reports/csa/report_timing_csa.txt
-report_area > ./reports/csa/report_area_csa.txt
-report_resources -nworst 10 > ./reports/csa/report_resources_csa.txt
-ungroup -all -flatten
+compile -exact_map > logs/CSA/compilation.txt
+report_timing -nworst 10 > ./reports/CSA/timinig.txt
+report_area > ./reports/CSA/area.txt
+report_resources > ./reports/CSA/resources.txt
 change_names -hierarchy -rules verilog
-write_sdf ./reports/csa/netlist/FPMUL.sdf
-write -f verilog -hierarchy -output ./reports/csa/netlist/FPMUL.v
-write_sdc ./reports/csa/netlist/FPMUL.sdc
-write -hierarchy -format ddc -output ./reports/csa/netlist/FPMUL.ddc
+write_sdf ./reports/CSA/netlist/FPMUL.sdf
+write -f verilog -hierarchy -output ./reports/CSA/netlist/FPMUL.v
+write_sdc ./reports/CSA/netlist/FPMUL.sdc
+write -hierarchy -format ddc -output ./reports/CSA/netlist/FPMUL.ddc
 quit

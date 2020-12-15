@@ -1,7 +1,9 @@
-sh rm -r ./WORK
-sh mkdir WORK
-sh mkdir reports/pp
-sh mkdir reports/pp/netlist
+sh rm -r ./work
+sh mkdir work
+sh mkdir logs/PP
+sh mkdir reports/PP
+sh mkdir reports/PP/netlist
+
 analyze -library WORK -format vhdl -autoread {../src/fpuvhdl/common/}
 analyze -library WORK -format vhdl {../src/fpuvhdl/multiplier/fpmul_stage4_struct.vhd}
 analyze -library WORK -format vhdl {../src/fpuvhdl/multiplier/fpmul_stage3_struct.vhd}
@@ -9,7 +11,7 @@ analyze -library WORK -format vhdl {../src/fpuvhdl/multiplier/fpmul_stage2_struc
 analyze -library WORK -format vhdl {../src/fpuvhdl/multiplier/fpmul_stage1_struct.vhd}
 analyze -library WORK -format vhdl {../src/fpuvhdl/multiplier/fpmul_single_cycle.vhd}
 analyze -library WORK -format vhdl {../src/fpuvhdl/multiplier/fpmul_pipeline.vhd}
-elaborate FPMUL -architecture PIPELINE -library WORK -update
+elaborate FPMUL -architecture PIPELINE -library WORK -update > logs/PP/elaboration.txt
 # setting design constrains
 create_clock -name MY_CLK -period 10.0 clk
 set_dont_touch_network MY_CLK
@@ -21,15 +23,14 @@ set_load $OLOAD [all_outputs]
 ungroup -all -flatten
 # setting the mpy implementation
 set_implementation DW02_mult/pparch [find cell *mult*]
-compile -exact_map
-report_timing -nworst 10 > ./reports/pp/report_timing.txt
-report_area > ./reports/pp/report_area.txt
-report_resources > ./reports/pp/report_resources.txt
-report_synlib dw_foundation.sldb > ./reports/pp/report_synthetic_library.txt
-ungroup -all -flatten
+compile -exact_map > logs/PP/compilation.txt
+report_timing -nworst 10 > ./reports/PP/timing.txt
+report_area > ./reports/PP/area.txt
+report_resources > ./reports/PP/resources.txt
+report_synlib dw_foundation.sldb > ./reports/synthetic_library.txt
 change_names -hierarchy -rules verilog
-write_sdf ./reports/pp/netlist/FPMUL.sdf
-write -f verilog -hierarchy -output ./reports/pp/netlist/FPMUL.v
-write_sdc ./reports/pp/netlist/FPMUL.sdc
-write -hierarchy -format ddc -output ./reports/pp/netlist/FPMUL.ddc
+write_sdf ./reports/PP/netlist/FPMUL.sdf
+write -f verilog -hierarchy -output ./reports/PP/netlist/FPMUL.v
+write_sdc ./reports/PP/netlist/FPMUL.sdc
+write -hierarchy -format ddc -output ./reports/PP/netlist/FPMUL.ddc
 quit
