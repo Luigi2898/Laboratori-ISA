@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.std_logic_arith.all;
 use ieee.std_logic_textio.all;
-use work.array_std.all;
+
 library std;
 use std.textio.all;
 
@@ -15,7 +15,7 @@ COMPONENT MBE_mult_uns is
     port (
         IN_A    : in std_logic_vector (31 downto 0);
         IN_B    : in std_logic_vector (31 downto 0);
-        OUT_MPY : out std_logic_vector (63 downto 0)        
+        OUT_MPY : out std_logic_vector (64 downto 0)        
     );
    END COMPONENT MBE_mult_uns;
 
@@ -32,7 +32,7 @@ COMPONENT clk_gen is
 end COMPONENT clk_gen;
 
 signal d_in : std_logic_vector(31 downto 0);
-signal out_mpy, prod : std_logic_vector(63 downto 0);
+signal out_mpy, prod : std_logic_vector(64 downto 0);
 signal clk1, rst : std_logic;
 
 
@@ -45,7 +45,7 @@ DM : data_maker port map(clk1, d_in);
 UUT1 : MBE_mult_uns port map(d_in, d_in, out_mpy);
 
 I2combo : PROCESS (d_in)
-          VARIABLE dtemp : unsigned(63 DOWNTO 0);
+          VARIABLE dtemp : unsigned(64 DOWNTO 0);
           BEGIN
           dtemp := (unsigned(d_in) * unsigned(d_in));
           prod <= std_logic_vector(dtemp);
@@ -53,8 +53,8 @@ I2combo : PROCESS (d_in)
 		  
 		  
 process (clk1)
-    file res_mbe : text open WRITE_MODE is "../file/prod_tb_mbe.hex";
-	file res_beh : text open WRITE_MODE is "../file/prod_tb_beh.hex";
+    file res_mbe : text open WRITE_MODE is "../prod_tb_mbe.hex";
+	file res_beh : text open WRITE_MODE is "../prod_tb_beh.hex";
     variable line_out1 : line;
     variable line_out2 : line; 	
   begin  -- process
