@@ -1,6 +1,7 @@
 # Init synopsys
 
 mkdir reports
+mkdir logs
 
 source /software/scripts/init_synopsys_64.18
 
