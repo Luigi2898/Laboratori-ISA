@@ -1,0 +1,90 @@
+Information: Updating design information... (UID-85)
+Warning: There are infeasible paths detected in your design that were ignored during optimization. Please run 'report_timing -attributes' and/or 'create_qor_snapshot/query_qor_snapshot -infeasible_paths' to identify these paths.  (OPT-1721)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : FPmul
+Version: O-2018.06-SP4
+Date   : Thu Dec 10 15:08:59 2020
+****************************************
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+  Startpoint: I2/mbe_mult/MBEU_PP/MUX1_3/MY_CLK_r_REG565_S1
+              (rising edge-triggered flip-flop clocked by MY_CLK)
+  Endpoint: I2/mbe_mult/DADDA_TREE/FA190_L5/HALF2/MY_CLK_r_REG203_S2
+            (rising edge-triggered flip-flop clocked by MY_CLK)
+  Path Group: MY_CLK
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FPmul              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock MY_CLK (rise edge)                                0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  I2/mbe_mult/MBEU_PP/MUX1_3/MY_CLK_r_REG565_S1/CK (DFF_X1)
+                                                          0.00       0.00 r
+  I2/mbe_mult/MBEU_PP/MUX1_3/MY_CLK_r_REG565_S1/Q (DFF_X1)
+                                                          0.21       0.21 r
+  I2/mbe_mult/MBEU_PP/MUX1_3/U70/ZN (NAND2_X1)            0.05       0.26 f
+  I2/mbe_mult/MBEU_PP/MUX1_3/U31/ZN (NAND2_X1)            0.03       0.30 r
+  I2/mbe_mult/MBEU_PP/MUX1_3/OUT_MUX[22] (MUX3XNTO1XN_N32_14)
+                                                          0.00       0.30 r
+  I2/mbe_mult/MBEU_PP/U526/Z (XOR2_X1)                    0.06       0.36 r
+  I2/mbe_mult/MBEU_PP/PP4[22] (mbe_ppg_N32_N_PP17)        0.00       0.36 r
+  I2/mbe_mult/DADDA_TREE/PP4[22] (CSA_Tree_N33_N_PP17)
+                                                          0.00       0.36 r
+  I2/mbe_mult/DADDA_TREE/FA4_L7/A (FA_477)                0.00       0.36 r
+  I2/mbe_mult/DADDA_TREE/FA4_L7/HALF1/A (HA_954)          0.00       0.36 r
+  I2/mbe_mult/DADDA_TREE/FA4_L7/HALF1/U3/ZN (INV_X1)      0.03       0.39 f
+  I2/mbe_mult/DADDA_TREE/FA4_L7/HALF1/U1/ZN (XNOR2_X1)
+                                                          0.06       0.45 f
+  I2/mbe_mult/DADDA_TREE/FA4_L7/HALF1/S (HA_954)          0.00       0.45 f
+  I2/mbe_mult/DADDA_TREE/FA4_L7/HALF2/B (HA_953)          0.00       0.45 f
+  I2/mbe_mult/DADDA_TREE/FA4_L7/HALF2/U1/ZN (XNOR2_X1)
+                                                          0.06       0.52 f
+  I2/mbe_mult/DADDA_TREE/FA4_L7/HALF2/S (HA_953)          0.00       0.52 f
+  I2/mbe_mult/DADDA_TREE/FA4_L7/S (FA_477)                0.00       0.52 f
+  I2/mbe_mult/DADDA_TREE/FA69_L6/B (FA_412)               0.00       0.52 f
+  I2/mbe_mult/DADDA_TREE/FA69_L6/HALF1/B (HA_824)         0.00       0.52 f
+  I2/mbe_mult/DADDA_TREE/FA69_L6/HALF1/U1/ZN (XNOR2_X1)
+                                                          0.06       0.58 f
+  I2/mbe_mult/DADDA_TREE/FA69_L6/HALF1/S (HA_824)         0.00       0.58 f
+  I2/mbe_mult/DADDA_TREE/FA69_L6/HALF2/B (HA_823)         0.00       0.58 f
+  I2/mbe_mult/DADDA_TREE/FA69_L6/HALF2/U1/ZN (AND2_X1)
+                                                          0.04       0.62 f
+  I2/mbe_mult/DADDA_TREE/FA69_L6/HALF2/Co (HA_823)        0.00       0.62 f
+  I2/mbe_mult/DADDA_TREE/FA69_L6/U1/ZN (OR2_X1)           0.06       0.67 f
+  I2/mbe_mult/DADDA_TREE/FA69_L6/Co (FA_412)              0.00       0.67 f
+  I2/mbe_mult/DADDA_TREE/FA190_L5/A (FA_291)              0.00       0.67 f
+  I2/mbe_mult/DADDA_TREE/FA190_L5/HALF1/A (HA_582)        0.00       0.67 f
+  I2/mbe_mult/DADDA_TREE/FA190_L5/HALF1/U1/ZN (XNOR2_X1)
+                                                          0.06       0.73 f
+  I2/mbe_mult/DADDA_TREE/FA190_L5/HALF1/S (HA_582)        0.00       0.73 f
+  I2/mbe_mult/DADDA_TREE/FA190_L5/HALF2/B (HA_581)        0.00       0.73 f
+  I2/mbe_mult/DADDA_TREE/FA190_L5/HALF2/MY_CLK_r_REG203_S2/D (DFF_X1)
+                                                          0.01       0.74 f
+  data arrival time                                                  0.74
+
+  clock MY_CLK (rise edge)                               10.00      10.00
+  clock network delay (ideal)                             0.00      10.00
+  clock uncertainty                                      -0.07       9.93
+  I2/mbe_mult/DADDA_TREE/FA190_L5/HALF2/MY_CLK_r_REG203_S2/CK (DFF_X1)
+                                                          0.00       9.93 r
+  library setup time                                     -0.04       9.89
+  data required time                                                 9.89
+  --------------------------------------------------------------------------
+  data required time                                                 9.89
+  data arrival time                                                 -0.74
+  --------------------------------------------------------------------------
+  slack (MET)                                                        9.15
+
+
+1

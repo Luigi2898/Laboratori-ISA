@@ -1,0 +1,1263 @@
+library ieee;
+	use ieee.std_logic_1164.all;
+	use ieee.numeric_std.all;
+	--use work.array_std.all;
+
+entity CSA_Tree is
+	generic(N : integer := 33; N_PP : integer := 17);
+	port(
+		PP1      : in  std_logic_vector (N-1 downto 0);
+		PP2      : in  std_logic_vector (N-1 downto 0);
+		PP3      : in  std_logic_vector (N-1 downto 0);
+		PP4      : in  std_logic_vector (N-1 downto 0);
+		PP5      : in  std_logic_vector (N-1 downto 0);
+		PP6      : in  std_logic_vector (N-1 downto 0);
+		PP7      : in  std_logic_vector (N-1 downto 0);
+		PP8      : in  std_logic_vector (N-1 downto 0);
+		PP9      : in  std_logic_vector (N-1 downto 0);
+		PP10      : in  std_logic_vector (N-1 downto 0);
+		PP11      : in  std_logic_vector (N-1 downto 0);
+		PP12      : in  std_logic_vector (N-1 downto 0);
+		PP13      : in  std_logic_vector (N-1 downto 0);
+		PP14      : in  std_logic_vector (N-1 downto 0);
+		PP15      : in  std_logic_vector (N-1 downto 0);
+		PP16      : in  std_logic_vector (N-1 downto 0);
+		PP17      : in  std_logic_vector (N-1 downto 0);
+		PP_sign : in  std_logic_vector (N / 2 downto 0);
+		SUM     : out std_logic_vector (2 * N - 2 downto 0)
+	);
+end entity CSA_Tree;
+
+architecture Dadda of CSA_Tree is
+
+---- COMPONENTS DECLARATION ----
+component HA is
+	port(
+		A, B : IN STD_LOGIC;
+		S, Co : OUT STD_LOGIC
+	);
+end component HA;
+
+component FA is
+	port(
+		A, B , Cin : IN STD_LOGIC;
+		S, Co : OUT STD_LOGIC
+	);
+end component FA;
+
+---- SIGNAL DECLARATION ----
+type signal_matrix is array (29 downto 0) of std_logic_vector (64 downto 0);
+type final_matrix is array (1 downto 0) of std_logic_vector (65 downto 0);
+signal SUM_RES_L1 : signal_matrix;
+signal CARRY_RES_L1 : signal_matrix;
+signal SUM_RES_L2 : signal_matrix;
+signal CARRY_RES_L2 : signal_matrix;
+signal SUM_RES_L3 : signal_matrix;
+signal CARRY_RES_L3 : signal_matrix;
+signal SUM_RES_L4 : signal_matrix;
+signal CARRY_RES_L4 : signal_matrix;
+signal SUM_RES_L5 : signal_matrix;
+signal CARRY_RES_L5 : signal_matrix;
+signal SUM_RES_L6 : signal_matrix;
+signal CARRY_RES_L6 : signal_matrix;
+signal SUM_RES_L7 : signal_matrix;
+signal CARRY_RES_L7 : signal_matrix;
+signal PP : signal_matrix;
+signal FINAL_SUM : final_matrix;
+
+signal VDD, GND : std_logic;
+begin
+
+VDD <= '1';
+GND <= '0';
+PP(0)(35 downto 0) <= not(PP_sign(0)) & PP_sign(0) & PP_sign(0) & PP1;
+PP(1)(34 downto 0) <= VDD & not(PP_sign(1)) & PP2;
+PP(2)(34 downto 0) <= VDD & not(PP_sign(2)) & PP3;
+PP(3)(34 downto 0) <= VDD & not(PP_sign(3)) & PP4;
+PP(4)(34 downto 0) <= VDD & not(PP_sign(4)) & PP5;
+PP(5)(34 downto 0) <= VDD & not(PP_sign(5)) & PP6;
+PP(6)(34 downto 0) <= VDD & not(PP_sign(6)) & PP7;
+PP(7)(34 downto 0) <= VDD & not(PP_sign(7)) & PP8;
+PP(8)(34 downto 0) <= VDD & not(PP_sign(8)) & PP9;
+PP(9)(34 downto 0) <= VDD & not(PP_sign(9)) & PP10;
+PP(10)(34 downto 0) <= VDD & not(PP_sign(10)) & PP11;
+PP(11)(34 downto 0) <= VDD & not(PP_sign(11)) & PP12;
+PP(12)(34 downto 0) <= VDD & not(PP_sign(12)) & PP13;
+PP(13)(34 downto 0) <= VDD & not(PP_sign(13)) & PP14;
+PP(14)(34 downto 0) <= VDD & not(PP_sign(14)) & PP15;
+PP(15)(33 downto 0) <= not(PP_sign(15)) & PP16;
+PP(16)(32 downto 0) <= PP17;
+
+---------------------- LEVEL 7 -------------------------------
+--B:0
+
+--B:1
+
+--B:2
+
+--B:3
+
+--B:4
+
+--B:5
+
+--B:6
+
+--B:7
+
+--B:8
+
+--B:9
+
+--B:10
+
+--B:11
+
+--B:12
+
+--B:13
+
+--B:14
+
+--B:15
+
+--B:16
+
+--B:17
+
+--B:18
+
+--B:19
+
+--B:20
+
+--B:21
+
+--B:22
+
+--B:23
+
+--B:24
+	HA1_L7 : HA port map (PP(0)(24),PP(1)(22),SUM_RES_L7(2)(23),CARRY_RES_L7(2)(23));
+--B:25
+	HA2_L7 : HA port map (PP(0)(25),PP(1)(23),SUM_RES_L7(2)(24),CARRY_RES_L7(2)(24));
+--B:26
+	FA1_L7 : FA port map (PP(0)(26),PP(1)(24),PP(2)(22),SUM_RES_L7(3)(25),CARRY_RES_L7(3)(25));
+	HA3_L7 : HA port map (PP(3)(20),PP(4)(18),SUM_RES_L7(5)(25),CARRY_RES_L7(5)(25));
+--B:27
+	FA2_L7 : FA port map (PP(0)(27),PP(1)(25),PP(2)(23),SUM_RES_L7(3)(26),CARRY_RES_L7(3)(26));
+	HA4_L7 : HA port map (PP(3)(21),PP(4)(19),SUM_RES_L7(5)(26),CARRY_RES_L7(5)(26));
+--B:28
+	FA3_L7 : FA port map (PP(0)(28),PP(1)(26),PP(2)(24),SUM_RES_L7(3)(27),CARRY_RES_L7(3)(27));
+	FA4_L7 : FA port map (PP(3)(22),PP(4)(20),PP(5)(18),SUM_RES_L7(6)(27),CARRY_RES_L7(6)(27));
+	HA5_L7 : HA port map (PP(6)(16),PP(7)(14),SUM_RES_L7(8)(27),CARRY_RES_L7(8)(27));
+--B:29
+	FA5_L7 : FA port map (PP(0)(29),PP(1)(27),PP(2)(25),SUM_RES_L7(3)(28),CARRY_RES_L7(3)(28));
+	FA6_L7 : FA port map (PP(3)(23),PP(4)(21),PP(5)(19),SUM_RES_L7(6)(28),CARRY_RES_L7(6)(28));
+	HA6_L7 : HA port map (PP(6)(17),PP(7)(15),SUM_RES_L7(8)(28),CARRY_RES_L7(8)(28));
+--B:30
+	FA7_L7 : FA port map (PP(0)(30),PP(1)(28),PP(2)(26),SUM_RES_L7(3)(29),CARRY_RES_L7(3)(29));
+	FA8_L7 : FA port map (PP(3)(24),PP(4)(22),PP(5)(20),SUM_RES_L7(6)(29),CARRY_RES_L7(6)(29));
+	FA9_L7 : FA port map (PP(6)(18),PP(7)(16),PP(8)(14),SUM_RES_L7(9)(29),CARRY_RES_L7(9)(29));
+	HA7_L7 : HA port map (PP(9)(12),PP(10)(10),SUM_RES_L7(11)(29),CARRY_RES_L7(11)(29));
+--B:31
+	FA10_L7 : FA port map (PP(0)(31),PP(1)(29),PP(2)(27),SUM_RES_L7(3)(30),CARRY_RES_L7(3)(30));
+	FA11_L7 : FA port map (PP(3)(25),PP(4)(23),PP(5)(21),SUM_RES_L7(6)(30),CARRY_RES_L7(6)(30));
+	FA12_L7 : FA port map (PP(6)(19),PP(7)(17),PP(8)(15),SUM_RES_L7(9)(30),CARRY_RES_L7(9)(30));
+	HA8_L7 : HA port map (PP(9)(13),PP(10)(11),SUM_RES_L7(11)(30),CARRY_RES_L7(11)(30));
+--B:32
+	FA13_L7 : FA port map (PP(0)(32),PP(1)(30),PP(2)(28),SUM_RES_L7(3)(31),CARRY_RES_L7(3)(31));
+	FA14_L7 : FA port map (PP(3)(26),PP(4)(24),PP(5)(22),SUM_RES_L7(6)(31),CARRY_RES_L7(6)(31));
+	FA15_L7 : FA port map (PP(6)(20),PP(7)(18),PP(8)(16),SUM_RES_L7(9)(31),CARRY_RES_L7(9)(31));
+	FA16_L7 : FA port map (PP(9)(14),PP(10)(12),PP(11)(10),SUM_RES_L7(12)(31),CARRY_RES_L7(12)(31));
+--B:33
+	FA17_L7 : FA port map (PP(0)(33),PP(1)(31),PP(2)(29),SUM_RES_L7(3)(32),CARRY_RES_L7(3)(32));
+	FA18_L7 : FA port map (PP(3)(27),PP(4)(25),PP(5)(23),SUM_RES_L7(6)(32),CARRY_RES_L7(6)(32));
+	FA19_L7 : FA port map (PP(6)(21),PP(7)(19),PP(8)(17),SUM_RES_L7(9)(32),CARRY_RES_L7(9)(32));
+	FA20_L7 : FA port map (PP(9)(15),PP(10)(13),PP(11)(11),SUM_RES_L7(12)(32),CARRY_RES_L7(12)(32));
+--B:34
+	FA21_L7 : FA port map (PP(0)(34),PP(1)(32),PP(2)(30),SUM_RES_L7(3)(33),CARRY_RES_L7(3)(33));
+	FA22_L7 : FA port map (PP(3)(28),PP(4)(26),PP(5)(24),SUM_RES_L7(6)(33),CARRY_RES_L7(6)(33));
+	FA23_L7 : FA port map (PP(6)(22),PP(7)(20),PP(8)(18),SUM_RES_L7(9)(33),CARRY_RES_L7(9)(33));
+	FA24_L7 : FA port map (PP(9)(16),PP(10)(14),PP(11)(12),SUM_RES_L7(12)(33),CARRY_RES_L7(12)(33));
+--B:35
+	FA25_L7 : FA port map (PP(0)(35),PP(1)(33),PP(2)(31),SUM_RES_L7(3)(34),CARRY_RES_L7(3)(34));
+	FA26_L7 : FA port map (PP(3)(29),PP(4)(27),PP(5)(25),SUM_RES_L7(6)(34),CARRY_RES_L7(6)(34));
+	FA27_L7 : FA port map (PP(6)(23),PP(7)(21),PP(8)(19),SUM_RES_L7(9)(34),CARRY_RES_L7(9)(34));
+	FA28_L7 : FA port map (PP(9)(17),PP(10)(15),PP(11)(13),SUM_RES_L7(12)(34),CARRY_RES_L7(12)(34));
+--B:36
+	FA29_L7 : FA port map (PP(1)(34),PP(2)(32),PP(3)(30),SUM_RES_L7(4)(35),CARRY_RES_L7(4)(35));
+	FA30_L7 : FA port map (PP(4)(28),PP(5)(26),PP(6)(24),SUM_RES_L7(7)(35),CARRY_RES_L7(7)(35));
+	FA31_L7 : FA port map (PP(7)(22),PP(8)(20),PP(9)(18),SUM_RES_L7(10)(35),CARRY_RES_L7(10)(35));
+	HA9_L7 : HA port map (PP(10)(16),PP(11)(14),SUM_RES_L7(12)(35),CARRY_RES_L7(12)(35));
+--B:37
+	FA32_L7 : FA port map (PP(2)(33),PP(3)(31),PP(4)(29),SUM_RES_L7(5)(36),CARRY_RES_L7(5)(36));
+	FA33_L7 : FA port map (PP(5)(27),PP(6)(25),PP(7)(23),SUM_RES_L7(8)(36),CARRY_RES_L7(8)(36));
+	FA34_L7 : FA port map (PP(8)(21),PP(9)(19),PP(10)(17),SUM_RES_L7(11)(36),CARRY_RES_L7(11)(36));
+--B:38
+	FA35_L7 : FA port map (PP(2)(34),PP(3)(32),PP(4)(30),SUM_RES_L7(5)(37),CARRY_RES_L7(5)(37));
+	FA36_L7 : FA port map (PP(5)(28),PP(6)(26),PP(7)(24),SUM_RES_L7(8)(37),CARRY_RES_L7(8)(37));
+	HA10_L7 : HA port map (PP(8)(22),PP(9)(20),SUM_RES_L7(10)(37),CARRY_RES_L7(10)(37));
+--B:39
+	FA37_L7 : FA port map (PP(3)(33),PP(4)(31),PP(5)(29),SUM_RES_L7(6)(38),CARRY_RES_L7(6)(38));
+	FA38_L7 : FA port map (PP(6)(27),PP(7)(25),PP(8)(23),SUM_RES_L7(9)(38),CARRY_RES_L7(9)(38));
+--B:40
+	FA39_L7 : FA port map (PP(3)(34),PP(4)(32),PP(5)(30),SUM_RES_L7(6)(39),CARRY_RES_L7(6)(39));
+	HA11_L7 : HA port map (PP(6)(28),PP(7)(26),SUM_RES_L7(8)(39),CARRY_RES_L7(8)(39));
+--B:41
+	FA40_L7 : FA port map (PP(4)(33),PP(5)(31),PP(6)(29),SUM_RES_L7(7)(40),CARRY_RES_L7(7)(40));
+--B:42
+	HA12_L7 : HA port map (PP(4)(34),PP(5)(32),SUM_RES_L7(6)(41),CARRY_RES_L7(6)(41));
+--B:43
+
+--B:44
+
+--B:45
+
+--B:46
+
+--B:47
+
+--B:48
+
+--B:49
+
+--B:50
+
+--B:51
+
+--B:52
+
+--B:53
+
+--B:54
+
+--B:55
+
+--B:56
+
+--B:57
+
+--B:58
+
+--B:59
+
+--B:60
+
+--B:61
+
+--B:62
+
+--B:63
+
+--B:64
+
+---------------------- LEVEL 6 -------------------------------
+--B:0
+
+--B:1
+
+--B:2
+
+--B:3
+
+--B:4
+
+--B:5
+
+--B:6
+
+--B:7
+
+--B:8
+
+--B:9
+
+--B:10
+
+--B:11
+
+--B:12
+
+--B:13
+
+--B:14
+
+--B:15
+
+--B:16
+	HA13_L6 : HA port map (PP(0)(16),PP(1)(14),SUM_RES_L6(2)(15),CARRY_RES_L6(2)(15));
+--B:17
+	HA14_L6 : HA port map (PP(0)(17),PP(1)(15),SUM_RES_L6(2)(16),CARRY_RES_L6(2)(16));
+--B:18
+	FA41_L6 : FA port map (PP(0)(18),PP(1)(16),PP(2)(14),SUM_RES_L6(3)(17),CARRY_RES_L6(3)(17));
+	HA15_L6 : HA port map (PP(3)(12),PP(4)(10),SUM_RES_L6(5)(17),CARRY_RES_L6(5)(17));
+--B:19
+	FA42_L6 : FA port map (PP(0)(19),PP(1)(17),PP(2)(15),SUM_RES_L6(3)(18),CARRY_RES_L6(3)(18));
+	HA16_L6 : HA port map (PP(3)(13),PP(4)(11),SUM_RES_L6(5)(18),CARRY_RES_L6(5)(18));
+--B:20
+	FA43_L6 : FA port map (PP(0)(20),PP(1)(18),PP(2)(16),SUM_RES_L6(3)(19),CARRY_RES_L6(3)(19));
+	FA44_L6 : FA port map (PP(3)(14),PP(4)(12),PP(5)(10),SUM_RES_L6(6)(19),CARRY_RES_L6(6)(19));
+	HA17_L6 : HA port map (PP(6)(8),PP(7)(6),SUM_RES_L6(8)(19),CARRY_RES_L6(8)(19));
+--B:21
+	FA45_L6 : FA port map (PP(0)(21),PP(1)(19),PP(2)(17),SUM_RES_L6(3)(20),CARRY_RES_L6(3)(20));
+	FA46_L6 : FA port map (PP(3)(15),PP(4)(13),PP(5)(11),SUM_RES_L6(6)(20),CARRY_RES_L6(6)(20));
+	HA18_L6 : HA port map (PP(6)(9),PP(7)(7),SUM_RES_L6(8)(20),CARRY_RES_L6(8)(20));
+--B:22
+	FA47_L6 : FA port map (PP(0)(22),PP(1)(20),PP(2)(18),SUM_RES_L6(3)(21),CARRY_RES_L6(3)(21));
+	FA48_L6 : FA port map (PP(3)(16),PP(4)(14),PP(5)(12),SUM_RES_L6(6)(21),CARRY_RES_L6(6)(21));
+	FA49_L6 : FA port map (PP(6)(10),PP(7)(8),PP(8)(6),SUM_RES_L6(9)(21),CARRY_RES_L6(9)(21));
+	HA19_L6 : HA port map (PP(9)(4),PP(10)(2),SUM_RES_L6(11)(21),CARRY_RES_L6(11)(21));
+--B:23
+	FA50_L6 : FA port map (PP(0)(23),PP(1)(21),PP(2)(19),SUM_RES_L6(3)(22),CARRY_RES_L6(3)(22));
+	FA51_L6 : FA port map (PP(3)(17),PP(4)(15),PP(5)(13),SUM_RES_L6(6)(22),CARRY_RES_L6(6)(22));
+	FA52_L6 : FA port map (PP(6)(11),PP(7)(9),PP(8)(7),SUM_RES_L6(9)(22),CARRY_RES_L6(9)(22));
+	HA20_L6 : HA port map (PP(9)(5),PP(10)(3),SUM_RES_L6(11)(22),CARRY_RES_L6(11)(22));
+--B:24
+	FA53_L6 : FA port map (SUM_RES_L7(2)(23),PP(2)(20),PP(3)(18),SUM_RES_L6(4)(23),CARRY_RES_L6(4)(23));
+	FA54_L6 : FA port map (PP(4)(16),PP(5)(14),PP(6)(12),SUM_RES_L6(7)(23),CARRY_RES_L6(7)(23));
+	FA55_L6 : FA port map (PP(7)(10),PP(8)(8),PP(9)(6),SUM_RES_L6(10)(23),CARRY_RES_L6(10)(23));
+	FA56_L6 : FA port map (PP(10)(4),PP(11)(2),PP(12)(0),SUM_RES_L6(13)(23),CARRY_RES_L6(13)(23));
+--B:25
+	FA57_L6 : FA port map (SUM_RES_L7(2)(24),PP(2)(21),PP(3)(19),SUM_RES_L6(4)(24),CARRY_RES_L6(4)(24));
+	FA58_L6 : FA port map (PP(4)(17),PP(5)(15),PP(6)(13),SUM_RES_L6(7)(24),CARRY_RES_L6(7)(24));
+	FA59_L6 : FA port map (PP(7)(11),PP(8)(9),PP(9)(7),SUM_RES_L6(10)(24),CARRY_RES_L6(10)(24));
+	FA60_L6 : FA port map (PP(10)(5),PP(11)(3),PP(12)(1),SUM_RES_L6(13)(24),CARRY_RES_L6(13)(24));
+--B:26
+	FA61_L6 : FA port map (SUM_RES_L7(3)(25),SUM_RES_L7(5)(25),PP(5)(16),SUM_RES_L6(6)(25),CARRY_RES_L6(6)(25));
+	FA62_L6 : FA port map (PP(6)(14),PP(7)(12),PP(8)(10),SUM_RES_L6(9)(25),CARRY_RES_L6(9)(25));
+	FA63_L6 : FA port map (PP(9)(8),PP(10)(6),PP(11)(4),SUM_RES_L6(12)(25),CARRY_RES_L6(12)(25));
+	FA64_L6 : FA port map (PP(12)(2),PP(13)(0),PP_sign(13),SUM_RES_L6(15)(25),CARRY_RES_L6(15)(25));
+--B:27
+	FA65_L6 : FA port map (SUM_RES_L7(3)(26),SUM_RES_L7(5)(26),PP(5)(17),SUM_RES_L6(6)(26),CARRY_RES_L6(6)(26));
+	FA66_L6 : FA port map (PP(6)(15),PP(7)(13),PP(8)(11),SUM_RES_L6(9)(26),CARRY_RES_L6(9)(26));
+	FA67_L6 : FA port map (PP(9)(9),PP(10)(7),PP(11)(5),SUM_RES_L6(12)(26),CARRY_RES_L6(12)(26));
+	FA68_L6 : FA port map (PP(12)(3),PP(13)(1),CARRY_RES_L7(3)(25),SUM_RES_L6(15)(26),CARRY_RES_L6(15)(26));
+--B:28
+	FA69_L6 : FA port map (SUM_RES_L7(3)(27),SUM_RES_L7(6)(27),SUM_RES_L7(8)(27),SUM_RES_L6(8)(27),CARRY_RES_L6(8)(27));
+	FA70_L6 : FA port map (PP(8)(12),PP(9)(10),PP(10)(8),SUM_RES_L6(11)(27),CARRY_RES_L6(11)(27));
+	FA71_L6 : FA port map (PP(11)(6),PP(12)(4),PP(13)(2),SUM_RES_L6(14)(27),CARRY_RES_L6(14)(27));
+	FA72_L6 : FA port map (PP(14)(0),PP_sign(14),CARRY_RES_L7(3)(26),SUM_RES_L6(17)(27),CARRY_RES_L6(17)(27));
+--B:29
+	FA73_L6 : FA port map (SUM_RES_L7(3)(28),SUM_RES_L7(6)(28),SUM_RES_L7(8)(28),SUM_RES_L6(8)(28),CARRY_RES_L6(8)(28));
+	FA74_L6 : FA port map (PP(8)(13),PP(9)(11),PP(10)(9),SUM_RES_L6(11)(28),CARRY_RES_L6(11)(28));
+	FA75_L6 : FA port map (PP(11)(7),PP(12)(5),PP(13)(3),SUM_RES_L6(14)(28),CARRY_RES_L6(14)(28));
+	FA76_L6 : FA port map (PP(14)(1),CARRY_RES_L7(3)(27),CARRY_RES_L7(6)(27),SUM_RES_L6(17)(28),CARRY_RES_L6(17)(28));
+--B:30
+	FA77_L6 : FA port map (SUM_RES_L7(3)(29),SUM_RES_L7(6)(29),SUM_RES_L7(9)(29),SUM_RES_L6(9)(29),CARRY_RES_L6(9)(29));
+	FA78_L6 : FA port map (SUM_RES_L7(11)(29),PP(11)(8),PP(12)(6),SUM_RES_L6(13)(29),CARRY_RES_L6(13)(29));
+	FA79_L6 : FA port map (PP(13)(4),PP(14)(2),PP(15)(0),SUM_RES_L6(16)(29),CARRY_RES_L6(16)(29));
+	FA80_L6 : FA port map (PP_sign(15),CARRY_RES_L7(3)(28),CARRY_RES_L7(6)(28),SUM_RES_L6(19)(29),CARRY_RES_L6(19)(29));
+--B:31
+	FA81_L6 : FA port map (SUM_RES_L7(3)(30),SUM_RES_L7(6)(30),SUM_RES_L7(9)(30),SUM_RES_L6(9)(30),CARRY_RES_L6(9)(30));
+	FA82_L6 : FA port map (SUM_RES_L7(11)(30),PP(11)(9),PP(12)(7),SUM_RES_L6(13)(30),CARRY_RES_L6(13)(30));
+	FA83_L6 : FA port map (PP(13)(5),PP(14)(3),PP(15)(1),SUM_RES_L6(16)(30),CARRY_RES_L6(16)(30));
+	FA84_L6 : FA port map (CARRY_RES_L7(3)(29),CARRY_RES_L7(6)(29),CARRY_RES_L7(9)(29),SUM_RES_L6(19)(30),CARRY_RES_L6(19)(30));
+--B:32
+	FA85_L6 : FA port map (SUM_RES_L7(3)(31),SUM_RES_L7(6)(31),SUM_RES_L7(9)(31),SUM_RES_L6(9)(31),CARRY_RES_L6(9)(31));
+	FA86_L6 : FA port map (SUM_RES_L7(12)(31),PP(12)(8),PP(13)(6),SUM_RES_L6(14)(31),CARRY_RES_L6(14)(31));
+	FA87_L6 : FA port map (PP(14)(4),PP(15)(2),PP(16)(0),SUM_RES_L6(17)(31),CARRY_RES_L6(17)(31));
+	FA88_L6 : FA port map (CARRY_RES_L7(3)(30),CARRY_RES_L7(6)(30),CARRY_RES_L7(9)(30),SUM_RES_L6(20)(31),CARRY_RES_L6(20)(31));
+--B:33
+	FA89_L6 : FA port map (SUM_RES_L7(3)(32),SUM_RES_L7(6)(32),SUM_RES_L7(9)(32),SUM_RES_L6(9)(32),CARRY_RES_L6(9)(32));
+	FA90_L6 : FA port map (SUM_RES_L7(12)(32),PP(12)(9),PP(13)(7),SUM_RES_L6(14)(32),CARRY_RES_L6(14)(32));
+	FA91_L6 : FA port map (PP(14)(5),PP(15)(3),PP(16)(1),SUM_RES_L6(17)(32),CARRY_RES_L6(17)(32));
+	FA92_L6 : FA port map (CARRY_RES_L7(3)(31),CARRY_RES_L7(6)(31),CARRY_RES_L7(9)(31),SUM_RES_L6(20)(32),CARRY_RES_L6(20)(32));
+--B:34
+	FA93_L6 : FA port map (SUM_RES_L7(3)(33),SUM_RES_L7(6)(33),SUM_RES_L7(9)(33),SUM_RES_L6(9)(33),CARRY_RES_L6(9)(33));
+	FA94_L6 : FA port map (SUM_RES_L7(12)(33),PP(12)(10),PP(13)(8),SUM_RES_L6(14)(33),CARRY_RES_L6(14)(33));
+	FA95_L6 : FA port map (PP(14)(6),PP(15)(4),PP(16)(2),SUM_RES_L6(17)(33),CARRY_RES_L6(17)(33));
+	FA96_L6 : FA port map (CARRY_RES_L7(3)(32),CARRY_RES_L7(6)(32),CARRY_RES_L7(9)(32),SUM_RES_L6(20)(33),CARRY_RES_L6(20)(33));
+--B:35
+	FA97_L6 : FA port map (SUM_RES_L7(3)(34),SUM_RES_L7(6)(34),SUM_RES_L7(9)(34),SUM_RES_L6(9)(34),CARRY_RES_L6(9)(34));
+	FA98_L6 : FA port map (SUM_RES_L7(12)(34),PP(12)(11),PP(13)(9),SUM_RES_L6(14)(34),CARRY_RES_L6(14)(34));
+	FA99_L6 : FA port map (PP(14)(7),PP(15)(5),PP(16)(3),SUM_RES_L6(17)(34),CARRY_RES_L6(17)(34));
+	FA100_L6 : FA port map (CARRY_RES_L7(3)(33),CARRY_RES_L7(6)(33),CARRY_RES_L7(9)(33),SUM_RES_L6(20)(34),CARRY_RES_L6(20)(34));
+--B:36
+	FA101_L6 : FA port map (CARRY_RES_L7(3)(34),SUM_RES_L7(4)(35),SUM_RES_L7(7)(35),SUM_RES_L6(7)(35),CARRY_RES_L6(7)(35));
+	FA102_L6 : FA port map (SUM_RES_L7(10)(35),SUM_RES_L7(12)(35),PP(12)(12),SUM_RES_L6(13)(35),CARRY_RES_L6(13)(35));
+	FA103_L6 : FA port map (PP(13)(10),PP(14)(8),PP(15)(6),SUM_RES_L6(16)(35),CARRY_RES_L6(16)(35));
+	FA104_L6 : FA port map (PP(16)(4),CARRY_RES_L7(6)(34),CARRY_RES_L7(9)(34),SUM_RES_L6(19)(35),CARRY_RES_L6(19)(35));
+--B:37
+	FA105_L6 : FA port map (CARRY_RES_L7(4)(35),CARRY_RES_L7(7)(35),SUM_RES_L7(5)(36),SUM_RES_L6(5)(36),CARRY_RES_L6(5)(36));
+	FA106_L6 : FA port map (SUM_RES_L7(8)(36),SUM_RES_L7(11)(36),PP(11)(15),SUM_RES_L6(12)(36),CARRY_RES_L6(12)(36));
+	FA107_L6 : FA port map (PP(12)(13),PP(13)(11),PP(14)(9),SUM_RES_L6(15)(36),CARRY_RES_L6(15)(36));
+	FA108_L6 : FA port map (PP(15)(7),PP(16)(5),CARRY_RES_L7(10)(35),SUM_RES_L6(18)(36),CARRY_RES_L6(18)(36));
+--B:38
+	FA109_L6 : FA port map (CARRY_RES_L7(5)(36),CARRY_RES_L7(8)(36),SUM_RES_L7(5)(37),SUM_RES_L6(5)(37),CARRY_RES_L6(5)(37));
+	FA110_L6 : FA port map (SUM_RES_L7(8)(37),SUM_RES_L7(10)(37),PP(10)(18),SUM_RES_L6(11)(37),CARRY_RES_L6(11)(37));
+	FA111_L6 : FA port map (PP(11)(16),PP(12)(14),PP(13)(12),SUM_RES_L6(14)(37),CARRY_RES_L6(14)(37));
+	FA112_L6 : FA port map (PP(14)(10),PP(15)(8),PP(16)(6),SUM_RES_L6(17)(37),CARRY_RES_L6(17)(37));
+--B:39
+	FA113_L6 : FA port map (CARRY_RES_L7(5)(37),CARRY_RES_L7(8)(37),CARRY_RES_L7(10)(37),SUM_RES_L6(3)(38),CARRY_RES_L6(3)(38));
+	FA114_L6 : FA port map (SUM_RES_L7(6)(38),SUM_RES_L7(9)(38),PP(9)(21),SUM_RES_L6(10)(38),CARRY_RES_L6(10)(38));
+	FA115_L6 : FA port map (PP(10)(19),PP(11)(17),PP(12)(15),SUM_RES_L6(13)(38),CARRY_RES_L6(13)(38));
+	FA116_L6 : FA port map (PP(13)(13),PP(14)(11),PP(15)(9),SUM_RES_L6(16)(38),CARRY_RES_L6(16)(38));
+--B:40
+	FA117_L6 : FA port map (CARRY_RES_L7(6)(38),CARRY_RES_L7(9)(38),SUM_RES_L7(6)(39),SUM_RES_L6(6)(39),CARRY_RES_L6(6)(39));
+	FA118_L6 : FA port map (SUM_RES_L7(8)(39),PP(8)(24),PP(9)(22),SUM_RES_L6(10)(39),CARRY_RES_L6(10)(39));
+	FA119_L6 : FA port map (PP(10)(20),PP(11)(18),PP(12)(16),SUM_RES_L6(13)(39),CARRY_RES_L6(13)(39));
+	FA120_L6 : FA port map (PP(13)(14),PP(14)(12),PP(15)(10),SUM_RES_L6(16)(39),CARRY_RES_L6(16)(39));
+--B:41
+	FA121_L6 : FA port map (CARRY_RES_L7(6)(39),CARRY_RES_L7(8)(39),SUM_RES_L7(7)(40),SUM_RES_L6(7)(40),CARRY_RES_L6(7)(40));
+	FA122_L6 : FA port map (PP(7)(27),PP(8)(25),PP(9)(23),SUM_RES_L6(10)(40),CARRY_RES_L6(10)(40));
+	FA123_L6 : FA port map (PP(10)(21),PP(11)(19),PP(12)(17),SUM_RES_L6(13)(40),CARRY_RES_L6(13)(40));
+	FA124_L6 : FA port map (PP(13)(15),PP(14)(13),PP(15)(11),SUM_RES_L6(16)(40),CARRY_RES_L6(16)(40));
+--B:42
+	FA125_L6 : FA port map (CARRY_RES_L7(7)(40),SUM_RES_L7(6)(41),PP(6)(30),SUM_RES_L6(7)(41),CARRY_RES_L6(7)(41));
+	FA126_L6 : FA port map (PP(7)(28),PP(8)(26),PP(9)(24),SUM_RES_L6(10)(41),CARRY_RES_L6(10)(41));
+	FA127_L6 : FA port map (PP(10)(22),PP(11)(20),PP(12)(18),SUM_RES_L6(13)(41),CARRY_RES_L6(13)(41));
+	FA128_L6 : FA port map (PP(13)(16),PP(14)(14),PP(15)(12),SUM_RES_L6(16)(41),CARRY_RES_L6(16)(41));
+--B:43
+	FA129_L6 : FA port map (CARRY_RES_L7(6)(41),PP(5)(33),PP(6)(31),SUM_RES_L6(7)(42),CARRY_RES_L6(7)(42));
+	FA130_L6 : FA port map (PP(7)(29),PP(8)(27),PP(9)(25),SUM_RES_L6(10)(42),CARRY_RES_L6(10)(42));
+	FA131_L6 : FA port map (PP(10)(23),PP(11)(21),PP(12)(19),SUM_RES_L6(13)(42),CARRY_RES_L6(13)(42));
+	FA132_L6 : FA port map (PP(13)(17),PP(14)(15),PP(15)(13),SUM_RES_L6(16)(42),CARRY_RES_L6(16)(42));
+--B:44
+	FA133_L6 : FA port map (PP(5)(34),PP(6)(32),PP(7)(30),SUM_RES_L6(8)(43),CARRY_RES_L6(8)(43));
+	FA134_L6 : FA port map (PP(8)(28),PP(9)(26),PP(10)(24),SUM_RES_L6(11)(43),CARRY_RES_L6(11)(43));
+	FA135_L6 : FA port map (PP(11)(22),PP(12)(20),PP(13)(18),SUM_RES_L6(14)(43),CARRY_RES_L6(14)(43));
+	HA21_L6 : HA port map (PP(14)(16),PP(15)(14),SUM_RES_L6(16)(43),CARRY_RES_L6(16)(43));
+--B:45
+	FA136_L6 : FA port map (PP(6)(33),PP(7)(31),PP(8)(29),SUM_RES_L6(9)(44),CARRY_RES_L6(9)(44));
+	FA137_L6 : FA port map (PP(9)(27),PP(10)(25),PP(11)(23),SUM_RES_L6(12)(44),CARRY_RES_L6(12)(44));
+	FA138_L6 : FA port map (PP(12)(21),PP(13)(19),PP(14)(17),SUM_RES_L6(15)(44),CARRY_RES_L6(15)(44));
+--B:46
+	FA139_L6 : FA port map (PP(6)(34),PP(7)(32),PP(8)(30),SUM_RES_L6(9)(45),CARRY_RES_L6(9)(45));
+	FA140_L6 : FA port map (PP(9)(28),PP(10)(26),PP(11)(24),SUM_RES_L6(12)(45),CARRY_RES_L6(12)(45));
+	HA22_L6 : HA port map (PP(12)(22),PP(13)(20),SUM_RES_L6(14)(45),CARRY_RES_L6(14)(45));
+--B:47
+	FA141_L6 : FA port map (PP(7)(33),PP(8)(31),PP(9)(29),SUM_RES_L6(10)(46),CARRY_RES_L6(10)(46));
+	FA142_L6 : FA port map (PP(10)(27),PP(11)(25),PP(12)(23),SUM_RES_L6(13)(46),CARRY_RES_L6(13)(46));
+--B:48
+	FA143_L6 : FA port map (PP(7)(34),PP(8)(32),PP(9)(30),SUM_RES_L6(10)(47),CARRY_RES_L6(10)(47));
+	HA23_L6 : HA port map (PP(10)(28),PP(11)(26),SUM_RES_L6(12)(47),CARRY_RES_L6(12)(47));
+--B:49
+	FA144_L6 : FA port map (PP(8)(33),PP(9)(31),PP(10)(29),SUM_RES_L6(11)(48),CARRY_RES_L6(11)(48));
+--B:50
+	HA24_L6 : HA port map (PP(8)(34),PP(9)(32),SUM_RES_L6(10)(49),CARRY_RES_L6(10)(49));
+--B:51
+
+--B:52
+
+--B:53
+
+--B:54
+
+--B:55
+
+--B:56
+
+--B:57
+
+--B:58
+
+--B:59
+
+--B:60
+
+--B:61
+
+--B:62
+
+--B:63
+
+--B:64
+
+---------------------- LEVEL 5 -------------------------------
+--B:0
+
+--B:1
+
+--B:2
+
+--B:3
+
+--B:4
+
+--B:5
+
+--B:6
+
+--B:7
+
+--B:8
+
+--B:9
+
+--B:10
+	HA25_L5 : HA port map (PP(0)(10),PP(1)(8),SUM_RES_L5(2)(9),CARRY_RES_L5(2)(9));
+--B:11
+	HA26_L5 : HA port map (PP(0)(11),PP(1)(9),SUM_RES_L5(2)(10),CARRY_RES_L5(2)(10));
+--B:12
+	FA145_L5 : FA port map (PP(0)(12),PP(1)(10),PP(2)(8),SUM_RES_L5(3)(11),CARRY_RES_L5(3)(11));
+	HA27_L5 : HA port map (PP(3)(6),PP(4)(4),SUM_RES_L5(5)(11),CARRY_RES_L5(5)(11));
+--B:13
+	FA146_L5 : FA port map (PP(0)(13),PP(1)(11),PP(2)(9),SUM_RES_L5(3)(12),CARRY_RES_L5(3)(12));
+	HA28_L5 : HA port map (PP(3)(7),PP(4)(5),SUM_RES_L5(5)(12),CARRY_RES_L5(5)(12));
+--B:14
+	FA147_L5 : FA port map (PP(0)(14),PP(1)(12),PP(2)(10),SUM_RES_L5(3)(13),CARRY_RES_L5(3)(13));
+	FA148_L5 : FA port map (PP(3)(8),PP(4)(6),PP(5)(4),SUM_RES_L5(6)(13),CARRY_RES_L5(6)(13));
+	HA29_L5 : HA port map (PP(6)(2),PP(7)(0),SUM_RES_L5(8)(13),CARRY_RES_L5(8)(13));
+--B:15
+	FA149_L5 : FA port map (PP(0)(15),PP(1)(13),PP(2)(11),SUM_RES_L5(3)(14),CARRY_RES_L5(3)(14));
+	FA150_L5 : FA port map (PP(3)(9),PP(4)(7),PP(5)(5),SUM_RES_L5(6)(14),CARRY_RES_L5(6)(14));
+	HA30_L5 : HA port map (PP(6)(3),PP(7)(1),SUM_RES_L5(8)(14),CARRY_RES_L5(8)(14));
+--B:16
+	FA151_L5 : FA port map (SUM_RES_L6(2)(15),PP(2)(12),PP(3)(10),SUM_RES_L5(4)(15),CARRY_RES_L5(4)(15));
+	FA152_L5 : FA port map (PP(4)(8),PP(5)(6),PP(6)(4),SUM_RES_L5(7)(15),CARRY_RES_L5(7)(15));
+	FA153_L5 : FA port map (PP(7)(2),PP(8)(0),PP_sign(8),SUM_RES_L5(10)(15),CARRY_RES_L5(10)(15));
+--B:17
+	FA154_L5 : FA port map (SUM_RES_L6(2)(16),PP(2)(13),PP(3)(11),SUM_RES_L5(4)(16),CARRY_RES_L5(4)(16));
+	FA155_L5 : FA port map (PP(4)(9),PP(5)(7),PP(6)(5),SUM_RES_L5(7)(16),CARRY_RES_L5(7)(16));
+	FA156_L5 : FA port map (PP(7)(3),PP(8)(1),CARRY_RES_L6(2)(15),SUM_RES_L5(10)(16),CARRY_RES_L5(10)(16));
+--B:18
+	FA157_L5 : FA port map (SUM_RES_L6(3)(17),SUM_RES_L6(5)(17),PP(5)(8),SUM_RES_L5(6)(17),CARRY_RES_L5(6)(17));
+	FA158_L5 : FA port map (PP(6)(6),PP(7)(4),PP(8)(2),SUM_RES_L5(9)(17),CARRY_RES_L5(9)(17));
+	FA159_L5 : FA port map (PP(9)(0),PP_sign(9),CARRY_RES_L6(2)(16),SUM_RES_L5(12)(17),CARRY_RES_L5(12)(17));
+--B:19
+	FA160_L5 : FA port map (SUM_RES_L6(3)(18),SUM_RES_L6(5)(18),PP(5)(9),SUM_RES_L5(6)(18),CARRY_RES_L5(6)(18));
+	FA161_L5 : FA port map (PP(6)(7),PP(7)(5),PP(8)(3),SUM_RES_L5(9)(18),CARRY_RES_L5(9)(18));
+	FA162_L5 : FA port map (PP(9)(1),CARRY_RES_L6(3)(17),CARRY_RES_L6(5)(17),SUM_RES_L5(12)(18),CARRY_RES_L5(12)(18));
+--B:20
+	FA163_L5 : FA port map (SUM_RES_L6(3)(19),SUM_RES_L6(6)(19),SUM_RES_L6(8)(19),SUM_RES_L5(8)(19),CARRY_RES_L5(8)(19));
+	FA164_L5 : FA port map (PP(8)(4),PP(9)(2),PP(10)(0),SUM_RES_L5(11)(19),CARRY_RES_L5(11)(19));
+	FA165_L5 : FA port map (PP_sign(10),CARRY_RES_L6(3)(18),CARRY_RES_L6(5)(18),SUM_RES_L5(14)(19),CARRY_RES_L5(14)(19));
+--B:21
+	FA166_L5 : FA port map (SUM_RES_L6(3)(20),SUM_RES_L6(6)(20),SUM_RES_L6(8)(20),SUM_RES_L5(8)(20),CARRY_RES_L5(8)(20));
+	FA167_L5 : FA port map (PP(8)(5),PP(9)(3),PP(10)(1),SUM_RES_L5(11)(20),CARRY_RES_L5(11)(20));
+	FA168_L5 : FA port map (CARRY_RES_L6(3)(19),CARRY_RES_L6(6)(19),CARRY_RES_L6(8)(19),SUM_RES_L5(14)(20),CARRY_RES_L5(14)(20));
+--B:22
+	FA169_L5 : FA port map (SUM_RES_L6(3)(21),SUM_RES_L6(6)(21),SUM_RES_L6(9)(21),SUM_RES_L5(9)(21),CARRY_RES_L5(9)(21));
+	FA170_L5 : FA port map (SUM_RES_L6(11)(21),PP(11)(0),PP_sign(11),SUM_RES_L5(13)(21),CARRY_RES_L5(13)(21));
+	FA171_L5 : FA port map (CARRY_RES_L6(3)(20),CARRY_RES_L6(6)(20),CARRY_RES_L6(8)(20),SUM_RES_L5(16)(21),CARRY_RES_L5(16)(21));
+--B:23
+	FA172_L5 : FA port map (SUM_RES_L6(3)(22),SUM_RES_L6(6)(22),SUM_RES_L6(9)(22),SUM_RES_L5(9)(22),CARRY_RES_L5(9)(22));
+	FA173_L5 : FA port map (SUM_RES_L6(11)(22),PP(11)(1),CARRY_RES_L6(3)(21),SUM_RES_L5(13)(22),CARRY_RES_L5(13)(22));
+	FA174_L5 : FA port map (CARRY_RES_L6(6)(21),CARRY_RES_L6(9)(21),CARRY_RES_L6(11)(21),SUM_RES_L5(16)(22),CARRY_RES_L5(16)(22));
+--B:24
+	FA175_L5 : FA port map (CARRY_RES_L6(3)(22),SUM_RES_L6(4)(23),SUM_RES_L6(7)(23),SUM_RES_L5(7)(23),CARRY_RES_L5(7)(23));
+	FA176_L5 : FA port map (SUM_RES_L6(10)(23),SUM_RES_L6(13)(23),PP_sign(12),SUM_RES_L5(14)(23),CARRY_RES_L5(14)(23));
+	FA177_L5 : FA port map (CARRY_RES_L6(6)(22),CARRY_RES_L6(9)(22),CARRY_RES_L6(11)(22),SUM_RES_L5(17)(23),CARRY_RES_L5(17)(23));
+--B:25
+	FA178_L5 : FA port map (CARRY_RES_L6(4)(23),SUM_RES_L6(4)(24),SUM_RES_L6(7)(24),SUM_RES_L5(7)(24),CARRY_RES_L5(7)(24));
+	FA179_L5 : FA port map (SUM_RES_L6(10)(24),SUM_RES_L6(13)(24),CARRY_RES_L7(2)(23),SUM_RES_L5(14)(24),CARRY_RES_L5(14)(24));
+	FA180_L5 : FA port map (CARRY_RES_L6(7)(23),CARRY_RES_L6(10)(23),CARRY_RES_L6(13)(23),SUM_RES_L5(17)(24),CARRY_RES_L5(17)(24));
+--B:26
+	FA181_L5 : FA port map (CARRY_RES_L6(4)(24),CARRY_RES_L6(7)(24),CARRY_RES_L6(10)(24),SUM_RES_L5(4)(25),CARRY_RES_L5(4)(25));
+	FA182_L5 : FA port map (SUM_RES_L6(6)(25),SUM_RES_L6(9)(25),SUM_RES_L6(12)(25),SUM_RES_L5(12)(25),CARRY_RES_L5(12)(25));
+	FA183_L5 : FA port map (SUM_RES_L6(15)(25),CARRY_RES_L7(2)(24),CARRY_RES_L6(13)(24),SUM_RES_L5(17)(25),CARRY_RES_L5(17)(25));
+--B:27
+	FA184_L5 : FA port map (CARRY_RES_L6(6)(25),CARRY_RES_L6(9)(25),CARRY_RES_L6(12)(25),SUM_RES_L5(4)(26),CARRY_RES_L5(4)(26));
+	FA185_L5 : FA port map (SUM_RES_L6(6)(26),SUM_RES_L6(9)(26),SUM_RES_L6(12)(26),SUM_RES_L5(12)(26),CARRY_RES_L5(12)(26));
+	FA186_L5 : FA port map (SUM_RES_L6(15)(26),CARRY_RES_L7(5)(25),CARRY_RES_L6(15)(25),SUM_RES_L5(17)(26),CARRY_RES_L5(17)(26));
+--B:28
+	FA187_L5 : FA port map (CARRY_RES_L6(6)(26),CARRY_RES_L6(9)(26),CARRY_RES_L6(12)(26),SUM_RES_L5(4)(27),CARRY_RES_L5(4)(27));
+	FA188_L5 : FA port map (CARRY_RES_L6(15)(26),SUM_RES_L6(8)(27),SUM_RES_L6(11)(27),SUM_RES_L5(11)(27),CARRY_RES_L5(11)(27));
+	FA189_L5 : FA port map (SUM_RES_L6(14)(27),SUM_RES_L6(17)(27),CARRY_RES_L7(5)(26),SUM_RES_L5(18)(27),CARRY_RES_L5(18)(27));
+--B:29
+	FA190_L5 : FA port map (CARRY_RES_L6(8)(27),CARRY_RES_L6(11)(27),CARRY_RES_L6(14)(27),SUM_RES_L5(4)(28),CARRY_RES_L5(4)(28));
+	FA191_L5 : FA port map (CARRY_RES_L6(17)(27),SUM_RES_L6(8)(28),SUM_RES_L6(11)(28),SUM_RES_L5(11)(28),CARRY_RES_L5(11)(28));
+	FA192_L5 : FA port map (SUM_RES_L6(14)(28),SUM_RES_L6(17)(28),CARRY_RES_L7(8)(27),SUM_RES_L5(18)(28),CARRY_RES_L5(18)(28));
+--B:30
+	FA193_L5 : FA port map (CARRY_RES_L6(8)(28),CARRY_RES_L6(11)(28),CARRY_RES_L6(14)(28),SUM_RES_L5(4)(29),CARRY_RES_L5(4)(29));
+	FA194_L5 : FA port map (CARRY_RES_L6(17)(28),SUM_RES_L6(9)(29),SUM_RES_L6(13)(29),SUM_RES_L5(13)(29),CARRY_RES_L5(13)(29));
+	FA195_L5 : FA port map (SUM_RES_L6(16)(29),SUM_RES_L6(19)(29),CARRY_RES_L7(8)(28),SUM_RES_L5(20)(29),CARRY_RES_L5(20)(29));
+--B:31
+	FA196_L5 : FA port map (CARRY_RES_L6(9)(29),CARRY_RES_L6(13)(29),CARRY_RES_L6(16)(29),SUM_RES_L5(4)(30),CARRY_RES_L5(4)(30));
+	FA197_L5 : FA port map (CARRY_RES_L6(19)(29),SUM_RES_L6(9)(30),SUM_RES_L6(13)(30),SUM_RES_L5(13)(30),CARRY_RES_L5(13)(30));
+	FA198_L5 : FA port map (SUM_RES_L6(16)(30),SUM_RES_L6(19)(30),CARRY_RES_L7(11)(29),SUM_RES_L5(20)(30),CARRY_RES_L5(20)(30));
+--B:32
+	FA199_L5 : FA port map (CARRY_RES_L6(9)(30),CARRY_RES_L6(13)(30),CARRY_RES_L6(16)(30),SUM_RES_L5(4)(31),CARRY_RES_L5(4)(31));
+	FA200_L5 : FA port map (CARRY_RES_L6(19)(30),SUM_RES_L6(9)(31),SUM_RES_L6(14)(31),SUM_RES_L5(14)(31),CARRY_RES_L5(14)(31));
+	FA201_L5 : FA port map (SUM_RES_L6(17)(31),SUM_RES_L6(20)(31),CARRY_RES_L7(11)(30),SUM_RES_L5(21)(31),CARRY_RES_L5(21)(31));
+--B:33
+	FA202_L5 : FA port map (CARRY_RES_L6(9)(31),CARRY_RES_L6(14)(31),CARRY_RES_L6(17)(31),SUM_RES_L5(4)(32),CARRY_RES_L5(4)(32));
+	FA203_L5 : FA port map (CARRY_RES_L6(20)(31),SUM_RES_L6(9)(32),SUM_RES_L6(14)(32),SUM_RES_L5(14)(32),CARRY_RES_L5(14)(32));
+	FA204_L5 : FA port map (SUM_RES_L6(17)(32),SUM_RES_L6(20)(32),CARRY_RES_L7(12)(31),SUM_RES_L5(21)(32),CARRY_RES_L5(21)(32));
+--B:34
+	FA205_L5 : FA port map (CARRY_RES_L6(9)(32),CARRY_RES_L6(14)(32),CARRY_RES_L6(17)(32),SUM_RES_L5(4)(33),CARRY_RES_L5(4)(33));
+	FA206_L5 : FA port map (CARRY_RES_L6(20)(32),SUM_RES_L6(9)(33),SUM_RES_L6(14)(33),SUM_RES_L5(14)(33),CARRY_RES_L5(14)(33));
+	FA207_L5 : FA port map (SUM_RES_L6(17)(33),SUM_RES_L6(20)(33),CARRY_RES_L7(12)(32),SUM_RES_L5(21)(33),CARRY_RES_L5(21)(33));
+--B:35
+	FA208_L5 : FA port map (CARRY_RES_L6(9)(33),CARRY_RES_L6(14)(33),CARRY_RES_L6(17)(33),SUM_RES_L5(4)(34),CARRY_RES_L5(4)(34));
+	FA209_L5 : FA port map (CARRY_RES_L6(20)(33),SUM_RES_L6(9)(34),SUM_RES_L6(14)(34),SUM_RES_L5(14)(34),CARRY_RES_L5(14)(34));
+	FA210_L5 : FA port map (SUM_RES_L6(17)(34),SUM_RES_L6(20)(34),CARRY_RES_L7(12)(33),SUM_RES_L5(21)(34),CARRY_RES_L5(21)(34));
+--B:36
+	FA211_L5 : FA port map (CARRY_RES_L6(9)(34),CARRY_RES_L6(14)(34),CARRY_RES_L6(17)(34),SUM_RES_L5(5)(35),CARRY_RES_L5(5)(35));
+	FA212_L5 : FA port map (CARRY_RES_L6(20)(34),SUM_RES_L6(7)(35),SUM_RES_L6(13)(35),SUM_RES_L5(13)(35),CARRY_RES_L5(13)(35));
+	FA213_L5 : FA port map (SUM_RES_L6(16)(35),SUM_RES_L6(19)(35),CARRY_RES_L7(12)(34),SUM_RES_L5(20)(35),CARRY_RES_L5(20)(35));
+--B:37
+	FA214_L5 : FA port map (CARRY_RES_L6(7)(35),CARRY_RES_L6(13)(35),SUM_RES_L6(5)(36),SUM_RES_L5(5)(36),CARRY_RES_L5(5)(36));
+	FA215_L5 : FA port map (CARRY_RES_L6(16)(35),CARRY_RES_L6(19)(35),SUM_RES_L6(12)(36),SUM_RES_L5(12)(36),CARRY_RES_L5(12)(36));
+	FA216_L5 : FA port map (SUM_RES_L6(15)(36),SUM_RES_L6(18)(36),CARRY_RES_L7(12)(35),SUM_RES_L5(19)(36),CARRY_RES_L5(19)(36));
+--B:38
+	FA217_L5 : FA port map (CARRY_RES_L6(5)(36),CARRY_RES_L6(12)(36),SUM_RES_L6(5)(37),SUM_RES_L5(5)(37),CARRY_RES_L5(5)(37));
+	FA218_L5 : FA port map (CARRY_RES_L6(15)(36),CARRY_RES_L6(18)(36),SUM_RES_L6(11)(37),SUM_RES_L5(11)(37),CARRY_RES_L5(11)(37));
+	FA219_L5 : FA port map (SUM_RES_L6(14)(37),SUM_RES_L6(17)(37),CARRY_RES_L7(11)(36),SUM_RES_L5(18)(37),CARRY_RES_L5(18)(37));
+--B:39
+	FA220_L5 : FA port map (SUM_RES_L6(3)(38),CARRY_RES_L6(5)(37),CARRY_RES_L6(11)(37),SUM_RES_L5(5)(38),CARRY_RES_L5(5)(38));
+	FA221_L5 : FA port map (CARRY_RES_L6(14)(37),CARRY_RES_L6(17)(37),SUM_RES_L6(10)(38),SUM_RES_L5(10)(38),CARRY_RES_L5(10)(38));
+	FA222_L5 : FA port map (SUM_RES_L6(13)(38),SUM_RES_L6(16)(38),PP(16)(7),SUM_RES_L5(17)(38),CARRY_RES_L5(17)(38));
+--B:40
+	FA223_L5 : FA port map (CARRY_RES_L6(3)(38),CARRY_RES_L6(10)(38),CARRY_RES_L6(13)(38),SUM_RES_L5(5)(39),CARRY_RES_L5(5)(39));
+	FA224_L5 : FA port map (SUM_RES_L6(6)(39),CARRY_RES_L6(16)(38),SUM_RES_L6(10)(39),SUM_RES_L5(10)(39),CARRY_RES_L5(10)(39));
+	FA225_L5 : FA port map (SUM_RES_L6(13)(39),SUM_RES_L6(16)(39),PP(16)(8),SUM_RES_L5(17)(39),CARRY_RES_L5(17)(39));
+--B:41
+	FA226_L5 : FA port map (CARRY_RES_L6(6)(39),CARRY_RES_L6(10)(39),CARRY_RES_L6(13)(39),SUM_RES_L5(5)(40),CARRY_RES_L5(5)(40));
+	FA227_L5 : FA port map (CARRY_RES_L6(16)(39),SUM_RES_L6(7)(40),SUM_RES_L6(10)(40),SUM_RES_L5(10)(40),CARRY_RES_L5(10)(40));
+	FA228_L5 : FA port map (SUM_RES_L6(13)(40),SUM_RES_L6(16)(40),PP(16)(9),SUM_RES_L5(17)(40),CARRY_RES_L5(17)(40));
+--B:42
+	FA229_L5 : FA port map (CARRY_RES_L6(7)(40),CARRY_RES_L6(10)(40),CARRY_RES_L6(13)(40),SUM_RES_L5(4)(41),CARRY_RES_L5(4)(41));
+	FA230_L5 : FA port map (CARRY_RES_L6(16)(40),SUM_RES_L6(7)(41),SUM_RES_L6(10)(41),SUM_RES_L5(10)(41),CARRY_RES_L5(10)(41));
+	FA231_L5 : FA port map (SUM_RES_L6(13)(41),SUM_RES_L6(16)(41),PP(16)(10),SUM_RES_L5(17)(41),CARRY_RES_L5(17)(41));
+--B:43
+	FA232_L5 : FA port map (CARRY_RES_L6(7)(41),CARRY_RES_L6(10)(41),CARRY_RES_L6(13)(41),SUM_RES_L5(4)(42),CARRY_RES_L5(4)(42));
+	FA233_L5 : FA port map (CARRY_RES_L6(16)(41),SUM_RES_L6(7)(42),SUM_RES_L6(10)(42),SUM_RES_L5(10)(42),CARRY_RES_L5(10)(42));
+	FA234_L5 : FA port map (SUM_RES_L6(13)(42),SUM_RES_L6(16)(42),PP(16)(11),SUM_RES_L5(17)(42),CARRY_RES_L5(17)(42));
+--B:44
+	FA235_L5 : FA port map (CARRY_RES_L6(7)(42),CARRY_RES_L6(10)(42),CARRY_RES_L6(13)(42),SUM_RES_L5(3)(43),CARRY_RES_L5(3)(43));
+	FA236_L5 : FA port map (CARRY_RES_L6(16)(42),SUM_RES_L6(8)(43),SUM_RES_L6(11)(43),SUM_RES_L5(11)(43),CARRY_RES_L5(11)(43));
+	FA237_L5 : FA port map (SUM_RES_L6(14)(43),SUM_RES_L6(16)(43),PP(16)(12),SUM_RES_L5(17)(43),CARRY_RES_L5(17)(43));
+--B:45
+	FA238_L5 : FA port map (CARRY_RES_L6(8)(43),CARRY_RES_L6(11)(43),CARRY_RES_L6(14)(43),SUM_RES_L5(3)(44),CARRY_RES_L5(3)(44));
+	FA239_L5 : FA port map (CARRY_RES_L6(16)(43),SUM_RES_L6(9)(44),SUM_RES_L6(12)(44),SUM_RES_L5(12)(44),CARRY_RES_L5(12)(44));
+	FA240_L5 : FA port map (SUM_RES_L6(15)(44),PP(15)(15),PP(16)(13),SUM_RES_L5(17)(44),CARRY_RES_L5(17)(44));
+--B:46
+	FA241_L5 : FA port map (CARRY_RES_L6(9)(44),CARRY_RES_L6(12)(44),CARRY_RES_L6(15)(44),SUM_RES_L5(3)(45),CARRY_RES_L5(3)(45));
+	FA242_L5 : FA port map (SUM_RES_L6(9)(45),SUM_RES_L6(12)(45),SUM_RES_L6(14)(45),SUM_RES_L5(14)(45),CARRY_RES_L5(14)(45));
+	FA243_L5 : FA port map (PP(14)(18),PP(15)(16),PP(16)(14),SUM_RES_L5(17)(45),CARRY_RES_L5(17)(45));
+--B:47
+	FA244_L5 : FA port map (CARRY_RES_L6(9)(45),CARRY_RES_L6(12)(45),CARRY_RES_L6(14)(45),SUM_RES_L5(3)(46),CARRY_RES_L5(3)(46));
+	FA245_L5 : FA port map (SUM_RES_L6(10)(46),SUM_RES_L6(13)(46),PP(13)(21),SUM_RES_L5(14)(46),CARRY_RES_L5(14)(46));
+	FA246_L5 : FA port map (PP(14)(19),PP(15)(17),PP(16)(15),SUM_RES_L5(17)(46),CARRY_RES_L5(17)(46));
+--B:48
+	FA247_L5 : FA port map (CARRY_RES_L6(10)(46),CARRY_RES_L6(13)(46),SUM_RES_L6(10)(47),SUM_RES_L5(10)(47),CARRY_RES_L5(10)(47));
+	FA248_L5 : FA port map (SUM_RES_L6(12)(47),PP(12)(24),PP(13)(22),SUM_RES_L5(14)(47),CARRY_RES_L5(14)(47));
+	FA249_L5 : FA port map (PP(14)(20),PP(15)(18),PP(16)(16),SUM_RES_L5(17)(47),CARRY_RES_L5(17)(47));
+--B:49
+	FA250_L5 : FA port map (CARRY_RES_L6(10)(47),CARRY_RES_L6(12)(47),SUM_RES_L6(11)(48),SUM_RES_L5(11)(48),CARRY_RES_L5(11)(48));
+	FA251_L5 : FA port map (PP(11)(27),PP(12)(25),PP(13)(23),SUM_RES_L5(14)(48),CARRY_RES_L5(14)(48));
+	FA252_L5 : FA port map (PP(14)(21),PP(15)(19),PP(16)(17),SUM_RES_L5(17)(48),CARRY_RES_L5(17)(48));
+--B:50
+	FA253_L5 : FA port map (CARRY_RES_L6(11)(48),SUM_RES_L6(10)(49),PP(10)(30),SUM_RES_L5(11)(49),CARRY_RES_L5(11)(49));
+	FA254_L5 : FA port map (PP(11)(28),PP(12)(26),PP(13)(24),SUM_RES_L5(14)(49),CARRY_RES_L5(14)(49));
+	FA255_L5 : FA port map (PP(14)(22),PP(15)(20),PP(16)(18),SUM_RES_L5(17)(49),CARRY_RES_L5(17)(49));
+--B:51
+	FA256_L5 : FA port map (CARRY_RES_L6(10)(49),PP(9)(33),PP(10)(31),SUM_RES_L5(11)(50),CARRY_RES_L5(11)(50));
+	FA257_L5 : FA port map (PP(11)(29),PP(12)(27),PP(13)(25),SUM_RES_L5(14)(50),CARRY_RES_L5(14)(50));
+	FA258_L5 : FA port map (PP(14)(23),PP(15)(21),PP(16)(19),SUM_RES_L5(17)(50),CARRY_RES_L5(17)(50));
+--B:52
+	FA259_L5 : FA port map (PP(9)(34),PP(10)(32),PP(11)(30),SUM_RES_L5(12)(51),CARRY_RES_L5(12)(51));
+	FA260_L5 : FA port map (PP(12)(28),PP(13)(26),PP(14)(24),SUM_RES_L5(15)(51),CARRY_RES_L5(15)(51));
+	HA31_L5 : HA port map (PP(15)(22),PP(16)(20),SUM_RES_L5(17)(51),CARRY_RES_L5(17)(51));
+--B:53
+	FA261_L5 : FA port map (PP(10)(33),PP(11)(31),PP(12)(29),SUM_RES_L5(13)(52),CARRY_RES_L5(13)(52));
+	FA262_L5 : FA port map (PP(13)(27),PP(14)(25),PP(15)(23),SUM_RES_L5(16)(52),CARRY_RES_L5(16)(52));
+--B:54
+	FA263_L5 : FA port map (PP(10)(34),PP(11)(32),PP(12)(30),SUM_RES_L5(13)(53),CARRY_RES_L5(13)(53));
+	HA32_L5 : HA port map (PP(13)(28),PP(14)(26),SUM_RES_L5(15)(53),CARRY_RES_L5(15)(53));
+--B:55
+	FA264_L5 : FA port map (PP(11)(33),PP(12)(31),PP(13)(29),SUM_RES_L5(14)(54),CARRY_RES_L5(14)(54));
+--B:56
+	HA33_L5 : HA port map (PP(11)(34),PP(12)(32),SUM_RES_L5(13)(55),CARRY_RES_L5(13)(55));
+--B:57
+
+--B:58
+
+--B:59
+
+--B:60
+
+--B:61
+
+--B:62
+
+--B:63
+
+--B:64
+
+---------------------- LEVEL 4 -------------------------------
+--B:0
+
+--B:1
+
+--B:2
+
+--B:3
+
+--B:4
+
+--B:5
+
+--B:6
+	HA34_L4 : HA port map (PP(0)(6),PP(1)(4),SUM_RES_L4(2)(5),CARRY_RES_L4(2)(5));
+--B:7
+	HA35_L4 : HA port map (PP(0)(7),PP(1)(5),SUM_RES_L4(2)(6),CARRY_RES_L4(2)(6));
+--B:8
+	FA265_L4 : FA port map (PP(0)(8),PP(1)(6),PP(2)(4),SUM_RES_L4(3)(7),CARRY_RES_L4(3)(7));
+	HA36_L4 : HA port map (PP(3)(2),PP(4)(0),SUM_RES_L4(5)(7),CARRY_RES_L4(5)(7));
+--B:9
+	FA266_L4 : FA port map (PP(0)(9),PP(1)(7),PP(2)(5),SUM_RES_L4(3)(8),CARRY_RES_L4(3)(8));
+	HA37_L4 : HA port map (PP(3)(3),PP(4)(1),SUM_RES_L4(5)(8),CARRY_RES_L4(5)(8));
+--B:10
+	FA267_L4 : FA port map (SUM_RES_L5(2)(9),PP(2)(6),PP(3)(4),SUM_RES_L4(4)(9),CARRY_RES_L4(4)(9));
+	FA268_L4 : FA port map (PP(4)(2),PP(5)(0),PP_sign(5),SUM_RES_L4(7)(9),CARRY_RES_L4(7)(9));
+--B:11
+	FA269_L4 : FA port map (SUM_RES_L5(2)(10),PP(2)(7),PP(3)(5),SUM_RES_L4(4)(10),CARRY_RES_L4(4)(10));
+	FA270_L4 : FA port map (PP(4)(3),PP(5)(1),CARRY_RES_L5(2)(9),SUM_RES_L4(7)(10),CARRY_RES_L4(7)(10));
+--B:12
+	FA271_L4 : FA port map (SUM_RES_L5(3)(11),SUM_RES_L5(5)(11),PP(5)(2),SUM_RES_L4(6)(11),CARRY_RES_L4(6)(11));
+	FA272_L4 : FA port map (PP(6)(0),PP_sign(6),CARRY_RES_L5(2)(10),SUM_RES_L4(9)(11),CARRY_RES_L4(9)(11));
+--B:13
+	FA273_L4 : FA port map (SUM_RES_L5(3)(12),SUM_RES_L5(5)(12),PP(5)(3),SUM_RES_L4(6)(12),CARRY_RES_L4(6)(12));
+	FA274_L4 : FA port map (PP(6)(1),CARRY_RES_L5(3)(11),CARRY_RES_L5(5)(11),SUM_RES_L4(9)(12),CARRY_RES_L4(9)(12));
+--B:14
+	FA275_L4 : FA port map (SUM_RES_L5(3)(13),SUM_RES_L5(6)(13),SUM_RES_L5(8)(13),SUM_RES_L4(8)(13),CARRY_RES_L4(8)(13));
+	FA276_L4 : FA port map (PP_sign(7),CARRY_RES_L5(3)(12),CARRY_RES_L5(5)(12),SUM_RES_L4(11)(13),CARRY_RES_L4(11)(13));
+--B:15
+	FA277_L4 : FA port map (SUM_RES_L5(3)(14),SUM_RES_L5(6)(14),SUM_RES_L5(8)(14),SUM_RES_L4(8)(14),CARRY_RES_L4(8)(14));
+	FA278_L4 : FA port map (CARRY_RES_L5(3)(13),CARRY_RES_L5(6)(13),CARRY_RES_L5(8)(13),SUM_RES_L4(11)(14),CARRY_RES_L4(11)(14));
+--B:16
+	FA279_L4 : FA port map (CARRY_RES_L5(3)(14),SUM_RES_L5(4)(15),SUM_RES_L5(7)(15),SUM_RES_L4(7)(15),CARRY_RES_L4(7)(15));
+	FA280_L4 : FA port map (SUM_RES_L5(10)(15),CARRY_RES_L5(6)(14),CARRY_RES_L5(8)(14),SUM_RES_L4(12)(15),CARRY_RES_L4(12)(15));
+--B:17
+	FA281_L4 : FA port map (CARRY_RES_L5(4)(15),SUM_RES_L5(4)(16),SUM_RES_L5(7)(16),SUM_RES_L4(7)(16),CARRY_RES_L4(7)(16));
+	FA282_L4 : FA port map (SUM_RES_L5(10)(16),CARRY_RES_L5(7)(15),CARRY_RES_L5(10)(15),SUM_RES_L4(12)(16),CARRY_RES_L4(12)(16));
+--B:18
+	FA283_L4 : FA port map (CARRY_RES_L5(4)(16),CARRY_RES_L5(7)(16),CARRY_RES_L5(10)(16),SUM_RES_L4(4)(17),CARRY_RES_L4(4)(17));
+	FA284_L4 : FA port map (SUM_RES_L5(6)(17),SUM_RES_L5(9)(17),SUM_RES_L5(12)(17),SUM_RES_L4(12)(17),CARRY_RES_L4(12)(17));
+--B:19
+	FA285_L4 : FA port map (CARRY_RES_L5(6)(17),CARRY_RES_L5(9)(17),CARRY_RES_L5(12)(17),SUM_RES_L4(4)(18),CARRY_RES_L4(4)(18));
+	FA286_L4 : FA port map (SUM_RES_L5(6)(18),SUM_RES_L5(9)(18),SUM_RES_L5(12)(18),SUM_RES_L4(12)(18),CARRY_RES_L4(12)(18));
+--B:20
+	FA287_L4 : FA port map (CARRY_RES_L5(6)(18),CARRY_RES_L5(9)(18),CARRY_RES_L5(12)(18),SUM_RES_L4(4)(19),CARRY_RES_L4(4)(19));
+	FA288_L4 : FA port map (SUM_RES_L5(8)(19),SUM_RES_L5(11)(19),SUM_RES_L5(14)(19),SUM_RES_L4(14)(19),CARRY_RES_L4(14)(19));
+--B:21
+	FA289_L4 : FA port map (CARRY_RES_L5(8)(19),CARRY_RES_L5(11)(19),CARRY_RES_L5(14)(19),SUM_RES_L4(4)(20),CARRY_RES_L4(4)(20));
+	FA290_L4 : FA port map (SUM_RES_L5(8)(20),SUM_RES_L5(11)(20),SUM_RES_L5(14)(20),SUM_RES_L4(14)(20),CARRY_RES_L4(14)(20));
+--B:22
+	FA291_L4 : FA port map (CARRY_RES_L5(8)(20),CARRY_RES_L5(11)(20),CARRY_RES_L5(14)(20),SUM_RES_L4(4)(21),CARRY_RES_L4(4)(21));
+	FA292_L4 : FA port map (SUM_RES_L5(9)(21),SUM_RES_L5(13)(21),SUM_RES_L5(16)(21),SUM_RES_L4(16)(21),CARRY_RES_L4(16)(21));
+--B:23
+	FA293_L4 : FA port map (CARRY_RES_L5(9)(21),CARRY_RES_L5(13)(21),CARRY_RES_L5(16)(21),SUM_RES_L4(4)(22),CARRY_RES_L4(4)(22));
+	FA294_L4 : FA port map (SUM_RES_L5(9)(22),SUM_RES_L5(13)(22),SUM_RES_L5(16)(22),SUM_RES_L4(16)(22),CARRY_RES_L4(16)(22));
+--B:24
+	FA295_L4 : FA port map (CARRY_RES_L5(9)(22),CARRY_RES_L5(13)(22),CARRY_RES_L5(16)(22),SUM_RES_L4(5)(23),CARRY_RES_L4(5)(23));
+	FA296_L4 : FA port map (SUM_RES_L5(7)(23),SUM_RES_L5(14)(23),SUM_RES_L5(17)(23),SUM_RES_L4(17)(23),CARRY_RES_L4(17)(23));
+--B:25
+	FA297_L4 : FA port map (CARRY_RES_L5(7)(23),CARRY_RES_L5(14)(23),CARRY_RES_L5(17)(23),SUM_RES_L4(5)(24),CARRY_RES_L4(5)(24));
+	FA298_L4 : FA port map (SUM_RES_L5(7)(24),SUM_RES_L5(14)(24),SUM_RES_L5(17)(24),SUM_RES_L4(17)(24),CARRY_RES_L4(17)(24));
+--B:26
+	FA299_L4 : FA port map (CARRY_RES_L5(7)(24),SUM_RES_L5(4)(25),CARRY_RES_L5(14)(24),SUM_RES_L4(5)(25),CARRY_RES_L4(5)(25));
+	FA300_L4 : FA port map (CARRY_RES_L5(17)(24),SUM_RES_L5(12)(25),SUM_RES_L5(17)(25),SUM_RES_L4(17)(25),CARRY_RES_L4(17)(25));
+--B:27
+	FA301_L4 : FA port map (CARRY_RES_L5(4)(25),SUM_RES_L5(4)(26),CARRY_RES_L5(12)(25),SUM_RES_L4(5)(26),CARRY_RES_L4(5)(26));
+	FA302_L4 : FA port map (CARRY_RES_L5(17)(25),SUM_RES_L5(12)(26),SUM_RES_L5(17)(26),SUM_RES_L4(17)(26),CARRY_RES_L4(17)(26));
+--B:28
+	FA303_L4 : FA port map (CARRY_RES_L5(4)(26),SUM_RES_L5(4)(27),CARRY_RES_L5(12)(26),SUM_RES_L4(6)(27),CARRY_RES_L4(6)(27));
+	FA304_L4 : FA port map (CARRY_RES_L5(17)(26),SUM_RES_L5(11)(27),SUM_RES_L5(18)(27),SUM_RES_L4(18)(27),CARRY_RES_L4(18)(27));
+--B:29
+	FA305_L4 : FA port map (CARRY_RES_L5(4)(27),SUM_RES_L5(4)(28),CARRY_RES_L5(11)(27),SUM_RES_L4(6)(28),CARRY_RES_L4(6)(28));
+	FA306_L4 : FA port map (CARRY_RES_L5(18)(27),SUM_RES_L5(11)(28),SUM_RES_L5(18)(28),SUM_RES_L4(18)(28),CARRY_RES_L4(18)(28));
+--B:30
+	FA307_L4 : FA port map (CARRY_RES_L5(4)(28),SUM_RES_L5(4)(29),CARRY_RES_L5(11)(28),SUM_RES_L4(6)(29),CARRY_RES_L4(6)(29));
+	FA308_L4 : FA port map (CARRY_RES_L5(18)(28),SUM_RES_L5(13)(29),SUM_RES_L5(20)(29),SUM_RES_L4(20)(29),CARRY_RES_L4(20)(29));
+--B:31
+	FA309_L4 : FA port map (CARRY_RES_L5(4)(29),SUM_RES_L5(4)(30),CARRY_RES_L5(13)(29),SUM_RES_L4(6)(30),CARRY_RES_L4(6)(30));
+	FA310_L4 : FA port map (CARRY_RES_L5(20)(29),SUM_RES_L5(13)(30),SUM_RES_L5(20)(30),SUM_RES_L4(20)(30),CARRY_RES_L4(20)(30));
+--B:32
+	FA311_L4 : FA port map (CARRY_RES_L5(4)(30),SUM_RES_L5(4)(31),CARRY_RES_L5(13)(30),SUM_RES_L4(6)(31),CARRY_RES_L4(6)(31));
+	FA312_L4 : FA port map (CARRY_RES_L5(20)(30),SUM_RES_L5(14)(31),SUM_RES_L5(21)(31),SUM_RES_L4(21)(31),CARRY_RES_L4(21)(31));
+--B:33
+	FA313_L4 : FA port map (CARRY_RES_L5(4)(31),SUM_RES_L5(4)(32),CARRY_RES_L5(14)(31),SUM_RES_L4(6)(32),CARRY_RES_L4(6)(32));
+	FA314_L4 : FA port map (CARRY_RES_L5(21)(31),SUM_RES_L5(14)(32),SUM_RES_L5(21)(32),SUM_RES_L4(21)(32),CARRY_RES_L4(21)(32));
+--B:34
+	FA315_L4 : FA port map (CARRY_RES_L5(4)(32),SUM_RES_L5(4)(33),CARRY_RES_L5(14)(32),SUM_RES_L4(6)(33),CARRY_RES_L4(6)(33));
+	FA316_L4 : FA port map (CARRY_RES_L5(21)(32),SUM_RES_L5(14)(33),SUM_RES_L5(21)(33),SUM_RES_L4(21)(33),CARRY_RES_L4(21)(33));
+--B:35
+	FA317_L4 : FA port map (CARRY_RES_L5(4)(33),SUM_RES_L5(4)(34),CARRY_RES_L5(14)(33),SUM_RES_L4(6)(34),CARRY_RES_L4(6)(34));
+	FA318_L4 : FA port map (CARRY_RES_L5(21)(33),SUM_RES_L5(14)(34),SUM_RES_L5(21)(34),SUM_RES_L4(21)(34),CARRY_RES_L4(21)(34));
+--B:36
+	FA319_L4 : FA port map (CARRY_RES_L5(4)(34),CARRY_RES_L5(14)(34),SUM_RES_L5(5)(35),SUM_RES_L4(5)(35),CARRY_RES_L4(5)(35));
+	FA320_L4 : FA port map (CARRY_RES_L5(21)(34),SUM_RES_L5(13)(35),SUM_RES_L5(20)(35),SUM_RES_L4(20)(35),CARRY_RES_L4(20)(35));
+--B:37
+	FA321_L4 : FA port map (CARRY_RES_L5(5)(35),CARRY_RES_L5(13)(35),SUM_RES_L5(5)(36),SUM_RES_L4(5)(36),CARRY_RES_L4(5)(36));
+	FA322_L4 : FA port map (CARRY_RES_L5(20)(35),SUM_RES_L5(12)(36),SUM_RES_L5(19)(36),SUM_RES_L4(19)(36),CARRY_RES_L4(19)(36));
+--B:38
+	FA323_L4 : FA port map (CARRY_RES_L5(5)(36),CARRY_RES_L5(12)(36),SUM_RES_L5(5)(37),SUM_RES_L4(5)(37),CARRY_RES_L4(5)(37));
+	FA324_L4 : FA port map (CARRY_RES_L5(19)(36),SUM_RES_L5(11)(37),SUM_RES_L5(18)(37),SUM_RES_L4(18)(37),CARRY_RES_L4(18)(37));
+--B:39
+	FA325_L4 : FA port map (CARRY_RES_L5(5)(37),CARRY_RES_L5(11)(37),SUM_RES_L5(5)(38),SUM_RES_L4(5)(38),CARRY_RES_L4(5)(38));
+	FA326_L4 : FA port map (CARRY_RES_L5(18)(37),SUM_RES_L5(10)(38),SUM_RES_L5(17)(38),SUM_RES_L4(17)(38),CARRY_RES_L4(17)(38));
+--B:40
+	FA327_L4 : FA port map (CARRY_RES_L5(5)(38),CARRY_RES_L5(10)(38),SUM_RES_L5(5)(39),SUM_RES_L4(5)(39),CARRY_RES_L4(5)(39));
+	FA328_L4 : FA port map (CARRY_RES_L5(17)(38),SUM_RES_L5(10)(39),SUM_RES_L5(17)(39),SUM_RES_L4(17)(39),CARRY_RES_L4(17)(39));
+--B:41
+	FA329_L4 : FA port map (CARRY_RES_L5(5)(39),CARRY_RES_L5(10)(39),SUM_RES_L5(5)(40),SUM_RES_L4(5)(40),CARRY_RES_L4(5)(40));
+	FA330_L4 : FA port map (CARRY_RES_L5(17)(39),SUM_RES_L5(10)(40),SUM_RES_L5(17)(40),SUM_RES_L4(17)(40),CARRY_RES_L4(17)(40));
+--B:42
+	FA331_L4 : FA port map (CARRY_RES_L5(5)(40),SUM_RES_L5(4)(41),CARRY_RES_L5(10)(40),SUM_RES_L4(6)(41),CARRY_RES_L4(6)(41));
+	FA332_L4 : FA port map (CARRY_RES_L5(17)(40),SUM_RES_L5(10)(41),SUM_RES_L5(17)(41),SUM_RES_L4(17)(41),CARRY_RES_L4(17)(41));
+--B:43
+	FA333_L4 : FA port map (CARRY_RES_L5(4)(41),SUM_RES_L5(4)(42),CARRY_RES_L5(10)(41),SUM_RES_L4(6)(42),CARRY_RES_L4(6)(42));
+	FA334_L4 : FA port map (CARRY_RES_L5(17)(41),SUM_RES_L5(10)(42),SUM_RES_L5(17)(42),SUM_RES_L4(17)(42),CARRY_RES_L4(17)(42));
+--B:44
+	FA335_L4 : FA port map (SUM_RES_L5(3)(43),CARRY_RES_L5(4)(42),CARRY_RES_L5(10)(42),SUM_RES_L4(6)(43),CARRY_RES_L4(6)(43));
+	FA336_L4 : FA port map (CARRY_RES_L5(17)(42),SUM_RES_L5(11)(43),SUM_RES_L5(17)(43),SUM_RES_L4(17)(43),CARRY_RES_L4(17)(43));
+--B:45
+	FA337_L4 : FA port map (SUM_RES_L5(3)(44),CARRY_RES_L5(3)(43),CARRY_RES_L5(11)(43),SUM_RES_L4(6)(44),CARRY_RES_L4(6)(44));
+	FA338_L4 : FA port map (CARRY_RES_L5(17)(43),SUM_RES_L5(12)(44),SUM_RES_L5(17)(44),SUM_RES_L4(17)(44),CARRY_RES_L4(17)(44));
+--B:46
+	FA339_L4 : FA port map (SUM_RES_L5(3)(45),CARRY_RES_L5(3)(44),CARRY_RES_L5(12)(44),SUM_RES_L4(5)(45),CARRY_RES_L4(5)(45));
+	FA340_L4 : FA port map (CARRY_RES_L5(17)(44),SUM_RES_L5(14)(45),SUM_RES_L5(17)(45),SUM_RES_L4(17)(45),CARRY_RES_L4(17)(45));
+--B:47
+	FA341_L4 : FA port map (SUM_RES_L5(3)(46),CARRY_RES_L5(3)(45),CARRY_RES_L5(14)(45),SUM_RES_L4(5)(46),CARRY_RES_L4(5)(46));
+	FA342_L4 : FA port map (CARRY_RES_L5(17)(45),SUM_RES_L5(14)(46),SUM_RES_L5(17)(46),SUM_RES_L4(17)(46),CARRY_RES_L4(17)(46));
+--B:48
+	FA343_L4 : FA port map (CARRY_RES_L5(3)(46),CARRY_RES_L5(14)(46),CARRY_RES_L5(17)(46),SUM_RES_L4(5)(47),CARRY_RES_L4(5)(47));
+	FA344_L4 : FA port map (SUM_RES_L5(10)(47),SUM_RES_L5(14)(47),SUM_RES_L5(17)(47),SUM_RES_L4(17)(47),CARRY_RES_L4(17)(47));
+--B:49
+	FA345_L4 : FA port map (CARRY_RES_L5(10)(47),CARRY_RES_L5(14)(47),CARRY_RES_L5(17)(47),SUM_RES_L4(5)(48),CARRY_RES_L4(5)(48));
+	FA346_L4 : FA port map (SUM_RES_L5(11)(48),SUM_RES_L5(14)(48),SUM_RES_L5(17)(48),SUM_RES_L4(17)(48),CARRY_RES_L4(17)(48));
+--B:50
+	FA347_L4 : FA port map (CARRY_RES_L5(11)(48),CARRY_RES_L5(14)(48),CARRY_RES_L5(17)(48),SUM_RES_L4(4)(49),CARRY_RES_L4(4)(49));
+	FA348_L4 : FA port map (SUM_RES_L5(11)(49),SUM_RES_L5(14)(49),SUM_RES_L5(17)(49),SUM_RES_L4(17)(49),CARRY_RES_L4(17)(49));
+--B:51
+	FA349_L4 : FA port map (CARRY_RES_L5(11)(49),CARRY_RES_L5(14)(49),CARRY_RES_L5(17)(49),SUM_RES_L4(4)(50),CARRY_RES_L4(4)(50));
+	FA350_L4 : FA port map (SUM_RES_L5(11)(50),SUM_RES_L5(14)(50),SUM_RES_L5(17)(50),SUM_RES_L4(17)(50),CARRY_RES_L4(17)(50));
+--B:52
+	FA351_L4 : FA port map (CARRY_RES_L5(11)(50),CARRY_RES_L5(14)(50),CARRY_RES_L5(17)(50),SUM_RES_L4(3)(51),CARRY_RES_L4(3)(51));
+	FA352_L4 : FA port map (SUM_RES_L5(12)(51),SUM_RES_L5(15)(51),SUM_RES_L5(17)(51),SUM_RES_L4(17)(51),CARRY_RES_L4(17)(51));
+--B:53
+	FA353_L4 : FA port map (CARRY_RES_L5(12)(51),CARRY_RES_L5(15)(51),CARRY_RES_L5(17)(51),SUM_RES_L4(3)(52),CARRY_RES_L4(3)(52));
+	FA354_L4 : FA port map (SUM_RES_L5(13)(52),SUM_RES_L5(16)(52),PP(16)(21),SUM_RES_L4(17)(52),CARRY_RES_L4(17)(52));
+--B:54
+	FA355_L4 : FA port map (CARRY_RES_L5(13)(52),CARRY_RES_L5(16)(52),SUM_RES_L5(13)(53),SUM_RES_L4(13)(53),CARRY_RES_L4(13)(53));
+	FA356_L4 : FA port map (SUM_RES_L5(15)(53),PP(15)(24),PP(16)(22),SUM_RES_L4(17)(53),CARRY_RES_L4(17)(53));
+--B:55
+	FA357_L4 : FA port map (CARRY_RES_L5(13)(53),CARRY_RES_L5(15)(53),SUM_RES_L5(14)(54),SUM_RES_L4(14)(54),CARRY_RES_L4(14)(54));
+	FA358_L4 : FA port map (PP(14)(27),PP(15)(25),PP(16)(23),SUM_RES_L4(17)(54),CARRY_RES_L4(17)(54));
+--B:56
+	FA359_L4 : FA port map (CARRY_RES_L5(14)(54),SUM_RES_L5(13)(55),PP(13)(30),SUM_RES_L4(14)(55),CARRY_RES_L4(14)(55));
+	FA360_L4 : FA port map (PP(14)(28),PP(15)(26),PP(16)(24),SUM_RES_L4(17)(55),CARRY_RES_L4(17)(55));
+--B:57
+	FA361_L4 : FA port map (CARRY_RES_L5(13)(55),PP(12)(33),PP(13)(31),SUM_RES_L4(14)(56),CARRY_RES_L4(14)(56));
+	FA362_L4 : FA port map (PP(14)(29),PP(15)(27),PP(16)(25),SUM_RES_L4(17)(56),CARRY_RES_L4(17)(56));
+--B:58
+	FA363_L4 : FA port map (PP(12)(34),PP(13)(32),PP(14)(30),SUM_RES_L4(15)(57),CARRY_RES_L4(15)(57));
+	HA38_L4 : HA port map (PP(15)(28),PP(16)(26),SUM_RES_L4(17)(57),CARRY_RES_L4(17)(57));
+--B:59
+	FA364_L4 : FA port map (PP(13)(33),PP(14)(31),PP(15)(29),SUM_RES_L4(16)(58),CARRY_RES_L4(16)(58));
+--B:60
+	HA39_L4 : HA port map (PP(13)(34),PP(14)(32),SUM_RES_L4(15)(59),CARRY_RES_L4(15)(59));
+--B:61
+
+--B:62
+
+--B:63
+
+--B:64
+
+---------------------- LEVEL 3 -------------------------------
+--B:0
+
+--B:1
+
+--B:2
+
+--B:3
+
+--B:4
+	HA40_L3 : HA port map (PP(0)(4),PP(1)(2),SUM_RES_L3(2)(3),CARRY_RES_L3(2)(3));
+--B:5
+	HA41_L3 : HA port map (PP(0)(5),PP(1)(3),SUM_RES_L3(2)(4),CARRY_RES_L3(2)(4));
+--B:6
+	FA365_L3 : FA port map (SUM_RES_L4(2)(5),PP(2)(2),PP(3)(0),SUM_RES_L3(4)(5),CARRY_RES_L3(4)(5));
+--B:7
+	FA366_L3 : FA port map (SUM_RES_L4(2)(6),PP(2)(3),PP(3)(1),SUM_RES_L3(4)(6),CARRY_RES_L3(4)(6));
+--B:8
+	FA367_L3 : FA port map (SUM_RES_L4(3)(7),SUM_RES_L4(5)(7),PP_sign(4),SUM_RES_L3(6)(7),CARRY_RES_L3(6)(7));
+--B:9
+	FA368_L3 : FA port map (SUM_RES_L4(3)(8),SUM_RES_L4(5)(8),CARRY_RES_L4(3)(7),SUM_RES_L3(6)(8),CARRY_RES_L3(6)(8));
+--B:10
+	FA369_L3 : FA port map (CARRY_RES_L4(3)(8),SUM_RES_L4(4)(9),SUM_RES_L4(7)(9),SUM_RES_L3(7)(9),CARRY_RES_L3(7)(9));
+--B:11
+	FA370_L3 : FA port map (CARRY_RES_L4(4)(9),SUM_RES_L4(4)(10),SUM_RES_L4(7)(10),SUM_RES_L3(7)(10),CARRY_RES_L3(7)(10));
+--B:12
+	FA371_L3 : FA port map (CARRY_RES_L4(4)(10),CARRY_RES_L4(7)(10),SUM_RES_L4(6)(11),SUM_RES_L3(6)(11),CARRY_RES_L3(6)(11));
+--B:13
+	FA372_L3 : FA port map (CARRY_RES_L4(6)(11),CARRY_RES_L4(9)(11),SUM_RES_L4(6)(12),SUM_RES_L3(6)(12),CARRY_RES_L3(6)(12));
+--B:14
+	FA373_L3 : FA port map (CARRY_RES_L4(6)(12),CARRY_RES_L4(9)(12),SUM_RES_L4(8)(13),SUM_RES_L3(8)(13),CARRY_RES_L3(8)(13));
+--B:15
+	FA374_L3 : FA port map (CARRY_RES_L4(8)(13),CARRY_RES_L4(11)(13),SUM_RES_L4(8)(14),SUM_RES_L3(8)(14),CARRY_RES_L3(8)(14));
+--B:16
+	FA375_L3 : FA port map (CARRY_RES_L4(8)(14),CARRY_RES_L4(11)(14),SUM_RES_L4(7)(15),SUM_RES_L3(7)(15),CARRY_RES_L3(7)(15));
+--B:17
+	FA376_L3 : FA port map (CARRY_RES_L4(7)(15),CARRY_RES_L4(12)(15),SUM_RES_L4(7)(16),SUM_RES_L3(7)(16),CARRY_RES_L3(7)(16));
+--B:18
+	FA377_L3 : FA port map (CARRY_RES_L4(7)(16),SUM_RES_L4(4)(17),CARRY_RES_L4(12)(16),SUM_RES_L3(5)(17),CARRY_RES_L3(5)(17));
+--B:19
+	FA378_L3 : FA port map (CARRY_RES_L4(4)(17),SUM_RES_L4(4)(18),CARRY_RES_L4(12)(17),SUM_RES_L3(5)(18),CARRY_RES_L3(5)(18));
+--B:20
+	FA379_L3 : FA port map (CARRY_RES_L4(4)(18),SUM_RES_L4(4)(19),CARRY_RES_L4(12)(18),SUM_RES_L3(5)(19),CARRY_RES_L3(5)(19));
+--B:21
+	FA380_L3 : FA port map (CARRY_RES_L4(4)(19),SUM_RES_L4(4)(20),CARRY_RES_L4(14)(19),SUM_RES_L3(5)(20),CARRY_RES_L3(5)(20));
+--B:22
+	FA381_L3 : FA port map (CARRY_RES_L4(4)(20),SUM_RES_L4(4)(21),CARRY_RES_L4(14)(20),SUM_RES_L3(5)(21),CARRY_RES_L3(5)(21));
+--B:23
+	FA382_L3 : FA port map (CARRY_RES_L4(4)(21),SUM_RES_L4(4)(22),CARRY_RES_L4(16)(21),SUM_RES_L3(5)(22),CARRY_RES_L3(5)(22));
+--B:24
+	FA383_L3 : FA port map (CARRY_RES_L4(4)(22),CARRY_RES_L4(16)(22),SUM_RES_L4(5)(23),SUM_RES_L3(5)(23),CARRY_RES_L3(5)(23));
+--B:25
+	FA384_L3 : FA port map (CARRY_RES_L4(5)(23),CARRY_RES_L4(17)(23),SUM_RES_L4(5)(24),SUM_RES_L3(5)(24),CARRY_RES_L3(5)(24));
+--B:26
+	FA385_L3 : FA port map (CARRY_RES_L4(5)(24),CARRY_RES_L4(17)(24),SUM_RES_L4(5)(25),SUM_RES_L3(5)(25),CARRY_RES_L3(5)(25));
+--B:27
+	FA386_L3 : FA port map (CARRY_RES_L4(5)(25),CARRY_RES_L4(17)(25),SUM_RES_L4(5)(26),SUM_RES_L3(5)(26),CARRY_RES_L3(5)(26));
+--B:28
+	FA387_L3 : FA port map (CARRY_RES_L4(5)(26),CARRY_RES_L4(17)(26),SUM_RES_L4(6)(27),SUM_RES_L3(6)(27),CARRY_RES_L3(6)(27));
+--B:29
+	FA388_L3 : FA port map (CARRY_RES_L4(6)(27),CARRY_RES_L4(18)(27),SUM_RES_L4(6)(28),SUM_RES_L3(6)(28),CARRY_RES_L3(6)(28));
+--B:30
+	FA389_L3 : FA port map (CARRY_RES_L4(6)(28),CARRY_RES_L4(18)(28),SUM_RES_L4(6)(29),SUM_RES_L3(6)(29),CARRY_RES_L3(6)(29));
+--B:31
+	FA390_L3 : FA port map (CARRY_RES_L4(6)(29),CARRY_RES_L4(20)(29),SUM_RES_L4(6)(30),SUM_RES_L3(6)(30),CARRY_RES_L3(6)(30));
+--B:32
+	FA391_L3 : FA port map (CARRY_RES_L4(6)(30),CARRY_RES_L4(20)(30),SUM_RES_L4(6)(31),SUM_RES_L3(6)(31),CARRY_RES_L3(6)(31));
+--B:33
+	FA392_L3 : FA port map (CARRY_RES_L4(6)(31),CARRY_RES_L4(21)(31),SUM_RES_L4(6)(32),SUM_RES_L3(6)(32),CARRY_RES_L3(6)(32));
+--B:34
+	FA393_L3 : FA port map (CARRY_RES_L4(6)(32),CARRY_RES_L4(21)(32),SUM_RES_L4(6)(33),SUM_RES_L3(6)(33),CARRY_RES_L3(6)(33));
+--B:35
+	FA394_L3 : FA port map (CARRY_RES_L4(6)(33),CARRY_RES_L4(21)(33),SUM_RES_L4(6)(34),SUM_RES_L3(6)(34),CARRY_RES_L3(6)(34));
+--B:36
+	FA395_L3 : FA port map (CARRY_RES_L4(6)(34),CARRY_RES_L4(21)(34),SUM_RES_L4(5)(35),SUM_RES_L3(5)(35),CARRY_RES_L3(5)(35));
+--B:37
+	FA396_L3 : FA port map (CARRY_RES_L4(5)(35),CARRY_RES_L4(20)(35),SUM_RES_L4(5)(36),SUM_RES_L3(5)(36),CARRY_RES_L3(5)(36));
+--B:38
+	FA397_L3 : FA port map (CARRY_RES_L4(5)(36),CARRY_RES_L4(19)(36),SUM_RES_L4(5)(37),SUM_RES_L3(5)(37),CARRY_RES_L3(5)(37));
+--B:39
+	FA398_L3 : FA port map (CARRY_RES_L4(5)(37),CARRY_RES_L4(18)(37),SUM_RES_L4(5)(38),SUM_RES_L3(5)(38),CARRY_RES_L3(5)(38));
+--B:40
+	FA399_L3 : FA port map (CARRY_RES_L4(5)(38),CARRY_RES_L4(17)(38),SUM_RES_L4(5)(39),SUM_RES_L3(5)(39),CARRY_RES_L3(5)(39));
+--B:41
+	FA400_L3 : FA port map (CARRY_RES_L4(5)(39),CARRY_RES_L4(17)(39),SUM_RES_L4(5)(40),SUM_RES_L3(5)(40),CARRY_RES_L3(5)(40));
+--B:42
+	FA401_L3 : FA port map (CARRY_RES_L4(5)(40),CARRY_RES_L4(17)(40),SUM_RES_L4(6)(41),SUM_RES_L3(6)(41),CARRY_RES_L3(6)(41));
+--B:43
+	FA402_L3 : FA port map (CARRY_RES_L4(6)(41),CARRY_RES_L4(17)(41),SUM_RES_L4(6)(42),SUM_RES_L3(6)(42),CARRY_RES_L3(6)(42));
+--B:44
+	FA403_L3 : FA port map (CARRY_RES_L4(6)(42),CARRY_RES_L4(17)(42),SUM_RES_L4(6)(43),SUM_RES_L3(6)(43),CARRY_RES_L3(6)(43));
+--B:45
+	FA404_L3 : FA port map (CARRY_RES_L4(6)(43),CARRY_RES_L4(17)(43),SUM_RES_L4(6)(44),SUM_RES_L3(6)(44),CARRY_RES_L3(6)(44));
+--B:46
+	FA405_L3 : FA port map (CARRY_RES_L4(6)(44),CARRY_RES_L4(17)(44),SUM_RES_L4(5)(45),SUM_RES_L3(5)(45),CARRY_RES_L3(5)(45));
+--B:47
+	FA406_L3 : FA port map (CARRY_RES_L4(5)(45),CARRY_RES_L4(17)(45),SUM_RES_L4(5)(46),SUM_RES_L3(5)(46),CARRY_RES_L3(5)(46));
+--B:48
+	FA407_L3 : FA port map (CARRY_RES_L4(5)(46),CARRY_RES_L4(17)(46),SUM_RES_L4(5)(47),SUM_RES_L3(5)(47),CARRY_RES_L3(5)(47));
+--B:49
+	FA408_L3 : FA port map (CARRY_RES_L4(5)(47),CARRY_RES_L4(17)(47),SUM_RES_L4(5)(48),SUM_RES_L3(5)(48),CARRY_RES_L3(5)(48));
+--B:50
+	FA409_L3 : FA port map (CARRY_RES_L4(5)(48),SUM_RES_L4(4)(49),CARRY_RES_L4(17)(48),SUM_RES_L3(5)(49),CARRY_RES_L3(5)(49));
+--B:51
+	FA410_L3 : FA port map (CARRY_RES_L4(4)(49),SUM_RES_L4(4)(50),CARRY_RES_L4(17)(49),SUM_RES_L3(5)(50),CARRY_RES_L3(5)(50));
+--B:52
+	FA411_L3 : FA port map (SUM_RES_L4(3)(51),CARRY_RES_L4(4)(50),CARRY_RES_L4(17)(50),SUM_RES_L3(5)(51),CARRY_RES_L3(5)(51));
+--B:53
+	FA412_L3 : FA port map (SUM_RES_L4(3)(52),CARRY_RES_L4(3)(51),CARRY_RES_L4(17)(51),SUM_RES_L3(5)(52),CARRY_RES_L3(5)(52));
+--B:54
+	FA413_L3 : FA port map (CARRY_RES_L4(3)(52),CARRY_RES_L4(17)(52),SUM_RES_L4(13)(53),SUM_RES_L3(13)(53),CARRY_RES_L3(13)(53));
+--B:55
+	FA414_L3 : FA port map (CARRY_RES_L4(13)(53),CARRY_RES_L4(17)(53),SUM_RES_L4(14)(54),SUM_RES_L3(14)(54),CARRY_RES_L3(14)(54));
+--B:56
+	FA415_L3 : FA port map (CARRY_RES_L4(14)(54),CARRY_RES_L4(17)(54),SUM_RES_L4(14)(55),SUM_RES_L3(14)(55),CARRY_RES_L3(14)(55));
+--B:57
+	FA416_L3 : FA port map (CARRY_RES_L4(14)(55),CARRY_RES_L4(17)(55),SUM_RES_L4(14)(56),SUM_RES_L3(14)(56),CARRY_RES_L3(14)(56));
+--B:58
+	FA417_L3 : FA port map (CARRY_RES_L4(14)(56),CARRY_RES_L4(17)(56),SUM_RES_L4(15)(57),SUM_RES_L3(15)(57),CARRY_RES_L3(15)(57));
+--B:59
+	FA418_L3 : FA port map (CARRY_RES_L4(15)(57),CARRY_RES_L4(17)(57),SUM_RES_L4(16)(58),SUM_RES_L3(16)(58),CARRY_RES_L3(16)(58));
+--B:60
+	FA419_L3 : FA port map (CARRY_RES_L4(16)(58),SUM_RES_L4(15)(59),PP(15)(30),SUM_RES_L3(16)(59),CARRY_RES_L3(16)(59));
+--B:61
+	FA420_L3 : FA port map (CARRY_RES_L4(15)(59),PP(14)(33),PP(15)(31),SUM_RES_L3(16)(60),CARRY_RES_L3(16)(60));
+--B:62
+	HA42_L3 : HA port map (PP(14)(34),PP(15)(32),SUM_RES_L3(16)(61),CARRY_RES_L3(16)(61));
+--B:63
+
+--B:64
+
+---------------------- LEVEL 2 -------------------------------
+--B:0
+
+--B:1
+
+--B:2
+	HA43_L2 : HA port map (PP(0)(2),PP(1)(0),SUM_RES_L2(2)(1),CARRY_RES_L2(2)(1));
+--B:3
+	HA44_L2 : HA port map (PP(0)(3),PP(1)(1),SUM_RES_L2(2)(2),CARRY_RES_L2(2)(2));
+--B:4
+	FA421_L2 : FA port map (SUM_RES_L3(2)(3),PP(2)(0),PP_sign(2),SUM_RES_L2(4)(3),CARRY_RES_L2(4)(3));
+--B:5
+	FA422_L2 : FA port map (SUM_RES_L3(2)(4),PP(2)(1),CARRY_RES_L3(2)(3),SUM_RES_L2(4)(4),CARRY_RES_L2(4)(4));
+--B:6
+	FA423_L2 : FA port map (CARRY_RES_L3(2)(4),SUM_RES_L3(4)(5),PP_sign(3),SUM_RES_L2(5)(5),CARRY_RES_L2(5)(5));
+--B:7
+	FA424_L2 : FA port map (CARRY_RES_L3(4)(5),SUM_RES_L3(4)(6),CARRY_RES_L4(2)(5),SUM_RES_L2(5)(6),CARRY_RES_L2(5)(6));
+--B:8
+	FA425_L2 : FA port map (CARRY_RES_L3(4)(6),SUM_RES_L3(6)(7),CARRY_RES_L4(2)(6),SUM_RES_L2(7)(7),CARRY_RES_L2(7)(7));
+--B:9
+	FA426_L2 : FA port map (CARRY_RES_L3(6)(7),SUM_RES_L3(6)(8),CARRY_RES_L4(5)(7),SUM_RES_L2(7)(8),CARRY_RES_L2(7)(8));
+--B:10
+	FA427_L2 : FA port map (CARRY_RES_L3(6)(8),SUM_RES_L3(7)(9),CARRY_RES_L4(5)(8),SUM_RES_L2(8)(9),CARRY_RES_L2(8)(9));
+--B:11
+	FA428_L2 : FA port map (CARRY_RES_L3(7)(9),SUM_RES_L3(7)(10),CARRY_RES_L4(7)(9),SUM_RES_L2(8)(10),CARRY_RES_L2(8)(10));
+--B:12
+	FA429_L2 : FA port map (CARRY_RES_L3(7)(10),SUM_RES_L3(6)(11),SUM_RES_L4(9)(11),SUM_RES_L2(9)(11),CARRY_RES_L2(9)(11));
+--B:13
+	FA430_L2 : FA port map (CARRY_RES_L3(6)(11),SUM_RES_L3(6)(12),SUM_RES_L4(9)(12),SUM_RES_L2(9)(12),CARRY_RES_L2(9)(12));
+--B:14
+	FA431_L2 : FA port map (CARRY_RES_L3(6)(12),SUM_RES_L3(8)(13),SUM_RES_L4(11)(13),SUM_RES_L2(11)(13),CARRY_RES_L2(11)(13));
+--B:15
+	FA432_L2 : FA port map (CARRY_RES_L3(8)(13),SUM_RES_L3(8)(14),SUM_RES_L4(11)(14),SUM_RES_L2(11)(14),CARRY_RES_L2(11)(14));
+--B:16
+	FA433_L2 : FA port map (CARRY_RES_L3(8)(14),SUM_RES_L3(7)(15),SUM_RES_L4(12)(15),SUM_RES_L2(12)(15),CARRY_RES_L2(12)(15));
+--B:17
+	FA434_L2 : FA port map (CARRY_RES_L3(7)(15),SUM_RES_L3(7)(16),SUM_RES_L4(12)(16),SUM_RES_L2(12)(16),CARRY_RES_L2(12)(16));
+--B:18
+	FA435_L2 : FA port map (CARRY_RES_L3(7)(16),SUM_RES_L3(5)(17),SUM_RES_L4(12)(17),SUM_RES_L2(12)(17),CARRY_RES_L2(12)(17));
+--B:19
+	FA436_L2 : FA port map (CARRY_RES_L3(5)(17),SUM_RES_L3(5)(18),SUM_RES_L4(12)(18),SUM_RES_L2(12)(18),CARRY_RES_L2(12)(18));
+--B:20
+	FA437_L2 : FA port map (CARRY_RES_L3(5)(18),SUM_RES_L3(5)(19),SUM_RES_L4(14)(19),SUM_RES_L2(14)(19),CARRY_RES_L2(14)(19));
+--B:21
+	FA438_L2 : FA port map (CARRY_RES_L3(5)(19),SUM_RES_L3(5)(20),SUM_RES_L4(14)(20),SUM_RES_L2(14)(20),CARRY_RES_L2(14)(20));
+--B:22
+	FA439_L2 : FA port map (CARRY_RES_L3(5)(20),SUM_RES_L3(5)(21),SUM_RES_L4(16)(21),SUM_RES_L2(16)(21),CARRY_RES_L2(16)(21));
+--B:23
+	FA440_L2 : FA port map (CARRY_RES_L3(5)(21),SUM_RES_L3(5)(22),SUM_RES_L4(16)(22),SUM_RES_L2(16)(22),CARRY_RES_L2(16)(22));
+--B:24
+	FA441_L2 : FA port map (CARRY_RES_L3(5)(22),SUM_RES_L3(5)(23),SUM_RES_L4(17)(23),SUM_RES_L2(17)(23),CARRY_RES_L2(17)(23));
+--B:25
+	FA442_L2 : FA port map (CARRY_RES_L3(5)(23),SUM_RES_L3(5)(24),SUM_RES_L4(17)(24),SUM_RES_L2(17)(24),CARRY_RES_L2(17)(24));
+--B:26
+	FA443_L2 : FA port map (CARRY_RES_L3(5)(24),SUM_RES_L3(5)(25),SUM_RES_L4(17)(25),SUM_RES_L2(17)(25),CARRY_RES_L2(17)(25));
+--B:27
+	FA444_L2 : FA port map (CARRY_RES_L3(5)(25),SUM_RES_L3(5)(26),SUM_RES_L4(17)(26),SUM_RES_L2(17)(26),CARRY_RES_L2(17)(26));
+--B:28
+	FA445_L2 : FA port map (CARRY_RES_L3(5)(26),SUM_RES_L3(6)(27),SUM_RES_L4(18)(27),SUM_RES_L2(18)(27),CARRY_RES_L2(18)(27));
+--B:29
+	FA446_L2 : FA port map (CARRY_RES_L3(6)(27),SUM_RES_L3(6)(28),SUM_RES_L4(18)(28),SUM_RES_L2(18)(28),CARRY_RES_L2(18)(28));
+--B:30
+	FA447_L2 : FA port map (CARRY_RES_L3(6)(28),SUM_RES_L3(6)(29),SUM_RES_L4(20)(29),SUM_RES_L2(20)(29),CARRY_RES_L2(20)(29));
+--B:31
+	FA448_L2 : FA port map (CARRY_RES_L3(6)(29),SUM_RES_L3(6)(30),SUM_RES_L4(20)(30),SUM_RES_L2(20)(30),CARRY_RES_L2(20)(30));
+--B:32
+	FA449_L2 : FA port map (CARRY_RES_L3(6)(30),SUM_RES_L3(6)(31),SUM_RES_L4(21)(31),SUM_RES_L2(21)(31),CARRY_RES_L2(21)(31));
+--B:33
+	FA450_L2 : FA port map (CARRY_RES_L3(6)(31),SUM_RES_L3(6)(32),SUM_RES_L4(21)(32),SUM_RES_L2(21)(32),CARRY_RES_L2(21)(32));
+--B:34
+	FA451_L2 : FA port map (CARRY_RES_L3(6)(32),SUM_RES_L3(6)(33),SUM_RES_L4(21)(33),SUM_RES_L2(21)(33),CARRY_RES_L2(21)(33));
+--B:35
+	FA452_L2 : FA port map (CARRY_RES_L3(6)(33),SUM_RES_L3(6)(34),SUM_RES_L4(21)(34),SUM_RES_L2(21)(34),CARRY_RES_L2(21)(34));
+--B:36
+	FA453_L2 : FA port map (CARRY_RES_L3(6)(34),SUM_RES_L3(5)(35),SUM_RES_L4(20)(35),SUM_RES_L2(20)(35),CARRY_RES_L2(20)(35));
+--B:37
+	FA454_L2 : FA port map (CARRY_RES_L3(5)(35),SUM_RES_L3(5)(36),SUM_RES_L4(19)(36),SUM_RES_L2(19)(36),CARRY_RES_L2(19)(36));
+--B:38
+	FA455_L2 : FA port map (CARRY_RES_L3(5)(36),SUM_RES_L3(5)(37),SUM_RES_L4(18)(37),SUM_RES_L2(18)(37),CARRY_RES_L2(18)(37));
+--B:39
+	FA456_L2 : FA port map (CARRY_RES_L3(5)(37),SUM_RES_L3(5)(38),SUM_RES_L4(17)(38),SUM_RES_L2(17)(38),CARRY_RES_L2(17)(38));
+--B:40
+	FA457_L2 : FA port map (CARRY_RES_L3(5)(38),SUM_RES_L3(5)(39),SUM_RES_L4(17)(39),SUM_RES_L2(17)(39),CARRY_RES_L2(17)(39));
+--B:41
+	FA458_L2 : FA port map (CARRY_RES_L3(5)(39),SUM_RES_L3(5)(40),SUM_RES_L4(17)(40),SUM_RES_L2(17)(40),CARRY_RES_L2(17)(40));
+--B:42
+	FA459_L2 : FA port map (CARRY_RES_L3(5)(40),SUM_RES_L3(6)(41),SUM_RES_L4(17)(41),SUM_RES_L2(17)(41),CARRY_RES_L2(17)(41));
+--B:43
+	FA460_L2 : FA port map (CARRY_RES_L3(6)(41),SUM_RES_L3(6)(42),SUM_RES_L4(17)(42),SUM_RES_L2(17)(42),CARRY_RES_L2(17)(42));
+--B:44
+	FA461_L2 : FA port map (CARRY_RES_L3(6)(42),SUM_RES_L3(6)(43),SUM_RES_L4(17)(43),SUM_RES_L2(17)(43),CARRY_RES_L2(17)(43));
+--B:45
+	FA462_L2 : FA port map (CARRY_RES_L3(6)(43),SUM_RES_L3(6)(44),SUM_RES_L4(17)(44),SUM_RES_L2(17)(44),CARRY_RES_L2(17)(44));
+--B:46
+	FA463_L2 : FA port map (CARRY_RES_L3(6)(44),SUM_RES_L3(5)(45),SUM_RES_L4(17)(45),SUM_RES_L2(17)(45),CARRY_RES_L2(17)(45));
+--B:47
+	FA464_L2 : FA port map (CARRY_RES_L3(5)(45),SUM_RES_L3(5)(46),SUM_RES_L4(17)(46),SUM_RES_L2(17)(46),CARRY_RES_L2(17)(46));
+--B:48
+	FA465_L2 : FA port map (CARRY_RES_L3(5)(46),SUM_RES_L3(5)(47),SUM_RES_L4(17)(47),SUM_RES_L2(17)(47),CARRY_RES_L2(17)(47));
+--B:49
+	FA466_L2 : FA port map (CARRY_RES_L3(5)(47),SUM_RES_L3(5)(48),SUM_RES_L4(17)(48),SUM_RES_L2(17)(48),CARRY_RES_L2(17)(48));
+--B:50
+	FA467_L2 : FA port map (CARRY_RES_L3(5)(48),SUM_RES_L3(5)(49),SUM_RES_L4(17)(49),SUM_RES_L2(17)(49),CARRY_RES_L2(17)(49));
+--B:51
+	FA468_L2 : FA port map (CARRY_RES_L3(5)(49),SUM_RES_L3(5)(50),SUM_RES_L4(17)(50),SUM_RES_L2(17)(50),CARRY_RES_L2(17)(50));
+--B:52
+	FA469_L2 : FA port map (CARRY_RES_L3(5)(50),SUM_RES_L3(5)(51),SUM_RES_L4(17)(51),SUM_RES_L2(17)(51),CARRY_RES_L2(17)(51));
+--B:53
+	FA470_L2 : FA port map (CARRY_RES_L3(5)(51),SUM_RES_L3(5)(52),SUM_RES_L4(17)(52),SUM_RES_L2(17)(52),CARRY_RES_L2(17)(52));
+--B:54
+	FA471_L2 : FA port map (CARRY_RES_L3(5)(52),SUM_RES_L3(13)(53),SUM_RES_L4(17)(53),SUM_RES_L2(17)(53),CARRY_RES_L2(17)(53));
+--B:55
+	FA472_L2 : FA port map (CARRY_RES_L3(13)(53),SUM_RES_L3(14)(54),SUM_RES_L4(17)(54),SUM_RES_L2(17)(54),CARRY_RES_L2(17)(54));
+--B:56
+	FA473_L2 : FA port map (CARRY_RES_L3(14)(54),SUM_RES_L3(14)(55),SUM_RES_L4(17)(55),SUM_RES_L2(17)(55),CARRY_RES_L2(17)(55));
+--B:57
+	FA474_L2 : FA port map (CARRY_RES_L3(14)(55),SUM_RES_L3(14)(56),SUM_RES_L4(17)(56),SUM_RES_L2(17)(56),CARRY_RES_L2(17)(56));
+--B:58
+	FA475_L2 : FA port map (CARRY_RES_L3(14)(56),SUM_RES_L3(15)(57),SUM_RES_L4(17)(57),SUM_RES_L2(17)(57),CARRY_RES_L2(17)(57));
+--B:59
+	FA476_L2 : FA port map (CARRY_RES_L3(15)(57),SUM_RES_L3(16)(58),PP(16)(27),SUM_RES_L2(17)(58),CARRY_RES_L2(17)(58));
+--B:60
+	FA477_L2 : FA port map (CARRY_RES_L3(16)(58),SUM_RES_L3(16)(59),PP(16)(28),SUM_RES_L2(17)(59),CARRY_RES_L2(17)(59));
+--B:61
+	FA478_L2 : FA port map (CARRY_RES_L3(16)(59),SUM_RES_L3(16)(60),PP(16)(29),SUM_RES_L2(17)(60),CARRY_RES_L2(17)(60));
+--B:62
+	FA479_L2 : FA port map (CARRY_RES_L3(16)(60),SUM_RES_L3(16)(61),PP(16)(30),SUM_RES_L2(17)(61),CARRY_RES_L2(17)(61));
+--B:63
+	FA480_L2 : FA port map (CARRY_RES_L3(16)(61),PP(15)(33),PP(16)(31),SUM_RES_L2(17)(62),CARRY_RES_L2(17)(62));
+--B:64
+
+
+------ FINAL SUM -------------
+
+FINAL_SUM(0)(0) <= PP(0)(0); --[66]
+FINAL_SUM(1)(0) <= PP_sign(0); --[66]
+FINAL_SUM(0)(1) <= PP(0)(1); --[65]
+FINAL_SUM(1)(1) <= GND; --[65]
+FINAL_SUM(0)(2) <= SUM_RES_L2(2)(1); --[64]
+FINAL_SUM(1)(2) <= PP_sign(1); --[64]
+FINAL_SUM(0)(3) <= SUM_RES_L2(2)(2); --[63]
+FINAL_SUM(1)(3) <= CARRY_RES_L2(2)(1); --[63]
+FINAL_SUM(0)(4) <= CARRY_RES_L2(2)(2); --[62]
+FINAL_SUM(1)(4) <= SUM_RES_L2(4)(3); --[62]
+FINAL_SUM(0)(5) <= CARRY_RES_L2(4)(3); --[61]
+FINAL_SUM(1)(5) <= SUM_RES_L2(4)(4); --[61]
+FINAL_SUM(0)(6) <= CARRY_RES_L2(4)(4); --[60]
+FINAL_SUM(1)(6) <= SUM_RES_L2(5)(5); --[60]
+FINAL_SUM(0)(7) <= CARRY_RES_L2(5)(5); --[59]
+FINAL_SUM(1)(7) <= SUM_RES_L2(5)(6); --[59]
+FINAL_SUM(0)(8) <= CARRY_RES_L2(5)(6); --[58]
+FINAL_SUM(1)(8) <= SUM_RES_L2(7)(7); --[58]
+FINAL_SUM(0)(9) <= CARRY_RES_L2(7)(7); --[57]
+FINAL_SUM(1)(9) <= SUM_RES_L2(7)(8); --[57]
+FINAL_SUM(0)(10) <= CARRY_RES_L2(7)(8); --[56]
+FINAL_SUM(1)(10) <= SUM_RES_L2(8)(9); --[56]
+FINAL_SUM(0)(11) <= CARRY_RES_L2(8)(9); --[55]
+FINAL_SUM(1)(11) <= SUM_RES_L2(8)(10); --[55]
+FINAL_SUM(0)(12) <= CARRY_RES_L2(8)(10); --[54]
+FINAL_SUM(1)(12) <= SUM_RES_L2(9)(11); --[54]
+FINAL_SUM(0)(13) <= CARRY_RES_L2(9)(11); --[53]
+FINAL_SUM(1)(13) <= SUM_RES_L2(9)(12); --[53]
+FINAL_SUM(0)(14) <= CARRY_RES_L2(9)(12); --[52]
+FINAL_SUM(1)(14) <= SUM_RES_L2(11)(13); --[52]
+FINAL_SUM(0)(15) <= CARRY_RES_L2(11)(13); --[51]
+FINAL_SUM(1)(15) <= SUM_RES_L2(11)(14); --[51]
+FINAL_SUM(0)(16) <= CARRY_RES_L2(11)(14); --[50]
+FINAL_SUM(1)(16) <= SUM_RES_L2(12)(15); --[50]
+FINAL_SUM(0)(17) <= CARRY_RES_L2(12)(15); --[49]
+FINAL_SUM(1)(17) <= SUM_RES_L2(12)(16); --[49]
+FINAL_SUM(0)(18) <= CARRY_RES_L2(12)(16); --[48]
+FINAL_SUM(1)(18) <= SUM_RES_L2(12)(17); --[48]
+FINAL_SUM(0)(19) <= CARRY_RES_L2(12)(17); --[47]
+FINAL_SUM(1)(19) <= SUM_RES_L2(12)(18); --[47]
+FINAL_SUM(0)(20) <= CARRY_RES_L2(12)(18); --[46]
+FINAL_SUM(1)(20) <= SUM_RES_L2(14)(19); --[46]
+FINAL_SUM(0)(21) <= CARRY_RES_L2(14)(19); --[45]
+FINAL_SUM(1)(21) <= SUM_RES_L2(14)(20); --[45]
+FINAL_SUM(0)(22) <= CARRY_RES_L2(14)(20); --[44]
+FINAL_SUM(1)(22) <= SUM_RES_L2(16)(21); --[44]
+FINAL_SUM(0)(23) <= CARRY_RES_L2(16)(21); --[43]
+FINAL_SUM(1)(23) <= SUM_RES_L2(16)(22); --[43]
+FINAL_SUM(0)(24) <= CARRY_RES_L2(16)(22); --[42]
+FINAL_SUM(1)(24) <= SUM_RES_L2(17)(23); --[42]
+FINAL_SUM(0)(25) <= CARRY_RES_L2(17)(23); --[41]
+FINAL_SUM(1)(25) <= SUM_RES_L2(17)(24); --[41]
+FINAL_SUM(0)(26) <= CARRY_RES_L2(17)(24); --[40]
+FINAL_SUM(1)(26) <= SUM_RES_L2(17)(25); --[40]
+FINAL_SUM(0)(27) <= CARRY_RES_L2(17)(25); --[39]
+FINAL_SUM(1)(27) <= SUM_RES_L2(17)(26); --[39]
+FINAL_SUM(0)(28) <= CARRY_RES_L2(17)(26); --[38]
+FINAL_SUM(1)(28) <= SUM_RES_L2(18)(27); --[38]
+FINAL_SUM(0)(29) <= CARRY_RES_L2(18)(27); --[37]
+FINAL_SUM(1)(29) <= SUM_RES_L2(18)(28); --[37]
+FINAL_SUM(0)(30) <= CARRY_RES_L2(18)(28); --[36]
+FINAL_SUM(1)(30) <= SUM_RES_L2(20)(29); --[36]
+FINAL_SUM(0)(31) <= CARRY_RES_L2(20)(29); --[35]
+FINAL_SUM(1)(31) <= SUM_RES_L2(20)(30); --[35]
+FINAL_SUM(0)(32) <= CARRY_RES_L2(20)(30); --[34]
+FINAL_SUM(1)(32) <= SUM_RES_L2(21)(31); --[34]
+FINAL_SUM(0)(33) <= CARRY_RES_L2(21)(31); --[33]
+FINAL_SUM(1)(33) <= SUM_RES_L2(21)(32); --[33]
+FINAL_SUM(0)(34) <= CARRY_RES_L2(21)(32); --[32]
+FINAL_SUM(1)(34) <= SUM_RES_L2(21)(33); --[32]
+FINAL_SUM(0)(35) <= CARRY_RES_L2(21)(33); --[31]
+FINAL_SUM(1)(35) <= SUM_RES_L2(21)(34); --[31]
+FINAL_SUM(0)(36) <= CARRY_RES_L2(21)(34); --[30]
+FINAL_SUM(1)(36) <= SUM_RES_L2(20)(35); --[30]
+FINAL_SUM(0)(37) <= CARRY_RES_L2(20)(35); --[29]
+FINAL_SUM(1)(37) <= SUM_RES_L2(19)(36); --[29]
+FINAL_SUM(0)(38) <= CARRY_RES_L2(19)(36); --[28]
+FINAL_SUM(1)(38) <= SUM_RES_L2(18)(37); --[28]
+FINAL_SUM(0)(39) <= CARRY_RES_L2(18)(37); --[27]
+FINAL_SUM(1)(39) <= SUM_RES_L2(17)(38); --[27]
+FINAL_SUM(0)(40) <= CARRY_RES_L2(17)(38); --[26]
+FINAL_SUM(1)(40) <= SUM_RES_L2(17)(39); --[26]
+FINAL_SUM(0)(41) <= CARRY_RES_L2(17)(39); --[25]
+FINAL_SUM(1)(41) <= SUM_RES_L2(17)(40); --[25]
+FINAL_SUM(0)(42) <= CARRY_RES_L2(17)(40); --[24]
+FINAL_SUM(1)(42) <= SUM_RES_L2(17)(41); --[24]
+FINAL_SUM(0)(43) <= CARRY_RES_L2(17)(41); --[23]
+FINAL_SUM(1)(43) <= SUM_RES_L2(17)(42); --[23]
+FINAL_SUM(0)(44) <= CARRY_RES_L2(17)(42); --[22]
+FINAL_SUM(1)(44) <= SUM_RES_L2(17)(43); --[22]
+FINAL_SUM(0)(45) <= CARRY_RES_L2(17)(43); --[21]
+FINAL_SUM(1)(45) <= SUM_RES_L2(17)(44); --[21]
+FINAL_SUM(0)(46) <= CARRY_RES_L2(17)(44); --[20]
+FINAL_SUM(1)(46) <= SUM_RES_L2(17)(45); --[20]
+FINAL_SUM(0)(47) <= CARRY_RES_L2(17)(45); --[19]
+FINAL_SUM(1)(47) <= SUM_RES_L2(17)(46); --[19]
+FINAL_SUM(0)(48) <= CARRY_RES_L2(17)(46); --[18]
+FINAL_SUM(1)(48) <= SUM_RES_L2(17)(47); --[18]
+FINAL_SUM(0)(49) <= CARRY_RES_L2(17)(47); --[17]
+FINAL_SUM(1)(49) <= SUM_RES_L2(17)(48); --[17]
+FINAL_SUM(0)(50) <= CARRY_RES_L2(17)(48); --[16]
+FINAL_SUM(1)(50) <= SUM_RES_L2(17)(49); --[16]
+FINAL_SUM(0)(51) <= CARRY_RES_L2(17)(49); --[15]
+FINAL_SUM(1)(51) <= SUM_RES_L2(17)(50); --[15]
+FINAL_SUM(0)(52) <= CARRY_RES_L2(17)(50); --[14]
+FINAL_SUM(1)(52) <= SUM_RES_L2(17)(51); --[14]
+FINAL_SUM(0)(53) <= CARRY_RES_L2(17)(51); --[13]
+FINAL_SUM(1)(53) <= SUM_RES_L2(17)(52); --[13]
+FINAL_SUM(0)(54) <= CARRY_RES_L2(17)(52); --[12]
+FINAL_SUM(1)(54) <= SUM_RES_L2(17)(53); --[12]
+FINAL_SUM(0)(55) <= CARRY_RES_L2(17)(53); --[11]
+FINAL_SUM(1)(55) <= SUM_RES_L2(17)(54); --[11]
+FINAL_SUM(0)(56) <= CARRY_RES_L2(17)(54); --[10]
+FINAL_SUM(1)(56) <= SUM_RES_L2(17)(55); --[10]
+FINAL_SUM(0)(57) <= CARRY_RES_L2(17)(55); --[9]
+FINAL_SUM(1)(57) <= SUM_RES_L2(17)(56); --[9]
+FINAL_SUM(0)(58) <= CARRY_RES_L2(17)(56); --[8]
+FINAL_SUM(1)(58) <= SUM_RES_L2(17)(57); --[8]
+FINAL_SUM(0)(59) <= CARRY_RES_L2(17)(57); --[7]
+FINAL_SUM(1)(59) <= SUM_RES_L2(17)(58); --[7]
+FINAL_SUM(0)(60) <= CARRY_RES_L2(17)(58); --[6]
+FINAL_SUM(1)(60) <= SUM_RES_L2(17)(59); --[6]
+FINAL_SUM(0)(61) <= CARRY_RES_L2(17)(59); --[5]
+FINAL_SUM(1)(61) <= SUM_RES_L2(17)(60); --[5]
+FINAL_SUM(0)(62) <= CARRY_RES_L2(17)(60); --[4]
+FINAL_SUM(1)(62) <= SUM_RES_L2(17)(61); --[4]
+FINAL_SUM(0)(63) <= CARRY_RES_L2(17)(61); --[3]
+FINAL_SUM(1)(63) <= SUM_RES_L2(17)(62); --[3]
+FINAL_SUM(0)(64) <= CARRY_RES_L2(17)(62); --[2]
+FINAL_SUM(1)(64) <= GND; --[2]
+
+final_sum_process : process (FINAL_SUM)
+begin
+	SUM <= std_logic_vector(signed(FINAL_SUM(0)(64 downto 0)) + signed(FINAL_SUM(1)(64 downto 0)));
+end process;
+
+end architecture Dadda;

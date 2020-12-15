@@ -1,6 +1,0 @@
-of.write(u.assignS(u.downto(signals[level][h], 0, firstI), u.downto(signals[level + 1][h // 3], 0, firstI)) + ';\n')
-                of.write(u.assignS(u.downto(signals[level][h],  CSApar + firstI, 64), u.downto(signals[level + 1][h // 3],  CSApar + firstI, 64)) + ';\n')
-                of.write(u.assignS(u.downto(signals[level][h + 1], 0, firstI), u.downto(signals[level + 1][h // 3], 0, firstI)) + ';\n')
-                of.write(u.assignS(u.downto(signals[level][h + 1],  CSApar + firstI, 64), u.downto(signals[level + 1][h // 3],  CSApar + firstI, 64)) + ';\n')
-                of.write(u.assignS(u.downto(signals[level][h + 2], 0, firstI), u.downto(signals[level + 1][h // 3], 0, firstI)) + ';\n')
-                of.write(u.assignS(u.downto(signals[level][h + 2],  CSApar + firstI, 64), u.downto(signals[level + 1][h // 3],  CSApar + firstI, 64)) + ';\n')

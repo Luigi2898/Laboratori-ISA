@@ -1,0 +1,3 @@
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Warning: The 'dw_foundation.sldb' library has not been read in yet. (UIL-3)
+0

@@ -1,0 +1,16 @@
+Warning: Design 'FPmul' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+ 
+****************************************
+Report : resources
+Design : FPmul
+Version: F-2011.09-SP3
+Date   : Mon Dec 14 10:27:02 2020
+****************************************
+
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+1

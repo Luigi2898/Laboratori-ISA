@@ -1,0 +1,105 @@
+Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : FPmul
+Version: O-2018.06-SP4
+Date   : Fri Nov 20 18:27:51 2020
+****************************************
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+  Startpoint: FP_A[2] (input port clocked by MY_CLK)
+  Endpoint: I2/mult_160/MY_CLK_r_REG175_S1
+            (rising edge-triggered flip-flop clocked by MY_CLK)
+  Path Group: MY_CLK
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FPmul              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock MY_CLK (rise edge)                                0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    0.50       0.50 f
+  FP_A[2] (in)                                            0.00       0.50 f
+  I1/FP_A[2] (FPmul_stage1)                               0.00       0.50 f
+  I1/I0/FP[2] (UnpackFP_0)                                0.00       0.50 f
+  I1/I0/SIG[2] (UnpackFP_0)                               0.00       0.50 f
+  I1/A_SIG[2] (FPmul_stage1)                              0.00       0.50 f
+  I2/A_SIG[2] (FPmul_stage2)                              0.00       0.50 f
+  I2/mult_160/a[2] (FPmul_stage2_DW_mult_uns_0)           0.00       0.50 f
+  I2/mult_160/U1720/ZN (INV_X1)                           0.12       0.62 r
+  I2/mult_160/U2359/Z (XOR2_X1)                           0.11       0.72 r
+  I2/mult_160/U1778/ZN (NAND3_X1)                         0.20       0.92 f
+  I2/mult_160/U2262/ZN (OAI22_X1)                         0.12       1.04 r
+  I2/mult_160/U2261/ZN (AOI221_X1)                        0.04       1.07 f
+  I2/mult_160/U2260/ZN (XNOR2_X1)                         0.07       1.15 f
+  I2/mult_160/U542/CO (HA_X1)                             0.06       1.21 f
+  I2/mult_160/U540/CO (FA_X1)                             0.09       1.29 f
+  I2/mult_160/U538/CO (FA_X1)                             0.09       1.39 f
+  I2/mult_160/U536/CO (FA_X1)                             0.09       1.48 f
+  I2/mult_160/U533/CO (FA_X1)                             0.09       1.57 f
+  I2/mult_160/U530/CO (FA_X1)                             0.09       1.66 f
+  I2/mult_160/U527/CO (FA_X1)                             0.09       1.75 f
+  I2/mult_160/U523/CO (FA_X1)                             0.09       1.84 f
+  I2/mult_160/U519/CO (FA_X1)                             0.09       1.93 f
+  I2/mult_160/U515/CO (FA_X1)                             0.09       2.02 f
+  I2/mult_160/U510/CO (FA_X1)                             0.09       2.11 f
+  I2/mult_160/U505/CO (FA_X1)                             0.09       2.20 f
+  I2/mult_160/U500/CO (FA_X1)                             0.09       2.29 f
+  I2/mult_160/U494/CO (FA_X1)                             0.09       2.38 f
+  I2/mult_160/U488/CO (FA_X1)                             0.09       2.47 f
+  I2/mult_160/U482/CO (FA_X1)                             0.09       2.56 f
+  I2/mult_160/U475/CO (FA_X1)                             0.09       2.65 f
+  I2/mult_160/U468/CO (FA_X1)                             0.09       2.75 f
+  I2/mult_160/U461/CO (FA_X1)                             0.09       2.84 f
+  I2/mult_160/U453/CO (FA_X1)                             0.09       2.93 f
+  I2/mult_160/U445/CO (FA_X1)                             0.09       3.02 f
+  I2/mult_160/U437/CO (FA_X1)                             0.09       3.11 f
+  I2/mult_160/U428/CO (FA_X1)                             0.09       3.20 f
+  I2/mult_160/U419/CO (FA_X1)                             0.09       3.29 f
+  I2/mult_160/U410/CO (FA_X1)                             0.09       3.38 f
+  I2/mult_160/U401/CO (FA_X1)                             0.09       3.47 f
+  I2/mult_160/U392/CO (FA_X1)                             0.09       3.56 f
+  I2/mult_160/U383/CO (FA_X1)                             0.09       3.65 f
+  I2/mult_160/U374/S (FA_X1)                              0.12       3.77 f
+  I2/mult_160/U1737/ZN (OR2_X1)                           0.06       3.83 f
+  I2/mult_160/U1736/ZN (AOI22_X1)                         0.05       3.87 r
+  I2/mult_160/U1916/ZN (INV_X1)                           0.03       3.90 f
+  I2/mult_160/U223/CO (FA_X1)                             0.09       3.99 f
+  I2/mult_160/U222/CO (FA_X1)                             0.09       4.08 f
+  I2/mult_160/U221/CO (FA_X1)                             0.09       4.17 f
+  I2/mult_160/U1786/ZN (AOI22_X1)                         0.05       4.22 r
+  I2/mult_160/U1919/ZN (INV_X1)                           0.03       4.25 f
+  I2/mult_160/U219/CO (FA_X1)                             0.09       4.33 f
+  I2/mult_160/U218/CO (FA_X1)                             0.09       4.43 f
+  I2/mult_160/U1785/ZN (AOI22_X1)                         0.05       4.48 r
+  I2/mult_160/U1922/ZN (INV_X1)                           0.03       4.50 f
+  I2/mult_160/U216/CO (FA_X1)                             0.09       4.59 f
+  I2/mult_160/U215/CO (FA_X1)                             0.09       4.68 f
+  I2/mult_160/U214/CO (FA_X1)                             0.09       4.78 f
+  I2/mult_160/U1805/ZN (XNOR2_X1)                         0.06       4.83 f
+  I2/mult_160/MY_CLK_r_REG175_S1/D (DFF_X1)               0.01       4.84 f
+  data arrival time                                                  4.84
+
+  clock MY_CLK (rise edge)                                5.00       5.00
+  clock network delay (ideal)                             0.00       5.00
+  clock uncertainty                                      -0.07       4.93
+  I2/mult_160/MY_CLK_r_REG175_S1/CK (DFF_X1)              0.00       4.93 r
+  library setup time                                     -0.04       4.89
+  data required time                                                 4.89
+  --------------------------------------------------------------------------
+  data required time                                                 4.89
+  data arrival time                                                 -4.84
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.05
+
+
+1
