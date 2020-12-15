@@ -1,5 +1,6 @@
-sh rm -r ./WORK
-sh mkdir WORK
+sh rm -r ./work
+sh mkdir work
+sh mkdir logs/basic
 
 analyze -library WORK -format vhdl -autoread {../src/fpuvhdl/common/}
 analyze -library WORK -format vhdl {../src/fpuvhdl/multiplier/fpmul_stage4_struct.vhd}
@@ -8,7 +9,7 @@ analyze -library WORK -format vhdl {../src/fpuvhdl/multiplier/fpmul_stage2_struc
 analyze -library WORK -format vhdl {../src/fpuvhdl/multiplier/fpmul_stage1_struct.vhd}
 analyze -library WORK -format vhdl {../src/fpuvhdl/multiplier/fpmul_single_cycle.vhd}
 analyze -library WORK -format vhdl {../src/fpuvhdl/multiplier/fpmul_pipeline.vhd}
-elaborate FPMUL -architecture PIPELINE -library WORK -update
+elaborate FPMUL -architecture PIPELINE -library WORK > logs/basic/elaboration.txt
 # setting design constrains
 create_clock -name MY_CLK -period 10.0 clk
 set_dont_touch_network MY_CLK
@@ -21,9 +22,9 @@ sh mkdir reports/basic
 sh mkdir reports/basic/netlist
 # compiling the standard version of the mpy
 compile -exact_map
-report_timing -nworst 10 > ./reports/basic/report_timing.txt
-report_area > ./reports/basic/report_area.txt
-report_resources > ./reports/basic/report_resources.txt
+report_timing -nworst 10 > ./reports/basic/timing.txt
+report_area > ./reports/basic/area.txt
+report_resources > ./reports/basic/resources.txt
 ungroup -all -flatten
 change_names -hierarchy -rules verilog
 write_sdf ./reports/basic/netlist/FPMUL.sdf
