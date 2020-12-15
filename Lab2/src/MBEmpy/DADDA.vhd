@@ -24,7 +24,7 @@ entity DADDA is
     PP16     : in  std_logic_vector(N - 1 downto 0);
     PP17     : in  std_logic_vector(N - 1 downto 0);
     PP_sign  : in  std_logic_vector(N_PP downto 0);
-    SUM      : out std_logic_vector(2 * N - 2 downto 0)
+    SUM      : out std_logic_vector(2 * N - 1 downto 0)
   ) ;
 end DADDA;
 
@@ -151,6 +151,7 @@ architecture structural of DADDA is
 
   signal inSUM_1 : unsigned(64 downto 0);
   signal inSUM_2 : unsigned(64 downto 0);
+  signal SUM_long : unsigned(64 downto 0);
 
 begin
 
@@ -193,6 +194,7 @@ begin
   CSA_03 : CSA    generic map (8)
                 port map (level0(2 * inc)(37 downto 30), level0(2 * inc + 1)(37 downto 30), level0(2 * inc + 2)(37 downto 30), outS_03(9 downto 2), outC_03(9 downto 2));
   HA_06  : HA     port map (level0(2 * inc)(38), level0(2 * inc + 1)(38), outS_03(10), outS_03(11));
+
   HA_07  : HAbank generic map (2)
                 port map (level0(3 * inc)(31 downto 30), level0(3 * inc + 1)(31 downto 30), outS_04(1 downto 0), outC_04(1 downto 0));
   CSA_04 : CSA    generic map (4)
@@ -230,9 +232,9 @@ begin
 
   HA_17  : HAbank generic map (2)
                 port map (level0(7)(23 downto 22), level0(10)(23 downto 22), outS_14(1 downto 0), outC_14(1 downto 0));
-  in14_1 <= level0(4)(43 downto 41) & level0(13)(40 downto 26) & level0(3)(25 downto 24);
+  in14_1 <= level0(4)(43 downto 41) & level0(13)(40 downto 26) & level0(7)(25 downto 24);
   in14_2 <= level0(10)(43 downto 37) & level0(15)(36 downto 30) & level0(10)(29 downto 24);
-  in14_3 <= level0(11)(43 downto 36) & level0(16)(35 downto 32) & level0(10)(31 downto 24);
+  in14_3 <= level0(11)(43 downto 36) & level0(16)(35 downto 32) & level0(11)(31 downto 24);
   CSA_14 : CSA    generic map (20)
                 port map (in14_1, in14_2, in14_3, outS_14(21 downto 2), outC_14(21 downto 2));
   HA_18  : HA     port map (level0(4)(44), level0(10)(44), outS_14(22), outS_14(23));
@@ -260,7 +262,7 @@ begin
   HA_25  : HAbank generic map (2)
                   port map (level0(5)(15 downto 14), level0(7)(15 downto 14), outS_23(1 downto 0), outC_23(1 downto 0));
   in23_1 <= level0(4)(51) & level0(7)(50 downto 46) & outS_14 & level0(7)(21 downto 18) & level0(5)(17 downto 16);
-  in23_2 <= level0(5)(51 downto 49) & level0(4)(48 downto 45) & outC_14 & level0(11)(22) & level0(10)(21 downto 20) & level0(10)(19 downto 18) & level0(7)(17) & level0(10)(16);
+  in23_2 <= level0(5)(51 downto 49) & level0(4)(48 downto 45) & outC_14 & level0(11)(22) & level0(10)(21 downto 20) & level0(9)(19 downto 18) & level0(7)(17) & level0(9)(16);
   in23_3 <= level0(1)(51) & level0(8)(50 downto 47) & level0(10)(46 downto 45) & level0(11)(44) & level0(1)(43) & level0(13)(42 downto 24) & level0(11)(23) & level0(13)(22) & level0(4)(21) & level0(11)(20) & level0(8)(19 downto 16);
   CSA_23 : CSA    generic map (36)
                   port map (in23_1, in23_2, in23_3, outS_23(37 downto 2), outC_23(37 downto 2));
@@ -279,7 +281,7 @@ begin
 
   HA_33  : HAbank generic map (2)
                   port map (level0(3)(9 downto 8), level0(4)(9 downto 8), outS_32(1 downto 0), outC_32(1 downto 0));
-  in32_1 <= level0(3)(57 downto 55) & outC_22 & level0(8)(12) & level0(3)(11 downto 10);
+  in32_1 <= level0(3)(57 downto 55) & outC_22 & level0(7)(12) & level0(3)(11 downto 10);
   in32_2 <= level0(4)(57 downto 54) & outS_23 & level0(4)(13 downto 10);
   in32_3 <= level0(0)(57) & level0(5)(56 downto 53) & outC_23 & level0(8)(14) & level0(5)(13 downto 10);
   CSA_32 : CSA    generic map (48)
@@ -311,6 +313,6 @@ begin
 
   inSUM_1 <= '0' & outS_51 & level0(0)(1 downto 0);
   inSUM_2 <= outC_51 & level0(2)(2) & '0' & level0(1)(0);
-  SUM <= std_logic_vector(inSUM_1 + inSUM_2);
-
+  SUM_long <= std_logic_vector(inSUM_1 + inSUM_2);
+  SUM <= SUM_long(63 downto 0);
 end architecture ;
