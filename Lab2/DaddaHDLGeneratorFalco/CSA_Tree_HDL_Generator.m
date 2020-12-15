@@ -10,20 +10,27 @@ max_items_L(1) = 2;
 bitWidth = Nbit+((Ninputs-1)*2);
 
 i = 1;
-type_tree = input('Choose DADDA or WALLACE: ','s');
+type_tree = string(input('Choose DADDA or WALLACE: ','s'));
 
 while max_items_L(end) < Ninputs
         max_items_L(i+1) = floor((3/2)*max_items_L(i));
         i = i + 1;
 end
 
-if type_tree == 'DADDA'
+Nlevels = numel(max_items_L);
+
+if type_tree == "DADDA"
     
-else
+    filename = "CSA_Tree_DADDA.vhd";
+       
+elseif type_tree == "WALLACE"
+    
+    filename = "CSA_Tree_WALLACE.vhd";
     max_items_L = zeros(1,Nlevels);
+    
 end
 
-Nlevels = numel(max_items_L);
+
 
 levels_tensor_items = zeros(Ninputs,bitWidth,Nlevels);
 
@@ -168,7 +175,7 @@ spy(levels_tensor_items(:,:,7))
 clc
 close all
 
-filename = "CSA_Tree.vhd";
+
 fID = fopen(filename,'w');
 
 
@@ -178,7 +185,15 @@ fprintf(fID,'\tuse ieee.numeric_std.all;\n');
 fprintf(fID,'\t--use work.array_std.all;\n\n');
 
 
-fprintf(fID,'entity CSA_Tree is\n');
+if type_tree == "DADDA"
+    fprintf(fID,'entity CSA_Tree_DADDA is\n');
+else
+    fprintf(fID,'entity CSA_Tree_WALLACE is\n');
+end
+
+
+
+
 fprintf(fID,'\tgeneric(N : integer := 33; N_PP : integer := 17);\n');
 fprintf(fID,'\tport(\n');
 fprintf(fID,'\t\tPP1      : in  std_logic_vector (N-1 downto 0);\n');
@@ -200,9 +215,13 @@ fprintf(fID,'\t\tPP16      : in  std_logic_vector (N-1 downto 0);\n');
 fprintf(fID,'\t\tPP17      : in  std_logic_vector (N-1 downto 0);\n');
 fprintf(fID,'\t\tPP_sign : in  std_logic_vector (N / 2 downto 0);\n');
 fprintf(fID,'\t\tSUM     : out std_logic_vector (2 * N - 2 downto 0)\n\t);\n');
-fprintf(fID,'end entity CSA_Tree;\n\n');
+fprintf(fID,'end entity;\n\n');
 
-fprintf(fID,'architecture Dadda of CSA_Tree is\n\n');
+if type_tree == "DADDA"
+    fprintf(fID,'architecture Dadda of CSA_Tree_DADDA is\n\n');
+else
+    fprintf(fID,'architecture Wallace of CSA_Tree_WALLACE is\n\n');
+end
 
 fprintf(fID,'---- COMPONENTS DECLARATION ----\n');
 fprintf(fID,'component HA is\n');
@@ -395,7 +414,10 @@ for l = 7:-1:2
     end
     
     for b = (bitWidth):-1:1
-        fprintf(fID,'--B:%d\n',bitWidth-b-1)
+        fprintf(fID,'--B:%d\n',bitWidth-b)
+        fprintf('--B:%d\n',bitWidth-b)
+        
+        av_bits_per_lvl = 0;
         
         for k = 1:Ninputs_extended             
                 tmp_col_next.val(k) = levels_tensor_items(k,b,l);
@@ -409,13 +431,22 @@ for l = 7:-1:2
                           
         % start compression of excess bits
         
-            while (excess_bits_tmp > 0) % the column has to be reduced
+        for n = 1:numel(tmp_col.val)
+            if (tmp_col.val(n) == 1 && tmp_col.state(n) == "unused")
+                av_bits_per_lvl = av_bits_per_lvl + 1;
+            end
+        end
+        
+            while (excess_bits_tmp > 0 && av_bits_per_lvl >= 2) % the column has to be reduced
                 
                 %disp('here');
                 
+               
+                
                 num_FA = floor(excess_bits_tmp/2);
                 
-                if (num_FA > 0) % a compressors can be instantiated
+                
+                if (num_FA > 0 && av_bits_per_lvl >= 3) % a compressors can be instantiated
                     excess_bits_tmp = excess_bits_tmp - 2;
                     triplet_items = [];
                     triplet_labels = [];
@@ -428,8 +459,8 @@ for l = 7:-1:2
                             if (sum(triplet_items) == 3)
                                                                 
                                 FA_count = FA_count + 1;
-                                sum_name = string(sprintf('SUM_RES_L%d(%d)(%d)',l,triplet_idx(3),bitWidth-b-1));
-                                carry_name = string(sprintf('CARRY_RES_L%d(%d)(%d)',l,triplet_idx(3),bitWidth-b-1));
+                                sum_name = string(sprintf('SUM_RES_L%d(%d)(%d)',l,triplet_idx(3),bitWidth-b));
+                                carry_name = string(sprintf('CARRY_RES_L%d(%d)(%d)',l,triplet_idx(3),bitWidth-b));
                                 
                                 fprintf(fID,'\tFA%d_L%d : FA port map (%s,%s,%s,%s,%s);\n',FA_count,l,tmp_col.name(triplet_idx(1)),tmp_col.name(triplet_idx(2)),tmp_col.name(triplet_idx(3)),sum_name,carry_name)
                                
@@ -451,7 +482,7 @@ for l = 7:-1:2
                             end
                         end  
                     end
-                else
+                elseif (av_bits_per_lvl >= 2)
                     % an HA has to be instantiated
                     excess_bits_tmp = excess_bits_tmp - 1;
                     duplet_items = [];
@@ -465,8 +496,8 @@ for l = 7:-1:2
                             if (sum(duplet_items) == 2)
                                                                 
                                 HA_count = HA_count + 1;
-                                sum_name = string(sprintf('SUM_RES_L%d(%d)(%d)',l,duplet_idx(2),bitWidth-b-1));
-                                carry_name = string(sprintf('CARRY_RES_L%d(%d)(%d)',l,duplet_idx(2),bitWidth-b-1));
+                                sum_name = string(sprintf('SUM_RES_L%d(%d)(%d)',l,duplet_idx(2),bitWidth-b));
+                                carry_name = string(sprintf('CARRY_RES_L%d(%d)(%d)',l,duplet_idx(2),bitWidth-b));
                                 
                                 fprintf(fID,'\tHA%d_L%d : HA port map (%s,%s,%s,%s);\n',HA_count,l,tmp_col.name(duplet_idx(1)),tmp_col.name(duplet_idx(2)),sum_name,carry_name)
                                
@@ -484,11 +515,22 @@ for l = 7:-1:2
                                 break 
                             end
                         end 
-                    end                
+                    end  
+                
+          
+                    
                 end
                 
                 
                 excess_bits_tmp = sum(tmp_col.val) - max_items_L(l-1);
+                
+                av_bits_per_lvl = 0;
+                
+                for n = 1:numel(tmp_col.val)
+                    if (tmp_col.val(n) == 1 && tmp_col.state(n) == "unused")
+                        av_bits_per_lvl = av_bits_per_lvl + 1;
+                    end
+                end
                 
             end
         
@@ -549,8 +591,16 @@ fprintf(fID,'\nfinal_sum_process : process (FINAL_SUM)\n');
 fprintf(fID,'begin\n');
 fprintf(fID,'\tSUM <= std_logic_vector(signed(FINAL_SUM(0)(64 downto 0)) + signed(FINAL_SUM(1)(64 downto 0)));\n');
 fprintf(fID,'end process;\n');
-fprintf(fID,'\nend architecture Dadda;');
+
+if type_tree == "DADDA"
+    fprintf(fID,'\nend architecture Dadda;');
+else
+    fprintf(fID,'\nend architecture Wallace;');
+end
 
 
+fclose(fID);
+close all
+clc
 
            

@@ -387,7 +387,7 @@ spy(levels_tensor_items(:,:,Nlevels));
 
 FA_count = 0;
 HA_count = 0;
-for l = 7:-1:2 
+for l = Nlevels:-1:2 
     fprintf(fID,'---------------------- LEVEL %d -------------------------------\n',l)
     
     for k = 1:Ninputs_extended
@@ -397,7 +397,7 @@ for l = 7:-1:2
     end
     
     for b = (bitWidth):-1:1
-        fprintf(fID,'--B:%d\n',bitWidth-b-1)
+        fprintf(fID,'--B:%d\n',bitWidth-b)
         
         for k = 1:Ninputs_extended             
                 tmp_col_next.val(k) = levels_tensor_items(k,b,l);
@@ -553,6 +553,7 @@ fprintf(fID,'\tSUM <= std_logic_vector(signed(FINAL_SUM(0)(64 downto 0)) + signe
 fprintf(fID,'end process;\n');
 fprintf(fID,'\nend architecture Dadda;');
 
+fclose(fID);
 
 
            
