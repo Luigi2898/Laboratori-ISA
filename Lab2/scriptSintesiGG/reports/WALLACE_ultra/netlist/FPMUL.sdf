@@ -1,7 +1,7 @@
 (DELAYFILE
 (SDFVERSION "OVI 2.1")
 (DESIGN "FPmul")
-(DATE "Tue Dec 15 22:51:04 2020")
+(DATE "Wed Dec 16 18:46:13 2020")
 (VENDOR "NangateOpenCellLibrary")
 (PROGRAM "Synopsys Design Compiler cmos")
 (VERSION "O-2018.06-SP4")

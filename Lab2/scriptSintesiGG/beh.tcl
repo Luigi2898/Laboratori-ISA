@@ -24,7 +24,6 @@ set_load $OLOAD [all_outputs]
 compile > logs/BEH/compilation.txt
 report_area > ./reports/BEH/area_preopt.txt
 report_timing > ./reports/BEH/timing_preopt.txt
-create_clock -name MY_CLK -period 5 clk
 optimize_registers > logs/BEH/optimization.txt
 report_timing > ./reports/BEH/timing_postopt.txt
 create_clock -name MY_CLK -period 10 clk

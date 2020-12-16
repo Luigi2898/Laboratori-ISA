@@ -1,4 +1,5 @@
 Information: Updating design information... (UID-85)
+Warning: There are infeasible paths detected in your design that were ignored during optimization. Please run 'report_timing -attributes' and/or 'create_qor_snapshot/query_qor_snapshot -infeasible_paths' to identify these paths.  (OPT-1721)
  
 ****************************************
 Report : timing
@@ -7,16 +8,15 @@ Report : timing
         -max_paths 1
 Design : FPmul
 Version: O-2018.06-SP4
-Date   : Tue Dec 15 18:54:01 2020
+Date   : Wed Dec 16 13:54:46 2020
 ****************************************
 
 Operating Conditions: typical   Library: NangateOpenCellLibrary
 Wire Load Model Mode: top
 
-  Startpoint: I1/I0/MY_CLK_r_REG185_S2
+  Startpoint: I4/I3/MY_CLK_r_REG30_S6
               (rising edge-triggered flip-flop clocked by MY_CLK)
-  Endpoint: MY_CLK_r_REG44_S3
-            (rising edge-triggered flip-flop clocked by MY_CLK)
+  Endpoint: FP_Z[0] (output port clocked by MY_CLK)
   Path Group: MY_CLK
   Path Type: max
 
@@ -24,92 +24,29 @@ Wire Load Model Mode: top
   ------------------------------------------------
   FPmul              5K_hvratio_1_1        NangateOpenCellLibrary
 
-  Point                                                   Incr       Path
-  --------------------------------------------------------------------------
-  clock MY_CLK (rise edge)                                0.00       0.00
-  clock network delay (ideal)                             0.00       0.00
-  I1/I0/MY_CLK_r_REG185_S2/CK (DFF_X1)                    0.00       0.00 r
-  I1/I0/MY_CLK_r_REG185_S2/Q (DFF_X1)                     0.20       0.20 r
-  I1/I0/SIG[7] (UnpackFP_0)                               0.00       0.20 r
-  I1/A_SIG[7] (FPmul_stage1)                              0.00       0.20 r
-  I2/A_SIG[7] (FPmul_stage2_mbe)                          0.00       0.20 r
-  I2/mult_168/a[7] (FPmul_stage2_mbe_DW_mult_uns_1)       0.00       0.20 r
-  I2/mult_168/U2461/ZN (INV_X1)                           0.14       0.34 f
-  I2/mult_168/U3917/ZN (INV_X1)                           0.14       0.48 r
-  I2/mult_168/U3327/ZN (XNOR2_X1)                         0.14       0.62 r
-  I2/mult_168/U2269/ZN (NAND2_X1)                         0.17       0.79 f
-  I2/mult_168/U2169/Z (CLKBUF_X1)                         0.13       0.92 f
-  I2/mult_168/U2837/ZN (OAI22_X1)                         0.08       1.00 r
-  I2/mult_168/U929/S (FA_X1)                              0.13       1.13 f
-  I2/mult_168/U926/CO (FA_X1)                             0.10       1.23 f
-  I2/mult_168/U914/CO (FA_X1)                             0.09       1.32 f
-  I2/mult_168/U902/S (FA_X1)                              0.13       1.46 r
-  I2/mult_168/U901/S (FA_X1)                              0.11       1.57 f
-  I2/mult_168/U2638/ZN (NAND2_X1)                         0.04       1.61 r
-  I2/mult_168/U2569/ZN (INV_X1)                           0.03       1.64 f
-  I2/mult_168/U2568/ZN (AOI21_X1)                         0.04       1.69 r
-  I2/mult_168/U3772/ZN (OAI21_X1)                         0.03       1.72 f
-  I2/mult_168/U3405/ZN (AOI21_X1)                         0.08       1.79 r
-  I2/mult_168/U2535/ZN (OAI21_X1)                         0.04       1.84 f
-  I2/mult_168/U2533/ZN (NAND2_X1)                         0.04       1.88 r
-  I2/mult_168/U2358/ZN (AND2_X1)                          0.05       1.93 r
-  I2/mult_168/U3852/ZN (OAI21_X1)                         0.03       1.96 f
-  I2/mult_168/U3668/ZN (XNOR2_X1)                         0.16       2.13 r
-  I2/mult_168/product[47] (FPmul_stage2_mbe_DW_mult_uns_1)
-                                                          0.00       2.13 r
-  I2/SIG_in[27] (FPmul_stage2_mbe)                        0.00       2.13 r
-  I3/SIG_in[27] (FPmul_stage3)                            0.00       2.13 r
-  I3/I9/SIG_in[27] (FPnormalize_SIG_width28_0)            0.00       2.13 r
-  I3/I9/U4/ZN (INV_X1)                                    0.04       2.17 f
-  I3/I9/U2/ZN (INV_X1)                                    0.13       2.30 r
-  I3/I9/U30/Z (MUX2_X1)                                   0.10       2.40 r
-  I3/I9/SIG_out[3] (FPnormalize_SIG_width28_0)            0.00       2.40 r
-  I3/I11/SIG_in[3] (FPround_SIG_width28)                  0.00       2.40 r
-  I3/I11/add_45/A[0] (FPround_SIG_width28_DW01_inc_1)     0.00       2.40 r
-  I3/I11/add_45/U205/ZN (NAND2_X1)                        0.04       2.43 f
-  I3/I11/add_45/U202/ZN (NOR2_X1)                         0.05       2.49 r
-  I3/I11/add_45/U206/ZN (NAND2_X1)                        0.04       2.53 f
-  I3/I11/add_45/U196/ZN (NOR2_X1)                         0.13       2.66 r
-  I3/I11/add_45/U184/ZN (AND2_X1)                         0.06       2.72 r
-  I3/I11/add_45/SUM[24] (FPround_SIG_width28_DW01_inc_1)
-                                                          0.00       2.72 r
-  I3/I11/U4/ZN (AND2_X1)                                  0.10       2.82 r
-  I3/I11/SIG_out[27] (FPround_SIG_width28)                0.00       2.82 r
-  I3/SIG_out_round[27] (FPmul_stage3)                     0.00       2.82 r
-  I4/SIG_out_round[27] (FPmul_stage4)                     0.00       2.82 r
-  I4/I1/SIG_in[27] (FPnormalize_SIG_width28_1)            0.00       2.82 r
-  I4/I1/U5/ZN (INV_X1)                                    0.04       2.86 f
-  I4/I1/U2/ZN (INV_X1)                                    0.12       2.97 r
-  I4/I1/U55/Z (MUX2_X1)                                   0.10       3.07 f
-  I4/I1/SIG_out[25] (FPnormalize_SIG_width28_1)           0.00       3.07 f
-  I4/U31/ZN (NOR3_X1)                                     0.06       3.13 r
-  I4/U32/ZN (NAND4_X1)                                    0.05       3.18 f
-  I4/U33/ZN (NOR4_X1)                                     0.10       3.27 r
-  I4/U34/ZN (AOI211_X1)                                   0.03       3.31 f
-  I4/U10/ZN (INV_X1)                                      0.03       3.34 r
-  I4/U8/ZN (AOI21_X1)                                     0.03       3.37 f
-  I4/I3/isINF (PackFP)                                    0.00       3.37 f
-  I4/I3/U6/ZN (INV_X1)                                    0.03       3.40 r
-  I4/I3/U4/ZN (NAND2_X1)                                  0.06       3.46 f
-  I4/I3/U8/ZN (INV_X1)                                    0.04       3.50 r
-  I4/I3/U3/ZN (AND2_X1)                                   0.12       3.62 r
-  I4/I3/U9/ZN (AND2_X1)                                   0.07       3.69 r
-  I4/I3/FP[0] (PackFP)                                    0.00       3.69 r
-  I4/FP_Z[0] (FPmul_stage4)                               0.00       3.69 r
-  MY_CLK_r_REG44_S3/D (DFF_X1)                            0.01       3.70 r
-  data arrival time                                                  3.70
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock MY_CLK (rise edge)                 0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  I4/I3/MY_CLK_r_REG30_S6/CK (DFF_X1)      0.00       0.00 r
+  I4/I3/MY_CLK_r_REG30_S6/Q (DFF_X1)       0.08       0.08 r
+  I4/I3/U3/ZN (AND2_X1)                    0.12       0.21 r
+  I4/I3/U9/ZN (AND2_X1)                    0.07       0.28 r
+  I4/I3/FP[0] (PackFP)                     0.00       0.28 r
+  I4/FP_Z[0] (FPmul_stage4)                0.00       0.28 r
+  FP_Z[0] (out)                            0.02       0.30 r
+  data arrival time                                   0.30
 
-  clock MY_CLK (rise edge)                                5.00       5.00
-  clock network delay (ideal)                             0.00       5.00
-  clock uncertainty                                      -0.07       4.93
-  MY_CLK_r_REG44_S3/CK (DFF_X1)                           0.00       4.93 r
-  library setup time                                     -0.03       4.90
-  data required time                                                 4.90
-  --------------------------------------------------------------------------
-  data required time                                                 4.90
-  data arrival time                                                 -3.70
-  --------------------------------------------------------------------------
-  slack (MET)                                                        1.20
+  clock MY_CLK (rise edge)                 0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  clock uncertainty                       -0.07      -0.07
+  output external delay                   -0.50      -0.57
+  data required time                                 -0.57
+  -----------------------------------------------------------
+  data required time                                 -0.57
+  data arrival time                                  -0.30
+  -----------------------------------------------------------
+  slack (VIOLATED)                                   -0.87
 
 
 1

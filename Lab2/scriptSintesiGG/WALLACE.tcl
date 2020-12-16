@@ -15,7 +15,7 @@ analyze -library work -format vhdl {../src/fpuvhdl/multiplier/fpmul_stage4_struc
 elaborate FPMUL -architecture PIPELINE -library work > logs/WALLACE/elaboration.txt
 link
 # setting design constrains
-create_clock -name MY_CLK -period 10 clk
+create_clock -name MY_CLK -period 0 clk
 set_dont_touch_network MY_CLK
 set_clock_uncertainty 0.07 [get_clocks MY_CLK]
 set_input_delay 0.5 -max -clock MY_CLK [remove_from_collection [all_inputs] clk]
@@ -24,7 +24,6 @@ set OLOAD [load_of NangateOpenCellLibrary/BUF_X4/A]
 set_load $OLOAD [all_outputs]
 compile > logs/WALLACE/compilation.txt
 report_timing > ./reports/WALLACE/timing_preopt.txt
-create_clock -name MY_CLK -period 5 clk
 optimize_registers > logs/WALLACE/optimization.txt
 report_timing > ./reports/WALLACE/timing_postopt.txt
 create_clock -name MY_CLK -period 10 clk

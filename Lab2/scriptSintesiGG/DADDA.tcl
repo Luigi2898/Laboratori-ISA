@@ -24,7 +24,6 @@ set OLOAD [load_of NangateOpenCellLibrary/BUF_X4/A]
 set_load $OLOAD [all_outputs]
 compile > logs/DADDA/compilation.txt
 report_timing > ./reports/DADDA/timing_preopt.txt
-create_clock -name MY_CLK -period 5 clk
 optimize_registers > logs/DADDA/optimization.txt
 report_timing > ./reports/DADDA/timing_postopt.txt
 create_clock -name MY_CLK -period 10 clk

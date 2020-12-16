@@ -13,7 +13,7 @@ analyze -library work -format vhdl {../src/fpuvhdl/multiplier/fpmul_single_cycle
 analyze -library work -format vhdl {../src/fpuvhdl/multiplier/fpmul_pipeline.vhd}
 elaborate FPMUL -architecture PIPELINE -library work > logs/CSA/elaboration.txt
 # setting design constrains
-create_clock -name MY_CLK -period 10.0 clk
+create_clock -name MY_CLK -period 0 clk
 set_dont_touch_network MY_CLK
 set_clock_uncertainty 0.07 [get_clocks MY_CLK]
 set_input_delay 0.5 -max -clock MY_CLK [remove_from_collection [all_inputs] clk]
@@ -27,6 +27,8 @@ compile -exact_map > logs/CSA/compilation.txt
 report_timing -nworst 10 > ./reports/CSA/timinig.txt
 report_area > ./reports/CSA/area.txt
 report_resources > ./reports/CSA/resources.txt
+create_clock -name MY_CLK -period 10 clk
+report_timing -nworst 10 > ./reports/CSA/timing_wclock.txt
 change_names -hierarchy -rules verilog
 write_sdf ./reports/CSA/netlist/FPMUL.sdf
 write -f verilog -hierarchy -output ./reports/CSA/netlist/FPMUL.v

@@ -1,4 +1,5 @@
 Information: Updating design information... (UID-85)
+Warning: There are infeasible paths detected in your design that were ignored during optimization. Please run 'report_timing -attributes' and/or 'create_qor_snapshot/query_qor_snapshot -infeasible_paths' to identify these paths.  (OPT-1721)
  
 ****************************************
 Report : timing
@@ -8,15 +9,15 @@ Report : timing
         -max_paths 10
 Design : FPmul
 Version: O-2018.06-SP4
-Date   : Tue Dec 15 16:13:06 2020
+Date   : Wed Dec 16 19:48:44 2020
 ****************************************
 
 Operating Conditions: typical   Library: NangateOpenCellLibrary
 Wire Load Model Mode: top
 
-  Startpoint: I1/A_SIG_reg[2]
+  Startpoint: I1/A_SIG_reg[13]
               (rising edge-triggered flip-flop clocked by MY_CLK)
-  Endpoint: I2/SIG_in_REG_reg[27]
+  Endpoint: I2/SIG_in_REG_reg[21]
             (rising edge-triggered flip-flop clocked by MY_CLK)
   Path Group: MY_CLK
   Path Type: max
@@ -29,85 +30,47 @@ Wire Load Model Mode: top
   --------------------------------------------------------------------------
   clock MY_CLK (rise edge)                                0.00       0.00
   clock network delay (ideal)                             0.00       0.00
-  I1/A_SIG_reg[2]/CK (DFF_X1)                             0.00       0.00 r
-  I1/A_SIG_reg[2]/Q (DFF_X1)                              0.19       0.19 r
-  I2/mult_168/A[2] (FPmul_DW02_mult_0)                    0.00       0.19 r
-  I2/mult_168/U1292/ZN (INV_X1)                           0.12       0.31 f
-  I2/mult_168/U1429/Z (XOR2_X1)                           0.12       0.43 r
-  I2/mult_168/U1213/ZN (INV_X1)                           0.03       0.47 f
-  I2/mult_168/U1214/ZN (AND2_X1)                          0.05       0.51 f
-  I2/mult_168/U1181/ZN (INV_X1)                           0.16       0.67 r
-  I2/mult_168/U1351/ZN (OAI22_X1)                         0.07       0.74 f
-  I2/mult_168/U1350/ZN (XNOR2_X1)                         0.06       0.80 f
-  I2/mult_168/U381/S (HA_X1)                              0.08       0.88 f
-  I2/mult_168/U2004/ZN (AOI222_X1)                        0.12       1.01 r
-  I2/mult_168/U2000/ZN (OAI222_X1)                        0.07       1.07 f
-  I2/mult_168/U1996/ZN (AOI222_X1)                        0.11       1.19 r
-  I2/mult_168/U1992/ZN (OAI222_X1)                        0.07       1.25 f
-  I2/mult_168/U1988/ZN (AOI222_X1)                        0.11       1.37 r
-  I2/mult_168/U1984/ZN (OAI222_X1)                        0.07       1.43 f
-  I2/mult_168/U1980/ZN (AOI222_X1)                        0.11       1.55 r
-  I2/mult_168/U1976/ZN (OAI222_X1)                        0.07       1.61 f
-  I2/mult_168/U1972/ZN (AOI222_X1)                        0.11       1.73 r
-  I2/mult_168/U1968/ZN (OAI222_X1)                        0.07       1.79 f
-  I2/mult_168/U1964/ZN (AOI222_X1)                        0.11       1.91 r
-  I2/mult_168/U1960/ZN (OAI222_X1)                        0.07       1.97 f
-  I2/mult_168/U1956/ZN (AOI222_X1)                        0.11       2.09 r
-  I2/mult_168/U1952/ZN (OAI222_X1)                        0.07       2.15 f
-  I2/mult_168/U1948/ZN (AOI222_X1)                        0.11       2.26 r
-  I2/mult_168/U1944/ZN (OAI222_X1)                        0.07       2.33 f
-  I2/mult_168/U1940/ZN (AOI222_X1)                        0.10       2.43 r
-  I2/mult_168/U1291/ZN (INV_X1)                           0.03       2.46 f
-  I2/mult_168/U1936/ZN (AOI222_X1)                        0.11       2.57 r
-  I2/mult_168/U1932/ZN (OAI222_X1)                        0.07       2.63 f
-  I2/mult_168/U157/CO (FA_X1)                             0.10       2.73 f
-  I2/mult_168/U156/CO (FA_X1)                             0.09       2.82 f
-  I2/mult_168/U155/CO (FA_X1)                             0.09       2.91 f
-  I2/mult_168/U154/CO (FA_X1)                             0.09       3.00 f
-  I2/mult_168/U153/CO (FA_X1)                             0.09       3.09 f
-  I2/mult_168/U152/CO (FA_X1)                             0.09       3.18 f
-  I2/mult_168/U151/CO (FA_X1)                             0.09       3.27 f
-  I2/mult_168/U150/CO (FA_X1)                             0.09       3.36 f
-  I2/mult_168/U149/CO (FA_X1)                             0.09       3.45 f
-  I2/mult_168/U148/CO (FA_X1)                             0.09       3.54 f
-  I2/mult_168/U147/CO (FA_X1)                             0.09       3.63 f
-  I2/mult_168/U146/CO (FA_X1)                             0.09       3.72 f
-  I2/mult_168/U145/CO (FA_X1)                             0.09       3.81 f
-  I2/mult_168/U144/CO (FA_X1)                             0.09       3.90 f
-  I2/mult_168/U143/CO (FA_X1)                             0.09       4.00 f
-  I2/mult_168/U142/CO (FA_X1)                             0.09       4.09 f
-  I2/mult_168/U141/CO (FA_X1)                             0.09       4.18 f
-  I2/mult_168/U140/CO (FA_X1)                             0.09       4.27 f
-  I2/mult_168/U139/CO (FA_X1)                             0.09       4.36 f
-  I2/mult_168/U138/CO (FA_X1)                             0.09       4.45 f
-  I2/mult_168/U137/CO (FA_X1)                             0.09       4.54 f
-  I2/mult_168/U136/CO (FA_X1)                             0.09       4.63 f
-  I2/mult_168/U135/CO (FA_X1)                             0.09       4.72 f
-  I2/mult_168/U134/CO (FA_X1)                             0.09       4.81 f
-  I2/mult_168/U133/CO (FA_X1)                             0.09       4.90 f
-  I2/mult_168/U2017/ZN (XNOR2_X1)                         0.06       4.96 f
-  I2/mult_168/U2016/ZN (XNOR2_X1)                         0.06       5.02 f
-  I2/mult_168/U2012/Z (XOR2_X1)                           0.07       5.08 f
-  I2/mult_168/PRODUCT[47] (FPmul_DW02_mult_0)             0.00       5.08 f
-  I2/SIG_in_REG_reg[27]/D (DFF_X1)                        0.01       5.09 f
-  data arrival time                                                  5.09
+  I1/A_SIG_reg[13]/CK (DFF_X1)                            0.00       0.00 r
+  I1/A_SIG_reg[13]/Q (DFF_X1)                             0.15       0.15 r
+  I2/mult_168/A[13] (FPmul_DW02_mult_2)                   0.00       0.15 r
+  I2/mult_168/U2936/ZN (INV_X1)                           0.06       0.21 f
+  I2/mult_168/U2934/ZN (INV_X1)                           0.10       0.31 r
+  I2/mult_168/U1523/ZN (XNOR2_X2)                         0.11       0.42 r
+  I2/mult_168/U2350/ZN (INV_X1)                           0.04       0.47 f
+  I2/mult_168/U2351/ZN (INV_X2)                           0.07       0.53 r
+  I2/mult_168/U2384/ZN (OAI22_X1)                         0.05       0.58 f
+  I2/mult_168/U631/CO (FA_X1)                             0.11       0.69 f
+  I2/mult_168/U618/CO (FA_X1)                             0.11       0.80 f
+  I2/mult_168/U605/S (FA_X1)                              0.15       0.94 r
+  I2/mult_168/U603/S (FA_X1)                              0.12       1.06 f
+  I2/mult_168/U602/S (FA_X1)                              0.15       1.20 r
+  I2/mult_168/U1924/ZN (NOR2_X1)                          0.03       1.23 f
+  I2/mult_168/U2830/ZN (OAI21_X1)                         0.05       1.28 r
+  I2/mult_168/U2467/ZN (AOI21_X1)                         0.03       1.31 f
+  I2/mult_168/U2466/ZN (OAI21_X1)                         0.08       1.39 r
+  I2/mult_168/U2469/ZN (AOI21_X1)                         0.05       1.44 f
+  I2/mult_168/U2903/ZN (OAI21_X1)                         0.05       1.49 r
+  I2/mult_168/U2707/ZN (XNOR2_X1)                         0.06       1.55 r
+  I2/mult_168/PRODUCT[41] (FPmul_DW02_mult_2)             0.00       1.55 r
+  I2/SIG_in_REG_reg[21]/D (DFF_X2)                        0.01       1.56 r
+  data arrival time                                                  1.56
 
-  clock MY_CLK (rise edge)                               10.00      10.00
-  clock network delay (ideal)                             0.00      10.00
-  clock uncertainty                                      -0.07       9.93
-  I2/SIG_in_REG_reg[27]/CK (DFF_X1)                       0.00       9.93 r
-  library setup time                                     -0.04       9.89
-  data required time                                                 9.89
+  clock MY_CLK (rise edge)                                0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  clock uncertainty                                      -0.07      -0.07
+  I2/SIG_in_REG_reg[21]/CK (DFF_X2)                       0.00      -0.07 r
+  library setup time                                     -0.03      -0.10
+  data required time                                                -0.10
   --------------------------------------------------------------------------
-  data required time                                                 9.89
-  data arrival time                                                 -5.09
+  data required time                                                -0.10
+  data arrival time                                                 -1.56
   --------------------------------------------------------------------------
-  slack (MET)                                                        4.80
+  slack (VIOLATED)                                                  -1.66
 
 
-  Startpoint: I1/A_SIG_reg[2]
+  Startpoint: I1/A_SIG_reg[13]
               (rising edge-triggered flip-flop clocked by MY_CLK)
-  Endpoint: I2/SIG_in_REG_reg[27]
+  Endpoint: I2/SIG_in_REG_reg[16]
             (rising edge-triggered flip-flop clocked by MY_CLK)
   Path Group: MY_CLK
   Path Type: max
@@ -120,85 +83,47 @@ Wire Load Model Mode: top
   --------------------------------------------------------------------------
   clock MY_CLK (rise edge)                                0.00       0.00
   clock network delay (ideal)                             0.00       0.00
-  I1/A_SIG_reg[2]/CK (DFF_X1)                             0.00       0.00 r
-  I1/A_SIG_reg[2]/Q (DFF_X1)                              0.19       0.19 r
-  I2/mult_168/A[2] (FPmul_DW02_mult_0)                    0.00       0.19 r
-  I2/mult_168/U1292/ZN (INV_X1)                           0.12       0.31 f
-  I2/mult_168/U1429/Z (XOR2_X1)                           0.12       0.43 r
-  I2/mult_168/U1213/ZN (INV_X1)                           0.03       0.47 f
-  I2/mult_168/U1214/ZN (AND2_X1)                          0.05       0.51 f
-  I2/mult_168/U1181/ZN (INV_X1)                           0.16       0.67 r
-  I2/mult_168/U1351/ZN (OAI22_X1)                         0.07       0.74 f
-  I2/mult_168/U1350/ZN (XNOR2_X1)                         0.06       0.80 f
-  I2/mult_168/U381/S (HA_X1)                              0.08       0.88 f
-  I2/mult_168/U2004/ZN (AOI222_X1)                        0.12       1.00 r
-  I2/mult_168/U2000/ZN (OAI222_X1)                        0.07       1.07 f
-  I2/mult_168/U1996/ZN (AOI222_X1)                        0.11       1.18 r
-  I2/mult_168/U1992/ZN (OAI222_X1)                        0.07       1.25 f
-  I2/mult_168/U1988/ZN (AOI222_X1)                        0.11       1.36 r
-  I2/mult_168/U1984/ZN (OAI222_X1)                        0.07       1.43 f
-  I2/mult_168/U1980/ZN (AOI222_X1)                        0.11       1.54 r
-  I2/mult_168/U1976/ZN (OAI222_X1)                        0.07       1.61 f
-  I2/mult_168/U1972/ZN (AOI222_X1)                        0.11       1.72 r
-  I2/mult_168/U1968/ZN (OAI222_X1)                        0.07       1.79 f
-  I2/mult_168/U1964/ZN (AOI222_X1)                        0.11       1.90 r
-  I2/mult_168/U1960/ZN (OAI222_X1)                        0.07       1.97 f
-  I2/mult_168/U1956/ZN (AOI222_X1)                        0.11       2.08 r
-  I2/mult_168/U1952/ZN (OAI222_X1)                        0.07       2.15 f
-  I2/mult_168/U1948/ZN (AOI222_X1)                        0.11       2.26 r
-  I2/mult_168/U1944/ZN (OAI222_X1)                        0.07       2.33 f
-  I2/mult_168/U1940/ZN (AOI222_X1)                        0.10       2.43 r
-  I2/mult_168/U1291/ZN (INV_X1)                           0.03       2.46 f
-  I2/mult_168/U1936/ZN (AOI222_X1)                        0.11       2.56 r
-  I2/mult_168/U1932/ZN (OAI222_X1)                        0.07       2.63 f
-  I2/mult_168/U157/CO (FA_X1)                             0.10       2.72 f
-  I2/mult_168/U156/CO (FA_X1)                             0.09       2.81 f
-  I2/mult_168/U155/CO (FA_X1)                             0.09       2.91 f
-  I2/mult_168/U154/CO (FA_X1)                             0.09       3.00 f
-  I2/mult_168/U153/CO (FA_X1)                             0.09       3.09 f
-  I2/mult_168/U152/CO (FA_X1)                             0.09       3.18 f
-  I2/mult_168/U151/CO (FA_X1)                             0.09       3.27 f
-  I2/mult_168/U150/CO (FA_X1)                             0.09       3.36 f
-  I2/mult_168/U149/CO (FA_X1)                             0.09       3.45 f
-  I2/mult_168/U148/CO (FA_X1)                             0.09       3.54 f
-  I2/mult_168/U147/CO (FA_X1)                             0.09       3.63 f
-  I2/mult_168/U146/CO (FA_X1)                             0.09       3.72 f
-  I2/mult_168/U145/CO (FA_X1)                             0.09       3.81 f
-  I2/mult_168/U144/CO (FA_X1)                             0.09       3.90 f
-  I2/mult_168/U143/CO (FA_X1)                             0.09       3.99 f
-  I2/mult_168/U142/CO (FA_X1)                             0.09       4.08 f
-  I2/mult_168/U141/CO (FA_X1)                             0.09       4.17 f
-  I2/mult_168/U140/CO (FA_X1)                             0.09       4.27 f
-  I2/mult_168/U139/CO (FA_X1)                             0.09       4.36 f
-  I2/mult_168/U138/CO (FA_X1)                             0.09       4.45 f
-  I2/mult_168/U137/CO (FA_X1)                             0.09       4.54 f
-  I2/mult_168/U136/CO (FA_X1)                             0.09       4.63 f
-  I2/mult_168/U135/CO (FA_X1)                             0.09       4.72 f
-  I2/mult_168/U134/CO (FA_X1)                             0.09       4.81 f
-  I2/mult_168/U133/CO (FA_X1)                             0.09       4.90 f
-  I2/mult_168/U2017/ZN (XNOR2_X1)                         0.06       4.96 f
-  I2/mult_168/U2016/ZN (XNOR2_X1)                         0.06       5.01 f
-  I2/mult_168/U2012/Z (XOR2_X1)                           0.07       5.08 f
-  I2/mult_168/PRODUCT[47] (FPmul_DW02_mult_0)             0.00       5.08 f
-  I2/SIG_in_REG_reg[27]/D (DFF_X1)                        0.01       5.09 f
-  data arrival time                                                  5.09
+  I1/A_SIG_reg[13]/CK (DFF_X1)                            0.00       0.00 r
+  I1/A_SIG_reg[13]/Q (DFF_X1)                             0.15       0.15 r
+  I2/mult_168/A[13] (FPmul_DW02_mult_2)                   0.00       0.15 r
+  I2/mult_168/U2936/ZN (INV_X1)                           0.06       0.21 f
+  I2/mult_168/U2934/ZN (INV_X1)                           0.10       0.31 r
+  I2/mult_168/U1523/ZN (XNOR2_X2)                         0.11       0.42 r
+  I2/mult_168/U2350/ZN (INV_X1)                           0.04       0.47 f
+  I2/mult_168/U2351/ZN (INV_X2)                           0.07       0.53 r
+  I2/mult_168/U2384/ZN (OAI22_X1)                         0.05       0.58 f
+  I2/mult_168/U631/CO (FA_X1)                             0.11       0.69 f
+  I2/mult_168/U618/CO (FA_X1)                             0.11       0.80 f
+  I2/mult_168/U605/S (FA_X1)                              0.15       0.94 r
+  I2/mult_168/U603/S (FA_X1)                              0.12       1.06 f
+  I2/mult_168/U602/S (FA_X1)                              0.15       1.20 r
+  I2/mult_168/U1924/ZN (NOR2_X1)                          0.03       1.23 f
+  I2/mult_168/U2830/ZN (OAI21_X1)                         0.05       1.28 r
+  I2/mult_168/U2467/ZN (AOI21_X1)                         0.03       1.31 f
+  I2/mult_168/U2466/ZN (OAI21_X1)                         0.08       1.39 r
+  I2/mult_168/U2471/ZN (AOI21_X1)                         0.05       1.44 f
+  I2/mult_168/U2908/ZN (OAI21_X1)                         0.05       1.49 r
+  I2/mult_168/U2798/ZN (XNOR2_X1)                         0.06       1.55 r
+  I2/mult_168/PRODUCT[36] (FPmul_DW02_mult_2)             0.00       1.55 r
+  I2/SIG_in_REG_reg[16]/D (DFF_X2)                        0.01       1.56 r
+  data arrival time                                                  1.56
 
-  clock MY_CLK (rise edge)                               10.00      10.00
-  clock network delay (ideal)                             0.00      10.00
-  clock uncertainty                                      -0.07       9.93
-  I2/SIG_in_REG_reg[27]/CK (DFF_X1)                       0.00       9.93 r
-  library setup time                                     -0.04       9.89
-  data required time                                                 9.89
+  clock MY_CLK (rise edge)                                0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  clock uncertainty                                      -0.07      -0.07
+  I2/SIG_in_REG_reg[16]/CK (DFF_X2)                       0.00      -0.07 r
+  library setup time                                     -0.03      -0.10
+  data required time                                                -0.10
   --------------------------------------------------------------------------
-  data required time                                                 9.89
-  data arrival time                                                 -5.09
+  data required time                                                -0.10
+  data arrival time                                                 -1.56
   --------------------------------------------------------------------------
-  slack (MET)                                                        4.80
+  slack (VIOLATED)                                                  -1.66
 
 
-  Startpoint: I1/A_SIG_reg[2]
+  Startpoint: I1/A_SIG_reg[13]
               (rising edge-triggered flip-flop clocked by MY_CLK)
-  Endpoint: I2/SIG_in_REG_reg[27]
+  Endpoint: I2/SIG_in_REG_reg[24]
             (rising edge-triggered flip-flop clocked by MY_CLK)
   Path Group: MY_CLK
   Path Type: max
@@ -211,85 +136,47 @@ Wire Load Model Mode: top
   --------------------------------------------------------------------------
   clock MY_CLK (rise edge)                                0.00       0.00
   clock network delay (ideal)                             0.00       0.00
-  I1/A_SIG_reg[2]/CK (DFF_X1)                             0.00       0.00 r
-  I1/A_SIG_reg[2]/Q (DFF_X1)                              0.19       0.19 r
-  I2/mult_168/A[2] (FPmul_DW02_mult_0)                    0.00       0.19 r
-  I2/mult_168/U1292/ZN (INV_X1)                           0.12       0.31 f
-  I2/mult_168/U1429/Z (XOR2_X1)                           0.12       0.43 r
-  I2/mult_168/U1213/ZN (INV_X1)                           0.03       0.47 f
-  I2/mult_168/U1214/ZN (AND2_X1)                          0.05       0.51 f
-  I2/mult_168/U1181/ZN (INV_X1)                           0.16       0.67 r
-  I2/mult_168/U1351/ZN (OAI22_X1)                         0.07       0.74 f
-  I2/mult_168/U1350/ZN (XNOR2_X1)                         0.06       0.80 f
-  I2/mult_168/U381/S (HA_X1)                              0.08       0.88 f
-  I2/mult_168/U2004/ZN (AOI222_X1)                        0.12       1.01 r
-  I2/mult_168/U2000/ZN (OAI222_X1)                        0.07       1.07 f
-  I2/mult_168/U1996/ZN (AOI222_X1)                        0.11       1.19 r
-  I2/mult_168/U1992/ZN (OAI222_X1)                        0.07       1.25 f
-  I2/mult_168/U1988/ZN (AOI222_X1)                        0.11       1.37 r
-  I2/mult_168/U1984/ZN (OAI222_X1)                        0.07       1.43 f
-  I2/mult_168/U1980/ZN (AOI222_X1)                        0.11       1.55 r
-  I2/mult_168/U1976/ZN (OAI222_X1)                        0.07       1.61 f
-  I2/mult_168/U1972/ZN (AOI222_X1)                        0.11       1.73 r
-  I2/mult_168/U1968/ZN (OAI222_X1)                        0.06       1.79 f
-  I2/mult_168/U1964/ZN (AOI222_X1)                        0.11       1.90 r
-  I2/mult_168/U1960/ZN (OAI222_X1)                        0.07       1.97 f
-  I2/mult_168/U1956/ZN (AOI222_X1)                        0.11       2.08 r
-  I2/mult_168/U1952/ZN (OAI222_X1)                        0.07       2.15 f
-  I2/mult_168/U1948/ZN (AOI222_X1)                        0.11       2.26 r
-  I2/mult_168/U1944/ZN (OAI222_X1)                        0.07       2.33 f
-  I2/mult_168/U1940/ZN (AOI222_X1)                        0.10       2.43 r
-  I2/mult_168/U1291/ZN (INV_X1)                           0.03       2.45 f
-  I2/mult_168/U1936/ZN (AOI222_X1)                        0.11       2.56 r
-  I2/mult_168/U1932/ZN (OAI222_X1)                        0.07       2.63 f
-  I2/mult_168/U157/CO (FA_X1)                             0.10       2.72 f
-  I2/mult_168/U156/CO (FA_X1)                             0.09       2.81 f
-  I2/mult_168/U155/CO (FA_X1)                             0.09       2.90 f
-  I2/mult_168/U154/CO (FA_X1)                             0.09       2.99 f
-  I2/mult_168/U153/CO (FA_X1)                             0.09       3.09 f
-  I2/mult_168/U152/CO (FA_X1)                             0.09       3.18 f
-  I2/mult_168/U151/CO (FA_X1)                             0.09       3.27 f
-  I2/mult_168/U150/CO (FA_X1)                             0.09       3.36 f
-  I2/mult_168/U149/CO (FA_X1)                             0.09       3.45 f
-  I2/mult_168/U148/CO (FA_X1)                             0.09       3.54 f
-  I2/mult_168/U147/CO (FA_X1)                             0.09       3.63 f
-  I2/mult_168/U146/CO (FA_X1)                             0.09       3.72 f
-  I2/mult_168/U145/CO (FA_X1)                             0.09       3.81 f
-  I2/mult_168/U144/CO (FA_X1)                             0.09       3.90 f
-  I2/mult_168/U143/CO (FA_X1)                             0.09       3.99 f
-  I2/mult_168/U142/CO (FA_X1)                             0.09       4.08 f
-  I2/mult_168/U141/CO (FA_X1)                             0.09       4.17 f
-  I2/mult_168/U140/CO (FA_X1)                             0.09       4.26 f
-  I2/mult_168/U139/CO (FA_X1)                             0.09       4.35 f
-  I2/mult_168/U138/CO (FA_X1)                             0.09       4.44 f
-  I2/mult_168/U137/CO (FA_X1)                             0.09       4.54 f
-  I2/mult_168/U136/CO (FA_X1)                             0.09       4.63 f
-  I2/mult_168/U135/CO (FA_X1)                             0.09       4.72 f
-  I2/mult_168/U134/CO (FA_X1)                             0.09       4.81 f
-  I2/mult_168/U133/CO (FA_X1)                             0.09       4.90 f
-  I2/mult_168/U2017/ZN (XNOR2_X1)                         0.06       4.96 f
-  I2/mult_168/U2016/ZN (XNOR2_X1)                         0.06       5.01 f
-  I2/mult_168/U2012/Z (XOR2_X1)                           0.07       5.08 f
-  I2/mult_168/PRODUCT[47] (FPmul_DW02_mult_0)             0.00       5.08 f
-  I2/SIG_in_REG_reg[27]/D (DFF_X1)                        0.01       5.09 f
-  data arrival time                                                  5.09
+  I1/A_SIG_reg[13]/CK (DFF_X1)                            0.00       0.00 r
+  I1/A_SIG_reg[13]/Q (DFF_X1)                             0.15       0.15 r
+  I2/mult_168/A[13] (FPmul_DW02_mult_2)                   0.00       0.15 r
+  I2/mult_168/U2936/ZN (INV_X1)                           0.06       0.21 f
+  I2/mult_168/U2934/ZN (INV_X1)                           0.10       0.31 r
+  I2/mult_168/U1523/ZN (XNOR2_X2)                         0.11       0.42 r
+  I2/mult_168/U2350/ZN (INV_X1)                           0.04       0.47 f
+  I2/mult_168/U2351/ZN (INV_X2)                           0.07       0.53 r
+  I2/mult_168/U2384/ZN (OAI22_X1)                         0.05       0.58 f
+  I2/mult_168/U631/CO (FA_X1)                             0.11       0.69 f
+  I2/mult_168/U618/CO (FA_X1)                             0.11       0.80 f
+  I2/mult_168/U605/S (FA_X1)                              0.15       0.94 r
+  I2/mult_168/U603/S (FA_X1)                              0.12       1.06 f
+  I2/mult_168/U602/S (FA_X1)                              0.15       1.20 r
+  I2/mult_168/U1924/ZN (NOR2_X1)                          0.03       1.23 f
+  I2/mult_168/U2830/ZN (OAI21_X1)                         0.05       1.28 r
+  I2/mult_168/U2467/ZN (AOI21_X1)                         0.03       1.31 f
+  I2/mult_168/U2466/ZN (OAI21_X1)                         0.08       1.39 r
+  I2/mult_168/U2472/ZN (AOI21_X1)                         0.05       1.44 f
+  I2/mult_168/U2900/ZN (OAI21_X1)                         0.05       1.49 r
+  I2/mult_168/U2719/ZN (XNOR2_X1)                         0.06       1.55 r
+  I2/mult_168/PRODUCT[44] (FPmul_DW02_mult_2)             0.00       1.55 r
+  I2/SIG_in_REG_reg[24]/D (DFF_X2)                        0.01       1.56 r
+  data arrival time                                                  1.56
 
-  clock MY_CLK (rise edge)                               10.00      10.00
-  clock network delay (ideal)                             0.00      10.00
-  clock uncertainty                                      -0.07       9.93
-  I2/SIG_in_REG_reg[27]/CK (DFF_X1)                       0.00       9.93 r
-  library setup time                                     -0.04       9.89
-  data required time                                                 9.89
+  clock MY_CLK (rise edge)                                0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  clock uncertainty                                      -0.07      -0.07
+  I2/SIG_in_REG_reg[24]/CK (DFF_X2)                       0.00      -0.07 r
+  library setup time                                     -0.03      -0.10
+  data required time                                                -0.10
   --------------------------------------------------------------------------
-  data required time                                                 9.89
-  data arrival time                                                 -5.09
+  data required time                                                -0.10
+  data arrival time                                                 -1.56
   --------------------------------------------------------------------------
-  slack (MET)                                                        4.80
+  slack (VIOLATED)                                                  -1.66
 
 
-  Startpoint: I1/A_SIG_reg[2]
+  Startpoint: I1/A_SIG_reg[13]
               (rising edge-triggered flip-flop clocked by MY_CLK)
-  Endpoint: I2/SIG_in_REG_reg[27]
+  Endpoint: I2/SIG_in_REG_reg[23]
             (rising edge-triggered flip-flop clocked by MY_CLK)
   Path Group: MY_CLK
   Path Type: max
@@ -302,85 +189,47 @@ Wire Load Model Mode: top
   --------------------------------------------------------------------------
   clock MY_CLK (rise edge)                                0.00       0.00
   clock network delay (ideal)                             0.00       0.00
-  I1/A_SIG_reg[2]/CK (DFF_X1)                             0.00       0.00 r
-  I1/A_SIG_reg[2]/Q (DFF_X1)                              0.19       0.19 r
-  I2/mult_168/A[2] (FPmul_DW02_mult_0)                    0.00       0.19 r
-  I2/mult_168/U1292/ZN (INV_X1)                           0.12       0.31 f
-  I2/mult_168/U1429/Z (XOR2_X1)                           0.12       0.43 r
-  I2/mult_168/U1213/ZN (INV_X1)                           0.03       0.47 f
-  I2/mult_168/U1214/ZN (AND2_X1)                          0.05       0.51 f
-  I2/mult_168/U1181/ZN (INV_X1)                           0.16       0.67 r
-  I2/mult_168/U1351/ZN (OAI22_X1)                         0.07       0.74 f
-  I2/mult_168/U1350/ZN (XNOR2_X1)                         0.06       0.80 f
-  I2/mult_168/U381/S (HA_X1)                              0.08       0.88 f
-  I2/mult_168/U2004/ZN (AOI222_X1)                        0.12       1.01 r
-  I2/mult_168/U2000/ZN (OAI222_X1)                        0.07       1.07 f
-  I2/mult_168/U1996/ZN (AOI222_X1)                        0.11       1.19 r
-  I2/mult_168/U1992/ZN (OAI222_X1)                        0.07       1.25 f
-  I2/mult_168/U1988/ZN (AOI222_X1)                        0.11       1.37 r
-  I2/mult_168/U1984/ZN (OAI222_X1)                        0.07       1.43 f
-  I2/mult_168/U1980/ZN (AOI222_X1)                        0.11       1.55 r
-  I2/mult_168/U1976/ZN (OAI222_X1)                        0.06       1.61 f
-  I2/mult_168/U1972/ZN (AOI222_X1)                        0.11       1.72 r
-  I2/mult_168/U1968/ZN (OAI222_X1)                        0.07       1.79 f
-  I2/mult_168/U1964/ZN (AOI222_X1)                        0.11       1.90 r
-  I2/mult_168/U1960/ZN (OAI222_X1)                        0.07       1.97 f
-  I2/mult_168/U1956/ZN (AOI222_X1)                        0.11       2.08 r
-  I2/mult_168/U1952/ZN (OAI222_X1)                        0.07       2.15 f
-  I2/mult_168/U1948/ZN (AOI222_X1)                        0.11       2.26 r
-  I2/mult_168/U1944/ZN (OAI222_X1)                        0.07       2.33 f
-  I2/mult_168/U1940/ZN (AOI222_X1)                        0.10       2.43 r
-  I2/mult_168/U1291/ZN (INV_X1)                           0.03       2.45 f
-  I2/mult_168/U1936/ZN (AOI222_X1)                        0.11       2.56 r
-  I2/mult_168/U1932/ZN (OAI222_X1)                        0.07       2.63 f
-  I2/mult_168/U157/CO (FA_X1)                             0.10       2.72 f
-  I2/mult_168/U156/CO (FA_X1)                             0.09       2.81 f
-  I2/mult_168/U155/CO (FA_X1)                             0.09       2.90 f
-  I2/mult_168/U154/CO (FA_X1)                             0.09       2.99 f
-  I2/mult_168/U153/CO (FA_X1)                             0.09       3.09 f
-  I2/mult_168/U152/CO (FA_X1)                             0.09       3.18 f
-  I2/mult_168/U151/CO (FA_X1)                             0.09       3.27 f
-  I2/mult_168/U150/CO (FA_X1)                             0.09       3.36 f
-  I2/mult_168/U149/CO (FA_X1)                             0.09       3.45 f
-  I2/mult_168/U148/CO (FA_X1)                             0.09       3.54 f
-  I2/mult_168/U147/CO (FA_X1)                             0.09       3.63 f
-  I2/mult_168/U146/CO (FA_X1)                             0.09       3.72 f
-  I2/mult_168/U145/CO (FA_X1)                             0.09       3.81 f
-  I2/mult_168/U144/CO (FA_X1)                             0.09       3.90 f
-  I2/mult_168/U143/CO (FA_X1)                             0.09       3.99 f
-  I2/mult_168/U142/CO (FA_X1)                             0.09       4.08 f
-  I2/mult_168/U141/CO (FA_X1)                             0.09       4.17 f
-  I2/mult_168/U140/CO (FA_X1)                             0.09       4.26 f
-  I2/mult_168/U139/CO (FA_X1)                             0.09       4.35 f
-  I2/mult_168/U138/CO (FA_X1)                             0.09       4.44 f
-  I2/mult_168/U137/CO (FA_X1)                             0.09       4.54 f
-  I2/mult_168/U136/CO (FA_X1)                             0.09       4.63 f
-  I2/mult_168/U135/CO (FA_X1)                             0.09       4.72 f
-  I2/mult_168/U134/CO (FA_X1)                             0.09       4.81 f
-  I2/mult_168/U133/CO (FA_X1)                             0.09       4.90 f
-  I2/mult_168/U2017/ZN (XNOR2_X1)                         0.06       4.96 f
-  I2/mult_168/U2016/ZN (XNOR2_X1)                         0.06       5.01 f
-  I2/mult_168/U2012/Z (XOR2_X1)                           0.07       5.08 f
-  I2/mult_168/PRODUCT[47] (FPmul_DW02_mult_0)             0.00       5.08 f
-  I2/SIG_in_REG_reg[27]/D (DFF_X1)                        0.01       5.09 f
-  data arrival time                                                  5.09
+  I1/A_SIG_reg[13]/CK (DFF_X1)                            0.00       0.00 r
+  I1/A_SIG_reg[13]/Q (DFF_X1)                             0.15       0.15 r
+  I2/mult_168/A[13] (FPmul_DW02_mult_2)                   0.00       0.15 r
+  I2/mult_168/U2936/ZN (INV_X1)                           0.06       0.21 f
+  I2/mult_168/U2934/ZN (INV_X1)                           0.10       0.31 r
+  I2/mult_168/U1523/ZN (XNOR2_X2)                         0.11       0.42 r
+  I2/mult_168/U2350/ZN (INV_X1)                           0.04       0.47 f
+  I2/mult_168/U2351/ZN (INV_X2)                           0.07       0.53 r
+  I2/mult_168/U2384/ZN (OAI22_X1)                         0.05       0.58 f
+  I2/mult_168/U631/CO (FA_X1)                             0.11       0.69 f
+  I2/mult_168/U618/CO (FA_X1)                             0.11       0.80 f
+  I2/mult_168/U605/S (FA_X1)                              0.15       0.94 r
+  I2/mult_168/U603/S (FA_X1)                              0.12       1.06 f
+  I2/mult_168/U602/S (FA_X1)                              0.15       1.20 r
+  I2/mult_168/U1924/ZN (NOR2_X1)                          0.03       1.23 f
+  I2/mult_168/U2830/ZN (OAI21_X1)                         0.05       1.28 r
+  I2/mult_168/U2467/ZN (AOI21_X1)                         0.03       1.31 f
+  I2/mult_168/U2466/ZN (OAI21_X1)                         0.08       1.39 r
+  I2/mult_168/U2470/ZN (AOI21_X1)                         0.05       1.44 f
+  I2/mult_168/U2901/ZN (OAI21_X1)                         0.05       1.49 r
+  I2/mult_168/U2712/ZN (XNOR2_X1)                         0.06       1.55 r
+  I2/mult_168/PRODUCT[43] (FPmul_DW02_mult_2)             0.00       1.55 r
+  I2/SIG_in_REG_reg[23]/D (DFF_X2)                        0.01       1.56 r
+  data arrival time                                                  1.56
 
-  clock MY_CLK (rise edge)                               10.00      10.00
-  clock network delay (ideal)                             0.00      10.00
-  clock uncertainty                                      -0.07       9.93
-  I2/SIG_in_REG_reg[27]/CK (DFF_X1)                       0.00       9.93 r
-  library setup time                                     -0.04       9.89
-  data required time                                                 9.89
+  clock MY_CLK (rise edge)                                0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  clock uncertainty                                      -0.07      -0.07
+  I2/SIG_in_REG_reg[23]/CK (DFF_X2)                       0.00      -0.07 r
+  library setup time                                     -0.03      -0.10
+  data required time                                                -0.10
   --------------------------------------------------------------------------
-  data required time                                                 9.89
-  data arrival time                                                 -5.09
+  data required time                                                -0.10
+  data arrival time                                                 -1.56
   --------------------------------------------------------------------------
-  slack (MET)                                                        4.80
+  slack (VIOLATED)                                                  -1.66
 
 
-  Startpoint: I1/A_SIG_reg[2]
+  Startpoint: I1/A_SIG_reg[13]
               (rising edge-triggered flip-flop clocked by MY_CLK)
-  Endpoint: I2/SIG_in_REG_reg[27]
+  Endpoint: I2/SIG_in_REG_reg[22]
             (rising edge-triggered flip-flop clocked by MY_CLK)
   Path Group: MY_CLK
   Path Type: max
@@ -393,85 +242,47 @@ Wire Load Model Mode: top
   --------------------------------------------------------------------------
   clock MY_CLK (rise edge)                                0.00       0.00
   clock network delay (ideal)                             0.00       0.00
-  I1/A_SIG_reg[2]/CK (DFF_X1)                             0.00       0.00 r
-  I1/A_SIG_reg[2]/Q (DFF_X1)                              0.19       0.19 r
-  I2/mult_168/A[2] (FPmul_DW02_mult_0)                    0.00       0.19 r
-  I2/mult_168/U1292/ZN (INV_X1)                           0.12       0.31 f
-  I2/mult_168/U1429/Z (XOR2_X1)                           0.12       0.43 r
-  I2/mult_168/U1213/ZN (INV_X1)                           0.03       0.47 f
-  I2/mult_168/U1214/ZN (AND2_X1)                          0.05       0.51 f
-  I2/mult_168/U1181/ZN (INV_X1)                           0.16       0.67 r
-  I2/mult_168/U1351/ZN (OAI22_X1)                         0.07       0.74 f
-  I2/mult_168/U1350/ZN (XNOR2_X1)                         0.06       0.80 f
-  I2/mult_168/U381/S (HA_X1)                              0.08       0.88 f
-  I2/mult_168/U2004/ZN (AOI222_X1)                        0.12       1.01 r
-  I2/mult_168/U2000/ZN (OAI222_X1)                        0.07       1.07 f
-  I2/mult_168/U1996/ZN (AOI222_X1)                        0.11       1.19 r
-  I2/mult_168/U1992/ZN (OAI222_X1)                        0.07       1.25 f
-  I2/mult_168/U1988/ZN (AOI222_X1)                        0.11       1.37 r
-  I2/mult_168/U1984/ZN (OAI222_X1)                        0.07       1.43 f
-  I2/mult_168/U1980/ZN (AOI222_X1)                        0.11       1.55 r
-  I2/mult_168/U1976/ZN (OAI222_X1)                        0.07       1.61 f
-  I2/mult_168/U1972/ZN (AOI222_X1)                        0.11       1.73 r
-  I2/mult_168/U1968/ZN (OAI222_X1)                        0.07       1.79 f
-  I2/mult_168/U1964/ZN (AOI222_X1)                        0.11       1.91 r
-  I2/mult_168/U1960/ZN (OAI222_X1)                        0.06       1.97 f
-  I2/mult_168/U1956/ZN (AOI222_X1)                        0.11       2.08 r
-  I2/mult_168/U1952/ZN (OAI222_X1)                        0.07       2.15 f
-  I2/mult_168/U1948/ZN (AOI222_X1)                        0.11       2.26 r
-  I2/mult_168/U1944/ZN (OAI222_X1)                        0.07       2.33 f
-  I2/mult_168/U1940/ZN (AOI222_X1)                        0.10       2.43 r
-  I2/mult_168/U1291/ZN (INV_X1)                           0.03       2.45 f
-  I2/mult_168/U1936/ZN (AOI222_X1)                        0.11       2.56 r
-  I2/mult_168/U1932/ZN (OAI222_X1)                        0.07       2.63 f
-  I2/mult_168/U157/CO (FA_X1)                             0.10       2.72 f
-  I2/mult_168/U156/CO (FA_X1)                             0.09       2.81 f
-  I2/mult_168/U155/CO (FA_X1)                             0.09       2.90 f
-  I2/mult_168/U154/CO (FA_X1)                             0.09       2.99 f
-  I2/mult_168/U153/CO (FA_X1)                             0.09       3.09 f
-  I2/mult_168/U152/CO (FA_X1)                             0.09       3.18 f
-  I2/mult_168/U151/CO (FA_X1)                             0.09       3.27 f
-  I2/mult_168/U150/CO (FA_X1)                             0.09       3.36 f
-  I2/mult_168/U149/CO (FA_X1)                             0.09       3.45 f
-  I2/mult_168/U148/CO (FA_X1)                             0.09       3.54 f
-  I2/mult_168/U147/CO (FA_X1)                             0.09       3.63 f
-  I2/mult_168/U146/CO (FA_X1)                             0.09       3.72 f
-  I2/mult_168/U145/CO (FA_X1)                             0.09       3.81 f
-  I2/mult_168/U144/CO (FA_X1)                             0.09       3.90 f
-  I2/mult_168/U143/CO (FA_X1)                             0.09       3.99 f
-  I2/mult_168/U142/CO (FA_X1)                             0.09       4.08 f
-  I2/mult_168/U141/CO (FA_X1)                             0.09       4.17 f
-  I2/mult_168/U140/CO (FA_X1)                             0.09       4.26 f
-  I2/mult_168/U139/CO (FA_X1)                             0.09       4.35 f
-  I2/mult_168/U138/CO (FA_X1)                             0.09       4.44 f
-  I2/mult_168/U137/CO (FA_X1)                             0.09       4.54 f
-  I2/mult_168/U136/CO (FA_X1)                             0.09       4.63 f
-  I2/mult_168/U135/CO (FA_X1)                             0.09       4.72 f
-  I2/mult_168/U134/CO (FA_X1)                             0.09       4.81 f
-  I2/mult_168/U133/CO (FA_X1)                             0.09       4.90 f
-  I2/mult_168/U2017/ZN (XNOR2_X1)                         0.06       4.96 f
-  I2/mult_168/U2016/ZN (XNOR2_X1)                         0.06       5.01 f
-  I2/mult_168/U2012/Z (XOR2_X1)                           0.07       5.08 f
-  I2/mult_168/PRODUCT[47] (FPmul_DW02_mult_0)             0.00       5.08 f
-  I2/SIG_in_REG_reg[27]/D (DFF_X1)                        0.01       5.09 f
-  data arrival time                                                  5.09
+  I1/A_SIG_reg[13]/CK (DFF_X1)                            0.00       0.00 r
+  I1/A_SIG_reg[13]/Q (DFF_X1)                             0.15       0.15 r
+  I2/mult_168/A[13] (FPmul_DW02_mult_2)                   0.00       0.15 r
+  I2/mult_168/U2936/ZN (INV_X1)                           0.06       0.21 f
+  I2/mult_168/U2934/ZN (INV_X1)                           0.10       0.31 r
+  I2/mult_168/U1523/ZN (XNOR2_X2)                         0.11       0.42 r
+  I2/mult_168/U2350/ZN (INV_X1)                           0.04       0.47 f
+  I2/mult_168/U2351/ZN (INV_X2)                           0.07       0.53 r
+  I2/mult_168/U2384/ZN (OAI22_X1)                         0.05       0.58 f
+  I2/mult_168/U631/CO (FA_X1)                             0.11       0.69 f
+  I2/mult_168/U618/CO (FA_X1)                             0.11       0.80 f
+  I2/mult_168/U605/S (FA_X1)                              0.15       0.94 r
+  I2/mult_168/U603/S (FA_X1)                              0.12       1.06 f
+  I2/mult_168/U602/S (FA_X1)                              0.15       1.20 r
+  I2/mult_168/U1924/ZN (NOR2_X1)                          0.03       1.23 f
+  I2/mult_168/U2830/ZN (OAI21_X1)                         0.05       1.28 r
+  I2/mult_168/U2467/ZN (AOI21_X1)                         0.03       1.31 f
+  I2/mult_168/U2466/ZN (OAI21_X1)                         0.08       1.39 r
+  I2/mult_168/U2472/ZN (AOI21_X1)                         0.05       1.44 f
+  I2/mult_168/U2902/ZN (OAI21_X1)                         0.05       1.49 r
+  I2/mult_168/U2711/ZN (XNOR2_X1)                         0.06       1.55 r
+  I2/mult_168/PRODUCT[42] (FPmul_DW02_mult_2)             0.00       1.55 r
+  I2/SIG_in_REG_reg[22]/D (DFF_X2)                        0.01       1.56 r
+  data arrival time                                                  1.56
 
-  clock MY_CLK (rise edge)                               10.00      10.00
-  clock network delay (ideal)                             0.00      10.00
-  clock uncertainty                                      -0.07       9.93
-  I2/SIG_in_REG_reg[27]/CK (DFF_X1)                       0.00       9.93 r
-  library setup time                                     -0.04       9.89
-  data required time                                                 9.89
+  clock MY_CLK (rise edge)                                0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  clock uncertainty                                      -0.07      -0.07
+  I2/SIG_in_REG_reg[22]/CK (DFF_X2)                       0.00      -0.07 r
+  library setup time                                     -0.03      -0.10
+  data required time                                                -0.10
   --------------------------------------------------------------------------
-  data required time                                                 9.89
-  data arrival time                                                 -5.09
+  data required time                                                -0.10
+  data arrival time                                                 -1.56
   --------------------------------------------------------------------------
-  slack (MET)                                                        4.80
+  slack (VIOLATED)                                                  -1.66
 
 
-  Startpoint: I1/A_SIG_reg[2]
+  Startpoint: I1/A_SIG_reg[13]
               (rising edge-triggered flip-flop clocked by MY_CLK)
-  Endpoint: I2/SIG_in_REG_reg[27]
+  Endpoint: I2/SIG_in_REG_reg[20]
             (rising edge-triggered flip-flop clocked by MY_CLK)
   Path Group: MY_CLK
   Path Type: max
@@ -484,85 +295,47 @@ Wire Load Model Mode: top
   --------------------------------------------------------------------------
   clock MY_CLK (rise edge)                                0.00       0.00
   clock network delay (ideal)                             0.00       0.00
-  I1/A_SIG_reg[2]/CK (DFF_X1)                             0.00       0.00 r
-  I1/A_SIG_reg[2]/Q (DFF_X1)                              0.19       0.19 r
-  I2/mult_168/A[2] (FPmul_DW02_mult_0)                    0.00       0.19 r
-  I2/mult_168/U1292/ZN (INV_X1)                           0.12       0.31 f
-  I2/mult_168/U1429/Z (XOR2_X1)                           0.12       0.43 r
-  I2/mult_168/U1213/ZN (INV_X1)                           0.03       0.47 f
-  I2/mult_168/U1214/ZN (AND2_X1)                          0.05       0.51 f
-  I2/mult_168/U1181/ZN (INV_X1)                           0.16       0.67 r
-  I2/mult_168/U1351/ZN (OAI22_X1)                         0.07       0.74 f
-  I2/mult_168/U1350/ZN (XNOR2_X1)                         0.06       0.80 f
-  I2/mult_168/U381/S (HA_X1)                              0.08       0.88 f
-  I2/mult_168/U2004/ZN (AOI222_X1)                        0.12       1.01 r
-  I2/mult_168/U2000/ZN (OAI222_X1)                        0.07       1.07 f
-  I2/mult_168/U1996/ZN (AOI222_X1)                        0.11       1.19 r
-  I2/mult_168/U1992/ZN (OAI222_X1)                        0.07       1.25 f
-  I2/mult_168/U1988/ZN (AOI222_X1)                        0.11       1.37 r
-  I2/mult_168/U1984/ZN (OAI222_X1)                        0.07       1.43 f
-  I2/mult_168/U1980/ZN (AOI222_X1)                        0.11       1.55 r
-  I2/mult_168/U1976/ZN (OAI222_X1)                        0.07       1.61 f
-  I2/mult_168/U1972/ZN (AOI222_X1)                        0.11       1.73 r
-  I2/mult_168/U1968/ZN (OAI222_X1)                        0.07       1.79 f
-  I2/mult_168/U1964/ZN (AOI222_X1)                        0.11       1.91 r
-  I2/mult_168/U1960/ZN (OAI222_X1)                        0.07       1.97 f
-  I2/mult_168/U1956/ZN (AOI222_X1)                        0.11       2.09 r
-  I2/mult_168/U1952/ZN (OAI222_X1)                        0.06       2.15 f
-  I2/mult_168/U1948/ZN (AOI222_X1)                        0.11       2.26 r
-  I2/mult_168/U1944/ZN (OAI222_X1)                        0.07       2.33 f
-  I2/mult_168/U1940/ZN (AOI222_X1)                        0.10       2.43 r
-  I2/mult_168/U1291/ZN (INV_X1)                           0.03       2.45 f
-  I2/mult_168/U1936/ZN (AOI222_X1)                        0.11       2.56 r
-  I2/mult_168/U1932/ZN (OAI222_X1)                        0.07       2.63 f
-  I2/mult_168/U157/CO (FA_X1)                             0.10       2.72 f
-  I2/mult_168/U156/CO (FA_X1)                             0.09       2.81 f
-  I2/mult_168/U155/CO (FA_X1)                             0.09       2.90 f
-  I2/mult_168/U154/CO (FA_X1)                             0.09       2.99 f
-  I2/mult_168/U153/CO (FA_X1)                             0.09       3.09 f
-  I2/mult_168/U152/CO (FA_X1)                             0.09       3.18 f
-  I2/mult_168/U151/CO (FA_X1)                             0.09       3.27 f
-  I2/mult_168/U150/CO (FA_X1)                             0.09       3.36 f
-  I2/mult_168/U149/CO (FA_X1)                             0.09       3.45 f
-  I2/mult_168/U148/CO (FA_X1)                             0.09       3.54 f
-  I2/mult_168/U147/CO (FA_X1)                             0.09       3.63 f
-  I2/mult_168/U146/CO (FA_X1)                             0.09       3.72 f
-  I2/mult_168/U145/CO (FA_X1)                             0.09       3.81 f
-  I2/mult_168/U144/CO (FA_X1)                             0.09       3.90 f
-  I2/mult_168/U143/CO (FA_X1)                             0.09       3.99 f
-  I2/mult_168/U142/CO (FA_X1)                             0.09       4.08 f
-  I2/mult_168/U141/CO (FA_X1)                             0.09       4.17 f
-  I2/mult_168/U140/CO (FA_X1)                             0.09       4.26 f
-  I2/mult_168/U139/CO (FA_X1)                             0.09       4.35 f
-  I2/mult_168/U138/CO (FA_X1)                             0.09       4.44 f
-  I2/mult_168/U137/CO (FA_X1)                             0.09       4.54 f
-  I2/mult_168/U136/CO (FA_X1)                             0.09       4.63 f
-  I2/mult_168/U135/CO (FA_X1)                             0.09       4.72 f
-  I2/mult_168/U134/CO (FA_X1)                             0.09       4.81 f
-  I2/mult_168/U133/CO (FA_X1)                             0.09       4.90 f
-  I2/mult_168/U2017/ZN (XNOR2_X1)                         0.06       4.96 f
-  I2/mult_168/U2016/ZN (XNOR2_X1)                         0.06       5.01 f
-  I2/mult_168/U2012/Z (XOR2_X1)                           0.07       5.08 f
-  I2/mult_168/PRODUCT[47] (FPmul_DW02_mult_0)             0.00       5.08 f
-  I2/SIG_in_REG_reg[27]/D (DFF_X1)                        0.01       5.09 f
-  data arrival time                                                  5.09
+  I1/A_SIG_reg[13]/CK (DFF_X1)                            0.00       0.00 r
+  I1/A_SIG_reg[13]/Q (DFF_X1)                             0.15       0.15 r
+  I2/mult_168/A[13] (FPmul_DW02_mult_2)                   0.00       0.15 r
+  I2/mult_168/U2936/ZN (INV_X1)                           0.06       0.21 f
+  I2/mult_168/U2934/ZN (INV_X1)                           0.10       0.31 r
+  I2/mult_168/U1523/ZN (XNOR2_X2)                         0.11       0.42 r
+  I2/mult_168/U2350/ZN (INV_X1)                           0.04       0.47 f
+  I2/mult_168/U2351/ZN (INV_X2)                           0.07       0.53 r
+  I2/mult_168/U2384/ZN (OAI22_X1)                         0.05       0.58 f
+  I2/mult_168/U631/CO (FA_X1)                             0.11       0.69 f
+  I2/mult_168/U618/CO (FA_X1)                             0.11       0.80 f
+  I2/mult_168/U605/S (FA_X1)                              0.15       0.94 r
+  I2/mult_168/U603/S (FA_X1)                              0.12       1.06 f
+  I2/mult_168/U602/S (FA_X1)                              0.15       1.20 r
+  I2/mult_168/U1924/ZN (NOR2_X1)                          0.03       1.23 f
+  I2/mult_168/U2830/ZN (OAI21_X1)                         0.05       1.28 r
+  I2/mult_168/U2467/ZN (AOI21_X1)                         0.03       1.31 f
+  I2/mult_168/U2466/ZN (OAI21_X1)                         0.08       1.39 r
+  I2/mult_168/U2470/ZN (AOI21_X1)                         0.05       1.44 f
+  I2/mult_168/U2904/ZN (OAI21_X1)                         0.05       1.49 r
+  I2/mult_168/U2706/ZN (XNOR2_X1)                         0.06       1.55 r
+  I2/mult_168/PRODUCT[40] (FPmul_DW02_mult_2)             0.00       1.55 r
+  I2/SIG_in_REG_reg[20]/D (DFF_X2)                        0.01       1.56 r
+  data arrival time                                                  1.56
 
-  clock MY_CLK (rise edge)                               10.00      10.00
-  clock network delay (ideal)                             0.00      10.00
-  clock uncertainty                                      -0.07       9.93
-  I2/SIG_in_REG_reg[27]/CK (DFF_X1)                       0.00       9.93 r
-  library setup time                                     -0.04       9.89
-  data required time                                                 9.89
+  clock MY_CLK (rise edge)                                0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  clock uncertainty                                      -0.07      -0.07
+  I2/SIG_in_REG_reg[20]/CK (DFF_X2)                       0.00      -0.07 r
+  library setup time                                     -0.03      -0.10
+  data required time                                                -0.10
   --------------------------------------------------------------------------
-  data required time                                                 9.89
-  data arrival time                                                 -5.09
+  data required time                                                -0.10
+  data arrival time                                                 -1.56
   --------------------------------------------------------------------------
-  slack (MET)                                                        4.80
+  slack (VIOLATED)                                                  -1.66
 
 
-  Startpoint: I1/A_SIG_reg[2]
+  Startpoint: I1/A_SIG_reg[13]
               (rising edge-triggered flip-flop clocked by MY_CLK)
-  Endpoint: I2/SIG_in_REG_reg[27]
+  Endpoint: I2/SIG_in_REG_reg[15]
             (rising edge-triggered flip-flop clocked by MY_CLK)
   Path Group: MY_CLK
   Path Type: max
@@ -575,85 +348,47 @@ Wire Load Model Mode: top
   --------------------------------------------------------------------------
   clock MY_CLK (rise edge)                                0.00       0.00
   clock network delay (ideal)                             0.00       0.00
-  I1/A_SIG_reg[2]/CK (DFF_X1)                             0.00       0.00 r
-  I1/A_SIG_reg[2]/Q (DFF_X1)                              0.19       0.19 r
-  I2/mult_168/A[2] (FPmul_DW02_mult_0)                    0.00       0.19 r
-  I2/mult_168/U1292/ZN (INV_X1)                           0.12       0.31 f
-  I2/mult_168/U1429/Z (XOR2_X1)                           0.12       0.43 r
-  I2/mult_168/U1213/ZN (INV_X1)                           0.03       0.47 f
-  I2/mult_168/U1214/ZN (AND2_X1)                          0.05       0.51 f
-  I2/mult_168/U1181/ZN (INV_X1)                           0.16       0.67 r
-  I2/mult_168/U1351/ZN (OAI22_X1)                         0.07       0.74 f
-  I2/mult_168/U1350/ZN (XNOR2_X1)                         0.06       0.80 f
-  I2/mult_168/U381/S (HA_X1)                              0.08       0.88 f
-  I2/mult_168/U2004/ZN (AOI222_X1)                        0.12       1.01 r
-  I2/mult_168/U2000/ZN (OAI222_X1)                        0.07       1.07 f
-  I2/mult_168/U1996/ZN (AOI222_X1)                        0.11       1.19 r
-  I2/mult_168/U1992/ZN (OAI222_X1)                        0.07       1.25 f
-  I2/mult_168/U1988/ZN (AOI222_X1)                        0.11       1.37 r
-  I2/mult_168/U1984/ZN (OAI222_X1)                        0.06       1.43 f
-  I2/mult_168/U1980/ZN (AOI222_X1)                        0.11       1.54 r
-  I2/mult_168/U1976/ZN (OAI222_X1)                        0.07       1.61 f
-  I2/mult_168/U1972/ZN (AOI222_X1)                        0.11       1.72 r
-  I2/mult_168/U1968/ZN (OAI222_X1)                        0.07       1.79 f
-  I2/mult_168/U1964/ZN (AOI222_X1)                        0.11       1.90 r
-  I2/mult_168/U1960/ZN (OAI222_X1)                        0.07       1.97 f
-  I2/mult_168/U1956/ZN (AOI222_X1)                        0.11       2.08 r
-  I2/mult_168/U1952/ZN (OAI222_X1)                        0.07       2.15 f
-  I2/mult_168/U1948/ZN (AOI222_X1)                        0.11       2.26 r
-  I2/mult_168/U1944/ZN (OAI222_X1)                        0.07       2.33 f
-  I2/mult_168/U1940/ZN (AOI222_X1)                        0.10       2.43 r
-  I2/mult_168/U1291/ZN (INV_X1)                           0.03       2.45 f
-  I2/mult_168/U1936/ZN (AOI222_X1)                        0.11       2.56 r
-  I2/mult_168/U1932/ZN (OAI222_X1)                        0.07       2.63 f
-  I2/mult_168/U157/CO (FA_X1)                             0.10       2.72 f
-  I2/mult_168/U156/CO (FA_X1)                             0.09       2.81 f
-  I2/mult_168/U155/CO (FA_X1)                             0.09       2.90 f
-  I2/mult_168/U154/CO (FA_X1)                             0.09       2.99 f
-  I2/mult_168/U153/CO (FA_X1)                             0.09       3.09 f
-  I2/mult_168/U152/CO (FA_X1)                             0.09       3.18 f
-  I2/mult_168/U151/CO (FA_X1)                             0.09       3.27 f
-  I2/mult_168/U150/CO (FA_X1)                             0.09       3.36 f
-  I2/mult_168/U149/CO (FA_X1)                             0.09       3.45 f
-  I2/mult_168/U148/CO (FA_X1)                             0.09       3.54 f
-  I2/mult_168/U147/CO (FA_X1)                             0.09       3.63 f
-  I2/mult_168/U146/CO (FA_X1)                             0.09       3.72 f
-  I2/mult_168/U145/CO (FA_X1)                             0.09       3.81 f
-  I2/mult_168/U144/CO (FA_X1)                             0.09       3.90 f
-  I2/mult_168/U143/CO (FA_X1)                             0.09       3.99 f
-  I2/mult_168/U142/CO (FA_X1)                             0.09       4.08 f
-  I2/mult_168/U141/CO (FA_X1)                             0.09       4.17 f
-  I2/mult_168/U140/CO (FA_X1)                             0.09       4.26 f
-  I2/mult_168/U139/CO (FA_X1)                             0.09       4.35 f
-  I2/mult_168/U138/CO (FA_X1)                             0.09       4.44 f
-  I2/mult_168/U137/CO (FA_X1)                             0.09       4.54 f
-  I2/mult_168/U136/CO (FA_X1)                             0.09       4.63 f
-  I2/mult_168/U135/CO (FA_X1)                             0.09       4.72 f
-  I2/mult_168/U134/CO (FA_X1)                             0.09       4.81 f
-  I2/mult_168/U133/CO (FA_X1)                             0.09       4.90 f
-  I2/mult_168/U2017/ZN (XNOR2_X1)                         0.06       4.96 f
-  I2/mult_168/U2016/ZN (XNOR2_X1)                         0.06       5.01 f
-  I2/mult_168/U2012/Z (XOR2_X1)                           0.07       5.08 f
-  I2/mult_168/PRODUCT[47] (FPmul_DW02_mult_0)             0.00       5.08 f
-  I2/SIG_in_REG_reg[27]/D (DFF_X1)                        0.01       5.09 f
-  data arrival time                                                  5.09
+  I1/A_SIG_reg[13]/CK (DFF_X1)                            0.00       0.00 r
+  I1/A_SIG_reg[13]/Q (DFF_X1)                             0.15       0.15 r
+  I2/mult_168/A[13] (FPmul_DW02_mult_2)                   0.00       0.15 r
+  I2/mult_168/U2936/ZN (INV_X1)                           0.06       0.21 f
+  I2/mult_168/U2934/ZN (INV_X1)                           0.10       0.31 r
+  I2/mult_168/U1523/ZN (XNOR2_X2)                         0.11       0.42 r
+  I2/mult_168/U2350/ZN (INV_X1)                           0.04       0.47 f
+  I2/mult_168/U2351/ZN (INV_X2)                           0.07       0.53 r
+  I2/mult_168/U2384/ZN (OAI22_X1)                         0.05       0.58 f
+  I2/mult_168/U631/CO (FA_X1)                             0.11       0.69 f
+  I2/mult_168/U618/CO (FA_X1)                             0.11       0.80 f
+  I2/mult_168/U605/S (FA_X1)                              0.15       0.94 r
+  I2/mult_168/U603/S (FA_X1)                              0.12       1.06 f
+  I2/mult_168/U602/S (FA_X1)                              0.15       1.20 r
+  I2/mult_168/U1924/ZN (NOR2_X1)                          0.03       1.23 f
+  I2/mult_168/U2830/ZN (OAI21_X1)                         0.05       1.28 r
+  I2/mult_168/U2467/ZN (AOI21_X1)                         0.03       1.31 f
+  I2/mult_168/U2466/ZN (OAI21_X1)                         0.08       1.39 r
+  I2/mult_168/U2470/ZN (AOI21_X1)                         0.05       1.44 f
+  I2/mult_168/U2909/ZN (OAI21_X1)                         0.05       1.49 r
+  I2/mult_168/U2509/ZN (XNOR2_X1)                         0.06       1.55 r
+  I2/mult_168/PRODUCT[35] (FPmul_DW02_mult_2)             0.00       1.55 r
+  I2/SIG_in_REG_reg[15]/D (DFF_X2)                        0.01       1.56 r
+  data arrival time                                                  1.56
 
-  clock MY_CLK (rise edge)                               10.00      10.00
-  clock network delay (ideal)                             0.00      10.00
-  clock uncertainty                                      -0.07       9.93
-  I2/SIG_in_REG_reg[27]/CK (DFF_X1)                       0.00       9.93 r
-  library setup time                                     -0.04       9.89
-  data required time                                                 9.89
+  clock MY_CLK (rise edge)                                0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  clock uncertainty                                      -0.07      -0.07
+  I2/SIG_in_REG_reg[15]/CK (DFF_X2)                       0.00      -0.07 r
+  library setup time                                     -0.03      -0.10
+  data required time                                                -0.10
   --------------------------------------------------------------------------
-  data required time                                                 9.89
-  data arrival time                                                 -5.09
+  data required time                                                -0.10
+  data arrival time                                                 -1.56
   --------------------------------------------------------------------------
-  slack (MET)                                                        4.80
+  slack (VIOLATED)                                                  -1.66
 
 
-  Startpoint: I1/A_SIG_reg[2]
+  Startpoint: I1/A_SIG_reg[13]
               (rising edge-triggered flip-flop clocked by MY_CLK)
-  Endpoint: I2/SIG_in_REG_reg[27]
+  Endpoint: I2/SIG_in_REG_reg[25]
             (rising edge-triggered flip-flop clocked by MY_CLK)
   Path Group: MY_CLK
   Path Type: max
@@ -666,85 +401,47 @@ Wire Load Model Mode: top
   --------------------------------------------------------------------------
   clock MY_CLK (rise edge)                                0.00       0.00
   clock network delay (ideal)                             0.00       0.00
-  I1/A_SIG_reg[2]/CK (DFF_X1)                             0.00       0.00 r
-  I1/A_SIG_reg[2]/Q (DFF_X1)                              0.19       0.19 r
-  I2/mult_168/A[2] (FPmul_DW02_mult_0)                    0.00       0.19 r
-  I2/mult_168/U1292/ZN (INV_X1)                           0.12       0.31 f
-  I2/mult_168/U1429/Z (XOR2_X1)                           0.12       0.43 r
-  I2/mult_168/U1213/ZN (INV_X1)                           0.03       0.47 f
-  I2/mult_168/U1214/ZN (AND2_X1)                          0.05       0.51 f
-  I2/mult_168/U1181/ZN (INV_X1)                           0.16       0.67 r
-  I2/mult_168/U1351/ZN (OAI22_X1)                         0.07       0.74 f
-  I2/mult_168/U1350/ZN (XNOR2_X1)                         0.06       0.80 f
-  I2/mult_168/U381/S (HA_X1)                              0.08       0.88 f
-  I2/mult_168/U2004/ZN (AOI222_X1)                        0.12       1.01 r
-  I2/mult_168/U2000/ZN (OAI222_X1)                        0.07       1.07 f
-  I2/mult_168/U1996/ZN (AOI222_X1)                        0.11       1.19 r
-  I2/mult_168/U1992/ZN (OAI222_X1)                        0.07       1.25 f
-  I2/mult_168/U1988/ZN (AOI222_X1)                        0.11       1.37 r
-  I2/mult_168/U1984/ZN (OAI222_X1)                        0.07       1.43 f
-  I2/mult_168/U1980/ZN (AOI222_X1)                        0.11       1.55 r
-  I2/mult_168/U1976/ZN (OAI222_X1)                        0.07       1.61 f
-  I2/mult_168/U1972/ZN (AOI222_X1)                        0.11       1.73 r
-  I2/mult_168/U1968/ZN (OAI222_X1)                        0.07       1.79 f
-  I2/mult_168/U1964/ZN (AOI222_X1)                        0.11       1.91 r
-  I2/mult_168/U1960/ZN (OAI222_X1)                        0.07       1.97 f
-  I2/mult_168/U1956/ZN (AOI222_X1)                        0.11       2.09 r
-  I2/mult_168/U1952/ZN (OAI222_X1)                        0.07       2.15 f
-  I2/mult_168/U1948/ZN (AOI222_X1)                        0.11       2.26 r
-  I2/mult_168/U1944/ZN (OAI222_X1)                        0.06       2.33 f
-  I2/mult_168/U1940/ZN (AOI222_X1)                        0.10       2.43 r
-  I2/mult_168/U1291/ZN (INV_X1)                           0.03       2.45 f
-  I2/mult_168/U1936/ZN (AOI222_X1)                        0.11       2.56 r
-  I2/mult_168/U1932/ZN (OAI222_X1)                        0.07       2.63 f
-  I2/mult_168/U157/CO (FA_X1)                             0.10       2.72 f
-  I2/mult_168/U156/CO (FA_X1)                             0.09       2.81 f
-  I2/mult_168/U155/CO (FA_X1)                             0.09       2.90 f
-  I2/mult_168/U154/CO (FA_X1)                             0.09       2.99 f
-  I2/mult_168/U153/CO (FA_X1)                             0.09       3.09 f
-  I2/mult_168/U152/CO (FA_X1)                             0.09       3.18 f
-  I2/mult_168/U151/CO (FA_X1)                             0.09       3.27 f
-  I2/mult_168/U150/CO (FA_X1)                             0.09       3.36 f
-  I2/mult_168/U149/CO (FA_X1)                             0.09       3.45 f
-  I2/mult_168/U148/CO (FA_X1)                             0.09       3.54 f
-  I2/mult_168/U147/CO (FA_X1)                             0.09       3.63 f
-  I2/mult_168/U146/CO (FA_X1)                             0.09       3.72 f
-  I2/mult_168/U145/CO (FA_X1)                             0.09       3.81 f
-  I2/mult_168/U144/CO (FA_X1)                             0.09       3.90 f
-  I2/mult_168/U143/CO (FA_X1)                             0.09       3.99 f
-  I2/mult_168/U142/CO (FA_X1)                             0.09       4.08 f
-  I2/mult_168/U141/CO (FA_X1)                             0.09       4.17 f
-  I2/mult_168/U140/CO (FA_X1)                             0.09       4.26 f
-  I2/mult_168/U139/CO (FA_X1)                             0.09       4.35 f
-  I2/mult_168/U138/CO (FA_X1)                             0.09       4.44 f
-  I2/mult_168/U137/CO (FA_X1)                             0.09       4.54 f
-  I2/mult_168/U136/CO (FA_X1)                             0.09       4.63 f
-  I2/mult_168/U135/CO (FA_X1)                             0.09       4.72 f
-  I2/mult_168/U134/CO (FA_X1)                             0.09       4.81 f
-  I2/mult_168/U133/CO (FA_X1)                             0.09       4.90 f
-  I2/mult_168/U2017/ZN (XNOR2_X1)                         0.06       4.96 f
-  I2/mult_168/U2016/ZN (XNOR2_X1)                         0.06       5.01 f
-  I2/mult_168/U2012/Z (XOR2_X1)                           0.07       5.08 f
-  I2/mult_168/PRODUCT[47] (FPmul_DW02_mult_0)             0.00       5.08 f
-  I2/SIG_in_REG_reg[27]/D (DFF_X1)                        0.01       5.09 f
-  data arrival time                                                  5.09
+  I1/A_SIG_reg[13]/CK (DFF_X1)                            0.00       0.00 r
+  I1/A_SIG_reg[13]/Q (DFF_X1)                             0.15       0.15 r
+  I2/mult_168/A[13] (FPmul_DW02_mult_2)                   0.00       0.15 r
+  I2/mult_168/U2936/ZN (INV_X1)                           0.06       0.21 f
+  I2/mult_168/U2934/ZN (INV_X1)                           0.10       0.31 r
+  I2/mult_168/U1523/ZN (XNOR2_X2)                         0.11       0.42 r
+  I2/mult_168/U2350/ZN (INV_X1)                           0.04       0.47 f
+  I2/mult_168/U2351/ZN (INV_X2)                           0.07       0.53 r
+  I2/mult_168/U2384/ZN (OAI22_X1)                         0.05       0.58 f
+  I2/mult_168/U631/CO (FA_X1)                             0.11       0.69 f
+  I2/mult_168/U618/CO (FA_X1)                             0.11       0.80 f
+  I2/mult_168/U605/S (FA_X1)                              0.15       0.94 r
+  I2/mult_168/U603/S (FA_X1)                              0.12       1.06 f
+  I2/mult_168/U602/S (FA_X1)                              0.15       1.20 r
+  I2/mult_168/U1924/ZN (NOR2_X1)                          0.03       1.23 f
+  I2/mult_168/U2830/ZN (OAI21_X1)                         0.05       1.28 r
+  I2/mult_168/U2467/ZN (AOI21_X1)                         0.03       1.31 f
+  I2/mult_168/U2466/ZN (OAI21_X1)                         0.08       1.39 r
+  I2/mult_168/U2471/ZN (AOI21_X1)                         0.05       1.44 f
+  I2/mult_168/U2899/ZN (OAI21_X1)                         0.05       1.49 r
+  I2/mult_168/U2851/ZN (XNOR2_X1)                         0.06       1.55 r
+  I2/mult_168/PRODUCT[45] (FPmul_DW02_mult_2)             0.00       1.55 r
+  I2/SIG_in_REG_reg[25]/D (DFF_X2)                        0.01       1.56 r
+  data arrival time                                                  1.56
 
-  clock MY_CLK (rise edge)                               10.00      10.00
-  clock network delay (ideal)                             0.00      10.00
-  clock uncertainty                                      -0.07       9.93
-  I2/SIG_in_REG_reg[27]/CK (DFF_X1)                       0.00       9.93 r
-  library setup time                                     -0.04       9.89
-  data required time                                                 9.89
+  clock MY_CLK (rise edge)                                0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  clock uncertainty                                      -0.07      -0.07
+  I2/SIG_in_REG_reg[25]/CK (DFF_X2)                       0.00      -0.07 r
+  library setup time                                     -0.03      -0.10
+  data required time                                                -0.10
   --------------------------------------------------------------------------
-  data required time                                                 9.89
-  data arrival time                                                 -5.09
+  data required time                                                -0.10
+  data arrival time                                                 -1.56
   --------------------------------------------------------------------------
-  slack (MET)                                                        4.80
+  slack (VIOLATED)                                                  -1.66
 
 
-  Startpoint: I1/A_SIG_reg[2]
+  Startpoint: I1/A_SIG_reg[13]
               (rising edge-triggered flip-flop clocked by MY_CLK)
-  Endpoint: I2/SIG_in_REG_reg[27]
+  Endpoint: I2/SIG_in_REG_reg[17]
             (rising edge-triggered flip-flop clocked by MY_CLK)
   Path Group: MY_CLK
   Path Type: max
@@ -757,85 +454,47 @@ Wire Load Model Mode: top
   --------------------------------------------------------------------------
   clock MY_CLK (rise edge)                                0.00       0.00
   clock network delay (ideal)                             0.00       0.00
-  I1/A_SIG_reg[2]/CK (DFF_X1)                             0.00       0.00 r
-  I1/A_SIG_reg[2]/Q (DFF_X1)                              0.19       0.19 r
-  I2/mult_168/A[2] (FPmul_DW02_mult_0)                    0.00       0.19 r
-  I2/mult_168/U1292/ZN (INV_X1)                           0.12       0.31 f
-  I2/mult_168/U1429/Z (XOR2_X1)                           0.12       0.43 r
-  I2/mult_168/U1213/ZN (INV_X1)                           0.03       0.47 f
-  I2/mult_168/U1214/ZN (AND2_X1)                          0.05       0.51 f
-  I2/mult_168/U1181/ZN (INV_X1)                           0.16       0.67 r
-  I2/mult_168/U1351/ZN (OAI22_X1)                         0.07       0.74 f
-  I2/mult_168/U1350/ZN (XNOR2_X1)                         0.06       0.80 f
-  I2/mult_168/U381/S (HA_X1)                              0.08       0.88 f
-  I2/mult_168/U2004/ZN (AOI222_X1)                        0.12       1.01 r
-  I2/mult_168/U2000/ZN (OAI222_X1)                        0.06       1.07 f
-  I2/mult_168/U1996/ZN (AOI222_X1)                        0.11       1.18 r
-  I2/mult_168/U1992/ZN (OAI222_X1)                        0.07       1.25 f
-  I2/mult_168/U1988/ZN (AOI222_X1)                        0.11       1.36 r
-  I2/mult_168/U1984/ZN (OAI222_X1)                        0.07       1.43 f
-  I2/mult_168/U1980/ZN (AOI222_X1)                        0.11       1.54 r
-  I2/mult_168/U1976/ZN (OAI222_X1)                        0.07       1.61 f
-  I2/mult_168/U1972/ZN (AOI222_X1)                        0.11       1.72 r
-  I2/mult_168/U1968/ZN (OAI222_X1)                        0.07       1.79 f
-  I2/mult_168/U1964/ZN (AOI222_X1)                        0.11       1.90 r
-  I2/mult_168/U1960/ZN (OAI222_X1)                        0.07       1.97 f
-  I2/mult_168/U1956/ZN (AOI222_X1)                        0.11       2.08 r
-  I2/mult_168/U1952/ZN (OAI222_X1)                        0.07       2.15 f
-  I2/mult_168/U1948/ZN (AOI222_X1)                        0.11       2.26 r
-  I2/mult_168/U1944/ZN (OAI222_X1)                        0.07       2.33 f
-  I2/mult_168/U1940/ZN (AOI222_X1)                        0.10       2.43 r
-  I2/mult_168/U1291/ZN (INV_X1)                           0.03       2.45 f
-  I2/mult_168/U1936/ZN (AOI222_X1)                        0.11       2.56 r
-  I2/mult_168/U1932/ZN (OAI222_X1)                        0.07       2.63 f
-  I2/mult_168/U157/CO (FA_X1)                             0.10       2.72 f
-  I2/mult_168/U156/CO (FA_X1)                             0.09       2.81 f
-  I2/mult_168/U155/CO (FA_X1)                             0.09       2.90 f
-  I2/mult_168/U154/CO (FA_X1)                             0.09       2.99 f
-  I2/mult_168/U153/CO (FA_X1)                             0.09       3.09 f
-  I2/mult_168/U152/CO (FA_X1)                             0.09       3.18 f
-  I2/mult_168/U151/CO (FA_X1)                             0.09       3.27 f
-  I2/mult_168/U150/CO (FA_X1)                             0.09       3.36 f
-  I2/mult_168/U149/CO (FA_X1)                             0.09       3.45 f
-  I2/mult_168/U148/CO (FA_X1)                             0.09       3.54 f
-  I2/mult_168/U147/CO (FA_X1)                             0.09       3.63 f
-  I2/mult_168/U146/CO (FA_X1)                             0.09       3.72 f
-  I2/mult_168/U145/CO (FA_X1)                             0.09       3.81 f
-  I2/mult_168/U144/CO (FA_X1)                             0.09       3.90 f
-  I2/mult_168/U143/CO (FA_X1)                             0.09       3.99 f
-  I2/mult_168/U142/CO (FA_X1)                             0.09       4.08 f
-  I2/mult_168/U141/CO (FA_X1)                             0.09       4.17 f
-  I2/mult_168/U140/CO (FA_X1)                             0.09       4.26 f
-  I2/mult_168/U139/CO (FA_X1)                             0.09       4.35 f
-  I2/mult_168/U138/CO (FA_X1)                             0.09       4.44 f
-  I2/mult_168/U137/CO (FA_X1)                             0.09       4.54 f
-  I2/mult_168/U136/CO (FA_X1)                             0.09       4.63 f
-  I2/mult_168/U135/CO (FA_X1)                             0.09       4.72 f
-  I2/mult_168/U134/CO (FA_X1)                             0.09       4.81 f
-  I2/mult_168/U133/CO (FA_X1)                             0.09       4.90 f
-  I2/mult_168/U2017/ZN (XNOR2_X1)                         0.06       4.96 f
-  I2/mult_168/U2016/ZN (XNOR2_X1)                         0.06       5.01 f
-  I2/mult_168/U2012/Z (XOR2_X1)                           0.07       5.08 f
-  I2/mult_168/PRODUCT[47] (FPmul_DW02_mult_0)             0.00       5.08 f
-  I2/SIG_in_REG_reg[27]/D (DFF_X1)                        0.01       5.09 f
-  data arrival time                                                  5.09
+  I1/A_SIG_reg[13]/CK (DFF_X1)                            0.00       0.00 r
+  I1/A_SIG_reg[13]/Q (DFF_X1)                             0.15       0.15 r
+  I2/mult_168/A[13] (FPmul_DW02_mult_2)                   0.00       0.15 r
+  I2/mult_168/U2936/ZN (INV_X1)                           0.06       0.21 f
+  I2/mult_168/U2934/ZN (INV_X1)                           0.10       0.31 r
+  I2/mult_168/U1523/ZN (XNOR2_X2)                         0.11       0.42 r
+  I2/mult_168/U2350/ZN (INV_X1)                           0.04       0.47 f
+  I2/mult_168/U2351/ZN (INV_X2)                           0.07       0.53 r
+  I2/mult_168/U2384/ZN (OAI22_X1)                         0.05       0.58 f
+  I2/mult_168/U631/CO (FA_X1)                             0.11       0.69 f
+  I2/mult_168/U618/CO (FA_X1)                             0.11       0.80 f
+  I2/mult_168/U605/S (FA_X1)                              0.15       0.94 r
+  I2/mult_168/U603/S (FA_X1)                              0.12       1.06 f
+  I2/mult_168/U602/S (FA_X1)                              0.15       1.20 r
+  I2/mult_168/U1924/ZN (NOR2_X1)                          0.03       1.23 f
+  I2/mult_168/U2830/ZN (OAI21_X1)                         0.05       1.28 r
+  I2/mult_168/U2467/ZN (AOI21_X1)                         0.03       1.31 f
+  I2/mult_168/U2466/ZN (OAI21_X1)                         0.08       1.39 r
+  I2/mult_168/U2469/ZN (AOI21_X1)                         0.05       1.44 f
+  I2/mult_168/U2907/ZN (OAI21_X1)                         0.05       1.49 r
+  I2/mult_168/U2568/ZN (XNOR2_X1)                         0.06       1.55 r
+  I2/mult_168/PRODUCT[37] (FPmul_DW02_mult_2)             0.00       1.55 r
+  I2/SIG_in_REG_reg[17]/D (DFF_X2)                        0.01       1.56 r
+  data arrival time                                                  1.56
 
-  clock MY_CLK (rise edge)                               10.00      10.00
-  clock network delay (ideal)                             0.00      10.00
-  clock uncertainty                                      -0.07       9.93
-  I2/SIG_in_REG_reg[27]/CK (DFF_X1)                       0.00       9.93 r
-  library setup time                                     -0.04       9.89
-  data required time                                                 9.89
+  clock MY_CLK (rise edge)                                0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  clock uncertainty                                      -0.07      -0.07
+  I2/SIG_in_REG_reg[17]/CK (DFF_X2)                       0.00      -0.07 r
+  library setup time                                     -0.03      -0.10
+  data required time                                                -0.10
   --------------------------------------------------------------------------
-  data required time                                                 9.89
-  data arrival time                                                 -5.09
+  data required time                                                -0.10
+  data arrival time                                                 -1.56
   --------------------------------------------------------------------------
-  slack (MET)                                                        4.80
+  slack (VIOLATED)                                                  -1.66
 
 
-  Startpoint: I1/A_SIG_reg[2]
+  Startpoint: I1/A_SIG_reg[13]
               (rising edge-triggered flip-flop clocked by MY_CLK)
-  Endpoint: I2/SIG_in_REG_reg[27]
+  Endpoint: I2/SIG_in_REG_reg[18]
             (rising edge-triggered flip-flop clocked by MY_CLK)
   Path Group: MY_CLK
   Path Type: max
@@ -848,80 +507,42 @@ Wire Load Model Mode: top
   --------------------------------------------------------------------------
   clock MY_CLK (rise edge)                                0.00       0.00
   clock network delay (ideal)                             0.00       0.00
-  I1/A_SIG_reg[2]/CK (DFF_X1)                             0.00       0.00 r
-  I1/A_SIG_reg[2]/Q (DFF_X1)                              0.19       0.19 r
-  I2/mult_168/A[2] (FPmul_DW02_mult_0)                    0.00       0.19 r
-  I2/mult_168/U1292/ZN (INV_X1)                           0.12       0.31 f
-  I2/mult_168/U1429/Z (XOR2_X1)                           0.12       0.43 r
-  I2/mult_168/U1213/ZN (INV_X1)                           0.03       0.47 f
-  I2/mult_168/U1214/ZN (AND2_X1)                          0.05       0.51 f
-  I2/mult_168/U1181/ZN (INV_X1)                           0.16       0.67 r
-  I2/mult_168/U1351/ZN (OAI22_X1)                         0.07       0.74 f
-  I2/mult_168/U1350/ZN (XNOR2_X1)                         0.06       0.80 f
-  I2/mult_168/U381/S (HA_X1)                              0.08       0.88 f
-  I2/mult_168/U2004/ZN (AOI222_X1)                        0.12       1.01 r
-  I2/mult_168/U2000/ZN (OAI222_X1)                        0.07       1.07 f
-  I2/mult_168/U1996/ZN (AOI222_X1)                        0.11       1.19 r
-  I2/mult_168/U1992/ZN (OAI222_X1)                        0.06       1.25 f
-  I2/mult_168/U1988/ZN (AOI222_X1)                        0.11       1.36 r
-  I2/mult_168/U1984/ZN (OAI222_X1)                        0.07       1.43 f
-  I2/mult_168/U1980/ZN (AOI222_X1)                        0.11       1.54 r
-  I2/mult_168/U1976/ZN (OAI222_X1)                        0.07       1.61 f
-  I2/mult_168/U1972/ZN (AOI222_X1)                        0.11       1.72 r
-  I2/mult_168/U1968/ZN (OAI222_X1)                        0.07       1.79 f
-  I2/mult_168/U1964/ZN (AOI222_X1)                        0.11       1.90 r
-  I2/mult_168/U1960/ZN (OAI222_X1)                        0.07       1.97 f
-  I2/mult_168/U1956/ZN (AOI222_X1)                        0.11       2.08 r
-  I2/mult_168/U1952/ZN (OAI222_X1)                        0.07       2.15 f
-  I2/mult_168/U1948/ZN (AOI222_X1)                        0.11       2.26 r
-  I2/mult_168/U1944/ZN (OAI222_X1)                        0.07       2.33 f
-  I2/mult_168/U1940/ZN (AOI222_X1)                        0.10       2.43 r
-  I2/mult_168/U1291/ZN (INV_X1)                           0.03       2.45 f
-  I2/mult_168/U1936/ZN (AOI222_X1)                        0.11       2.56 r
-  I2/mult_168/U1932/ZN (OAI222_X1)                        0.07       2.63 f
-  I2/mult_168/U157/CO (FA_X1)                             0.10       2.72 f
-  I2/mult_168/U156/CO (FA_X1)                             0.09       2.81 f
-  I2/mult_168/U155/CO (FA_X1)                             0.09       2.90 f
-  I2/mult_168/U154/CO (FA_X1)                             0.09       2.99 f
-  I2/mult_168/U153/CO (FA_X1)                             0.09       3.09 f
-  I2/mult_168/U152/CO (FA_X1)                             0.09       3.18 f
-  I2/mult_168/U151/CO (FA_X1)                             0.09       3.27 f
-  I2/mult_168/U150/CO (FA_X1)                             0.09       3.36 f
-  I2/mult_168/U149/CO (FA_X1)                             0.09       3.45 f
-  I2/mult_168/U148/CO (FA_X1)                             0.09       3.54 f
-  I2/mult_168/U147/CO (FA_X1)                             0.09       3.63 f
-  I2/mult_168/U146/CO (FA_X1)                             0.09       3.72 f
-  I2/mult_168/U145/CO (FA_X1)                             0.09       3.81 f
-  I2/mult_168/U144/CO (FA_X1)                             0.09       3.90 f
-  I2/mult_168/U143/CO (FA_X1)                             0.09       3.99 f
-  I2/mult_168/U142/CO (FA_X1)                             0.09       4.08 f
-  I2/mult_168/U141/CO (FA_X1)                             0.09       4.17 f
-  I2/mult_168/U140/CO (FA_X1)                             0.09       4.26 f
-  I2/mult_168/U139/CO (FA_X1)                             0.09       4.35 f
-  I2/mult_168/U138/CO (FA_X1)                             0.09       4.44 f
-  I2/mult_168/U137/CO (FA_X1)                             0.09       4.54 f
-  I2/mult_168/U136/CO (FA_X1)                             0.09       4.63 f
-  I2/mult_168/U135/CO (FA_X1)                             0.09       4.72 f
-  I2/mult_168/U134/CO (FA_X1)                             0.09       4.81 f
-  I2/mult_168/U133/CO (FA_X1)                             0.09       4.90 f
-  I2/mult_168/U2017/ZN (XNOR2_X1)                         0.06       4.96 f
-  I2/mult_168/U2016/ZN (XNOR2_X1)                         0.06       5.01 f
-  I2/mult_168/U2012/Z (XOR2_X1)                           0.07       5.08 f
-  I2/mult_168/PRODUCT[47] (FPmul_DW02_mult_0)             0.00       5.08 f
-  I2/SIG_in_REG_reg[27]/D (DFF_X1)                        0.01       5.09 f
-  data arrival time                                                  5.09
+  I1/A_SIG_reg[13]/CK (DFF_X1)                            0.00       0.00 r
+  I1/A_SIG_reg[13]/Q (DFF_X1)                             0.15       0.15 r
+  I2/mult_168/A[13] (FPmul_DW02_mult_2)                   0.00       0.15 r
+  I2/mult_168/U2936/ZN (INV_X1)                           0.06       0.21 f
+  I2/mult_168/U2934/ZN (INV_X1)                           0.10       0.31 r
+  I2/mult_168/U1523/ZN (XNOR2_X2)                         0.11       0.42 r
+  I2/mult_168/U2350/ZN (INV_X1)                           0.04       0.47 f
+  I2/mult_168/U2351/ZN (INV_X2)                           0.07       0.53 r
+  I2/mult_168/U2384/ZN (OAI22_X1)                         0.05       0.58 f
+  I2/mult_168/U631/CO (FA_X1)                             0.11       0.69 f
+  I2/mult_168/U618/CO (FA_X1)                             0.11       0.80 f
+  I2/mult_168/U605/S (FA_X1)                              0.15       0.94 r
+  I2/mult_168/U603/S (FA_X1)                              0.12       1.06 f
+  I2/mult_168/U602/S (FA_X1)                              0.15       1.20 r
+  I2/mult_168/U1924/ZN (NOR2_X1)                          0.03       1.23 f
+  I2/mult_168/U2830/ZN (OAI21_X1)                         0.05       1.28 r
+  I2/mult_168/U2467/ZN (AOI21_X1)                         0.03       1.31 f
+  I2/mult_168/U2466/ZN (OAI21_X1)                         0.08       1.39 r
+  I2/mult_168/U2471/ZN (AOI21_X1)                         0.05       1.44 f
+  I2/mult_168/U2906/ZN (OAI21_X1)                         0.05       1.49 r
+  I2/mult_168/U2570/ZN (XNOR2_X1)                         0.06       1.55 r
+  I2/mult_168/PRODUCT[38] (FPmul_DW02_mult_2)             0.00       1.55 r
+  I2/SIG_in_REG_reg[18]/D (DFF_X2)                        0.01       1.56 r
+  data arrival time                                                  1.56
 
-  clock MY_CLK (rise edge)                               10.00      10.00
-  clock network delay (ideal)                             0.00      10.00
-  clock uncertainty                                      -0.07       9.93
-  I2/SIG_in_REG_reg[27]/CK (DFF_X1)                       0.00       9.93 r
-  library setup time                                     -0.04       9.89
-  data required time                                                 9.89
+  clock MY_CLK (rise edge)                                0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  clock uncertainty                                      -0.07      -0.07
+  I2/SIG_in_REG_reg[18]/CK (DFF_X2)                       0.00      -0.07 r
+  library setup time                                     -0.03      -0.10
+  data required time                                                -0.10
   --------------------------------------------------------------------------
-  data required time                                                 9.89
-  data arrival time                                                 -5.09
+  data required time                                                -0.10
+  data arrival time                                                 -1.56
   --------------------------------------------------------------------------
-  slack (MET)                                                        4.80
+  slack (VIOLATED)                                                  -1.66
 
 
 1
