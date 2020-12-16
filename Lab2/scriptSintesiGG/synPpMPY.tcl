@@ -4,14 +4,14 @@ sh mkdir logs/PP
 sh mkdir reports/PP
 sh mkdir reports/PP/netlist
 
-analyze -library WORK -format vhdl -autoread {../src/fpuvhdl/common/}
-analyze -library WORK -format vhdl {../src/fpuvhdl/multiplier/fpmul_stage4_struct.vhd}
-analyze -library WORK -format vhdl {../src/fpuvhdl/multiplier/fpmul_stage3_struct.vhd}
-analyze -library WORK -format vhdl {../src/fpuvhdl/multiplier/fpmul_stage2_struct.vhd}
-analyze -library WORK -format vhdl {../src/fpuvhdl/multiplier/fpmul_stage1_struct.vhd}
-analyze -library WORK -format vhdl {../src/fpuvhdl/multiplier/fpmul_single_cycle.vhd}
-analyze -library WORK -format vhdl {../src/fpuvhdl/multiplier/fpmul_pipeline.vhd}
-elaborate FPMUL -architecture PIPELINE -library WORK -update > logs/PP/elaboration.txt
+analyze -library work -format vhdl -autoread {../src/fpuvhdl/common/}
+analyze -library work -format vhdl {../src/fpuvhdl/multiplier/fpmul_stage4_struct.vhd}
+analyze -library work -format vhdl {../src/fpuvhdl/multiplier/fpmul_stage3_struct.vhd}
+analyze -library work -format vhdl {../src/fpuvhdl/multiplier/fpmul_stage2_struct_beh.vhd}
+analyze -library work -format vhdl {../src/fpuvhdl/multiplier/fpmul_stage1_struct.vhd}
+analyze -library work -format vhdl {../src/fpuvhdl/multiplier/fpmul_single_cycle.vhd}
+analyze -library work -format vhdl {../src/fpuvhdl/multiplier/fpmul_pipeline.vhd}
+elaborate FPMUL -architecture PIPELINE -library work > logs/PP/elaboration.txt
 # setting design constrains
 create_clock -name MY_CLK -period 10.0 clk
 set_dont_touch_network MY_CLK

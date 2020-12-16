@@ -1,0 +1,135 @@
+Information: Updating design information... (UID-85)
+Warning: There are infeasible paths detected in your design that were ignored during optimization. Please run 'report_timing -attributes' and/or 'create_qor_snapshot/query_qor_snapshot -infeasible_paths' to identify these paths.  (OPT-1721)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : FPmul
+Version: O-2018.06-SP4
+Date   : Tue Dec 15 19:51:38 2020
+****************************************
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+  Startpoint: I1/B_SIG_reg[9]
+              (rising edge-triggered flip-flop clocked by MY_CLK)
+  Endpoint: I2/SIG_in_REG_reg[25]
+            (rising edge-triggered flip-flop clocked by MY_CLK)
+  Path Group: MY_CLK
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FPmul              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock MY_CLK (rise edge)                                0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  I1/B_SIG_reg[9]/CK (DFF_X1)                             0.00       0.00 r
+  I1/B_SIG_reg[9]/Q (DFF_X1)                              0.10       0.10 r
+  I1/B_SIG[9] (FPmul_stage1)                              0.00       0.10 r
+  I2/B_SIG[9] (FPmul_stage2_mbe)                          0.00       0.10 r
+  I2/mbe_mult/IN_B[9] (MBE_mult_uns)                      0.00       0.10 r
+  I2/mbe_mult/MBEU_PP/B[9] (mbe_ppg_N32_N_PP17)           0.00       0.10 r
+  I2/mbe_mult/MBEU_PP/BEU1_5/y[0] (BEU_12)                0.00       0.10 r
+  I2/mbe_mult/MBEU_PP/BEU1_5/U2/ZN (INV_X1)               0.03       0.13 f
+  I2/mbe_mult/MBEU_PP/BEU1_5/U1/ZN (XNOR2_X1)             0.07       0.19 f
+  I2/mbe_mult/MBEU_PP/BEU1_5/decode[1] (BEU_12)           0.00       0.19 f
+  I2/mbe_mult/MBEU_PP/MUX1_5/SEL_MUX[1] (MUX3XNTO1XN_N32_12)
+                                                          0.00       0.19 f
+  I2/mbe_mult/MBEU_PP/MUX1_5/U8/Z (BUF_X1)                0.07       0.27 f
+  I2/mbe_mult/MBEU_PP/MUX1_5/U4/ZN (AOI222_X1)            0.11       0.38 r
+  I2/mbe_mult/MBEU_PP/MUX1_5/U57/ZN (INV_X1)              0.02       0.40 f
+  I2/mbe_mult/MBEU_PP/MUX1_5/OUT_MUX[23] (MUX3XNTO1XN_N32_12)
+                                                          0.00       0.40 f
+  I2/mbe_mult/MBEU_PP/U520/Z (XOR2_X1)                    0.07       0.48 f
+  I2/mbe_mult/MBEU_PP/PP6[23] (mbe_ppg_N32_N_PP17)        0.00       0.48 f
+  I2/mbe_mult/CSA_Tree/PP6[23] (CSA_Tree_DADDA_N33_N_PP17)
+                                                          0.00       0.48 f
+  I2/mbe_mult/CSA_Tree/FA18_L7/Cin (FA_463)               0.00       0.48 f
+  I2/mbe_mult/CSA_Tree/FA18_L7/HALF2/A (HA_925)           0.00       0.48 f
+  I2/mbe_mult/CSA_Tree/FA18_L7/HALF2/U2/Z (XOR2_X1)       0.08       0.56 f
+  I2/mbe_mult/CSA_Tree/FA18_L7/HALF2/S (HA_925)           0.00       0.56 f
+  I2/mbe_mult/CSA_Tree/FA18_L7/S (FA_463)                 0.00       0.56 f
+  I2/mbe_mult/CSA_Tree/FA89_L6/B (FA_392)                 0.00       0.56 f
+  I2/mbe_mult/CSA_Tree/FA89_L6/HALF1/B (HA_784)           0.00       0.56 f
+  I2/mbe_mult/CSA_Tree/FA89_L6/HALF1/U4/Z (XOR2_X1)       0.08       0.63 f
+  I2/mbe_mult/CSA_Tree/FA89_L6/HALF1/S (HA_784)           0.00       0.63 f
+  I2/mbe_mult/CSA_Tree/FA89_L6/HALF2/B (HA_783)           0.00       0.63 f
+  I2/mbe_mult/CSA_Tree/FA89_L6/HALF2/U2/ZN (INV_X1)       0.03       0.66 r
+  I2/mbe_mult/CSA_Tree/FA89_L6/HALF2/U3/ZN (NOR2_X1)      0.02       0.69 f
+  I2/mbe_mult/CSA_Tree/FA89_L6/HALF2/Co (HA_783)          0.00       0.69 f
+  I2/mbe_mult/CSA_Tree/FA89_L6/U1/ZN (OR2_X1)             0.06       0.75 f
+  I2/mbe_mult/CSA_Tree/FA89_L6/Co (FA_392)                0.00       0.75 f
+  I2/mbe_mult/CSA_Tree/FA205_L5/A (FA_276)                0.00       0.75 f
+  I2/mbe_mult/CSA_Tree/FA205_L5/HALF1/A (HA_552)          0.00       0.75 f
+  I2/mbe_mult/CSA_Tree/FA205_L5/HALF1/U4/Z (XOR2_X1)      0.08       0.83 f
+  I2/mbe_mult/CSA_Tree/FA205_L5/HALF1/S (HA_552)          0.00       0.83 f
+  I2/mbe_mult/CSA_Tree/FA205_L5/HALF2/B (HA_551)          0.00       0.83 f
+  I2/mbe_mult/CSA_Tree/FA205_L5/HALF2/U5/Z (XOR2_X1)      0.07       0.90 f
+  I2/mbe_mult/CSA_Tree/FA205_L5/HALF2/S (HA_551)          0.00       0.90 f
+  I2/mbe_mult/CSA_Tree/FA205_L5/S (FA_276)                0.00       0.90 f
+  I2/mbe_mult/CSA_Tree/FA315_L4/B (FA_166)                0.00       0.90 f
+  I2/mbe_mult/CSA_Tree/FA315_L4/HALF1/B (HA_332)          0.00       0.90 f
+  I2/mbe_mult/CSA_Tree/FA315_L4/HALF1/U5/Z (XOR2_X1)      0.08       0.98 f
+  I2/mbe_mult/CSA_Tree/FA315_L4/HALF1/S (HA_332)          0.00       0.98 f
+  I2/mbe_mult/CSA_Tree/FA315_L4/HALF2/B (HA_331)          0.00       0.98 f
+  I2/mbe_mult/CSA_Tree/FA315_L4/HALF2/U3/ZN (INV_X1)      0.03       1.01 r
+  I2/mbe_mult/CSA_Tree/FA315_L4/HALF2/U4/ZN (NOR2_X1)     0.02       1.03 f
+  I2/mbe_mult/CSA_Tree/FA315_L4/HALF2/Co (HA_331)         0.00       1.03 f
+  I2/mbe_mult/CSA_Tree/FA315_L4/U1/ZN (OR2_X2)            0.06       1.09 f
+  I2/mbe_mult/CSA_Tree/FA315_L4/Co (FA_166)               0.00       1.09 f
+  I2/mbe_mult/CSA_Tree/FA394_L3/A (FA_87)                 0.00       1.09 f
+  I2/mbe_mult/CSA_Tree/FA394_L3/HALF1/A (HA_174)          0.00       1.09 f
+  I2/mbe_mult/CSA_Tree/FA394_L3/HALF1/U4/Z (XOR2_X1)      0.08       1.17 f
+  I2/mbe_mult/CSA_Tree/FA394_L3/HALF1/S (HA_174)          0.00       1.17 f
+  I2/mbe_mult/CSA_Tree/FA394_L3/HALF2/B (HA_173)          0.00       1.17 f
+  I2/mbe_mult/CSA_Tree/FA394_L3/HALF2/U3/ZN (INV_X1)      0.03       1.20 r
+  I2/mbe_mult/CSA_Tree/FA394_L3/HALF2/U4/ZN (NOR2_X1)     0.02       1.22 f
+  I2/mbe_mult/CSA_Tree/FA394_L3/HALF2/Co (HA_173)         0.00       1.22 f
+  I2/mbe_mult/CSA_Tree/FA394_L3/U1/ZN (OR2_X2)            0.05       1.28 f
+  I2/mbe_mult/CSA_Tree/FA394_L3/Co (FA_87)                0.00       1.28 f
+  I2/mbe_mult/CSA_Tree/FA453_L2/A (FA_28)                 0.00       1.28 f
+  I2/mbe_mult/CSA_Tree/FA453_L2/HALF1/A (HA_56)           0.00       1.28 f
+  I2/mbe_mult/CSA_Tree/FA453_L2/HALF1/U4/Z (XOR2_X1)      0.07       1.35 f
+  I2/mbe_mult/CSA_Tree/FA453_L2/HALF1/S (HA_56)           0.00       1.35 f
+  I2/mbe_mult/CSA_Tree/FA453_L2/HALF2/B (HA_55)           0.00       1.35 f
+  I2/mbe_mult/CSA_Tree/FA453_L2/HALF2/U1/ZN (AND2_X1)     0.04       1.39 f
+  I2/mbe_mult/CSA_Tree/FA453_L2/HALF2/Co (HA_55)          0.00       1.39 f
+  I2/mbe_mult/CSA_Tree/FA453_L2/U1/ZN (OR2_X2)            0.06       1.45 f
+  I2/mbe_mult/CSA_Tree/FA453_L2/Co (FA_28)                0.00       1.45 f
+  I2/mbe_mult/CSA_Tree/add_1260/A[37] (CSA_Tree_DADDA_N33_N_PP17_DW01_add_1)
+                                                          0.00       1.45 f
+  I2/mbe_mult/CSA_Tree/add_1260/U582/ZN (NOR2_X1)         0.05       1.50 r
+  I2/mbe_mult/CSA_Tree/add_1260/U886/ZN (OAI21_X1)        0.04       1.53 f
+  I2/mbe_mult/CSA_Tree/add_1260/U549/ZN (AOI21_X1)        0.06       1.59 r
+  I2/mbe_mult/CSA_Tree/add_1260/U850/ZN (OAI21_X1)        0.04       1.63 f
+  I2/mbe_mult/CSA_Tree/add_1260/U929/ZN (AOI21_X1)        0.04       1.67 r
+  I2/mbe_mult/CSA_Tree/add_1260/U957/ZN (OAI21_X1)        0.04       1.71 f
+  I2/mbe_mult/CSA_Tree/add_1260/U949/ZN (XNOR2_X1)        0.05       1.76 f
+  I2/mbe_mult/CSA_Tree/add_1260/SUM[45] (CSA_Tree_DADDA_N33_N_PP17_DW01_add_1)
+                                                          0.00       1.76 f
+  I2/mbe_mult/CSA_Tree/SUM[45] (CSA_Tree_DADDA_N33_N_PP17)
+                                                          0.00       1.76 f
+  I2/mbe_mult/OUT_MPY[45] (MBE_mult_uns)                  0.00       1.76 f
+  I2/SIG_in_REG_reg[25]/D (DFF_X1)                        0.01       1.77 f
+  data arrival time                                                  1.77
+
+  clock MY_CLK (rise edge)                                0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  clock uncertainty                                      -0.07      -0.07
+  I2/SIG_in_REG_reg[25]/CK (DFF_X1)                       0.00      -0.07 r
+  library setup time                                     -0.04      -0.11
+  data required time                                                -0.11
+  --------------------------------------------------------------------------
+  data required time                                                -0.11
+  data arrival time                                                 -1.77
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -1.88
+
+
+1

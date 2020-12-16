@@ -1,0 +1,3 @@
+Information: Performing power optimization. (PWR-850)
+Analyzing: "/software/dk/nangate45/synopsys/NangateOpenCellLibrary_typical_ecsm_nowlm.db"
+0
