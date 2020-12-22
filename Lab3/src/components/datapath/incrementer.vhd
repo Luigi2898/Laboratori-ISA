@@ -4,8 +4,8 @@ library ieee;
 
 entity incrementer is
   port (
-    current_address : in  std_logic_vector(15 downto 0);
-    next_address    : out std_logic_vector(15 downto 0)
+    CURRENT_ADDR : in  std_logic_vector(15 downto 0);
+    NEXT_ADDR    : out std_logic_vector(15 downto 0)
   );
 end entity;
 
