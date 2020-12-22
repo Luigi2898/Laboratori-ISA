@@ -11,6 +11,8 @@ end entity;
 
 architecture arch of incrementer is
 
+  signal pro : std_logic;
+
 begin
 
 end architecture;

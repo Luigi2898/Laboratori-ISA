@@ -4,7 +4,7 @@ library ieee;
 
 entity CU is
   port (
-    clock : in std_logic
+    OPCODE : in std_logic_vector(6 downto 0)
   );
 end entity;
 
