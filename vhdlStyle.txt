@@ -1,0 +1,40 @@
+------------- SYNTAX FORMAT FOR VHDL FILES ------------------
+
+* FONT ASES: ( U = uppercase, L = lowercase)
+	* Entity Port Signals : U
+	* Entity/Arch Name    : U
+	* Signal Types        : L
+	* Variables Names     : L
+	* Signal Names        : U
+	* VHDL Keywords       : L
+	* Process Label	      : L
+	* Component Label     : U
+
+* SIGNALS SYNTAX:
+	* Entity Port Signals : <function>_<in/out>			        e.g.) CTRL_IN, DATA_OUT
+	* Arch Signals 	      : <function>_<in/out>_<component>		e.g.) CTRL_IN_MUX, DATA_OUT_ADD
+
+* PROCESS SYNTAX:
+	* Process Name	      : <component>_<function>_process		e.g.) cnt_counting_process
+	* <component>_<function>_process : process( sensitivity_list )
+		begin
+    
+	  end process ; -- <component>_<function>_process
+
+* PORT MAP:
+	* Signal Assignment  : positional
+
+* GENERATE:
+	* <whatToGenerate>_gen : for i in x to y generate
+    
+	  end generate ; -- <whatToGenerate>_gen
+
+* ENTITY FORMATTING: (\t = 2 spaces)
+
+	entity <NAME> is
+	\tgeneric (<var> : <var_type> := <var_value>);
+	\tport (
+	\t\t <signal_name> : <port_type> <signal_type>;
+	\t);
+	end entity <NAME>;
+
