@@ -4,7 +4,10 @@ library ieee;
 
 entity CU is
   port (
+    -- From code memory
     OPCODE         : in  std_logic_vector(6 downto 0);
+    -- From BPU
+    BPU_MISSPRED   : in std_logic;
     -- To ALU input MUX
     EX_ALUSRC_OUT  : out std_logic; -- 1 immediate 0 non-immediate
     -- To ALU_CTRL
@@ -20,7 +23,10 @@ entity CU is
     -- To immediate generator
     IMM_EN_OUT     : out std_logic;
     IMM_CODE_OUT   : out std_logic_vector(2 downto 0);
-    -- TODO : Aggiungere gestione flush
+    -- To BPU
+    BPU_BRANCH     : out std_logic;
+    -- Flush the pipe
+    PIPE_FLUSH     : out std_logic
   );
 end entity;
 
@@ -85,11 +91,15 @@ begin
                                        "100" when JAL,
                                        "111" when others;
 
-  with OPCODE select IMM_EN_OUT     <= "1" when BEQ,
-                                       "1" when IMM,
-                                       "1" when AUIPC,
-                                       "1" when LUI,
-                                       "1" when JAL,
-                                       "0" when others;
+  with OPCODE select IMM_EN_OUT     <= '1' when BEQ,
+                                       '1' when IMM,
+                                       '1' when AUIPC,
+                                       '1' when LUI,
+                                       '1' when JAL,
+                                       '0' when others;
+
+  with OPCODE select PIPE_FLUSH     <= not(BPU_MISSPRED) when BEQ,
+                                       '0'               when others;
+
 
 end architecture;
