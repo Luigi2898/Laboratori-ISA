@@ -19,12 +19,10 @@ entity CU is
     -- To REGISTER FILE
     WB_RFEN_OUT    : out std_logic;
     -- To REGISTER FILE MUX
-    WB_RFMUX_OUT   : out std_logic -- 1 from memory 0 non-from-memory
+    WB_RFMUX_OUT   : out std_logic; -- 1 from memory 0 non-from-memory
     -- To immediate generator
     IMM_EN_OUT     : out std_logic;
     IMM_CODE_OUT   : out std_logic_vector(2 downto 0);
-    -- To BPU
-    BPU_BRANCH     : out std_logic;
     -- Flush the pipe
     PIPE_FLUSH     : out std_logic
   );
