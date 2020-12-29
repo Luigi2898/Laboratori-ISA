@@ -3,11 +3,11 @@ library ieee;
   use ieee.numeric_std.all;
 
 entity HDU is
-  generic ( word_size :  integer := 32; RF_ADDR_LEN : integer := 5 );
+  generic ( word_size :  integer := 32 );
   port (
       INSTR_IF_ID_IN     : in std_logic_vector(word_size-1 downto 0);
+      INSTR_ID_EX_IN     : in std_logic_vector(word_size-1 downto 0);
       ID_EX_MEMREAD_IN   : in std_logic;
-      ID_EX_RD_IN        : in std_logic_vector(RF_ADDR_LEN-1 downto 0);
       PC_EN_OUT          : out std_logic;
       IF_ID_EN_OUT       : out std_logic;
       CTRL_BUBBLE_OUT    : out std_logic
@@ -15,19 +15,21 @@ entity HDU is
 end entity;
 
 architecture HDU_ARCH of HDU is
-
-signal IF_ID_RS1, IF_ID_RS2 : std_logic_vector(RF_ADDR_LEN-1 downto 0);
-  
+ 
+signal RS1, RS2, RD : integer;
+ 
 begin
 
-HDU_process : process(INSTR_IF_ID_IN, ID_EX_MEMREAD_IN, ID_EX_RD_IN)
-variable RS1_ID, RS2_ID, RD_EXE : integer range 0 to 2**32; 
+HDU_process : process(INSTR_IF_ID_IN, INSTR_ID_EX_IN, ID_EX_MEMREAD_IN )
+variable RS1_ID, RS2_ID, RD_EXE : integer; 
 begin
 --get source registers  
 RS1_ID := to_integer(unsigned(INSTR_IF_ID_IN(19 downto 15)));
 RS2_ID := to_integer(unsigned(INSTR_IF_ID_IN(24 downto 20)));
-RD_EXE := to_integer(unsigned(ID_EX_RD_IN));
-
+RD_EXE := to_integer(unsigned(INSTR_ID_EX_IN(11 downto 7)));
+RS1<= RS1_ID;
+RS2<= RS2_ID;
+RD<= RD_EXE;
 --default assignment
 PC_EN_OUT		    <= '1';
 IF_ID_EN_OUT    <= '1';
