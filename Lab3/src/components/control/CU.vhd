@@ -4,7 +4,10 @@ library ieee;
 
 entity CU is
   port (
+    -- From code memory
     OPCODE         : in  std_logic_vector(6 downto 0);
+    -- From BPU
+    BPU_MISSPRED   : in std_logic;
     -- To ALU input MUX
     EX_ALUSRC_OUT  : out std_logic; -- 1 immediate 0 non-immediate
     -- To ALU_CTRL
@@ -16,19 +19,24 @@ entity CU is
     -- To REGISTER FILE
     WB_RFEN_OUT    : out std_logic;
     -- To REGISTER FILE MUX
-    WB_RFMUX_OUT   : out std_logic -- 1 from memory 0 non-from-memory
+    WB_RFMUX_OUT   : out std_logic; -- 1 from memory 0 non-from-memory
+    -- To immediate generator
+    IMM_EN_OUT     : out std_logic;
+    IMM_CODE_OUT   : out std_logic_vector(2 downto 0);
+    -- Flush the pipe
+    PIPE_FLUSH     : out std_logic
   );
 end entity;
 
 architecture arch of CU is
 
   constant ARITH : std_logic_vector(6 downto 0) := "0110011"; -- ADD XOR SLT
-  constant BEQ   : std_logic_vector(6 downto 0) := "1100011";
-  constant IMM   : std_logic_vector(6 downto 0) := "0010011"; -- ADDI SRAI ANDI
-  constant AUIPC : std_logic_vector(6 downto 0) := "0010111";
-  constant LUI   : std_logic_vector(6 downto 0) := "0110111";
+  constant BEQ   : std_logic_vector(6 downto 0) := "1100011";                   -- TO B SENT TO IMM 000
+  constant IMM   : std_logic_vector(6 downto 0) := "0010011"; -- ADDI SRAI ANDI -- TO B SENT TO IMM 001
+  constant AUIPC : std_logic_vector(6 downto 0) := "0010111";                   -- TO B SENT TO IMM 010
+  constant LUI   : std_logic_vector(6 downto 0) := "0110111";                   -- TO B SENT TO IMM 011
   constant LW    : std_logic_vector(6 downto 0) := "0000011";
-  constant JAL   : std_logic_vector(6 downto 0) := "1101111";
+  constant JAL   : std_logic_vector(6 downto 0) := "1101111";                   -- TO B SENT TO IMM 100
   constant SW    : std_logic_vector(6 downto 0) := "0100011";
 
 begin
@@ -73,5 +81,23 @@ begin
                                        '0' when JAL,
                                        '1' when SW,
                                        '0' when others;
+
+  with OPCODE select IMM_CODE_OUT   <= "000" when BEQ,
+                                       "001" when IMM,
+                                       "010" when AUIPC,
+                                       "011" when LUI,
+                                       "100" when JAL,
+                                       "111" when others;
+
+  with OPCODE select IMM_EN_OUT     <= '1' when BEQ,
+                                       '1' when IMM,
+                                       '1' when AUIPC,
+                                       '1' when LUI,
+                                       '1' when JAL,
+                                       '0' when others;
+
+  with OPCODE select PIPE_FLUSH     <= not(BPU_MISSPRED) when BEQ,
+                                       '0'               when others;
+
 
 end architecture;
