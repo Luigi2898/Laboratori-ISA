@@ -4,7 +4,7 @@ library ieee;
 
 entity BPU is
   port (
-    clock : in std_logic
+    CLK : in std_logic
   );
 end entity;
 

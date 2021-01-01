@@ -1,0 +1,8 @@
+- 4-way 512 rows set associative cache for target address;
+- 512 4-bit branch history registers (shift regs);
+- 16 saturated counters for each of the 512 history regs;
+- each rows has:
+    - 32 bit PC stored;
+    - 32 bit target address;
+    - 2 bit age counter for replacing;
+- the hit location of the cache indexes the vector of BHR;
