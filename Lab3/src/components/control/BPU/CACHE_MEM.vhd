@@ -79,13 +79,13 @@ begin
   gnd <= '0';
 
   DIN_REG <= signed(std_logic_vector(DIN));
-  TAG_IN_REG <= signed(std_logic_vector(WR_ADDR(EntriesBits-1 downto 0)));
+  TAG_IN_REG <= signed(std_logic_vector(WR_ADDR(AddrBits-1 downto EntriesBits)));
 
   refresh_cnt_process : process(RSTN,RD_EN,WR_EN,REFRESH_CNT_WR,REFRESH_CNT_RD)
   begin
     for i in 0 to SetNum-1 loop
       for j in 0 to SetEntries-1 loop
-        RESET_CNT(i)(j) <= (RSTN and REFRESH_CNT_RD(i)(j)) or (RSTN and REFRESH_CNT_WR(i)(j));
+        RESET_CNT(i)(j) <= (RSTN and not(REFRESH_CNT_RD(i)(j)) and not(REFRESH_CNT_WR(i)(j)));
       end loop;
     end loop;
   end process refresh_cnt_process;
@@ -110,54 +110,68 @@ begin
     refresh_cnt_wr_var := (others => (others =>'0'));
 
     for i in 0 to SetNum-1 loop
-      if (AGE_MEM(i)(wr_addr_entry_var) = "00") then
+      if (AGE_MEM(i)(wr_addr_entry_var) = "11") then
         wr_addr_set_var := i;
         flag := '1';
       end if;
     end loop;
 
-    if (flag = '0') then
+    if (flag = '1') then
+      decoded_addr_var := (others => (others =>'0'));
+      decoded_addr_var(wr_addr_set_var)(wr_addr_entry_var) := '1' and WR_EN;
+      refresh_cnt_wr_var := (others => (others =>'0'));
+      refresh_cnt_wr_var(wr_addr_set_var)(wr_addr_entry_var) := '1' and WR_EN;
+
+    else
       for i in 0 to SetNum-1 loop
-        if (AGE_MEM(i)(wr_addr_entry_var) = "01") then
+        if (AGE_MEM(i)(wr_addr_entry_var) = "10") then
           wr_addr_set_var := i;
           flag := '1';
         end if;
       end loop;
 
-      if (flag = '0') then
+      if (flag = '1') then
+        decoded_addr_var := (others => (others =>'0'));
+        decoded_addr_var(wr_addr_set_var)(wr_addr_entry_var) := '1' and WR_EN;
+        refresh_cnt_wr_var := (others => (others =>'0'));
+        refresh_cnt_wr_var(wr_addr_set_var)(wr_addr_entry_var) := '1' and WR_EN;
+
+      else
         for i in 0 to SetNum-1 loop
-          if (AGE_MEM(i)(wr_addr_entry_var) = "10") then
+          if (AGE_MEM(i)(wr_addr_entry_var) = "01") then
             wr_addr_set_var := i;
             flag := '1';
           end if;
         end loop;
 
-        if (flag = '0') then
+        if (flag = '1') then
+          decoded_addr_var := (others => (others =>'0'));
+          decoded_addr_var(wr_addr_set_var)(wr_addr_entry_var) := '1' and WR_EN;
+          refresh_cnt_wr_var := (others => (others =>'0'));
+          refresh_cnt_wr_var(wr_addr_set_var)(wr_addr_entry_var) := '1' and WR_EN;
+
+        else
           for i in 0 to SetNum-1 loop
-            if (AGE_MEM(i)(wr_addr_entry_var) = "11") then
+            if (AGE_MEM(i)(wr_addr_entry_var) = "00") then
               wr_addr_set_var := i;
               flag := '1';
             end if;
           end loop;
-        else
-          decoded_addr_var := (others => (others =>'0'));
-          decoded_addr_var(wr_addr_set_var)(wr_addr_entry_var) := '1';
-          refresh_cnt_wr_var := (others => (others =>'0'));
-          refresh_cnt_wr_var(wr_addr_set_var)(wr_addr_entry_var) := '1';
+          
+          if (flag = '1') then
+            decoded_addr_var := (others => (others =>'0'));
+            decoded_addr_var(wr_addr_set_var)(wr_addr_entry_var) := '1' and WR_EN;
+            refresh_cnt_wr_var := (others => (others =>'0'));
+            refresh_cnt_wr_var(wr_addr_set_var)(wr_addr_entry_var) := '1' and WR_EN;
+          else
+            decoded_addr_var := (others => (others =>'0'));
+            refresh_cnt_wr_var := (others => (others =>'0'));
+          end if;
         end if;
-      else
-        decoded_addr_var := (others => (others =>'0'));
-        decoded_addr_var(wr_addr_set_var)(wr_addr_entry_var) := '1';
-        refresh_cnt_wr_var := (others => (others =>'0'));
-        refresh_cnt_wr_var(wr_addr_set_var)(wr_addr_entry_var) := '1';
       end if;
-    else
-      decoded_addr_var := (others => (others =>'0'));
-      decoded_addr_var(wr_addr_set_var)(wr_addr_entry_var) := '1';
-      refresh_cnt_wr_var := (others => (others =>'0'));
-      refresh_cnt_wr_var(wr_addr_set_var)(wr_addr_entry_var) := '1';
-
     end if;
+
+      
 
     DECODED_ADDR <= decoded_addr_var;
     REFRESH_CNT_WR <= refresh_cnt_wr_var;
@@ -187,7 +201,7 @@ begin
 
 
       for i in 0 to SetNum-1 loop
-        if (std_logic_vector(TAG_MEM(i)(rd_addr_entry_var)) = std_logic_vector(RD_ADDR(SetBits+EntriesBits-1 downto EntriesBits))) then
+        if (std_logic_vector(TAG_MEM(i)(rd_addr_entry_var)) = std_logic_vector(RD_ADDR(AddrBits-1 downto EntriesBits))) then
           flag := '1';
           rd_addr_set_var := i;
         else
