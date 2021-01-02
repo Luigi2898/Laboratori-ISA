@@ -1,56 +1,59 @@
 library ieee;
-  use ieee.std_logic_1164.all;
-  use ieee.numeric_std.all;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_misc.all;
+use ieee.numeric_std.all;
 
 entity HDU is
-  generic ( word_size :  integer := 32 );
-  port (
-      INSTR_IF_ID_IN     : in std_logic_vector(word_size-1 downto 0);
-      INSTR_ID_EX_IN     : in std_logic_vector(word_size-1 downto 0);
-      ID_EX_MEMREAD_IN   : in std_logic;
-      PC_EN_OUT          : out std_logic;
-      IF_ID_EN_OUT       : out std_logic;
-      CTRL_BUBBLE_OUT    : out std_logic
-  );
-end entity;
+    port (
+        RS1_ID_IN   : in  std_logic_vector(4 downto 0); -- IF/ID.RegisterRs1
+		RS2_ID_IN   : in  std_logic_vector(4 downto 0); -- IF/ID.RegisterRs2
+        RS1_EXE_IN  : in  std_logic_vector(4 downto 0); -- ID/EX.RegisterRs1
+		RS2_EXE_IN  : in  std_logic_vector(4 downto 0); -- ID/EX.RegisterRs2
+		RD_EX_IN    : in  std_logic_vector(4 downto 0); -- ID/EXE.RegisterRd
+        RD_MEM_IN   : in  std_logic_vector(4 downto 0); -- EXE/MEM.RegisterRd
+        RD_WB_IN    : in  std_logic_vector(4 downto 0); -- MEM/WB.RegisterRd
+        LOAD_EXE_IN : in  std_logic; --ID/EX.MemRead
+        REG_WR_WB   : in  std_logic; --MEM/WB.RegWrite 
+        REG_WR_MEM  : in  std_logic; --EX/MEM.RegWrite
+        STALL       : out std_logic;
+        FORWARD     : out std_logic_vector(3 downto 0)     
+    );
+end entity  HDU;
 
-architecture HDU_ARCH of HDU is
- 
-signal RS1, RS2, RD : integer;
- 
+architecture beh of  HDU is
+
+signal MEM_HAZARD_RS1: std_logic;
+signal MEM_HAZARD_RS2: std_logic;
+signal WB_HAZARD_RS1: std_logic;
+signal WB_HAZARD_RS2: std_logic;
+
+
 begin
+    
+MEM_HAZARD_RS1 <= REG_WR_MEM AND AND_REDUCE(RS1_EXE_IN XNOR RD_MEM_IN) AND OR_REDUCE(RD_MEM_IN); -- RS1 == RD of EX/MEM stage AND RD != x0 
 
-HDU_process : process(INSTR_IF_ID_IN, INSTR_ID_EX_IN, ID_EX_MEMREAD_IN )
-variable RS1_ID, RS2_ID, RD_EXE : integer; 
-begin
---get source registers  
-RS1_ID := to_integer(unsigned(INSTR_IF_ID_IN(19 downto 15)));
-RS2_ID := to_integer(unsigned(INSTR_IF_ID_IN(24 downto 20)));
-RD_EXE := to_integer(unsigned(INSTR_ID_EX_IN(11 downto 7)));
-RS1<= RS1_ID;
-RS2<= RS2_ID;
-RD<= RD_EXE;
---default assignment
-PC_EN_OUT		    <= '1';
-IF_ID_EN_OUT    <= '1';
-CTRL_BUBBLE_OUT <= '0';
+MEM_HAZARD_RS2 <= REG_WR_MEM AND AND_REDUCE(RS2_EXE_IN XNOR RD_MEM_IN) AND OR_REDUCE(RD_MEM_IN); -- RS2 == RD of EX/MEM stage AND RD != x0 
 
---detect load use data hazard
-if (ID_EX_MEMREAD_IN = '1' and ((RS1_ID = RD_EXE) or (RS2_ID = RD_EXE))) then
-  PC_EN_OUT		    <= '0';
-  IF_ID_EN_OUT    <= '0';
-  CTRL_BUBBLE_OUT <= '1';
-  else 
-  PC_EN_OUT		    <= '1';
-  IF_ID_EN_OUT    <= '1';
-  CTRL_BUBBLE_OUT <= '0';
-end if; 
+WB_HAZARD_RS1 <= REG_WR_WB AND AND_REDUCE(RS1_EXE_IN XNOR RD_WB_IN) AND OR_REDUCE(RD_WB_IN)
+                 AND NOT(MEM_HAZARD_RS1); -- RS1 == RD of MEM/WB stage AND RD != x0 
 
-end process HDU_process;
+WB_HAZARD_RS2 <= REG_WR_WB AND AND_REDUCE(RS2_EXE_IN XNOR RD_WB_IN) AND OR_REDUCE(RD_WB_IN)
+                 AND NOT(MEM_HAZARD_RS2); -- RS2 == RD of MEM/WB stage AND RD != x0   
 
+FORWARD <=  WB_HAZARD_RS2 & WB_HAZARD_RS1 & MEM_HAZARD_RS2 &  MEM_HAZARD_RS1;                  
 
+STALL <= (AND_REDUCE(RS1_ID_IN XNOR RD_EX_IN) OR AND_REDUCE(RS2_ID_IN XNOR RD_EX_IN)) AND LOAD_EXE_IN;
 
+--with FORWARD select FORWARD_A <= "01" when "0001",
+--								   "01" when "1001",
+--                                 "10" when "0100",
+--                                 "10" when "0110",
+--                                 "00" when others;
 
+--with FORWARD select FORWARD_B <= "01" when "0010",
+--                                 "10" when "1000",
+--                                 "10" when "1001",
+--                                 "01" when "0110",
+--                                 "00" when others;                                
 
-
-end architecture;
+end architecture beh;
