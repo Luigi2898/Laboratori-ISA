@@ -14,7 +14,7 @@ architecture beh of REG is
 
   begin
 	
-	register : process(CLK, RST_N)
+	register_pro : process(CLK, RST_N)
 	begin
 	  if(RST_N = '0') then
 	    REG_OUT <= (others => '0');
