@@ -183,8 +183,8 @@ begin
   mem_set_generation : for i in 0 to SetNum-1 generate  
     mem_entry_generation : for j in 0 to SetEntries-1 generate
 
-      TAG_REG : REG generic map (TagSize) port map (TAG_IN_REG,CLK,RSTN,DECODED_ADDR(i)(j),TAG_MEM(i)(j));
-      CONTENT_REG : REG generic map (ContentSize) port map (DIN_REG,CLK,RSTN,DECODED_ADDR(i)(j),CONTENT_MEM(i)(j));
+      --TAG_REG : REG generic map (TagSize) port map (TAG_IN_REG,CLK,RSTN,DECODED_ADDR(i)(j),TAG_MEM(i)(j));
+      --CONTENT_REG : REG generic map (ContentSize) port map (DIN_REG,CLK,RSTN,DECODED_ADDR(i)(j),CONTENT_MEM(i)(j));
       AGE_COUNT : AGE_CNT generic map (2,4) port map (CLK,RSTN,REFRESH_CNT(i)(j),INCREASE_CNT(i)(j),vdd,AGE_MEM(i)(j));
 
     end generate mem_entry_generation;

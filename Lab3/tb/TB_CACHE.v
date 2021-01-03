@@ -14,17 +14,17 @@ module TB_CACHE ();
    reg rd_en;
    reg wr_en; 
    reg write1, write2;
-   reg [31:0] readAddr;
-   reg [31:0] readCont;
-   reg [31:0] writeAddr;
-   reg [31:0] writeCont;
-   reg [31:0] write1AddrMemory [4095:0];
-   reg [31:0] write1ContMemory [4095:0];
-   reg [31:0] write2AddrMemory [4095:0];
-   reg [31:0] write2ContMemory [4095:0];
-   reg [31:0] readMemory [4095:0];
+   reg [7:0] readAddr;
+   reg [7:0] readCont;
+   reg [7:0] writeAddr;
+   reg [7:0] writeCont;
+   reg [7:0] write1AddrMemory [7:0];
+   reg [7:0] write1ContMemory [7:0];
+   reg [7:0] write2AddrMemory [7:0];
+   reg [7:0] write2ContMemory [7:0];
+   reg [7:0] readMemory [7:0];
    integer index1 = 0, index2 = 0, index3 = 0;
-   wire [31:0] memOut;
+   wire [7:0] memOut;
    wire hitMissN;
    
 
@@ -73,43 +73,50 @@ module TB_CACHE ();
     end
 
 	initial begin
-		$readmemb("./stimulus_files/cache_stim/FirstWriteBin.mem", write1AddrMemory);
-        $readmemb("./stimulus_files/cache_stim/FirstWriteContentBin.mem", write1ContMemory);
-        $readmemb("./stimulus_files/cache_stim/SecondWriteBin.mem", write2AddrMemory);
-        $readmemb("./stimulus_files/cache_stim/SecondWriteContentBin.mem", write2ContMemory);
-        $readmemb("./stimulus_files/cache_stim/ReadAddrBin.mem", readMemory);
-
-
+		$display("Initializing stimuli files...");
+		$readmemb("./stimulus_files/cache_stim/FirstWriteAddrBin.txt", write1AddrMemory);
+        $readmemb("./stimulus_files/cache_stim/FirstWriteContentBin.txt", write1ContMemory);
+        $readmemb("./stimulus_files/cache_stim/SecondWriteAddrBin.txt", write2AddrMemory);
+        $readmemb("./stimulus_files/cache_stim/SecondWriteContentBin.txt", write2ContMemory);
+        $readmemb("./stimulus_files/cache_stim/ReadAddrBin.txt", readMemory);
+		$display("Done!");
 	end
     
     always @(posedge clk) begin
         if (sim_start && write1) begin
-            writeAddr = write1AddrMemory(index1);
-            writeCont = write1ContMemory(index1);
+            writeAddr = write1AddrMemory[index1];
+            writeCont = write1ContMemory[index1];
             index1 = index1 + 1;
         end
         else if (sim_start && write2) begin 
-            writeAddr = write2AddrMemory(index2);
-            writeCont = write2ContMemory(index2);
+            writeAddr = write2AddrMemory[index2];
+            writeCont = write2ContMemory[index2];
             index2 = index2 + 1;
         end
+		else begin
+		writeAddr = 32'd0;
+		readAddr = 32'd0;
+		end	
     end
 
     always @(posedge clk) begin
         if (sim_start && rd_en) begin
-            readAddr = readMemory(index3);
+            readAddr = readMemory[index3];
             index3 = index3 +1;
-        end
+		end
+        else begin
+			readAddr = 32'd0;
+		end
     end
 
     CACHE_MEM #(
         .SetNum(4),
-        .SetEntries(1024),
-        .TagSize(22),
-        .ContentSize(32),
-        .AddrBits(32),
+        .SetEntries(8),
+        .TagSize(5),
+        .ContentSize(8),
+        .AddrBits(8),
         .SetBits(1),
-        .EntriesBits(10)
+        .EntriesBits(3)
     )
     DUT (
         .CLK(clk),
