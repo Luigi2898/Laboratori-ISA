@@ -7,7 +7,11 @@ entity CU is
     -- From code memory
     OPCODE         : in  std_logic_vector(6 downto 0);
     -- From BPU
-    BPU_MISSPRED   : in std_logic;
+    BPU_MISSPRED   : in  std_logic;
+    BPU_PREDICTION : in  std_logic;
+    -- From HDU
+    HDU_STALL      : in  std_logic;
+    HDU_FORWARD    : in  std_logic_vector(3 downto 0);
     -- To ALU input MUX
     EX_ALUSRC_OUT  : out std_logic; -- 1 immediate 0 non-immediate
     -- To ALU_CTRL
@@ -24,7 +28,11 @@ entity CU is
     IMM_EN_OUT     : out std_logic;
     IMM_CODE_OUT   : out std_logic_vector(2 downto 0);
     -- Flush the pipe
-    PIPE_FLUSH     : out std_logic
+    PIPE_FLUSH     : out std_logic; -- Send to pc the right address and resets pipe
+    -- Stall the pipe
+    PIPE_STALL     : out std_logic;
+    -- Jump
+    JUMP           : out std_logic
   );
 end entity;
 
@@ -98,6 +106,20 @@ begin
 
   with OPCODE select PIPE_FLUSH     <= not(BPU_MISSPRED) when BEQ,
                                        '0'               when others;
+  
+  JUMP       <= BPU_PREDICTION;
+  PIPE_STALL <= HDU_STALL;
+  
+  with HDU_FORWARD select FORWARD_A <= "01" when "0001",
+		                          				 "01" when "1001",
+                                       "10" when "0100",
+                                       "10" when "0110",
+                                       "00" when others;
 
+  with HDU_FORWARD select FORWARD_B <= "01" when "0010",
+                                       "10" when "1000",
+                                       "10" when "1001",
+                                       "01" when "0110",
+                                       "00" when others;    
 
 end architecture;
