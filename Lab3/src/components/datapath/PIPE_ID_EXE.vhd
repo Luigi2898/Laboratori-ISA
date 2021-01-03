@@ -3,7 +3,7 @@ library ieee;
   use ieee.numeric_std.all;
 
 
-entity PIPE_IF_EX is 
+entity PIPE_ID_EX is 
   generic( word_size :  integer := 32 );
   port(
     CLK                   : in std_logic;
@@ -30,10 +30,10 @@ entity PIPE_IF_EX is
     RD_ADDR_OUT           : out std_logic_vector(4 downto 0);
     CTRL_CU_OUT           : out std_logic_vector(6 downto 0) 
   );
-end entity PIPE_IF_EX;
+end entity PIPE_ID_EX;
 
 
-architecture beh of PIPE_IF_EX is
+architecture beh of PIPE_ID_EX is
 
 signal RS1      : std_logic_vector(31 downto 0);
 signal RS2      : std_logic_vector(31 downto 0);
