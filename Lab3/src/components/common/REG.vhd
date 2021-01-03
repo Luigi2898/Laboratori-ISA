@@ -1,5 +1,6 @@
-library ieee;
-use ieee.std_logic_1146.all;
+library IEEE;
+  use IEEE.std_logic_1164.all;
+  use IEEE.numeric_std.all;
 
 entity REG is
   generic(N : integer := 11);
@@ -14,7 +15,7 @@ architecture beh of REG is
 
   begin
 	
-	register : process(CLK, RST_N)
+	register_process : process(CLK, RST_N)
 	begin
 	  if(RST_N = '0') then
 	    REG_OUT <= (others => '0');

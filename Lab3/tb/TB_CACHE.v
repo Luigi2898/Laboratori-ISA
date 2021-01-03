@@ -7,25 +7,26 @@
 
 
 module TB_CACHE ();
-   wire clk;
-   wire rst_n;
+   reg clk;
+   reg rst_n;
    reg sim_start;
    wire sim_end;
    reg rd_en;
+   reg wr_en; 
+   reg write1, write2;
    reg [31:0] readAddr;
    reg [31:0] readCont;
    reg [31:0] writeAddr;
    reg [31:0] writeCont;
-   reg [31:0] memOut;
-   reg hitMissN;
-   reg [31:0] infileName = "../tb/stimulus_files/DaddaTestInputs.txt";     /*INSERT HERE INPUT FILE PATH AND NAME */
-   reg [31:0] outfileNameBin = "../tb/stimulus_files/DaddaTestOutputs_bin.txt"; /*INSERT HERE BINARY OUTPUT FILE PATH AND NAME */
-   reg [31:0] outfileNameInt = "../tb/stimulus_files/DaddaTestOutputs_int.txt"; /*INSERT HERE INTEGER OUTPUT FILE PATH AND NAME */
-   integer wrong_res = 0;
-   integer res = 0;
-   integer i = 0;
-   reg settle_flag = 1;
-   integer end_sim = 0;
+   reg [31:0] write1AddrMemory [4095:0];
+   reg [31:0] write1ContMemory [4095:0];
+   reg [31:0] write2AddrMemory [4095:0];
+   reg [31:0] write2ContMemory [4095:0];
+   reg [31:0] readMemory [4095:0];
+   integer index1 = 0, index2 = 0, index3 = 0;
+   wire [31:0] memOut;
+   wire hitMissN;
+   
 
 
 
@@ -39,9 +40,13 @@ module TB_CACHE ();
 
     initial begin
         sim_start = 1'b0;
+		rst_n = 1'b1;
+		#2
+		rst_n = 1'b0;
+		#2
+		rst_n = 1'b1;
         #40
         sim_start = 1'b1;
-        #100000000000000
     end
 
     initial begin
@@ -56,7 +61,7 @@ module TB_CACHE ();
         wr_en = 1'b0;
         write1 = 1'b1;
         #20
-        red_en = 1'b1;
+        rd_en = 1'b1;
         #40960
         rd_en = 1'b0;
         #20
@@ -65,23 +70,35 @@ module TB_CACHE ();
         #40960
         wr_en = 1'b0;
         write2 = 1'b0;
-        #100000000000000000
     end
+
+	initial begin
+		$readmemb("./stimulus_files/cache_stim/FirstWriteBin.mem", write1AddrMemory);
+        $readmemb("./stimulus_files/cache_stim/FirstWriteContentBin.mem", write1ContMemory);
+        $readmemb("./stimulus_files/cache_stim/SecondWriteBin.mem", write2AddrMemory);
+        $readmemb("./stimulus_files/cache_stim/SecondWriteContentBin.mem", write2ContMemory);
+        $readmemb("./stimulus_files/cache_stim/ReadAddrBin.mem", readMemory);
+
+
+	end
     
     always @(posedge clk) begin
         if (sim_start && write1) begin
-            $readmemh("./stimulus_files/cache_stim/FirstWriteBin.txt", writeAddr);
-            $readmemh("./stimulus_files/cache_stim/FirstWriteContentBin.txt", writeCont);
+            writeAddr = write1AddrMemory(index1);
+            writeCont = write1ContMemory(index1);
+            index1 = index1 + 1;
         end
         else if (sim_start && write2) begin 
-            $readmemh("./stimulus_files/cache_stim/SecondWriteBin.txt", writeAddr);
-            $readmemh("./stimulus_files/cache_stim/SecondWriteContentBin.txt", writeCont);
+            writeAddr = write2AddrMemory(index2);
+            writeCont = write2ContMemory(index2);
+            index2 = index2 + 1;
         end
     end
 
     always @(posedge clk) begin
         if (sim_start && rd_en) begin
-            $readmemh("./stimulus_files/cache_stim/ReadAddrBin.txt", readAddr);
+            readAddr = readMemory(index3);
+            index3 = index3 +1;
         end
     end
 
@@ -93,7 +110,7 @@ module TB_CACHE ();
         .AddrBits(32),
         .SetBits(1),
         .EntriesBits(10)
-    );
+    )
     DUT (
         .CLK(clk),
         .RSTN(rst_n),

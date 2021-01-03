@@ -35,17 +35,18 @@ architecture rtl of CACHE_MEM is
 	);
   end component;
 
-  component SAT_CNT is
+  component AGE_CNT is
     generic ( Nb : integer := 2;
               Module : integer := 4);
     port (
       CLK : in std_logic;
       RSTN : in std_logic;
+      REFRESH : in std_logic;
       EN : in std_logic;
       CNT_UP_DOWNN : in std_logic;
       CNT_OUT : out unsigned (Nb-1 downto 0)
     );
-  end component SAT_CNT;
+  end component AGE_CNT;
 
   constant Size : integer := (SetNum * SetEntries);
   constant Depth : integer := (TagSize + ContentSize);
@@ -64,12 +65,12 @@ architecture rtl of CACHE_MEM is
   signal AGE_MEM : memtypeAge3D;
   signal DECODED_ADDR : memtypeDecAddr2D;
   signal REFRESH_CNT_RD, REFRESH_CNT_WR : memtypeDecAddr2D;
-  signal RESET_CNT : memtypeDecAddr2D;
+  signal REFRESH_CNT : memtypeDecAddr2D;
 
   signal vdd, gnd : std_logic;
 
-  signal DIN_REG : signed (ContentSize-1 downto 0);
-  signal TAG_IN_REG : signed (TagSize-1 downto 0);
+  signal DIN_REG : std_logic_vector (ContentSize-1 downto 0);
+  signal TAG_IN_REG : std_logic_vector (TagSize-1 downto 0);
 
 
 
@@ -78,14 +79,14 @@ begin
   vdd <= '1';
   gnd <= '0';
 
-  DIN_REG <= signed(std_logic_vector(DIN));
-  TAG_IN_REG <= signed(std_logic_vector(WR_ADDR(AddrBits-1 downto EntriesBits)));
+  DIN_REG <= (std_logic_vector(DIN));
+  TAG_IN_REG <= (std_logic_vector(WR_ADDR(AddrBits-1 downto EntriesBits)));
 
   refresh_cnt_process : process(RSTN,RD_EN,WR_EN,REFRESH_CNT_WR,REFRESH_CNT_RD)
   begin
     for i in 0 to SetNum-1 loop
       for j in 0 to SetEntries-1 loop
-        RESET_CNT(i)(j) <= (RSTN and not(REFRESH_CNT_RD(i)(j)) and not(REFRESH_CNT_WR(i)(j)));
+        REFRESH_CNT(i)(j) <= (REFRESH_CNT_RD(i)(j)) or (REFRESH_CNT_WR(i)(j));
       end loop;
     end loop;
   end process refresh_cnt_process;
@@ -183,7 +184,7 @@ begin
 
       TAG_REG : REG generic map (TagSize) port map (TAG_IN_REG,TAG_MEM(i)(j),CLK,RSTN,DECODED_ADDR(i)(j));
       CONTENT_REG : REG generic map (ContentSize) port map (DIN_REG,CONTENT_MEM(i)(j),CLK,RSTN,DECODED_ADDR(i)(j));
-      AGE_CNT : SAT_CNT generic map (2,4) port map (CLK,RESET_CNT(i)(j),RD_EN,vdd,AGE_MEM(i)(j));
+      AGE_COUNT : AGE_CNT generic map (2,4) port map (CLK,RSTN,RD_EN,vdd,AGE_MEM(i)(j));
 
     end generate mem_entry_generation;
   end generate mem_set_generation;
