@@ -24,7 +24,7 @@ entity CACHE_MEM is
   );
 end entity CACHE_MEM;
 
-architecture rtl of CACHE_MEM is
+architecture beh of CACHE_MEM is
 
   component REG is
     generic(N : integer := 11);
@@ -60,13 +60,19 @@ architecture rtl of CACHE_MEM is
   type memtypeAge3D is array (SetNum-1 downto 0) of memtypeAge2D;
   type memtypeDecAddr2D is array (SetNum-1 downto 0) of std_logic_vector (SetEntries-1 downto 0);
   
-
-
+  signal INCREASE_CNT, REFRESH_CNT_RD, REFRESH_CNT_WR, REFRESH_CNT : memtypeDecAddr2D;
+  signal MEM_CONTENT_SIGNAL : memtypeContent3D;
+  signal MEM_TAG_SIGNAL : memtypeTag3D;
+  signal AGE_MEM : memtypeAge3D;
+  signal VDD : std_logic;
 
 begin
 
 ----------------------------------------------------------------------------------------------------------
-  memory_process : process (WR_ADDR,WR_EN,RD_ADDR,CLK,RSTN,DIN,RD_EN)
+  VDD <= '1';
+
+
+cam_memory_process_synch_write : process (CLK,RSTN)
 
   variable MEM_CONTENT : memtypeContent3D;
   variable MEM_TAG : memtypeTag3D;
@@ -86,47 +92,31 @@ begin
   variable refresh_cnt_rd_var : memtypeDecAddr2D;
   variable increase_cnt_var : memtypeDecAddr2D;
 
-  variable read_set, read_row : integer := 0;
-  variable found : std_logic := '0';
 
 
   begin
+  -- RESET PROCESS
+
+  
+
 
   if (RSTN = '0') then
     MEM_CONTENT := (others => (others => (others => '0')));
     MEM_TAG := (others => (others => (others => '0')));
-    MEM_AGE := (others => (others => (others => '1')));
+    refresh_cnt_wr_var := (others => (others => '0'));
 
+  -- SYNCHR WRITING  
   elsif (CLK'event and CLK = '1') then
 
-    if (found = '1') then
-      for i in 0 to SetNum-1 loop
-        if (i /= read_set) then
-          if ((MEM_AGE(i)(read_row)) /= to_unsigned(3,2)) then
-            MEM_AGE(i)(read_row) := MEM_AGE(i)(read_row) + "01";
-          else
-            MEM_AGE(i)(read_row) := MEM_AGE(i)(read_row);
-          end if;
-        else
-          MEM_AGE(i)(read_row) := MEM_AGE(i)(read_row);
-        end if;
-      end loop;
-    end if;
-
-
-    
-
-
     if (WR_EN = '1') then
+      
 
       wr_addr_entry_var := to_integer(WR_ADDR(EntriesBits-1 downto 0));
-
       flag := '0';
-
       wr_addr_set_var := 0;
     
       for i in 0 to SetNum-1 loop
-        if (MEM_AGE(i)(wr_addr_entry_var) = "11") then
+        if (AGE_MEM(i)(wr_addr_entry_var) = "11") then
           wr_addr_set_var := i;
           flag := '1';
         end if;
@@ -135,11 +125,12 @@ begin
       if (flag = '1') then
         MEM_CONTENT(wr_addr_set_var)(wr_addr_entry_var) := std_logic_vector(DIN);
         MEM_TAG(wr_addr_set_var)(wr_addr_entry_var) := std_logic_vector(WR_ADDR(AddrBits-1 downto EntriesBits));
-        MEM_AGE(wr_addr_set_var)(wr_addr_entry_var) := (others => '0');
+        refresh_cnt_wr_var := (others => (others => '0'));
+        refresh_cnt_wr_var(wr_addr_set_var)(wr_addr_entry_var) := '1';
 
       else
         for i in 0 to SetNum-1 loop
-          if (MEM_AGE(i)(wr_addr_entry_var) = "10") then
+          if (AGE_MEM(i)(wr_addr_entry_var) = "10") then
             wr_addr_set_var := i;
             flag := '1';
           end if;
@@ -148,11 +139,12 @@ begin
         if (flag = '1') then
           MEM_CONTENT(wr_addr_set_var)(wr_addr_entry_var) := std_logic_vector(DIN);
           MEM_TAG(wr_addr_set_var)(wr_addr_entry_var) := std_logic_vector(WR_ADDR(AddrBits-1 downto EntriesBits));
-          MEM_AGE(wr_addr_set_var)(wr_addr_entry_var) := (others => '0');
+          refresh_cnt_wr_var := (others => (others => '0'));
+          refresh_cnt_wr_var(wr_addr_set_var)(wr_addr_entry_var) := '1';
 
         else
           for i in 0 to SetNum-1 loop
-            if (MEM_AGE(i)(wr_addr_entry_var) = "01") then
+            if (AGE_MEM(i)(wr_addr_entry_var) = "01") then
               wr_addr_set_var := i;
               flag := '1';
             end if;
@@ -161,10 +153,12 @@ begin
           if (flag = '1') then
             MEM_CONTENT(wr_addr_set_var)(wr_addr_entry_var) := std_logic_vector(DIN);
             MEM_TAG(wr_addr_set_var)(wr_addr_entry_var) := std_logic_vector(WR_ADDR(AddrBits-1 downto EntriesBits));
-            MEM_AGE(wr_addr_set_var)(wr_addr_entry_var) := (others => '0');
+            refresh_cnt_wr_var := (others => (others => '0'));
+            refresh_cnt_wr_var(wr_addr_set_var)(wr_addr_entry_var) := '1';
           else
+
             for i in 0 to SetNum-1 loop
-              if (MEM_AGE(i)(wr_addr_entry_var) = "00") then
+              if (AGE_MEM(i)(wr_addr_entry_var) = "00") then
                 wr_addr_set_var := i;
                 flag := '1';
               end if;
@@ -173,63 +167,106 @@ begin
             if (flag = '1') then
               MEM_CONTENT(wr_addr_set_var)(wr_addr_entry_var) := std_logic_vector(DIN);
               MEM_TAG(wr_addr_set_var)(wr_addr_entry_var) := std_logic_vector(WR_ADDR(AddrBits-1 downto EntriesBits));
-              MEM_AGE(wr_addr_set_var)(wr_addr_entry_var) := (others => '0');
+              refresh_cnt_wr_var := (others => (others => '0'));
+              refresh_cnt_wr_var(wr_addr_set_var)(wr_addr_entry_var) := '1';
             end if;
+
           end if;
         end if;
       end if;
     else
       MEM_TAG := MEM_TAG;
       MEM_CONTENT := MEM_CONTENT;
-      MEM_AGE := MEM_AGE;
+      refresh_cnt_wr_var := refresh_cnt_wr_var;
     end if;
-    else
-      MEM_TAG := MEM_TAG;
-      MEM_CONTENT := MEM_CONTENT;
-      MEM_AGE := MEM_AGE;
-    end if;
+  else
+    MEM_TAG := MEM_TAG;
+    MEM_CONTENT := MEM_CONTENT;
+    refresh_cnt_wr_var := refresh_cnt_wr_var;
+  end if;
 
-  if (RD_EN = '1') then
+    MEM_TAG_SIGNAL <= MEM_TAG;
+    MEM_CONTENT_SIGNAL <= MEM_CONTENT;
+    REFRESH_CNT_WR <= refresh_cnt_wr_var;
+
+  end process cam_memory_process_synch_write;
+
+
+  cam_memory_process_asynch_read : process (RD_ADDR,RD_EN,MEM_TAG_SIGNAL,MEM_CONTENT_SIGNAL)
+  -- ASYNCH READ
+  variable flag : std_logic := '0';
+  variable rd_addr_entry_var : integer := 0;
+  variable rd_addr_set_var : integer := 0;
+  variable tag_var : unsigned (TagSize-1 downto 0);
+  variable flag_r : std_logic := '0';
+  variable refresh_cnt_rd_var : memtypeDecAddr2D;
+  variable increase_cnt_var : memtypeDecAddr2D;
+
+  begin
+
+  if (RD_EN = '1') then  
+    increase_cnt_var := (others => (others => '0'));
+    refresh_cnt_rd_var := (others => (others => '0'));
 
     rd_addr_entry_var := to_integer(RD_ADDR(EntriesBits-1 downto 0));
-    rd_addr_set_var := to_integer(RD_ADDR(SetBits+EntriesBits-1 downto EntriesBits));
-
+    rd_addr_set_var := to_integer(RD_ADDR(AddrBits-1 downto EntriesBits));
+    flag_r := '0';
 
     for i in 0 to SetNum-1 loop
-      if (MEM_TAG(i)(rd_addr_entry_var) = std_logic_vector(RD_ADDR(AddrBits-1 downto EntriesBits))) then
+      if (MEM_TAG_SIGNAL(i)(rd_addr_entry_var) = std_logic_vector(RD_ADDR(AddrBits-1 downto EntriesBits))) then
         flag_r := '1';
         rd_addr_set_var := i;
       else
-        flag_r := '0';
+        flag_r := flag_r;
       end if;
     end loop;
 
     if (flag_r = '1') then
       HIT_MISSN <= '1';
-      DOUT <= unsigned((MEM_CONTENT(rd_addr_set_var)(rd_addr_entry_var)));
-      MEM_AGE(rd_addr_set_var)(rd_addr_entry_var) := (others => '0');
+      DOUT <= unsigned((MEM_CONTENT_SIGNAL(rd_addr_set_var)(rd_addr_entry_var)));
+      refresh_cnt_rd_var(rd_addr_set_var)(rd_addr_entry_var) := '1';
+
+      for i in 0 to SetNum-1 loop
+        if i /= rd_addr_set_var then
+          increase_cnt_var(i)(rd_addr_entry_var) := '1';
+        else
+          increase_cnt_var(i)(rd_addr_entry_var) := '0';
+        end if;
+      end loop;
     else
       HIT_MISSN <= '0';
       DOUT <= (others => '0');
     end if;
-
-
-    read_set := rd_addr_set_var;
-    read_row := rd_addr_entry_var;
-    found := '1';
-  
   else
-    DOUT <= (others => '0');
     HIT_MISSN <= '0';
-    read_set := 0;
-    read_row := 0;
-    found := '0';
-
+    DOUT <= (others => '0');
+    increase_cnt_var := (others => (others => '0'));
+    refresh_cnt_rd_var := (others => (others => '0'));
   end if;
-  
-  end process memory_process;
 
-----------------------------------------------------------------------------------------------------------
- 
+  REFRESH_CNT_RD <= refresh_cnt_rd_var;
+  INCREASE_CNT <= increase_cnt_var;
   
-end architecture rtl;
+  end process cam_memory_process_asynch_read;
+----------------------------------------------------------------------------------------------------------
+age_cnts_generation_set : for i in 0 to SetNum-1 generate
+  age_cnts_generation_entry : for j in 0 to SetEntries-1 generate
+
+    AGE_REG : AGE_CNT port map (CLK,RSTN,REFRESH_CNT(i)(j),INCREASE_CNT(i)(j),VDD,AGE_MEM(i)(j));
+    
+  end generate age_cnts_generation_entry;
+end generate age_cnts_generation_set;
+----------------------------------------------------------------------------------------------------------
+
+refresh_cnt_comb : process (REFRESH_CNT_RD,REFRESH_CNT_WR)
+  begin
+    for i in 0 to SetNum-1 loop
+      for j in 0 to SetEntries-1 loop
+        REFRESH_CNT(i)(j) <= REFRESH_CNT_RD(i)(j) or REFRESH_CNT_WR(i)(j);
+      end loop;
+    end loop;
+end process;
+
+
+  
+end architecture beh;

@@ -18,11 +18,11 @@ module TB_CACHE ();
    reg [7:0] readCont;
    reg [7:0] writeAddr;
    reg [7:0] writeCont;
-   reg [7:0] write1AddrMemory [7:0];
-   reg [7:0] write1ContMemory [7:0];
-   reg [7:0] write2AddrMemory [7:0];
-   reg [7:0] write2ContMemory [7:0];
-   reg [7:0] readMemory [7:0];
+   reg [7:0] write1AddrMemory [31:0];
+   reg [7:0] write1ContMemory [31:0];
+   reg [7:0] write2AddrMemory [31:0];
+   reg [7:0] write2ContMemory [31:0];
+   reg [7:0] readMemory [31:0];
    integer index1 = 0, index2 = 0, index3 = 0;
    wire [7:0] memOut;
    wire hitMissN;
@@ -45,7 +45,7 @@ module TB_CACHE ();
 		rst_n = 1'b0;
 		#2
 		rst_n = 1'b1;
-        #40
+        #26
         sim_start = 1'b1;
     end
 
@@ -54,20 +54,22 @@ module TB_CACHE ();
         wr_en = 1'b0;
         write1 = 1'b0;
         write2 = 1'b0;
-        #40
+        #33
+		write1 = 1'b1;
+		#10
         wr_en = 1'b1;
-        write1 = 1'b1;
-        #40960
+        #310
+        write1 = 1'b0;
+		#10
         wr_en = 1'b0;
-        write1 = 1'b1;
         #20
         rd_en = 1'b1;
-        #40960
+        #320
         rd_en = 1'b0;
         #20
         wr_en = 1'b1;
         write2 = 1'b1;
-        #40960
+        #320
         wr_en = 1'b0;
         write2 = 1'b0;
     end
@@ -86,22 +88,27 @@ module TB_CACHE ();
         if (sim_start && write1) begin
             writeAddr = write1AddrMemory[index1];
             writeCont = write1ContMemory[index1];
+			if (index2 < 7) begin
             index1 = index1 + 1;
+			end
         end
         else if (sim_start && write2) begin 
             writeAddr = write2AddrMemory[index2];
             writeCont = write2ContMemory[index2];
+			if (index2 < 7) begin
             index2 = index2 + 1;
+			end
         end
 		else begin
 		writeAddr = 32'd0;
 		readAddr = 32'd0;
+		writeCont = 32'd1;
 		end	
     end
 
     always @(posedge clk) begin
         if (sim_start && rd_en) begin
-            readAddr = readMemory[index3];
+            readAddr = readMemory[index3-1];
             index3 = index3 +1;
 		end
         else begin
