@@ -6,13 +6,13 @@ entity BPU is
   port (
     CLK : in std_logic;
     RSTN : in std_logic;
-    PC : in unsigned (31 downto 0);
-    PC_D2 : in unsigned (31 downto 0);
+    PC : in unsigned (7 downto 0);
+    PC_D2 : in unsigned (7 downto 0);
     OPCODE_D2 : in std_logic_vector (6 downto 0);
     OUTCOME : in std_logic;
-    TARGET_ADDRESS_IN : in unsigned (31 downto 0);
-    PREDICTION : out std_logic;
-    TARGET_ADDRESS_OUT : unsigned (31 downto 0)
+    TARGET_ADDRESS_IN : in unsigned (7 downto 0);
+    TARGET_ADDRESS_OUT : out unsigned (7 downto 0);
+    PREDICTION : out std_logic
   );
 end entity BPU;
 
@@ -88,21 +88,79 @@ architecture rtl of BPU is
     );
   end component REG;
 
-  
+  component MUX_2X1TO1X1 is
+  port (
+    X1 : in  std_logic;
+    X2 : in  std_logic;
+    S  : in  std_logic;
+    O  : out std_logic
+    );
+  end component MUX_2X1TO1X1;
+
+  component DELAY_CHAIN is
+    generic (Nbits : integer := 32;
+             DelayUnits : integer := 2);
+    port (
+      CLK : in std_logic;
+      RSTN : in std_logic;
+      EN : in std_logic;
+      DIN : in std_logic_vector (Nbits-1 downto 0);
+      DOUT : out std_logic_vector (Nbits-1 downto 0)
+    );
+  end component DELAY_CHAIN;
+
+  component DELAY_CHAIN_1 is
+    generic (Nbits : integer := 32;
+             DelayUnits : integer := 2);
+    port (
+      CLK : in std_logic;
+      RSTN : in std_logic;
+      EN : in std_logic;
+      DIN : in std_logic;
+      DOUT : out std_logic
+    );
+  end component DELAY_CHAIN_1;
+
+  constant SizePC : integer := 8;
+  signal VDD, GND : std_logic;
+  signal HIT_MISSN, HIT_MISSN_D2 : std_logic;
+  signal PC_LSBs, PC_LSBs_D2 : unsigned (SizePC-5-1 downto 0);
+  signal RD_ADDR_PHT, RD_ADDR_PHT_D2 : unsigned (3 downto 0);
+  signal WR_EN_BHT, WR_EN_CACHE, WR_EN_PHT : std_logic;
+  signal BRANCH_HISTORY, BRANCH_HISTORY_D2 : std_logic_vector (3 downto 0);
+  signal PREDICTION_OUT : std_logic;
   
 begin
+
+  VDD <= '1';
+  GND <= '0';
+  PC_LSBs <= PC (2 downto 0);
+  PC_LSBs_D2 <= PC_D2 (2 downto 0);
+  RD_ADDR_PHT <= unsigned(BRANCH_HISTORY);
+  RD_ADDR_PHT_D2 <= unsigned(BRANCH_HISTORY_D2);
 
   INSTR_CACHE : CACHE_MEM generic map (4,8,5,8,8,0,3)
                 port map (CLK,RSTN,PC,PC_D2,WR_EN_CACHE,VDD,TARGET_ADDRESS_IN,TARGET_ADDRESS_OUT,HIT_MISSN);
   
-  BHT : BHT generic map (8,4,3)
-        port map (CLK,RSTN,WR_EN_BHT,PC_LSBs_D2,PC_LSBs,OUTCOME,RD_ADDR_PHT);
+  BRANCH_HISTORY_TABLE : BHT generic map (8,4,3)
+        port map (CLK,RSTN,WR_EN_BHT,PC_LSBs_D2,PC_LSBs,OUTCOME,BRANCH_HISTORY);
 
-  PHT : PHT generic map (16,4)
-        port map (CLK,RSTN,RD_ADDR_PHT,RD_ADDR_PHT_D2,WR_EN_PHT,OUTCOME,PREDICTION);
+  PATTERN_HISTORY_TABLE : PHT generic map (16,4)
+        port map (CLK,RSTN,RD_ADDR_PHT,RD_ADDR_PHT_D2,WR_EN_PHT,OUTCOME,PREDICTION_OUT);
   
-  BPU_CU : BPU_CU port map (HIT_MISSN_D2,OPCODE_D2,WR_EN_CACHE,WR_EN_BHT,WR_EN_PHT);
+  CONTROL_UNIT : BPU_CU port map (HIT_MISSN_D2,OPCODE_D2,WR_EN_CACHE,WR_EN_BHT,WR_EN_PHT);
 
-  
+  PRED_MUX : MUX_2X1TO1X1 port map (GND,PREDICTION_OUT,HIT_MISSN,PREDICTION);
+
+  PHT_ADDR_DELAY_CHAIN : DELAY_CHAIN generic map (4,2)
+                         port map (CLK,RSTN,VDD,BRANCH_HISTORY,BRANCH_HISTORY_D2);
+
+  HIT_MISSN_DELAY_CHAIN : DELAY_CHAIN_1 generic map (2)
+                          port map (CLK,RSTN,VDD,HIT_MISSN,HIT_MISSN_D2);
+
+
+
+
+
 end architecture rtl;
 
