@@ -3,24 +3,23 @@ library ieee;
   use ieee.numeric_std.all;
 
 entity IMM_GEN is
-    generic ( word_size : integer := 32);
-    port (
-            IR_IN       : in std_logic_vector(word_size - 1 downto 0);
-            IMM_GEN_OUT : out std_logic_vector(word_size - 1 downto 0);
-            IMM_EN_IN   : in std_logic;
-            IMM_CODE_IN : in std_logic_vector(2 downto 0)
-        );
+  port(
+    IR_IN       : in std_logic_vector(31 downto 0);
+    IMM_GEN_OUT : out std_logic_vector(31 downto 0);
+    IMM_EN_IN   : in std_logic;
+    IMM_CODE_IN : in std_logic_vector(2 downto 0)
+  );
 end entity IMM_GEN;
 
 architecture IMM_ARCH of IMM_GEN is
 
 --immediate types    
-signal IMM_ITYPE : std_logic_vector(word_size-1 downto 0);
-signal IMM_STYPE : std_logic_vector(word_size-1 downto 0);
-signal IMM_BTYPE : std_logic_vector(word_size-1 downto 0);
-signal IMM_UTYPE : std_logic_vector(word_size-1 downto 0);
-signal IMM_JTYPE : std_logic_vector(word_size-1 downto 0);
-signal IMM_GEN : std_logic_vector(word_size-1 downto 0);
+signal IMM_ITYPE : std_logic_vector (31 downto 0);
+signal IMM_STYPE : std_logic_vector (31 downto 0);
+signal IMM_BTYPE : std_logic_vector (31 downto 0);
+signal IMM_UTYPE : std_logic_vector (31 downto 0);
+signal IMM_JTYPE : std_logic_vector (31 downto 0);
+signal IMM_GEN : std_logic_vector (31 downto 0);
 --constant types
 constant CTRL_IN0_MUX : std_logic_vector(2 downto 0) := "000";
 constant CTRL_IN1_MUX : std_logic_vector(2 downto 0) := "001";
