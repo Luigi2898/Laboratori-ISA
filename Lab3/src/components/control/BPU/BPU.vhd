@@ -158,9 +158,5 @@ begin
   HIT_MISSN_DELAY_CHAIN : DELAY_CHAIN_1 generic map (2)
                           port map (CLK,RSTN,VDD,HIT_MISSN,HIT_MISSN_D2);
 
-
-
-
-
 end architecture rtl;
 
