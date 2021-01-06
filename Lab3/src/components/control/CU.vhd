@@ -125,7 +125,7 @@ begin
                                        "10" when "0100",
                                        "10" when "0110",
                                        "00" when others;
-
+                                       BPU_PREDICTION
   with HDU_FORWARD select FORWARD_B <= "01" when "0010",
                                        "10" when "1000",
                                        "10" when "1001",
