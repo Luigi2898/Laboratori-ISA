@@ -32,7 +32,10 @@ entity CU is
     -- Stall the pipe
     PIPE_STALL     : out std_logic;
     -- Jump
-    JUMP           : out std_logic
+    JUMP           : out std_logic;
+    -- Forward
+    FORWARD_B      : out std_logic;
+    FORWARD_A      : out std_logic
   );
 end entity;
 
