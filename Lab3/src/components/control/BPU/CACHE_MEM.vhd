@@ -187,10 +187,10 @@ cam_memory_process_synch_write : process (CLK,RSTN)
       MEM_VIRGIN := MEM_VIRGIN;
     end if;
   else
-    MEM_TAG := MEM_TAG;
-    MEM_CONTENT := MEM_CONTENT;
-    refresh_cnt_wr_var := refresh_cnt_wr_var;
-    MEM_VIRGIN := MEM_VIRGIN;
+    --MEM_TAG := MEM_TAG;
+    --MEM_CONTENT := MEM_CONTENT;
+    --refresh_cnt_wr_var := refresh_cnt_wr_var;
+    --MEM_VIRGIN := MEM_VIRGIN;
   end if;
 
     MEM_TAG_SIGNAL <= MEM_TAG;
