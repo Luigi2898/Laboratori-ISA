@@ -15,24 +15,37 @@ entity HDU is
         LOAD_EXE_IN : in  std_logic; --ID/EX.MemRead
         REG_WR_WB   : in  std_logic; --MEM/WB.RegWrite 
         REG_WR_MEM  : in  std_logic; --EX/MEM.RegWrite
+        IMM_COD     : in  std_logic_vector(2 downto 0);
         STALL       : out std_logic;
-        FORWARD     : out std_logic_vector(3 downto 0)     
+        FORWARD     : out std_logic_vector(5 downto 0)     
     );
 end entity  HDU;
 
 architecture beh of  HDU is
 
+signal EX_HAZARD_RS1: std_logic;
+signal EX_HAZARD_RS2: std_logic;    
 signal MEM_HAZARD_RS1: std_logic;
 signal MEM_HAZARD_RS2: std_logic;
 signal WB_HAZARD_RS1: std_logic;
 signal WB_HAZARD_RS2: std_logic;
 
+constant JAL  : std_logic_vector(2 downto 0) := "100";
+constant UIMM : std_logic_vector(2 downto 0) := "011";
+constant BEQ  : std_logic_vector(2 downto 0) := "010";
+
 
 begin
-    
-MEM_HAZARD_RS1 <= REG_WR_MEM AND AND_REDUCE(RS1_EXE_IN XNOR RD_MEM_IN) AND OR_REDUCE(RD_MEM_IN); -- RS1 == RD of EX/MEM stage AND RD != x0 
 
-MEM_HAZARD_RS2 <= REG_WR_MEM AND AND_REDUCE(RS2_EXE_IN XNOR RD_MEM_IN) AND OR_REDUCE(RD_MEM_IN); -- RS2 == RD of EX/MEM stage AND RD != x0 
+EX_HAZARD_RS1 <= REG_WR_MEM AND AND_REDUCE(RS1_ID_IN XNOR RD_EX_IN) AND OR_REDUCE(RD_EX_IN); -- RS1 == RD of ID/EX stage AND RD != x0 
+
+EX_HAZARD_RS2 <= REG_WR_MEM AND AND_REDUCE(RS2_ID_IN XNOR RD_EX_IN) AND OR_REDUCE(RD_EX_IN); -- RS2 == RD of ID/EX stage AND RD != x0    
+    
+MEM_HAZARD_RS1 <= REG_WR_MEM AND AND_REDUCE(RS1_EXE_IN XNOR RD_MEM_IN) AND OR_REDUCE(RD_MEM_IN)
+                  AND NOT(EX_HAZARD_RS1); -- RS1 == RD of EX/MEM stage AND RD != x0 
+
+MEM_HAZARD_RS2 <= REG_WR_MEM AND AND_REDUCE(RS2_EXE_IN XNOR RD_MEM_IN) AND OR_REDUCE(RD_MEM_IN)
+                  AND NOT(EX_HAZARD_RS2); -- RS2 == RD of EX/MEM stage AND RD != x0 
 
 WB_HAZARD_RS1 <= REG_WR_WB AND AND_REDUCE(RS1_EXE_IN XNOR RD_WB_IN) AND OR_REDUCE(RD_WB_IN)
                  AND NOT(MEM_HAZARD_RS1); -- RS1 == RD of MEM/WB stage AND RD != x0 
@@ -40,9 +53,12 @@ WB_HAZARD_RS1 <= REG_WR_WB AND AND_REDUCE(RS1_EXE_IN XNOR RD_WB_IN) AND OR_REDUC
 WB_HAZARD_RS2 <= REG_WR_WB AND AND_REDUCE(RS2_EXE_IN XNOR RD_WB_IN) AND OR_REDUCE(RD_WB_IN)
                  AND NOT(MEM_HAZARD_RS2); -- RS2 == RD of MEM/WB stage AND RD != x0   
 
-FORWARD <=  WB_HAZARD_RS2 & WB_HAZARD_RS1 & MEM_HAZARD_RS2 & MEM_HAZARD_RS1;                  
+FORWARD <=  WB_HAZARD_RS2 & WB_HAZARD_RS1 & MEM_HAZARD_RS2 & MEM_HAZARD_RS1 & EX_HAZARD_RS2 & EX_HAZARD_RS1;                  
 
-STALL <= (AND_REDUCE(RS1_ID_IN XNOR RD_EX_IN) OR AND_REDUCE(RS2_ID_IN XNOR RD_EX_IN)) AND LOAD_EXE_IN;
+--a stall occurs whenever INSTR(ID/EX) is a load, but INSTR(IF/ID) is not a jump or an upper-imm
+STALL <= ((AND_REDUCE(RS1_ID_IN XNOR RD_EX_IN) OR AND_REDUCE(RS2_ID_IN XNOR RD_EX_IN)) AND LOAD_EXE_IN 
+         AND NOT(AND_REDUCE(IMM_COD XNOR JAL)) AND NOT(AND_REDUCE(IMM_COD XNOR UIMM))) OR
+         ((AND_REDUCE(RS1_ID_IN XNOR RD_EX_IN) OR AND_REDUCE(RS2_ID_IN XNOR RD_EX_IN)) AND LOAD_EXE_IN AND AND_REDUCE(IMM_COD XNOR BEQ));
 
 --with FORWARD select FORWARD_A <= "01" when "0001",
 --								   "01" when "1001",
