@@ -54,16 +54,19 @@ architecture beh of CACHE_MEM is
   type memtypeContent2D is array (SetEntries-1 downto 0) of std_logic_vector (ContentSize-1 downto 0);
   type memtypeTag2D is array (SetEntries-1 downto 0) of std_logic_vector (TagSize-1 downto 0);
   type memtypeAge2D is array (SetEntries-1 downto 0) of unsigned (1 downto 0);
+  
 
   type memtypeContent3D is array (SetNum-1 downto 0) of memtypeContent2D;
   type memtypeTag3D is array (SetNum-1 downto 0) of memtypeTag2D;
   type memtypeAge3D is array (SetNum-1 downto 0) of memtypeAge2D;
   type memtypeDecAddr2D is array (SetNum-1 downto 0) of std_logic_vector (SetEntries-1 downto 0);
+  type memtypeVirgin3D is array (SetNum-1 downto 0) of std_logic_vector (SetEntries-1 downto 0);
   
   signal INCREASE_CNT, REFRESH_CNT_RD, REFRESH_CNT_WR, REFRESH_CNT : memtypeDecAddr2D;
   signal MEM_CONTENT_SIGNAL : memtypeContent3D;
   signal MEM_TAG_SIGNAL : memtypeTag3D;
   signal AGE_MEM : memtypeAge3D;
+  signal MEM_VIRGIN_SIGNAL : memtypeVirgin3D;
   signal VDD : std_logic;
 
 begin
@@ -77,6 +80,7 @@ cam_memory_process_synch_write : process (CLK,RSTN)
   variable MEM_CONTENT : memtypeContent3D;
   variable MEM_TAG : memtypeTag3D;
   variable MEM_AGE : memtypeAge3D;
+  variable MEM_VIRGIN : memtypeVirgin3D;
 
   variable hot_one : integer := 0;
   variable decoded_addr_var : memtypeDecAddr2D;
@@ -97,13 +101,11 @@ cam_memory_process_synch_write : process (CLK,RSTN)
   begin
   -- RESET PROCESS
 
-  
-
-
   if (RSTN = '0') then
     MEM_CONTENT := (others => (others => (others => '0')));
     MEM_TAG := (others => (others => (others => '0')));
     refresh_cnt_wr_var := (others => (others => '0'));
+    MEM_VIRGIN := (others => (others => '0')); -- all the locations have never been written
 
   -- SYNCHR WRITING  
   elsif (CLK'event and CLK = '1') then
@@ -127,6 +129,7 @@ cam_memory_process_synch_write : process (CLK,RSTN)
         MEM_TAG(wr_addr_set_var)(wr_addr_entry_var) := std_logic_vector(WR_ADDR(AddrBits-1 downto EntriesBits));
         refresh_cnt_wr_var := (others => (others => '0'));
         refresh_cnt_wr_var(wr_addr_set_var)(wr_addr_entry_var) := '1';
+        MEM_VIRGIN(wr_addr_set_var)(wr_addr_entry_var) := '1';
 
       else
         for i in 0 to SetNum-1 loop
@@ -141,6 +144,7 @@ cam_memory_process_synch_write : process (CLK,RSTN)
           MEM_TAG(wr_addr_set_var)(wr_addr_entry_var) := std_logic_vector(WR_ADDR(AddrBits-1 downto EntriesBits));
           refresh_cnt_wr_var := (others => (others => '0'));
           refresh_cnt_wr_var(wr_addr_set_var)(wr_addr_entry_var) := '1';
+          MEM_VIRGIN(wr_addr_set_var)(wr_addr_entry_var) := '1';
 
         else
           for i in 0 to SetNum-1 loop
@@ -155,6 +159,7 @@ cam_memory_process_synch_write : process (CLK,RSTN)
             MEM_TAG(wr_addr_set_var)(wr_addr_entry_var) := std_logic_vector(WR_ADDR(AddrBits-1 downto EntriesBits));
             refresh_cnt_wr_var := (others => (others => '0'));
             refresh_cnt_wr_var(wr_addr_set_var)(wr_addr_entry_var) := '1';
+            MEM_VIRGIN(wr_addr_set_var)(wr_addr_entry_var) := '1';
           else
 
             for i in 0 to SetNum-1 loop
@@ -169,6 +174,7 @@ cam_memory_process_synch_write : process (CLK,RSTN)
               MEM_TAG(wr_addr_set_var)(wr_addr_entry_var) := std_logic_vector(WR_ADDR(AddrBits-1 downto EntriesBits));
               refresh_cnt_wr_var := (others => (others => '0'));
               refresh_cnt_wr_var(wr_addr_set_var)(wr_addr_entry_var) := '1';
+              MEM_VIRGIN(wr_addr_set_var)(wr_addr_entry_var) := '1';
             end if;
 
           end if;
@@ -178,21 +184,24 @@ cam_memory_process_synch_write : process (CLK,RSTN)
       MEM_TAG := MEM_TAG;
       MEM_CONTENT := MEM_CONTENT;
       refresh_cnt_wr_var := refresh_cnt_wr_var;
+      MEM_VIRGIN := MEM_VIRGIN;
     end if;
   else
     MEM_TAG := MEM_TAG;
     MEM_CONTENT := MEM_CONTENT;
     refresh_cnt_wr_var := refresh_cnt_wr_var;
+    MEM_VIRGIN := MEM_VIRGIN;
   end if;
 
     MEM_TAG_SIGNAL <= MEM_TAG;
     MEM_CONTENT_SIGNAL <= MEM_CONTENT;
     REFRESH_CNT_WR <= refresh_cnt_wr_var;
+    MEM_VIRGIN_SIGNAL <= MEM_VIRGIN;
 
   end process cam_memory_process_synch_write;
 
 
-  cam_memory_process_asynch_read : process (RD_ADDR,RD_EN,MEM_TAG_SIGNAL,MEM_CONTENT_SIGNAL)
+  cam_memory_process_asynch_read : process (RD_ADDR,RD_EN,MEM_TAG_SIGNAL,MEM_CONTENT_SIGNAL,MEM_VIRGIN_SIGNAL)
   -- ASYNCH READ
   variable flag : std_logic := '0';
   variable rd_addr_entry_var : integer := 0;
@@ -213,7 +222,8 @@ cam_memory_process_synch_write : process (CLK,RSTN)
     flag_r := '0';
 
     for i in 0 to SetNum-1 loop
-      if (MEM_TAG_SIGNAL(i)(rd_addr_entry_var) = std_logic_vector(RD_ADDR(AddrBits-1 downto EntriesBits))) then
+      if ((MEM_TAG_SIGNAL(i)(rd_addr_entry_var) = std_logic_vector(RD_ADDR(AddrBits-1 downto EntriesBits)))
+           and MEM_VIRGIN_SIGNAL(i)(rd_addr_entry_var) = '1') then
         flag_r := '1';
         rd_addr_set_var := i;
       else
