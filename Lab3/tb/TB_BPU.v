@@ -7,19 +7,20 @@ module TB_BPU ();
    reg clk;
    reg rst_n;
    reg sim_start;
-   reg PC [7:0];
-   reg jmp_flag;
-   reg OPCODE [6:0];
-   reg TARG_ADDR [7:0];
+   integer i = 0;
+   reg [7:0] PC, PC_DEL ;
+   reg JMP_FLAG;
+   reg [6:0]OPCODE;
+   reg [7:0]TARG_ADDR;
 
-   reg TA_OUT [6:0];
-   reg PRED_OUT;
+   wire [7:0] TA_OUT ;
+   wire PRED_OUT;
 
-   reg [99:0] PC_MEM [7:0];
-   reg [99:0] PC_MEM_DEL [7:0];
-   reg [99:0] JMP_MEM;
-   reg [99:0] TARG_ADDR_MEM [7:0];
-   reg [99:0] OPCODE_MEM [6:0];
+   reg [7:0] PC_MEM [101:0];
+   reg [7:0] PC_MEM_DEL [101:0];
+   reg JMP_MEM [101:0];
+   reg [7:0] TARG_ADDR_MEM [101:0];
+   reg [7:0] OPCODE_MEM [101:0];
 
     always begin
       clk = 1'b1;     
@@ -54,14 +55,17 @@ module TB_BPU ();
     always @(posedge clk) begin
         if (sim_start) begin
           PC = PC_MEM[i];
+			PC_DEL = PC_MEM_DEL[i];
           JMP_FLAG = JMP_MEM[i];
-          TARG_ADDR_MEM = TARG_ADDR_MEM[i];
+          TARG_ADDR = TARG_ADDR_MEM[i];
           OPCODE = OPCODE_MEM[i];
+          i = i + 1;
 		    end
         else begin
           PC = 8'd0;
+PC_DEL = 8'd0;
           JMP_FLAG = 1'd0;
-          TARG_ADDR_MEM = 8'd0;
+          TARG_ADDR = 8'd0;
           OPCODE = 7'd0;
 		    end
     end

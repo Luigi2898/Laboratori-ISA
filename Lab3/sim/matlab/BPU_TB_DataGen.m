@@ -25,6 +25,9 @@ for i = 2:num_samples
             next_addr = target_addr(i);
         else
             next_addr = prog_count(i) + 1;
+            if next_addr > 254
+                next_addr = 1;
+            end
         end
     else
         opcodes(i) = randi([1 90]);
@@ -50,7 +53,7 @@ for i = 1:length(prog_count_print)
     
     PC_bin = dec2bin(prog_count_print(i),8);
     PC_DEL_bin = dec2bin(prog_count_del(i),8);
-    JMP_bin = dec2bin(outcomes_del(i),8);
+    JMP_bin = dec2bin(outcomes_del(i),1);
     TARG_ADDR_bin = dec2bin(target_addr_del(i),8);
     OPCODE_bin = dec2bin(opcodes_del(i),8);
     
