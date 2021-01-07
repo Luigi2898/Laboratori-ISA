@@ -12,7 +12,7 @@ entity BPU is
     OUTCOME : in std_logic;
     TARGET_ADDRESS_IN : in unsigned (7 downto 0);
     TARGET_ADDRESS_OUT : out unsigned (7 downto 0);
-    PREDICTION : buffer std_logic;
+    PREDICTION : inout std_logic;
     MISPREDICTION : out std_logic
   );
 end entity BPU;

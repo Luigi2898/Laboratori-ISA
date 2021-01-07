@@ -12,7 +12,8 @@ entity BPU is
     OUTCOME : in std_logic;
     TARGET_ADDRESS_IN : in unsigned (31 downto 0);
     TARGET_ADDRESS_OUT : out unsigned (31 downto 0);
-    PREDICTION : out std_logic
+    PREDICTION : inout std_logic;
+    MISPREDICTION : out std_logic
   );
 end entity BPU;
 
@@ -110,8 +111,7 @@ architecture rtl of BPU is
   end component DELAY_CHAIN;
 
   component DELAY_CHAIN_1 is
-    generic (Nbits : integer := 32;
-             DelayUnits : integer := 2);
+    generic (DelayUnits : integer := 2);
     port (
       CLK : in std_logic;
       RSTN : in std_logic;
@@ -121,14 +121,14 @@ architecture rtl of BPU is
     );
   end component DELAY_CHAIN_1;
 
-  constant SizePC : integer := 32;
+  constant SizePC : integer := 8;
   signal VDD, GND : std_logic;
   signal HIT_MISSN, HIT_MISSN_D2 : std_logic;
   signal PC_LSBs, PC_LSBs_D2 : unsigned (9 downto 0);
   signal RD_ADDR_PHT, RD_ADDR_PHT_D2 : unsigned (3 downto 0);
   signal WR_EN_BHT, WR_EN_CACHE, WR_EN_PHT : std_logic;
   signal BRANCH_HISTORY, BRANCH_HISTORY_D2 : std_logic_vector (3 downto 0);
-  signal PREDICTION_OUT : std_logic;
+  signal PREDICTION_OUT, PREDICTION_D2 : std_logic;
   
 begin
 
@@ -138,25 +138,28 @@ begin
   PC_LSBs_D2 <= PC_D2 (9 downto 0);
   RD_ADDR_PHT <= unsigned(BRANCH_HISTORY);
   RD_ADDR_PHT_D2 <= unsigned(BRANCH_HISTORY_D2);
+  MISPREDICTION <= OUTCOME xor PREDICTION_D2;
 
-  INSTR_CACHE : CACHE_MEM generic map (4,1024,22,32,32,0,10) -- 4-Way 1024 Entries Set-Associative Cache
+  INSTR_CACHE : CACHE_MEM generic map (4,1024,22,32,32,0,10)
                 port map (CLK,RSTN,PC,PC_D2,WR_EN_CACHE,VDD,TARGET_ADDRESS_IN,TARGET_ADDRESS_OUT,HIT_MISSN);
   
-  BRANCH_HISTORY_TABLE : BHT generic map (1024,4,10) -- 1024 Entries 4-Branch-Long Branch History Table
+  BRANCH_HISTORY_TABLE : BHT generic map (1024,4,10)
         port map (CLK,RSTN,WR_EN_BHT,PC_LSBs_D2,PC_LSBs,OUTCOME,BRANCH_HISTORY);
 
-  PATTERN_HISTORY_TABLE : PHT generic map (16,4) -- 16 Entries Pattern History Table
+  PATTERN_HISTORY_TABLE : PHT generic map (16,4)
         port map (CLK,RSTN,RD_ADDR_PHT,RD_ADDR_PHT_D2,WR_EN_PHT,OUTCOME,PREDICTION_OUT);
   
   CONTROL_UNIT : BPU_CU port map (HIT_MISSN_D2,OPCODE_D2,WR_EN_CACHE,WR_EN_BHT,WR_EN_PHT);
 
   PRED_MUX : MUX_2X1TO1X1 port map (GND,PREDICTION_OUT,HIT_MISSN,PREDICTION);
 
-  PHT_ADDR_DELAY_CHAIN : DELAY_CHAIN generic map (4,2)
+  PHT_ADDR_DELAY_CHAIN : DELAY_CHAIN generic map (4,1)
                          port map (CLK,RSTN,VDD,BRANCH_HISTORY,BRANCH_HISTORY_D2);
 
-  HIT_MISSN_DELAY_CHAIN : DELAY_CHAIN_1 generic map (2)
+  HIT_MISSN_DELAY_CHAIN : DELAY_CHAIN_1 generic map (1)
                           port map (CLK,RSTN,VDD,HIT_MISSN,HIT_MISSN_D2);
 
-end architecture rtl;
+  PREDICTION_DELAY_CHAIN : DELAY_CHAIN_1 generic map (1)
+                           port map (CLK,RSTN,VDD,PREDICTION,PREDICTION_D2);
 
+end architecture rtl;
