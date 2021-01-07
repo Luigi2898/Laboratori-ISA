@@ -12,7 +12,8 @@ entity BPU is
     OUTCOME : in std_logic;
     TARGET_ADDRESS_IN : in unsigned (7 downto 0);
     TARGET_ADDRESS_OUT : out unsigned (7 downto 0);
-    PREDICTION : out std_logic
+    PREDICTION : buffer std_logic;
+    MISPREDICTION : out std_logic
   );
 end entity BPU;
 
@@ -110,8 +111,7 @@ architecture rtl of BPU is
   end component DELAY_CHAIN;
 
   component DELAY_CHAIN_1 is
-    generic (Nbits : integer := 32;
-             DelayUnits : integer := 2);
+    generic (DelayUnits : integer := 2);
     port (
       CLK : in std_logic;
       RSTN : in std_logic;
@@ -128,7 +128,7 @@ architecture rtl of BPU is
   signal RD_ADDR_PHT, RD_ADDR_PHT_D2 : unsigned (3 downto 0);
   signal WR_EN_BHT, WR_EN_CACHE, WR_EN_PHT : std_logic;
   signal BRANCH_HISTORY, BRANCH_HISTORY_D2 : std_logic_vector (3 downto 0);
-  signal PREDICTION_OUT : std_logic;
+  signal PREDICTION_OUT, PREDICTION_D2 : std_logic;
   
 begin
 
@@ -138,6 +138,7 @@ begin
   PC_LSBs_D2 <= PC_D2 (2 downto 0);
   RD_ADDR_PHT <= unsigned(BRANCH_HISTORY);
   RD_ADDR_PHT_D2 <= unsigned(BRANCH_HISTORY_D2);
+  MISPREDICTION <= OUTCOME xor PREDICTION_D2;
 
   INSTR_CACHE : CACHE_MEM generic map (4,8,5,8,8,0,3)
                 port map (CLK,RSTN,PC,PC_D2,WR_EN_CACHE,VDD,TARGET_ADDRESS_IN,TARGET_ADDRESS_OUT,HIT_MISSN);
@@ -152,11 +153,14 @@ begin
 
   PRED_MUX : MUX_2X1TO1X1 port map (GND,PREDICTION_OUT,HIT_MISSN,PREDICTION);
 
-  PHT_ADDR_DELAY_CHAIN : DELAY_CHAIN generic map (4,2)
+  PHT_ADDR_DELAY_CHAIN : DELAY_CHAIN generic map (4,1)
                          port map (CLK,RSTN,VDD,BRANCH_HISTORY,BRANCH_HISTORY_D2);
 
-  HIT_MISSN_DELAY_CHAIN : DELAY_CHAIN_1 generic map (2)
+  HIT_MISSN_DELAY_CHAIN : DELAY_CHAIN_1 generic map (1)
                           port map (CLK,RSTN,VDD,HIT_MISSN,HIT_MISSN_D2);
+
+  PREDICTION_DELAY_CHAIN : DELAY_CHAIN_1 generic map (1)
+                           port map (CLK,RSTN,VDD,PREDICTION,PREDICTION_D2);
 
 end architecture rtl;
 

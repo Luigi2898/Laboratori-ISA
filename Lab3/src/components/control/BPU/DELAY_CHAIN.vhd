@@ -10,48 +10,34 @@ entity DELAY_CHAIN is
     RSTN : in std_logic;
     EN : in std_logic;
     DIN : in std_logic_vector (Nbits-1 downto 0);
-    DOUT : out std_logic_vector (Nbits-1 downto 0)
+    DOUT : buffer std_logic_vector (Nbits-1 downto 0)
   );
 end entity DELAY_CHAIN;
 
 architecture beh of DELAY_CHAIN is
 
-  type content_type is array (DelayUnits-1 downto 0) of std_logic_vector (Nbits-1 downto 0);
+  component REG is
+    generic(N : integer := 11);
+    port(
+    REG_IN           : in  std_logic_vector(N-1 downto 0);
+    CLK, RST_N, LOAD : in  std_logic;
+    REG_OUT          : out std_logic_vector(N-1 downto 0)
+    );
+  end component;
+
+  type content_type is array (DelayUnits downto 0) of std_logic_vector (Nbits-1 downto 0);
+  signal CONTENT : content_type;
   
 begin
 
-  delay_chain_process : process (CLK,RSTN)
+  CONTENT(0) <= DIN;
+  DOUT <= CONTENT(DelayUnits);
 
-  variable content_var : content_type;
+  delay_regs_generation : for i in 1 to DelayUnits generate
 
-  begin
-
-    if (RSTN = '0') then
-      content_var := (others => (others => '0'));
-      
-
-    elsif (CLK'event and CLK = '1') then
-
-      if (EN = '1') then
-        DOUT <= content_var(DelayUnits-1);
-
-        for i in DelayUnits-1 to 1 loop
-          content_var(i) := content_var(i-1);
-        end loop;
-
-        content_var(0) := DIN;
-      
-      else 
-        --content_var := content_var;
-      end if;
-
-    else
-      --content_var := content_var;
-    end if;
-
-    DOUT <= content_var(DelayUnits-1);
-
-
-  end process;
+    DELAY_ELEMENT : REG generic map (Nbits)
+                    port map (CONTENT(i-1),CLK,RSTN,EN,CONTENT(i));
+    
+  end generate delay_regs_generation ;
   
 end architecture beh;

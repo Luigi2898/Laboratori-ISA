@@ -1,0 +1,31 @@
+Running PRESTO HDLC
+Compiling Entity Declaration BPU
+Compiling Architecture RTL of BPU
+Compiling Entity Declaration SAT_CNT
+Compiling Architecture BEH of SAT_CNT
+Compiling Entity Declaration PHT
+Compiling Architecture RTL of PHT
+Compiling Entity Declaration DELAY_CHAIN_1
+Compiling Architecture BEH of DELAY_CHAIN_1
+Compiling Entity Declaration DELAY_CHAIN
+Compiling Architecture BEH of DELAY_CHAIN
+Compiling Entity Declaration CACHE_MEM
+Compiling Architecture BEH of CACHE_MEM
+Compiling Entity Declaration BPU_CU
+Compiling Architecture RTL of BPU_CU
+Compiling Entity Declaration BHT
+Compiling Architecture RTL of BHT
+Compiling Entity Declaration AGE_CNT
+Compiling Architecture BEH of AGE_CNT
+Compiling Entity Declaration SIPO_SHIFT_REG
+Compiling Architecture BEH of SIPO_SHIFT_REG
+Compiling Entity Declaration REG
+Compiling Architecture BEH of REG
+Compiling Entity Declaration MUX_2TO1
+Compiling Architecture BEH of MUX_2TO1
+Compiling Entity Declaration MUX_2X1TO1X1
+Compiling Architecture BEHAVIOR of MUX_2X1TO1X1
+Presto compilation completed successfully.
+Loading db file '/software/dk/nangate45/synopsys/NangateOpenCellLibrary_typical_ecsm_nowlm.db'
+Loading db file '/software/synopsys/syn_current_64.18/libraries/syn/dw_foundation.sldb'
+1

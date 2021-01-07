@@ -3,8 +3,7 @@ use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
 entity DELAY_CHAIN_1 is
-  generic (Nbits : integer := 32;
-           DelayUnits : integer := 2);
+  generic (DelayUnits : integer := 1);
   port (
     CLK : in std_logic;
     RSTN : in std_logic;
@@ -15,41 +14,26 @@ entity DELAY_CHAIN_1 is
 end entity DELAY_CHAIN_1;
 
 architecture beh of DELAY_CHAIN_1 is
+
+  component FF is
+    port (
+      FF_IN          : in STD_LOGIC;
+      FF_OUT         : out STD_LOGIC;
+      CLK, RST, LOAD : in STD_LOGIC
+    );
+  end component;
+
+  signal CONTENT : std_logic_vector (DelayUnits downto 0);
   
 begin
 
-  delay_chain_process : process (CLK,RSTN)
+  CONTENT(0) <= DIN;
+  DOUT <= CONTENT(DelayUnits);
 
-  variable content_var : std_logic_vector(DelayUnits-1 downto 0);
+  delay_regs_generation : for i in 1 to DelayUnits generate
 
-  begin
-
-    if (RSTN = '0') then
-      content_var := (others => '0');
-      
-
-    elsif (CLK'event and CLK = '1') then
-
-      if (EN = '1') then
-        DOUT <= content_var(DelayUnits-1);
-
-        for i in DelayUnits-1 to 1 loop
-          content_var(i) := content_var(i-1);
-        end loop;
-
-        content_var(0) := DIN;
-      
-      else 
-        --content_var := content_var;
-      end if;
-
-    else
-      --content_var := content_var;
-    end if;
-
-    DOUT <= content_var(DelayUnits-1);
-
-
-  end process;
+    DELAY_ELEMENT : FF port map (CONTENT(i-1),CONTENT(i),CLK,RSTN,EN);
+    
+  end generate delay_regs_generation ;
   
 end architecture beh;
