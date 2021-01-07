@@ -4,9 +4,9 @@ library ieee;
 
 entity JMP_ADD is
   port (
-    IMM_GEN_IN  : in std_logic_vector(31 downto 0);
-    PC_IF_ID : in std_logic_vector(31 downto 0);
-    JMP_ADDR    : out std_logic_vector(31 downto 0)
+    IMM_GEN_IN : in  std_logic_vector(31 downto 0);
+    PC_IF_ID   : in  std_logic_vector(31 downto 0);
+    JMP_ADDR   : out std_logic_vector(31 downto 0)
   );
 end entity JMP_ADD;
 

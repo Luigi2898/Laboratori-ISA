@@ -6,12 +6,12 @@ library ieee;
 entity PIPE_MEM_WB is 
   generic( word_size :  integer := 32 );
   port(
-    CLK                   : in std_logic;
-    RST                   : in std_logic;
-    ALU_RES_IN            : in std_logic_vector(word_size-1 downto 0);
-    MEM_RES_IN            : in std_logic_vector(word_size-1 downto 0); 
-    OP_WB_IN              : in std_logic_vector(4 downto 0); --WB ctrls (WB_RFEN_OUT & WB_RFMUX_OUT)
-    RD_ADDR_IN            : in std_logic_vector(4 downto 0);
+    CLK                   : in  std_logic;
+    RST                   : in  std_logic;
+    ALU_RES_IN            : in  std_logic_vector(word_size-1 downto 0);
+    MEM_RES_IN            : in  std_logic_vector(word_size-1 downto 0); 
+    OP_WB_IN              : in  std_logic_vector(4 downto 0); --WB ctrls (WB_RFEN_OUT & WB_RFMUX_OUT)
+    RD_ADDR_IN            : in  std_logic_vector(4 downto 0);
     ------------------------------------------------------------------ out
     ALU_RES_OUT           : out std_logic_vector(word_size-1 downto 0);
     MEM_RES_OUT           : out std_logic_vector(word_size-1 downto 0);

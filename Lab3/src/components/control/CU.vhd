@@ -12,7 +12,7 @@ entity CU is
 	  BPU_MISSPRED   : in  std_logic;
 	  BPU_PREDICTION : in  std_logic;
 	  -- From HDU
-	  HDU_STALL      : in  std_logic;
+	  HDU_STALL      : in  std_logic;unsigned
     HDU_FORWARD    : in  std_logic_vector(3 downto 0);
 	  -- To ALU input MUX
 	  EX_ALUSRC_OUT  : out std_logic; -- 1 immediate 0 non-immediate
@@ -125,7 +125,7 @@ begin
                                        "10" when "0100",
                                        "10" when "0110",
                                        "00" when others;
-
+                                       BPU_PREDICTION
   with HDU_FORWARD select FORWARD_B <= "01" when "0010",
                                        "10" when "1000",
                                        "10" when "1001",

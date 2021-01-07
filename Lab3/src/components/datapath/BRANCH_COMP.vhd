@@ -6,9 +6,9 @@ use ieee.std_logic_misc.all;
 entity BRANCH_COMP is
 	generic(word_size: integer:= 32);	
 	port(
-	    IMM_CODE		: in std_logic_vector(2 downto 0);			    --condition to take branch
-		DATA_IN1		: in std_logic_vector(word_size-1 downto 0);	--data to test
-		DATA_IN2		: in std_logic_vector(word_size-1 downto 0);	--data to test
+	    IMM_CODE		: in  std_logic_vector(2 downto 0);			    --condition to take branch
+		DATA_IN1		: in  std_logic_vector(word_size-1 downto 0);	--data to test
+		DATA_IN2		: in  std_logic_vector(word_size-1 downto 0);	--data to test
         BRANCH_IS_TAKEN	: out std_logic
     );						
 end entity BRANCH_COMP;

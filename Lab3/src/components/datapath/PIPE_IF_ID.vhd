@@ -6,12 +6,12 @@ library ieee;
 entity PIPE_IF_ID is 
   generic( word_size :  integer := 32 );
   port(
-    CLK               : in std_logic;
-    RST               : in std_logic;
-    FLUSH             : in std_logic;
-    STALL             : in std_logic; 
-    INSTR_IF_IN       : in std_logic_vector(word_size-1 downto 0);
-    INSTR_PC_ADDR_IN  : in std_logic_vector(word_size-1 downto 0);
+    CLK               : in  std_logic;
+    RST               : in  std_logic;
+    FLUSH             : in  std_logic;
+    STALL             : in  std_logic; 
+    INSTR_IF_IN       : in  std_logic_vector(word_size-1 downto 0);
+    INSTR_PC_ADDR_IN  : in  std_logic_vector(word_size-1 downto 0);
     INSTR_IF_OUT      : out std_logic_vector(word_size-1 downto 0);
     INSTR_PC_ADDR_OUT : out std_logic_vector(word_size-1 downto 0)
   );
