@@ -82,7 +82,6 @@ cam_memory_process_synch_write : process (CLK,RSTN)
   variable MEM_AGE : memtypeAge3D;
   variable MEM_VIRGIN : memtypeVirgin3D;
 
-  variable hot_one : integer := 0;
   variable decoded_addr_var : memtypeDecAddr2D;
   variable refresh_cnt_wr_var : memtypeDecAddr2D;
   variable wr_addr_set_var : integer := 0;
@@ -90,9 +89,7 @@ cam_memory_process_synch_write : process (CLK,RSTN)
 
   variable flag : std_logic := '0';
   variable rd_addr_entry_var : integer := 0;
-  variable rd_addr_set_var : integer := 0;
   variable tag_var : unsigned (TagSize-1 downto 0);
-  variable flag_r : std_logic := '0';
   variable refresh_cnt_rd_var : memtypeDecAddr2D;
   variable increase_cnt_var : memtypeDecAddr2D;
 
