@@ -3,19 +3,20 @@ library ieee;
   use ieee.numeric_std.all;
 
 entity ALU is
+  generic (N : integer := 32)
   port (
-    DATA1_IN   : in  std_logic_vector(31 downto 0);
-    DATA2_IN   : in  std_logic_vector(31 downto 0);
+    DATA1_IN   : in  std_logic_vector(N - 1 downto 0);
+    DATA2_IN   : in  std_logic_vector(N - 1 downto 0);
     OPCODE_IN  : in  std_logic_vector(5 downto 0);
     ZF_OUT     : out std_logic;
     NF_OUT     : out std_logic;
-    RESULT_OUT : out std_logic_vector(31 downto 0)
+    RESULT_OUT : out std_logic_vector(N - 1 downto 0)
   );
 end entity;
 
 architecture arch of ALU is
 
-  type shifeted_type is array (31 downto 0) of std_logic_vector(31 downto 0);
+  type shifeted_type is array (N - 1 downto 0) of std_logic_vector(N - 1 downto 0);
 
   constant SUM_OP : std_logic_vector(5 downto 0) := "000000";
   constant SHR_OP : std_logic_vector(5 downto 0) := "000010";
@@ -25,14 +26,14 @@ architecture arch of ALU is
   constant XOR_OP : std_logic_vector(5 downto 0) := "100000";
 
   signal INTERNAL_SH : shifeted_type;
-  signal SUM1_IN     : std_logic_vector(31 downto 0);
-  signal SUM2_IN     : std_logic_vector(31 downto 0);
-  signal SUM_OUT     : std_logic_vector(31 downto 0);
+  signal SUM1_IN     : std_logic_vector(N - 1 downto 0);
+  signal SUM2_IN     : std_logic_vector(N - 1 downto 0);
+  signal SUM_OUT     : std_logic_vector(N - 1 downto 0);
 
 begin
 
-  SHIFT_GEN : for i in 0 to 31 generate
-    INTERNAL_SH(i) <= DATA1_IN(31 downto 31 - i) & DATA1_IN(31 downto 1 + i);
+  SHIFT_GEN : for i in 0 to N - 1 generate
+    INTERNAL_SH(i) <= DATA1_IN(N - 1 downto N - 1 - i) & DATA1_IN(N - 1 downto 1 + i);
   end generate;
  
   SUM1_IN <= DATA1_IN;
@@ -52,7 +53,7 @@ begin
                                       DATA1_IN xor DATA2_IN                       when XOR_OP,
                                       others => '-'                               when others;
 
-  with SUM_OUT select ZF_OUT      <= '1' when std_logic_vector(to_unsigned(0,32)),
+  with SUM_OUT select ZF_OUT      <= '1' when std_logic_vector(to_unsigned(0, N)),
                                      '0' when others;
 
   NF_OUT  <= SUM_OUT(31);

@@ -4,10 +4,10 @@ library ieee;
 
 entity IMM_GEN is
   port(
-    IR_IN       : in std_logic_vector(31 downto 0);
+    IR_IN       : in  std_logic_vector(31 downto 0);
     IMM_GEN_OUT : out std_logic_vector(31 downto 0);
-    IMM_EN_IN   : in std_logic;
-    IMM_CODE_IN : in std_logic_vector(2 downto 0)
+    IMM_EN_IN   : in  std_logic;
+    IMM_CODE_IN : in  std_logic_vector(2 downto 0)
   );
 end entity IMM_GEN;
 

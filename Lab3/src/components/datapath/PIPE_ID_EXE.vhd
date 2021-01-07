@@ -35,14 +35,14 @@ end entity PIPE_ID_EX;
 
 architecture beh of PIPE_ID_EX is
 
-signal RS1      : std_logic_vector(31 downto 0);
-signal RS2      : std_logic_vector(31 downto 0);
-signal IMM      : std_logic_vector(31 downto 0);
-signal RS1_ADDR : std_logic_vector(4  downto 0);
+signal RS1      : std_logic_vector(word_size-1 downto 0);
+signal RS2      : std_logic_vector(word_size-1 downto 0);
+signal IMM      : std_logic_vector(word_size-1 downto 0);
+signal RS1_ADDR : std_logic_vector(word_size-1 downto 0);
 signal RS2_ADDR : std_logic_vector(4  downto 0);
 signal RD_ADDR  : std_logic_vector(4  downto 0);	
-signal PC_VAL   : std_logic_vector(31 downto 0);
-signal TARG_ADD : std_logic_vector(31 downto 0);
+signal PC_VAL   : std_logic_vector(word_size-1 downto 0);
+signal TARG_ADD : std_logic_vector(word_size-1 downto 0);
 signal CTRL_WRD : std_logic_vector(6  downto 0);
 
 begin
