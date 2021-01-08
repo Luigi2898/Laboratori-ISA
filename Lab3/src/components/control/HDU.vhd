@@ -12,9 +12,10 @@ entity HDU is
 		RD_EX_IN    : in  std_logic_vector(4 downto 0); -- ID/EXE.RegisterRd
         RD_MEM_IN   : in  std_logic_vector(4 downto 0); -- EXE/MEM.RegisterRd
         RD_WB_IN    : in  std_logic_vector(4 downto 0); -- MEM/WB.RegisterRd
-        LOAD_EXE_IN : in  std_logic; --ID/EX.MemRead
+        LOAD_EXE_IN : in  std_logic; --ID/EX.MemRead        
         REG_WR_WB   : in  std_logic; --MEM/WB.RegWrite 
         REG_WR_MEM  : in  std_logic; --EX/MEM.RegWrite
+        REG_WR_EX   : in  std_logic; --ID/EX.RegWrite
         IMM_COD     : in  std_logic_vector(2 downto 0);
         STALL       : out std_logic;
         FORWARD     : out std_logic_vector(5 downto 0)     
@@ -37,9 +38,9 @@ constant BEQ  : std_logic_vector(2 downto 0) := "010";
 
 begin
 
-EX_HAZARD_RS1 <= REG_WR_MEM AND AND_REDUCE(RS1_ID_IN XNOR RD_EX_IN) AND OR_REDUCE(RD_EX_IN); -- RS1 == RD of ID/EX stage AND RD != x0 
+EX_HAZARD_RS1 <= REG_WR_EX AND AND_REDUCE(RS1_ID_IN XNOR RD_EX_IN) AND OR_REDUCE(RD_EX_IN); -- RS1 == RD of ID/EX stage AND RD != x0 
 
-EX_HAZARD_RS2 <= REG_WR_MEM AND AND_REDUCE(RS2_ID_IN XNOR RD_EX_IN) AND OR_REDUCE(RD_EX_IN); -- RS2 == RD of ID/EX stage AND RD != x0    
+EX_HAZARD_RS2 <= REG_WR_EX AND AND_REDUCE(RS2_ID_IN XNOR RD_EX_IN) AND OR_REDUCE(RD_EX_IN); -- RS2 == RD of ID/EX stage AND RD != x0    
     
 MEM_HAZARD_RS1 <= REG_WR_MEM AND AND_REDUCE(RS1_EXE_IN XNOR RD_MEM_IN) AND OR_REDUCE(RD_MEM_IN)
                   AND NOT(EX_HAZARD_RS1); -- RS1 == RD of EX/MEM stage AND RD != x0 
@@ -60,16 +61,14 @@ STALL <= ((AND_REDUCE(RS1_ID_IN XNOR RD_EX_IN) OR AND_REDUCE(RS2_ID_IN XNOR RD_E
          AND NOT(AND_REDUCE(IMM_COD XNOR JAL)) AND NOT(AND_REDUCE(IMM_COD XNOR UIMM))) OR
          ((AND_REDUCE(RS1_ID_IN XNOR RD_EX_IN) OR AND_REDUCE(RS2_ID_IN XNOR RD_EX_IN)) AND LOAD_EXE_IN AND AND_REDUCE(IMM_COD XNOR BEQ));
 
---with FORWARD select FORWARD_A <= "01" when "0001",
---								   "01" when "1001",
---                                 "10" when "0100",
---                                 "10" when "0110",
---                                 "00" when others;
-
---with FORWARD select FORWARD_B <= "01" when "0010",
---                                 "10" when "1000",
---                                 "10" when "1001",
---                                 "01" when "0110",
---                                 "00" when others;                                
+--encoding for forwanding:
+--FORWARD_A <= "01" when EX_HAZARD_RS1  = '1',
+--             "10" when MEM_HAZARD_RS1 = '1',
+--             "11" when WB_HAZARD_RS1  = '1',
+--             "00" when others;  
+--FORWARD_B <= "01" when EX_HAZARD_RS2  = '1',
+--             "10" when MEM_HAZARD_RS2 = '1',
+--             "11" when WB_HAZARD_RS2  = '1',
+--             "00" when others;                     
 
 end architecture beh;
