@@ -70,7 +70,7 @@ architecture beh of CACHE_MEM is
   signal VDD : std_logic;
 
 begin
--- aaaaaaaaaaaaaaa
+-- aaaaaaaaaaaaaa
 ----------------------------------------------------------------------------------------------------------
   VDD <= '1';
 
