@@ -172,8 +172,6 @@ architecture rtl of RISC_V is
     RST                   : in std_logic;
     FLUSH                 : in std_logic;
     STALL                 : in std_logic; 
-    PC_VAL_IN             : in std_logic_vector(word_size-1 downto 0);
-    TARGET_ADDR_IN        : in std_logic_vector(word_size-1 downto 0); 
     RS1_VAL_IN            : in std_logic_vector(word_size-1 downto 0);
     RS2_VAL_IN            : in std_logic_vector(word_size-1 downto 0);
     IMM_GEN_IN            : in std_logic_vector(word_size-1 downto 0);
@@ -197,8 +195,6 @@ architecture rtl of RISC_V is
     EX_ALUSRC_OUT         : out std_logic;
     EX_ALUCTRL_OUT        : out std_logic;
     EX_ALUEN_OUT          : out std_logic;
-    PC_VAL_OUT            : out std_logic_vector(word_size-1 downto 0);
-    TARGET_ADDR_OUT       : out std_logic_vector(word_size-1 downto 0); 
     RS1_VAL_OUT           : out std_logic_vector(word_size-1 downto 0);
     RS2_VAL_OUT           : out std_logic_vector(word_size-1 downto 0);
     IMM_GEN_OUT           : out std_logic_vector(word_size-1 downto 0);
@@ -348,21 +344,19 @@ begin
   CONTROL_UNIT : CU port map(EXTERNAL_RST, INSTR_ID(6 downto 0), BPU_MISSPRED, BPU_PREDICTION)
 
   PIPE_REG2 : PIPE_ID_EXE generic map(32)
-                          port map(CLK, I_RST, PIPE_FLUSH, PIPE_STALL, PC_ID, JMP_ADDR, BC_IN1, BC_IN2, IMM_GEN_OUT,
-                                   INSTR_ID(11 downto 7), INSTR_ID(20 downto 16), INSTR_ID(24 downto 20), WR_RFEN, WR_RFMUX, JUMP, M_RD_EN, M_WR, EX_ALUSRC, EX_ALUCTRL, EX_ALUEN,
+                          port map(CLK, I_RST, PIPE_FLUSH, PIPE_STALL, BC_IN1, BC_IN2, IMM_GEN_OUT,
+                                   INSTR_ID(11 downto 7), INSTR_ID(20 downto 16), INSTR_ID(24 downto 20),
+                                   WR_RFEN, WR_RFMUX, JUMP, M_RD_EN, M_WR, EX_ALUSRC, EX_ALUCTRL, EX_ALUEN,
                                    WR_RFEN_IDEX_OUT, WR_RFMUX_IDEX_OUT, JUMP_IDEX_OUT, M_RD_EN_IDEX_OUT, M_WR_IDEX_OUT, EX_ALUSRC_IDEX_OUT, EX_ALUCTRL_IDEX_OUT, EX_ALUEN_IDEX_OUT,
-                                   PC_VAL_IDEX_OUT, TARGET_ADDR_IDEX_OUT, RS1_VAL_IDEX_OUT, RS2_VAL_IDEX_OUT, IMM_GEN_IDEX_OUT, RS1_ADDR_IDEX_OUT, RS2_ADDR_IDEX_OUT, RD_ADDR_IDEX_OUT);
+                                   RS1_VAL_IDEX_OUT, RS2_VAL_IDEX_OUT, IMM_GEN_IDEX_OUT, RS1_ADDR_IDEX_OUT, RS2_ADDR_IDEX_OUT, RD_ADDR_IDEX_OUT);
 
   ----------- Instruction execute stage -----------
-   
-  MUX_ALU_IN1 : MUX_4to1 generic map(32)
-                         port map(RS1_VAL_IDEX_OUT, PC_VAL_IDEX_OUT, TARGET_ADDR_IDEX_OUT, (others => '-'), EX_ALUSRC_OUT1, ALU_IN1_EXE);
- 
+
   MUX_ALU_IN2 : MUX2to1 generic map(32)
                         port map(RS2_VAL_IDEX_OUT, IMM_GEN_IDEX_OUT, EX_ALUSRC_OUT, ALU_IN2_EXE);
   
   ALU_EXE : ALU generic map(32)
-                port map(ALU_IN1_EXE, ALU_IN2_EXE, CODE_ALUCTRL_OUT, ALU_RES_EXE);
+                port map(RS1_VAL_IDEX_OUT, ALU_IN2_EXE, CODE_ALUCTRL_OUT, ALU_RES_EXE);
 
   ALU_CTRL_EXE : ALE_CTRL port map(EX_ALUEN_IDEX_OUT, EX_ALUCTRL_IDEX_OUT, IMM_GEN_IDEX_OUT(14 downto 12), CODE_ALUCTRL_OUT);              
 
