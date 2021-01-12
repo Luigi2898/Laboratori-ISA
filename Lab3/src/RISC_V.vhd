@@ -163,37 +163,59 @@ architecture rtl of RISC_V is
       -- Datapath reset
       DP_RST         : out std_logic
     );
+  end component;  
+  
+  component ALU_CTRL is
+    port (
+      EN_IN    : in  std_logic;
+      CTRL_IN  : in  std_logic;
+      FUNC_IN  : in  std_logic_vector(2 downto 0);
+      CODE_OUT : out std_logic_vector(5 downto 0)
+    );
   end component;
 
-  -- Global signals
-  signal Vdd, GND     : std_logic;
-  signal I_RST        : std_logic;
+  -- Global signals  
+  signal Vdd, GND       : std_logic;
+  signal I_RST          : std_logic;
   -- Fetch stage signals
-  signal PC_SOURCE    : std_logic_vector(31 downto 0);
-  signal CURRENT_PC   : std_logic_vector(31 downto 0);
-  signal DIFF_PC      : std_logic_vector(31 downto 0);
-  signal NEXT_PC      : std_logic_vector(31 downto 0);
-  signal BEFOREJMP_PC : std_logic_vector(31 downto 0);
-  signal SELECTED_SRC : std_logic_vector(31 downto 0);
-  signal PC_DIR       : std_logic;
-  signal PC_SOURCE    : std_logic;
+  signal PC_SOURCE      : std_logic_vector(31 downto 0);
+  signal CURRENT_PC     : std_logic_vector(31 downto 0);
+  signal DIFF_PC        : std_logic_vector(31 downto 0);
+  signal NEXT_PC        : std_logic_vector(31 downto 0);
+  signal BEFOREJMP_PC   : std_logic_vector(31 downto 0);
+  signal SELECTED_SRC   : std_logic_vector(31 downto 0);
+  signal PC_DIR         : std_logic;
+  signal PC_SOURCE      : std_logic;
   -- Decode stage signals
-  signal RF_OUT1      : std_logic_vector(31 downto 0);
-  signal RF_OUT2      : std_logic_vector(31 downto 0);
-  signal RF_IN        : std_logic_vector(31 downto 0);
-  signal IMM_GEN_OUT  : std_logic_vector(31 downto 0);
-  signal JMP_ADDR     : std_logic_vector(31 downto 0);
-  signal BC_COMP1     : std_logic_vector(31 downto 0);
-  signal BC_COMP2     : std_logic_vector(31 downto 0);
+  signal RF_OUT1        : std_logic_vector(31 downto 0);
+  signal RF_OUT2        : std_logic_vector(31 downto 0);
+  signal RF_IN          : std_logic_vector(31 downto 0);
+  signal IMM_GEN_OUT    : std_logic_vector(31 downto 0);
+  signal JMP_ADDR       : std_logic_vector(31 downto 0);
+  signal BC_COMP1       : std_logic_vector(31 downto 0);
+  signal BC_COMP2       : std_logic_vector(31 downto 0);
+  signal ALU_CODE       : std_logic_vector(5 downto 0);
   -- CU signals
-  signal FLUSH        : std_logic;
-  signal STALL        : std_logic;
-  signal RF_WR_EN     : std_logic;
-  signal IMM_EN_IN    : std_logic;
-  signal IMM_CODE     : std_logic_vector(2 downto 0);
-  signal BRANCH       : std_logic;
+  signal FLUSH          : std_logic;
+  signal STALL          : std_logic;
+  signal RF_WR_EN       : std_logic;
+  signal IMM_CODE       : std_logic_vector(2 downto 0);
+  signal BRANCH         : std_logic;
   signal BPU_MISSPRED   : std_logic;
   signal BPU_PREDICTION : std_logic;
+  signal HDU_STALL      : std_logic;
+  signal HDU_FORWARD    : std_logic;
+  signal ALU_SRC        : std_logic;
+  signal ALU_CTRL       : std_logic;
+  signal ALU_CTRL_EN    : std_logic;
+  signal MEM_RD         : std_logic;
+  signal MEM_WR         : std_logic;
+  signal RF_EN          : std_logic;
+  signal RF_MUX         : std_logic; -- 1 from memory 0 non-from-memory
+  signal IMM_EN         : std_logic;
+  signal JUMP           : std_logic;
+  signal FORWARD_B      : std_logic;
+  signal FORWARD_A      : std_logic;
 
 begin
 
@@ -216,7 +238,7 @@ begin
 
   INSTR_ADDR <= CURRENT_PC;
 
-  BRANCH_PREDICTION_UNIT : BPU port map(CLK, I_RST,);
+  BRANCH_PREDICTION_UNIT : BPU port map(CLK, I_RST,); -- To b completed with other signals
 
   PIPE_REG1 : PIPE_IF_ID generic map(32)
                          port map(CLK, I_RST, FLUSH, STALL, INSTR, CURRENT_PC, INSTR_ID, PC_ID);
@@ -228,16 +250,18 @@ begin
 
   JA : JMP_ADD port map(IMM_GEN_OUT, PC_ID, JMP_ADDR);
 
-  IG : IMM_GEN port map(INSTR_ID, IMM_GEN_OUT, IMM_EN_IN, IMM_CODE);
+  IG : IMM_GEN port map(INSTR_ID, IMM_GEN_OUT, IMM_EN, IMM_CODE);
 
   BC : BRANCH_COMP generic map(IMM_CODE, BC_IN1, BC_IN2, BRANCH);
 
   BC_MUX_A : MUX_4to1 generic map(32)
-                      port map(RFOUT_1, ..., BC_IN1);
+                      port map(RFOUT_1, ..., BC_IN1);-- To b completed with other signals
   
   BC_MUX_B : MUX_4to1 generic map(32)
-                      port map(RFOUT_2, ..., BC_IN2);
+                      port map(RFOUT_2, ..., BC_IN2);-- To b completed with other signals
 
-  CONTROL_UNIT : CU port map(EXTERNAL_RST, INSTR_ID(6 downto 0), BPU_MISSPRED, BPU_PREDICTION)
+  CONTROL_UNIT : CU port map(EXTERNAL_RST, INSTR_ID(6 downto 0), BPU_MISSPRED, BPU_PREDICTION, HDU_STALL, HDU_FORWARD, ALU_SRC, ALU_CTRL, ALU_CTRL_EN, MEM_RD, MEM_WR, RF_EN, RF_MUX, IMM_EN, IMM_CODE, JUMP, FORWARD_B, FORWARD_A, I_RST);
+
+  ALU_CONTROLLER : ALU_CTRL port map(ALU_CTRL_EN, ALU_CTRL, INSTR_ID(9 downto 7), ALU_CODE)
 
 end architecture;
