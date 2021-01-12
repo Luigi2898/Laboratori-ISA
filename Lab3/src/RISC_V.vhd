@@ -216,6 +216,7 @@ component ALU is
   );
 end component;
 
+
   component ALU_CTRL is
     port (
       EN_IN    : in  std_logic;
@@ -226,6 +227,7 @@ end component;
   end component;
 
   component PIPE_EX_MEM is  
+
   generic( word_size :  integer := 32 );
   port(
     CLK           : in  std_logic;
@@ -269,6 +271,7 @@ end component PIPE_EX_MEM;
   signal RS1_ADDR_IDEX_OUT    : std_logic_vector(4 downto 0);
   signal RS2_ADDR_IDEX_OUT    : std_logic_vector(4 downto 0);
   signal RD_ADDR_IDEX_OUT     : std_logic_vector(4 downto 0);
+  signal FUNC3_IDEX_OUT       : std_logic_vector(2 downto 0);
   signal WR_RFEN_IDEX_OUT     : std_logic;
   signal WR_RFMUX_IDEX_OUT    : std_logic;
   signal JUMP_IDEX_OUT        : std_logic;
@@ -308,6 +311,7 @@ signal ALU_RES_PIPE_OUT     : std_logic_vector(31 downto 0);
 signal RS2_VAL_PIPE_OUT     : std_logic_vector(31 downto 0);
 signal OP_WB_MEM_PIPE_OUT   : std_logic_vector(4 downto 0);
 signal RD_ADDR_PIPE_OUT     : std_logic_vector(4 downto 0);
+
 begin
 
   Vdd <= '1';
@@ -328,6 +332,7 @@ begin
            port map(PC_SOURCE, CLK, I_RST, Vdd, CURRENT_PC);
 
   INSTR_ADDR <= CURRENT_PC;
+
 
   BRANCH_PREDICTION_UNIT : BPU port map(CLK, I_RST,); -- To b completed with other signals
 
@@ -370,7 +375,9 @@ begin
   ALU_EXE : ALU generic map(32)
                 port map(RS1_VAL_IDEX_OUT, ALU_IN2_EXE, CODE_ALUCTRL_OUT, ALU_RES_EXE);
 
-  ALU_CTRL_EXE : ALE_CTRL port map(EX_ALUEN_IDEX_OUT, EX_ALUCTRL_IDEX_OUT, IMM_GEN_IDEX_OUT(14 downto 12), CODE_ALUCTRL_OUT);              
+
+  ALU_CTRL_EXE : ALE_CTRL port map(EX_ALUEN_IDEX_OUT, EX_ALUCTRL_IDEX_OUT, FUNC3_IDEX_OUT, CODE_ALUCTRL_OUT);              
+
 
   OP_WB_MEM_PIPE_IN <= WR_RFEN_IDEX_OUT & WR_RFMUX_IDEX_OUT & JUMP_IDEX_OUT & M_RD_EN_IDEX_OUT & M_WR_IDEX_OUT;
 
