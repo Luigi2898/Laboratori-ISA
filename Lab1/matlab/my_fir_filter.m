@@ -1,3 +1,4 @@
+
 fs=10000 %% sampling frequency
 %Da capire come impostare la fs
 f1=500;  %% first sinewave freq (in band)

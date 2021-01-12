@@ -216,16 +216,18 @@ component ALU is
   );
 end component;
 
-component ALU_CTRL is
-  port (
-    EN_IN    : in  std_logic;
-    CTRL_IN  : in  std_logic;
-    FUNC_IN  : in  std_logic_vector(2 downto 0);
-    CODE_OUT : out std_logic_vector(5 downto 0)
-  );
-end component;
 
-component PIPE_EX_MEM is 
+  component ALU_CTRL is
+    port (
+      EN_IN    : in  std_logic;
+      CTRL_IN  : in  std_logic;
+      FUNC_IN  : in  std_logic_vector(2 downto 0);
+      CODE_OUT : out std_logic_vector(5 downto 0)
+    );
+  end component;
+
+  component PIPE_EX_MEM is  
+
   generic( word_size :  integer := 32 );
   port(
     CLK           : in  std_logic;
@@ -242,26 +244,27 @@ component PIPE_EX_MEM is
   );
 end component PIPE_EX_MEM;
 
-  -- Global signals
-  signal Vdd, GND     : std_logic;
-  signal I_RST        : std_logic;
+  -- Global signals  
+  signal Vdd, GND       : std_logic;
+  signal I_RST          : std_logic;
   -- Fetch stage signals
-  signal PC_SOURCE    : std_logic_vector(31 downto 0);
-  signal CURRENT_PC   : std_logic_vector(31 downto 0);
-  signal DIFF_PC      : std_logic_vector(31 downto 0);
-  signal NEXT_PC      : std_logic_vector(31 downto 0);
-  signal BEFOREJMP_PC : std_logic_vector(31 downto 0);
-  signal SELECTED_SRC : std_logic_vector(31 downto 0);
-  signal PC_DIR       : std_logic;
-  signal PC_SOURCE    : std_logic;
+  signal PC_SOURCE      : std_logic_vector(31 downto 0);
+  signal CURRENT_PC     : std_logic_vector(31 downto 0);
+  signal DIFF_PC        : std_logic_vector(31 downto 0);
+  signal NEXT_PC        : std_logic_vector(31 downto 0);
+  signal BEFOREJMP_PC   : std_logic_vector(31 downto 0);
+  signal SELECTED_SRC   : std_logic_vector(31 downto 0);
+  signal PC_DIR         : std_logic;
+  signal PC_SOURCE      : std_logic;
   -- Decode stage signals
-  signal RF_OUT1      : std_logic_vector(31 downto 0);
-  signal RF_OUT2      : std_logic_vector(31 downto 0);
-  signal RF_IN        : std_logic_vector(31 downto 0);
-  signal IMM_GEN_OUT  : std_logic_vector(31 downto 0);
-  signal JMP_ADDR     : std_logic_vector(31 downto 0);
-  signal BC_COMP1     : std_logic_vector(31 downto 0);
-  signal BC_COMP2     : std_logic_vector(31 downto 0);
+  signal RF_OUT1        : std_logic_vector(31 downto 0);
+  signal RF_OUT2        : std_logic_vector(31 downto 0);
+  signal RF_IN          : std_logic_vector(31 downto 0);
+  signal IMM_GEN_OUT    : std_logic_vector(31 downto 0);
+  signal JMP_ADDR       : std_logic_vector(31 downto 0);
+  signal BC_COMP1       : std_logic_vector(31 downto 0);
+  signal BC_COMP2       : std_logic_vector(31 downto 0);
+  signal ALU_CODE       : std_logic_vector(5 downto 0);
   signal RS1_VAL_IDEX_OUT     : std_logic_vector(31 downto 0);
   signal RS2_VAL_IDEX_OUT     : std_logic_vector(31 downto 0);
   signal IMM_GEN_IDEX_OUT     : std_logic_vector(31 downto 0);
@@ -277,25 +280,37 @@ end component PIPE_EX_MEM;
   signal EX_ALUSRC_IDEX_OUT   : std_logic;
   signal EX_ALUCTRL_IDEX_OUT  : std_logic;
   signal EX_ALUEN_IDEX_OUT    : std_logic;
-  -- Execute stage signals
-  signal ALU_IN1_EXE          : std_logic_vector(31 downto 0);
-  signal ALU_IN2_EXE          : std_logic_vector(31 downto 0);
-  signal ALU_RES_EXE          : std_logic_vector(31 downto 0);
-  signal CODE_ALUCTRL_OUT     : std_logic_vector(5 downto 0);
-  signal OP_WB_MEM_PIPE_IN    : std_logic_vector(4 downto 0);  
-  signal ALU_RES_PIPE_OUT     : std_logic_vector(31 downto 0);
-  signal RS2_VAL_PIPE_OUT     : std_logic_vector(31 downto 0);
-  signal OP_WB_MEM_PIPE_OUT   : std_logic_vector(4 downto 0);
-  signal RD_ADDR_PIPE_OUT     : std_logic_vector(4 downto 0);
   -- CU signals
-  signal FLUSH        : std_logic;
-  signal STALL        : std_logic;
-  signal RF_WR_EN     : std_logic;
-  signal IMM_EN_IN    : std_logic;
-  signal IMM_CODE     : std_logic_vector(2 downto 0);
-  signal BRANCH       : std_logic;
+  signal FLUSH          : std_logic;
+  signal STALL          : std_logic;
+  signal RF_WR_EN       : std_logic;
+  signal IMM_CODE       : std_logic_vector(2 downto 0);
+  signal BRANCH         : std_logic;
   signal BPU_MISSPRED   : std_logic;
   signal BPU_PREDICTION : std_logic;
+  signal HDU_STALL      : std_logic;
+  signal HDU_FORWARD    : std_logic;
+  signal ALU_SRC        : std_logic;
+  signal ALU_CTRL       : std_logic;
+  signal ALU_CTRL_EN    : std_logic;
+  signal MEM_RD         : std_logic;
+  signal MEM_WR         : std_logic;
+  signal RF_EN          : std_logic;
+  signal RF_MUX         : std_logic; -- 1 from memory 0 non-from-memory
+  signal IMM_EN         : std_logic;
+  signal JUMP           : std_logic;
+  signal FORWARD_B      : std_logic;
+  signal FORWARD_A      : std_logic;
+-- Execute stage signals
+signal ALU_IN1_EXE          : std_logic_vector(31 downto 0);
+signal ALU_IN2_EXE          : std_logic_vector(31 downto 0);
+signal ALU_RES_EXE          : std_logic_vector(31 downto 0);
+signal CODE_ALUCTRL_OUT     : std_logic_vector(5 downto 0);
+signal OP_WB_MEM_PIPE_IN    : std_logic_vector(4 downto 0);  
+signal ALU_RES_PIPE_OUT     : std_logic_vector(31 downto 0);
+signal RS2_VAL_PIPE_OUT     : std_logic_vector(31 downto 0);
+signal OP_WB_MEM_PIPE_OUT   : std_logic_vector(4 downto 0);
+signal RD_ADDR_PIPE_OUT     : std_logic_vector(4 downto 0);
 
 begin
 
@@ -318,7 +333,8 @@ begin
 
   INSTR_ADDR <= CURRENT_PC;
 
-  BRANCH_PREDICTION_UNIT : BPU port map(CLK, I_RST,);
+
+  BRANCH_PREDICTION_UNIT : BPU port map(CLK, I_RST,); -- To b completed with other signals
 
   PIPE_REG1 : PIPE_IF_ID generic map(32)
                          port map(CLK, I_RST, FLUSH, STALL, INSTR, CURRENT_PC, INSTR_ID, PC_ID);
@@ -330,24 +346,26 @@ begin
 
   JA : JMP_ADD port map(IMM_GEN_OUT, PC_ID, JMP_ADDR);
 
-  IG : IMM_GEN port map(INSTR_ID, IMM_GEN_OUT, IMM_EN_IN, IMM_CODE);
+  IG : IMM_GEN port map(INSTR_ID, IMM_GEN_OUT, IMM_EN, IMM_CODE);
 
   BC : BRANCH_COMP generic map(IMM_CODE, BC_IN1, BC_IN2, BRANCH);
 
   BC_MUX_A : MUX_4to1 generic map(32)
-                      port map(RFOUT_1, ..., BC_IN1);
+                      port map(RFOUT_1, ..., BC_IN1);-- To b completed with other signals
   
   BC_MUX_B : MUX_4to1 generic map(32)
-                      port map(RFOUT_2, ..., BC_IN2);
+                      port map(RFOUT_2, ..., BC_IN2);-- To b completed with other signals
 
-  CONTROL_UNIT : CU port map(EXTERNAL_RST, INSTR_ID(6 downto 0), BPU_MISSPRED, BPU_PREDICTION)
+  CONTROL_UNIT : CU port map(EXTERNAL_RST, INSTR_ID(6 downto 0), BPU_MISSPRED, BPU_PREDICTION, HDU_STALL, HDU_FORWARD, ALU_SRC, ALU_CTRL, ALU_CTRL_EN, MEM_RD, MEM_WR, RF_EN, RF_MUX, IMM_EN, IMM_CODE, JUMP, FORWARD_B, FORWARD_A, I_RST);
+
+  ALU_CONTROLLER : ALU_CTRL port map(ALU_CTRL_EN, ALU_CTRL, INSTR_ID(9 downto 7), ALU_CODE)
 
   PIPE_REG2 : PIPE_ID_EXE generic map(32)
                           port map(CLK, I_RST, PIPE_FLUSH, PIPE_STALL, BC_IN1, BC_IN2, IMM_GEN_OUT,
-                                   INSTR_ID(11 downto 7), INSTR_ID(20 downto 16), INSTR_ID(24 downto 20), INSTR_ID(14 downto 12),
+                                   INSTR_ID(11 downto 7), INSTR_ID(20 downto 16), INSTR_ID(24 downto 20),
                                    WR_RFEN, WR_RFMUX, JUMP, M_RD_EN, M_WR, EX_ALUSRC, EX_ALUCTRL, EX_ALUEN,
                                    WR_RFEN_IDEX_OUT, WR_RFMUX_IDEX_OUT, JUMP_IDEX_OUT, M_RD_EN_IDEX_OUT, M_WR_IDEX_OUT, EX_ALUSRC_IDEX_OUT, EX_ALUCTRL_IDEX_OUT, EX_ALUEN_IDEX_OUT,
-                                   RS1_VAL_IDEX_OUT, RS2_VAL_IDEX_OUT, IMM_GEN_IDEX_OUT, RS1_ADDR_IDEX_OUT, RS2_ADDR_IDEX_OUT, RD_ADDR_IDEX_OUT, FUNC3_IDEX_OUT);
+                                   RS1_VAL_IDEX_OUT, RS2_VAL_IDEX_OUT, IMM_GEN_IDEX_OUT, RS1_ADDR_IDEX_OUT, RS2_ADDR_IDEX_OUT, RD_ADDR_IDEX_OUT);
 
   ----------- Instruction execute stage -----------
 
@@ -357,7 +375,9 @@ begin
   ALU_EXE : ALU generic map(32)
                 port map(RS1_VAL_IDEX_OUT, ALU_IN2_EXE, CODE_ALUCTRL_OUT, ALU_RES_EXE);
 
+
   ALU_CTRL_EXE : ALE_CTRL port map(EX_ALUEN_IDEX_OUT, EX_ALUCTRL_IDEX_OUT, FUNC3_IDEX_OUT, CODE_ALUCTRL_OUT);              
+
 
   OP_WB_MEM_PIPE_IN <= WR_RFEN_IDEX_OUT & WR_RFMUX_IDEX_OUT & JUMP_IDEX_OUT & M_RD_EN_IDEX_OUT & M_WR_IDEX_OUT;
 

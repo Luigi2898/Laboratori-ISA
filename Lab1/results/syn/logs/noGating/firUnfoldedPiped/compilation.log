@@ -1,0 +1,144 @@
+
+Information: There are 44 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'FF_0'
+  Processing 'MYFIR_CUOUTPUTS_UNFOLDED'
+  Processing 'myfir_cupipe_unfolded'
+  Processing 'MYFIR_CUINPUTS_UNFOLDED'
+  Processing 'REG_N8_0'
+  Processing 'N_COUNTER_N2_MODULE3'
+Information: Added key list 'DesignWare' to design 'N_COUNTER_N2_MODULE3'. (DDB-72)
+  Processing 'MUX3XNTO1XN_N8'
+  Processing 'REG_N11'
+  Processing 'CNT_MOD_N2_MODULE3'
+  Processing 'myfir_dp_piped_unfolded'
+  Processing 'MYFIR_PIPED_UNFOLDED'
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+
+  Beginning Implementation Selection
+  ----------------------------------
+  Processing 'myfir_dp_piped_unfolded_DW01_add_0'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_1'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_2'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_3'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_4'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_5'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_6'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_7'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_8'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_9'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_10'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_11'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_12'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_13'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_14'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_15'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_16'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_17'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_18'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_19'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_20'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_21'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_22'
+  Processing 'myfir_dp_piped_unfolded_DW01_add_23'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_0'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_1'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_2'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_3'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_4'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_5'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_6'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_7'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_8'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_9'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_10'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_11'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_12'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_13'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_14'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_15'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_16'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_17'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_18'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_19'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_20'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_21'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_22'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_23'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_24'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_25'
+  Mapping 'myfir_dp_piped_unfolded_DW_mult_tc_26'
+
+  Beginning Mapping Optimizations  (Medium effort)
+  -------------------------------
+Information: The register 'DATAPATH/cnt_in/cnt_reg[2]' is a constant and will be removed. (OPT-1206)
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:01:44   11204.5      0.00       0.0      19.9                          
+    0:01:44   11204.5      0.00       0.0      19.9                          
+    0:01:44   11204.5      0.00       0.0      19.9                          
+    0:01:44   11204.5      0.00       0.0      19.9                          
+    0:01:45   11204.5      0.00       0.0      19.9                          
+    0:02:04   10016.8      0.00       0.0       0.0                          
+    0:02:05   10014.1      0.00       0.0       0.0                          
+    0:02:14   10014.1      0.00       0.0       0.0                          
+    0:02:14   10014.1      0.00       0.0       0.0                          
+    0:02:15   10014.1      0.00       0.0       0.0                          
+    0:02:15   10014.1      0.00       0.0       0.0                          
+    0:02:15   10014.1      0.00       0.0       0.0                          
+    0:02:15   10014.1      0.00       0.0       0.0                          
+    0:02:15   10014.1      0.00       0.0       0.0                          
+
+
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:02:15   10014.1      0.00       0.0       0.0                          
+    0:02:15   10014.1      0.00       0.0       0.0                          
+    0:02:15   10014.1      0.00       0.0       0.0                          
+
+
+  Beginning Area-Recovery Phase  (cleanup)
+  -----------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:02:15   10014.1      0.00       0.0       0.0                          
+    0:02:15   10014.1      0.00       0.0       0.0                          
+    0:02:20    9996.3      0.00       0.0       0.0                          
+    0:02:22    9981.9      0.00       0.0       0.0                          
+    0:02:22    9981.9      0.00       0.0       0.0                          
+    0:02:22    9981.9      0.00       0.0       0.0                          
+    0:02:22    9981.9      0.00       0.0       0.0                          
+    0:02:23    9979.5      0.00       0.0       0.0                          
+    0:02:23    9979.5      0.00       0.0       0.0                          
+    0:02:23    9979.5      0.00       0.0       0.0                          
+    0:02:23    9979.5      0.00       0.0       0.0                          
+    0:02:23    9979.5      0.00       0.0       0.0                          
+    0:02:23    9979.5      0.00       0.0       0.0                          
+    0:02:25    9979.3      0.00       0.0       0.0                          
+Loading db file '/software/dk/nangate45/synopsys/NangateOpenCellLibrary_typical_ecsm_nowlm.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+1

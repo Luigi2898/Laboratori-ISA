@@ -1,0 +1,75 @@
+ 
+****************************************
+Report : power
+        -hier
+        -analysis_effort low
+Design : MYFIR_UNFOLDED
+Version: O-2018.06-SP4
+Date   : Tue Nov 17 14:46:22 2020
+****************************************
+
+
+Library(s) Used:
+
+    NangateOpenCellLibrary (File: /software/dk/nangate45/synopsys/NangateOpenCellLibrary_typical_ecsm_nowlm.db)
+
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+Design        Wire Load Model            Library
+------------------------------------------------
+MYFIR_UNFOLDED         5K_hvratio_1_1    NangateOpenCellLibrary
+
+
+Global Operating Voltage = 1.1  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000ff
+    Time Units = 1ns
+    Dynamic Power Units = 1uW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+--------------------------------------------------------------------------------
+                                       Switch   Int      Leak     Total
+Hierarchy                              Power    Power    Power    Power    %
+--------------------------------------------------------------------------------
+MYFIR_UNFOLDED                           57.154  106.953 1.66e+05  330.424 100.0
+  DATAPATH_OUTPUT_BUFFER_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N11)
+                                          0.457    0.816   59.620    1.332   0.4
+  DATAPATH_CNT_IN_clk_gate_cnt_reg (SNPS_CLOCK_GATE_HIGH_CNT_MOD_N2_MODULE3)
+                                          0.120    0.898   59.593    1.078   0.3
+  DATAPATH_INPUT_BUFFER2_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_9)
+                                          0.349    0.910   59.593    1.319   0.4
+  DATAPATH_INPUT_BUFFER1_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_10)
+                                          1.268    1.217   55.701    2.541   0.8
+  DATAPATH_RESULT_REG_2_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_11)
+                                          0.115    0.654   60.620    0.829   0.3
+  DATAPATH_RESULT_REG_1_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_12)
+                                          0.115    0.654   60.620    0.829   0.3
+  DATAPATH_RESULT_REG_0_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_13)
+                                          0.115    0.654   60.620    0.829   0.3
+  DATAPATH_STATE_2_3_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_14)
+                                          0.118    0.657   60.623    0.836   0.3
+  DATAPATH_STATE_2_2_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_15)
+                                          0.118    0.657   60.623    0.836   0.3
+  DATAPATH_STATE_2_1_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_16)
+                                          0.118    0.657   60.623    0.836   0.3
+  DATAPATH_STATE_2_0_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_17)
+                                          0.118    0.657   60.623    0.836   0.3
+  DATAPATH_STATE_1_3_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_18)
+                                          0.114    0.656   60.607    0.830   0.3
+  DATAPATH_STATE_1_2_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_19)
+                                          0.114    0.656   60.607    0.830   0.3
+  DATAPATH_STATE_1_1_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_20)
+                                          0.114    0.656   60.607    0.830   0.3
+  DATAPATH_STATE_1_0_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_21)
+                                          0.114    0.656   60.607    0.830   0.3
+  DATAPATH_STATE_0_2_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_22)
+                                          0.115    0.670   60.609    0.846   0.3
+  DATAPATH_STATE_0_1_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_23)
+                                          0.115    0.670   60.609    0.846   0.3
+  DATAPATH_STATE_0_0_clk_gate_REG_OUT_reg (SNPS_CLOCK_GATE_HIGH_REG_N8_0_24)
+                                          0.115    0.670   60.609    0.846   0.3
+1

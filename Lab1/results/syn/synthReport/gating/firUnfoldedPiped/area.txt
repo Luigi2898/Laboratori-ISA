@@ -1,0 +1,30 @@
+ 
+****************************************
+Report : area
+Design : MYFIR_PIPED_UNFOLDED
+Version: O-2018.06-SP4
+Date   : Thu Nov 12 14:06:20 2020
+****************************************
+
+Library(s) Used:
+
+    NangateOpenCellLibrary (File: /software/dk/nangate45/synopsys/NangateOpenCellLibrary_typical_ecsm_nowlm.db)
+
+Number of ports:                         2850
+Number of nets:                          7831
+Number of cells:                         4637
+Number of combinational cells:           3998
+Number of sequential cells:               415
+Number of macros/black boxes:               0
+Number of buf/inv:                        636
+Number of references:                       4
+
+Combinational area:               7296.114029
+Buf/Inv area:                      354.046003
+Noncombinational area:            2145.556063
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (Wire load has zero net area)
+
+Total cell area:                  9441.670092
+Total area:                 undefined
+1

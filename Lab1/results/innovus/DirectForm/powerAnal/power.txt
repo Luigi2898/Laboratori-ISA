@@ -1,0 +1,96 @@
+*----------------------------------------------------------------------------------------
+*	Innovus 17.11-s080_1 (64bit) 08/04/2017 11:13 (Linux 2.6.18-194.el5)
+*	
+*
+* 	Date & Time:	2020-Nov-12 18:42:34 (2020-Nov-12 17:42:34 GMT)
+*
+*----------------------------------------------------------------------------------------
+*
+*	Design: MYFIR
+*
+*	Liberty Libraries used: 
+*	        MyAnView: /software/dk/nangate45/liberty/NangateOpenCellLibrary_typical_ecsm_nowlm.lib
+*
+*	Power Domain used: 
+*		Rail:        VDD 	Voltage:        1.1 
+*
+*       Power View : MyAnView
+*
+*       User-Defined Activity : N.A.
+*
+*	Switching Activity File used: 
+*	        ../vcd/design.vcd
+*			Vcd Window used(Start Time, Stop Time):(-2.47971e-06, -2.47971e-06) 
+*                     Vcd Scale Factor: 1 
+**                    Design annotation coverage: 1771/1771 = 100% 
+*
+*       Hierarchical Global Activity: N.A.
+*
+*       Global Activity: N.A.
+*
+*       Sequential Element Activity: N.A.
+*
+*       Primary Input Activity: 0.200000
+*
+*       Default icg ratio: N.A.
+*
+*       Global Comb ClockGate Ratio: N.A.
+*
+*	Power Units = 1mW
+*
+*	Time Units = 1e-09 secs 
+*
+*       report_power -outfile powerAnal/power.txt -sort total
+*
+-----------------------------------------------------------------------------------------
+
+
+Total Power 
+-----------------------------------------------------------------------------------------
+Total Internal Power:        0.14102244 	   50.1193%
+Total Switching Power:       0.08216546 	   29.2016%
+Total Leakage Power:         0.05818555 	   20.6791%
+Total Power:                 0.28137345 
+-----------------------------------------------------------------------------------------
+
+
+Group                           Internal   Switching     Leakage       Total  Percentage 
+                                Power      Power         Power         Power  (%)        
+-----------------------------------------------------------------------------------------
+Sequential                       0.03164    0.009763    0.007576     0.04898       17.41 
+Macro                                  0           0           0           0           0 
+IO                                     0           0           0           0           0 
+Combinational                    0.09992     0.06821     0.05002      0.2181       77.53 
+Clock (Combinational)                  0           0           0           0           0 
+Clock (Sequential)               0.00946    0.004195   0.0005923     0.01425       5.063 
+-----------------------------------------------------------------------------------------
+Total                              0.141     0.08217     0.05819      0.2814         100 
+-----------------------------------------------------------------------------------------
+
+
+Rail                  Voltage   Internal   Switching     Leakage       Total  Percentage 
+                                Power      Power         Power         Power  (%)        
+-----------------------------------------------------------------------------------------
+VDD                       1.1      0.141     0.08217     0.05819      0.2814         100 
+
+
+Clock                           Internal   Switching     Leakage       Total  Percentage 
+                                Power      Power         Power         Power  (%)        
+-----------------------------------------------------------------------------------------
+MY_CLK                           0.00946    0.004195   0.0005923     0.01425       5.063 
+-----------------------------------------------------------------------------------------
+Total (excluding duplicates)     0.00946    0.004195   0.0005923     0.01425       5.063 
+-----------------------------------------------------------------------------------------
+
+
+-----------------------------------------------------------------------------------------
+*	Power Distribution Summary: 
+* 		Highest Average Power: DP_input_register_clk_gate_REG_OUT_reg/latch (CLKGATETST_X1): 	  0.002547 
+* 		Highest Leakage Power: DP_output_register_REG_OUT_reg_6_ (DFFR_X1): 	 8.886e-05 
+* 		Total Cap: 	8.16493e-12 F
+* 		Total instances in design:  1392
+* 		Total instances in design with no power:     0
+*          Total instances in design with no activity:     0
+* 		Total Fillers and Decap:     0
+-----------------------------------------------------------------------------------------
+

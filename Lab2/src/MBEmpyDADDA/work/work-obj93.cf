@@ -1,0 +1,4 @@
+v 4
+file "/home/luigi/Data/PoliTo/Magistrale/II anno/Integrated system architecture/Laboratori-ISA/Lab2/src/MBEmpyDADDA/" "BEU.vhd" "6e2fba18a4ded9b7fac41143cd38515e336c8c37" "20201220094931.852":
+  entity beu at 1( 0) + 0 on 4;
+  architecture beh of beu at 12( 240) + 0 on 4;

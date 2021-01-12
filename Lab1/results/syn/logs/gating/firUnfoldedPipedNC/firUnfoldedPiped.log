@@ -1,0 +1,36 @@
+== ANALYZE autoread all files ==
+
+Starting ANALYZE autoread mode...
+Information: Adding '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/firUnfoldedPiped'.  (AUTOREAD-100)
+Warning: Adding missing directory to search_path - '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/firUnfoldedPiped'. (AUTOREAD-105)
+Information: Adding '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/firUnfoldedPiped/myfir_cupipe_unfolded.vhd'.  (AUTOREAD-100)
+Information: Adding '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/firUnfoldedPiped/myfir_dp_piped_unfolded.vhd'.  (AUTOREAD-100)
+Information: Adding '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/firUnfoldedPiped/myfir_piped_unfolded.vhd'.  (AUTOREAD-100)
+Information: Source FIR.tis_db_list.ddb ignored by autoread due to filtering.  (AUTOREAD-102)
+Information: Source CU_INPUTS.dot ignored by autoread due to filtering.  (AUTOREAD-102)
+Information: Removing from autoread database '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents'.  (AUTOREAD-101)
+Information: Removing from autoread database '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/FF.vhd'.  (AUTOREAD-101)
+Information: Removing from autoread database '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/N_counter.vhd'.  (AUTOREAD-101)
+Information: Removing from autoread database '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/SRLATCH.vhd'.  (AUTOREAD-101)
+Information: Removing from autoread database '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/cnt_mod.vhd'.  (AUTOREAD-101)
+Information: Removing from autoread database '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/mux3xNto1xN.vhd'.  (AUTOREAD-101)
+Information: Removing from autoread database '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/myfir_cuinputs_unfolded.vhd'.  (AUTOREAD-101)
+Information: Removing from autoread database '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/myfir_cuoutputs_unfolded.vhd'.  (AUTOREAD-101)
+Information: Removing from autoread database '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/reg.vhd'.  (AUTOREAD-101)
+Information: Scanning file { myfir_cupipe_unfolded.vhd }. (AUTOREAD-303)
+Information: Scanning file { myfir_dp_piped_unfolded.vhd }. (AUTOREAD-303)
+Information: Scanning file { myfir_piped_unfolded.vhd }. (AUTOREAD-303)
+Compiling Entity Declaration MYFIR_CUPIPE_UNFOLDED
+Compiling Architecture BEH of MYFIR_CUPIPE_UNFOLDED
+Warning:  /home/isa25/Desktop/Laboratori-ISA/Lab1/src/firUnfoldedPiped/myfir_cupipe_unfolded.vhd:15: The architecture beh has already been analyzed. It is being replaced. (VHD-4)
+Presto compilation completed successfully.
+Compiling Entity Declaration MYFIR_DP_PIPED_UNFOLDED
+Compiling Architecture BEH of MYFIR_DP_PIPED_UNFOLDED
+Warning:  /home/isa25/Desktop/Laboratori-ISA/Lab1/src/firUnfoldedPiped/myfir_dp_piped_unfolded.vhd:36: The architecture beh has already been analyzed. It is being replaced. (VHD-4)
+Presto compilation completed successfully.
+Compiling Entity Declaration MYFIR_PIPED_UNFOLDED
+Compiling Architecture BEH of MYFIR_PIPED_UNFOLDED
+Warning:  /home/isa25/Desktop/Laboratori-ISA/Lab1/src/firUnfoldedPiped/myfir_piped_unfolded.vhd:26: The architecture BEH has already been analyzed. It is being replaced. (VHD-4)
+Presto compilation completed successfully.
+Autoread command completed successfully.
+1

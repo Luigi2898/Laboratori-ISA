@@ -1,0 +1,141 @@
+Loading db file '/software/synopsys/syn_current_64.18/libraries/syn/gtech.db'
+Loading db file '/software/synopsys/syn_current_64.18/libraries/syn/standard.sldb'
+  Loading link library 'NangateOpenCellLibrary'
+  Loading link library 'gtech'
+Running PRESTO HDLC
+Presto compilation completed successfully.
+Elaborated 1 design.
+Current design is now 'BPU'.
+Information: Building the design 'CACHE_MEM' instantiated from design 'BPU' with
+	the parameters "SetNum=4,SetEntries=1024,TagSize=22,ContentSize=32,AddrBits=32,SetBits=0,EntriesBits=10". (HDL-193)
+Warning:  /home/lp20.19/Desktop/ISA/Laboratori-ISA/Lab3Falco/src/components/control/BPU/CACHE_MEM.vhd:78: Initial values for signals/variables are not supported for synthesis by default. They are ignored. (VHD-7)
+Warning:  /home/lp20.19/Desktop/ISA/Laboratori-ISA/Lab3Falco/src/components/control/BPU/CACHE_MEM.vhd:78: Initial values for signals/variables are not supported for synthesis by default. They are ignored. (VHD-7)
+Warning:  /home/lp20.19/Desktop/ISA/Laboratori-ISA/Lab3Falco/src/components/control/BPU/CACHE_MEM.vhd:78: Initial values for signals/variables are not supported for synthesis by default. They are ignored. (VHD-7)
+Warning:  /home/lp20.19/Desktop/ISA/Laboratori-ISA/Lab3Falco/src/components/control/BPU/CACHE_MEM.vhd:78: Initial values for signals/variables are not supported for synthesis by default. They are ignored. (VHD-7)
+Warning:  /home/lp20.19/Desktop/ISA/Laboratori-ISA/Lab3Falco/src/components/control/BPU/CACHE_MEM.vhd:78: Initial values for signals/variables are not supported for synthesis by default. They are ignored. (VHD-7)
+Warning:  /home/lp20.19/Desktop/ISA/Laboratori-ISA/Lab3Falco/src/components/control/BPU/CACHE_MEM.vhd:78: Initial values for signals/variables are not supported for synthesis by default. They are ignored. (VHD-7)
+Warning:  /home/lp20.19/Desktop/ISA/Laboratori-ISA/Lab3Falco/src/components/control/BPU/CACHE_MEM.vhd:204: Initial values for signals/variables are not supported for synthesis by default. They are ignored. (VHD-7)
+Warning:  /home/lp20.19/Desktop/ISA/Laboratori-ISA/Lab3Falco/src/components/control/BPU/CACHE_MEM.vhd:204: Initial values for signals/variables are not supported for synthesis by default. They are ignored. (VHD-7)
+Warning:  /home/lp20.19/Desktop/ISA/Laboratori-ISA/Lab3Falco/src/components/control/BPU/CACHE_MEM.vhd:204: Initial values for signals/variables are not supported for synthesis by default. They are ignored. (VHD-7)
+Warning:  /home/lp20.19/Desktop/ISA/Laboratori-ISA/Lab3Falco/src/components/control/BPU/CACHE_MEM.vhd:204: Initial values for signals/variables are not supported for synthesis by default. They are ignored. (VHD-7)
+
+Inferred memory devices in process
+	in routine CACHE_MEM_SetNum4_SetEntries1024_TagSize22_ContentSize32_AddrBits32_SetBits0_EntriesBits10 line 78 in file
+		'/home/lp20.19/Desktop/ISA/Laboratori-ISA/Lab3Falco/src/components/control/BPU/CACHE_MEM.vhd'.
+===================================================================================
+|     Register Name      |   Type    | Width  | Bus | MB | AR | AS | SR | SS | ST |
+===================================================================================
+|    MEM_CONTENT_reg     | Flip-flop | 131072 |  Y  | N  | Y  | N  | N  | N  | N  |
+|      MEM_TAG_reg       | Flip-flop | 90112  |  Y  | N  | Y  | N  | N  | N  | N  |
+| refresh_cnt_wr_var_reg | Flip-flop |  4096  |  Y  | N  | Y  | N  | N  | N  | N  |
+|     MEM_VIRGIN_reg     | Flip-flop |  4096  |  Y  | N  | Y  | N  | N  | N  | N  |
+===================================================================================
+Statistics for MUX_OPs
+====================================================================================================================================
+|                                        block name/line                                         | Inputs | Outputs | # sel inputs |
+====================================================================================================================================
+| CACHE_MEM_SetNum4_SetEntries1024_TagSize22_ContentSize32_AddrBits32_SetBits0_EntriesBits10/166 |  1024  |    8    |      10      |
+| CACHE_MEM_SetNum4_SetEntries1024_TagSize22_ContentSize32_AddrBits32_SetBits0_EntriesBits10/225 |  1024  |   88    |      10      |
+| CACHE_MEM_SetNum4_SetEntries1024_TagSize22_ContentSize32_AddrBits32_SetBits0_EntriesBits10/225 |  1024  |    4    |      10      |
+| CACHE_MEM_SetNum4_SetEntries1024_TagSize22_ContentSize32_AddrBits32_SetBits0_EntriesBits10/236 |   4    |  32768  |      2       |
+| CACHE_MEM_SetNum4_SetEntries1024_TagSize22_ContentSize32_AddrBits32_SetBits0_EntriesBits10/236 |  1024  |   32    |      10      |
+====================================================================================================================================
+Presto compilation completed successfully.
+Information: Building the design 'BHT' instantiated from design 'BPU' with
+	the parameters "Size=1024,Depth=4,AddrBits=10". (HDL-193)
+Warning:  /home/lp20.19/Desktop/ISA/Laboratori-ISA/Lab3Falco/src/components/control/BPU/BHT.vhd:39: Initial values for signals/variables are not supported for synthesis by default. They are ignored. (VHD-7)
+Warning:  /home/lp20.19/Desktop/ISA/Laboratori-ISA/Lab3Falco/src/components/control/BPU/BHT.vhd:58: Initial values for signals/variables are not supported for synthesis by default. They are ignored. (VHD-7)
+Statistics for MUX_OPs
+=======================================================================
+|         block name/line           | Inputs | Outputs | # sel inputs |
+=======================================================================
+| BHT_Size1024_Depth4_AddrBits10/63 |  1024  |    4    |      10      |
+=======================================================================
+Presto compilation completed successfully.
+Information: Building the design 'PHT' instantiated from design 'BPU' with
+	the parameters "Size=16,AddrBits=4". (HDL-193)
+Warning:  /home/lp20.19/Desktop/ISA/Laboratori-ISA/Lab3Falco/src/components/control/BPU/PHT.vhd:39: Initial values for signals/variables are not supported for synthesis by default. They are ignored. (VHD-7)
+Warning:  /home/lp20.19/Desktop/ISA/Laboratori-ISA/Lab3Falco/src/components/control/BPU/PHT.vhd:58: Initial values for signals/variables are not supported for synthesis by default. They are ignored. (VHD-7)
+Statistics for MUX_OPs
+=============================================================
+|    block name/line      | Inputs | Outputs | # sel inputs |
+=============================================================
+| PHT_Size16_AddrBits4/63 |   16   |    1    |      4       |
+=============================================================
+Presto compilation completed successfully.
+Information: Building the design 'BPU_CU'. (HDL-193)
+Warning:  /home/lp20.19/Desktop/ISA/Laboratori-ISA/Lab3Falco/src/components/control/BPU/BPU_CU.vhd:22: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
+
+Statistics for case statements in always block at line 19 in file
+	'/home/lp20.19/Desktop/ISA/Laboratori-ISA/Lab3Falco/src/components/control/BPU/BPU_CU.vhd'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            22            |    auto/auto     |
+===============================================
+Presto compilation completed successfully.
+Information: Building the design 'MUX_2X1TO1X1'. (HDL-193)
+Presto compilation completed successfully.
+Information: Building the design 'DELAY_CHAIN' instantiated from design 'BPU' with
+	the parameters "Nbits=4,DelayUnits=2". (HDL-193)
+
+Inferred memory devices in process
+	in routine DELAY_CHAIN_Nbits4_DelayUnits2 line 23 in file
+		'/home/lp20.19/Desktop/ISA/Laboratori-ISA/Lab3Falco/src/components/control/BPU/DELAY_CHAIN.vhd'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|   content_var_reg   | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 'DELAY_CHAIN_1' instantiated from design 'BPU' with
+	the parameters "Nbits=2,DelayUnits=2". (HDL-193)
+
+Inferred memory devices in process
+	in routine DELAY_CHAIN_1_Nbits2_DelayUnits2 line 21 in file
+		'/home/lp20.19/Desktop/ISA/Laboratori-ISA/Lab3Falco/src/components/control/BPU/DELAY_CHAIN_1.vhd'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|   content_var_reg   | Flip-flop |   2   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 'AGE_CNT' instantiated from design 'CACHE_MEM_SetNum4_SetEntries1024_TagSize22_ContentSize32_AddrBits32_SetBits0_EntriesBits10' with
+	the parameters "Nb=2,Module=4". (HDL-193)
+Warning:  /home/lp20.19/Desktop/ISA/Laboratori-ISA/Lab3Falco/src/components/control/BPU/AGE_CNT.vhd:22: Initial values for signals/variables are not supported for synthesis by default. They are ignored. (VHD-7)
+
+Inferred memory devices in process
+	in routine AGE_CNT_Nb2_Module4 line 22 in file
+		'/home/lp20.19/Desktop/ISA/Laboratori-ISA/Lab3Falco/src/components/control/BPU/AGE_CNT.vhd'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     cnt_var_reg     | Flip-flop |   2   |  Y  | N  | Y  | Y  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 'SIPO_SHIFT_REG' instantiated from design 'BHT_Size1024_Depth4_AddrBits10' with
+	the parameters "Nbit=4". (HDL-193)
+
+Inferred memory devices in process
+	in routine SIPO_SHIFT_REG_Nbit4 line 20 in file
+		'/home/lp20.19/Desktop/ISA/Laboratori-ISA/Lab3Falco/src/components/common/SIPO_SHIFT_REG.vhd'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     content_reg     | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 'SAT_CNT' instantiated from design 'PHT_Size16_AddrBits4' with
+	the parameters "Nb=2,Module=4". (HDL-193)
+Warning:  /home/lp20.19/Desktop/ISA/Laboratori-ISA/Lab3Falco/src/components/control/BPU/SAT_CNT.vhd:21: Initial values for signals/variables are not supported for synthesis by default. They are ignored. (VHD-7)
+
+Inferred memory devices in process
+	in routine SAT_CNT_Nb2_Module4 line 21 in file
+		'/home/lp20.19/Desktop/ISA/Laboratori-ISA/Lab3Falco/src/components/control/BPU/SAT_CNT.vhd'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     cnt_var_reg     | Flip-flop |   2   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+1

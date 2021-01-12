@@ -1,0 +1,144 @@
+
+Information: There are 38 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'FF'
+  Processing 'SNPS_CLOCK_GATE_HIGH_REG_N11'
+  Mapping integrated clock gating circuitry
+  Processing 'REG_N11'
+  Processing 'SNPS_CLOCK_GATE_HIGH_REG_N8_0_0'
+  Mapping integrated clock gating circuitry
+  Processing 'REG_N8_0'
+  Processing 'myfir_dp'
+  Processing 'myfir_cu'
+  Processing 'MYFIR'
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+
+  Beginning Implementation Selection
+  ----------------------------------
+  Processing 'myfir_dp_DW01_add_0'
+  Processing 'myfir_dp_DW01_add_1'
+  Processing 'myfir_dp_DW01_add_2'
+  Processing 'myfir_dp_DW01_add_3'
+  Processing 'myfir_dp_DW01_add_4'
+  Mapping 'myfir_dp_DW_mult_tc_0'
+  Mapping 'myfir_dp_DW_mult_tc_1'
+  Processing 'myfir_dp_DW01_add_5'
+  Processing 'myfir_dp_DW01_add_6'
+  Mapping 'myfir_dp_DW_mult_tc_2'
+  Mapping 'myfir_dp_DW_mult_tc_3'
+  Processing 'myfir_dp_DW01_add_7'
+  Mapping 'myfir_dp_DW_mult_tc_4'
+  Mapping 'myfir_dp_DW_mult_tc_5'
+  Mapping 'myfir_dp_DW_mult_tc_6'
+  Mapping 'myfir_dp_DW_mult_tc_7'
+  Mapping 'myfir_dp_DW_mult_tc_8'
+Information: Skipping clock gating on design MYFIR, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_8, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N11, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_1, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_2, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_3, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_4, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_5, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_6, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_REG_N8_0_7, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_DW01_add_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_DW01_add_1, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_DW01_add_2, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_DW01_add_3, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_DW01_add_4, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_DW_mult_tc_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_DW_mult_tc_1, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_DW01_add_5, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_DW01_add_6, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_DW_mult_tc_2, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_DW_mult_tc_3, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_DW01_add_7, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_DW_mult_tc_4, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_DW_mult_tc_5, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_DW_mult_tc_6, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_DW_mult_tc_7, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design myfir_dp_DW_mult_tc_8, since there are no registers. (PWR-806)
+Information: Performing clock-gating on design myfir_cu. (PWR-730)
+Information: Performing clock-gating on design FF. (PWR-730)
+Information: Performing clock-gating on design REG_N8_8. (PWR-730)
+Information: Performing clock-gating on design REG_N11. (PWR-730)
+Information: Performing clock-gating on design REG_N8_0. (PWR-730)
+Information: Performing clock-gating on design REG_N8_1. (PWR-730)
+Information: Performing clock-gating on design REG_N8_2. (PWR-730)
+Information: Performing clock-gating on design REG_N8_3. (PWR-730)
+Information: Performing clock-gating on design REG_N8_4. (PWR-730)
+Information: Performing clock-gating on design REG_N8_5. (PWR-730)
+Information: Performing clock-gating on design REG_N8_6. (PWR-730)
+Information: Performing clock-gating on design REG_N8_7. (PWR-730)
+
+  Beginning Mapping Optimizations  (Medium effort)
+  -------------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:35    2982.1      0.00       0.0       0.0                          
+    0:00:35    2982.1      0.00       0.0       0.0                          
+    0:00:35    2982.1      0.00       0.0       0.0                          
+    0:00:35    2982.1      0.00       0.0       0.0                          
+    0:00:35    2982.1      0.00       0.0       0.0                          
+    0:00:39    2894.3      0.00       0.0       0.0                          
+    0:00:39    2894.3      0.00       0.0       0.0                          
+    0:00:39    2894.3      0.00       0.0       0.0                          
+    0:00:39    2894.3      0.00       0.0       0.0                          
+    0:00:39    2894.3      0.00       0.0       0.0                          
+    0:00:39    2894.3      0.00       0.0       0.0                          
+    0:00:39    2894.3      0.00       0.0       0.0                          
+    0:00:39    2894.3      0.00       0.0       0.0                          
+
+
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:39    2894.3      0.00       0.0       0.0                          
+    0:00:39    2894.3      0.00       0.0       0.0                          
+    0:00:39    2894.3      0.00       0.0       0.0                          
+
+
+  Beginning Area-Recovery Phase  (cleanup)
+  -----------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:39    2894.3      0.00       0.0       0.0                          
+    0:00:39    2894.3      0.00       0.0       0.0                          
+    0:00:40    2894.3      0.00       0.0       0.0                          
+    0:00:40    2894.3      0.00       0.0       0.0                          
+    0:00:40    2894.3      0.00       0.0       0.0                          
+    0:00:41    2894.3      0.00       0.0       0.0                          
+    0:00:41    2894.3      0.00       0.0       0.0                          
+    0:00:41    2894.3      0.00       0.0       0.0                          
+    0:00:41    2894.3      0.00       0.0       0.0                          
+    0:00:41    2894.3      0.00       0.0       0.0                          
+    0:00:41    2894.3      0.00       0.0       0.0                          
+Loading db file '/software/dk/nangate45/synopsys/NangateOpenCellLibrary_typical_ecsm_nowlm.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+1

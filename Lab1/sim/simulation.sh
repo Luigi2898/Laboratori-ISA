@@ -4,6 +4,8 @@ if [ -d "work" ]; then
 fi
 source /software/scripts/init_msim6.2g
 vlib work
-vcom -reportprogress 300 -work  ./work ../src/*.vhd
-vlog -reportprogress 300 -work ./work ../tb/*.v
+vcom -reportprogress 300 -work  ./work ../src/fir/*.vhd
+vcom -reportprogress 300 -work  ./work ../src/testbenchComponents/*.vhd
+vcom -reportprogress 300 -work  ./work ../src/commonComponents/*.vhd
+vlog -reportprogress 300 -work ./work ../tb/tb_fir.v
 vsim -do simulationVsim.tcl

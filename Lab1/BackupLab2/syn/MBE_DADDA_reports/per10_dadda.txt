@@ -1,0 +1,173 @@
+Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : FPmul
+Version: O-2018.06-SP4
+Date   : Sat Dec 12 14:00:35 2020
+****************************************
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+  Startpoint: I1/B_SIG_reg[0]
+              (rising edge-triggered flip-flop clocked by MY_CLK)
+  Endpoint: I2/SIG_in_reg[27]
+            (rising edge-triggered flip-flop clocked by MY_CLK)
+  Path Group: MY_CLK
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FPmul              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock MY_CLK (rise edge)                                0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  I1/B_SIG_reg[0]/CK (DFF_X1)                             0.00       0.00 r
+  I1/B_SIG_reg[0]/Q (DFF_X1)                              0.09       0.09 r
+  I1/B_SIG[0] (FPmul_stage1)                              0.00       0.09 r
+  I2/B_SIG[0] (FPmul_stage2_mbe)                          0.00       0.09 r
+  I2/mbe_mult/IN_B[0] (MBE_mult_uns)                      0.00       0.09 r
+  I2/mbe_mult/MBEU_PP/B[0] (mbe_ppg_N32_N_PP17)           0.00       0.09 r
+  I2/mbe_mult/MBEU_PP/BEU0_0/y[1] (BEU_0)                 0.00       0.09 r
+  I2/mbe_mult/MBEU_PP/BEU0_0/U5/Z (XOR2_X1)               0.10       0.19 r
+  I2/mbe_mult/MBEU_PP/BEU0_0/U1/ZN (NOR2_X1)              0.04       0.23 f
+  I2/mbe_mult/MBEU_PP/BEU0_0/decode[2] (BEU_0)            0.00       0.23 f
+  I2/mbe_mult/MBEU_PP/MUX1_0/SEL_MUX[2] (MUX3XNTO1XN_N32_0)
+                                                          0.00       0.23 f
+  I2/mbe_mult/MBEU_PP/MUX1_0/U3/Z (BUF_X1)                0.07       0.30 f
+  I2/mbe_mult/MBEU_PP/MUX1_0/U11/ZN (AOI222_X1)           0.08       0.38 r
+  I2/mbe_mult/MBEU_PP/MUX1_0/U10/ZN (INV_X1)              0.02       0.40 f
+  I2/mbe_mult/MBEU_PP/MUX1_0/OUT_MUX[2] (MUX3XNTO1XN_N32_0)
+                                                          0.00       0.40 f
+  I2/mbe_mult/MBEU_PP/U276/Z (XOR2_X1)                    0.07       0.47 f
+  I2/mbe_mult/MBEU_PP/PP1[2] (mbe_ppg_N32_N_PP17)         0.00       0.47 f
+  I2/mbe_mult/DADDA_TREE/PP1[2] (CSA_Tree_N33_N_PP17)     0.00       0.47 f
+  I2/mbe_mult/DADDA_TREE/HA43_L2/A (HA_962)               0.00       0.47 f
+  I2/mbe_mult/DADDA_TREE/HA43_L2/U2/Z (XOR2_X1)           0.08       0.55 f
+  I2/mbe_mult/DADDA_TREE/HA43_L2/S (HA_962)               0.00       0.55 f
+  I2/mbe_mult/DADDA_TREE/add_1260/A[2] (CSA_Tree_N33_N_PP17_DW01_add_0)
+                                                          0.00       0.55 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U71/ZN (OAI21_X1)       0.04       0.60 r
+  I2/mbe_mult/DADDA_TREE/add_1260/U34/ZN (INV_X1)         0.02       0.62 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U69/ZN (AOI22_X1)       0.05       0.67 r
+  I2/mbe_mult/DADDA_TREE/add_1260/U33/ZN (INV_X1)         0.03       0.70 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U68/ZN (OAI21_X1)       0.05       0.75 r
+  I2/mbe_mult/DADDA_TREE/add_1260/U28/ZN (INV_X1)         0.02       0.77 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U67/ZN (AOI21_X1)       0.05       0.82 r
+  I2/mbe_mult/DADDA_TREE/add_1260/U27/ZN (INV_X1)         0.03       0.85 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U66/ZN (OAI21_X1)       0.05       0.89 r
+  I2/mbe_mult/DADDA_TREE/add_1260/U30/ZN (INV_X1)         0.02       0.91 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U65/ZN (AOI21_X1)       0.05       0.97 r
+  I2/mbe_mult/DADDA_TREE/add_1260/U29/ZN (INV_X1)         0.03       0.99 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U64/ZN (OAI21_X1)       0.05       1.04 r
+  I2/mbe_mult/DADDA_TREE/add_1260/U24/ZN (INV_X1)         0.02       1.06 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U63/ZN (AOI21_X1)       0.05       1.11 r
+  I2/mbe_mult/DADDA_TREE/add_1260/U23/ZN (INV_X1)         0.03       1.14 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U62/ZN (OAI21_X1)       0.05       1.19 r
+  I2/mbe_mult/DADDA_TREE/add_1260/U32/ZN (INV_X1)         0.02       1.21 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U61/ZN (AOI21_X1)       0.05       1.26 r
+  I2/mbe_mult/DADDA_TREE/add_1260/U31/ZN (INV_X1)         0.03       1.28 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U60/ZN (OAI21_X1)       0.05       1.33 r
+  I2/mbe_mult/DADDA_TREE/add_1260/U26/ZN (INV_X1)         0.02       1.35 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U59/ZN (AOI21_X1)       0.05       1.40 r
+  I2/mbe_mult/DADDA_TREE/add_1260/U25/ZN (INV_X1)         0.03       1.43 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U58/ZN (OAI21_X1)       0.05       1.48 r
+  I2/mbe_mult/DADDA_TREE/add_1260/U22/ZN (INV_X1)         0.02       1.50 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U57/ZN (AOI21_X1)       0.05       1.55 r
+  I2/mbe_mult/DADDA_TREE/add_1260/U21/ZN (INV_X1)         0.03       1.58 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U56/ZN (OAI21_X1)       0.05       1.62 r
+  I2/mbe_mult/DADDA_TREE/add_1260/U13/ZN (INV_X1)         0.02       1.65 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U55/ZN (AOI21_X1)       0.05       1.70 r
+  I2/mbe_mult/DADDA_TREE/add_1260/U12/ZN (INV_X1)         0.03       1.72 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U54/ZN (OAI21_X1)       0.05       1.77 r
+  I2/mbe_mult/DADDA_TREE/add_1260/U15/ZN (INV_X1)         0.02       1.79 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U53/ZN (AOI21_X1)       0.05       1.84 r
+  I2/mbe_mult/DADDA_TREE/add_1260/U14/ZN (INV_X1)         0.03       1.87 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U52/ZN (OAI21_X1)       0.05       1.92 r
+  I2/mbe_mult/DADDA_TREE/add_1260/U17/ZN (INV_X1)         0.02       1.94 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U51/ZN (AOI21_X1)       0.05       1.99 r
+  I2/mbe_mult/DADDA_TREE/add_1260/U16/ZN (INV_X1)         0.03       2.02 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U50/ZN (OAI21_X1)       0.05       2.06 r
+  I2/mbe_mult/DADDA_TREE/add_1260/U19/ZN (INV_X1)         0.02       2.08 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U49/ZN (AOI21_X1)       0.05       2.14 r
+  I2/mbe_mult/DADDA_TREE/add_1260/U18/ZN (INV_X1)         0.03       2.16 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U48/ZN (OAI21_X1)       0.05       2.21 r
+  I2/mbe_mult/DADDA_TREE/add_1260/U3/ZN (INV_X1)          0.02       2.23 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U47/ZN (AOI21_X1)       0.05       2.28 r
+  I2/mbe_mult/DADDA_TREE/add_1260/U2/ZN (INV_X1)          0.03       2.31 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U46/ZN (OAI21_X1)       0.05       2.36 r
+  I2/mbe_mult/DADDA_TREE/add_1260/U5/ZN (INV_X1)          0.02       2.38 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U45/ZN (AOI21_X1)       0.05       2.43 r
+  I2/mbe_mult/DADDA_TREE/add_1260/U4/ZN (INV_X1)          0.03       2.45 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U44/ZN (OAI21_X1)       0.05       2.50 r
+  I2/mbe_mult/DADDA_TREE/add_1260/U7/ZN (INV_X1)          0.02       2.52 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U43/ZN (AOI21_X1)       0.05       2.57 r
+  I2/mbe_mult/DADDA_TREE/add_1260/U6/ZN (INV_X1)          0.03       2.60 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U42/ZN (OAI21_X1)       0.05       2.65 r
+  I2/mbe_mult/DADDA_TREE/add_1260/U20/ZN (INV_X1)         0.02       2.67 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U41/ZN (AOI21_X1)       0.06       2.73 r
+  I2/mbe_mult/DADDA_TREE/add_1260/U11/ZN (INV_X1)         0.02       2.76 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U40/ZN (OAI21_X1)       0.04       2.80 r
+  I2/mbe_mult/DADDA_TREE/add_1260/U39/ZN (OAI21_X1)       0.04       2.84 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U38/ZN (OAI21_X1)       0.05       2.89 r
+  I2/mbe_mult/DADDA_TREE/add_1260/U8/ZN (INV_X1)          0.02       2.91 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U37/ZN (AOI21_X1)       0.06       2.97 r
+  I2/mbe_mult/DADDA_TREE/add_1260/U10/ZN (INV_X1)         0.02       3.00 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U36/ZN (OAI21_X1)       0.04       3.04 r
+  I2/mbe_mult/DADDA_TREE/add_1260/U35/ZN (OAI21_X1)       0.04       3.08 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U1_20/CO (FA_X1)        0.09       3.17 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U1_21/CO (FA_X1)        0.09       3.26 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U1_22/CO (FA_X1)        0.09       3.35 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U1_23/CO (FA_X1)        0.09       3.44 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U1_24/CO (FA_X1)        0.09       3.53 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U1_25/CO (FA_X1)        0.09       3.62 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U1_26/CO (FA_X1)        0.09       3.71 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U1_27/CO (FA_X1)        0.09       3.80 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U1_28/CO (FA_X1)        0.09       3.89 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U1_29/CO (FA_X1)        0.09       3.98 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U1_30/CO (FA_X1)        0.09       4.07 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U1_31/CO (FA_X1)        0.09       4.16 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U1_32/CO (FA_X1)        0.09       4.26 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U1_33/CO (FA_X1)        0.09       4.35 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U1_34/CO (FA_X1)        0.09       4.44 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U1_35/CO (FA_X1)        0.09       4.53 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U1_36/CO (FA_X1)        0.09       4.62 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U1_37/CO (FA_X1)        0.09       4.71 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U1_38/CO (FA_X1)        0.09       4.80 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U1_39/CO (FA_X1)        0.09       4.89 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U1_40/CO (FA_X1)        0.09       4.98 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U1_41/CO (FA_X1)        0.09       5.07 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U1_42/CO (FA_X1)        0.09       5.16 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U1_43/CO (FA_X1)        0.09       5.25 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U1_44/CO (FA_X1)        0.09       5.34 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U1_45/CO (FA_X1)        0.09       5.43 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U1_46/CO (FA_X1)        0.09       5.52 f
+  I2/mbe_mult/DADDA_TREE/add_1260/U1_47/S (FA_X1)         0.13       5.65 r
+  I2/mbe_mult/DADDA_TREE/add_1260/SUM[47] (CSA_Tree_N33_N_PP17_DW01_add_0)
+                                                          0.00       5.65 r
+  I2/mbe_mult/DADDA_TREE/SUM[47] (CSA_Tree_N33_N_PP17)
+                                                          0.00       5.65 r
+  I2/mbe_mult/OUT_MPY[47] (MBE_mult_uns)                  0.00       5.65 r
+  I2/SIG_in_reg[27]/D (DFF_X1)                            0.01       5.66 r
+  data arrival time                                                  5.66
+
+  clock MY_CLK (rise edge)                               10.00      10.00
+  clock network delay (ideal)                             0.00      10.00
+  clock uncertainty                                      -0.07       9.93
+  I2/SIG_in_reg[27]/CK (DFF_X1)                           0.00       9.93 r
+  library setup time                                     -0.03       9.90
+  data required time                                                 9.90
+  --------------------------------------------------------------------------
+  data required time                                                 9.90
+  data arrival time                                                 -5.66
+  --------------------------------------------------------------------------
+  slack (MET)                                                        4.24
+
+
+1

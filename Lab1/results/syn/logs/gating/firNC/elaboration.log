@@ -1,0 +1,80 @@
+Running PRESTO HDLC
+Presto compilation completed successfully.
+Warning: Overwriting design file '/home/isa25/Desktop/Laboratori-ISA/Lab1/syn/MYFIR.db'. (DDB-24)
+Warning: Overwriting design file '/home/isa25/Desktop/Laboratori-ISA/Lab1/syn/MYFIR.db'. (DDB-24)
+Warning: Overwriting design file '/home/isa25/Desktop/Laboratori-ISA/Lab1/syn/MYFIR.db'. (DDB-24)
+Warning: Overwriting design file '/home/isa25/Desktop/Laboratori-ISA/Lab1/syn/MYFIR.db'. (DDB-24)
+Warning: Overwriting design file '/home/isa25/Desktop/Laboratori-ISA/Lab1/syn/MYFIR.db'. (DDB-24)
+Warning: Overwriting design file '/home/isa25/Desktop/Laboratori-ISA/Lab1/syn/MYFIR.db'. (DDB-24)
+Warning: Overwriting design file '/home/isa25/Desktop/Laboratori-ISA/Lab1/syn/MYFIR.db'. (DDB-24)
+Warning: Overwriting design file '/home/isa25/Desktop/Laboratori-ISA/Lab1/syn/MYFIR.db'. (DDB-24)
+Warning: Overwriting design file '/home/isa25/Desktop/Laboratori-ISA/Lab1/syn/MYFIR.db'. (DDB-24)
+Warning: Overwriting design file '/home/isa25/Desktop/Laboratori-ISA/Lab1/syn/MYFIR.db'. (DDB-24)
+Warning: Overwriting design file '/home/isa25/Desktop/Laboratori-ISA/Lab1/syn/MYFIR.db'. (DDB-24)
+Elaborated 1 design.
+Current design is now 'MYFIR'.
+Information: Building the design 'MYFIR_CU'. (HDL-193)
+
+Statistics for case statements in always block at line 21 in file
+	'/home/isa25/Desktop/Laboratori-ISA/Lab1/src/fir/myfir_cu.vhd'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            26            |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 43 in file
+	'/home/isa25/Desktop/Laboratori-ISA/Lab1/src/fir/myfir_cu.vhd'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            47            |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+	in routine myfir_cu line 21 in file
+		'/home/isa25/Desktop/Laboratori-ISA/Lab1/src/fir/myfir_cu.vhd'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      STATE_reg      | Flip-flop |   2   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 'MYFIR_DP'. (HDL-193)
+Presto compilation completed successfully.
+Information: Building the design 'FF'. (HDL-193)
+
+Inferred memory devices in process
+	in routine FF line 16 in file
+		'/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/FF.vhd'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     FF_OUT_reg      | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 'REG' instantiated from design 'myfir_dp' with
+	the parameters "N=8". (HDL-193)
+
+Inferred memory devices in process
+	in routine REG_N8 line 20 in file
+		'/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/reg.vhd'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     REG_OUT_reg     | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 'REG' instantiated from design 'myfir_dp' with
+	the parameters "N=11". (HDL-193)
+
+Inferred memory devices in process
+	in routine REG_N11 line 20 in file
+		'/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/reg.vhd'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     REG_OUT_reg     | Flip-flop |  11   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+1

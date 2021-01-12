@@ -1,58 +1,71 @@
 /***********************************************************************
  * Test bench for the 8-order FIR  11 bit coefficients.
  **********************************************************************/
-		
 
 
 module tb_fir ();
 
-
-
+// TODO : La back vogliamo farla a 10 ns o con il periodo diviso?
    wire CLK_i;
    wire RST_n_i;
-   wire [10:0] DIN_i;
+   wire signed [10:0] DIN_i;
    wire VIN_i;
-   wire [10:0] H0_i;
-   wire [10:0] H1_i;
-   wire [10:0] H2_i;
-   wire [10:0] H3_i;
-   wire [10:0] H4_i;
-   wire [10:0] H5_i;
-   wire [10:0] H6_i;
-   wire [10:0] H7_i;
-   wire [10:0] H8_i;
-   wire [10:0] DOUT_i;
+   wire signed [10:0] H0_i;
+   wire signed [10:0] H1_i;
+   wire signed [10:0] H2_i;
+   wire signed [10:0] H3_i;
+   wire signed [10:0] H4_i;
+   wire signed [10:0] H5_i;
+   wire signed [10:0] H6_i;
+   wire signed [10:0] H7_i;
+   wire signed [10:0] H8_i;
+   wire signed [10:0] DOUT_i;
+   wire signed [10:0] DOUT_i_unfolded;
    wire VOUT_i;
    wire END_SIM_i;
    
    integer error_count = 0;
-   integer resC, res;
+   integer resC, res, a = 1;
+   integer endL = 0;
    integer outfile0,outfile1; //file descriptors
    
-   //timeunit 1us;  timeprecision 1us;	
-
+	
+always begin  : infinite
+	outfile0=$fopen("../C/resultC.txt","r");
+  while(1) begin
+	  @(posedge CLK_i)
+	    if(VOUT_i == 1 && !$feof(outfile0)) begin
+		    a = $fscanf(outfile0,"%d\n",resC);
+		    res = DOUT_i;
+		    check_results(); end          
+	    else if (VOUT_i == 0 && $feof(outfile0)) begin
+        $display("\nFILTER TESTS COMPLETED WITH %0d ERRORS!\n", error_count);
+        $fclose(outfile0);
+        disable infinite;
+     	end
+    end      
+end
    clk_gen CG(.END_SIM(END_SIM_i),
   	          .CLK(CLK_i),
-	          .RST_n(RST_n_i));
+	            .RST_n(RST_n_i));
 
    data_gen DG(.CLK(CLK_i),
-	           .RST_n(RST_n_i),
-		       .VOUT(VIN_i),
-		       .DOUT(DIN_i),
-           .H0(H0_i),
+	             .RST_n(RST_n_i),
+               .VOUT(VIN_i),
+	             .DOUT(DIN_i),
+               .H0(H0_i),
                .H1(H1_i),
-			 .H2(H2_i),
-			 .H3(H3_i),
-			 .H4(H4_i),
-			 .H5(H5_i),
-			 .H6(H6_i),
-			 .H7(H7_i),
-			 .H8(H8_i),
-		       .END_SIM(END_SIM_i)
-           );
+	 	           .H2(H2_i),
+	 	           .H3(H3_i),
+	 	           .H4(H4_i),
+	 	           .H5(H5_i),
+	 	           .H6(H6_i),
+	 	           .H7(H7_i),
+	 	           .H8(H8_i),
+   	           .END_SIM(END_SIM_i));
 
-   myfir UUT(.CLK(CLK_i),
-	         .RST_n(RST_n_i),
+   MYFIR UUT(.CLK(CLK_i),
+	           .RST_N(RST_n_i),
 	         .DIN(DIN_i),
              .VIN(VIN_i),
 			 .H0(H0_i),
@@ -72,23 +85,7 @@ module tb_fir ();
 		        .VIN(VOUT_i),
 		        .DIN(DOUT_i));   
 
-initial 
-	begin
-	outfile0=$fopen("../C/resultC11.txt","r");
-	@(posedge CLK_i)	
-		if(VOUT_i == 1) begin
-			if(! $feof(outfile0)) begin
-			res = DOUT_i;
-			$fscanf(outfile0,"%d\n",resC);
-			check_results(); end
-	        else begin
-			$display("\nFILTER TESTS COMPLETED WITH %0d ERRORS!\n", error_count);
-			$fclose(outfile0);
-			$stop();
-			$finish();
-			end
-		end	
-end
+
 
 
 task check_results;
@@ -99,11 +96,11 @@ task check_results;
     result = res;      // concatenation
     expected = resC;
      
-    $write("At %t:  resC=%d  res=%d", $realtime, resC, res);
+    $display("At %t:  resC=%d  res=%d", $realtime, resC, res);
     if (result === expected) begin
-      $display(" - OK"); end
+      $display(" - OK\n"); end
     else begin
-      $display(" - ERROR: expected %d", expected, expected);
+      $display(" - ERROR: expected %d\n", expected);
       error_count = error_count + 1 ;
     end
 end	

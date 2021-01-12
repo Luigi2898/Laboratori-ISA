@@ -1,0 +1,143 @@
+Running PRESTO HDLC
+Presto compilation completed successfully.
+Warning: Overwriting design file '/home/isa25/Desktop/Laboratori-ISA/Lab1/syn/MYFIR_UNFOLDED.db'. (DDB-24)
+Elaborated 1 design.
+Current design is now 'MYFIR_UNFOLDED'.
+Information: Building the design 'MYFIR_DP_UNFOLDED'. (HDL-193)
+
+Statistics for case statements in always block at line 221 in file
+	'/home/isa25/Desktop/Laboratori-ISA/Lab1/src/firUnfolded/myfir_dp_unfolded.vhd'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           224            |    auto/auto     |
+===============================================
+Presto compilation completed successfully.
+Information: Building the design 'MYFIR_CUINPUTS_UNFOLDED'. (HDL-193)
+
+Statistics for case statements in always block at line 34 in file
+	'/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/myfir_cuinputs_unfolded.vhd'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            41            |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 132 in file
+	'/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/myfir_cuinputs_unfolded.vhd'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           143            |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+	in routine MYFIR_CUINPUTS_UNFOLDED line 34 in file
+		'/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/myfir_cuinputs_unfolded.vhd'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      state_reg      | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 'MYFIR_CUOUTPUTS_UNFOLDED'. (HDL-193)
+
+Statistics for case statements in always block at line 37 in file
+	'/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/myfir_cuoutputs_unfolded.vhd'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            44            |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 73 in file
+	'/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/myfir_cuoutputs_unfolded.vhd'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            80            |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+	in routine MYFIR_CUOUTPUTS_UNFOLDED line 37 in file
+		'/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/myfir_cuoutputs_unfolded.vhd'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      state_reg      | Flip-flop |   2   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 'REG' instantiated from design 'MYFIR_DP_UNFOLDED' with
+	the parameters "N=8". (HDL-193)
+
+Inferred memory devices in process
+	in routine REG_N8 line 20 in file
+		'/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/reg.vhd'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     REG_OUT_reg     | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 'CNT_MOD' instantiated from design 'MYFIR_DP_UNFOLDED' with
+	the parameters "N=2,MODULE=3". (HDL-193)
+
+Inferred memory devices in process
+	in routine CNT_MOD_N2_MODULE3 line 36 in file
+		'/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/cnt_mod.vhd'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|       tcv_reg       | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|       cnt_reg       | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 'REG' instantiated from design 'MYFIR_DP_UNFOLDED' with
+	the parameters "N=11". (HDL-193)
+
+Inferred memory devices in process
+	in routine REG_N11 line 20 in file
+		'/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/reg.vhd'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     REG_OUT_reg     | Flip-flop |  11   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 'MUX3XNTO1XN' instantiated from design 'MYFIR_DP_UNFOLDED' with
+	the parameters "N=8". (HDL-193)
+
+Statistics for case statements in always block at line 23 in file
+	'/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/mux3xNto1xN.vhd'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            26            |    auto/auto     |
+===============================================
+Presto compilation completed successfully.
+Information: Building the design 'N_COUNTER' instantiated from design 'MYFIR_DP_UNFOLDED' with
+	the parameters "N=2,MODULE=3". (HDL-193)
+Warning:  /home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/N_counter.vhd:50: implicit truncation caused by range overflow. (ELAB-931)
+
+Inferred memory devices in process
+	in routine N_COUNTER_N2_MODULE3 line 23 in file
+		'/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/N_counter.vhd'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    CNT_OUTv_reg     | Flip-flop |   2   |  Y  | N  | N  | N  | N  | N  | N  |
+|     CNT_END_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 'FF'. (HDL-193)
+
+Inferred memory devices in process
+	in routine FF line 16 in file
+		'/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/FF.vhd'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     FF_OUT_reg      | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+1
