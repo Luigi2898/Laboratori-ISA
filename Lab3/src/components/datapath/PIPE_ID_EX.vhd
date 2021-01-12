@@ -16,6 +16,7 @@ entity PIPE_ID_EX is
     RS1_ADDR_IN           : in std_logic_vector(4 downto 0);
     RS2_ADDR_IN           : in std_logic_vector(4 downto 0);
     RD_ADDR_IN            : in std_logic_vector(4 downto 0);
+    FUNC3_IN              : in std_logic_vector(2 downto 0);
     WR_RFEN_IN            : in std_logic;
     WR_RFMUX_IN           : in std_logic;
     JUMP_IN               : in std_logic;
@@ -38,7 +39,8 @@ entity PIPE_ID_EX is
     IMM_GEN_OUT           : out std_logic_vector(word_size-1 downto 0);
     RS1_ADDR_OUT          : out std_logic_vector(4 downto 0);
     RS2_ADDR_OUT          : out std_logic_vector(4 downto 0);
-    RD_ADDR_OUT           : out std_logic_vector(4 downto 0)    
+    RD_ADDR_OUT           : out std_logic_vector(4 downto 0);
+    FUNC3_OUT             : out std_logic_vector(2 downto 0)    
   );
 end entity PIPE_ID_EX;
 
@@ -59,7 +61,7 @@ signal IMM        : std_logic_vector(word_size-1 downto 0);
 signal RS1_ADDR   : std_logic_vector(4 downto 0);
 signal RS2_ADDR   : std_logic_vector(4  downto 0);
 signal RD_ADDR    : std_logic_vector(4  downto 0);	
-
+signal FUNC3      : std_logic_vector(2 downto 0);
 
 begin
 
@@ -81,6 +83,7 @@ begin
         RS1_ADDR   <= (others => '0');
         RS2_ADDR   <= (others => '0');
         RD_ADDR    <= (others => '0');
+        FUNC3      <= (others => '0');
         
     
     elsif (CLK'event and CLK = '1') then
@@ -101,6 +104,7 @@ begin
         RS1_ADDR <= (others => '0');
         RS2_ADDR <= (others => '0');
         RD_ADDR  <= (others => '0');
+        FUNC3    <= (others => '0');
         
         elsif(FLUSH = '0' and STALL = '1') then --stall
           
@@ -129,6 +133,7 @@ begin
         EX_ALUSRC  <= EX_ALUSRC_IN;
         EX_ALUCTRL <= EX_ALUCTRL_IN;
         EX_ALUEN   <= EX_ALUEN_IN;
+        FUNC3      <= FUNCT3_IN;
         
         end if;
 
@@ -142,6 +147,7 @@ IMM_GEN_OUT      <= IMM;
 RS1_ADDR_OUT     <= RS1_ADDR;
 RS2_ADDR_OUT     <= RS2_ADDR;
 RD_ADDR_OUT      <= RD_ADDR;
+FUNC3_OUT        <= FUNC3;
 WR_RFEN_OUT      <= WR_RFEN;      
 WR_RFMUX_OUT     <= WR_RFMUX;
 JUMP_OUT         <= JUMP;
