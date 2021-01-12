@@ -262,8 +262,6 @@ end component PIPE_EX_MEM;
   signal JMP_ADDR     : std_logic_vector(31 downto 0);
   signal BC_COMP1     : std_logic_vector(31 downto 0);
   signal BC_COMP2     : std_logic_vector(31 downto 0);
-  signal PC_VAL_IDEX_OUT      : std_logic_vector(31 downto 0);
-  signal TARGET_ADDR_IDEX_OUT : std_logic_vector(31 downto 0);
   signal RS1_VAL_IDEX_OUT     : std_logic_vector(31 downto 0);
   signal RS2_VAL_IDEX_OUT     : std_logic_vector(31 downto 0);
   signal IMM_GEN_IDEX_OUT     : std_logic_vector(31 downto 0);
