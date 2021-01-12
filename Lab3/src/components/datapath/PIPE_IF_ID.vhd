@@ -45,7 +45,7 @@ begin
           
           NULL;
         
-        elsif(FLUSH = '0' and STALL = '0') --normal exe  
+        elsif(FLUSH = '0' and STALL = '0') then --normal exe  
 
           IF_WORD_IN <= INSTR_IF_IN;
           PC_ADDR_IN <= INSTR_PC_ADDR_IN;

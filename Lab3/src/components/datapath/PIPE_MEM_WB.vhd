@@ -38,7 +38,7 @@ begin
         ALU_RES   <= (others => '0');
         MEM_RES   <= (others => '0');
         RD_ADDR   <= (others => '0');
-        OP_WB_MEM <= (others => '0');
+        OP_WB     <= (others => '0');
     
     elsif (CLK'event and CLK = '1') then
       
