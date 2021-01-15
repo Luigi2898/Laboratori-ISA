@@ -1,0 +1,26 @@
+== ANALYZE autoread all files ==
+
+Starting ANALYZE autoread mode...
+Information: Adding '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/firUnfolded'.  (AUTOREAD-100)
+Warning: Adding missing directory to search_path - '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/firUnfolded'. (AUTOREAD-105)
+Information: Adding '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/firUnfolded/myfir_unfolded.vhd'.  (AUTOREAD-100)
+Information: Adding '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/firUnfolded/myfir_dp_unfolded.vhd'.  (AUTOREAD-100)
+Information: Removing from autoread database '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents'.  (AUTOREAD-101)
+Information: Removing from autoread database '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/FF.vhd'.  (AUTOREAD-101)
+Information: Removing from autoread database '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/N_counter.vhd'.  (AUTOREAD-101)
+Information: Removing from autoread database '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/SRLATCH.vhd'.  (AUTOREAD-101)
+Information: Removing from autoread database '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/cnt_mod.vhd'.  (AUTOREAD-101)
+Information: Removing from autoread database '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/mux3xNto1xN.vhd'.  (AUTOREAD-101)
+Information: Removing from autoread database '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/myfir_cuinputs_unfolded.vhd'.  (AUTOREAD-101)
+Information: Removing from autoread database '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/myfir_cuoutputs_unfolded.vhd'.  (AUTOREAD-101)
+Information: Removing from autoread database '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/reg.vhd'.  (AUTOREAD-101)
+Information: Scanning file { myfir_unfolded.vhd }. (AUTOREAD-303)
+Information: Scanning file { myfir_dp_unfolded.vhd }. (AUTOREAD-303)
+Compiling Entity Declaration MYFIR_DP_UNFOLDED
+Compiling Architecture BEH of MYFIR_DP_UNFOLDED
+Presto compilation completed successfully.
+Compiling Entity Declaration MYFIR_UNFOLDED
+Compiling Architecture BEH of MYFIR_UNFOLDED
+Presto compilation completed successfully.
+Autoread command completed successfully.
+1

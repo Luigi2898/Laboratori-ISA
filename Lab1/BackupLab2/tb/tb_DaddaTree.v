@@ -1,0 +1,295 @@
+/*************************************************
+ * Test bench for the Dadda Tree adder. *
+ *************************************************/
+
+`timescale 1ns/1ps
+//import array_std::*;
+
+
+module tb_DaddaTree ();
+   wire clk;
+   wire rst_n;
+   reg sim_start;
+   wire sim_end;
+   wire signed [32:0] DIN_file [16:0];
+   reg signed [64:0] DIN_file_extended [16:0];
+   wire signed [32:0] DIN_dadda [16:0];
+   wire [16:0] SIGNIN_dadda;
+   wire [64:0] DOUT_dadda;
+   wire [64:0] DOUT_TRUE_dadda;
+   reg signed [64:0] DOUT_correct = 0;
+   reg [65:0] DOUT_correct_uns;
+   reg [31:0] infileName = "../tb/stimulus_files/DaddaTestInputs.txt";     /*INSERT HERE INPUT FILE PATH AND NAME */
+   reg [31:0] outfileNameBin = "../tb/stimulus_files/DaddaTestOutputs_bin.txt"; /*INSERT HERE BINARY OUTPUT FILE PATH AND NAME */
+   reg [31:0] outfileNameInt = "../tb/stimulus_files/DaddaTestOutputs_int.txt"; /*INSERT HERE INTEGER OUTPUT FILE PATH AND NAME */
+   integer wrong_res = 0;
+   integer res = 0;
+   integer i = 0;
+   reg settle_flag = 1;
+   integer end_sim = 0;
+
+
+    clk_gen CG (
+        .clk(clk),
+        .rst_n(rst_n)
+        );
+
+
+    data_maker_parallelInputs 
+        # (
+        .N_inputs(17),
+        .N_bit(33),
+        .fileName("../tb/stimulus_files/DaddaTestInputs.txt")
+        )
+        DG (
+        .STARTstimuli(sim_start),
+        .ENDEDstimuli(sim_end),
+        .CLK(clk),
+        .DATA1(DIN_file[0]),
+        .DATA2(DIN_file[1]),
+        .DATA3(DIN_file[2]),
+        .DATA4(DIN_file[3]),
+        .DATA5(DIN_file[4]),
+        .DATA6(DIN_file[5]),
+        .DATA7(DIN_file[6]),
+        .DATA8(DIN_file[7]),
+        .DATA9(DIN_file[8]),
+        .DATA10(DIN_file[9]),
+        .DATA11(DIN_file[10]),
+        .DATA12(DIN_file[11]),
+        .DATA13(DIN_file[12]),
+        .DATA14(DIN_file[13]),
+        .DATA15(DIN_file[14]),
+        .DATA16(DIN_file[15]),
+        .DATA17(DIN_file[16])
+        );
+
+
+    data_sink_GENERIC
+        # (
+        .N_bit(65),
+        .fileName("../tb/stimulus_files/DaddaTestOutputs.txt")
+        )
+        DS (
+        .STARTsink(sim_start),
+        .CLK(clk),
+        .DATA(DOUT_dadda)
+        );
+
+    fake_DADDA
+        # (
+            .N(33),
+            .N_PP(17)
+        )
+        DUT (
+            .PP1(DIN_dadda[0]),
+            .PP2(DIN_dadda[1]),
+            .PP3(DIN_dadda[2]),
+            .PP4(DIN_dadda[3]),
+            .PP5(DIN_dadda[4]),
+            .PP6(DIN_dadda[5]),
+            .PP7(DIN_dadda[6]),
+            .PP8(DIN_dadda[7]),
+            .PP9(DIN_dadda[8]),
+            .PP10(DIN_dadda[9]),
+            .PP11(DIN_dadda[10]),
+            .PP12(DIN_dadda[11]),
+            .PP13(DIN_dadda[12]),
+            .PP14(DIN_dadda[13]),
+            .PP15(DIN_dadda[14]),
+            .PP16(DIN_dadda[15]),
+            .PP17(DIN_dadda[16]),
+            .PP_sign(SIGNIN_dadda),
+            .SUM(DOUT_dadda)
+        );
+
+     CSA_Tree
+        # (
+            .N(33),
+            .N_PP(16)
+        )
+        TRUE_DUT (
+            .PP1(DIN_dadda[0]),
+            .PP2(DIN_dadda[1]),
+            .PP3(DIN_dadda[2]),
+            .PP4(DIN_dadda[3]),
+            .PP5(DIN_dadda[4]),
+            .PP6(DIN_dadda[5]),
+            .PP7(DIN_dadda[6]),
+            .PP8(DIN_dadda[7]),
+            .PP9(DIN_dadda[8]),
+            .PP10(DIN_dadda[9]),
+            .PP11(DIN_dadda[10]),
+            .PP12(DIN_dadda[11]),
+            .PP13(DIN_dadda[12]),
+            .PP14(DIN_dadda[13]),
+            .PP15(DIN_dadda[14]),
+            .PP16(DIN_dadda[15]),
+            .PP17(DIN_dadda[16]),
+            .PP_sign(SIGNIN_dadda),
+            .SUM(DOUT_TRUE_dadda)
+        );
+
+
+    /* INPUT DATA MODULATOR FOR DADDA INPUTS, GENERATES NEGATED DATA AND SIGN BITS */
+	function [32:0] DIN_dadda_single;
+		input [32:0] DIN_normal_single;
+        if (DIN_normal_single[32] == 0)
+        begin
+            DIN_dadda_single = DIN_normal_single;
+        end
+        else
+        begin
+            DIN_dadda_single = DIN_normal_single - 1;
+        end
+	endfunction
+
+	function [32:0] SIGNIN_dadda_f;
+		input [32:0] DIN_normal_single;
+            if (DIN_normal_single[32] == 0)
+            begin
+                SIGNIN_dadda_f = 1'b0;
+            end
+            else
+            begin
+                SIGNIN_dadda_f = 1'b1;
+            end	
+    endfunction
+
+
+	assign DIN_dadda[0] = DIN_dadda_single(DIN_file[0]);
+	assign SIGNIN_dadda[0] = SIGNIN_dadda_f(DIN_file[0]);
+	assign DIN_dadda[1] = DIN_dadda_single(DIN_file[1]);
+	assign SIGNIN_dadda[1] = SIGNIN_dadda_f(DIN_file[1]);
+	assign DIN_dadda[2] = DIN_dadda_single(DIN_file[2]);
+	assign SIGNIN_dadda[2] = SIGNIN_dadda_f(DIN_file[2]);
+	assign DIN_dadda[3] = DIN_dadda_single(DIN_file[3]);
+	assign SIGNIN_dadda[3] = SIGNIN_dadda_f(DIN_file[3]);
+	assign DIN_dadda[4] = DIN_dadda_single(DIN_file[4]);
+	assign SIGNIN_dadda[4] = SIGNIN_dadda_f(DIN_file[4]);
+	assign DIN_dadda[5] = DIN_dadda_single(DIN_file[5]);
+	assign SIGNIN_dadda[5] = SIGNIN_dadda_f(DIN_file[5]);
+	assign DIN_dadda[6] = DIN_dadda_single(DIN_file[6]);
+	assign SIGNIN_dadda[6] = SIGNIN_dadda_f(DIN_file[6]);
+	assign DIN_dadda[7] = DIN_dadda_single(DIN_file[7]);
+	assign SIGNIN_dadda[7] = SIGNIN_dadda_f(DIN_file[7]);
+	assign DIN_dadda[8] = DIN_dadda_single(DIN_file[8]);
+	assign SIGNIN_dadda[8] = SIGNIN_dadda_f(DIN_file[8]);
+	assign DIN_dadda[9] = DIN_dadda_single(DIN_file[9]);
+	assign SIGNIN_dadda[9] = SIGNIN_dadda_f(DIN_file[9]);
+	assign DIN_dadda[10] = DIN_dadda_single(DIN_file[10]);
+	assign SIGNIN_dadda[10] = SIGNIN_dadda_f(DIN_file[10]);
+	assign DIN_dadda[11] = DIN_dadda_single(DIN_file[11]);
+	assign SIGNIN_dadda[11] = SIGNIN_dadda_f(DIN_file[11]);
+	assign DIN_dadda[12] = DIN_dadda_single(DIN_file[12]);
+	assign SIGNIN_dadda[12] = SIGNIN_dadda_f(DIN_file[12]);
+	assign SIGNIN_dadda[13] = SIGNIN_dadda_f(DIN_file[13]);
+	assign DIN_dadda[13] = DIN_dadda_single(DIN_file[13]);
+	assign SIGNIN_dadda[14] = SIGNIN_dadda_f(DIN_file[14]);
+	assign DIN_dadda[14] = DIN_dadda_single(DIN_file[14]);
+	assign SIGNIN_dadda[15] = SIGNIN_dadda_f(DIN_file[15]);
+	assign DIN_dadda[15] = DIN_dadda_single(DIN_file[15]);
+	assign SIGNIN_dadda[16] = SIGNIN_dadda_f(DIN_file[16]);
+	assign DIN_dadda[16] = DIN_dadda_single(DIN_file[16]);
+	
+	
+	
+    /* SIMULATION INITIALIZATION */
+    initial
+    begin
+		sim_start = 1'b0;
+        #20 sim_start = 1'b1;
+        $display("At %t: Simulation initialized and started.\nInput stimuli will be taken from the following binary file\n\t-->%s",$realtime,infileName);
+    	$display("\n\n------------------------------------------------------------------------------------------------------------");
+    end
+
+
+    /* SIMULATION ENDING AND BEHAVIOUR CHECKING */
+    always @ (posedge clk)
+    begin
+	if (sim_end == 1 && end_sim == 0) begin
+		end_sim = 1;
+        sim_start = 1'b0;
+        $display("\n\n\nAt %t: Simulation ended with %d wrong results over %d total results.\n",$realtime,wrong_res,res);
+        if (wrong_res == 0)
+        begin
+            $display("The device behaviour is CORRECT.\n");
+        end        
+        else
+        begin
+            $display("The device behaviour is WRONG.\n");
+        end
+        $display("The result of the simulation have been stored in the following files:\n
+        \tBINARY OUTPUTS:\t$s\n
+        \tINTEGER OUTPUTS:\t%s\n",outfileNameBin,outfileNameInt);
+	end
+    end
+
+	
+
+    /* DATA MONITOR AND RESULT CHECKING*/
+    always @ (negedge clk)
+    begin
+    
+    
+    
+    if (sim_start == 1) begin
+   
+    	// RESULT COUNT UPDATE
+    	res = res + 1;
+    	$display("\n\n\n----------- INPUT VECTOR No%d -----------\n\n",res);
+    	
+    	// RESULT PRINTING    	
+        $display("INPUT SAMPLES ARE:\n\n");
+        $display(" 1]\t%d\t%d\t%d\n",DIN_file[0],SIGNIN_dadda[0],DIN_dadda[0]);
+        $display(" 2]\t%d\t%d\t%d\n",DIN_file[1],SIGNIN_dadda[1],DIN_dadda[1]);
+        $display(" 3]\t%d\t%d\t%d\n",DIN_file[2],SIGNIN_dadda[2],DIN_dadda[2]);
+        $display(" 4]\t%d\t%d\t%d\n",DIN_file[3],SIGNIN_dadda[3],DIN_dadda[3]);
+        $display(" 5]\t%d\t%d\t%d\n",DIN_file[4],SIGNIN_dadda[4],DIN_dadda[4]);
+        $display(" 6]\t%d\t%d\t%d\n",DIN_file[5],SIGNIN_dadda[5],DIN_dadda[5]);
+        $display(" 7]\t%d\t%d\t%d\n",DIN_file[6],SIGNIN_dadda[6],DIN_dadda[6]);
+        $display(" 8]\t%d\t%d\t%d\n",DIN_file[7],SIGNIN_dadda[7],DIN_dadda[7]);
+        $display(" 9]\t%d\t%d\t%d\n",DIN_file[8],SIGNIN_dadda[8],DIN_dadda[8]);
+        $display("10]\t%d\t%d\t%d\n",DIN_file[9],SIGNIN_dadda[9],DIN_dadda[9]);
+        $display("11]\t%d\t%d\t%d\n",DIN_file[10],SIGNIN_dadda[10],DIN_dadda[10]);
+        $display("12]\t%d\t%d\t%d\n",DIN_file[11],SIGNIN_dadda[11],DIN_dadda[11]);
+        $display("13]\t%d\t%d\t%d\n",DIN_file[12],SIGNIN_dadda[12],DIN_dadda[12]);
+        $display("14]\t%d\t%d\t%d\n",DIN_file[13],SIGNIN_dadda[13],DIN_dadda[13]);
+        $display("15]\t%d\t%d\t%d\n",DIN_file[14],SIGNIN_dadda[14],DIN_dadda[14]);
+        $display("16]\t%d\t%d\t%d\n",DIN_file[15],SIGNIN_dadda[15],DIN_dadda[15]);
+        $display("17]\t%d\t%d\t%d\n\n",DIN_file[16],SIGNIN_dadda[16],DIN_dadda[16]);
+        
+        
+        // CORRECT RESULT GENERATION
+        $display("PARTIAL SUMS OF THE REFERENCE ACCUMULATOR HAVE BEEN:\n\n");
+        
+    	DOUT_correct = 0;
+		for (i=0;i<17;i=i+1) begin
+			DIN_file_extended[i] = DIN_file[i];
+			DOUT_correct = DOUT_correct + (DIN_file_extended[i] <<< (2*i));
+			$display("%d]  %b %d\n",i,DOUT_correct, DOUT_correct);
+		end
+        
+        $display("The result yielded by the Dadda Tree adder is:\n\n%d\t%b\n",DOUT_TRUE_dadda[63:0],DOUT_TRUE_dadda[63:0]);
+        $display("The correct result of the adder should be:\n\n%d\t%b\n",DOUT_correct[63:0],DOUT_correct[63:0]);
+        
+        if (DOUT_TRUE_dadda[63:0] == DOUT_correct[63:0])
+        begin
+            $display("The result is RIGHT.\n"); 
+            $display("\n\n------------------------------------------------------------------------------------------------------------");
+        end
+        else
+        begin 
+			$display("The result is WRONG.\n");
+			$display("\n\n------------------------------------------------------------------------------------------------------------");
+            wrong_res = wrong_res + 1;
+
+        end
+	end
+    end
+endmodule
+
+
+
+
+

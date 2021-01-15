@@ -19,6 +19,7 @@ end entity PIPE_IF_ID;
 
 architecture beh of PIPE_IF_ID is
 
+
 signal IF_WORD_IN, PC_ADDR_IN : std_logic_vector(31 downto 0); 
 constant NOP                  : std_logic_vector(31 downto 0) := "00000000000000000000000000010011";
 

@@ -32,8 +32,7 @@ begin
 pipe_id_exe_process : process(CLK, RSTN)
 begin
     if(RSTN = '0') then
-
-        
+      
         ALU_RES   <= (others => '0');
         RS2_VAL   <= (others => '0');
         RD_ADDR   <= (others => '0');

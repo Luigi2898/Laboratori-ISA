@@ -5,4 +5,4 @@ add wave sim:/tb_fir/VIN_i
 add wave sim:/tb_fir/DOUT_i
 add wave sim:/tb_fir/VOUT_i
 
-run 1 ms
+run 3 us

@@ -1,0 +1,21 @@
+#----------------------------------------------------------
+# Snapshot/.snaprc_snap_postRoute : snapshot resource file                          
+# label = snap_postRoute                                      
+#----------------------------------------------------------
+set tmpstr ""
+set tmpbar ""
+lappend tmpstr "dir" $sdir
+lappend tmpstr "label" snap_postRoute
+lappend tmpstr "fplan" $sdir/ss_snap_postRoute.fplan.gif
+lappend tmpstr "amoeba" $sdir/ss_snap_postRoute.amoeba.gif
+lappend tmpstr "place" $sdir/ss_snap_postRoute.place.gif
+lappend tmpstr "trgGlbOverflowPctH" 0
+lappend tmpstr "trgGlbOverflowPctV" 0
+lappend tmpbar "Congestion"
+lappend tmpstr "Congestion" 0
+lappend tmpbar WNS
+lappend tmpstr WNS 8.378
+lappend tmpbar TNS
+lappend tmpstr TNS 0.0
+lappend tmpbar Overlap
+lappend tmpstr Overlap 0

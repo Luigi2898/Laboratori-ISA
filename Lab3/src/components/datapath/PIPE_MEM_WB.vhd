@@ -4,6 +4,7 @@ library ieee;
 
 
 entity PIPE_MEM_WB is 
+
   port(
     CLK                   : in  std_logic;
     RSTN                  : in  std_logic;
@@ -33,7 +34,6 @@ pipe_id_exe_process : process(CLK, RSTN)
 begin
     if(RSTN = '0') then
 
-        
         ALU_RES   <= (others => '0');
         MEM_RES   <= (others => '0');
         RD_ADDR   <= (others => '0');

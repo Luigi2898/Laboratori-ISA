@@ -1,0 +1,58 @@
+== ANALYZE autoread all files ==
+
+Starting ANALYZE autoread mode...
+Information: Adding '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents'.  (AUTOREAD-100)
+Warning: Adding missing directory to search_path - '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents'. (AUTOREAD-105)
+Information: Adding '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/cnt_mod.vhd'.  (AUTOREAD-100)
+Information: Adding '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/FF.vhd'.  (AUTOREAD-100)
+Information: Adding '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/myfir_cuinputs_unfolded.vhd'.  (AUTOREAD-100)
+Information: Adding '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/myfir_cuoutputs_unfolded.vhd'.  (AUTOREAD-100)
+Information: Adding '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/mux3xNto1xN.vhd'.  (AUTOREAD-100)
+Information: Adding '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/N_counter.vhd'.  (AUTOREAD-100)
+Information: Adding '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/reg.vhd'.  (AUTOREAD-100)
+Information: Adding '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/SRLATCH.vhd'.  (AUTOREAD-100)
+Information: Removing from autoread database '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/firUnfolded'.  (AUTOREAD-101)
+Information: Removing from autoread database '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/firUnfolded/myfir_dp_unfolded.vhd'.  (AUTOREAD-101)
+Information: Removing from autoread database '/home/isa25/Desktop/Laboratori-ISA/Lab1/src/firUnfolded/myfir_unfolded.vhd'.  (AUTOREAD-101)
+Information: Scanning file { cnt_mod.vhd }. (AUTOREAD-303)
+Information: Scanning file { FF.vhd }. (AUTOREAD-303)
+Information: Scanning file { myfir_cuinputs_unfolded.vhd }. (AUTOREAD-303)
+Information: Scanning file { myfir_cuoutputs_unfolded.vhd }. (AUTOREAD-303)
+Information: Scanning file { mux3xNto1xN.vhd }. (AUTOREAD-303)
+Information: Scanning file { N_counter.vhd }. (AUTOREAD-303)
+Information: Scanning file { reg.vhd }. (AUTOREAD-303)
+Information: Scanning file { SRLATCH.vhd }. (AUTOREAD-303)
+Compiling Entity Declaration CNT_MOD
+Compiling Architecture BEH of CNT_MOD
+Warning:  /home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/cnt_mod.vhd:21: The architecture BEH has already been analyzed. It is being replaced. (VHD-4)
+Presto compilation completed successfully.
+Compiling Entity Declaration MYFIR_CUINPUTS_UNFOLDED
+Compiling Architecture BEH of MYFIR_CUINPUTS_UNFOLDED
+Warning:  /home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/myfir_cuinputs_unfolded.vhd:22: The architecture BEH has already been analyzed. It is being replaced. (VHD-4)
+Presto compilation completed successfully.
+Compiling Entity Declaration FF
+Compiling Architecture BEH of FF
+Warning:  /home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/FF.vhd:13: The architecture BEH has already been analyzed. It is being replaced. (VHD-4)
+Presto compilation completed successfully.
+Compiling Entity Declaration MYFIR_CUOUTPUTS_UNFOLDED
+Compiling Architecture BEH of MYFIR_CUOUTPUTS_UNFOLDED
+Warning:  /home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/myfir_cuoutputs_unfolded.vhd:18: The architecture BEH has already been analyzed. It is being replaced. (VHD-4)
+Presto compilation completed successfully.
+Compiling Entity Declaration MUX3XNTO1XN
+Compiling Architecture BEH of MUX3XNTO1XN
+Warning:  /home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/mux3xNto1xN.vhd:19: The architecture BEH has already been analyzed. It is being replaced. (VHD-4)
+Presto compilation completed successfully.
+Compiling Entity Declaration N_COUNTER
+Compiling Architecture BEHAVIORAL of N_COUNTER
+Warning:  /home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/N_counter.vhd:19: The architecture BEHAVIORAL has already been analyzed. It is being replaced. (VHD-4)
+Presto compilation completed successfully.
+Compiling Entity Declaration REG
+Compiling Architecture BEH of REG
+Warning:  /home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/reg.vhd:17: The architecture BEH has already been analyzed. It is being replaced. (VHD-4)
+Presto compilation completed successfully.
+Compiling Entity Declaration SRLATCH
+Compiling Architecture BEH of SRLATCH
+Warning:  /home/isa25/Desktop/Laboratori-ISA/Lab1/src/commonComponents/SRLATCH.vhd:13: The architecture beh has already been analyzed. It is being replaced. (VHD-4)
+Presto compilation completed successfully.
+Autoread command completed successfully.
+1

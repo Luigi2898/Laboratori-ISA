@@ -1,0 +1,67 @@
+ 
+****************************************
+Report : power
+        -net
+        -analysis_effort low
+        -sort_mode net_switching_power
+Design : MYFIR_PIPED_UNFOLDED
+Version: O-2018.06-SP4
+Date   : Thu Nov 12 14:06:28 2020
+****************************************
+
+
+Library(s) Used:
+
+    NangateOpenCellLibrary (File: /software/dk/nangate45/synopsys/NangateOpenCellLibrary_typical_ecsm_nowlm.db)
+
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+Design        Wire Load Model            Library
+------------------------------------------------
+MYFIR_PIPED_UNFOLDED   5K_hvratio_1_1    NangateOpenCellLibrary
+
+
+Global Operating Voltage = 1.1  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000ff
+    Time Units = 1ns
+    Dynamic Power Units = 1uW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+
+  Attributes
+  ----------
+      a  -  Switching activity information annotated on net
+      d  -  Default switching activity information on net
+
+                             Total      Static   Toggle   Switching
+Net                          Net Load   Prob.    Rate     Power      Attrs
+--------------------------------------------------------------------------------
+load_res                       8.328    0.052    0.0106      0.0536  
+tc_cnt_in                      6.045    0.063    0.0118      0.0430  
+load_res2                      5.970    0.047    0.0097      0.0349  
+en_cnt_in                      6.614    0.223    0.0083      0.0333  
+tc_cnt_mux                     6.067    0.037    0.0074      0.0270  
+en_cnt_mux                    10.464    0.119    0.0040      0.0254  
+DOUT[5]                        3.712    0.075    0.0062      0.0140  
+DOUT[3]                        3.712    0.073    0.0062      0.0139  
+DOUT[6]                        3.712    0.072    0.0061      0.0138  
+DOUT[4]                        3.712    0.070    0.0061      0.0137  
+DOUT[7]                        3.712    0.070    0.0059      0.0134  
+DOUT[8]                        3.712    0.072    0.0056      0.0127  
+DOUT[9]                        3.712    0.071    0.0056      0.0125  
+DOUT[10]                       3.712    0.077    0.0053      0.0118  
+state_load                     2.010    0.202    0.0076      0.0093  
+VOUT                           3.712    0.108    0.0037      0.0084  
+load_out                       3.241    0.119    0.0040      0.0079  
+DOUT[0]                        3.712    0.000    0.0000      0.0000  
+DOUT[1]                        3.712    0.000    0.0000      0.0000  
+DOUT[2]                        3.712    0.000    0.0000      0.0000  
+buff_on                        0.878    1.000    0.0000      0.0000  d
+--------------------------------------------------------------------------------
+Total (21 nets)                                            348.4873 nW
+1
