@@ -4,15 +4,14 @@ library ieee;
 
 
 entity PIPE_ID_EX is 
-  generic( word_size :  integer := 32 );
   port(
     CLK                   : in std_logic;
-    RST                   : in std_logic;
+    RSTN                  : in std_logic;
     FLUSH                 : in std_logic;
     STALL                 : in std_logic; 
-    RS1_VAL_IN            : in std_logic_vector(word_size-1 downto 0);
-    RS2_VAL_IN            : in std_logic_vector(word_size-1 downto 0);
-    IMM_GEN_IN            : in std_logic_vector(word_size-1 downto 0);
+    RS1_VAL_IN            : in std_logic_vector(31 downto 0);
+    RS2_VAL_IN            : in std_logic_vector(31 downto 0);
+    IMM_GEN_IN            : in std_logic_vector(31 downto 0);
     RS1_ADDR_IN           : in std_logic_vector(4 downto 0);
     RS2_ADDR_IN           : in std_logic_vector(4 downto 0);
     RD_ADDR_IN            : in std_logic_vector(4 downto 0);
@@ -34,9 +33,9 @@ entity PIPE_ID_EX is
     EX_ALUSRC_OUT         : out std_logic;
     EX_ALUCTRL_OUT        : out std_logic;
     EX_ALUEN_OUT          : out std_logic;
-    RS1_VAL_OUT           : out std_logic_vector(word_size-1 downto 0);
-    RS2_VAL_OUT           : out std_logic_vector(word_size-1 downto 0);
-    IMM_GEN_OUT           : out std_logic_vector(word_size-1 downto 0);
+    RS1_VAL_OUT           : out std_logic_vector(31 downto 0);
+    RS2_VAL_OUT           : out std_logic_vector(31 downto 0);
+    IMM_GEN_OUT           : out std_logic_vector(31 downto 0);
     RS1_ADDR_OUT          : out std_logic_vector(4 downto 0);
     RS2_ADDR_OUT          : out std_logic_vector(4 downto 0);
     RD_ADDR_OUT           : out std_logic_vector(4 downto 0);
@@ -55,9 +54,9 @@ signal M_WR       : std_logic;
 signal EX_ALUSRC  : std_logic;
 signal EX_ALUCTRL : std_logic;
 signal EX_ALUEN   : std_logic;  
-signal RS1        : std_logic_vector(word_size-1 downto 0);
-signal RS2        : std_logic_vector(word_size-1 downto 0);
-signal IMM        : std_logic_vector(word_size-1 downto 0);
+signal RS1        : std_logic_vector(31 downto 0);
+signal RS2        : std_logic_vector(31 downto 0);
+signal IMM        : std_logic_vector(31 downto 0);
 signal RS1_ADDR   : std_logic_vector(4 downto 0);
 signal RS2_ADDR   : std_logic_vector(4  downto 0);
 signal RD_ADDR    : std_logic_vector(4  downto 0);	
@@ -65,9 +64,9 @@ signal FUNC3      : std_logic_vector(2 downto 0);
 
 begin
 
-pipe_id_exe_process : process(CLK, RST)
+pipe_id_exe_process : process(CLK, RSTN)
 begin
-    if(RST = '0') then
+    if(RSTN = '0') then
 
         WR_RFEN    <= '0';        
         WR_RFMUX   <= '0';

@@ -51,16 +51,15 @@ architecture rtl of RISC_V is
   end component;
 
   component PIPE_IF_ID is 
-    generic( word_size :  integer := 32 );
     port(
       CLK               : in  std_logic;
-      RST               : in  std_logic;
+      RSTN              : in  std_logic;
       FLUSH             : in  std_logic;
       STALL             : in  std_logic; 
-      INSTR_IF_IN       : in  std_logic_vector(word_size-1 downto 0);
-      INSTR_PC_ADDR_IN  : in  std_logic_vector(word_size-1 downto 0);
-      INSTR_IF_OUT      : out std_logic_vector(word_size-1 downto 0);
-      INSTR_PC_ADDR_OUT : out std_logic_vector(word_size-1 downto 0)
+      INSTR_IF_IN       : in  std_logic_vector(31 downto 0);
+      INSTR_PC_ADDR_IN  : in  std_logic_vector(31 downto 0);
+      INSTR_IF_OUT      : out std_logic_vector(31 downto 0);
+      INSTR_PC_ADDR_OUT : out std_logic_vector(31 downto 0)
     );
   end component;
 
@@ -166,42 +165,43 @@ architecture rtl of RISC_V is
   end component;
 
   component PIPE_ID_EX is 
-  generic( word_size :  integer := 32 );
-  port(
-    CLK                   : in std_logic;
-    RST                   : in std_logic;
-    FLUSH                 : in std_logic;
-    STALL                 : in std_logic; 
-    RS1_VAL_IN            : in std_logic_vector(word_size-1 downto 0);
-    RS2_VAL_IN            : in std_logic_vector(word_size-1 downto 0);
-    IMM_GEN_IN            : in std_logic_vector(word_size-1 downto 0);
-    RS1_ADDR_IN           : in std_logic_vector(4 downto 0);
-    RS2_ADDR_IN           : in std_logic_vector(4 downto 0);
-    RD_ADDR_IN            : in std_logic_vector(4 downto 0);
-    WR_RFEN_IN            : in std_logic;
-    WR_RFMUX_IN           : in std_logic;
-    JUMP_IN               : in std_logic;
-    M_RD_EN_IN            : in std_logic;
-    M_WR_IN               : in std_logic;
-    EX_ALUSRC_IN          : in std_logic;
-    EX_ALUCTRL_IN         : in std_logic;
-    EX_ALUEN_IN           : in std_logic;
-    ------------------------------------------------------------------ out
-    WR_RFEN_OUT           : out std_logic;
-    WR_RFMUX_OUT          : out std_logic;
-    JUMP_OUT              : out std_logic;
-    M_RD_EN_OUT           : out std_logic;
-    M_WR_OUT              : out std_logic;
-    EX_ALUSRC_OUT         : out std_logic;
-    EX_ALUCTRL_OUT        : out std_logic;
-    EX_ALUEN_OUT          : out std_logic;
-    RS1_VAL_OUT           : out std_logic_vector(word_size-1 downto 0);
-    RS2_VAL_OUT           : out std_logic_vector(word_size-1 downto 0);
-    IMM_GEN_OUT           : out std_logic_vector(word_size-1 downto 0);
-    RS1_ADDR_OUT          : out std_logic_vector(4 downto 0);
-    RS2_ADDR_OUT          : out std_logic_vector(4 downto 0);
-    RD_ADDR_OUT           : out std_logic_vector(4 downto 0)    
-  );
+    port(
+      CLK                   : in std_logic;
+      RSTN                  : in std_logic;
+      FLUSH                 : in std_logic;
+      STALL                 : in std_logic; 
+      RS1_VAL_IN            : in std_logic_vector(31 downto 0);
+      RS2_VAL_IN            : in std_logic_vector(31 downto 0);
+      IMM_GEN_IN            : in std_logic_vector(31 downto 0);
+      RS1_ADDR_IN           : in std_logic_vector(4 downto 0);
+      RS2_ADDR_IN           : in std_logic_vector(4 downto 0);
+      RD_ADDR_IN            : in std_logic_vector(4 downto 0);
+      FUNC3_IN              : in std_logic_vector(2 downto 0);
+      WR_RFEN_IN            : in std_logic;
+      WR_RFMUX_IN           : in std_logic;
+      JUMP_IN               : in std_logic;
+      M_RD_EN_IN            : in std_logic;
+      M_WR_IN               : in std_logic;
+      EX_ALUSRC_IN          : in std_logic;
+      EX_ALUCTRL_IN         : in std_logic;
+      EX_ALUEN_IN           : in std_logic;
+      ------------------------------------------------------------------ out
+      WR_RFEN_OUT           : out std_logic;
+      WR_RFMUX_OUT          : out std_logic;
+      JUMP_OUT              : out std_logic;
+      M_RD_EN_OUT           : out std_logic;
+      M_WR_OUT              : out std_logic;
+      EX_ALUSRC_OUT         : out std_logic;
+      EX_ALUCTRL_OUT        : out std_logic;
+      EX_ALUEN_OUT          : out std_logic;
+      RS1_VAL_OUT           : out std_logic_vector(31 downto 0);
+      RS2_VAL_OUT           : out std_logic_vector(31 downto 0);
+      IMM_GEN_OUT           : out std_logic_vector(31 downto 0);
+      RS1_ADDR_OUT          : out std_logic_vector(4 downto 0);
+      RS2_ADDR_OUT          : out std_logic_vector(4 downto 0);
+      RD_ADDR_OUT           : out std_logic_vector(4 downto 0);
+      FUNC3_OUT             : out std_logic_vector(2 downto 0)    
+    );
 end component PIPE_ID_EX;
 
 component ALU is
@@ -226,19 +226,18 @@ end component;
     );
   end component;
 
-  component PIPE_EX_MEM is  
+component PIPE_EX_MEM is 
 
-  generic( word_size :  integer := 32 );
   port(
     CLK           : in  std_logic;
-    RST           : in  std_logic;
-    ALU_RES_IN    : in  std_logic_vector(word_size-1 downto 0);
-    RS2_VAL_IN    : in  std_logic_vector(word_size-1 downto 0); --from mux
+    RSTN          : in  std_logic;
+    ALU_RES_IN    : in  std_logic_vector(31 downto 0);
+    RS2_VAL_IN    : in  std_logic_vector(31 downto 0); --from mux
     OP_WB_MEM_IN  : in  std_logic_vector(4 downto 0); --MEM/WB ctrls (WB_RFEN_OUT & WB_RFMUX_OUT & BRANCH & M_RD_OUT & M_WR_OUT)
     RD_ADDR_IN    : in  std_logic_vector(4 downto 0);
     ------------------------------------------------------------------ out
-    ALU_RES_OUT   : out std_logic_vector(word_size-1 downto 0);
-    RS2_VAL_OUT   : out std_logic_vector(word_size-1 downto 0);
+    ALU_RES_OUT   : out std_logic_vector(31 downto 0);
+    RS2_VAL_OUT   : out std_logic_vector(31 downto 0);
     OP_WB_MEM_OUT : out std_logic_vector(4 downto 0);
     RD_ADDR_OUT   : out std_logic_vector(4 downto 0)
   );

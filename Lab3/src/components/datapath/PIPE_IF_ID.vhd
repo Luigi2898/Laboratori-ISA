@@ -4,35 +4,35 @@ library ieee;
 
 
 entity PIPE_IF_ID is 
-  generic( word_size :  integer := 32 );
   port(
     CLK               : in  std_logic;
-    RST               : in  std_logic;
+    RSTN              : in  std_logic;
     FLUSH             : in  std_logic;
     STALL             : in  std_logic; 
-    INSTR_IF_IN       : in  std_logic_vector(word_size-1 downto 0);
-    INSTR_PC_ADDR_IN  : in  std_logic_vector(word_size-1 downto 0);
-    INSTR_IF_OUT      : out std_logic_vector(word_size-1 downto 0);
-    INSTR_PC_ADDR_OUT : out std_logic_vector(word_size-1 downto 0)
+    INSTR_IF_IN       : in  std_logic_vector(31 downto 0);
+    INSTR_PC_ADDR_IN  : in  std_logic_vector(31 downto 0);
+    INSTR_IF_OUT      : out std_logic_vector(31 downto 0);
+    INSTR_PC_ADDR_OUT : out std_logic_vector(31 downto 0)
   );
 end entity PIPE_IF_ID;
 
 
 architecture beh of PIPE_IF_ID is
 
-signal IF_WORD_IN, PC_ADDR_IN : std_logic_vector(word_size-1 downto 0); 
-constant NOP                  : std_logic_vector(word_size-1 downto 0) := "00000000000000000000000000010011";
-constant NOP_PC               : std_logic_vector(word_size-1 downto 0) := "00000000000000000000000000000000";
-constant RST_PC               : std_logic_vector(word_size-1 downto 0) := "11111111111111111111111111111100";   
+
+signal IF_WORD_IN, PC_ADDR_IN : std_logic_vector(31 downto 0); 
+constant NOP                  : std_logic_vector(31 downto 0) := "00000000000000000000000000010011";
+
+  
     
 begin
 
-pipe_if_id_process : process(CLK, RST)
+pipe_if_id_process : process(CLK, RSTN)
 begin
-    if(RST = '0') then
+    if(RSTN = '0') then
 
         IF_WORD_IN <= NOP;
-        PC_ADDR_IN <= RST_PC;
+        PC_ADDR_IN <= (others => '0');
     
     elsif (CLK'event and CLK = '1') then
       
