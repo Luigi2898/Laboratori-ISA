@@ -4,13 +4,13 @@ use ieee.numeric_std.all;
 
 entity RISC_V is
   port (
-	-- Data memory interface
+	-- Data memory interfaces
   DATA_IN      : in  std_logic_vector(31 downto 0);
 	DATA_ADDR    : out std_logic_vector(31 downto 0);
   DATA_OUT     : out std_logic_vector(31 downto 0);
   WRITE_EN     : out std_logic;
   READ_EN      : out std_logic;
-	-- Instruction memory interface
+	-- Instruction memory interfaces
 	INSTR_ADDR   : out std_logic_vector(31 downto 0);
   INSTR        : in  std_logic_vector(31 downto 0);
   --
@@ -291,11 +291,13 @@ begin
 
   ----------- Data Memory Stage -----------
 PIPE_REG4 : PIPE_MEM_WB generic map (32)
-            port map (CLK, I_RST, ALU_RES_IN_MEMWB, MEM_RES_IN_MEMWB, OP_WB_IN_MEMWB, RD_ADDR_IN_MEMWB,
-                      ALU_RES_OUT_MEMWB, MEM_RES_OUT_MEMWB, OP_WB_OUT_MEMWB, RD_ADDR_OUT_MEMWB);
+                        port map (CLK, I_RST, ALU_RES_IN_MEMWB, MEM_RES_IN_MEMWB, OP_WB_IN_MEMWB, RD_ADDR_IN_MEMWB,
+                        ALU_RES_OUT_MEMWB, MEM_RES_OUT_MEMWB, OP_WB_OUT_MEMWB, RD_ADDR_OUT_MEMWB);
 
   ----------- Write Back Stage ------------
 
+  WB_MUX : MUX_2to1 generic map (32)
+                    port map (ALU_RES_OUT_MEMWB, MEM_RES_OUT_MEMWB,WB_RFMUX_OUT,RF_WRDIN_WB);
 
 
 
