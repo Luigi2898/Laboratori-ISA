@@ -4,13 +4,13 @@ use ieee.numeric_std.all;
 
 entity RISC_V is
   port (
-	-- Data memory interface
+	-- Data memory interfaces
   DATA_IN      : in  std_logic_vector(31 downto 0);
 	DATA_ADDR    : out std_logic_vector(31 downto 0);
   DATA_OUT     : out std_logic_vector(31 downto 0);
   WRITE_EN     : out std_logic;
   READ_EN      : out std_logic;
-	-- Instruction memory interface
+	-- Instruction memory interfaces
 	INSTR_ADDR   : out std_logic_vector(31 downto 0);
   INSTR        : in  std_logic_vector(31 downto 0);
   --
@@ -63,6 +63,43 @@ architecture rtl of RISC_V is
     );
   end component;
 
+
+  component PIPE_EX_MEM is 
+    generic( word_size :  integer := 32 );
+    port(
+      CLK           : in  std_logic;
+      RST           : in  std_logic;
+      ALU_RES_IN    : in  std_logic_vector(word_size-1 downto 0);
+      RS2_VAL_IN    : in  std_logic_vector(word_size-1 downto 0); --from mux
+      OP_WB_MEM_IN  : in  std_logic_vector(4 downto 0); --MEM/WB ctrls (WB_RFEN_OUT & WB_RFMUX_OUT & BRANCH & M_RD_OUT & M_WR_OUT)
+      RD_ADDR_IN    : in  std_logic_vector(4 downto 0);
+      ------------------------------------------------------------------ out
+      ALU_RES_OUT   : out std_logic_vector(word_size-1 downto 0);
+      RS2_VAL_OUT   : out std_logic_vector(word_size-1 downto 0);
+      OP_WB_MEM_OUT : out std_logic_vector(4 downto 0);
+      RD_ADDR_OUT   : out std_logic_vector(4 downto 0)
+    );
+  end component PIPE_EX_MEM;
+
+
+  component PIPE_MEM_WB is 
+    generic( word_size :  integer := 32 );
+    port(
+      CLK                   : in  std_logic;
+      RSTN                   : in  std_logic;
+      ALU_RES_IN            : in  std_logic_vector(word_size-1 downto 0);
+      MEM_RES_IN            : in  std_logic_vector(word_size-1 downto 0); 
+      OP_WB_IN              : in  std_logic_vector(4 downto 0); --WB ctrls (WB_RFEN_OUT & WB_RFMUX_OUT)
+      RD_ADDR_IN            : in  std_logic_vector(4 downto 0);
+      ------------------------------------------------------------------ out
+      ALU_RES_OUT           : out std_logic_vector(word_size-1 downto 0);
+      MEM_RES_OUT           : out std_logic_vector(word_size-1 downto 0);
+      OP_WB_OUT             : out std_logic_vector(4 downto 0);
+      RD_ADDR_OUT           : out std_logic_vector(4 downto 0)
+    );
+  end component PIPE_MEM_WB;
+
+
   component REG_FILE is
     generic (Nbit : integer := 32;
              Nrow : integer := 32);
@@ -104,10 +141,10 @@ architecture rtl of RISC_V is
   component BRANCH_COMP is
     generic(word_size: integer:= 32);	
     port(
-        IMM_CODE		: in  std_logic_vector(2 downto 0);			    --condition to take branch
+      IMM_CODE		: in  std_logic_vector(2 downto 0);			    --condition to take branch
       DATA_IN1		: in  std_logic_vector(word_size-1 downto 0);	--data to test
       DATA_IN2		: in  std_logic_vector(word_size-1 downto 0);	--data to test
-          BRANCH_IS_TAKEN	: out std_logic
+      BRANCH_IS_TAKEN	: out std_logic
       );						
   end component;
 
@@ -310,10 +347,16 @@ signal ALU_RES_PIPE_OUT     : std_logic_vector(31 downto 0);
 signal RS2_VAL_PIPE_OUT     : std_logic_vector(31 downto 0);
 signal OP_WB_MEM_PIPE_OUT   : std_logic_vector(4 downto 0);
 signal RD_ADDR_PIPE_OUT     : std_logic_vector(4 downto 0);
+  -- Data Memory Stage Signals
+  signal ALU_RES_IN_MEMWB, ALU_RES_OUT_MEMWB : std_logic_vector(31 downto 0);
+  signal MEM_RES_IN_MEMWB, MEM_RES_OUT_MEMWB : std_logic_vector(31 downto 0);
+  signal OP_WB_IN_MEMWB, OP_WB_OUT_MEMWB : std_logic_vector(4 downto 0);
+  signal RD_ADDR_IN_MEMWB, RD_ADDR_OUT_MEMWB : std_logic_vector(4 downto 0);
+
 
 begin
 
-  Vdd <= '1';
+  VDD <= '1';
   GND <= '0';
 
   ----------- Instruction fetching stage -----------
@@ -383,5 +426,18 @@ begin
   PIPE_REG3 : PIPE_EX_MEM generic map(32)
                           port map(CLK, I_RST, ALU_RES_EXE, ALU_IN2_EXE, OP_WB_MEM_PIPE_IN, RD_ADDR_IDEX_OUT,
                           ALU_RES_PIPE_OUT, RS2_VAL_PIPE_OUT, OP_WB_MEM_PIPE_OUT, RD_ADDR_PIPE_OUT);
+
+  ----------- Data Memory Stage -----------
+PIPE_REG4 : PIPE_MEM_WB generic map (32)
+                        port map (CLK, I_RST, ALU_RES_IN_MEMWB, MEM_RES_IN_MEMWB, OP_WB_IN_MEMWB, RD_ADDR_IN_MEMWB,
+                        ALU_RES_OUT_MEMWB, MEM_RES_OUT_MEMWB, OP_WB_OUT_MEMWB, RD_ADDR_OUT_MEMWB);
+
+  ----------- Write Back Stage ------------
+
+  WB_MUX : MUX_2to1 generic map (32)
+                    port map (ALU_RES_OUT_MEMWB, MEM_RES_OUT_MEMWB,WB_RFMUX_OUT,RF_WRDIN_WB);
+
+
+
 
 end architecture;
