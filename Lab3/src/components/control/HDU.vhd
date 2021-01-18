@@ -18,7 +18,8 @@ entity HDU is
         REG_WR_EX   : in  std_logic; --ID/EX.RegWrite
         IMM_COD     : in  std_logic_vector(2 downto 0);
         STALL       : out std_logic;
-        FORWARD     : out std_logic_vector(5 downto 0)     
+        FORWARD_A   : out std_logic_vector(1 downto 0);
+        FORWARD_B   : out std_logic_vector(1 downto 0)     
     );
 end entity  HDU;
 
@@ -54,21 +55,33 @@ WB_HAZARD_RS1 <= REG_WR_WB AND AND_REDUCE(RS1_EXE_IN XNOR RD_WB_IN) AND OR_REDUC
 WB_HAZARD_RS2 <= REG_WR_WB AND AND_REDUCE(RS2_EXE_IN XNOR RD_WB_IN) AND OR_REDUCE(RD_WB_IN)
                  AND NOT(MEM_HAZARD_RS2); -- RS2 == RD of MEM/WB stage AND RD != x0   
 
-FORWARD <=  WB_HAZARD_RS2 & WB_HAZARD_RS1 & MEM_HAZARD_RS2 & MEM_HAZARD_RS1 & EX_HAZARD_RS2 & EX_HAZARD_RS1;                  
-
 --a stall occurs whenever INSTR(ID/EX) is a load, but INSTR(IF/ID) is not a jump or an upper-imm
 STALL <= ((AND_REDUCE(RS1_ID_IN XNOR RD_EX_IN) OR AND_REDUCE(RS2_ID_IN XNOR RD_EX_IN)) AND LOAD_EXE_IN 
          AND NOT(AND_REDUCE(IMM_COD XNOR JAL)) AND NOT(AND_REDUCE(IMM_COD XNOR UIMM))) OR
          ((AND_REDUCE(RS1_ID_IN XNOR RD_EX_IN) OR AND_REDUCE(RS2_ID_IN XNOR RD_EX_IN)) AND LOAD_EXE_IN AND AND_REDUCE(IMM_COD XNOR BEQ));
 
---encoding for forwanding:
---FORWARD_A <= "01" when EX_HAZARD_RS1  = '1',
---             "10" when MEM_HAZARD_RS1 = '1',
---             "11" when WB_HAZARD_RS1  = '1',
---             "00" when others;  
---FORWARD_B <= "01" when EX_HAZARD_RS2  = '1',
---             "10" when MEM_HAZARD_RS2 = '1',
---             "11" when WB_HAZARD_RS2  = '1',
---             "00" when others;                     
+forward_a_process : process(EX_HAZARD_RS1, MEM_HAZARD_RS1, WB_HAZARD_RS1)
+begin
+if(EX_HAZARD_RS1 = '1') then
+    FORWARD_A <= "01";
+elsif(MEM_HAZARD_RS1 = '1') then   
+    FORWARD_A <= "10";
+elsif(WB_HAZARD_RS1 = '1') then   
+    FORWARD_A <= "11";
+else FORWARD_A <= "00";
+end if;
+end process; --forward_a_process
+
+forward_b_process : process(EX_HAZARD_RS2, MEM_HAZARD_RS2, WB_HAZARD_RS2)
+begin
+if(EX_HAZARD_RS2 = '1') then
+    FORWARD_B <= "01";
+elsif(MEM_HAZARD_RS2 = '1') then   
+    FORWARD_B <= "10";
+elsif(WB_HAZARD_RS2 = '1') then   
+    FORWARD_B <= "11";
+else FORWARD_B <= "00";
+end if;
+end process; --forward_b_process
 
 end architecture beh;
