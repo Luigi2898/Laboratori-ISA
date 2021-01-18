@@ -273,7 +273,7 @@ architecture rtl of RISC_V is
   end component PIPE_ID_EX;
 
   component ALU is
-    generic (N : integer := 32)
+    generic (N : integer := 32);
     port (
       DATA1_IN   : in  std_logic_vector(N - 1 downto 0);
       DATA2_IN   : in  std_logic_vector(N - 1 downto 0);
