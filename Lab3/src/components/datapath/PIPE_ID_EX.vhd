@@ -138,7 +138,7 @@ begin
         EX_ALUSRC  <= EX_ALUSRC_IN;
         EX_ALUCTRL <= EX_ALUCTRL_IN;
         EX_ALUEN   <= EX_ALUEN_IN;
-        FUNC3      <= FUNCT3_IN;
+        FUNC3      <= FUNC3_IN;
         
         end if;
 
