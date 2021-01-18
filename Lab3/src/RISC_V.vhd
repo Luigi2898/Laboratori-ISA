@@ -338,15 +338,15 @@ end component PIPE_EX_MEM;
   signal FORWARD_B      : std_logic;
   signal FORWARD_A      : std_logic;
 -- Execute stage signals
-signal ALU_IN1_EXE          : std_logic_vector(31 downto 0);
-signal ALU_IN2_EXE          : std_logic_vector(31 downto 0);
-signal ALU_RES_EXE          : std_logic_vector(31 downto 0);
-signal CODE_ALUCTRL_OUT     : std_logic_vector(5 downto 0);
-signal OP_WB_MEM_PIPE_IN    : std_logic_vector(4 downto 0);  
-signal ALU_RES_PIPE_OUT     : std_logic_vector(31 downto 0);
-signal RS2_VAL_PIPE_OUT     : std_logic_vector(31 downto 0);
-signal OP_WB_MEM_PIPE_OUT   : std_logic_vector(4 downto 0);
-signal RD_ADDR_PIPE_OUT     : std_logic_vector(4 downto 0);
+  signal ALU_IN1_EXE          : std_logic_vector(31 downto 0);
+  signal ALU_IN2_EXE          : std_logic_vector(31 downto 0);
+  signal ALU_RES_EXE          : std_logic_vector(31 downto 0);
+  signal CODE_ALUCTRL_OUT     : std_logic_vector(5 downto 0);
+  signal OP_WB_MEM_PIPE_IN    : std_logic_vector(4 downto 0);  
+  signal ALU_RES_PIPE_OUT     : std_logic_vector(31 downto 0);
+  signal RS2_VAL_PIPE_OUT     : std_logic_vector(31 downto 0);
+  signal OP_WB_MEM_PIPE_OUT   : std_logic_vector(4 downto 0);
+  signal RD_ADDR_PIPE_OUT     : std_logic_vector(4 downto 0);
   -- Data Memory Stage Signals
   signal ALU_RES_IN_MEMWB, ALU_RES_OUT_MEMWB : std_logic_vector(31 downto 0);
   signal MEM_RES_IN_MEMWB, MEM_RES_OUT_MEMWB : std_logic_vector(31 downto 0);
@@ -375,7 +375,6 @@ begin
 
   INSTR_ADDR <= CURRENT_PC;
 
-
   BRANCH_PREDICTION_UNIT : BPU port map(CLK, I_RST,); -- To b completed with other signals
 
   PIPE_REG1 : PIPE_IF_ID generic map(32)
@@ -398,14 +397,14 @@ begin
   BC_MUX_B : MUX_4to1 generic map(32)
                       port map(RFOUT_2, ..., BC_IN2);-- To b completed with other signals
 
-  CONTROL_UNIT : CU port map(EXTERNAL_RST, INSTR_ID(6 downto 0), BPU_MISSPRED, BPU_PREDICTION, HDU_STALL, HDU_FORWARD, ALU_SRC, ALU_CTRL, ALU_CTRL_EN, MEM_RD, MEM_WR, RF_EN, RF_MUX, IMM_EN, IMM_CODE, JUMP, FORWARD_B, FORWARD_A, I_RST);
+  CONTROL_UNIT : CU port map(EXTERNAL_RST, INSTR_ID(6 downto 0), BPU_MISSPRED, BPU_PREDICTION,
+                             HDU_STALL, HDU_FORWARD, ALU_SRC, ALU_CTRL, ALU_CTRL_EN, MEM_RD,
+                             MEM_WR, RF_EN, RF_MUX, IMM_EN, IMM_CODE, FLUSH, STALL, JUMP, FORWARD_B, FORWARD_A, I_RST);
 
-  ALU_CONTROLLER : ALU_CTRL port map(ALU_CTRL_EN, ALU_CTRL, INSTR_ID(9 downto 7), ALU_CODE)
-
-  PIPE_REG2 : PIPE_ID_EXE generic map(32)
-                          port map(CLK, I_RST, PIPE_FLUSH, PIPE_STALL, BC_IN1, BC_IN2, IMM_GEN_OUT,
+  PIPE_REG2 : PIPE_ID_EX  generic map(32)
+                          port map(CLK, I_RST, FLUSH, STALL, BC_IN1, BC_IN2, IMM_GEN_OUT,
                                    INSTR_ID(11 downto 7), INSTR_ID(20 downto 16), INSTR_ID(24 downto 20),
-                                   WR_RFEN, WR_RFMUX, JUMP, M_RD_EN, M_WR, EX_ALUSRC, EX_ALUCTRL, EX_ALUEN,
+                                   RF_EN, RF_MUX, JUMP, M_RD_EN, M_WR, EX_ALUSRC, EX_ALUCTRL, EX_ALUEN,
                                    WR_RFEN_IDEX_OUT, WR_RFMUX_IDEX_OUT, JUMP_IDEX_OUT, M_RD_EN_IDEX_OUT, M_WR_IDEX_OUT, EX_ALUSRC_IDEX_OUT, EX_ALUCTRL_IDEX_OUT, EX_ALUEN_IDEX_OUT,
                                    RS1_VAL_IDEX_OUT, RS2_VAL_IDEX_OUT, IMM_GEN_IDEX_OUT, RS1_ADDR_IDEX_OUT, RS2_ADDR_IDEX_OUT, RD_ADDR_IDEX_OUT);
 
