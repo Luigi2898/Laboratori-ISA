@@ -304,7 +304,6 @@ architecture rtl of RISC_V is
   signal BEFOREJMP_PC : std_logic_vector(31 downto 0);
   signal SELECTED_SRC : std_logic_vector(31 downto 0);
   signal PC_DIR       : std_logic;
-  signal PC_SRC       : std_logic;
   -- Decode stage signals
   signal RF_OUT1             : std_logic_vector(31 downto 0);
   signal RF_OUT2             : std_logic_vector(31 downto 0);
@@ -343,7 +342,7 @@ architecture rtl of RISC_V is
   signal HDU_STALL      : std_logic;
   signal HDU_FORWARD    : std_logic;
   signal ALU_SRC        : std_logic;
-  signal ALU_CTRL       : std_logic;
+  signal ALU_CTR        : std_logic;
   signal ALU_CTRL_EN    : std_logic;
   signal MEM_RD         : std_logic;
   signal MEM_WR         : std_logic;
@@ -378,10 +377,10 @@ begin
   PC_INCREMENTER : INCREMENTER generic map(1)
                                port map(SELECTED_SRC, NEXT_PC);
 
-  SOURCE_MUX : MUX2to1 generic map(32)
-                       port map(CURRENT_PC, OLD_PC, FLUSH, SELECTED_SRC);
+  SOURCE_MUX : MUX_2to1 generic map(32)
+                       port map(CURRENT_PC, PC_ID, FLUSH, SELECTED_SRC);
 
-  PC_MUX : MUX2to1 generic map(32)
+  PC_MUX : MUX_2to1 generic map(32)
                    port map(NEXT_PC, DIFF_PC, PC_DIR, PC_SOURCE);
 
   PC : REG generic map(32)
@@ -395,8 +394,6 @@ begin
                          port map(CLK, I_RST, FLUSH, STALL, INSTR, CURRENT_PC, INSTR_ID, PC_ID);
 
   ----------- Instruction decoding stage -----------
-
-  OLD_PC <= PC_ID 
 
   RF : REG_FILE generic map(32, 32)
                 port map(CLK, I_RST, INSTR_ID(24 downto 20), RF_OUT1, INSTR_ID(20 downto 16), RF_OUT2, RD_ADDR_OUT_MEMWB, RF_IN, RF_WR_EN);
@@ -417,13 +414,13 @@ begin
                         M_RD_EN_OUT_IDEX, OP_WB_OUT_MEMWB(1), OP_WB_OUT_EXMEM(4), WR_RFEN_OUT_IDEX, IMM_CODE, HDU_STALL, FORWARD_A. FORWARD_B);                    
 
   CONTROL_UNIT : CU port map(EXTERNAL_RSTN, INSTR_ID(6 downto 0), BPU_MISSPRED, BPU_PREDICTION,
-                             HDU_STALL, ALU_SRC, ALU_CTRL, ALU_CTRL_EN, MEM_RD,
+                             HDU_STALL, ALU_SRC, ALU_CTR, ALU_CTRL_EN, MEM_RD,
                              MEM_WR, RF_EN, RF_MUX, IMM_EN, IMM_CODE, FLUSH, STALL, JUMP, I_RST);
 
   PIPE_REG2 : PIPE_ID_EX  generic map(32)
                           port map(CLK, I_RST, FLUSH, STALL, BC_IN1, BC_IN2, IMM_GEN_OUT,
                                    INSTR_ID(19 downto 15), INSTR_ID(24 downto 20), INSTR_ID(11 downto 7), INSTR_ID(14 downto 12),
-                                   RF_EN, RF_MUX, BRANCH, JUMP, MEM_RD, MEM_WR, ALU_SRC, ALU_CTRL, ALU_CTRL_EN,
+                                   RF_EN, RF_MUX, BRANCH, JUMP, MEM_RD, MEM_WR, ALU_SRC, ALU_CTR, ALU_CTRL_EN,
                                    WR_RFEN_OUT_IDEX, WR_RFMUX_OUT_IDEX, BRANCH_OUT_IDEX, JUMP_OUT_IDEX, M_RD_EN_OUT_IDEX, M_WR_OUT_IDEX, EX_ALUSRC_OUT_IDEX, EX_ALUCTRL_OUT_IDEX, EX_ALUEN_OUT_IDEX,
                                    RS1_VAL_OUT_IDEX, RS2_VAL_OUT_IDEX, IMM_GEN_OUT_IDEX, RS1_ADDR_OUT_IDEX, RS2_ADDR_OUT_IDEX, RD_ADDR_OUT_IDEX, FUNC3_OUT_IDEX);
   ----------- Instruction execute stage -----------
