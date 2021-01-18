@@ -39,7 +39,7 @@ begin
         if(FLUSH = '1') then --flush
           
           IF_WORD_IN <= NOP;
-          PC_ADDR_IN <= NOP_PC;
+          PC_ADDR_IN <= (others => '0');
         
         elsif(FLUSH = '0' and STALL = '1') then --stall
           

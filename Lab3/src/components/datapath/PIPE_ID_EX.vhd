@@ -123,22 +123,22 @@ begin
         
         elsif(FLUSH = '0' and STALL = '0') then--normal exe  
 
-        RS1        <= RS1_VAL_IN;
-        RS2        <= RS2_VAL_IN;
-        IMM        <= IMM_GEN_IN;
-        RS1_ADDR   <= RS1_ADDR_IN;
-        RS2_ADDR   <= RS2_ADDR_IN;
-        RD_ADDR    <= RD_ADDR_IN;
-        WR_RFEN    <= WR_RFEN_IN;        
-        WR_RFMUX   <= WR_RFMUX_IN;
-        JUMP       <= JUMP_IN;
-        BRANCH_COMP<= BRANCH_COMP_IN;
-        M_RD_EN    <= M_RD_EN_IN;
-        M_WR       <= M_WR_IN;
-        EX_ALUSRC  <= EX_ALUSRC_IN;
-        EX_ALUCTRL <= EX_ALUCTRL_IN;
-        EX_ALUEN   <= EX_ALUEN_IN;
-        FUNC3      <= FUNCT3_IN;
+        RS1         <= RS1_VAL_IN;
+        RS2         <= RS2_VAL_IN;
+        IMM         <= IMM_GEN_IN;
+        RS1_ADDR    <= RS1_ADDR_IN;
+        RS2_ADDR    <= RS2_ADDR_IN;
+        RD_ADDR     <= RD_ADDR_IN;
+        WR_RFEN     <= WR_RFEN_IN;        
+        WR_RFMUX    <= WR_RFMUX_IN;
+        JUMP        <= JUMP_IN;
+        BRANCH_COMP <= BRANCH_COMP_IN;
+        M_RD_EN     <= M_RD_EN_IN;
+        M_WR        <= M_WR_IN;
+        EX_ALUSRC   <= EX_ALUSRC_IN;
+        EX_ALUCTRL  <= EX_ALUCTRL_IN;
+        EX_ALUEN    <= EX_ALUEN_IN;
+        FUNC3       <= FUNC3_IN;
         
         end if;
 
