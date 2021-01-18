@@ -12,8 +12,7 @@ entity CU is
 	  BPU_MISSPRED   : in  std_logic;
 	  BPU_PREDICTION : in  std_logic;
 	  -- From HDU
-	  HDU_STALL      : in  std_logic;unsigned
-    HDU_FORWARD    : in  std_logic_vector(3 downto 0);
+	  HDU_STALL      : in  std_logic;
 	  -- To ALU input MUX
 	  EX_ALUSRC_OUT  : out std_logic; -- 1 immediate 0 non-immediate
 	  -- To ALU_CTRL
@@ -35,9 +34,6 @@ entity CU is
 	  PIPE_STALL     : out std_logic;
 	  -- Jump
     JUMP           : out std_logic;
-    -- Forward
-    FORWARD_B      : out std_logic;
-    FORWARD_A      : out std_logic;
     -- Datapath reset
     DP_RST         : out std_logic
   );
@@ -119,17 +115,5 @@ begin
   JUMP       <= BPU_PREDICTION;
   PIPE_STALL <= HDU_STALL;
   DP_RST     <= RST;
-
-  with HDU_FORWARD select FORWARD_A <= "01" when "0001",
-		                          				 "01" when "1001",
-                                       "10" when "0100",
-                                       "10" when "0110",
-                                       "00" when others;
-                                       BPU_PREDICTION
-  with HDU_FORWARD select FORWARD_B <= "01" when "0010",
-                                       "10" when "1000",
-                                       "10" when "1001",
-                                       "01" when "0110",
-                                       "00" when others;    
 
 end architecture;
