@@ -15,7 +15,7 @@ entity PIPE_MEM_WB is
     ------------------------------------------------------------------ out
     ALU_RES_OUT           : out std_logic_vector(31 downto 0);
     MEM_RES_OUT           : out std_logic_vector(31 downto 0);
-    OP_WB_OUT             : out std_logic_vector(4 downto 0);
+    OP_WB_OUT             : out std_logic_vector(1 downto 0);
     RD_ADDR_OUT           : out std_logic_vector(4 downto 0)
   );
 end entity PIPE_MEM_WB;

@@ -18,6 +18,7 @@ entity PIPE_ID_EX is
     FUNC3_IN              : in std_logic_vector(2 downto 0);
     WR_RFEN_IN            : in std_logic;
     WR_RFMUX_IN           : in std_logic;
+    BRANCH_COMP_IN        : in std_logic;
     JUMP_IN               : in std_logic;
     M_RD_EN_IN            : in std_logic;
     M_WR_IN               : in std_logic;
@@ -27,6 +28,7 @@ entity PIPE_ID_EX is
     ------------------------------------------------------------------ out
     WR_RFEN_OUT           : out std_logic;
     WR_RFMUX_OUT          : out std_logic;
+    BRANCH_COMP_OUT       : out std_logic;
     JUMP_OUT              : out std_logic;
     M_RD_EN_OUT           : out std_logic;
     M_WR_OUT              : out std_logic;
@@ -49,6 +51,7 @@ architecture beh of PIPE_ID_EX is
 signal WR_RFEN    : std_logic;
 signal WR_RFMUX   : std_logic;
 signal JUMP       : std_logic;
+signal BRANCH_COMP: std_logic;
 signal M_RD_EN    : std_logic;
 signal M_WR       : std_logic;
 signal EX_ALUSRC  : std_logic;
@@ -71,6 +74,7 @@ begin
         WR_RFEN    <= '0';        
         WR_RFMUX   <= '0';
         JUMP       <= '0';
+        BRANCH_COMP<= '0';
         M_RD_EN    <= '0';
         M_WR       <= '0';
         EX_ALUSRC  <= '0';
@@ -92,6 +96,7 @@ begin
         WR_RFEN    <= WR_RFEN_IN;        
         WR_RFMUX   <= WR_RFMUX_IN;
         JUMP       <= JUMP_IN;
+        BRANCH_COMP<= BRANCH_COMP_IN;
         M_RD_EN    <= M_RD_EN_IN;
         M_WR       <= M_WR_IN;
         EX_ALUSRC  <= EX_ALUSRC_IN;
@@ -127,6 +132,7 @@ begin
         WR_RFEN    <= WR_RFEN_IN;        
         WR_RFMUX   <= WR_RFMUX_IN;
         JUMP       <= JUMP_IN;
+        BRANCH_COMP<= BRANCH_COMP_IN;
         M_RD_EN    <= M_RD_EN_IN;
         M_WR       <= M_WR_IN;
         EX_ALUSRC  <= EX_ALUSRC_IN;
@@ -150,6 +156,7 @@ FUNC3_OUT        <= FUNC3;
 WR_RFEN_OUT      <= WR_RFEN;      
 WR_RFMUX_OUT     <= WR_RFMUX;
 JUMP_OUT         <= JUMP;
+BRANCH_COMP_OUT  <= BRANCH_COMP;
 M_RD_EN_OUT      <= M_RD_EN;
 M_WR_OUT         <= M_WR;
 EX_ALUSRC_OUT    <= EX_ALUSRC;

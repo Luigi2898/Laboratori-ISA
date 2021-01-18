@@ -65,17 +65,16 @@ architecture rtl of RISC_V is
 
 
   component PIPE_EX_MEM is 
-    generic( word_size :  integer := 32 );
     port(
       CLK           : in  std_logic;
-      RST           : in  std_logic;
-      ALU_RES_IN    : in  std_logic_vector(word_size-1 downto 0);
-      RS2_VAL_IN    : in  std_logic_vector(word_size-1 downto 0); --from mux
+      RSTN          : in  std_logic;
+      ALU_RES_IN    : in  std_logic_vector(31 downto 0);
+      RS2_VAL_IN    : in  std_logic_vector(31 downto 0); --from mux
       OP_WB_MEM_IN  : in  std_logic_vector(4 downto 0); --MEM/WB ctrls (WB_RFEN_OUT & WB_RFMUX_OUT & BRANCH & M_RD_OUT & M_WR_OUT)
       RD_ADDR_IN    : in  std_logic_vector(4 downto 0);
       ------------------------------------------------------------------ out
-      ALU_RES_OUT   : out std_logic_vector(word_size-1 downto 0);
-      RS2_VAL_OUT   : out std_logic_vector(word_size-1 downto 0);
+      ALU_RES_OUT   : out std_logic_vector(31 downto 0);
+      RS2_VAL_OUT   : out std_logic_vector(31 downto 0);
       OP_WB_MEM_OUT : out std_logic_vector(4 downto 0);
       RD_ADDR_OUT   : out std_logic_vector(4 downto 0)
     );
@@ -83,18 +82,17 @@ architecture rtl of RISC_V is
 
 
   component PIPE_MEM_WB is 
-    generic( word_size :  integer := 32 );
     port(
       CLK                   : in  std_logic;
       RSTN                  : in  std_logic;
-      ALU_RES_IN            : in  std_logic_vector(word_size-1 downto 0);
-      MEM_RES_IN            : in  std_logic_vector(word_size-1 downto 0); 
-      OP_WB_IN              : in  std_logic_vector(4 downto 0); --WB ctrls (WB_RFEN_OUT & WB_RFMUX_OUT)
+      ALU_RES_IN            : in  std_logic_vector(31 downto 0);
+      MEM_RES_IN            : in  std_logic_vector(31 downto 0); 
+      OP_WB_IN              : in  std_logic_vector(1 downto 0); --WB ctrls (WB_RFEN_OUT & WB_RFMUX_OUT)
       RD_ADDR_IN            : in  std_logic_vector(4 downto 0);
       ------------------------------------------------------------------ out
-      ALU_RES_OUT           : out std_logic_vector(word_size-1 downto 0);
-      MEM_RES_OUT           : out std_logic_vector(word_size-1 downto 0);
-      OP_WB_OUT             : out std_logic_vector(4 downto 0);
+      ALU_RES_OUT           : out std_logic_vector(31 downto 0);
+      MEM_RES_OUT           : out std_logic_vector(31 downto 0);
+      OP_WB_OUT             : out std_logic_vector(1 downto 0);
       RD_ADDR_OUT           : out std_logic_vector(4 downto 0)
     );
   end component PIPE_MEM_WB;
@@ -324,6 +322,7 @@ architecture rtl of RISC_V is
   signal RD_ADDR_OUT_IDEX    : std_logic_vector(4 downto 0);
   signal FUNC3_OUT_IDEX      : std_logic_vector(2 downto 0);
   signal BRANCH_OUT_IDEX     : std_logic;
+  signal JUMP_OUT_IDEX       : std_logic;
   signal WR_RFEN_OUT_IDEX    : std_logic;
   signal WR_RFMUX_OUT_IDEX   : std_logic;
   signal M_RD_EN_OUT_IDEX    : std_logic;
@@ -355,10 +354,10 @@ architecture rtl of RISC_V is
   signal ALU_IN2_IDEX        : std_logic_vector(31 downto 0);
   signal ALU_RES_IN_EXMEM    : std_logic_vector(31 downto 0);
   signal CODE_ALUCTRL_OUT    : std_logic_vector(5 downto 0);
-  signal OP_WB_IN_EXMEM  : std_logic_vector(4 downto 0);  
+  signal OP_WB_IN_EXMEM      : std_logic_vector(3 downto 0);  
   signal ALU_RES_OUT_EXMEM   : std_logic_vector(31 downto 0);
   signal RS2_VAL_OUT_EXMEM   : std_logic_vector(31 downto 0);
-  signal OP_WB_OUT_EXMEM : std_logic_vector(1 downto 0);
+  signal OP_WB_OUT_EXMEM     : std_logic_vector(3 downto 0);
   signal RD_ADDR_OUT_EXMEM   : std_logic_vector(4 downto 0);
   -- Data Memory Stage Signals
   signal ALU_RES_IN_MEMWB, ALU_RES_OUT_MEMWB : std_logic_vector(31 downto 0);
@@ -384,7 +383,7 @@ begin
                    port map(NEXT_PC, DIFF_PC, PC_DIR, PC_SOURCE);
 
   PC : REG generic map(32)
-           port map(PC_SOURCE, CLK, I_RST, Vdd, CURRENT_PC);
+           port map(PC_SOURCE, CLK, I_RST, NOT(STALL), CURRENT_PC);
 
   INSTR_ADDR <= CURRENT_PC;
 
@@ -420,10 +419,12 @@ begin
   PIPE_REG2 : PIPE_ID_EX  generic map(32)
                           port map(CLK, I_RST, FLUSH, STALL, BC_IN1, BC_IN2, IMM_GEN_OUT,
                                    INSTR_ID(19 downto 15), INSTR_ID(24 downto 20), INSTR_ID(11 downto 7), INSTR_ID(14 downto 12),
-                                   RF_EN, RF_MUX, BRANCH, M_RD_EN, M_WR, EX_ALUSRC, EX_ALUCTRL, EX_ALUEN,
-                                   WR_RFEN_OUT_IDEX, WR_RFMUX_OUT_IDEX, BRANCH_OUT_IDEX, M_RD_EN_OUT_IDEX, M_WR_OUT_IDEX, EX_ALUSRC_OUT_IDEX, EX_ALUCTRL_OUT_IDEX, EX_ALUEN_OUT_IDEX,
+                                   RF_EN, RF_MUX, BRANCH, JUMP, MEM_RD, MEM_WR, ALU_SRC, ALU_CTRL, ALU_CTRL_EN,
+                                   WR_RFEN_OUT_IDEX, WR_RFMUX_OUT_IDEX, BRANCH_OUT_IDEX, JUMP_OUT_IDEX, M_RD_EN_OUT_IDEX, M_WR_OUT_IDEX, EX_ALUSRC_OUT_IDEX, EX_ALUCTRL_OUT_IDEX, EX_ALUEN_OUT_IDEX,
                                    RS1_VAL_OUT_IDEX, RS2_VAL_OUT_IDEX, IMM_GEN_OUT_IDEX, RS1_ADDR_OUT_IDEX, RS2_ADDR_OUT_IDEX, RD_ADDR_OUT_IDEX, FUNC3_OUT_IDEX);
   ----------- Instruction execute stage -----------
+
+  PC_DIR <= BRANCH_OUT_IDEX AND JUMP_OUT_IDEX;
 
   MUX_ALU_IN2 : MUX2to1 generic map(32)
                         port map(RS2_VAL_OUT_IDEX, IMM_GEN_OUT_IDEX, EX_ALUSRC_OUT, ALU_IN2_IDEX);
@@ -435,15 +436,21 @@ begin
   ALU_CTRL_EXE : ALE_CTRL port map(EX_ALUEN_OUT_IDEX, EX_ALUCTRL_OUT_IDEX, FUNC3_OUT_IDEX, CODE_ALUCTRL_OUT);              
 
 
-  OP_WB_IN_EXMEM <= WR_RFEN_OUT_IDEX & WR_RFMUX_OUT_IDEX & BRANCH_OUT_IDEX & M_RD_EN_OUT_IDEX & M_WR_OUT_IDEX;
+  OP_WB_IN_EXMEM <= WR_RFEN_OUT_IDEX & WR_RFMUX_OUT_IDEX & M_RD_EN_OUT_IDEX & M_WR_OUT_IDEX;
 
   PIPE_REG3 : PIPE_EX_MEM generic map(32)
                           port map(CLK, I_RST, ALU_RES_IN_EXMEM, ALU_IN2_IDEX, OP_WB_IN_EXMEM, RD_ADDR_OUT_IDEX,
                           ALU_RES_OUT_EXMEM, RS2_VAL_OUT_EXMEM, OP_WB_OUT_EXMEM, RD_ADDR_OUT_EXMEM);
 
   ----------- Data Memory Stage -----------
+
+  WRITE_EN <= OP_WB_OUT_EXMEM(0);
+  READ_EN <= OP_WB_OUT_EXMEM(1);
+  DATA_ADDR <= ALU_RES_OUT_EXMEM;
+  DATA_OUT <= RS2_VAL_OUT_EXMEM;
+
   PIPE_REG4 : PIPE_MEM_WB generic map (32)
-                        port map (CLK, I_RST, ALU_RES_OUT_EXMEM, RS2_VAL_OUT_EXMEM, OP_WB_OUT_EXMEM(4 downto 3), RD_ADDR_OUT_EXMEM,
+                        port map (CLK, I_RST, ALU_RES_OUT_EXMEM, RS2_VAL_OUT_EXMEM, OP_WB_OUT_EXMEM(3 downto 2), RD_ADDR_OUT_EXMEM,
                         ALU_RES_OUT_MEMWB, MEM_RES_OUT_MEMWB, OP_WB_OUT_MEMWB, RD_ADDR_OUT_MEMWB);
 
   ----------- Write Back Stage ------------
