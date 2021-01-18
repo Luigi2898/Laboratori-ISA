@@ -70,12 +70,12 @@ architecture rtl of RISC_V is
       RSTN          : in  std_logic;
       ALU_RES_IN    : in  std_logic_vector(31 downto 0);
       RS2_VAL_IN    : in  std_logic_vector(31 downto 0); --from mux
-      OP_WB_MEM_IN  : in  std_logic_vector(4 downto 0); --MEM/WB ctrls (WB_RFEN_OUT & WB_RFMUX_OUT & BRANCH & M_RD_OUT & M_WR_OUT)
+      OP_WB_MEM_IN  : in  std_logic_vector(3 downto 0); --MEM/WB ctrls (WB_RFEN_OUT & WB_RFMUX_OUT & M_RD_OUT & M_WR_OUT)
       RD_ADDR_IN    : in  std_logic_vector(4 downto 0);
       ------------------------------------------------------------------ out
       ALU_RES_OUT   : out std_logic_vector(31 downto 0);
       RS2_VAL_OUT   : out std_logic_vector(31 downto 0);
-      OP_WB_MEM_OUT : out std_logic_vector(4 downto 0);
+      OP_WB_MEM_OUT : out std_logic_vector(3 downto 0);
       RD_ADDR_OUT   : out std_logic_vector(4 downto 0)
     );
   end component PIPE_EX_MEM;
@@ -245,6 +245,7 @@ architecture rtl of RISC_V is
       FUNC3_IN              : in std_logic_vector(2 downto 0);
       WR_RFEN_IN            : in std_logic;
       WR_RFMUX_IN           : in std_logic;
+      BRANCH_COMP_IN        : in std_logic;
       JUMP_IN               : in std_logic;
       M_RD_EN_IN            : in std_logic;
       M_WR_IN               : in std_logic;
@@ -254,6 +255,7 @@ architecture rtl of RISC_V is
       ------------------------------------------------------------------ out
       WR_RFEN_OUT           : out std_logic;
       WR_RFMUX_OUT          : out std_logic;
+      BRANCH_COMP_OUT       : out std_logic;
       JUMP_OUT              : out std_logic;
       M_RD_EN_OUT           : out std_logic;
       M_WR_OUT              : out std_logic;
