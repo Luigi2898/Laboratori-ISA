@@ -299,12 +299,14 @@ architecture rtl of RISC_V is
   -- Fetch stage signals
   signal PC_SOURCE    : std_logic_vector(31 downto 0);
   signal CURRENT_PC   : std_logic_vector(31 downto 0);
+  signal PC_ID        : std_logic_vector(31 downto 0);
   signal DIFF_PC      : std_logic_vector(31 downto 0);
   signal NEXT_PC      : std_logic_vector(31 downto 0);
   signal BEFOREJMP_PC : std_logic_vector(31 downto 0);
   signal SELECTED_SRC : std_logic_vector(31 downto 0);
   signal PC_DIR       : std_logic;
   -- Decode stage signals
+  signal INSTR_ID            : std_logic_vector(31 downto 0);
   signal RF_OUT1             : std_logic_vector(31 downto 0);
   signal RF_OUT2             : std_logic_vector(31 downto 0);
   signal RF_IN               : std_logic_vector(31 downto 0);
@@ -396,7 +398,7 @@ begin
   ----------- Instruction decoding stage -----------
 
   RF : REG_FILE generic map(32, 32)
-                port map(CLK, I_RST, INSTR_ID(24 downto 20), RF_OUT1, INSTR_ID(20 downto 16), RF_OUT2, RD_ADDR_OUT_MEMWB, RF_IN, RF_WR_EN);
+                port map(CLK, I_RST, INSTR_ID(24 downto 20), RF_OUT1, INSTR_ID(20 downto 16), RF_OUT2, RD_ADDR_OUT_MEMWB, RF_IN, OP_WB_OUT_MEMWB(3));
 
   JA : JMP_ADD port map(IMM_GEN_OUT, PC_ID, JMP_ADDR);
 
@@ -411,7 +413,7 @@ begin
                       port map(RFOUT_2, ALU_RES_IN_EXMEM, ALU_RES_OUT_EXMEM, RF_WRDIN_WB, FORWARD_B, BC_IN2);-- To b completed with other signals
 
   HDU_FU : HDU port map(INSTR_ID(19 downto 15), INSTR_ID(24 downto 20), RS1_ADDR_OUT_IDEX, RS2_ADDR_OUT_IDEX, RD_ADDR_OUT_IDEX, RD_ADDR_OUT_EXMEM, RD_ADDR_OUT_MEMWB,
-                        M_RD_EN_OUT_IDEX, OP_WB_OUT_MEMWB(1), OP_WB_OUT_EXMEM(4), WR_RFEN_OUT_IDEX, IMM_CODE, HDU_STALL, FORWARD_A. FORWARD_B);                    
+                        M_RD_EN_OUT_IDEX, OP_WB_OUT_MEMWB(1), OP_WB_OUT_EXMEM(3), WR_RFEN_OUT_IDEX, IMM_CODE, HDU_STALL, FORWARD_A, FORWARD_B);                    
 
   CONTROL_UNIT : CU port map(EXTERNAL_RSTN, INSTR_ID(6 downto 0), BPU_MISSPRED, BPU_PREDICTION,
                              HDU_STALL, ALU_SRC, ALU_CTR, ALU_CTRL_EN, MEM_RD,
@@ -457,7 +459,7 @@ begin
   ----------- Write Back Stage ------------
 
   WB_MUX : MUX_2to1 generic map (32)
-                    port map (ALU_RES_OUT_MEMWB, MEM_RES_OUT_MEMWB,WB_RFMUX_OUT,RF_WRDIN_WB);
+                    port map (ALU_RES_OUT_MEMWB, MEM_RES_OUT_MEMWB,OP_WB_OUT_MEMWB(2),RF_WRDIN_WB);
 
 
 
