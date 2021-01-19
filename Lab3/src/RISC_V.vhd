@@ -398,7 +398,7 @@ begin
   ----------- Instruction decoding stage -----------
 
   RF : REG_FILE generic map(32, 32)
-                port map(CLK, I_RST, INSTR_ID(24 downto 20), RF_OUT1, INSTR_ID(20 downto 16), RF_OUT2, RD_ADDR_OUT_MEMWB, RF_IN, OP_WB_OUT_MEMWB(3));
+                port map(CLK, I_RST, INSTR_ID(19 downto 15), RF_OUT1, INSTR_ID(24 downto 20), RF_OUT2, RD_ADDR_OUT_MEMWB, RF_WRDIN_WB, OP_WB_OUT_MEMWB(3));
 
   JA : JMP_ADD port map(IMM_GEN_OUT, PC_ID, JMP_ADDR);
 
