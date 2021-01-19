@@ -1,6 +1,7 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
+use IEEE.math_real.all;
 
 entity REG_FILE is
   generic (Nbit : integer := 32;
@@ -9,15 +10,15 @@ entity REG_FILE is
     CLK      : in  std_logic;
     RSTN     : in  std_logic;
 
-    RD1_ADDR : in  std_logic_vector (Nbit-1 downto 0);
+    RD1_ADDR : in  std_logic_vector (integer(ceil(log2(real(Nrow))))-1 downto 0);
     RD1_DOUT : out std_logic_vector (Nbit-1 downto 0);
     --RD1_EN   : in std_logic;
 
-    RD2_ADDR : in  std_logic_vector (Nbit-1 downto 0);
+    RD2_ADDR : in  std_logic_vector (integer(ceil(log2(real(Nrow))))-1 downto 0);
     RD2_DOUT : out std_logic_vector (Nbit-1 downto 0);
     --RD2_EN   : in std_logic;
     
-    WR1_ADDR : in  std_logic_vector (Nbit-1 downto 0);
+    WR1_ADDR : in  std_logic_vector (integer(ceil(log2(real(Nrow))))-1 downto 0);
     WR1_DIN  : in  std_logic_vector (Nbit-1 downto 0);
     WR1_EN   : in  std_logic
   );

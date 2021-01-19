@@ -467,7 +467,7 @@ begin
   ----------- Write Back Stage ------------
 
   WB_MUX : MUX_2to1 generic map (32)
-                    port map (ALU_RES_OUT_MEMWB, MEM_RES_OUT_MEMWB,OP_WB_OUT_MEMWB(1),RF_WRDIN_WB);
+                    port map (ALU_RES_OUT_MEMWB, MEM_RES_OUT_MEMWB,OP_WB_OUT_MEMWB(2),RF_WRDIN_WB);
 
 
 
