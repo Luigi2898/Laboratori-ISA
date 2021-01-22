@@ -344,6 +344,7 @@ architecture rtl of RISC_V is
   signal IMM_CODE       : std_logic_vector(2 downto 0);
   signal FLUSH          : std_logic;
   signal STALL          : std_logic;
+  signal NSTALL         : std_logic;  
   signal RF_WR_EN       : std_logic;
   signal BRANCH         : std_logic;
   signal BPU_MISSPRED   : std_logic;
@@ -392,8 +393,9 @@ begin
   PC_MUX : MUX_2to1 generic map(32)
                    port map(NEXT_PC, DIFF_PC, PC_DIR, PC_SOURCE);
 
+  NSTALL <= NOT(STALL);
   PC : REG generic map(32)
-           port map(PC_SOURCE, CLK, I_RST, NOT(STALL), CURRENT_PC);
+           port map(PC_SOURCE, CLK, I_RST, NSTALL, CURRENT_PC);
 
   INSTR_ADDR <= CURRENT_PC;
 

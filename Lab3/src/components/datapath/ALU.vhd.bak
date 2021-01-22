@@ -53,17 +53,8 @@ begin
                                       DATA1_IN xor DATA2_IN                       when XOR_OP,
                                       (others => '-')                             when others;
 
-  --with SUM_OUT select ZF_OUT      <= '1' when (others => '0'),
-    --                                 '0' when others;
-
-  ZF : process( SUM_OUT )
-  begin
-    if SUM_OUT = std_logic_vector(to_signed(0,N)) then
-      ZF_OUT <= '1';
-    else
-      ZF_OUT <= '0';
-    end if ;
-  end process ; -- ZF
+  with SUM_OUT select ZF_OUT      <= '1' when "0",
+                                     '0' when others;
 
   NF_OUT  <= SUM_OUT(31);
 

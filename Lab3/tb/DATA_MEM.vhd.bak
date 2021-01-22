@@ -37,16 +37,16 @@ begin
         file_open(FILE_TO_READ,filename,READ_MODE);
         while (not endfile(FILE_TO_READ)) loop
               readline(FILE_TO_READ,FILE_LINE);
-              read(FILE_LINE,INSTR);
+              hread(FILE_LINE,INSTR);
 			  MEM(ADDR_VAR) <= INSTR;
 			  ADDR_VAR := ADDR_VAR+1;
               end loop;    
 		elsif (CLK'EVENT AND CLK = '1') then			
 			    if WR_EN='1' then
-				   MEM(to_integer(unsigned(ADDR))*4 - 268500992) <= DATA_IN;
+				   MEM(to_integer(unsigned(ADDR - 64528))) <= DATA_IN;
 				end if;
 				if RD_EN='1' then
-				   DATA_OUT <= MEM(to_integer(unsigned(ADDR))*4 - 268500992);	
+				   DATA_OUT <= MEM(to_integer(unsigned(ADDR - 64528)));	
 				end if;   
 		end if;
 	end process file_proc;

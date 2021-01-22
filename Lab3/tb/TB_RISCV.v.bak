@@ -42,7 +42,7 @@ module TB_RISCV ();
 		.INSTR_ADDR(INSTR_ADDR),
 		.INSTR(INSTR),		
 		.CLK(CLK),
-		.EXTERNAL_RSTN(RSTN)
+		.EXTERNAL_RST(RSTN)
 	);
 	
 endmodule

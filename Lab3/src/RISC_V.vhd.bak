@@ -344,6 +344,7 @@ architecture rtl of RISC_V is
   signal IMM_CODE       : std_logic_vector(2 downto 0);
   signal FLUSH          : std_logic;
   signal STALL          : std_logic;
+  signal NSTALL         : std_logic;  
   signal RF_WR_EN       : std_logic;
   signal BRANCH         : std_logic;
   signal BPU_MISSPRED   : std_logic;
@@ -392,8 +393,9 @@ begin
   PC_MUX : MUX_2to1 generic map(32)
                    port map(NEXT_PC, DIFF_PC, PC_DIR, PC_SOURCE);
 
+  NSTALL <= NOT(STALL)
   PC : REG generic map(32)
-           port map(PC_SOURCE, CLK, I_RST, NOT(STALL), CURRENT_PC);
+           port map(PC_SOURCE, CLK, I_RST, NSTALL, CURRENT_PC);
 
   INSTR_ADDR <= CURRENT_PC;
 
@@ -461,13 +463,13 @@ begin
   DATA_ADDR <= ALU_RES_OUT_EXMEM;
   DATA_OUT <= RS2_VAL_OUT_EXMEM;
 
-  PIPE_REG4 : PIPE_MEM_WB port map (CLK, I_RST, ALU_RES_OUT_EXMEM, RS2_VAL_OUT_EXMEM, OP_WB_OUT_EXMEM(3 downto 2), RD_ADDR_OUT_EXMEM,
+  PIPE_REG4 : PIPE_MEM_WB port map (CLK, I_RST, ALU_RES_OUT_EXMEM, DATA_IN, OP_WB_OUT_EXMEM(3 downto 2), RD_ADDR_OUT_EXMEM,
                           ALU_RES_OUT_MEMWB, MEM_RES_OUT_MEMWB, OP_WB_OUT_MEMWB, RD_ADDR_OUT_MEMWB);
 
   ----------- Write Back Stage ------------
 
   WB_MUX : MUX_2to1 generic map (32)
-                    port map (ALU_RES_OUT_MEMWB, MEM_RES_OUT_MEMWB,OP_WB_OUT_MEMWB(2),RF_WRDIN_WB);
+                    port map (ALU_RES_OUT_MEMWB, MEM_RES_OUT_MEMWB,OP_WB_OUT_MEMWB(1),RF_WRDIN_WB);
 
 
 

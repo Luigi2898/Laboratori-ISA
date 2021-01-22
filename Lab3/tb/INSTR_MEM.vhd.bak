@@ -36,6 +36,6 @@ architecture behavioural of instr_mem is
 
 begin
 
-    INSTR <= ROM(to_integer(unsigned(INSTR_ADDR) - to_unsigned(4194304,ADDR_N )));
+    INSTR <= ROM(to_integer(unsigned(INSTR_ADDR))*4 - 4194304);
     
 end architecture;
