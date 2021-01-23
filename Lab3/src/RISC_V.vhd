@@ -7,13 +7,13 @@ entity RISC_V is
   port (
 	-- Data memory interfaces
   DATA_IN      : in  std_logic_vector(31 downto 0);
-	DATA_ADDR    : out std_logic_vector(31 downto 0);
+	DATA_ADDR    : out std_logic_vector(31 downto 0):= std_logic_vector(to_unsigned(268500992, 32));
   DATA_OUT     : out std_logic_vector(31 downto 0);
   WRITE_EN     : out std_logic;
   READ_EN      : out std_logic;
 	-- Instruction memory interfaces
 	INSTR_ADDR   : out std_logic_vector(31 downto 0);
-  INSTR        : in  std_logic_vector(31 downto 0);
+  INSTR        : in  std_logic_vector(31 downto 0) := std_logic_vector(to_unsigned(4194304, 32));
   --
   CLK          : in  std_logic;
   EXTERNAL_RSTN : in  std_logic

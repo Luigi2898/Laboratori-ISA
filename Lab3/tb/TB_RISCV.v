@@ -3,11 +3,13 @@ module TB_RISCV ();
 	wire [31:0] INSTR_ADDR, DATA_ADDR, INSTR, DATA_OUT, DATA_IN;
 	wire MEM_WR_EN, MEM_RD_EN;
 	wire CLK, RSTN;
-	
+	//assign INSTR_ADDR = 4194304;
+	//assign DATA_ADDR = 268500992;
 	INSTR_MEM  
-	  #(.INITFROMFILE("../code.txt"),
+	  #(.INITFILE("D:/PoliTo/Magistrale/II anno/Integrated system architecture/Lab 3/code.txt"),
 		.ADDR_N(32),
-		.DATA_WIDTH(32)	
+		.DATA_WIDTH(32),
+		.NEL(22)
 		)
     IMEM_instance(
         .INSTR_ADDR(INSTR_ADDR[31:0]),
@@ -16,7 +18,8 @@ module TB_RISCV ();
 	
 	DATA_MEM
 	  #(.word_size(32),
-		.filename("../data.txt")
+		.filename("D:/PoliTo/Magistrale/II anno/Integrated system architecture/Lab 3/data.txt"),
+		.NEL(1024)
 		)
 	 MEM_instance(
         .CLK(CLK),
