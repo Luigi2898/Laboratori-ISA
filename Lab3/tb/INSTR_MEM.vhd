@@ -10,7 +10,7 @@ entity instr_mem is
         DATA_WIDTH : integer := 32;
         NEL       : integer := 12);
     port (
-        INSTR_ADDR : in std_logic_vector(ADDR_N - 1 downto 0) := std_logic_vector(to_unsigned(4194304, ADDR_N));
+        INSTR_ADDR : in std_logic_vector(ADDR_N - 1 downto 0);
         INSTR      : out std_logic_vector(DATA_WIDTH - 1 downto 0)
     );
 end entity;
@@ -40,10 +40,8 @@ begin
     INADD : process( INSTR_ADDR )
     begin
         if not(INSTR_ADDR = (INSTR_ADDR'length - 1 downto 0 => 'U') or INSTR_ADDR = (INSTR_ADDR'length - 1 downto 0 => 'X')) then
-            INSTR <= ROM((to_integer(unsigned(INSTR_ADDR)) - 4194304)/4);
-        else 
             INSTR <= ROM(to_integer(unsigned(INSTR_ADDR)));
-        end if ;
+        end if;
     end process ; -- INADD
 
     

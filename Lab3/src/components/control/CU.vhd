@@ -35,7 +35,9 @@ entity CU is
 	  -- Jump
     JUMP           : out std_logic;
     -- Datapath reset
-    DP_RST         : out std_logic
+    DP_RST         : out std_logic;
+    -- AUIPC handling
+    AUIPC_MUX_OUT  : out std_logic
   );
 end entity;
 
@@ -112,6 +114,9 @@ begin
   with OPCODE select PIPE_FLUSH     <= not(BPU_MISSPRED) when BEQ,
                                        '0'               when others;
   
+  with OPCODE select AUIPC_MUX_OUT  <= '1' when AUIPC,
+                                       '0' when others;
+
   JUMP       <= BPU_PREDICTION;
   PIPE_STALL <= HDU_STALL;
   DP_RST     <= RST;

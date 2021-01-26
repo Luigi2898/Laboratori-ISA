@@ -12,7 +12,7 @@ entity DATA_MEM is
         RSTN		: in std_logic;
         DATA_IN		: in std_logic_vector(word_size-1 downto 0);
 		DATA_OUT	: out std_logic_vector(word_size-1 downto 0);
-		ADDR		: in std_logic_vector(word_size-1 downto 0):= std_logic_vector(to_unsigned(268500992, word_size));
+		ADDR		: in std_logic_vector(word_size-1 downto 0);
         WR_EN		: in std_logic;	
         RD_EN       : in std_logic		
 	);
@@ -49,10 +49,10 @@ begin
     begin  
 	if (CLK'EVENT AND CLK = '1') then			
 	if WR_EN ='1' then
-	   MEM((to_integer(unsigned(ADDR)) - 268500992)/4) <= DATA_IN;
+	   MEM(to_integer(unsigned(ADDR))) <= DATA_IN;
 	end if;
 	if RD_EN='1' then
-	   DATA_OUT <= MEM((to_integer(unsigned(ADDR)) - 268500992)/4);	
+	   DATA_OUT <= MEM(to_integer(unsigned(ADDR)));	
 	end if;   
 end if;
 	end process file_proc;

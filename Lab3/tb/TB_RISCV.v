@@ -26,7 +26,7 @@ module TB_RISCV ();
         .RSTN(RSTN),
 		.DATA_IN(DATA_IN),
 		.DATA_OUT(DATA_OUT),
-		.ADDR(DATA_ADDR[31:0]),
+		.ADDR((DATA_ADDR[31:0] - 8192)/4),
 		.WR_EN(MEM_WR_EN),
         .RD_EN(MEM_RD_EN)
 	);
