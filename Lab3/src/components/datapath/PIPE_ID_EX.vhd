@@ -8,7 +8,8 @@ entity PIPE_ID_EX is
     CLK                   : in std_logic;
     RSTN                  : in std_logic;
     FLUSH                 : in std_logic;
-    STALL                 : in std_logic; 
+    STALL                 : in std_logic;
+    LUI_IN                : in std_logic;
     RS1_VAL_IN            : in std_logic_vector(31 downto 0);
     RS2_VAL_IN            : in std_logic_vector(31 downto 0);
     IMM_GEN_IN            : in std_logic_vector(31 downto 0);
@@ -41,7 +42,8 @@ entity PIPE_ID_EX is
     RS1_ADDR_OUT          : out std_logic_vector(4 downto 0);
     RS2_ADDR_OUT          : out std_logic_vector(4 downto 0);
     RD_ADDR_OUT           : out std_logic_vector(4 downto 0);
-    FUNC3_OUT             : out std_logic_vector(2 downto 0)    
+    FUNC3_OUT             : out std_logic_vector(2 downto 0);
+    LUI_OUT               : out std_logic    
   );
 end entity PIPE_ID_EX;
 
@@ -64,6 +66,7 @@ signal RS1_ADDR   : std_logic_vector(4 downto 0);
 signal RS2_ADDR   : std_logic_vector(4  downto 0);
 signal RD_ADDR    : std_logic_vector(4  downto 0);	
 signal FUNC3      : std_logic_vector(2 downto 0);
+signal LUI        : std_logic;
 
 begin
 
@@ -80,6 +83,7 @@ begin
         EX_ALUSRC  <= '0';
         EX_ALUCTRL <= '0';
         EX_ALUEN   <= '0';
+        LUI        <= '0';
         RS1        <= (others => '0');
         RS2        <= (others => '0');
         IMM        <= (others => '0');
@@ -102,6 +106,7 @@ begin
         EX_ALUSRC  <= EX_ALUSRC_IN;
         EX_ALUCTRL <= EX_ALUCTRL_IN;
         EX_ALUEN   <= EX_ALUEN_IN;
+        LUI      <= '0';
         RS1      <= (others => '0');
         RS2      <= (others => '0');
         IMM      <= (others => '0');
@@ -111,7 +116,7 @@ begin
         FUNC3    <= (others => '0');
         
         elsif(FLUSH = '0' and STALL = '1') then --stall
-          
+        LUI        <= '0';
         WR_RFEN    <= '0';        
         WR_RFMUX   <= '0';
         JUMP       <= '0';
@@ -139,7 +144,7 @@ begin
         EX_ALUCTRL <= EX_ALUCTRL_IN;
         EX_ALUEN   <= EX_ALUEN_IN;
         FUNC3      <= FUNC3_IN;
-        
+        LUI        <= LUI_IN;
         end if;
 
     end if;
@@ -162,6 +167,6 @@ M_WR_OUT         <= M_WR;
 EX_ALUSRC_OUT    <= EX_ALUSRC;
 EX_ALUCTRL_OUT   <= EX_ALUCTRL;
 EX_ALUEN_OUT     <= EX_ALUEN;
-
+LUI_OUT          <= LUI;
 
 end architecture beh;

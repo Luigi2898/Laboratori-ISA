@@ -37,7 +37,9 @@ entity CU is
     -- Datapath reset
     DP_RST         : out std_logic;
     -- AUIPC handling
-    AUIPC_MUX_OUT  : out std_logic
+    AUIPC_MUX_OUT  : out std_logic;
+    -- LUI handling
+    LUI_MUX_OUT    : out std_logic
   );
 end entity;
 
@@ -116,6 +118,9 @@ begin
   
   with OPCODE select AUIPC_MUX_OUT  <= '1' when AUIPC,
                                        '0' when others;
+
+  with OPCODE select LUI_MUX_OUT <= '1' when LUI,
+                                    '0' when others;
 
   JUMP       <= BPU_PREDICTION;
   PIPE_STALL <= HDU_STALL;
