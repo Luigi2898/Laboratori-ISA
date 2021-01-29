@@ -15,6 +15,7 @@ architecture IMM_ARCH of IMM_GEN is
 
 --immediate types    
 signal IMM_ITYPE : std_logic_vector (31 downto 0);
+signal IMM_ITYPE_SRAI : std_logic_vector (31 downto 0);
 signal IMM_STYPE : std_logic_vector (31 downto 0);
 signal IMM_BTYPE : std_logic_vector (31 downto 0);
 signal IMM_UTYPE : std_logic_vector (31 downto 0);
@@ -29,14 +30,44 @@ constant CTRL_IN4_MUX : std_logic_vector(2 downto 0) := "100";
 
 begin
 
-IMM_ITYPE <= (31 downto 12 => IR_IN(31))  & IR_IN(31 downto 20);    
-IMM_STYPE <= ((31 downto 12 => IR_IN(31)) & IR_IN(31 downto 25)  & IR_IN(11 downto 7));
-IMM_BTYPE <= ((31 downto 12 => IR_IN(31)) & IR_IN(7) & IR_IN(30 downto 25) & IR_IN(11 downto 8) & '0');  
-IMM_UTYPE <= IR_IN(31 downto 12)  & (11 downto 0 => '0');  
-IMM_JTYPE <= (31 downto 20 => IR_IN(31)) & IR_IN(19 downto 12) & IR_IN(20) & IR_IN(30 downto 21) & '0';    
+--IMM_ITYPE <= (31 downto 12 => IR_IN(31))  & IR_IN(30 downto 20);    
+--IMM_STYPE <= ((31 downto 12 => IR_IN(31)) & IR_IN(31 downto 25)  & IR_IN(11 downto 7));
+--IMM_BTYPE <= ((31 downto 12 => IR_IN(31)) & IR_IN(7) & IR_IN(30 downto 25) & IR_IN(11 downto 8) & '0');  
+--IMM_UTYPE <= IR_IN(31 downto 12)  & (11 downto 0 => '0');  
+--IMM_JTYPE <= (31 downto 20 => IR_IN(31)) & IR_IN(19 downto 12) & IR_IN(20) & IR_IN(30 downto 21) & '0';    
 
+immediate_generation_process: process(IR_IN)
+  variable imm_Itype_var, imm_Stype_var, imm_Itype_srai_var, imm_Btype_var, imm_Utype_var, imm_Jtype_var : std_logic_vector (31 downto 0);
+begin
 
+  imm_Itype_var := (others => IR_IN(31));
+  imm_Stype_var := (others => IR_IN(31));
+  imm_Btype_var := (others => IR_IN(31));
+  imm_Utype_var := (others => '0');
+  imm_Jtype_var := (others => IR_IN(31));
+  imm_Itype_srai_var := (others => IR_IN(31));
+
+  imm_Itype_var(10 downto 0) := IR_IN(30 downto 20);
+  imm_Stype_var(10 downto 0) := IR_IN(30 downto 25) & IR_IN(11 downto 8) & IR_IN(7);
+  imm_Btype_var(11 downto 0) := IR_IN(7) & IR_IN(30 downto 25) & IR_IN(11 downto 8) & '0';
+  imm_Utype_var(31 downto 12) := IR_IN(31) & IR_IN(30 downto 20) & IR_IN(19 downto 12);
+  imm_Jtype_var(19 downto 0) := IR_IN(19 downto 12) & IR_IN(20) & IR_IN(30 downto 25) & IR_IN(24 downto 21) & '0';
+  imm_Itype_srai_var(4 downto 0) := IR_IN(24 downto 20);
+
+  if (IR_IN(14 downto 12) = "101") then -- SRAI
+    IMM_ITYPE <= imm_Itype_srai_var;
+  else
+    IMM_ITYPE <= imm_Itype_var;
+  end if;
+
+  IMM_STYPE <= imm_Stype_var;
+  IMM_BTYPE <= imm_Btype_var;
+  IMM_UTYPE <= imm_Utype_var;
+  IMM_JTYPE <= imm_Jtype_var;
   
+end process immediate_generation_process;
+
+
 with IMM_CODE_IN select 
      IMM_GEN     <= IMM_ITYPE when CTRL_IN0_MUX,
                     IMM_STYPE when CTRL_IN1_MUX,
