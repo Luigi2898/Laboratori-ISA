@@ -29,6 +29,7 @@ architecture arch of ALU is
   signal SUM1_IN     : std_logic_vector(N - 1 downto 0);
   signal SUM2_IN     : std_logic_vector(N - 1 downto 0);
   signal SUM_OUT     : std_logic_vector(N - 1 downto 0);
+  signal SHIFTED     : std_logic_vector(N - 1 downto 0);
 
 begin
 
@@ -46,7 +47,7 @@ begin
   SUM_OUT <= std_logic_vector(signed(SUM1_IN) + signed(SUM2_IN));
 
   with OPCODE_IN select RESULT_OUT <= SUM_OUT                                     when SUM_OP,
-                                      INTERNAL_SH(to_integer(unsigned(DATA2_IN))) when SHR_OP,
+                                      SHIFTED                                     when SHR_OP,
                                       (30 downto 0 => '0') & SUM_OUT(0)           when LT_OP,
                                       SUM_OUT                                     when EQ_OP,
                                       DATA1_IN and DATA2_IN                       when AND_OP,
@@ -55,6 +56,15 @@ begin
 
   --with SUM_OUT select ZF_OUT      <= '1' when (others => '0'),
     --                                 '0' when others;
+
+  shift : process( OPCODE_IN )
+  begin
+    if OPCODE_IN = SHR_OP then
+      SHIFTED <= INTERNAL_SH(to_integer(unsigned(DATA2_IN)));
+    else
+      SHIFTED <= (others => '0');
+      end if ;
+  end process ; -- shift
 
   ZF : process( SUM_OUT )
   begin

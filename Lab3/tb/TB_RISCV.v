@@ -6,7 +6,7 @@ module TB_RISCV ();
 	//assign INSTR_ADDR = 4194304;
 	//assign DATA_ADDR = 268500992;
 	INSTR_MEM  
-	  #(.INITFILE("D:/PoliTo/Magistrale/II anno/Integrated system architecture/Lab 3/code/alu_store.txt"),
+	  #(.INITFILE("D:/PoliTo/Magistrale/II anno/Integrated system architecture/Lab 3/code/beqjal.txt"),
 		.ADDR_N(32),
 		.DATA_WIDTH(32),
 		.NEL(22)
