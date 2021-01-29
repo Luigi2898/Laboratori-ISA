@@ -59,6 +59,7 @@ begin
   with OPCODE select EX_ALUSRC_OUT  <= '0' when ARITH,
                                        '1' when IMM,
                                        '1' when BEQ,
+                                       '1' when AUIPC,
                                        '0' when others;
 
   with OPCODE select EX_ALUCTRL_OUT <= '0' when ARITH,

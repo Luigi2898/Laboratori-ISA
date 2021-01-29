@@ -419,10 +419,10 @@ begin
                    port map (IMM_CODE, BC_IN1, BC_IN2, BRANCH);
 
   BC_MUX_A : MUX_4to1 generic map(32)
-                      port map(RF_OUT1, ALU_RES_IN_EXMEM, ALU_RES_OUT_EXMEM, RF_WRDIN_WB, FORWARD_A, BC_IN1);-- To b completed with other signals
+                      port map(RF_OUT1, LUI_ALU, ALU_RES_OUT_EXMEM, RF_WRDIN_WB, FORWARD_A, BC_IN1);-- To b completed with other signals
   
   BC_MUX_B : MUX_4to1 generic map(32)
-                      port map(RF_OUT2, ALU_RES_IN_EXMEM, ALU_RES_OUT_EXMEM, RF_WRDIN_WB, FORWARD_B, BC_IN2);-- To b completed with other signals
+                      port map(RF_OUT2, LUI_ALU, ALU_RES_OUT_EXMEM, RF_WRDIN_WB, FORWARD_B, BC_IN2);-- To b completed with other signals
 
 
                       
