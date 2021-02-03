@@ -14,6 +14,16 @@ architecture arch of JMP_ADD is
 
 begin
 
-  JMP_ADDR <= std_logic_vector(unsigned(PC_IF_ID) + unsigned(IMM_GEN_IN));
+  ADDITION : process( IMM_GEN_IN, PC_IF_ID )
+  begin
+    if to_integer(signed(IMM_GEN_IN)) < 0 then
+      JMP_ADDR <= std_logic_vector(unsigned(PC_IF_ID) - to_unsigned(to_integer(unsigned(not(IMM_GEN_IN))) - 1, 32));
+    else
+    JMP_ADDR <= std_logic_vector(unsigned(PC_IF_ID) + unsigned(IMM_GEN_IN));
+    end if ;
+
+  end process ; -- ADDITION
+
+  
 
 end architecture;

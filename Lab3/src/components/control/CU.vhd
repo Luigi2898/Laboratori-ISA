@@ -12,7 +12,9 @@ entity CU is
 	  BPU_MISSPRED   : in  std_logic;
 	  BPU_PREDICTION : in  std_logic;
 	  -- From HDU
-	  HDU_STALL      : in  std_logic;
+    HDU_STALL      : in  std_logic;
+    -- From BC
+    BRANCH_OUTCOME : in std_logic;
 	  -- To ALU input MUX
 	  EX_ALUSRC_OUT  : out std_logic; -- 1 immediate 0 non-immediate
 	  -- To ALU_CTRL
@@ -32,14 +34,14 @@ entity CU is
 	  PIPE_FLUSH     : out std_logic; -- Send to pc the right address and resets pipe
 	  -- Stall the pipe
 	  PIPE_STALL     : out std_logic;
-	  -- Jump
-    JUMP           : out std_logic;
     -- Datapath reset
     DP_RST         : out std_logic;
     -- AUIPC handling
     AUIPC_MUX_OUT  : out std_logic;
     -- LUI handling
-    LUI_MUX_OUT    : out std_logic
+    LUI_MUX_OUT    : out std_logic;
+    -- PC source selector
+    PC_SEL         : out std_logic_vector(1 downto 0)
   );
 end entity;
 
@@ -53,6 +55,9 @@ architecture arch of CU is
   constant LW    : std_logic_vector(6 downto 0) := "0000011";
   constant JAL   : std_logic_vector(6 downto 0) := "1101111";                   -- TO B SENT TO IMM 100
   constant SW    : std_logic_vector(6 downto 0) := "0100011";
+
+  signal JMP    : std_logic;
+  signal PC_DEC : std_logic_vector(3 downto 0);
 
 begin
 
@@ -122,7 +127,7 @@ begin
                                        '1' when LW,
                                        '0' when others;
 
-  PIPE_FLUSH <= BPU_MISSPRED;
+  PIPE_FLUSH <= BPU_MISSPRED and not(BRANCH_OUTCOME);
   
   with OPCODE select AUIPC_MUX_OUT  <= '1' when AUIPC,
                                        '0' when others;
@@ -130,8 +135,30 @@ begin
   with OPCODE select LUI_MUX_OUT <= '1' when LUI,
                                     '0' when others;
 
-  JUMP       <= BPU_PREDICTION;
+  with OPCODE select JMP <= '1' when JAL,
+                            '0' when others;
+
   PIPE_STALL <= HDU_STALL;
   DP_RST     <= RST;
+  PC_DEC     <= JMP & BPU_PREDICTION & BPU_MISSPRED & BRANCH_OUTCOME;
+
+  with PC_DEC select PC_SEL <= "00" when "0000",
+                               "00" when "0001",
+                               "01" when "0010", -- FLUSH
+                               "11" when "0011",
+                               "10" when "0100",
+                               "10" when "0101",
+                               "01" when "0110", -- FLUSH
+                               "11" when "0111",
+                               "01" when "1000",
+                               "01" when "1001",
+                               "01" when "1010", -- FLUSH
+                               "11" when "1011",
+                               "01" when "1100",
+                               "01" when "1101",
+                               "01" when "1110", -- FLUSH
+                               "11" when "1111",
+                               "00" when others;
+
 
 end architecture;
