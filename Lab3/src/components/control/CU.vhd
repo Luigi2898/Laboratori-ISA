@@ -12,8 +12,7 @@ entity CU is
 	  BPU_MISSPRED   : in  std_logic;
 	  BPU_PREDICTION : in  std_logic;
 	  -- From HDU
-	  HDU_STALL      : in  std_logic;unsigned
-    HDU_FORWARD    : in  std_logic_vector(3 downto 0);
+	  HDU_STALL      : in  std_logic;
 	  -- To ALU input MUX
 	  EX_ALUSRC_OUT  : out std_logic; -- 1 immediate 0 non-immediate
 	  -- To ALU_CTRL
@@ -35,11 +34,12 @@ entity CU is
 	  PIPE_STALL     : out std_logic;
 	  -- Jump
     JUMP           : out std_logic;
-    -- Forward
-    FORWARD_B      : out std_logic;
-    FORWARD_A      : out std_logic;
     -- Datapath reset
-    DP_RST         : out std_logic
+    DP_RST         : out std_logic;
+    -- AUIPC handling
+    AUIPC_MUX_OUT  : out std_logic;
+    -- LUI handling
+    LUI_MUX_OUT    : out std_logic
   );
 end entity;
 
@@ -59,16 +59,23 @@ begin
   with OPCODE select EX_ALUSRC_OUT  <= '0' when ARITH,
                                        '1' when IMM,
                                        '1' when BEQ,
+                                       '1' when AUIPC,
+                                       '1' when SW,
+                                       '1' when LW,
                                        '0' when others;
 
   with OPCODE select EX_ALUCTRL_OUT <= '0' when ARITH,
                                        '0' when IMM,
                                        '1' when BEQ,
+                                       '1' when SW,
+                                       '1' when LW,
                                        '0' when others;
 
   with OPCODE select EX_ALUEN_OUT   <= '1' when ARITH,
                                        '1' when IMM,
                                        '1' when BEQ,
+                                       '1' when SW,
+                                       '1' when LW,
                                        '0' when others;
 
   with OPCODE select M_RD_OUT       <= '1' when LW,
@@ -92,7 +99,7 @@ begin
                                        '0' when IMM,
                                        '0' when AUIPC,
                                        '0' when LUI,
-                                       '0' when LW,
+                                       '1' when LW,
                                        '0' when JAL,
                                        '1' when SW,
                                        '0' when others;
@@ -111,25 +118,21 @@ begin
                                        '1' when AUIPC,
                                        '1' when LUI,
                                        '1' when JAL,
+                                       '1' when SW,
+                                       '1' when LW,
                                        '0' when others;
 
   with OPCODE select PIPE_FLUSH     <= not(BPU_MISSPRED) when BEQ,
                                        '0'               when others;
   
+  with OPCODE select AUIPC_MUX_OUT  <= '1' when AUIPC,
+                                       '0' when others;
+
+  with OPCODE select LUI_MUX_OUT <= '1' when LUI,
+                                    '0' when others;
+
   JUMP       <= BPU_PREDICTION;
   PIPE_STALL <= HDU_STALL;
   DP_RST     <= RST;
-
-  with HDU_FORWARD select FORWARD_A <= "01" when "0001",
-		                          				 "01" when "1001",
-                                       "10" when "0100",
-                                       "10" when "0110",
-                                       "00" when others;
-                                       BPU_PREDICTION
-  with HDU_FORWARD select FORWARD_B <= "01" when "0010",
-                                       "10" when "1000",
-                                       "10" when "1001",
-                                       "01" when "0110",
-                                       "00" when others;    
 
 end architecture;
