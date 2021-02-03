@@ -60,16 +60,22 @@ begin
                                        '1' when IMM,
                                        '1' when BEQ,
                                        '1' when AUIPC,
+                                       '1' when SW,
+                                       '1' when LW,
                                        '0' when others;
 
   with OPCODE select EX_ALUCTRL_OUT <= '0' when ARITH,
                                        '0' when IMM,
                                        '1' when BEQ,
+                                       '1' when SW,
+                                       '1' when LW,
                                        '0' when others;
 
   with OPCODE select EX_ALUEN_OUT   <= '1' when ARITH,
                                        '1' when IMM,
                                        '1' when BEQ,
+                                       '1' when SW,
+                                       '1' when LW,
                                        '0' when others;
 
   with OPCODE select M_RD_OUT       <= '1' when LW,
@@ -93,7 +99,7 @@ begin
                                        '0' when IMM,
                                        '0' when AUIPC,
                                        '0' when LUI,
-                                       '0' when LW,
+                                       '1' when LW,
                                        '0' when JAL,
                                        '1' when SW,
                                        '0' when others;
@@ -112,6 +118,8 @@ begin
                                        '1' when AUIPC,
                                        '1' when LUI,
                                        '1' when JAL,
+                                       '1' when SW,
+                                       '1' when LW,
                                        '0' when others;
 
   with OPCODE select PIPE_FLUSH     <= not(BPU_MISSPRED) when BEQ,

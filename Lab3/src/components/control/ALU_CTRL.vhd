@@ -34,6 +34,7 @@ begin
                               AND_OP when "01110",
                               XOR_OP when "01000",
                               SUM_OP when "0---1",
+                              SUM_OP when "10100",
                               SUM_OP when others;
 
 end architecture;
