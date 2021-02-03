@@ -86,11 +86,13 @@ architecture rtl of RISC_V is
     port(
       CLK                   : in  std_logic;
       RSTN                  : in  std_logic;
-      RF_WRDIN_IN           : in  std_logic_vector(31 downto 0);
+      ALU_RES_IN            : in  std_logic_vector(31 downto 0);
+      MEM_RES_IN            : in  std_logic_vector(31 downto 0); 
       OP_WB_IN              : in  std_logic_vector(1 downto 0); --WB ctrls (WB_RFEN_OUT & WB_RFMUX_OUT)
       RD_ADDR_IN            : in  std_logic_vector(4 downto 0);
       ------------------------------------------------------------------ out
-      RF_WRDIN_OUT          : out  std_logic_vector(31 downto 0);
+      ALU_RES_OUT           : out std_logic_vector(31 downto 0);
+      MEM_RES_OUT           : out std_logic_vector(31 downto 0);
       OP_WB_OUT             : out std_logic_vector(1 downto 0);
       RD_ADDR_OUT           : out std_logic_vector(4 downto 0)
     );
@@ -190,11 +192,7 @@ architecture rtl of RISC_V is
       -- Jump
       JUMP           : out std_logic;
       -- Datapath reset
-      DP_RST         : out std_logic;
-      -- AUIPC handling
-      AUIPC_MUX_OUT  : out std_logic;
-      -- LUI handling
-      LUI_MUX_OUT    : out std_logic
+      DP_RST         : out std_logic
     );
   end component;
 
@@ -238,8 +236,7 @@ architecture rtl of RISC_V is
       CLK                   : in std_logic;
       RSTN                  : in std_logic;
       FLUSH                 : in std_logic;
-      STALL                 : in std_logic;
-      LUI_IN                : in std_logic;
+      STALL                 : in std_logic; 
       RS1_VAL_IN            : in std_logic_vector(31 downto 0);
       RS2_VAL_IN            : in std_logic_vector(31 downto 0);
       IMM_GEN_IN            : in std_logic_vector(31 downto 0);
@@ -272,8 +269,7 @@ architecture rtl of RISC_V is
       RS1_ADDR_OUT          : out std_logic_vector(4 downto 0);
       RS2_ADDR_OUT          : out std_logic_vector(4 downto 0);
       RD_ADDR_OUT           : out std_logic_vector(4 downto 0);
-      FUNC3_OUT             : out std_logic_vector(2 downto 0);
-      LUI_OUT               : out std_logic    
+      FUNC3_OUT             : out std_logic_vector(2 downto 0)    
     );
   end component PIPE_ID_EX;
 
@@ -294,7 +290,6 @@ architecture rtl of RISC_V is
       EN_IN    : in  std_logic;
       CTRL_IN  : in  std_logic;
       FUNC_IN  : in  std_logic_vector(2 downto 0);
-      AUIPC_MUX_OUT  : in std_logic;
       CODE_OUT : out std_logic_vector(5 downto 0)
     );
   end component;
@@ -308,6 +303,7 @@ architecture rtl of RISC_V is
   signal DIFF_PC      : std_logic_vector(31 downto 0);
   signal DIFF_PC_U    : unsigned(31 downto 0);
   signal NEXT_PC      : std_logic_vector(31 downto 0);
+  signal BEFOREJMP_PC : std_logic_vector(31 downto 0);
   signal SELECTED_SRC : std_logic_vector(31 downto 0);
   signal PC_DIR       : std_logic;
   -- Decode stage signals
@@ -315,17 +311,22 @@ architecture rtl of RISC_V is
   signal INSTR_ID            : std_logic_vector(31 downto 0);
   signal RF_OUT1             : std_logic_vector(31 downto 0);
   signal RF_OUT2             : std_logic_vector(31 downto 0);
+  signal RF_IN               : std_logic_vector(31 downto 0);
   signal IMM_GEN_OUT         : std_logic_vector(31 downto 0);
   signal JMP_ADDR            : std_logic_vector(31 downto 0);
+  signal BC_COMP1            : std_logic_vector(31 downto 0);
+  signal BC_COMP2            : std_logic_vector(31 downto 0);
   signal FORWARD_A           : std_logic_vector(1 downto 0);
   signal FORWARD_B           : std_logic_vector(1 downto 0);
+  signal ALU_CODE            : std_logic_vector(5 downto 0);
   signal RS1_VAL_OUT_IDEX    : std_logic_vector(31 downto 0);
   signal RS2_VAL_OUT_IDEX    : std_logic_vector(31 downto 0);
   signal IMM_GEN_OUT_IDEX    : std_logic_vector(31 downto 0);
   signal BC_IN1              : std_logic_vector(31 downto 0);
   signal BC_IN2              : std_logic_vector(31 downto 0);
+  signal RFOUT_1             : std_logic_vector(31 downto 0);
+  signal RFOUT_2             : std_logic_vector(31 downto 0);
   signal RF_WRDIN_WB         : std_logic_vector(31 downto 0);
-  signal OUT_AUIPC           : std_logic_vector(31 downto 0);
   signal RS1_ADDR_OUT_IDEX   : std_logic_vector(4 downto 0);
   signal RS2_ADDR_OUT_IDEX   : std_logic_vector(4 downto 0);
   signal RD_ADDR_OUT_IDEX    : std_logic_vector(4 downto 0);
@@ -336,6 +337,7 @@ architecture rtl of RISC_V is
   signal WR_RFMUX_OUT_IDEX   : std_logic;
   signal M_RD_EN_OUT_IDEX    : std_logic;
   signal M_WR_OUT_IDEX       : std_logic;
+  signal EX_ALUSRC_OUT_IDEX  : std_logic;
   signal EX_ALUCTRL_OUT_IDEX : std_logic;
   signal EX_ALUEN_OUT_IDEX   : std_logic;
   -- CU signals
@@ -343,10 +345,12 @@ architecture rtl of RISC_V is
   signal FLUSH          : std_logic;
   signal STALL          : std_logic;
   signal NSTALL         : std_logic;  
+  signal RF_WR_EN       : std_logic;
   signal BRANCH         : std_logic;
   signal BPU_MISSPRED   : std_logic;
   signal BPU_PREDICTION : std_logic;
   signal HDU_STALL      : std_logic;
+  signal HDU_FORWARD    : std_logic;
   signal ALU_SRC        : std_logic;
   signal ALU_CTR        : std_logic;
   signal ALU_CTRL_EN    : std_logic;
@@ -356,11 +360,8 @@ architecture rtl of RISC_V is
   signal RF_MUX         : std_logic; -- 1 from memory 0 non-from-memory
   signal IMM_EN         : std_logic;
   signal JUMP           : std_logic;
-  signal AUIPC_MUX_OUT  : std_logic;
-  signal LUI_HANDLER    : std_logic;
   -- Execute stage signals
-  signal LUI_HANDLER_EXE     : std_logic;
-  signal LUI_ALU             : std_logic_vector(31 downto 0);
+  signal ALU_IN1_IDEX        : std_logic_vector(31 downto 0);
   signal ALU_IN2_IDEX        : std_logic_vector(31 downto 0);
   signal ALU_RES_IN_EXMEM    : std_logic_vector(31 downto 0);
   signal CODE_ALUCTRL_OUT    : std_logic_vector(5 downto 0);
@@ -371,9 +372,10 @@ architecture rtl of RISC_V is
   signal RD_ADDR_OUT_EXMEM   : std_logic_vector(4 downto 0);
   signal EX_ALUSRC_OUT       : std_logic;
   -- Data Memory Stage Signals
-  signal RF_WRDIN_EXMEM: std_logic_vector(31 downto 0);
-  signal OP_WB_OUT_MEMWB     : std_logic_vector(1 downto 0);
-  signal RD_ADDR_OUT_MEMWB : std_logic_vector(4 downto 0);
+  signal ALU_RES_IN_MEMWB, ALU_RES_OUT_MEMWB : std_logic_vector(31 downto 0);
+  signal MEM_RES_IN_MEMWB, MEM_RES_OUT_MEMWB : std_logic_vector(31 downto 0);
+  signal OP_WB_IN_MEMWB, OP_WB_OUT_MEMWB     : std_logic_vector(1 downto 0);
+  signal RD_ADDR_IN_MEMWB, RD_ADDR_OUT_MEMWB : std_logic_vector(4 downto 0);
 
 begin
 
@@ -391,7 +393,7 @@ begin
   PC_MUX : MUX_2to1 generic map(32)
                    port map(NEXT_PC, DIFF_PC, PC_DIR, PC_SOURCE);
 
-  NSTALL <= NOT(STALL);
+  NSTALL <= NOT(STALL)
   PC : REG generic map(32)
            port map(PC_SOURCE, CLK, I_RST, NSTALL, CURRENT_PC);
 
@@ -416,10 +418,10 @@ begin
                    port map (IMM_CODE, BC_IN1, BC_IN2, BRANCH);
 
   BC_MUX_A : MUX_4to1 generic map(32)
-                      port map(RF_OUT1, LUI_ALU, RF_WRDIN_EXMEM, RF_WRDIN_WB, FORWARD_A, BC_IN1);-- To b completed with other signals
+                      port map(RFOUT_1, ALU_RES_IN_EXMEM, ALU_RES_OUT_EXMEM, RF_WRDIN_WB, FORWARD_A, BC_IN1);-- To b completed with other signals
   
   BC_MUX_B : MUX_4to1 generic map(32)
-                      port map(RF_OUT2, LUI_ALU, RF_WRDIN_EXMEM, RF_WRDIN_WB, FORWARD_B, BC_IN2);-- To b completed with other signals
+                      port map(RFOUT_2, ALU_RES_IN_EXMEM, ALU_RES_OUT_EXMEM, RF_WRDIN_WB, FORWARD_B, BC_IN2);-- To b completed with other signals
 
 
                       
@@ -428,16 +430,13 @@ begin
 
   CONTROL_UNIT : CU port map(EXTERNAL_RSTN, INSTR_ID(6 downto 0), BPU_MISSPRED, BPU_PREDICTION,
                              HDU_STALL, ALU_SRC, ALU_CTR, ALU_CTRL_EN, MEM_RD,
-                             MEM_WR, RF_EN, RF_MUX, IMM_EN, IMM_CODE, FLUSH, STALL, JUMP, I_RST, AUIPC_MUX_OUT, LUI_HANDLER);
+                             MEM_WR, RF_EN, RF_MUX, IMM_EN, IMM_CODE, FLUSH, STALL, JUMP, I_RST);
 
-  MUX_AUIPC : MUX_2to1 generic map(32)
-                       port map(BC_IN1, PC_ID, AUIPC_MUX_OUT, OUT_AUIPC);
-
-  PIPE_REG2 : PIPE_ID_EX port map(CLK, I_RST, FLUSH, STALL, LUI_HANDLER, OUT_AUIPC, BC_IN2, IMM_GEN_OUT,
+  PIPE_REG2 : PIPE_ID_EX port map(CLK, I_RST, FLUSH, STALL, BC_IN1, BC_IN2, IMM_GEN_OUT,
                                   INSTR_ID(19 downto 15), INSTR_ID(24 downto 20), INSTR_ID(11 downto 7), INSTR_ID(14 downto 12),
                                   RF_EN, RF_MUX, BRANCH, JUMP, MEM_RD, MEM_WR, ALU_SRC, ALU_CTR, ALU_CTRL_EN,
                                   WR_RFEN_OUT_IDEX, WR_RFMUX_OUT_IDEX, BRANCH_OUT_IDEX, JUMP_OUT_IDEX, M_RD_EN_OUT_IDEX, M_WR_OUT_IDEX, EX_ALUSRC_OUT, EX_ALUCTRL_OUT_IDEX, EX_ALUEN_OUT_IDEX,
-                                  RS1_VAL_OUT_IDEX, RS2_VAL_OUT_IDEX, IMM_GEN_OUT_IDEX, RS1_ADDR_OUT_IDEX, RS2_ADDR_OUT_IDEX, RD_ADDR_OUT_IDEX, FUNC3_OUT_IDEX, LUI_HANDLER_EXE);
+                                  RS1_VAL_OUT_IDEX, RS2_VAL_OUT_IDEX, IMM_GEN_OUT_IDEX, RS1_ADDR_OUT_IDEX, RS2_ADDR_OUT_IDEX, RD_ADDR_OUT_IDEX, FUNC3_OUT_IDEX);
   ----------- Instruction execute stage -----------
 
   PC_DIR <= BRANCH_OUT_IDEX AND JUMP_OUT_IDEX;
@@ -449,15 +448,12 @@ begin
                 port map(RS1_VAL_OUT_IDEX, ALU_IN2_IDEX, CODE_ALUCTRL_OUT, open, open, ALU_RES_IN_EXMEM);
 
 
-  ALU_CTRL_EXE : ALU_CTRL port map(EX_ALUEN_OUT_IDEX, EX_ALUCTRL_OUT_IDEX, FUNC3_OUT_IDEX, AUIPC_MUX_OUT, CODE_ALUCTRL_OUT);              
+  ALU_CTRL_EXE : ALU_CTRL port map(EX_ALUEN_OUT_IDEX, EX_ALUCTRL_OUT_IDEX, FUNC3_OUT_IDEX, CODE_ALUCTRL_OUT);              
 
 
   OP_WB_IN_EXMEM <= WR_RFEN_OUT_IDEX & WR_RFMUX_OUT_IDEX & M_RD_EN_OUT_IDEX & M_WR_OUT_IDEX;
 
-  MUX_LUI : MUX_2to1 generic map(32)
-                     port map(ALU_RES_IN_EXMEM, IMM_GEN_OUT_IDEX, LUI_HANDLER_EXE, LUI_ALU);
-
-  PIPE_REG3 : PIPE_EX_MEM port map(CLK, I_RST, LUI_ALU, RS2_VAL_OUT_IDEX, OP_WB_IN_EXMEM, RD_ADDR_OUT_IDEX,
+  PIPE_REG3 : PIPE_EX_MEM port map(CLK, I_RST, ALU_RES_IN_EXMEM, ALU_IN2_IDEX, OP_WB_IN_EXMEM, RD_ADDR_OUT_IDEX,
                           ALU_RES_OUT_EXMEM, RS2_VAL_OUT_EXMEM, OP_WB_OUT_EXMEM, RD_ADDR_OUT_EXMEM);
 
   ----------- Data Memory Stage -----------
@@ -467,15 +463,13 @@ begin
   DATA_ADDR <= ALU_RES_OUT_EXMEM;
   DATA_OUT <= RS2_VAL_OUT_EXMEM;
 
+  PIPE_REG4 : PIPE_MEM_WB port map (CLK, I_RST, ALU_RES_OUT_EXMEM, DATA_IN, OP_WB_OUT_EXMEM(3 downto 2), RD_ADDR_OUT_EXMEM,
+                          ALU_RES_OUT_MEMWB, MEM_RES_OUT_MEMWB, OP_WB_OUT_MEMWB, RD_ADDR_OUT_MEMWB);
+
+  ----------- Write Back Stage ------------
+
   WB_MUX : MUX_2to1 generic map (32)
-                    port map (ALU_RES_OUT_EXMEM, DATA_IN,OP_WB_OUT_EXMEM(2),RF_WRDIN_EXMEM);
-
-  PIPE_REG4 : PIPE_MEM_WB port map (CLK, I_RST, RF_WRDIN_EXMEM, OP_WB_OUT_EXMEM(3 downto 2), RD_ADDR_OUT_EXMEM,
-                                    RF_WRDIN_WB, OP_WB_OUT_MEMWB, RD_ADDR_OUT_MEMWB);
-
-  ----------- Write Back Stage ------------ 
-
-  
+                    port map (ALU_RES_OUT_MEMWB, MEM_RES_OUT_MEMWB,OP_WB_OUT_MEMWB(1),RF_WRDIN_WB);
 
 
 

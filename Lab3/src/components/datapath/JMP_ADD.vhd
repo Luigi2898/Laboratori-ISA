@@ -12,8 +12,6 @@ end entity JMP_ADD;
 
 architecture arch of JMP_ADD is
 
-signal    
-
 begin
 
   JMP_ADDR <= std_logic_vector(unsigned(PC_IF_ID) + unsigned(IMM_GEN_IN));

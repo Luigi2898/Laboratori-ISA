@@ -14,6 +14,6 @@ architecture arch of INCREMENTER is
 
 begin
 
-  NEXT_ADDR <= CURRENT_ADDR + std_logic_vector(to_unsigned(STEP, 32));
+  NEXT_ADDR <= std_logic_vector(unsigned(CURRENT_ADDR) + to_unsigned(STEP, 32));
 
 end architecture;

@@ -26,8 +26,8 @@ architecture rtl of MUX_4to1 is
     );	
   end component;
 
-  signal OUT1 : std_logic_vector(N - 1 downto 0)
-  signal OUT2 : std_logic_vector(N - 1 downto 0)
+  signal OUT1 : std_logic_vector(N - 1 downto 0);
+  signal OUT2 : std_logic_vector(N - 1 downto 0);
 
 begin
 

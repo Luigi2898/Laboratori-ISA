@@ -9,12 +9,12 @@ entity PIPE_EX_MEM is
     RSTN          : in  std_logic;
     ALU_RES_IN    : in  std_logic_vector(31 downto 0);
     RS2_VAL_IN    : in  std_logic_vector(31 downto 0); --from mux
-    OP_WB_MEM_IN  : in  std_logic_vector(4 downto 0); --MEM/WB ctrls (WB_RFEN_OUT & WB_RFMUX_OUT & BRANCH & M_RD_OUT & M_WR_OUT)
+    OP_WB_MEM_IN  : in  std_logic_vector(3 downto 0); --MEM/WB ctrls (WB_RFEN_OUT & WB_RFMUX_OUT & M_RD_OUT & M_WR_OUT)
     RD_ADDR_IN    : in  std_logic_vector(4 downto 0);
     ------------------------------------------------------------------ out
     ALU_RES_OUT   : out std_logic_vector(31 downto 0);
     RS2_VAL_OUT   : out std_logic_vector(31 downto 0);
-    OP_WB_MEM_OUT : out std_logic_vector(4 downto 0);
+    OP_WB_MEM_OUT : out std_logic_vector(3 downto 0);
     RD_ADDR_OUT   : out std_logic_vector(4 downto 0)
   );
 end entity PIPE_EX_MEM;
@@ -24,7 +24,7 @@ architecture beh of PIPE_EX_MEM is
 
 signal  ALU_RES   :  std_logic_vector(31 downto 0);
 signal  RS2_VAL   :  std_logic_vector(31 downto 0);
-signal  OP_WB_MEM :  std_logic_vector(4 downto 0);
+signal  OP_WB_MEM :  std_logic_vector(3 downto 0);
 signal  RD_ADDR   :  std_logic_vector(4 downto 0);    
 
 begin

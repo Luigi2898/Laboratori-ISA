@@ -4,12 +4,12 @@ use IEEE.numeric_std.all;
 
 entity CACHE_MEM is
   generic (SetNum : integer := 2;
-           SetEntries : integer := 2;
-           TagSize : integer := 1;
+           SetEntries : integer := 4;
+           TagSize : integer := 2;
            ContentSize : integer := 2;
-           AddrBits : integer := 2;
+           AddrBits : integer := 8;
            SetBits : integer := 1 ;
-           EntriesBits : integer := 1);
+           EntriesBits : integer := 2);
   port (
     CLK : in std_logic;
     RSTN : in std_logic;
