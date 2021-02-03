@@ -6,7 +6,7 @@ module TB_RISCV ();
 	//assign INSTR_ADDR = 4194304;
 	//assign DATA_ADDR = 268500992;
 	INSTR_MEM  
-	  #(.INITFILE("C:/Users/Davide/Documents/GitHub/Laboratori-ISA/Lab3/code/alu_store.txt"),
+	  #(.INITFILE("D:/PoliTo/Magistrale/II anno/Integrated system architecture/Lab 3/code/beqjal.txt"),
 		.ADDR_N(32),
 		.DATA_WIDTH(32),
 		.NEL(22)
@@ -18,8 +18,8 @@ module TB_RISCV ();
 	
 	DATA_MEM
 	  #(.word_size(32),
-		.filename("C:/Users/Davide/Documents/GitHub/Laboratori-ISA/Lab3/data/data.txt"),
-		.NEL(65536)
+		.filename("D:/PoliTo/Magistrale/II anno/Integrated system architecture/Lab 3/data/data.txt"),
+		.NEL(1024)
 		)
 	 MEM_instance(
         .CLK(CLK),
