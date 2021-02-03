@@ -31,6 +31,9 @@ signal MEM_HAZARD_RS1: std_logic;
 signal MEM_HAZARD_RS2: std_logic;
 signal WB_HAZARD_RS1: std_logic;
 signal WB_HAZARD_RS2: std_logic;
+signal IS_JAL :std_logic;
+signal IS_UIMM :std_logic;
+signal IS_BEQ :std_logic;
 
 constant JAL  : std_logic_vector(2 downto 0) := "100";
 constant UIMM : std_logic_vector(2 downto 0) := "011";
@@ -53,10 +56,26 @@ WB_HAZARD_RS1 <= REG_WR_WB AND AND_REDUCE(RS1_ID_IN XNOR RD_WB_IN) AND OR_REDUCE
 WB_HAZARD_RS2 <= REG_WR_WB AND AND_REDUCE(RS2_ID_IN XNOR RD_WB_IN) AND OR_REDUCE(RD_WB_IN)
                  AND NOT(MEM_HAZARD_RS2); -- RS2 == RD of MEM/WB stage AND RD != x0   
 
+imm_code_process: process(IMM_COD)
+variable jal_var : std_logic := '0';
+variable uimm_var : std_logic := '0';
+variable beq_var : std_logic := '0';
+begin
+if(IMM_COD /= "---") then
+    jal_var := AND_REDUCE(IMM_COD XOR JAL);
+    uimm_var := AND_REDUCE(IMM_COD XOR UIMM);
+    beq_var := AND_REDUCE(IMM_COD XOR BEQ);
+    else NULL;
+end if;                  
+IS_JAL <= jal_var;
+IS_UIMM <= uimm_var;
+IS_BEQ <= beq_var;
+end process;                                  
+                     
+
 --a stall occurs whenever INSTR(ID/EX) is a load, but INSTR(IF/ID) is not a jump or an upper-imm
 STALL <= ((AND_REDUCE(RS1_ID_IN XNOR RD_EX_IN) OR AND_REDUCE(RS2_ID_IN XNOR RD_EX_IN)) AND LOAD_EXE_IN 
-         AND NOT(AND_REDUCE(IMM_COD XNOR JAL)) AND NOT(AND_REDUCE(IMM_COD XNOR UIMM))) OR
-         ((AND_REDUCE(RS1_ID_IN XNOR RD_EX_IN) OR AND_REDUCE(RS2_ID_IN XNOR RD_EX_IN)) AND LOAD_EXE_IN AND AND_REDUCE(IMM_COD XNOR BEQ));
+         AND NOT(IS_JAL) AND NOT(IS_UIMM)) OR ((AND_REDUCE(RS1_ID_IN XNOR RD_EX_IN) OR AND_REDUCE(RS2_ID_IN XNOR RD_EX_IN)) AND LOAD_EXE_IN AND IS_BEQ);
 
 forward_a_process : process(EX_HAZARD_RS1, MEM_HAZARD_RS1, WB_HAZARD_RS1)
 begin

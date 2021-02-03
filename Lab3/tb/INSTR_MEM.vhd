@@ -40,7 +40,7 @@ begin
     INADD : process( INSTR_ADDR )
     begin
         if not(INSTR_ADDR = (INSTR_ADDR'length - 1 downto 0 => 'U') or INSTR_ADDR = (INSTR_ADDR'length - 1 downto 0 => 'X')) then
-            INSTR <= ROM(to_integer(unsigned(INSTR_ADDR)));
+            INSTR <= ROM(to_integer(unsigned(INSTR_ADDR(15 downto 0))));
         end if;
     end process ; -- INADD
 

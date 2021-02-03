@@ -49,12 +49,11 @@ begin
     begin  
 	if (CLK'EVENT AND CLK = '1') then			
 	if WR_EN ='1' then
-	   MEM(to_integer(unsigned(ADDR))) <= DATA_IN;
-	end if;
-	if RD_EN='1' then
-	   DATA_OUT <= MEM(to_integer(unsigned(ADDR)));	
+	   MEM(to_integer(unsigned(ADDR(15 downto 0)))) <= DATA_IN;
 	end if;   
-end if;
-	end process file_proc;
+    end if;
+    end process file_proc;
+    
+    DATA_OUT <= MEM(to_integer(unsigned(ADDR(15 downto 0)))) when RD_EN='1' else (others => 'Z');
 	
 end architecture beh;

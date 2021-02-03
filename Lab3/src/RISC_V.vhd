@@ -86,13 +86,11 @@ architecture rtl of RISC_V is
     port(
       CLK                   : in  std_logic;
       RSTN                  : in  std_logic;
-      ALU_RES_IN            : in  std_logic_vector(31 downto 0);
-      MEM_RES_IN            : in  std_logic_vector(31 downto 0); 
+      RF_WRDIN_IN           : in  std_logic_vector(31 downto 0);
       OP_WB_IN              : in  std_logic_vector(1 downto 0); --WB ctrls (WB_RFEN_OUT & WB_RFMUX_OUT)
       RD_ADDR_IN            : in  std_logic_vector(4 downto 0);
       ------------------------------------------------------------------ out
-      ALU_RES_OUT           : out std_logic_vector(31 downto 0);
-      MEM_RES_OUT           : out std_logic_vector(31 downto 0);
+      RF_WRDIN_OUT          : out  std_logic_vector(31 downto 0);
       OP_WB_OUT             : out std_logic_vector(1 downto 0);
       RD_ADDR_OUT           : out std_logic_vector(4 downto 0)
     );
@@ -373,8 +371,7 @@ architecture rtl of RISC_V is
   signal RD_ADDR_OUT_EXMEM   : std_logic_vector(4 downto 0);
   signal EX_ALUSRC_OUT       : std_logic;
   -- Data Memory Stage Signals
-  signal ALU_RES_OUT_MEMWB : std_logic_vector(31 downto 0);
-  signal MEM_RES_IN_MEMWB, MEM_RES_OUT_MEMWB : std_logic_vector(31 downto 0);
+  signal RF_WRDIN_EXMEM: std_logic_vector(31 downto 0);
   signal OP_WB_OUT_MEMWB     : std_logic_vector(1 downto 0);
   signal RD_ADDR_OUT_MEMWB : std_logic_vector(4 downto 0);
 
@@ -419,10 +416,10 @@ begin
                    port map (IMM_CODE, BC_IN1, BC_IN2, BRANCH);
 
   BC_MUX_A : MUX_4to1 generic map(32)
-                      port map(RF_OUT1, LUI_ALU, ALU_RES_OUT_EXMEM, RF_WRDIN_WB, FORWARD_A, BC_IN1);-- To b completed with other signals
+                      port map(RF_OUT1, LUI_ALU, RF_WRDIN_EXMEM, RF_WRDIN_WB, FORWARD_A, BC_IN1);-- To b completed with other signals
   
   BC_MUX_B : MUX_4to1 generic map(32)
-                      port map(RF_OUT2, LUI_ALU, ALU_RES_OUT_EXMEM, RF_WRDIN_WB, FORWARD_B, BC_IN2);-- To b completed with other signals
+                      port map(RF_OUT2, LUI_ALU, RF_WRDIN_EXMEM, RF_WRDIN_WB, FORWARD_B, BC_IN2);-- To b completed with other signals
 
 
                       
@@ -460,7 +457,7 @@ begin
   MUX_LUI : MUX_2to1 generic map(32)
                      port map(ALU_RES_IN_EXMEM, IMM_GEN_OUT_IDEX, LUI_HANDLER_EXE, LUI_ALU);
 
-  PIPE_REG3 : PIPE_EX_MEM port map(CLK, I_RST, LUI_ALU, ALU_IN2_IDEX, OP_WB_IN_EXMEM, RD_ADDR_OUT_IDEX,
+  PIPE_REG3 : PIPE_EX_MEM port map(CLK, I_RST, LUI_ALU, RS2_VAL_OUT_IDEX, OP_WB_IN_EXMEM, RD_ADDR_OUT_IDEX,
                           ALU_RES_OUT_EXMEM, RS2_VAL_OUT_EXMEM, OP_WB_OUT_EXMEM, RD_ADDR_OUT_EXMEM);
 
   ----------- Data Memory Stage -----------
@@ -470,13 +467,15 @@ begin
   DATA_ADDR <= ALU_RES_OUT_EXMEM;
   DATA_OUT <= RS2_VAL_OUT_EXMEM;
 
-  PIPE_REG4 : PIPE_MEM_WB port map (CLK, I_RST, ALU_RES_OUT_EXMEM, DATA_IN, OP_WB_OUT_EXMEM(3 downto 2), RD_ADDR_OUT_EXMEM,
-                          ALU_RES_OUT_MEMWB, MEM_RES_OUT_MEMWB, OP_WB_OUT_MEMWB, RD_ADDR_OUT_MEMWB);
-
-  ----------- Write Back Stage ------------
-
   WB_MUX : MUX_2to1 generic map (32)
-                    port map (ALU_RES_OUT_MEMWB, MEM_RES_OUT_MEMWB,OP_WB_OUT_MEMWB(0),RF_WRDIN_WB);
+                    port map (ALU_RES_OUT_EXMEM, DATA_IN,OP_WB_OUT_EXMEM(2),RF_WRDIN_EXMEM);
+
+  PIPE_REG4 : PIPE_MEM_WB port map (CLK, I_RST, RF_WRDIN_EXMEM, OP_WB_OUT_EXMEM(3 downto 2), RD_ADDR_OUT_EXMEM,
+                                    RF_WRDIN_WB, OP_WB_OUT_MEMWB, RD_ADDR_OUT_MEMWB);
+
+  ----------- Write Back Stage ------------ 
+
+  
 
 
 
