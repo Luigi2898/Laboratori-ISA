@@ -1,16 +1,13 @@
 module RISCVCPU ();
 (
-  input CLK;
-  output WR_EN;
-  output RD_EN;
-  output [31:0] INSTR_ADDR;
-  input  [31:0] INSTR;
-  output [31:0] DATA_ADDR;
-  output [31:0] DATA_OUT;
-  input  [31:0] DATA_IN;
-  input  [31:0] IMM_GEN_OUT;
-  output IMM_EN;
-  output IMM_CODE
+input CLK;
+output WR_EN;
+output RD_EN;
+output [31:0] INSTR_ADDR;
+input  [31:0] INSTR;
+output [31:0] DATA_ADDR;
+output [31:0] DATA_OUT;
+input  [31:0] DATA_IN
 );
 
 // Instruction opcodes
@@ -45,6 +42,9 @@ initial begin
 
 end
 
+assign INSTR_ADDR = PC;  
+  
+  
 // CPU Modelling
 always @(posedge CLK) begin
 
@@ -82,11 +82,10 @@ always @(posedge CLK) begin
           REG_FILE[RD] = REG_FILE[RS1] + INSTR[31:19];
         
         3'b111 : // ANDI
-          REG_FILE[RD] = REG_FILE[RS1] & {ININSTR[31:19];
+          REG_FILE[RD] = REG_FILE[RS1] & {INSTR[31:19];
 
         
   endcase
 end
-
 
 endmodule
