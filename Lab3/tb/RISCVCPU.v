@@ -7,10 +7,7 @@ output [31:0] INSTR_ADDR;
 input  [31:0] INSTR;
 output [31:0] DATA_ADDR;
 output [31:0] DATA_OUT;
-input  [31:0] DATA_IN;
-input  [31:0] IMM_GEN_OUT;
-output IMM_EN;
-output IMM_CODE
+input  [31:0] DATA_IN
 );
 
 // Instruction opcodes
@@ -30,16 +27,10 @@ wire [6:0] OPCODE;
 wire [2:0] FUNC3;
 wire FUNC7;
 wire [31:0] RS1_VAL, RS2_VAL;
+wire TARG_ADDR;
 
 //controls
 wire BRANCH;
-wire MEM_READ;
-wire MEM_TO_REG;
-wire MEM_WRITE;
-wire ALUSRC;
-wire [1:0] ALUOP;
-wire REG_WRITE;
-wire JMP;
 reg [5:0] CU_CTRL;
 
 //alu
@@ -68,56 +59,60 @@ end
 
 end
 
-assign {MEM_TO_REG,REG_WRITE,MEM_READ,MEM_WRITE,BRANCH,JMP} = CU_CTRL;
 always @(INSTR)
 begin
-case(OPCODE)
+case(OPCODE) begin
 ARITH   : begin
-          CU_CTRL <= 6'b010000;
           IMM_GEN_OUT <= {{{31-12}{INSTR[31]}},INSTR[31:20]};
           end
 
 LW      : begin
-          CU_CTRL <= 6'b111000; 
+          RD_EN = 1'b1;
           IMM_GEN_OUT <= {{{31-12}{INSTR[31]}},INSTR[31:20]};
           end
 
 SW      : begin
-          CU_CTRL <= 6'bx00100; 
+          WR_EN = 1'b1;
           IMM_GEN_OUT <= {{{31-12}{INSTR[31]}},INSTR[31:25],INSTR[11:7]};
           end
 
 BEQ     : begin
-          CU_CTRL <= 6'b0x00010; 
+          BRANCH = 1'b1;
           IMM_GEN_OUT <= {{{31-12}{INSTR[31]}},INSTR[7],INSTR[30:25],INSTR[11:8], 1'b0};
           end
 
 IMM     : begin
-          CU_CTRL <= 6'b010000; 
           IMM_GEN_OUT <= {{{31-12}{INSTR[31]}},INSTR[31:20]};
           end
 
-JAL     : CU_CTRL <= 6'b11xx01;
-          IMM_GEN_OUT <= {{{31-12}{INSTR[31]}},INSTR[31:20]};
+JAL     : BRANCH = 1'b1;
+          IMM_GEN_OUT <= {{{31-20}{INSTR[31]}}, INSTR[19:12], INSTR[20], INSTR[30:25], INSTR[24:21], 1'b0};
           end 
 
 LUI     : begin
-          CU_CTRL <= 6'b010000; 
           IMM_GEN_OUT <= {{31-12}{1'b0}}, INSTR[31], INSTR[30:20], INSTR[19:12]}
           end
 
 AUIPC   : begin
-          CU_CTRL <= 6'b010000;
           IMM_GEN_OUT <= {{31-12}{1'b0}}, INSTR[31], INSTR[30:20], INSTR[19:12]}
           end 
-default : CU_CTRL <= 6'bxxxxxx;
+default : CU_CTRL <= 3'bxxx;
 endcase
 end
 
-
+assign INSTR_ADDR = PC;
+assign TARG_ADDR = BRANCH AND ZERO_FLAG;
+assign DATA_OUT = RS2_VAL;
+assign DATA_ADDR = ALU_RES;
 
 always @(posedge CLK)
 begin
+
+case(TARG_ADDR) begin
+  1'b0 : PC = PC + 4;
+  1'b1 : PC = PC + IMM_GEN_OUT;
+  default : PC = PC;
+end
 
 end
 endmodule
