@@ -5,30 +5,6 @@ module TB_RISCV ();
 	wire CLK, RSTN;
 	//assign INSTR_ADDR = 4194304;
 	//assign DATA_ADDR = 268500992;
-<<<<<<< HEAD
-	INSTR_MEM  
-	  #(.INITFILE("code.txt"),
-		.ADDR_N(32),
-		.DATA_WIDTH(32),
-		.NEL(22)
-		)
-    IMEM_instance(
-        .INSTR_ADDR(INSTR_ADDR[31:0]),
-		.INSTR(INSTR)
-	);
-	
-	DATA_MEM
-	  #(.word_size(32),
-		.filename("data.txt"),
-		.NEL(1024)
-		)
-	 MEM_instance(
-        .CLK(CLK),
-        .RSTN(RSTN),
-		.DATA_IN(DATA_OUT),
-		.DATA_OUT(DATA_IN),
-		.ADDR(DATA_ADDR[31:0]),
-=======
   
 	MAIN_MEM #( 
 		.instr_filename("D:/PoliTo/Magistrale/II anno/Integrated system architecture/Lab 3/code/beqjal.txt"),
@@ -38,7 +14,6 @@ module TB_RISCV ();
   	MEMORY(	
 		.CLK(CLK),
 		.RSTN(RSTN),
->>>>>>> 36505ac64940f4f6ffc8433d8abddda6771b60ba
 		.WR_EN(MEM_WR_EN),
 		.RD_ADDR1(DATA_ADDR),
 		.RD_ADDR2(INSTR_ADDR),
@@ -84,7 +59,6 @@ module TB_RISCV ();
 		PC_del = pipe_emul[3];
 	end
 
-<<<<<<< HEAD
 
 	// Instruction Name Upload
 	parameter MaxChar = 8;
@@ -108,10 +82,6 @@ module TB_RISCV ();
 	end
 
 	
-=======
-	
-
->>>>>>> 36505ac64940f4f6ffc8433d8abddda6771b60ba
 	// Testbench Code
 	integer start_flag = 2;
 	integer delay_check = 0;
@@ -163,11 +133,7 @@ module TB_RISCV ();
 			//Register File Check
 			rf_err_flag = 0;
 			$display("");
-<<<<<<< HEAD
 			$display("-> REGISTER FILE CHECK (for previous instruction)");
-=======
-			$display("-> REGISTER FILE CHECK");
->>>>>>> 36505ac64940f4f6ffc8433d8abddda6771b60ba
 
 			for (i=0; i<32; i=i+1) begin
 				content_ref = DUT.RF.MEM[i];
