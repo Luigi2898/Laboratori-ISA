@@ -152,7 +152,13 @@ always @(posedge CLK) begin
        FUNC3   = INSTR[14:12];
        FUNC7   = INSTR[30];
        
-       BRANCH = REG_FILE[RS1] - REG_FILE[RS2];         
+       ZERO_FLAG = REG_FILE[RS1] - REG_FILE[RS2];  
+
+       case(ZERO_FLAG)
+       0 : BRANCH = 1;
+       1 : BRANCH = 0;
+       default : BRANCH = 0;
+       endcase            
      end
 
     JAL : begin
