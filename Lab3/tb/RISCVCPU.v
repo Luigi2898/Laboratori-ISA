@@ -109,8 +109,10 @@ always @(posedge CLK) begin
           REG_FILE[RD] <= REG_FILE[RS1] & {{{31-12}{INSTR[31]}},INSTR[31:20]};
         3'b101 : // SRAI
           REG_FILE[RD] <= REG_FILE[RS1] >>> {{{31-5}{INSTR[31]}},{{4-0}{INSTR[24:20]}}};
-        default : $display("Default Immediate");
-      endcase;
+        default :
+        $display("Default Immediate");
+      endcase
+      
       end
 
     LW : begin
