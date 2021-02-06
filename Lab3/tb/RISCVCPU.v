@@ -1,3 +1,5 @@
+`timescale 1ns/10ps
+
 module RISCVCPU
 (input CLK,
  output reg WR_EN,
@@ -34,7 +36,7 @@ integer ZERO_FLAG;
 
 // Register File Initialization
 initial begin
-  PC = 0;
+  #15 PC = 0;
 
   for (i=0;i<=31;i=i+1) 
       REG_FILE[i] = 0; 
@@ -54,7 +56,14 @@ always @(posedge CLK) begin
 
   case(BRANCH) 
      0 : PC <= PC + 4;
-     1 : PC <= PC + {{{31-20}{INSTR[31]}}, INSTR[19:12], INSTR[20], INSTR[30:25], INSTR[24:21], 1'b0};
+     1 : begin
+         PC <= PC + {{{31-12}{INSTR[31]}},INSTR[7],INSTR[30:25],INSTR[11:8], 1'b0};
+         BRANCH = 0;
+         end
+     2 : begin
+         PC <= PC + {{{31-20}{INSTR[31]}}, INSTR[19:12], INSTR[20], INSTR[30:25], INSTR[24:21], 1'b0};
+         BRANCH = 0;
+         end
   default : PC <= PC;
   endcase
 
@@ -170,7 +179,7 @@ always @(posedge CLK) begin
        FUNC3   = INSTR[14:12];
        FUNC7   = INSTR[30];
 
-       BRANCH <= 1;
+       BRANCH <= 2;
        REG_FILE[RD] <= PC + {{{31-20}{INSTR[31]}}, INSTR[19:12], INSTR[20], INSTR[30:25], INSTR[24:21], 1'b0};
       end 
 
