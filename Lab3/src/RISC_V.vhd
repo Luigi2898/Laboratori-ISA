@@ -382,7 +382,7 @@ begin
 
   ----------- Instruction fetching stage -----------
 
-  PC_INCREMENTER : INCREMENTER generic map(1)
+  PC_INCREMENTER : INCREMENTER generic map(4)
                                port map(CURRENT_PC, NEXT_PC);
 
   PC_SOURCE_MUX : MUX_4to1 generic map(32)

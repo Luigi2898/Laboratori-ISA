@@ -12,18 +12,11 @@ end entity JMP_ADD;
 
 architecture arch of JMP_ADD is
 
+  signal JMP_ADDR_EXT : std_logic_vector(32 downto 0);
+
 begin
 
-  ADDITION : process( IMM_GEN_IN, PC_IF_ID )
-  begin
-    if to_integer(signed(IMM_GEN_IN)) < 0 then
-      JMP_ADDR <= std_logic_vector(unsigned(PC_IF_ID) - to_unsigned(to_integer(unsigned(not(IMM_GEN_IN))) - 1, 32));
-    else
-    JMP_ADDR <= std_logic_vector(unsigned(PC_IF_ID) + unsigned(IMM_GEN_IN));
-    end if ;
+  JMP_ADDR_EXT <= std_logic_vector(signed('0' & PC_IF_ID) + signed(IMM_GEN_IN(31) & IMM_GEN_IN));
+  JMP_ADDR <= JMP_ADDR_EXT(31 downto 0);
 
-  end process ; -- ADDITION
-
-  
-
-end architecture;
+  end architecture;
