@@ -103,7 +103,7 @@ module TB_RISCV ();
 			pc_err_flag = 0;
 			// Program Counter Check
 			$display("-> PROGRAM COUNTER CHECK");
-			content_dut = 44;
+			content_dut = DUT.PC.REG_OUT;
 			content_ref = 45;
 
 			$display("--> PC_REF = %d			PC_DUT = %d",content_ref,content_dut);
@@ -123,7 +123,7 @@ module TB_RISCV ();
 			$display("-> REGISTER FILE CHECK");
 
 			for (i=0; i<32; i=i+1) begin
-				content_ref = 34;
+				content_ref = DUT.RF.MEM[i];
 				content_dut = 3465;
 				
 				if (content_ref != content_dut) begin
