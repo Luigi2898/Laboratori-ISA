@@ -125,7 +125,7 @@ always @(posedge CLK) begin
        FUNC7   = INSTR[30];
 
        MEM_READ <= 1'b1;
-       MEM_ADDR = RS1 + {{{31-12}{INSTR[31]}},INSTR[31:20]};
+       MEM_ADDR <= RS1 + {{{31-12}{INSTR[31]}},INSTR[31:20]};
        REG_FILE[RD] <= DATA_IN;       
       end
 
@@ -139,8 +139,8 @@ always @(posedge CLK) begin
        FUNC7   = INSTR[30];
 
        MEM_WRITE <= 1'b1;
-       MEM_ADDR = RS1 + {{{31-12}{INSTR[31]}},INSTR[31:25],INSTR[11:7]};
-       WRITE_DATA = RS2;       
+       MEM_ADDR <= RS1 + {{{31-12}{INSTR[31]}},INSTR[31:25],INSTR[11:7]};
+       WRITE_DATA <= RS2;       
       end
 
     BEQ : begin
@@ -152,7 +152,7 @@ always @(posedge CLK) begin
        FUNC3   = INSTR[14:12];
        FUNC7   = INSTR[30];
        
-       ZERO_FLAG = REG_FILE[RS1] - REG_FILE[RS2];  
+       ZERO_FLAG <= REG_FILE[RS1] - REG_FILE[RS2];  
 
        case(ZERO_FLAG)
        0 : BRANCH = 1;
@@ -170,7 +170,7 @@ always @(posedge CLK) begin
        FUNC3   = INSTR[14:12];
        FUNC7   = INSTR[30];
 
-       BRANCH = 1;
+       BRANCH <= 1;
        REG_FILE[RD] <= PC + {{{31-20}{INSTR[31]}}, INSTR[19:12], INSTR[20], INSTR[30:25], INSTR[24:21], 1'b0};
       end 
 
