@@ -6,41 +6,29 @@ module TB_RISCV ();
 	wire CLK, RSTN;
 	//assign INSTR_ADDR = 4194304;
 	//assign DATA_ADDR = 268500992;
-	INSTR_MEM  
-	  #(.INITFILE("D:/PoliTo/Magistrale/II anno/Integrated system architecture/Lab 3/code/beqjal.txt"),
-		.ADDR_N(32),
-		.DATA_WIDTH(32),
-		.NEL(22)
-		)
-    IMEM_instance(
-        .INSTR_ADDR(INSTR_ADDR[31:0]),
-		.INSTR(INSTR)
-	);
-	
-	DATA_MEM
-	  #(.word_size(32),
-		.filename("D:/PoliTo/Magistrale/II anno/Integrated system architecture/Lab 3/data/data.txt"),
-		.NEL(1024)
-		)
-	 MEM_instance(
-        .CLK(CLK),
-        .RSTN(RSTN),
-		.DATA_IN(DATA_OUT),
-		.DATA_OUT(DATA_IN),
-		.ADDR(DATA_ADDR[31:0]),
-		.WR_EN(MEM_WR_EN),
-        .RD_EN(MEM_RD_EN)
-	);
-<<<<<<< Updated upstream
-	
-=======
-
 	MAIN_MEM #( 
 		.instr_filename("D:/PoliTo/Magistrale/II anno/Integrated system architecture/Lab 3/code/beqjal.txt"),
     	.data_filename("D:/PoliTo/Magistrale/II anno/Integrated system architecture/Lab 3/data/data.txt"),
     	.Entries(32767)
   	)
   	MEMORY(	
+		.CLK(CLK),
+		.RSTN(RSTN),
+		.WR_EN(MEM_WR_EN),
+		.RD_ADDR1(DATA_ADDR),
+		.RD_ADDR2(INSTR_ADDR),
+		.WR_ADDR1(DATA_ADDR),
+		.RD_DOUT_1(DATA_IN),
+		.RD_DOUT_2(INSTR),
+		.WR_DIN_1(DATA_OUT)
+	);
+
+	MAIN_MEM #( 
+		.instr_filename("D:/PoliTo/Magistrale/II anno/Integrated system architecture/Lab 3/code/beqjal.txt"),
+    	.data_filename("D:/PoliTo/Magistrale/II anno/Integrated system architecture/Lab 3/data/data.txt"),
+    	.Entries(32767)
+  	)
+  	MEMORY_REF_MODEL(	
 		.CLK(CLK),
 		.RSTN(RSTN),
 		.WR_EN(MEM_WR_EN_REF),
@@ -52,7 +40,6 @@ module TB_RISCV ();
 		.WR_DIN_1(DATA_OUT_REF)
 	);
 
->>>>>>> Stashed changes
 	clk_gen clk_gen_instance(
 		.CLK(CLK),
 		.RST_N(RSTN)
@@ -69,8 +56,6 @@ module TB_RISCV ();
 		.CLK(CLK),
 		.EXTERNAL_RSTN(RSTN)
 	);
-<<<<<<< Updated upstream
-=======
 
 	RISCVCPU REF_MODEL(
         .CLK(CLK),
@@ -80,7 +65,7 @@ module TB_RISCV ();
         .DATA_ADDR(DATA_ADDR_REF),
         .DATA_OUT(DATA_OUT_REF),
         .DATA_IN(DATA_IN_REF)
-        );
+    );
 
 	// Pipe Emulation for Reference Model
 	reg [31:0] pipe_emul [3:0];
@@ -228,7 +213,6 @@ module TB_RISCV ();
 		end
 
 	end
->>>>>>> Stashed changes
 	
 endmodule
 
