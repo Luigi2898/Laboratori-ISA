@@ -374,6 +374,12 @@ architecture rtl of RISC_V is
   signal RF_WRDIN_EXMEM: std_logic_vector(31 downto 0);
   signal OP_WB_OUT_MEMWB     : std_logic_vector(1 downto 0);
   signal RD_ADDR_OUT_MEMWB : std_logic_vector(4 downto 0);
+  -- PC Debug Signals
+  signal DEBUG_PC_IF_ID_OUT   : std_logic_vector (31 downto 0); 
+  signal DEBUG_PC_ID_EXE_OUT  : std_logic_vector (31 downto 0); 
+  signal DEBUG_PC_EXE_MEM_OUT : std_logic_vector (31 downto 0); 
+  signal DEBUG_PC_MEM_WB_OUT  : std_logic_vector (31 downto 0);
+  signal DEBUG_RESET_FLUSH    : std_logic;
 
 begin
 
@@ -473,9 +479,17 @@ begin
 
   ----------- Write Back Stage ------------ 
 
-  
 
+  ----------- Debug Instances -------------
 
+  DEBUG_PC_IF_ID : REG port map (CURRENT_PC, CLK, DEBUG_RESET_FLUSH, VDD, DEBUG_PC_IF_ID_OUT);
 
+  DEBUG_PC_ID_EXE : REG port map (DEBUG_PC_IF_ID_OUT, CLK, RST_N, VDD, DEBUG_PC_ID_EXE_OUT);
+
+  DEBUG_PC_EXE_MEM : REG port map (DEBUG_PC_ID_EXE_OUT, CLK, RST_N, VDD, DEBUG_PC_EXE_MEM_OUT);
+
+  DEBUG_PC_MEM_WB : REG port map (DEBUG_PC_EXE_MEM_OUT, CLK, RST_N, VDD, DEBUG_PC_MEM_WB_OUT);
+
+  DEBUG_RESET_FLUSH <= RST_N and FLUSH;
 
 end architecture;
