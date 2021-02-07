@@ -15,10 +15,10 @@ module MAIN_MEM
     input  [31:0] WR_DIN_1
   );
 
-  parameter DataBaseAddress = 0;
-  parameter DataLimit = 4092;
-  parameter InstrBaseAddress = 8192;
-  parameter InstrLimit = 12284;
+  parameter InstrBaseAddress = 0;
+  parameter InstrLimit = 4092;
+  parameter DataBaseAddress = 8192;
+  parameter DataLimit = 12284;
   parameter InstrSegmSize = (InstrLimit-InstrBaseAddress+4)/4;
   parameter DataSegmSize = (DataLimit-DataBaseAddress+4)/4;
   integer i = 0;
@@ -60,18 +60,18 @@ module MAIN_MEM
 
     i = 0;
     for (i=0; i<InstrSegmSize; i=i+1) begin
-      MEM[4*1+0+InstrBaseAddress] = I_MEM_TMP[i][7:0];
-      MEM[4*1+1+InstrBaseAddress] = I_MEM_TMP[i][15:8];
-      MEM[4*1+2+InstrBaseAddress] = I_MEM_TMP[i][23:16];
-      MEM[4*1+3+InstrBaseAddress] = I_MEM_TMP[i][31:24];
+      MEM[4*i+0+InstrBaseAddress] = I_MEM_TMP[i][7:0];
+      MEM[4*i+1+InstrBaseAddress] = I_MEM_TMP[i][15:8];
+      MEM[4*i+2+InstrBaseAddress] = I_MEM_TMP[i][23:16];
+      MEM[4*i+3+InstrBaseAddress] = I_MEM_TMP[i][31:24];
     end
 
     i = 0;
     for (i=0; i<DataSegmSize; i=i+1) begin
-      MEM[4*1+0+DataBaseAddress] = D_MEM_TMP[i][7:0];
-      MEM[4*1+1+DataBaseAddress] = D_MEM_TMP[i][15:8];
-      MEM[4*1+2+DataBaseAddress] = D_MEM_TMP[i][23:16];
-      MEM[4*1+3+DataBaseAddress] = D_MEM_TMP[i][31:24];
+      MEM[4*i+0+DataBaseAddress] = D_MEM_TMP[i][7:0];
+      MEM[4*i+1+DataBaseAddress] = D_MEM_TMP[i][15:8];
+      MEM[4*i+2+DataBaseAddress] = D_MEM_TMP[i][23:16];
+      MEM[4*i+3+DataBaseAddress] = D_MEM_TMP[i][31:24];
     end
   end
 
@@ -96,10 +96,10 @@ module MAIN_MEM
 
   // asynchronous read @ port 2
   always @(RD_ADDR2) begin
-    RD_DOUT_2_TMP[7:0] = MEM[RD_ADDR1+0];
-    RD_DOUT_2_TMP[15:8] = MEM[RD_ADDR1+1];
-    RD_DOUT_2_TMP[23:16] = MEM[RD_ADDR1+2];
-    RD_DOUT_2_TMP[31:24] = MEM[RD_ADDR1+3];
+    RD_DOUT_2_TMP[7:0] = MEM[RD_ADDR2+0];
+    RD_DOUT_2_TMP[15:8] = MEM[RD_ADDR2+1];
+    RD_DOUT_2_TMP[23:16] = MEM[RD_ADDR2+2];
+    RD_DOUT_2_TMP[31:24] = MEM[RD_ADDR2+3];
   end
   assign RD_DOUT_2 = RD_DOUT_2_TMP;
   

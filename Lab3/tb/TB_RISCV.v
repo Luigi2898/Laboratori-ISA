@@ -6,6 +6,8 @@ module TB_RISCV ();
 	wire CLK, RSTN;
 	//assign INSTR_ADDR = 4194304;
 	//assign DATA_ADDR = 268500992;
+
+
 	MAIN_MEM #( 
 		.instr_filename("D:/PoliTo/Magistrale/II anno/Integrated system architecture/Lab 3/code/beqjal.txt"),
     	.data_filename("D:/PoliTo/Magistrale/II anno/Integrated system architecture/Lab 3/data/data.txt"),
@@ -22,6 +24,7 @@ module TB_RISCV ();
 		.RD_DOUT_2(INSTR),
 		.WR_DIN_1(DATA_OUT)
 	);
+
 
 	MAIN_MEM #( 
 		.instr_filename("D:/PoliTo/Magistrale/II anno/Integrated system architecture/Lab 3/code/beqjal.txt"),
@@ -66,6 +69,7 @@ module TB_RISCV ();
         .DATA_OUT(DATA_OUT_REF),
         .DATA_IN(DATA_IN_REF)
     );
+
 
 	// Pipe Emulation for Reference Model
 	reg [31:0] pipe_emul [3:0];
