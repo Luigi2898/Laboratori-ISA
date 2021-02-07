@@ -71,32 +71,26 @@ module TB_RISCV ();
     );
 
 
-	// Pipe Emulation for Reference Model
-	reg [31:0] pipe_emul [3:0];
-	integer i;
-	integer PC_del = 0;
-
-	initial begin
-		for (i=0; i<3; i=i+1) begin
-			pipe_emul[i] <= 32'b0;
-		end
-	end
-
-	always @(posedge CLK) begin
-		for (i=0; i<3; i=i+1) begin
-			pipe_emul[i+1] <= pipe_emul[i];
-		end
-		pipe_emul[0] <= DUT.PC.REG_OUT;
-		PC_del = pipe_emul[3];
-	end
-
-
+	
+	
 	// Instruction Name Upload
-	parameter MaxChar = 8;
+	parameter MaxChar = 6;
 	parameter InstrSize = 22;
 	integer fileID;
+	integer i;
 	reg [8*MaxChar-1:0] fileLine;
 	reg [8*MaxChar-1:0] InstrName [InstrSize-1:0];
+	reg [8*MaxChar-1:0] IF_instr_name;
+	reg [8*MaxChar-1:0] ID_instr_name;
+	reg [8*MaxChar-1:0] EXE_instr_name;
+	reg [8*MaxChar-1:0] MEM_instr_name;
+	reg [8*MaxChar-1:0] WB_instr_name;
+	integer IF_instr;
+	integer ID_instr;
+	integer EXE_instr;
+	integer MEM_instr;
+	integer WB_instr;
+	integer cycle_cnt = 0;
 
 	initial begin
 		fileID = $fopen("instr_name.txt","r");
@@ -107,7 +101,7 @@ module TB_RISCV ();
 		else begin
 			for (i=0; i<InstrSize; i=i+1) begin
 				$fgets(fileLine,fileID);
-  			InstrName[i] = fileLine;
+  			InstrName[i] = fileLine[8*MaxChar-1:8];
 			end
 		end
 	end
@@ -132,89 +126,79 @@ module TB_RISCV ();
 		end
 	end
 
-	always @(posedge CLK ) begin
-		if (start_flag == 1) begin
-			delay_check = delay_check + 1;
-		end
-	end
 
 	always @(negedge CLK) begin
-		if (delay_check >= 5) begin
+		if (start_flag == 1) begin
 
-			$display("");
-			$display("------------------------------------------------------------------");
-			$display("");
-			pc_err_flag = 0;
-			// Program Counter Check
-			$display("-> PROGRAM COUNTER CHECK");
-			content_dut = DUT.PC.REG_OUT;
-			content_ref = 45;
+			cycle_cnt = cycle_cnt + 1;
 
-			$display("--> PC_REF = %d			PC_DUT = %d",content_ref,content_dut);
+			// Pipeline State Monitor
+			IF_instr_name = InstrName[DUT.PC.REG_OUT/4];
+			ID_instr_name = InstrName[DUT.DEBUG_PC_IF_ID.REG_OUT/4];
+			EXE_instr_name = InstrName[DUT.DEBUG_PC_ID_EXE.REG_OUT/4];
+			MEM_instr_name = InstrName[DUT.DEBUG_PC_EXE_MEM.REG_OUT/4];
+			WB_instr_name = InstrName[DUT.DEBUG_PC_MEM_WB.REG_OUT/4];
 
-			if (content_ref != content_dut) begin
-				pc_err_flag = 1;
-				$display("---> NOT PASSED");
-			end
-			else begin
-				$display("---> PASSED");
-			end
+			IF_instr = DUT.PC.REG_OUT;
+			ID_instr = DUT.DEBUG_PC_IF_ID.REG_OUT;
+			EXE_instr = DUT.DEBUG_PC_ID_EXE.REG_OUT;
+			MEM_instr = DUT.DEBUG_PC_EXE_MEM.REG_OUT;
+			WB_instr = DUT.DEBUG_PC_MEM_WB.REG_OUT;
 
+			
+			$display("\n\n----------------------------------------------------------------------------------------------------------------");
+			$display("\n\n--------------------------------------------------------------------");
+			$display("--------------------------------------------------------------------");
+			$display("------------------ MACHINE CYCLE %d -----------------------	", cycle_cnt);
+			$display("--------------------------------------------------------------------");
+			$display("--------------------------------------------------------------------");
 
-			//Register File Check
-			rf_err_flag = 0;
-			$display("");
-			$display("-> REGISTER FILE CHECK (for previous instruction)");
+			$display("\n\n-----------------------------------------------------------");
+			$display("------------------ PIPELINE STATE TABLE -------------------	");
+			$display("-----------------------------------------------------------");
+			$display("         IF          ID         EXE         MEM          WB");
+			$display("     %s      %s      %s      %s      %s", IF_instr_name, ID_instr_name, EXE_instr_name, MEM_instr_name, WB_instr_name);
+			$display("%d %d %d %d %d", IF_instr, ID_instr, EXE_instr, MEM_instr, WB_instr);
+			$display("-----------------------------------------------------------");
 
+				$display("\n\n-----------------------------------------------------------");
+			$display("------------------ REGISTER FILE CONTENT ------------------	");
+			$display("-----------------------------------------------------------");
 			for (i=0; i<32; i=i+1) begin
-				content_ref = DUT.RF.MEM[i];
-				content_dut = 3465;
-				
-				if (content_ref != content_dut) begin
-					$display("--> ERROR AT ENTRY [%d]			RF_REF = %d			RF_DUT = %d",i,content_ref,content_dut);
-					rf_err_flag = 1;					
-				end
-
+				$display("ENTRY %d] %d ",i,DUT.RF.MEM[i]);
 			end
+			$display("-----------------------------------------------------------");
 
-			if (rf_err_flag != 0) begin
-				$display("---> NOT PASSED");
-			end
-			else begin
-				$display("---> PASSED");
-			end
+			$display("\n\n-----------------------------------------------------------");
+			$display("------------------ REGISTER FILE ADDRESSES ----------------	");
+			$display("-----------------------------------------------------------");
+			$display("RD_ADDR 1] %d  RD_ADDR 2] %d",DUT.RF.RD1_ADDR, DUT.RF.RD2_ADDR);
+			$display("  WR_ADDR] %d     WR_DIN] %d", DUT.RF.WR1_ADDR, DUT.RF.WR1_DIN);
+			$display("-----------------------------------------------------------");
 
-			//Main Memory Check for previous instruction
-			rf_err_flag = 0;
-			$display("");
-			$display("-> MAIN MEMORY CHECK (for previous instruction)");
+			$display("\n\n---------------------------------------------------------------------------");
+			$display("------------------ MAIN MEMORY ADDRESSES ----------------------------------	");
+			$display("---------------------------------------------------------------------------");
+      $display("DATA_RD_ADDR] %d  DATA_WR_ADDR] %d  DATA_WR_DIN] %d",MEMORY.RD_ADDR1,MEMORY.WR_ADDR1,MEMORY.WR_DIN_1);
+			$display("---------------------------------------------------------------------------");
 
-			for (i=dmem_base; i<(dmem_base+dmem_offset); i=i+4) begin
-				content_ref = {8'b1,8'b0,8'b1,8'b0};
-				content_dut = {8'b0,8'b1,8'b1,8'b0};
-				
-				if (content_ref != content_dut) begin
-					$display("--> ERROR AT ENTRY [%d]			DMEM_REF = %d			DMEM_DUT = %d",i,content_ref,content_dut);
-					data_mem_err_flag = 1;					
-				end
 
-			end
 
-			if (data_mem_err_flag != 0) begin
-				$display("---> NOT PASSED");
-			end
-			else begin
-				$display("---> PASSED");
-			end
 
-			//Global Error Check
-			if (pc_err_flag != 0 || rf_err_flag != 0 || data_mem_err_flag != 0) begin
-				$display("");
-				$display("-> CYCLE CHECK NOT PASSED");
-				$stop;
-			end
+
+			$display("\n\n------------------------------------------------------------");
+			$display("------------------ ALU OPERANDS & RESULT -------------------	");
+			$display("------------------------------------------------------------");
+			$display("INPUT 1] %d  INPUT 2] %d  RESULT] %d",DUT.ALU_EXE.DATA1_IN, DUT.ALU_EXE.DATA2_IN, DUT.ALU_EXE.RESULT_OUT);
+			$display("------------------------------------------------------------");
+			
+
+
+
 
 		end
+
+		
 
 	end
 	
