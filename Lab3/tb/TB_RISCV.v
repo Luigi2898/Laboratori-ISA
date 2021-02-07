@@ -1,11 +1,13 @@
 module TB_RISCV ();
 
 	wire [31:0] INSTR_ADDR, DATA_ADDR, INSTR, DATA_OUT, DATA_IN;
-	wire MEM_WR_EN, MEM_RD_EN;
+	wire [31:0] INSTR_ADDR_REF, DATA_ADDR_REF, INSTR_REF, DATA_OUT_REF, DATA_IN_REF;
+	wire MEM_WR_EN, MEM_RD_EN, MEM_WR_EN_REF, MEM_RD_EN_REF;
 	wire CLK, RSTN;
 	//assign INSTR_ADDR = 4194304;
 	//assign DATA_ADDR = 268500992;
-  
+
+
 	MAIN_MEM #( 
 		.instr_filename("D:/PoliTo/Magistrale/II anno/Integrated system architecture/Lab 3/code/beqjal.txt"),
     	.data_filename("D:/PoliTo/Magistrale/II anno/Integrated system architecture/Lab 3/data/data.txt"),
@@ -21,6 +23,24 @@ module TB_RISCV ();
 		.RD_DOUT_1(DATA_IN),
 		.RD_DOUT_2(INSTR),
 		.WR_DIN_1(DATA_OUT)
+	);
+
+
+	MAIN_MEM #( 
+		.instr_filename("D:/PoliTo/Magistrale/II anno/Integrated system architecture/Lab 3/code/beqjal.txt"),
+    	.data_filename("D:/PoliTo/Magistrale/II anno/Integrated system architecture/Lab 3/data/data.txt"),
+    	.Entries(32767)
+  	)
+  	MEMORY_REF_MODEL(	
+		.CLK(CLK),
+		.RSTN(RSTN),
+		.WR_EN(MEM_WR_EN_REF),
+		.RD_ADDR1(DATA_ADDR_REF),
+		.RD_ADDR2(INSTR_ADDR_REF),
+		.WR_ADDR1(DATA_ADDR_REF),
+		.RD_DOUT_1(DATA_IN_REF),
+		.RD_DOUT_2(INSTR_REF),
+		.WR_DIN_1(DATA_OUT_REF)
 	);
 
 	clk_gen clk_gen_instance(
@@ -39,6 +59,17 @@ module TB_RISCV ();
 		.CLK(CLK),
 		.EXTERNAL_RSTN(RSTN)
 	);
+
+	RISCVCPU REF_MODEL(
+        .CLK(CLK),
+        .WR_EN(MEM_WR_EN_REF),
+        .INSTR_ADDR(INSTR_ADDR_REF),
+        .INSTR(INSTR_REF),
+        .DATA_ADDR(DATA_ADDR_REF),
+        .DATA_OUT(DATA_OUT_REF),
+        .DATA_IN(DATA_IN_REF)
+    );
+
 
 	// Pipe Emulation for Reference Model
 	reg [31:0] pipe_emul [3:0];
