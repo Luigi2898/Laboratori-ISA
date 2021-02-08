@@ -71,7 +71,7 @@ module TB_RISCV ();
     );
 
 
-	
+
 	
 	// Instruction Name Upload
 	parameter MaxChar = 6;
