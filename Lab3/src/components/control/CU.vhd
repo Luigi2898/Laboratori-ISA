@@ -116,7 +116,7 @@ begin
                                        "011" when AUIPC,
                                        "011" when LUI,
                                        "100" when JAL,
-                                       "---" when others;
+                                       "111" when others;
 
   with OPCODE select IMM_EN_OUT     <= '1' when BEQ,
                                        '1' when IMM,

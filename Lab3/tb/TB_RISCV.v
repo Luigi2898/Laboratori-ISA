@@ -9,14 +9,15 @@ module TB_RISCV ();
 
 
 	MAIN_MEM #( 
-		.instr_filename("D:/PoliTo/Magistrale/II anno/Integrated system architecture/Lab 3/code/minrsv.txt"),
-    	.data_filename("D:/PoliTo/Magistrale/II anno/Integrated system architecture/Lab 3/data/data.txt"),
+		.instr_filename("minrsv.txt"),
+    	.data_filename("data.txt"),
     	.Entries(32767)
   	)
   	MEMORY(	
 		.CLK(CLK),
 		.RSTN(RSTN),
 		.WR_EN(MEM_WR_EN),
+		.RD_EN(MEM_RD_EN),
 		.RD_ADDR1(DATA_ADDR),
 		.RD_ADDR2(INSTR_ADDR),
 		.WR_ADDR1(DATA_ADDR),
@@ -53,7 +54,7 @@ module TB_RISCV ();
 		.DATA_ADDR(DATA_ADDR),
 		.DATA_OUT(DATA_OUT),
 		.WRITE_EN(MEM_WR_EN),
-        .READ_EN(MEM_RD_EN),
+    .READ_EN(MEM_RD_EN),
 		.INSTR_ADDR(INSTR_ADDR),
 		.INSTR(INSTR),		
 		.CLK(CLK),

@@ -21,6 +21,7 @@ signal IMM_BTYPE : std_logic_vector (31 downto 0);
 signal IMM_UTYPE : std_logic_vector (31 downto 0);
 signal IMM_JTYPE : std_logic_vector (31 downto 0);
 signal IMM_GEN : std_logic_vector (31 downto 0);
+signal IMM_NULL : std_logic_vector (31 downto 0);
 --constant types
 constant CTRL_IN0_MUX : std_logic_vector(2 downto 0) := "000";
 constant CTRL_IN1_MUX : std_logic_vector(2 downto 0) := "001";
@@ -67,6 +68,8 @@ begin
   
 end process immediate_generation_process;
 
+IMM_NULL <= (others => '0');
+
 
 with IMM_CODE_IN select 
      IMM_GEN     <= IMM_ITYPE when CTRL_IN0_MUX,
@@ -74,10 +77,10 @@ with IMM_CODE_IN select
                     IMM_BTYPE when CTRL_IN2_MUX,
                     IMM_UTYPE when CTRL_IN3_MUX,
                     IMM_JTYPE when CTRL_IN4_MUX,
-                    (others=>'-') when others;
+                    IMM_ITYPE when others;
                     
 with IMM_EN_IN select IMM_GEN_OUT <= IMM_GEN when '1',
-                                     (others=>'-') when others;
+                                     IMM_NULL when others;
 
 
 end architecture;
