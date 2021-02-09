@@ -9,7 +9,7 @@ module TB_RISCV ();
 
 
 	MAIN_MEM #( 
-		.instr_filename("D:/PoliTo/Magistrale/II anno/Integrated system architecture/Lab 3/code/beqjal.txt"),
+		.instr_filename("D:/PoliTo/Magistrale/II anno/Integrated system architecture/Lab 3/code/minrsv.txt"),
     	.data_filename("D:/PoliTo/Magistrale/II anno/Integrated system architecture/Lab 3/data/data.txt"),
     	.Entries(32767)
   	)
@@ -26,7 +26,7 @@ module TB_RISCV ();
 	);
 
 
-	MAIN_MEM #( 
+	/*MAIN_MEM #( 
 		.instr_filename("D:/PoliTo/Magistrale/II anno/Integrated system architecture/Lab 3/code/beqjal.txt"),
     	.data_filename("D:/PoliTo/Magistrale/II anno/Integrated system architecture/Lab 3/data/data.txt"),
     	.Entries(32767)
@@ -41,7 +41,7 @@ module TB_RISCV ();
 		.RD_DOUT_1(DATA_IN_REF),
 		.RD_DOUT_2(INSTR_REF),
 		.WR_DIN_1(DATA_OUT_REF)
-	);
+	);*/
 
 	clk_gen clk_gen_instance(
 		.CLK(CLK),
@@ -60,7 +60,7 @@ module TB_RISCV ();
 		.EXTERNAL_RSTN(RSTN)
 	);
 
-	RISCVCPU REF_MODEL(
+	/*RISCVCPU REF_MODEL(
         .CLK(CLK),
         .WR_EN(MEM_WR_EN_REF),
         .INSTR_ADDR(INSTR_ADDR_REF),
@@ -68,10 +68,10 @@ module TB_RISCV ();
         .DATA_ADDR(DATA_ADDR_REF),
         .DATA_OUT(DATA_OUT_REF),
         .DATA_IN(DATA_IN_REF)
-    );
+    );*/
 
 
-
+	
 	
 	// Instruction Name Upload
 	parameter MaxChar = 6;
@@ -96,7 +96,7 @@ module TB_RISCV ();
 		fileID = $fopen("instr_name.txt","r");
 		if (fileID == 0) begin
 			$display("ERROR: COULDN'T OPEN INPUT FILE instr_name.txt");
-			$finish;
+			//$finish;
 		end
 		else begin
 			for (i=0; i<InstrSize; i=i+1) begin

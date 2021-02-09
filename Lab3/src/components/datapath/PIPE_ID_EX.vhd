@@ -3,47 +3,49 @@ library ieee;
   use ieee.numeric_std.all;
 
 
-entity PIPE_ID_EX is 
-  port(
-    CLK                   : in std_logic;
-    RSTN                  : in std_logic;
-    FLUSH                 : in std_logic;
-    STALL                 : in std_logic;
-    LUI_IN                : in std_logic;
-    RS1_VAL_IN            : in std_logic_vector(31 downto 0);
-    RS2_VAL_IN            : in std_logic_vector(31 downto 0);
-    IMM_GEN_IN            : in std_logic_vector(31 downto 0);
-    RS1_ADDR_IN           : in std_logic_vector(4 downto 0);
-    RS2_ADDR_IN           : in std_logic_vector(4 downto 0);
-    RD_ADDR_IN            : in std_logic_vector(4 downto 0);
-    FUNC3_IN              : in std_logic_vector(2 downto 0);
-    WR_RFEN_IN            : in std_logic;
-    WR_RFMUX_IN           : in std_logic;
-    BRANCH_COMP_IN        : in std_logic;
-    M_RD_EN_IN            : in std_logic;
-    M_WR_IN               : in std_logic;
-    EX_ALUSRC_IN          : in std_logic;
-    EX_ALUCTRL_IN         : in std_logic;
-    EX_ALUEN_IN           : in std_logic;
-    ------------------------------------------------------------------ out
-    WR_RFEN_OUT           : out std_logic;
-    WR_RFMUX_OUT          : out std_logic;
-    BRANCH_COMP_OUT       : out std_logic;
-    M_RD_EN_OUT           : out std_logic;
-    M_WR_OUT              : out std_logic;
-    EX_ALUSRC_OUT         : out std_logic;
-    EX_ALUCTRL_OUT        : out std_logic;
-    EX_ALUEN_OUT          : out std_logic;
-    RS1_VAL_OUT           : out std_logic_vector(31 downto 0);
-    RS2_VAL_OUT           : out std_logic_vector(31 downto 0);
-    IMM_GEN_OUT           : out std_logic_vector(31 downto 0);
-    RS1_ADDR_OUT          : out std_logic_vector(4 downto 0);
-    RS2_ADDR_OUT          : out std_logic_vector(4 downto 0);
-    RD_ADDR_OUT           : out std_logic_vector(4 downto 0);
-    FUNC3_OUT             : out std_logic_vector(2 downto 0);
-    LUI_OUT               : out std_logic    
-  );
-end entity PIPE_ID_EX;
+  entity PIPE_ID_EX is 
+    port(
+      CLK                   : in std_logic;
+      RSTN                  : in std_logic;
+      FLUSH                 : in std_logic;
+      STALL                 : in std_logic;
+      LUI_IN                : in std_logic;
+      AUIPC_MUX_OUT         : in std_logic;
+      RS1_VAL_IN            : in std_logic_vector(31 downto 0);
+      RS2_VAL_IN            : in std_logic_vector(31 downto 0);
+      IMM_GEN_IN            : in std_logic_vector(31 downto 0);
+      RS1_ADDR_IN           : in std_logic_vector(4 downto 0);
+      RS2_ADDR_IN           : in std_logic_vector(4 downto 0);
+      RD_ADDR_IN            : in std_logic_vector(4 downto 0);
+      FUNC3_IN              : in std_logic_vector(2 downto 0);
+      WR_RFEN_IN            : in std_logic;
+      WR_RFMUX_IN           : in std_logic;
+      BRANCH_COMP_IN        : in std_logic;
+      M_RD_EN_IN            : in std_logic;
+      M_WR_IN               : in std_logic;
+      EX_ALUSRC_IN          : in std_logic;
+      EX_ALUCTRL_IN         : in std_logic;
+      EX_ALUEN_IN           : in std_logic;
+      ------------------------------------------------------------------ out
+      WR_RFEN_OUT           : out std_logic;
+      WR_RFMUX_OUT          : out std_logic;
+      BRANCH_COMP_OUT       : out std_logic;
+      M_RD_EN_OUT           : out std_logic;
+      M_WR_OUT              : out std_logic;
+      EX_ALUSRC_OUT         : out std_logic;
+      EX_ALUCTRL_OUT        : out std_logic;
+      EX_ALUEN_OUT          : out std_logic;
+      RS1_VAL_OUT           : out std_logic_vector(31 downto 0);
+      RS2_VAL_OUT           : out std_logic_vector(31 downto 0);
+      IMM_GEN_OUT           : out std_logic_vector(31 downto 0);
+      RS1_ADDR_OUT          : out std_logic_vector(4 downto 0);
+      RS2_ADDR_OUT          : out std_logic_vector(4 downto 0);
+      RD_ADDR_OUT           : out std_logic_vector(4 downto 0);
+      FUNC3_OUT             : out std_logic_vector(2 downto 0);
+      LUI_OUT               : out std_logic; 
+      AUIPC_MUX_OUT_EX      : out std_logic
+    );
+  end entity PIPE_ID_EX;
 
 
 architecture beh of PIPE_ID_EX is
@@ -55,7 +57,8 @@ signal M_RD_EN    : std_logic;
 signal M_WR       : std_logic;
 signal EX_ALUSRC  : std_logic;
 signal EX_ALUCTRL : std_logic;
-signal EX_ALUEN   : std_logic;  
+signal EX_ALUEN   : std_logic;
+signal AUIPC_INT  : std_logic;
 signal RS1        : std_logic_vector(31 downto 0);
 signal RS2        : std_logic_vector(31 downto 0);
 signal IMM        : std_logic_vector(31 downto 0);
@@ -80,6 +83,7 @@ begin
         EX_ALUCTRL <= '0';
         EX_ALUEN   <= '0';
         LUI        <= '0';
+        AUIPC_INT  <= '0';
         RS1        <= (others => '0');
         RS2        <= (others => '0');
         IMM        <= (others => '0');
@@ -101,6 +105,7 @@ begin
         EX_ALUSRC  <= EX_ALUSRC_IN;
         EX_ALUCTRL <= EX_ALUCTRL_IN;
         EX_ALUEN   <= EX_ALUEN_IN;
+        AUIPC_INT  <= '0';
         LUI      <= '0';
         RS1      <= (others => '0');
         RS2      <= (others => '0');
@@ -119,7 +124,8 @@ begin
         EX_ALUSRC  <= '0';
         EX_ALUCTRL <= '0';
         EX_ALUEN   <= '0';
-        
+        AUIPC_INT  <= '0';
+
         elsif(FLUSH = '0' and STALL = '0') then--normal exe  
 
         RS1        <= RS1_VAL_IN;
@@ -138,6 +144,8 @@ begin
         EX_ALUEN   <= EX_ALUEN_IN;
         FUNC3      <= FUNC3_IN;
         LUI        <= LUI_IN;
+        AUIPC_INT  <= AUIPC_MUX_OUT;
+
         end if;
 
     end if;
@@ -160,5 +168,6 @@ EX_ALUSRC_OUT    <= EX_ALUSRC;
 EX_ALUCTRL_OUT   <= EX_ALUCTRL;
 EX_ALUEN_OUT     <= EX_ALUEN;
 LUI_OUT          <= LUI;
+AUIPC_MUX_OUT_EX <= AUIPC_INT;
 
 end architecture beh;
