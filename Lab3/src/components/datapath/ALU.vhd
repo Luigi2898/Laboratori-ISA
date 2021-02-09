@@ -52,7 +52,7 @@ begin
                                       SUM_OUT                                     when EQ_OP,
                                       DATA1_IN and DATA2_IN                       when AND_OP,
                                       DATA1_IN xor DATA2_IN                       when XOR_OP,
-                                      (others => '-')                             when others;
+                                      SUM_OUT                                     when others;
 
   --with SUM_OUT select ZF_OUT      <= '1' when (others => '0'),
     --                                 '0' when others;

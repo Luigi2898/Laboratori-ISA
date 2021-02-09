@@ -7,6 +7,7 @@ module MAIN_MEM
   ( input CLK,
     input RSTN,
     input WR_EN,
+    input RD_EN,
     input  [31:0] RD_ADDR1,
     input  [31:0] RD_ADDR2,
     input  [31:0] WR_ADDR1,
@@ -85,12 +86,17 @@ module MAIN_MEM
     end
   end
 
-  // asynchronous read @ port 1
+  // gated asynchronous read @ port 1
   always @(RD_ADDR1) begin
-    RD_DOUT_1_TMP[7:0] = MEM[RD_ADDR1+0];
-    RD_DOUT_1_TMP[15:8] = MEM[RD_ADDR1+1];
-    RD_DOUT_1_TMP[23:16] = MEM[RD_ADDR1+2];
-    RD_DOUT_1_TMP[31:24] = MEM[RD_ADDR1+3];
+    if (RD_EN) begin
+      RD_DOUT_1_TMP[7:0] = MEM[RD_ADDR1+0];
+      RD_DOUT_1_TMP[15:8] = MEM[RD_ADDR1+1];
+      RD_DOUT_1_TMP[23:16] = MEM[RD_ADDR1+2];
+      RD_DOUT_1_TMP[31:24] = MEM[RD_ADDR1+3];
+    end
+    else begin
+      RD_DOUT_1_TMP = 32'b0;
+    end
   end
   assign RD_DOUT_1 = RD_DOUT_1_TMP;
 
