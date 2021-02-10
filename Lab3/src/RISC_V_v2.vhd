@@ -236,7 +236,7 @@ architecture rtl of RISC_V_v2 is
     );
   end component;
 
-  component PIPE_ID_EX is 
+  component PIPE_ID_EX_v2 is 
     port(
       CLK                   : in std_logic;
       RSTN                  : in std_logic;
@@ -250,6 +250,7 @@ architecture rtl of RISC_V_v2 is
       RS2_ADDR_IN           : in std_logic_vector(4 downto 0);
       RD_ADDR_IN            : in std_logic_vector(4 downto 0);
       FUNC3_IN              : in std_logic_vector(2 downto 0);
+      FUNC7_IN              : in std_logic;
       WR_RFEN_IN            : in std_logic;
       WR_RFMUX_IN           : in std_logic;
       BRANCH_COMP_IN        : in std_logic;
@@ -274,11 +275,12 @@ architecture rtl of RISC_V_v2 is
       RS2_ADDR_OUT          : out std_logic_vector(4 downto 0);
       RD_ADDR_OUT           : out std_logic_vector(4 downto 0);
       FUNC3_OUT             : out std_logic_vector(2 downto 0);
+      FUNC7_OUT             : out std_logic;
       LUI_OUT               : out std_logic    
     );
-  end component PIPE_ID_EX;
+  end component PIPE_ID_EX_v2;
 
-  component ALU is
+  component ALU_v2 is
     generic (N : integer := 32);
     port (
       DATA1_IN   : in  std_logic_vector(N - 1 downto 0);
@@ -290,20 +292,12 @@ architecture rtl of RISC_V_v2 is
     );
   end component;
 
-  component ABS_VAL is
-    generic (Nbits : integer := 32);
-    port (
-      DATA_IN : in std_logic_vector (Nbits-1 downto 0);
-      EN : in std_logic;
-      DATA_OUT : out std_logic_vector (Nbits-1 downto 0)
-    );
-  end component ABS_VAL;
-
-  component ALU_CTRL is
+  component ALU_CTRL_v2 is
     port (
       EN_IN    : in  std_logic;
       CTRL_IN  : in  std_logic;
       FUNC_IN  : in  std_logic_vector(2 downto 0);
+      FUNC7_IN : in std_logic;
       AUIPC_MUX_OUT  : in std_logic;
       CODE_OUT : out std_logic_vector(5 downto 0)
     );
@@ -341,6 +335,7 @@ architecture rtl of RISC_V_v2 is
   signal RS2_ADDR_OUT_IDEX   : std_logic_vector(4 downto 0);
   signal RD_ADDR_OUT_IDEX    : std_logic_vector(4 downto 0);
   signal FUNC3_OUT_IDEX      : std_logic_vector(2 downto 0);
+  signal FUNC7_OUT_IDEX      : std_logic;
   signal BRANCH_OUT_IDEX     : std_logic;
   signal WR_RFEN_OUT_IDEX    : std_logic;
   signal WR_RFMUX_OUT_IDEX   : std_logic;
@@ -368,7 +363,6 @@ architecture rtl of RISC_V_v2 is
   signal IMM_EN         : std_logic;
   signal AUIPC_MUX_OUT  : std_logic;
   signal LUI_HANDLER    : std_logic;
-  signal ABS_VAL_EN     : std_logic;
   -- Execute stage signals
   signal LUI_HANDLER_EXE     : std_logic;
   signal LUI_ALU             : std_logic_vector(31 downto 0);
@@ -380,12 +374,10 @@ architecture rtl of RISC_V_v2 is
   signal RS2_VAL_OUT_EXMEM   : std_logic_vector(31 downto 0);
   signal OP_WB_OUT_EXMEM     : std_logic_vector(3 downto 0);
   signal RD_ADDR_OUT_EXMEM   : std_logic_vector(4 downto 0);
-  signal ABS_VAL_RES         : std_logic_vector(31 downto 0);
-  signal ALU_RES             : std_logic_vector(31 downto 0);
   signal EX_ALUSRC_OUT       : std_logic;
   -- Data Memory Stage Signals
-  signal RF_WRDIN_EXMEM: std_logic_vector(31 downto 0);
-  signal OP_WB_OUT_MEMWB     : std_logic_vector(1 downto 0);
+  signal RF_WRDIN_EXMEM    : std_logic_vector(31 downto 0);
+  signal OP_WB_OUT_MEMWB   : std_logic_vector(1 downto 0);
   signal RD_ADDR_OUT_MEMWB : std_logic_vector(4 downto 0);
   -- PC Debug Signals
   signal DEBUG_PC_IF_ID_OUT   : std_logic_vector (31 downto 0); 
@@ -454,25 +446,22 @@ begin
 
   PIPE_REG2 : PIPE_ID_EX port map(CLK, I_RST, FLUSH, STALL, LUI_HANDLER, OUT_AUIPC, BC_IN2, IMM_GEN_OUT,
                                   INSTR_ID(19 downto 15), INSTR_ID(24 downto 20), INSTR_ID(11 downto 7), INSTR_ID(14 downto 12),
-                                  RF_EN, RF_MUX, BRANCH, MEM_RD, MEM_WR, ALU_SRC, ALU_CTR, ALU_CTRL_EN,
+                                  INSTR_ID(25), RF_EN, RF_MUX, BRANCH, MEM_RD, MEM_WR, ALU_SRC, ALU_CTR, ALU_CTRL_EN,
                                   WR_RFEN_OUT_IDEX, WR_RFMUX_OUT_IDEX, BRANCH_OUT_IDEX, M_RD_EN_OUT_IDEX, M_WR_OUT_IDEX, EX_ALUSRC_OUT, EX_ALUCTRL_OUT_IDEX, EX_ALUEN_OUT_IDEX,
-                                  RS1_VAL_OUT_IDEX, RS2_VAL_OUT_IDEX, IMM_GEN_OUT_IDEX, RS1_ADDR_OUT_IDEX, RS2_ADDR_OUT_IDEX, RD_ADDR_OUT_IDEX, FUNC3_OUT_IDEX, LUI_HANDLER_EXE);
+                                  RS1_VAL_OUT_IDEX, RS2_VAL_OUT_IDEX, IMM_GEN_OUT_IDEX, RS1_ADDR_OUT_IDEX, RS2_ADDR_OUT_IDEX, RD_ADDR_OUT_IDEX, FUNC3_OUT_IDEX, FUNC7_OUT_IDEX, LUI_HANDLER_EXE);
   ----------- Instruction execute stage -----------
 
   MUX_ALU_IN2 : MUX_2to1 generic map(32)
                          port map(RS2_VAL_OUT_IDEX, IMM_GEN_OUT_IDEX, EX_ALUSRC_OUT, ALU_IN2_IDEX);
   
-  ALU_EXE : ALU generic map(32)
-                port map(RS1_VAL_OUT_IDEX, ALU_IN2_IDEX, CODE_ALUCTRL_OUT, open, open,ALU_RES);
+  ALU_EXE : ALU_v2 generic map(32)
+                port map(RS1_VAL_OUT_IDEX, ALU_IN2_IDEX, CODE_ALUCTRL_OUT, open, open,ALU_RES_IN_EXMEM);
 
-  ABS_EXE : ABS_VAL generic map (32) 
-                    port map (RS1_VAL_OUT_IDEX, ABS_VAL_EN, ABS_VAL_RES);
   
-  ALU_CTRL_EXE : ALU_CTRL port map(EX_ALUEN_OUT_IDEX, EX_ALUCTRL_OUT_IDEX, FUNC3_OUT_IDEX, AUIPC_MUX_OUT, CODE_ALUCTRL_OUT);              
+  
+  ALU_CTRL_EXE : ALU_CTRL_v2 port map(EX_ALUEN_OUT_IDEX, EX_ALUCTRL_OUT_IDEX, FUNC3_OUT_IDEX, FUNC3_OUT_IDEX, AUIPC_MUX_OUT, CODE_ALUCTRL_OUT);              
 
-  MUX_ALU_ABS : MUX_2to1 generic map(32)
-                         port map (ALU_RES, ABS_VAL, ABS_VAL_EN, ALU_RES_IN_EXMEM);
-
+  
   OP_WB_IN_EXMEM <= WR_RFEN_OUT_IDEX & WR_RFMUX_OUT_IDEX & M_RD_EN_OUT_IDEX & M_WR_OUT_IDEX;
 
   MUX_LUI : MUX_2to1 generic map(32)
