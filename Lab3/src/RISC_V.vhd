@@ -242,6 +242,7 @@ architecture rtl of RISC_V is
       FLUSH                 : in std_logic;
       STALL                 : in std_logic;
       LUI_IN                : in std_logic;
+      AUIPC_MUX_OUT         : in std_logic;
       RS1_VAL_IN            : in std_logic_vector(31 downto 0);
       RS2_VAL_IN            : in std_logic_vector(31 downto 0);
       IMM_GEN_IN            : in std_logic_vector(31 downto 0);
@@ -273,7 +274,8 @@ architecture rtl of RISC_V is
       RS2_ADDR_OUT          : out std_logic_vector(4 downto 0);
       RD_ADDR_OUT           : out std_logic_vector(4 downto 0);
       FUNC3_OUT             : out std_logic_vector(2 downto 0);
-      LUI_OUT               : out std_logic    
+      LUI_OUT               : out std_logic;    
+      AUIPC_MUX_OUT_EX      : out std_logic
     );
   end component PIPE_ID_EX;
 
@@ -370,10 +372,17 @@ architecture rtl of RISC_V is
   signal OP_WB_OUT_EXMEM     : std_logic_vector(3 downto 0);
   signal RD_ADDR_OUT_EXMEM   : std_logic_vector(4 downto 0);
   signal EX_ALUSRC_OUT       : std_logic;
+  signal AUIPC_MUX_OUT_ID    : std_logic;
   -- Data Memory Stage Signals
   signal RF_WRDIN_EXMEM: std_logic_vector(31 downto 0);
   signal OP_WB_OUT_MEMWB     : std_logic_vector(1 downto 0);
   signal RD_ADDR_OUT_MEMWB : std_logic_vector(4 downto 0);
+  -- PC Debug Signals
+  signal DEBUG_PC_IF_ID_OUT   : std_logic_vector (31 downto 0); 
+  signal DEBUG_PC_ID_EXE_OUT  : std_logic_vector (31 downto 0); 
+  signal DEBUG_PC_EXE_MEM_OUT : std_logic_vector (31 downto 0); 
+  signal DEBUG_PC_MEM_WB_OUT  : std_logic_vector (31 downto 0);
+  signal DEBUG_RESET_FLUSH    : std_logic;
 
 begin
 
@@ -433,11 +442,11 @@ begin
   MUX_AUIPC : MUX_2to1 generic map(32)
                        port map(BC_IN1, PC_ID, AUIPC_MUX_OUT, OUT_AUIPC);
 
-  PIPE_REG2 : PIPE_ID_EX port map(CLK, I_RST, FLUSH, STALL, LUI_HANDLER, OUT_AUIPC, BC_IN2, IMM_GEN_OUT,
+  PIPE_REG2 : PIPE_ID_EX port map(CLK, I_RST, FLUSH, STALL, LUI_HANDLER, AUIPC_MUX_OUT, OUT_AUIPC, BC_IN2, IMM_GEN_OUT,
                                   INSTR_ID(19 downto 15), INSTR_ID(24 downto 20), INSTR_ID(11 downto 7), INSTR_ID(14 downto 12),
-                                  RF_EN, RF_MUX, BRANCH, MEM_RD, MEM_WR, ALU_SRC, ALU_CTR, ALU_CTRL_EN,
+                                  RF_EN, RF_MUX, BRANCH, MEM_RD, MEM_WR, ALU_SRC, ALU_CTR, ALU_CTRL_EN, 
                                   WR_RFEN_OUT_IDEX, WR_RFMUX_OUT_IDEX, BRANCH_OUT_IDEX, M_RD_EN_OUT_IDEX, M_WR_OUT_IDEX, EX_ALUSRC_OUT, EX_ALUCTRL_OUT_IDEX, EX_ALUEN_OUT_IDEX,
-                                  RS1_VAL_OUT_IDEX, RS2_VAL_OUT_IDEX, IMM_GEN_OUT_IDEX, RS1_ADDR_OUT_IDEX, RS2_ADDR_OUT_IDEX, RD_ADDR_OUT_IDEX, FUNC3_OUT_IDEX, LUI_HANDLER_EXE);
+                                  RS1_VAL_OUT_IDEX, RS2_VAL_OUT_IDEX, IMM_GEN_OUT_IDEX, RS1_ADDR_OUT_IDEX, RS2_ADDR_OUT_IDEX, RD_ADDR_OUT_IDEX, FUNC3_OUT_IDEX, LUI_HANDLER_EXE, AUIPC_MUX_OUT_ID);
   ----------- Instruction execute stage -----------
 
   MUX_ALU_IN2 : MUX_2to1 generic map(32)
@@ -447,7 +456,7 @@ begin
                 port map(RS1_VAL_OUT_IDEX, ALU_IN2_IDEX, CODE_ALUCTRL_OUT, open, open, ALU_RES_IN_EXMEM);
 
 
-  ALU_CTRL_EXE : ALU_CTRL port map(EX_ALUEN_OUT_IDEX, EX_ALUCTRL_OUT_IDEX, FUNC3_OUT_IDEX, AUIPC_MUX_OUT, CODE_ALUCTRL_OUT);              
+  ALU_CTRL_EXE : ALU_CTRL port map(EX_ALUEN_OUT_IDEX, EX_ALUCTRL_OUT_IDEX, FUNC3_OUT_IDEX, AUIPC_MUX_OUT_ID, CODE_ALUCTRL_OUT);              
 
 
   OP_WB_IN_EXMEM <= WR_RFEN_OUT_IDEX & WR_RFMUX_OUT_IDEX & M_RD_EN_OUT_IDEX & M_WR_OUT_IDEX;
@@ -473,9 +482,17 @@ begin
 
   ----------- Write Back Stage ------------ 
 
-  
 
+  ----------- Debug Instances -------------
 
+  DEBUG_PC_IF_ID : REG generic map (32) port map (CURRENT_PC, CLK, DEBUG_RESET_FLUSH, VDD, DEBUG_PC_IF_ID_OUT);
 
+  DEBUG_PC_ID_EXE : REG generic map (32) port map (DEBUG_PC_IF_ID_OUT, CLK, I_RST, VDD, DEBUG_PC_ID_EXE_OUT);
+
+  DEBUG_PC_EXE_MEM : REG generic map (32) port map (DEBUG_PC_ID_EXE_OUT, CLK, I_RST, VDD, DEBUG_PC_EXE_MEM_OUT);
+
+  DEBUG_PC_MEM_WB : REG generic map (32) port map (DEBUG_PC_EXE_MEM_OUT, CLK, I_RST, VDD, DEBUG_PC_MEM_WB_OUT);
+
+  DEBUG_RESET_FLUSH <= I_RST and not(FLUSH);
 
 end architecture;

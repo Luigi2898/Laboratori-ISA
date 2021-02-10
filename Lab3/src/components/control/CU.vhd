@@ -116,7 +116,7 @@ begin
                                        "011" when AUIPC,
                                        "011" when LUI,
                                        "100" when JAL,
-                                       "---" when others;
+                                       "111" when others;
 
   with OPCODE select IMM_EN_OUT     <= '1' when BEQ,
                                        '1' when IMM,
@@ -127,7 +127,7 @@ begin
                                        '1' when LW,
                                        '0' when others;
 
-  PIPE_FLUSH <= BPU_MISSPRED and not(BRANCH_OUTCOME);
+  PIPE_FLUSH <= (BPU_MISSPRED and not(BRANCH_OUTCOME)) or JMP;
   
   with OPCODE select AUIPC_MUX_OUT  <= '1' when AUIPC,
                                        '0' when others;

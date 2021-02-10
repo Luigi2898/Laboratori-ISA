@@ -25,6 +25,7 @@ begin
   COMPLEMENTED_DATA_IN <= std_logic_vector(unsigned(not(GATED_DATA_IN)) + 1);
   
   with GATED_DATA_IN(Nbits-1) select DATA_OUT <= GATED_DATA_IN when '0',
-                                        COMPLEMENTED_DATA_IN when '1';
+                                                 COMPLEMENTED_DATA_IN when '1',
+                                                 GATED_DATA_IN when others;
   
 end architecture rtl;
