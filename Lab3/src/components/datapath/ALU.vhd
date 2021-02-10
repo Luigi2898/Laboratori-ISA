@@ -48,7 +48,7 @@ begin
 
   with OPCODE_IN select RESULT_OUT <= SUM_OUT                                     when SUM_OP,
                                       SHIFTED                                     when SHR_OP,
-                                      (30 downto 0 => '0') & SUM_OUT(0)           when LT_OP,
+                                      (30 downto 0 => '0') & SUM_OUT(31)           when LT_OP,
                                       SUM_OUT                                     when EQ_OP,
                                       DATA1_IN and DATA2_IN                       when AND_OP,
                                       DATA1_IN xor DATA2_IN                       when XOR_OP,
