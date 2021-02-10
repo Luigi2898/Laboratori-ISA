@@ -63,14 +63,14 @@ begin
   absolute_value: process(OPCODE_IN, DATA1_IN)
   begin
     if (OPCODE_IN = ABS_OP) then
-      if (DATA1_IN(N - 1) = '1') then --negative
+      if (DATA1_IN(N-1) = '1') then --negative
         ABS_OUT <= std_logic_vector(unsigned(not(DATA1_IN)) + "1");
       else
         ABS_OUT <= DATA1_IN;
-      end if;
+      end
     else
       ABS_OUT <= (others => '0');
-    end if;
+  begin
   end process absolute_value;
 
 

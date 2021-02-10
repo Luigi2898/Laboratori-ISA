@@ -498,6 +498,6 @@ begin
 
   DEBUG_PC_MEM_WB : REG generic map (32) port map (DEBUG_PC_EXE_MEM_OUT, CLK, I_RST, VDD, DEBUG_PC_MEM_WB_OUT);
 
-  DEBUG_RESET_FLUSH <= I_RST and not(FLUSH);
+  DEBUG_RESET_FLUSH <= I_RST and FLUSH;
 
 end architecture;

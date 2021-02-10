@@ -23,7 +23,7 @@ architecture beh of ALU_CTRL_v2 is
   constant XOR_OP : std_logic_vector(5 downto 0) := "100000";
   constant ABS_OP : std_logic_vector(5 downto 0) := "000001";
 
-  signal SEL  : std_logic_vector(5 downto 0);
+  signal SEL  : std_logic_vector(4 downto 0);
 
 begin
 
