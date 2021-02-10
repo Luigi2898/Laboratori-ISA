@@ -60,7 +60,7 @@ begin
   shift : process( OPCODE_IN )
   begin
     if OPCODE_IN = SHR_OP then
-      SHIFTED <= INTERNAL_SH(to_integer(unsigned(DATA2_IN)));
+      SHIFTED <= std_logic_vector(SHIFT_RIGHT(signed(DATA1_IN),(to_integer(unsigned(DATA2_IN)))));
     else
       SHIFTED <= (others => '0');
       end if ;
