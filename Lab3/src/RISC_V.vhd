@@ -196,7 +196,9 @@ architecture rtl of RISC_V is
       -- LUI handling
       LUI_MUX_OUT    : out std_logic;
       -- PC source selector
-      PC_SEL         : out std_logic_vector(1 downto 0)
+      PC_SEL         : out std_logic_vector(1 downto 0);
+      -- JMP handling
+      JMP            : buffer std_logic
     );
   end component;
 
@@ -312,6 +314,7 @@ architecture rtl of RISC_V is
   signal NEXT_PC      : std_logic_vector(31 downto 0);
   signal SELECTED_SRC : std_logic_vector(31 downto 0);
   signal PC_DIR       : std_logic;
+  signal BY_PC        : std_logic_vector(31 downto 0);
   -- Decode stage signals
   signal PC_ID               : std_logic_vector(31 downto 0);
   signal INSTR_ID            : std_logic_vector(31 downto 0);
@@ -360,6 +363,7 @@ architecture rtl of RISC_V is
   signal IMM_EN         : std_logic;
   signal AUIPC_MUX_OUT  : std_logic;
   signal LUI_HANDLER    : std_logic;
+  signal JMP            : std_logic;
   -- Execute stage signals
   signal LUI_HANDLER_EXE     : std_logic;
   signal LUI_ALU             : std_logic_vector(31 downto 0);
@@ -401,13 +405,16 @@ begin
   PC : REG generic map(32)
            port map(PC_SOURCE, CLK, I_RST, NSTALL, CURRENT_PC);
 
-  INSTR_ADDR <= CURRENT_PC;
+  INSTR_ADDR <= BY_PC;
 
   BRANCH_PREDICTION_UNIT : BPU port map(CLK, I_RST, unsigned(CURRENT_PC), unsigned(PC_ID), INSTR_ID(6 downto 0), BRANCH, unsigned(JMP_ADDR), DIFF_PC_U, BPU_PREDICTION, BPU_MISSPRED); 
 
   DIFF_PC <= std_logic_vector(DIFF_PC_U);
+  
+  J_MUX : MUX_2to1 generic map(32)
+                   port map(CURRENT_PC, PC_SOURCE, JMP, BY_PC);
 
-  PIPE_REG1 : PIPE_IF_ID port map(CLK, I_RST, FLUSH, STALL, INSTR, CURRENT_PC, INSTR_ID, PC_ID);
+  PIPE_REG1 : PIPE_IF_ID port map(CLK, I_RST, FLUSH, STALL, INSTR, BY_PC, INSTR_ID, PC_ID);
 
   ----------- Instruction decoding stage -----------
 
@@ -437,7 +444,7 @@ begin
 
   CONTROL_UNIT : CU port map(EXTERNAL_RSTN, INSTR_ID(6 downto 0), BPU_MISSPRED, BPU_PREDICTION,
                              HDU_STALL, BRANCH, ALU_SRC, ALU_CTR, ALU_CTRL_EN, MEM_RD,
-                             MEM_WR, RF_EN, RF_MUX, IMM_EN, IMM_CODE, FLUSH, STALL, I_RST, AUIPC_MUX_OUT, LUI_HANDLER, PC_SEL);
+                             MEM_WR, RF_EN, RF_MUX, IMM_EN, IMM_CODE, FLUSH, STALL, I_RST, AUIPC_MUX_OUT, LUI_HANDLER, PC_SEL, JMP);
 
   MUX_AUIPC : MUX_2to1 generic map(32)
                        port map(BC_IN1, PC_ID, AUIPC_MUX_OUT, OUT_AUIPC);
