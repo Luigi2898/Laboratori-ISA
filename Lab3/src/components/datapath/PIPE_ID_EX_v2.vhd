@@ -3,7 +3,7 @@ library ieee;
   use ieee.numeric_std.all;
 
 
-  entity PIPE_ID_EX_v2 is 
+  entity PIPE_ID_EX is 
     port(
       CLK                   : in std_logic;
       RSTN                  : in std_logic;
@@ -47,10 +47,10 @@ library ieee;
       LUI_OUT               : out std_logic; 
       AUIPC_MUX_OUT_EX      : out std_logic
     );
-  end entity PIPE_ID_EX_v2;
+  end entity PIPE_ID_EX;
 
 
-architecture beh of PIPE_ID_EX_v2 is
+architecture beh of PIPE_ID_EX is
 
 signal WR_RFEN    : std_logic;
 signal WR_RFMUX   : std_logic;
