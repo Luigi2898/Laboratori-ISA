@@ -237,7 +237,6 @@ architecture rtl of RISC_V_v2 is
   end component;
 
   component PIPE_ID_EX_v2 is 
-  component PIPE_ID_EX is 
     port(
       CLK                   : in std_logic;
       RSTN                  : in std_logic;
