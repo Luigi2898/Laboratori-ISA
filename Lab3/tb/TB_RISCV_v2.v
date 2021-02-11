@@ -166,7 +166,7 @@ module TB_RISCV_v2 ();
 			$display("------------------ REGISTER FILE CONTENT ------------------	");
 			$display("-----------------------------------------------------------");
 			for (i=0; i<32; i=i+1) begin
-				$display("ENTRY %d] %d ",i,DUT.RF.MEM[i]);
+				$display("ENTRY %d] %d ",i,DUT.RF.MEM_SIGNED[i]);
 			end
 			$display("-----------------------------------------------------------");
 

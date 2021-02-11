@@ -26,7 +26,9 @@ end entity REG_FILE;
 
 architecture beh of REG_FILE is
   type mem_type is array (0 to Nrow-1) of std_logic_vector (Nbit-1 downto 0);
+  type mem_type_signed is array (0 to Nrow-1) of std_logic_vector (Nbit-1 downto 0); -- DEBUG SIGNAL
   signal MEM : mem_type;
+  signal MEM_SIGNED : mem_type_signed; -- DEBUG SIGNAL
 
 begin
 
@@ -52,6 +54,7 @@ begin
     rd2_dout_tmp := MEM(to_integer(unsigned(RD2_ADDR))); 
 
     MEM <= mem_content;
+    MEM_SIGNED <= signed(mem_content); -- DEBUG SIGNAL
     RD1_DOUT <= rd1_dout_tmp;
     RD2_DOUT <= rd2_dout_tmp;  
 
