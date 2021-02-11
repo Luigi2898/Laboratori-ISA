@@ -9,8 +9,8 @@ module TB_RISCV ();
 
 
 	MAIN_MEM #( 
-		.instr_filename("minrsv.txt"),
-    	.data_filename("data.txt"),
+		.instr_filename("../code/minrsv.txt"),
+    	.data_filename("../data/data.txt"),
     	.Entries(32767)
   	)
   	MEMORY(	
