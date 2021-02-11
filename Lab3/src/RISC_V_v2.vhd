@@ -3,6 +3,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use IEEE.math_real.all;
 
+entity RISC_V_v2 is
 entity RISC_V is
   port (
 	-- Data memory interfaces
@@ -18,6 +19,7 @@ entity RISC_V is
   CLK          : in  std_logic;
   EXTERNAL_RSTN : in  std_logic
   );
+end RISC_V_v2;
 end RISC_V;
 
 <<<<<<< HEAD
@@ -240,6 +242,7 @@ architecture rtl of RISC_V is
     );
   end component;
 
+  component PIPE_ID_EX_v2 is 
   component PIPE_ID_EX is 
     port(
       CLK                   : in std_logic;
@@ -255,6 +258,7 @@ architecture rtl of RISC_V is
       RS2_ADDR_IN           : in std_logic_vector(4 downto 0);
       RD_ADDR_IN            : in std_logic_vector(4 downto 0);
       FUNC3_IN              : in std_logic_vector(2 downto 0);
+      FUNC7_IN              : in std_logic;
       WR_RFEN_IN            : in std_logic;
       WR_RFMUX_IN           : in std_logic;
       BRANCH_COMP_IN        : in std_logic;
@@ -287,8 +291,10 @@ architecture rtl of RISC_V is
 >>>>>>> 573322fdda12862f8ad753cdfdfa07cefc3a2487
       AUIPC_MUX_OUT_EX      : out std_logic
     );
+  end component PIPE_ID_EX_v2;
   end component PIPE_ID_EX;
 
+  component ALU_v2 is
   component ALU is
     generic (N : integer := 32);
     port (
@@ -301,6 +307,7 @@ architecture rtl of RISC_V is
     );
   end component;
 
+  component ALU_CTRL_v2 is
   component ALU_CTRL is
     port (
       EN_IN    : in  std_logic;
