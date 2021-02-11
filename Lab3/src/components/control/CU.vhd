@@ -41,7 +41,9 @@ entity CU is
     -- LUI handling
     LUI_MUX_OUT    : out std_logic;
     -- PC source selector
-    PC_SEL         : out std_logic_vector(1 downto 0)
+    PC_SEL         : out std_logic_vector(1 downto 0);
+    -- JMP handling
+    JMP            : buffer std_logic
   );
 end entity;
 
@@ -56,7 +58,6 @@ architecture arch of CU is
   constant JAL   : std_logic_vector(6 downto 0) := "1101111";                   -- TO B SENT TO IMM 100
   constant SW    : std_logic_vector(6 downto 0) := "0100011";
 
-  signal JMP    : std_logic;
   signal PC_DEC : std_logic_vector(3 downto 0);
 
 begin
@@ -127,7 +128,7 @@ begin
                                        '1' when LW,
                                        '0' when others;
 
-  PIPE_FLUSH <= (BPU_MISSPRED and not(BRANCH_OUTCOME)) or JMP;
+  PIPE_FLUSH <= BPU_MISSPRED and not(BRANCH_OUTCOME);
   
   with OPCODE select AUIPC_MUX_OUT  <= '1' when AUIPC,
                                        '0' when others;
