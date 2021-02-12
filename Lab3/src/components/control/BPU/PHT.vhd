@@ -51,7 +51,7 @@ begin
 
   pattern_history_regs: for i in 0 to size -1 generate
 
-    PHR : SAT_CNT port map (CLK,RSTN,DECODED_ADDR(i),OUTCOME_IN,MEM(i));
+    PHR : SAT_CNT (2,4) port map (CLK,RSTN,DECODED_ADDR(i),OUTCOME_IN,MEM(i));
 
   end generate pattern_history_regs;
 
