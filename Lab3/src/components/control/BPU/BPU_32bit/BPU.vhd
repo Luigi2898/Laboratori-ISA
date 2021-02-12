@@ -124,36 +124,40 @@ architecture rtl of BPU is
   constant SizePC : integer := 8;
   signal VDD, GND : std_logic;
   signal HIT_MISSN, HIT_MISSN_D2 : std_logic;
-  signal PC_LSBs, PC_LSBs_D2 : unsigned (9 downto 0);
-  signal RD_ADDR_PHT, RD_ADDR_PHT_D2 : unsigned (3 downto 0);
+  signal PC_LSBs, PC_LSBs_D2 : unsigned (7 downto 0);
+  signal PC_DEL : unsigned(31 downto 0);
+  signal PC_STD, PC_DEL_STD : std_logic_vector(31 downto 0);
+  signal RD_ADDR_PHT, RD_ADDR_PHT_D2 : unsigned (5 downto 0);
   signal WR_EN_BHT, WR_EN_CACHE, WR_EN_PHT : std_logic;
-  signal BRANCH_HISTORY, BRANCH_HISTORY_D2 : std_logic_vector (3 downto 0);
+  signal BRANCH_HISTORY, BRANCH_HISTORY_D2 : std_logic_vector (5 downto 0);
   signal PREDICTION_OUT, PREDICTION_D2 : std_logic;
   
 begin
 
   VDD <= '1';
   GND <= '0';
-  PC_LSBs <= PC (9 downto 0);
-  PC_LSBs_D2 <= PC_D2 (9 downto 0);
+  PC_LSBs <= PC (7 downto 0);
+  PC_LSBs_D2 <= PC_DEL (7 downto 0);
   RD_ADDR_PHT <= unsigned(BRANCH_HISTORY);
   RD_ADDR_PHT_D2 <= unsigned(BRANCH_HISTORY_D2);
   MISPREDICTION <= OUTCOME xor PREDICTION_D2;
+  PC_STD <= std_logic_vector(PC);
+  PC_DEL <= unsigned(PC_DEL_STD);
 
   INSTR_CACHE : CACHE_MEM generic map (2,256,(32-8),32,32,0,8)
-                port map (CLK,RSTN,PC,PC_D2,WR_EN_CACHE,VDD,TARGET_ADDRESS_IN,TARGET_ADDRESS_OUT,HIT_MISSN);
+                port map (CLK,RSTN,PC,PC_DEL,WR_EN_CACHE,VDD,TARGET_ADDRESS_IN,TARGET_ADDRESS_OUT,HIT_MISSN);
   
-  BRANCH_HISTORY_TABLE : BHT generic map (1024,4,10)
+  BRANCH_HISTORY_TABLE : BHT generic map (256,6,8)
         port map (CLK,RSTN,WR_EN_BHT,PC_LSBs_D2,PC_LSBs,OUTCOME,BRANCH_HISTORY);
 
-  PATTERN_HISTORY_TABLE : PHT generic map (16,4)
+  PATTERN_HISTORY_TABLE : PHT generic map (64,6)
         port map (CLK,RSTN,RD_ADDR_PHT,RD_ADDR_PHT_D2,WR_EN_PHT,OUTCOME,PREDICTION_OUT);
   
   CONTROL_UNIT : BPU_CU port map (HIT_MISSN_D2,OPCODE_D2,WR_EN_CACHE,WR_EN_BHT,WR_EN_PHT);
 
   PRED_MUX : MUX_2X1TO1X1 port map (GND,PREDICTION_OUT,HIT_MISSN,PREDICTION);
 
-  PHT_ADDR_DELAY_CHAIN : DELAY_CHAIN generic map (4,1)
+  PHT_ADDR_DELAY_CHAIN : DELAY_CHAIN generic map (6,1)
                          port map (CLK,RSTN,VDD,BRANCH_HISTORY,BRANCH_HISTORY_D2);
 
   HIT_MISSN_DELAY_CHAIN : DELAY_CHAIN_1 generic map (1)
@@ -161,5 +165,8 @@ begin
 
   PREDICTION_DELAY_CHAIN : DELAY_CHAIN_1 generic map (1)
                            port map (CLK,RSTN,VDD,PREDICTION,PREDICTION_D2);
+
+  PC_DELAY_CHAIN : DELAY_CHAIN generic map (32,1)
+                   port map (CLK,RSTN,VDD,PC_STD,PC_DEL_STD);
 
 end architecture rtl;

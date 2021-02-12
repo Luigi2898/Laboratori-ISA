@@ -51,7 +51,7 @@ begin
 
   branch_history_regs: for i in 0 to size -1 generate
 
-    BHR : SIPO_SHIFT_REG port map (CLK,RSTN,DECODED_ADDR(i),DIN,MEM(i));
+    BHR : SIPO_SHIFT_REG generic map (Depth) port map (CLK,RSTN,DECODED_ADDR(i),DIN,MEM(i));
 
   end generate branch_history_regs;
 
