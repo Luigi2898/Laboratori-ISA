@@ -40,15 +40,15 @@ begin
   SUM1_IN <= DATA1_IN;
 
   with OPCODE_IN select SUM2_IN    <= DATA2_IN                                      when SUM_OP,
-                                      std_logic_vector(signed(not(DATA2_IN)) + "1") when LT_OP,
-                                      std_logic_vector(signed(not(DATA2_IN)) + "1") when EQ_OP,
+                                      std_logic_vector(unsigned(not(DATA2_IN)) + "1") when LT_OP,
+                                      std_logic_vector(unsigned(not(DATA2_IN)) + "1") when EQ_OP,
                                       (others => '-')                               when others;
 
   SUM_OUT <= std_logic_vector(signed(SUM1_IN) + signed(SUM2_IN));
 
   with OPCODE_IN select RESULT_OUT <= SUM_OUT                                     when SUM_OP,
                                       SHIFTED                                     when SHR_OP,
-                                      (30 downto 0 => '0') & SUM_OUT(31)           when LT_OP,
+                                      (30 downto 0 => '0') & SUM_OUT(31)          when LT_OP,
                                       SUM_OUT                                     when EQ_OP,
                                       DATA1_IN and DATA2_IN                       when AND_OP,
                                       DATA1_IN xor DATA2_IN                       when XOR_OP,

@@ -222,6 +222,29 @@ architecture rtl of RISC_V is
     );
   end component  HDU;
 
+  component DELAY_CHAIN is
+    generic (Nbits : integer := 32;
+             DelayUnits : integer := 2);
+    port (
+      CLK : in std_logic;
+      RSTN : in std_logic;
+      EN : in std_logic;
+      DIN : in std_logic_vector (Nbits-1 downto 0);
+      DOUT : buffer std_logic_vector (Nbits-1 downto 0)
+    );
+  end component DELAY_CHAIN;
+
+  component DELAY_CHAIN_1 is
+    generic (DelayUnits : integer := 1);
+    port (
+      CLK : in std_logic;
+      RSTN : in std_logic;
+      EN : in std_logic;
+      DIN : in std_logic;
+      DOUT : out std_logic
+    );
+  end component DELAY_CHAIN_1;
+
   component BPU is
     port (
       CLK                : in std_logic;
@@ -387,6 +410,11 @@ architecture rtl of RISC_V is
   signal DEBUG_PC_EXE_MEM_OUT : std_logic_vector (31 downto 0); 
   signal DEBUG_PC_MEM_WB_OUT  : std_logic_vector (31 downto 0);
   signal DEBUG_RESET_FLUSH    : std_logic;
+  signal JMP_D                : std_logic;
+  signal JMUX_CTRL            : std_logic;
+  signal PC_4_D               : std_logic_vector(31 downto 0);
+  signal SEL_WB_MUX           : std_logic_vector(1 downto 0);
+  signal RF_IN                : std_logic_vector(31 downto 0) ;
 
 begin
 
@@ -398,8 +426,11 @@ begin
   PC_INCREMENTER : INCREMENTER generic map(4)
                                port map(CURRENT_PC, NEXT_PC);
 
+  DC_PC : DELAY_CHAIN generic map(32, 4)
+                      port map(CLK, I_RST, Vdd, NEXT_PC, PC_4_D);
+
   PC_SOURCE_MUX : MUX_4to1 generic map(32)
-                           port map(NEXT_PC, JMP_ADDR, DIFF_PC, JMP_ADDR, PC_SEL, PC_SOURCE);
+                           port map(NEXT_PC,PC_ID , DIFF_PC, JMP_ADDR, PC_SEL, PC_SOURCE);
 
   NSTALL <= NOT(STALL);
   PC : REG generic map(32)
@@ -411,20 +442,26 @@ begin
 
   DIFF_PC <= std_logic_vector(DIFF_PC_U);
   
+  JMUX_CTRL <= JMP;
+
   J_MUX : MUX_2to1 generic map(32)
-                   port map(CURRENT_PC, PC_SOURCE, JMP, BY_PC);
+                   port map(CURRENT_PC, PC_SOURCE, JMUX_CTRL, BY_PC);
 
   PIPE_REG1 : PIPE_IF_ID port map(CLK, I_RST, FLUSH, STALL, INSTR, BY_PC, INSTR_ID, PC_ID);
 
   ----------- Instruction decoding stage -----------
 
+  RF_MUX_WR : MUX_2to1 generic map(32)
+                       port map (RF_WRDIN_WB, PC_4_D, JMP_D, RF_IN);
+
   RF : REG_FILE generic map(32, 32)
-                port map(CLK, I_RST, INSTR_ID(19 downto 15), RF_OUT1, INSTR_ID(24 downto 20), RF_OUT2, RD_ADDR_OUT_MEMWB, RF_WRDIN_WB, OP_WB_OUT_MEMWB(1));
+                port map(CLK, I_RST, INSTR_ID(19 downto 15), RF_OUT1, INSTR_ID(24 downto 20), RF_OUT2, RD_ADDR_OUT_MEMWB, RF_IN, OP_WB_OUT_MEMWB(1));
 
-  JA_MUX : MUX_2to1 generic map(32)
-                    port map(IMM_GEN_OUT, std_logic_vector(to_unsigned(4, 32)), FLUSH, JMP_SOURCE);
+  -- JA_MUX : MUX_2to1 generic map(32)
+                   -- port map(IMM_GEN_OUT, std_logic_vector(to_unsigned(4, 32)), FLUSH, JMP_SOURCE);
 
-  JA : JMP_ADD port map(JMP_SOURCE, PC_ID, JMP_ADDR);
+  --JA : JMP_ADD port map(JMP_SOURCE, PC_ID, JMP_ADDR);
+  JA : JMP_ADD port map(IMM_GEN_OUT, PC_ID, JMP_ADDR);
 
   IG : IMM_GEN port map(INSTR_ID, IMM_GEN_OUT, IMM_EN, IMM_CODE);
 
@@ -437,14 +474,15 @@ begin
   BC_MUX_B : MUX_4to1 generic map(32)
                       port map(RF_OUT2, LUI_ALU, RF_WRDIN_EXMEM, RF_WRDIN_WB, FORWARD_B, BC_IN2);-- To b completed with other signals
 
-
-                      
   HDU_FU : HDU port map(INSTR_ID(19 downto 15), INSTR_ID(24 downto 20), RS1_ADDR_OUT_IDEX, RS2_ADDR_OUT_IDEX, RD_ADDR_OUT_IDEX, RD_ADDR_OUT_EXMEM, RD_ADDR_OUT_MEMWB,
                         M_RD_EN_OUT_IDEX, OP_WB_OUT_MEMWB(1), OP_WB_OUT_EXMEM(3), WR_RFEN_OUT_IDEX, IMM_CODE, HDU_STALL, FORWARD_A, FORWARD_B);                    
 
   CONTROL_UNIT : CU port map(EXTERNAL_RSTN, INSTR_ID(6 downto 0), BPU_MISSPRED, BPU_PREDICTION,
                              HDU_STALL, BRANCH, ALU_SRC, ALU_CTR, ALU_CTRL_EN, MEM_RD,
                              MEM_WR, RF_EN, RF_MUX, IMM_EN, IMM_CODE, FLUSH, STALL, I_RST, AUIPC_MUX_OUT, LUI_HANDLER, PC_SEL, JMP);
+
+  DC_JMP : DELAY_CHAIN_1 generic map(3)
+                         port map(CLK, I_RST, Vdd, JMP, JMP_D);
 
   MUX_AUIPC : MUX_2to1 generic map(32)
                        port map(BC_IN1, PC_ID, AUIPC_MUX_OUT, OUT_AUIPC);
@@ -482,7 +520,7 @@ begin
   DATA_OUT <= RS2_VAL_OUT_EXMEM;
 
   WB_MUX : MUX_2to1 generic map (32)
-                    port map (ALU_RES_OUT_EXMEM, DATA_IN,OP_WB_OUT_EXMEM(2),RF_WRDIN_EXMEM);
+                    port map (ALU_RES_OUT_EXMEM, DATA_IN, OP_WB_OUT_EXMEM(2), RF_WRDIN_EXMEM);
 
   PIPE_REG4 : PIPE_MEM_WB port map (CLK, I_RST, RF_WRDIN_EXMEM, OP_WB_OUT_EXMEM(3 downto 2), RD_ADDR_OUT_EXMEM,
                                     RF_WRDIN_WB, OP_WB_OUT_MEMWB, RD_ADDR_OUT_MEMWB);

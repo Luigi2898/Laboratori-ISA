@@ -128,7 +128,8 @@ begin
                                        '1' when LW,
                                        '0' when others;
 
-  PIPE_FLUSH <= BPU_MISSPRED and not(BRANCH_OUTCOME);
+  with OPCODE select PIPE_FLUSH <= BPU_MISSPRED when BEQ,
+                                   '0' when others;
   
   with OPCODE select AUIPC_MUX_OUT  <= '1' when AUIPC,
                                        '0' when others;
