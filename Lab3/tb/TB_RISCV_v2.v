@@ -9,7 +9,7 @@ module TB_RISCV_v2 ();
 
 
 	MAIN_MEM #( 
-		.instr_filename("abs2.txt"),
+		.instr_filename("minrsv.txt"),
     	.data_filename("data.txt"),
     	.Entries(32767)
   	)
