@@ -1,0 +1,6 @@
+# vsim -c -L /software/dk/nangate45/verilog/msim6.2g work.TB_RISCV 
+# vsim -L /software/dk/nangate45/verilog/msim6.2g -c work.TB_RISCV 
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Error: Failed to find design unit work.TB_RISCV.
+# Optimization failed
+# Error loading design

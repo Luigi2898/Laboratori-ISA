@@ -1,0 +1,85 @@
+Warning: Design 'RISC_V' has '2' unresolved references. For more detailed information, use the "link" command. (UID-341)
+Information: Checking out the license 'DesignWare'. (SEC-104)
+Information: Evaluating DesignWare library utilization. (UISN-27)
+
+============================================================================
+| DesignWare Building Block Library  |         Version         | Available |
+============================================================================
+| Basic DW Building Blocks           | O-2018.06-DWBB_201806.4 |     *     |
+| Licensed DW Building Blocks        | O-2018.06-DWBB_201806.4 |     *     |
+============================================================================
+
+
+Information: There are 584 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'REG_N32_0'
+  Processing 'PIPE_MEM_WB'
+  Processing 'MUX_2to1_N32_0'
+  Processing 'PIPE_EX_MEM'
+  Processing 'ALU_CTRL'
+  Processing 'ALU_N32'
+Information: Added key list 'DesignWare' to design 'ALU_N32'. (DDB-72)
+  Processing 'PIPE_ID_EX'
+  Processing 'CU'
+  Processing 'HDU'
+  Processing 'MUX_4to1_N32_0'
+  Processing 'BRANCH_COMP_word_size32'
+  Processing 'IMM_GEN'
+  Processing 'JMP_ADD'
+  Processing 'REG_FILE_Nbit32_Nrow32'
+  Processing 'PIPE_IF_ID'
+  Processing 'DELAY_CHAIN_Nbits32_DelayUnits1'
+  Processing 'REG_N6'
+  Processing 'DELAY_CHAIN_Nbits6_DelayUnits1'
+  Processing 'MUX_2X1TO1X1'
+  Processing 'BPU_CU'
+  Processing 'SAT_CNT_Nb2_Module4_0'
+  Processing 'PHT_Size64_AddrBits6'
+  Processing 'SIPO_SHIFT_REG_Nbit6_0'
+  Processing 'BHT_Size256_Depth6_AddrBits8'
+  Processing 'AGE_CNT_Nb2_Module4_0'
+  Processing 'CACHE_MEM_SetNum2_SetEntries256_TagSize24_ContentSize32_AddrBits32_SetBits0_EntriesBits8'
+Information: Added key list 'DesignWare' to design 'CACHE_MEM_SetNum2_SetEntries256_TagSize24_ContentSize32_AddrBits32_SetBits0_EntriesBits8'. (DDB-72)
+  Processing 'BPU'
+  Processing 'DELAY_CHAIN_Nbits32_DelayUnits4'
+  Processing 'INCREMENTER_STEP4'
+  Processing 'RISC_V'
+Information: Building the design 'DELAY_CHAIN_1' instantiated from design 'RISC_V' with
+	the parameters "DelayUnits=3". (HDL-193)
+Warning: Cannot find the design 'DELAY_CHAIN_1' in the library 'WORK'. (LBR-1)
+Information: Building the design 'DELAY_CHAIN_1' instantiated from design 'BPU' with
+	the parameters "DelayUnits=1". (HDL-193)
+Warning: Cannot find the design 'DELAY_CHAIN_1' in the library 'WORK'. (LBR-1)
+Warning: Unable to resolve reference 'DELAY_CHAIN_1' in 'RISC_V'. (LINK-5)
+Warning: Unable to resolve reference 'DELAY_CHAIN_1' in 'BPU'. (LINK-5)
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+
+  Beginning Implementation Selection
+  ----------------------------------
+  Mapping 'DW_sra'
+  Processing 'ALU_N32_DW01_add_0'
+  Processing 'ALU_N32_DW01_inc_0'
+  Processing 'ALU_N32_DW01_inc_1'
+  Processing 'ALU_N32_DW01_sub_0'
+  Processing 'JMP_ADD_DW01_add_0'
+  Processing 'INCREMENTER_STEP4_DW01_add_0'
+
+  Beginning Mapping Optimizations  (Medium effort)
+  -------------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:16:25  343277.5     36.25   27945.6  271219.8                          
+    0:16:25  343277.5     36.25   27945.6  271219.8                          
+    0:16:30  343347.8     36.22   27736.1  269375.0                          
+    0:16:47  345644.1     36.21   27735.2  247540.8                          
+    0:16:51  351787.1     36.21   27735.2  209884.2                          
+    0:16:55  358580.8     36.21   27735.2  166310.5                          
