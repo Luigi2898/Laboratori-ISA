@@ -50,7 +50,7 @@ for i=1:Nrows
             fprintf(fID,"%s",bin_input_tmp);
             k = k + 1;
         else
-            bin_input_tmp = dec2bin(dec_samples(k),Nbit);
+            bin_input_tmp = dec2q(dec_samples(k),Nbit-1,0,'bin');
             fprintf(fID,"%s",bin_input_tmp);
             k = k + 1;
         end
@@ -66,7 +66,7 @@ fID = fopen(filename,'w');
 
 k = 1;
 for i=1:numel(dec_samples)
-    fprintf(fID,"%d\n",dec_samples(i));
+    fprintf(fID,".word    %d\n",dec_samples(i));
 end
 
 fclose(fID);

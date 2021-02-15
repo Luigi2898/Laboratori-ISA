@@ -9,8 +9,8 @@ module TB_RISCV_v2 ();
 
 
 	MAIN_MEM #( 
-		.instr_filename("test_program_abs.txt"),
-    	.data_filename("data.txt"),
+		.instr_filename("annidate_loops.txt"),
+    	.data_filename("aaa.txt"),
     	.Entries(32767)
   	)
   	MEMORY(	
@@ -78,6 +78,8 @@ module TB_RISCV_v2 ();
 	parameter MaxChar = 6;
 	parameter InstrSize = 22;
 	integer fileID;
+	integer fileID_BPU1;
+	integer fileID_BPU2;
 	integer i;
 	reg [8*MaxChar-1:0] fileLine;
 	reg [8*MaxChar-1:0] InstrName [InstrSize-1:0];
@@ -92,9 +94,17 @@ module TB_RISCV_v2 ();
 	integer MEM_instr;
 	integer WB_instr;
 	integer cycle_cnt = 0;
+	real branches_addr1 = 0;
+	real branches_addr2 = 0;
+	real mispredictions1 = 0;
+	real mispredictions2 = 0;
+	real correct_pred_percentage1 = 0;
+	real correct_pred_percentage2 = 0;
 
 	initial begin
 		fileID = $fopen("instr_name.txt","r");
+		fileID_BPU1 = $fopen("time_branch.txt","w");
+	  fileID_BPU2 = $fopen("accuracy_branch.txt","w");
 		if (fileID == 0) begin
 			$display("ERROR: COULDN'T OPEN INPUT FILE instr_name.txt");
 			//$finish;
@@ -127,7 +137,37 @@ module TB_RISCV_v2 ();
 		end
 	end
 
+	
 
+	// BPU Statistics
+	always @(negedge CLK ) begin
+		if (DUT.BRANCH_PREDICTION_UNIT.HIT_MISSN_D2) begin
+			if (DUT.BRANCH_PREDICTION_UNIT.PC_D2 == 20) begin
+				branches_addr1 = branches_addr1 + 1;
+				if (DUT.BPU_MISSPRED) begin
+				mispredictions1 = mispredictions1 + 1;
+				end		
+			end
+			if (DUT.BRANCH_PREDICTION_UNIT.PC_D2 == 56) begin
+				branches_addr2 = branches_addr2 + 1;
+				if (DUT.BPU_MISSPRED) begin
+				mispredictions2 = mispredictions2 + 1;
+			  end	
+			end
+		end
+		correct_pred_percentage1 = ((branches_addr1 - mispredictions1)/branches_addr1)*100;
+		correct_pred_percentage2 = ((branches_addr2 - mispredictions2)/branches_addr2)*100;
+
+		$fwrite(fileID_BPU1,"%t\n",$time);
+		$fwrite(fileID_BPU2,"%f\n",correct_pred_percentage2);
+
+
+		//$display("BRANCH PREDICTION ACCURACY FOR INSTR %d : %f",28,correct_pred_percentage1);
+		//$display("BRANCH PREDICTION ACCURACY FOR INSTR %d : %f",52,correct_pred_percentage2);
+	end
+		
+
+	/*
 	always @(negedge CLK) begin
 		if (start_flag == 1) begin
 
@@ -202,6 +242,7 @@ module TB_RISCV_v2 ();
 		
 
 	end
+	*/
 	
 endmodule
 

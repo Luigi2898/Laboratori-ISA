@@ -19,7 +19,7 @@ module MAIN_MEM
   parameter InstrBaseAddress = 0;
   parameter InstrLimit = 4092;
   parameter DataBaseAddress = 8192;
-  parameter DataLimit = 12284;
+  parameter DataLimit = 20000;
   parameter InstrSegmSize = (InstrLimit-InstrBaseAddress+4)/4;
   parameter DataSegmSize = (DataLimit-DataBaseAddress+4)/4;
   integer i = 0;
