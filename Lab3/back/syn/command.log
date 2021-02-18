@@ -1,7 +1,7 @@
 #@ # 
 #@ # Running dc_shell Version O-2018.06-SP4 for linux64 -- Nov 27, 2018
-#@ # Date:   Fri Feb 12 20:33:08 2021
-#@ # Run by: isa50@localhost.localdomain
+#@ # Date:   Thu Feb 18 18:35:54 2021
+#@ # Run by: lp20.19@localhost.localdomain
 #@ 
 
 source /software/synopsys/syn_current_64.18/admin/setup/.synopsys_dc.setup
@@ -6628,77 +6628,74 @@ source /software/synopsys/syn_current_64.18/admin/setup/.synopsys_dc.setup
 
 #@ # -- End source /software/synopsys/syn_current_64.18/admin/setup/.synopsys_dc.setup
 
-source /home/isa50/Desktop/Laboratori-ISA/Lab3/back/syn/.synopsys_dc.setup
-#@ # -- Starting source /home/isa50/Desktop/Laboratori-ISA/Lab3/back/syn/.synopsys_dc.setup
+source /home/lp20.19/Desktop/Lab-ISA/Lab3/back/syn/.synopsys_dc.setup
+#@ # -- Starting source /home/lp20.19/Desktop/Lab-ISA/Lab3/back/syn/.synopsys_dc.setup
 
-#@ define_design_lib WORK -path ./WORK
-#@ set search_path [list . /software/synopsys/syn_current_64.18/libraries/syn /software/dk/nangate45/synopsys ]
-#@ set link_library [list "*" "NangateOpenCellLibrary_typical_ecsm_nowlm.db" "dw_foundation.sldb" ]
-#@ set target_library [list "NangateOpenCellLibrary_typical_ecsm_nowlm.db" ]
-#@ set synthetic_library [list "dw_foundation.sldb" ]
-#@ # -- End source /home/isa50/Desktop/Laboratori-ISA/Lab3/back/syn/.synopsys_dc.setup
+#@ #
+#@ #		".synopsys_dc.setup" Initialization File for
+#@ #
+#@ #		    Dc_Shell and Design_Analyzer
+#@ #
+#@ # 	Default configurations will be used set in the installation
+#@ #	dir .synopsys_dc.detup file, except from the directives given below
+#@ #
+#@ 
+#@ #SynopsysInstall = get_unix_variable(SYNOPSYS);
+#@ 
+#@ set search_path  { .       	/home/mg.lowpower/do/libnangate }
+#@ 
+#@ 
+#@ # ================================================= #
+#@ # Define a work library in the current project dir  #
+#@ # to hold temporaryinclude files and keep the project area #
+#@ # uncluttered. Note: You must create a subdirectory # 
+#@ # in your project directory called WORK. Des. Comp. #
+#@ # will not create this directory for you.           #
+#@ # ================================================= #
+#@ 
+#@ define_design_lib -path ./work WORK
+#@ 
+#@ 
+#@ 
+#@ # ================================================= #
+#@ # General configuration settings.                   #
+#@ # ================================================= #
+#@ 
+#@ # usign standard configuration in installation dir
+#@ 
+#@ set hdlin_enable_configurations "true"
+#@ set power_preserve_rtl_hier_names "true"
+#@ 
+#@ # ================================================= #
+#@ # Set the link, target and synthetic library        #
+#@ # variables. Use synlibs (with the -fc switch) to   #
+#@ # determine the link and target library settings.   #
+#@ # You may like to copy this file to your project    #
+#@ # directory and append the output of synlibs.       #
+#@ 
+#@ set link_library  {NangateOpenCellLibrary_typical_ecsm.db}
+#@ 
+#@ set target_library  {NangateOpenCellLibrary_typical_ecsm.db}
+#@ 
+#@ 
+#@ 
+#@ # -- End source /home/lp20.19/Desktop/Lab-ISA/Lab3/back/syn/.synopsys_dc.setup
 
-source -echo -verbose /home/isa50/Desktop/Laboratori-ISA/Lab3/back/syn/../synBeforeBack_v1.tcl
-#@ # -- Starting source /home/isa50/Desktop/Laboratori-ISA/Lab3/back/syn/../synBeforeBack_v1.tcl
+source -echo -verbose /home/lp20.19/Desktop/Lab-ISA/Lab3/back/syn/../backward_v1.tcl
+#@ # -- Starting source /home/lp20.19/Desktop/Lab-ISA/Lab3/back/syn/../backward_v1.tcl
 
-#@ #*****************************************************************************
-#@ # This script is used to synthesize the RISC-V before backannotation
-#@ #*****************************************************************************
-#@ sh rm -r ./WORK
-#@ sh mkdir WORK
-#@ sh mkdir logs
-#@ sh mkdir reports
-#@ sh mkdir logs/RISC_V_v1
-#@ sh mkdir reports/RISC_V_v1
-#@ sh mkdir reports/RISC_V_v1/ddc
-#@ sh mkdir reports/RISC_V_v1/netlist
+#@ read_ddc ./reports/RISC_V_v1/ddc/RISC_V_v1.ddc
+#@ create_clock -name "clock" -period 10 {CLK}
+#@ read_saif -input ./saif/RISCV_v1_basic.saif -instance TB_RISCV_back/DUT  -scale 1 -unit_base ns
+#@ report_power > ./reports/power_basic.txt
 #@ 
-#@ #to preserve rtl names in the netlist for power consumption estimation.
-#@ set power_preserve_rtl_hier_names true
+#@ read_saif -input ./saif/RISCV_v1_min_src.saif -instance TB_RISCV_back/DUT  -scale 1 -unit_base ns
+#@ report_power > ./reports/power_min_src.txt
 #@ 
-#@ #analyze all possible files contained in the src folder 
-#@ analyze -library WORK -format vhdl {../../src/components/common/FF.vhd}
-#@ analyze -library WORK -format vhdl {../../src/components/common/MUX_2to1.vhd}
-#@ analyze -library WORK -format vhdl {../../src/components/common/MUX_2X1TO1X1.vhd}
-#@ analyze -library WORK -format vhdl {../../src/components/common/MUX_4to1.vhd}
-#@ analyze -library WORK -format vhdl {../../src/components/common/REG.vhd}
-#@ analyze -library WORK -format vhdl {../../src/components/common/SIPO_SHIFT_REG.vhd}
-#@ analyze -library WORK -format vhdl {../../src/components/control/ALU_CTRL.vhd}
-#@ analyze -library WORK -format vhdl {../../src/components/control/CU.vhd}
-#@ analyze -library WORK -format vhdl {../../src/components/control/HDU.vhd}
-#@ analyze -library WORK -format vhdl {../../src/components/control/BPU/AGE_CNT.vhd}
-#@ analyze -library WORK -format vhdl {../../src/components/control/BPU/BHT.vhd}
-#@ analyze -library WORK -format vhdl {../../src/components/control/BPU/BPU_CU.vhd}
-#@ analyze -library WORK -format vhdl {../../src/components/control/BPU/CACHE_MEM.vhd}
-#@ analyze -library WORK -format vhdl {../../src/components/control/BPU/DELAY_CHAIN.vhd}
-#@ analyze -library WORK -format vhdl {../../src/components/control/BPU/DELAY_CHAIN1.vhd}
-#@ analyze -library WORK -format vhdl {../../src/components/control/BPU/PHT.vhd}
-#@ analyze -library WORK -format vhdl {../../src/components/control/BPU/SAT_CNT.vhd}
-#@ analyze -library WORK -format vhdl {../../src/components/control/BPU/BPU_32bit/BPU.vhd}
-#@ analyze -library WORK -format vhdl {../../src/components/datapath/ALU.vhd}
-#@ analyze -library WORK -format vhdl {../../src/components/datapath/BRANCH_COMP.vhd}
-#@ analyze -library WORK -format vhdl {../../src/components/datapath/IMM_GEN.vhd}
-#@ analyze -library WORK -format vhdl {../../src/components/datapath/INCREMENTER.vhd}
-#@ analyze -library WORK -format vhdl {../../src/components/datapath/JMP_ADD.vhd}
-#@ analyze -library WORK -format vhdl {../../src/components/datapath/PIPE_EX_MEM.vhd}
-#@ analyze -library WORK -format vhdl {../../src/components/datapath/PIPE_ID_EX.vhd}
-#@ analyze -library WORK -format vhdl {../../src/components/datapath/PIPE_IF_ID.vhd}
-#@ analyze -library WORK -format vhdl {../../src/components/datapath/PIPE_MEM_WB.vhd}
-#@ analyze -library WORK -format vhdl {../../src/components/datapath/REG_FILE.vhd}
-#@ analyze -library WORK -format vhdl {../../src/RISC_V.vhd}
+#@ read_saif -input ./saif/RISCV_v1_matrix.saif -instance TB_RISCV_back/DUT  -scale 1 -unit_base ns
+#@ report_power > ./reports/power_matrix.txt
 #@ 
-#@ #elaborate top entity
-#@ elaborate RISC_V -architecture rtl -library WORK > ./logs/RISC_V_v1/elaborate_v1.txt
-#@ 
-#@ #**************** CONSTRAINT THE SYNTHESIS ****************#
-#@ # setting design constrains
-#@ create_clock -name MY_CLK -period 10 CLK
-#@ set_dont_touch_network MY_CLK
-#@ set_clock_uncertainty 0.07 [get_clocks MY_CLK]
-#@ set_input_delay 0.5 -max -clock MY_CLK [remove_from_collection [all_inputs] clk]
-#@ set_output_delay 0.5 -max -clock MY_CLK [all_outputs]
-#@ set OLOAD [load_of NangateOpenCellLibrary/BUF_X4/A]
-#@ set_load $OLOAD [all_outputs]
-#@ 
-#@ # compiling the RISC_V_v1
-#@ compile -exact_map > ./logs/RISC_V_v1/compile_v1.txt
+#@ read_saif -input ./saif/RISCV_v1_neg_cnt.saif -instance TB_RISCV_back/DUT  -scale 1 -unit_base ns
+#@ report_power > ./reports/power_neg_cmt.txt
+#@ # -- End source /home/lp20.19/Desktop/Lab-ISA/Lab3/back/syn/../backward_v1.tcl
+

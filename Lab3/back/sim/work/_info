@@ -1,4 +1,85 @@
 m255
+K3
 13
 cModel Technology
-d/home/isa50/Desktop/Laboratori-ISA/Lab3/back/sim
+Z0 d/home/lp20.19/Desktop/Lab-ISA/Lab3/back/sim
+T_opt
+V6k_i>1W=^ZGJSKJVWMXBf2
+04 13 4 work TB_RISCV_back fast 0
+Z1 =1-52540093200d-602e9f14-f2f88-7cc8
+Z2 o-quiet -auto_acc_if_foreign -work work -L /software/dk/nangate45/verilog/msim6.5c -sdftyp ../syn/reports/RISC_V_v1/netlist/RISC_V_v1.sdf -suppress 1948
+Z3 n@_opt
+Z4 OL;O;6.5c;42
+Eclk_gen
+Z5 w1613417201
+Z6 DPx4 ieee 18 std_logic_unsigned 0 22 hEMVMlaNCR^<OOoVNV;m90
+Z7 DPx4 ieee 15 std_logic_arith 0 22 GJbAT?7@hRQU9IQ702DT]2
+Z8 DPx4 ieee 14 std_logic_1164 0 22 GH1=`jDDBJ=`LM;:Ak`kf2
+Z9 8../../src/components/testbenchComponents/clk_gen.vhd
+Z10 F../../src/components/testbenchComponents/clk_gen.vhd
+l0
+L6
+Z11 VAo7;L[RiiFb>G?KAf`Q0J0
+Z12 OL;C;6.5c;42
+32
+Z13 o-work ./work
+Z14 tExplicit 1
+Z15 !s100 iCSJ8l>=9gl@5T3W441FI3
+Abeh
+R6
+R7
+R8
+Z16 DEx4 work 7 clk_gen 0 22 Ao7;L[RiiFb>G?KAf`Q0J0
+l18
+L12
+Z17 V1I95bP2cg[jXaZX1T47Qd1
+R12
+32
+Z18 Mx3 4 ieee 14 std_logic_1164
+Z19 Mx2 4 ieee 15 std_logic_arith
+Z20 Mx1 4 ieee 18 std_logic_unsigned
+R13
+R14
+Z21 !s100 GaibT5JHz8]YWn_DAkSYK2
+vMAIN_MEM
+Z22 I?m[fEm>8Cfi[RjkjU;f]E3
+Z23 V?U5703TZbKn6[5;>C^<ZR2
+Z24 w1613558123
+Z25 8../../tb/MAIN_MEM.v
+Z26 F../../tb/MAIN_MEM.v
+L0 2
+Z27 OL;L;6.5c;42
+r1
+31
+Z28 o-work ./work -L mtiAvm -L mtiOvm -L mtiUPF
+Z29 n@m@a@i@n_@m@e@m
+Z30 !s100 Hine4IA;iO^??hO^glQ140
+!s85 0
+vRISC_V
+Z31 I?OPba;4d=O>FS[j6`khV=0
+Z32 V[HFfLZ2^4?F]2U=>EYS3M3
+Z33 w1613664361
+Z34 8../syn/reports/RISC_V_v1/netlist/RISC_V_v1.v
+Z35 F../syn/reports/RISC_V_v1/netlist/RISC_V_v1.v
+L0 2
+R27
+r1
+31
+R28
+Z36 n@r@i@s@c_@v
+Z37 !s100 A4BfMV9<XB@M6oG^I3CC<0
+!s85 0
+vTB_RISCV_back
+Z38 I[W9CX6@9=aeaGoZV9zln@3
+Z39 V24[]aL1Q@oJKX9HEJFLML2
+Z40 w1613667602
+Z41 8../../tb/TB_RISCV_back_neg_cnt.v
+Z42 F../../tb/TB_RISCV_back_neg_cnt.v
+L0 1
+R27
+r1
+31
+R28
+Z43 n@t@b_@r@i@s@c@v_back
+Z44 !s100 TRRcF6FgYfznzZLUnZTVm2
+!s85 0

@@ -1,11 +1,10 @@
-Information: Checking out the license 'DesignWare'. (SEC-104)
 Information: Evaluating DesignWare library utilization. (UISN-27)
 
 ============================================================================
 | DesignWare Building Block Library  |         Version         | Available |
 ============================================================================
 | Basic DW Building Blocks           | O-2018.06-DWBB_201806.4 |     *     |
-| Licensed DW Building Blocks        | O-2018.06-DWBB_201806.4 |     *     |
+| Licensed DW Building Blocks        |                         |           |
 ============================================================================
 
 
@@ -21,7 +20,6 @@ Information: There are 587 potential problems in your design. Please run 'check_
   Processing 'PIPE_EX_MEM'
   Processing 'ALU_CTRL'
   Processing 'ALU_N32'
-Information: Added key list 'DesignWare' to design 'ALU_N32'. (DDB-72)
   Processing 'PIPE_ID_EX'
   Processing 'FF_0'
   Processing 'DELAY_CHAIN_1_DelayUnits3'
@@ -45,7 +43,6 @@ Information: Added key list 'DesignWare' to design 'ALU_N32'. (DDB-72)
   Processing 'BHT_Size256_Depth6_AddrBits8'
   Processing 'AGE_CNT_Nb2_Module4_0'
   Processing 'CACHE_MEM_SetNum2_SetEntries256_TagSize24_ContentSize32_AddrBits32_SetBits0_EntriesBits8'
-Information: Added key list 'DesignWare' to design 'CACHE_MEM_SetNum2_SetEntries256_TagSize24_ContentSize32_AddrBits32_SetBits0_EntriesBits8'. (DDB-72)
   Processing 'BPU'
   Processing 'DELAY_CHAIN_Nbits32_DelayUnits4'
   Processing 'INCREMENTER_STEP4'
@@ -56,12 +53,15 @@ Information: Updating design information... (UID-85)
 
   Beginning Implementation Selection
   ----------------------------------
-  Mapping 'DW_sra'
+  Processing 'ALU_N32_DW01_cmp6_0'
+  Processing 'ALU_N32_DW_sra_0'
   Processing 'ALU_N32_DW01_add_0'
   Processing 'ALU_N32_DW01_inc_0'
   Processing 'ALU_N32_DW01_inc_1'
   Processing 'ALU_N32_DW01_sub_0'
   Processing 'JMP_ADD_DW01_add_0'
+  Processing 'CACHE_MEM_SetNum2_SetEntries256_TagSize24_ContentSize32_AddrBits32_SetBits0_EntriesBits8_DW01_cmp6_0'
+  Processing 'CACHE_MEM_SetNum2_SetEntries256_TagSize24_ContentSize32_AddrBits32_SetBits0_EntriesBits8_DW01_cmp6_1'
   Processing 'INCREMENTER_STEP4_DW01_add_0'
 
   Beginning Mapping Optimizations  (Medium effort)
@@ -71,26 +71,26 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:20:42  343320.1     36.25   27962.7  271299.9                          
-    0:20:42  343320.1     36.25   27962.7  271299.9                          
-    0:20:46  343390.3     36.22   27753.3  269455.1                          
-    0:21:09  345540.4     36.21   27748.6  248406.5                          
-    0:21:15  351640.3     36.21   27748.6  211182.7                          
-    0:21:22  358545.7     36.21   27748.6  166416.8                          
-    0:24:26  373446.7      0.00      -0.0      39.9                          
-    0:24:26  373446.7      0.00      -0.0      39.9                          
-    0:24:26  373446.7      0.00      -0.0      39.9                          
-    0:24:26  373446.7      0.00      -0.0      39.9                          
-    0:24:31  373446.7      0.00      -0.0      39.9                          
-    0:27:06  304583.0      0.00      -0.0       0.0                          
-    0:27:13  304570.5      0.00      -0.0       0.0                          
-    0:27:56  304570.5      0.00      -0.0       0.0                          
-    0:28:00  304570.5      0.00      -0.0       0.0                          
-    0:28:04  304570.5      0.00      -0.0       0.0                          
-    0:28:04  304570.5      0.00      -0.0       0.0                          
-    0:28:06  304570.5      0.00      -0.0       0.0                          
-    0:28:06  304570.5      0.00      -0.0       0.0                          
-    0:28:06  304570.5      0.00      -0.0       0.0                          
+    0:09:30  343141.1     36.33   27948.1  273963.6                          
+    0:09:30  343141.1     36.33   27948.1  273963.6                          
+    0:09:33  343211.3     36.30   27752.2  272118.8                          
+    0:09:43  346205.1     36.29   27743.5  246149.1                          
+    0:09:47  352606.7     36.29   27743.5  205895.4                          
+    0:09:50  358823.1     36.29   27743.5  168481.1                          
+    0:12:04  373259.7      0.00       0.0      39.9                          
+    0:12:04  373259.7      0.00       0.0      39.9                          
+    0:12:04  373259.7      0.00       0.0      39.9                          
+    0:12:04  373259.7      0.00       0.0      39.9                          
+    0:12:08  373259.7      0.00       0.0      39.9                          
+    0:14:04  304442.3      0.00       0.0       0.0                          
+    0:14:09  304429.8      0.00       0.0       0.0                          
+    0:14:42  304429.8      0.00       0.0       0.0                          
+    0:14:44  304429.8      0.00       0.0       0.0                          
+    0:14:47  304429.8      0.00       0.0       0.0                          
+    0:14:47  304429.8      0.00       0.0       0.0                          
+    0:14:49  304429.8      0.00       0.0       0.0                          
+    0:14:49  304429.8      0.00       0.0       0.0                          
+    0:14:49  304429.8      0.00       0.0       0.0                          
 
 
 
@@ -101,9 +101,9 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:28:07  304570.5      0.00      -0.0       0.0                          
-    0:28:07  304570.5      0.00      -0.0       0.0                          
-    0:28:07  304570.5      0.00      -0.0       0.0                          
+    0:14:49  304429.8      0.00       0.0       0.0                          
+    0:14:49  304429.8      0.00       0.0       0.0                          
+    0:14:49  304429.8      0.00       0.0       0.0                          
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -113,41 +113,39 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:28:07  304570.5      0.00      -0.0       0.0                          
-    0:28:10  304570.5      0.00      -0.0       0.0                          
-    0:32:45  299262.8      0.00      -0.0       0.0                          
-    0:33:59  294467.1      0.00      -0.0       0.0                          
-    0:36:51  294358.5      0.00      -0.0       0.0                          
-    0:36:58  294340.4      0.00      -0.0       0.0                          
-    0:37:03  294330.3      0.00      -0.0       0.0                          
-    0:37:07  294320.0      0.00      -0.0       0.0                          
-    0:37:12  294309.6      0.00      -0.0       0.0                          
-    0:37:18  294298.9      0.00      -0.0       0.0                          
-    0:37:22  294289.4      0.00      -0.0       0.0                          
-    0:37:27  294278.2      0.00      -0.0       0.0                          
-    0:37:32  294268.6      0.00      -0.0       0.0                          
-    0:37:36  294254.0      0.00      -0.0       0.0                          
-    0:37:41  294243.6      0.00      -0.0       0.0                          
-    0:37:46  294235.1      0.00      -0.0       0.0                          
-    0:37:51  294225.8      0.00      -0.0       0.0                          
-    0:37:57  294216.5      0.00      -0.0       0.0                          
-    0:38:03  294210.1      0.00      -0.0       0.0                          
-    0:38:08  294205.8      0.00      -0.0       0.0                          
-    0:38:12  294204.3      0.00      -0.0       0.0                          
-    0:38:16  294203.2      0.00      -0.0       0.0                          
-    0:38:20  294202.7      0.00      -0.0       0.0                          
-    0:38:24  294202.1      0.00      -0.0       0.0                          
-    0:38:29  294201.6      0.00      -0.0       0.0                          
-    0:38:29  294201.6      0.00      -0.0       0.0                          
-    0:38:33  294201.6      0.00      -0.0       0.0                          
-    0:38:37  294045.5      0.00      -0.0       0.0                          
-    0:38:38  294045.5      0.00      -0.0       0.0                          
-    0:38:38  294045.5      0.00      -0.0       0.0                          
-    0:38:38  294045.5      0.00      -0.0       0.0                          
-    0:38:39  294045.5      0.00      -0.0       0.0                          
-    0:38:39  294045.5      0.00      -0.0       0.0                          
-    0:38:47  294045.5      0.00      -0.0       0.0                          
-Loading db file '/software/dk/nangate45/synopsys/NangateOpenCellLibrary_typical_ecsm_nowlm.db'
+    0:14:49  304429.8      0.00       0.0       0.0                          
+    0:14:51  304429.8      0.00       0.0       0.0                          
+    0:18:02  299120.5      0.00       0.0       0.0                          
+    0:18:57  294323.7      0.00       0.0       0.0                          
+    0:19:21  294214.1      0.00       0.0       0.0                          
+    0:19:38  294195.2      0.00       0.0       0.0                          
+    0:19:53  294185.4      0.00       0.0       0.0                          
+    0:21:39  294175.8      0.00       0.0       0.0                          
+    0:21:42  294164.6      0.00       0.0       0.0                          
+    0:21:46  294154.8      0.00       0.0       0.0                          
+    0:21:49  294145.2      0.00       0.0       0.0                          
+    0:21:52  294135.6      0.00       0.0       0.0                          
+    0:21:56  294125.3      0.00       0.0       0.0                          
+    0:21:59  294110.6      0.00       0.0       0.0                          
+    0:22:03  294098.7      0.00       0.0       0.0                          
+    0:22:07  294090.1      0.00       0.0       0.0                          
+    0:22:11  294081.4      0.00       0.0       0.0                          
+    0:22:15  294071.5      0.00       0.0       0.0                          
+    0:22:18  294065.1      0.00       0.0       0.0                          
+    0:22:22  294060.9      0.00       0.0       0.0                          
+    0:22:25  294059.3      0.00       0.0       0.0                          
+    0:22:28  294057.7      0.00       0.0       0.0                          
+    0:22:31  294056.6      0.00       0.0       0.0                          
+    0:22:31  294056.6      0.00       0.0       0.0                          
+    0:22:34  294056.6      0.00       0.0       0.0                          
+    0:22:37  293901.5      0.00       0.0       0.0                          
+    0:22:38  293901.5      0.00       0.0       0.0                          
+    0:22:38  293901.5      0.00       0.0       0.0                          
+    0:22:38  293901.5      0.00       0.0       0.0                          
+    0:22:39  293901.5      0.00       0.0       0.0                          
+    0:22:39  293901.5      0.00       0.0       0.0                          
+    0:22:44  293901.5      0.00       0.0       0.0                          
+Loading db file '/home/mg.lowpower/do/libnangate/NangateOpenCellLibrary_typical_ecsm.db'
 
 
 Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 

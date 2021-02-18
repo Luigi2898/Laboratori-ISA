@@ -14,23 +14,11 @@ sh mkdir reports/RISC_V_v1/netlist
 set power_preserve_rtl_hier_names true
 
 #analyze all possible files contained in the src folder 
-analyze -library WORK -format vhdl {../../src/components/common/FF.vhd}
-analyze -library WORK -format vhdl {../../src/components/common/MUX_2to1.vhd}
-analyze -library WORK -format vhdl {../../src/components/common/MUX_2X1TO1X1.vhd}
-analyze -library WORK -format vhdl {../../src/components/common/MUX_4to1.vhd}
-analyze -library WORK -format vhdl {../../src/components/common/REG.vhd}
-analyze -library WORK -format vhdl {../../src/components/common/SIPO_SHIFT_REG.vhd}
+analyze -library WORK -autoread -format vhdl {../../src/components/common}
 analyze -library WORK -format vhdl {../../src/components/control/ALU_CTRL.vhd}
 analyze -library WORK -format vhdl {../../src/components/control/CU.vhd}
 analyze -library WORK -format vhdl {../../src/components/control/HDU.vhd}
-analyze -library WORK -format vhdl {../../src/components/control/BPU/AGE_CNT.vhd}
-analyze -library WORK -format vhdl {../../src/components/control/BPU/BHT.vhd}
-analyze -library WORK -format vhdl {../../src/components/control/BPU/BPU_CU.vhd}
-analyze -library WORK -format vhdl {../../src/components/control/BPU/CACHE_MEM.vhd}
-analyze -library WORK -format vhdl {../../src/components/control/BPU/DELAY_CHAIN.vhd}
-analyze -library WORK -format vhdl {../../src/components/control/BPU/DELAY_CHAIN_1.vhd}
-analyze -library WORK -format vhdl {../../src/components/control/BPU/PHT.vhd}
-analyze -library WORK -format vhdl {../../src/components/control/BPU/SAT_CNT.vhd}
+analyze -library WORK -autoread -format vhdl {../../src/components/control/BPU}
 analyze -library WORK -format vhdl {../../src/components/control/BPU/BPU_32bit/BPU.vhd}
 analyze -library WORK -format vhdl {../../src/components/datapath/ALU.vhd}
 analyze -library WORK -format vhdl {../../src/components/datapath/BRANCH_COMP.vhd}
@@ -59,8 +47,7 @@ set OLOAD [load_of NangateOpenCellLibrary/BUF_X4/A]
 set_load $OLOAD [all_outputs]
 
 # compiling the RISC_V_v1
-compile -exact_map
-# > ./logs/RISC_V_v1/compile_v1.txt
+compile -exact_map > ./logs/RISC_V_v1/compile_v1.txt
 
 # producing output for simulation
 ungroup -all -flatten

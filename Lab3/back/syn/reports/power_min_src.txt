@@ -1,0 +1,54 @@
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : RISC_V
+Version: O-2018.06-SP4
+Date   : Thu Feb 18 18:36:23 2021
+****************************************
+
+
+Library(s) Used:
+
+    NangateOpenCellLibrary (File: /home/mg.lowpower/do/libnangate/NangateOpenCellLibrary_typical_ecsm.db)
+
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+Design        Wire Load Model            Library
+------------------------------------------------
+RISC_V                 5K_hvratio_1_1    NangateOpenCellLibrary
+
+
+Global Operating Voltage = 1.1  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000ff
+    Time Units = 1ns
+    Dynamic Power Units = 1uW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+  Cell Internal Power  =  24.8764 mW   (95%)
+  Net Switching Power  =   1.4118 mW    (5%)
+                         ---------
+Total Dynamic Power    =  26.2882 mW  (100%)
+
+Cell Leakage Power     =   6.1097 mW
+
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
+register       2.4427e+04           38.5893        2.9539e+06        2.7420e+04  (  84.64%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational    446.8971        1.3732e+03        3.1558e+06        4.9759e+03  (  15.36%)
+--------------------------------------------------------------------------------------------------
+Total          2.4874e+04 uW     1.4118e+03 uW     6.1097e+06 nW     3.2396e+04 uW
+1
