@@ -1,4 +1,3 @@
-Warning: Design 'RISC_V' has '2' unresolved references. For more detailed information, use the "link" command. (UID-341)
 Information: Checking out the license 'DesignWare'. (SEC-104)
 Information: Evaluating DesignWare library utilization. (UISN-27)
 
@@ -10,7 +9,7 @@ Information: Evaluating DesignWare library utilization. (UISN-27)
 ============================================================================
 
 
-Information: There are 584 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+Information: There are 587 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
 
 
 
@@ -24,6 +23,8 @@ Information: There are 584 potential problems in your design. Please run 'check_
   Processing 'ALU_N32'
 Information: Added key list 'DesignWare' to design 'ALU_N32'. (DDB-72)
   Processing 'PIPE_ID_EX'
+  Processing 'FF_0'
+  Processing 'DELAY_CHAIN_1_DelayUnits3'
   Processing 'CU'
   Processing 'HDU'
   Processing 'MUX_4to1_N32_0'
@@ -33,6 +34,7 @@ Information: Added key list 'DesignWare' to design 'ALU_N32'. (DDB-72)
   Processing 'REG_FILE_Nbit32_Nrow32'
   Processing 'PIPE_IF_ID'
   Processing 'DELAY_CHAIN_Nbits32_DelayUnits1'
+  Processing 'DELAY_CHAIN_1_DelayUnits1_0'
   Processing 'REG_N6'
   Processing 'DELAY_CHAIN_Nbits6_DelayUnits1'
   Processing 'MUX_2X1TO1X1'
@@ -48,14 +50,6 @@ Information: Added key list 'DesignWare' to design 'CACHE_MEM_SetNum2_SetEntries
   Processing 'DELAY_CHAIN_Nbits32_DelayUnits4'
   Processing 'INCREMENTER_STEP4'
   Processing 'RISC_V'
-Information: Building the design 'DELAY_CHAIN_1' instantiated from design 'RISC_V' with
-	the parameters "DelayUnits=3". (HDL-193)
-Warning: Cannot find the design 'DELAY_CHAIN_1' in the library 'WORK'. (LBR-1)
-Information: Building the design 'DELAY_CHAIN_1' instantiated from design 'BPU' with
-	the parameters "DelayUnits=1". (HDL-193)
-Warning: Cannot find the design 'DELAY_CHAIN_1' in the library 'WORK'. (LBR-1)
-Warning: Unable to resolve reference 'DELAY_CHAIN_1' in 'RISC_V'. (LINK-5)
-Warning: Unable to resolve reference 'DELAY_CHAIN_1' in 'BPU'. (LINK-5)
 
   Updating timing information
 Information: Updating design information... (UID-85)
@@ -77,9 +71,92 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:16:25  343277.5     36.25   27945.6  271219.8                          
-    0:16:25  343277.5     36.25   27945.6  271219.8                          
-    0:16:30  343347.8     36.22   27736.1  269375.0                          
-    0:16:47  345644.1     36.21   27735.2  247540.8                          
-    0:16:51  351787.1     36.21   27735.2  209884.2                          
-    0:16:55  358580.8     36.21   27735.2  166310.5                          
+    0:20:42  343320.1     36.25   27962.7  271299.9                          
+    0:20:42  343320.1     36.25   27962.7  271299.9                          
+    0:20:46  343390.3     36.22   27753.3  269455.1                          
+    0:21:09  345540.4     36.21   27748.6  248406.5                          
+    0:21:15  351640.3     36.21   27748.6  211182.7                          
+    0:21:22  358545.7     36.21   27748.6  166416.8                          
+    0:24:26  373446.7      0.00      -0.0      39.9                          
+    0:24:26  373446.7      0.00      -0.0      39.9                          
+    0:24:26  373446.7      0.00      -0.0      39.9                          
+    0:24:26  373446.7      0.00      -0.0      39.9                          
+    0:24:31  373446.7      0.00      -0.0      39.9                          
+    0:27:06  304583.0      0.00      -0.0       0.0                          
+    0:27:13  304570.5      0.00      -0.0       0.0                          
+    0:27:56  304570.5      0.00      -0.0       0.0                          
+    0:28:00  304570.5      0.00      -0.0       0.0                          
+    0:28:04  304570.5      0.00      -0.0       0.0                          
+    0:28:04  304570.5      0.00      -0.0       0.0                          
+    0:28:06  304570.5      0.00      -0.0       0.0                          
+    0:28:06  304570.5      0.00      -0.0       0.0                          
+    0:28:06  304570.5      0.00      -0.0       0.0                          
+
+
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:28:07  304570.5      0.00      -0.0       0.0                          
+    0:28:07  304570.5      0.00      -0.0       0.0                          
+    0:28:07  304570.5      0.00      -0.0       0.0                          
+
+
+  Beginning Area-Recovery Phase  (cleanup)
+  -----------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:28:07  304570.5      0.00      -0.0       0.0                          
+    0:28:10  304570.5      0.00      -0.0       0.0                          
+    0:32:45  299262.8      0.00      -0.0       0.0                          
+    0:33:59  294467.1      0.00      -0.0       0.0                          
+    0:36:51  294358.5      0.00      -0.0       0.0                          
+    0:36:58  294340.4      0.00      -0.0       0.0                          
+    0:37:03  294330.3      0.00      -0.0       0.0                          
+    0:37:07  294320.0      0.00      -0.0       0.0                          
+    0:37:12  294309.6      0.00      -0.0       0.0                          
+    0:37:18  294298.9      0.00      -0.0       0.0                          
+    0:37:22  294289.4      0.00      -0.0       0.0                          
+    0:37:27  294278.2      0.00      -0.0       0.0                          
+    0:37:32  294268.6      0.00      -0.0       0.0                          
+    0:37:36  294254.0      0.00      -0.0       0.0                          
+    0:37:41  294243.6      0.00      -0.0       0.0                          
+    0:37:46  294235.1      0.00      -0.0       0.0                          
+    0:37:51  294225.8      0.00      -0.0       0.0                          
+    0:37:57  294216.5      0.00      -0.0       0.0                          
+    0:38:03  294210.1      0.00      -0.0       0.0                          
+    0:38:08  294205.8      0.00      -0.0       0.0                          
+    0:38:12  294204.3      0.00      -0.0       0.0                          
+    0:38:16  294203.2      0.00      -0.0       0.0                          
+    0:38:20  294202.7      0.00      -0.0       0.0                          
+    0:38:24  294202.1      0.00      -0.0       0.0                          
+    0:38:29  294201.6      0.00      -0.0       0.0                          
+    0:38:29  294201.6      0.00      -0.0       0.0                          
+    0:38:33  294201.6      0.00      -0.0       0.0                          
+    0:38:37  294045.5      0.00      -0.0       0.0                          
+    0:38:38  294045.5      0.00      -0.0       0.0                          
+    0:38:38  294045.5      0.00      -0.0       0.0                          
+    0:38:38  294045.5      0.00      -0.0       0.0                          
+    0:38:39  294045.5      0.00      -0.0       0.0                          
+    0:38:39  294045.5      0.00      -0.0       0.0                          
+    0:38:47  294045.5      0.00      -0.0       0.0                          
+Loading db file '/software/dk/nangate45/synopsys/NangateOpenCellLibrary_typical_ecsm_nowlm.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+Warning: Design 'RISC_V' contains 3 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+     Net 'BRANCH_PREDICTION_UNIT/INSTR_CACHE/*Logic0*': 1024 load(s), 1 driver(s)
+     Net 'BRANCH_PREDICTION_UNIT/INSTR_CACHE/AGE_REG_0_1/CNT_UP_DOWNN': 1024 load(s), 1 driver(s)
+     Net 'BRANCH_PREDICTION_UNIT/PATTERN_HISTORY_TABLE/PHR_1/CLK': 34039 load(s), 1 driver(s)
+1

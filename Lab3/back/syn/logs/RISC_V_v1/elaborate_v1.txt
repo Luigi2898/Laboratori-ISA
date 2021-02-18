@@ -216,7 +216,7 @@ Statistics for case statements in always block at line 147 in file
 Presto compilation completed successfully.
 Information: Building the design 'DELAY_CHAIN_1' instantiated from design 'RISC_V' with
 	the parameters "DelayUnits=3". (HDL-193)
-Warning: Cannot find the design 'DELAY_CHAIN_1' in the library 'WORK'. (LBR-1)
+Presto compilation completed successfully.
 Information: Building the design 'PIPE_ID_EX'. (HDL-193)
 
 Inferred memory devices in process
@@ -373,9 +373,20 @@ Information: Building the design 'DELAY_CHAIN' instantiated from design 'BPU' wi
 Presto compilation completed successfully.
 Information: Building the design 'DELAY_CHAIN_1' instantiated from design 'BPU' with
 	the parameters "DelayUnits=1". (HDL-193)
-Warning: Cannot find the design 'DELAY_CHAIN_1' in the library 'WORK'. (LBR-1)
+Presto compilation completed successfully.
 Information: Building the design 'DELAY_CHAIN' instantiated from design 'BPU' with
 	the parameters "Nbits=32,DelayUnits=1". (HDL-193)
+Presto compilation completed successfully.
+Information: Building the design 'FF'. (HDL-193)
+
+Inferred memory devices in process
+	in routine FF line 16 in file
+		'../../src/components/common/FF.vhd'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     FF_OUT_reg      | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
 Presto compilation completed successfully.
 Information: Building the design 'AGE_CNT' instantiated from design 'CACHE_MEM_SetNum2_SetEntries256_TagSize24_ContentSize32_AddrBits32_SetBits0_EntriesBits8' with
 	the parameters "Nb=2,Module=4". (HDL-193)
@@ -427,5 +438,4 @@ Inferred memory devices in process
 |     REG_OUT_reg     | Flip-flop |   6   |  Y  | N  | Y  | N  | N  | N  | N  |
 ===============================================================================
 Presto compilation completed successfully.
-Warning: Design 'RISC_V' has '2' unresolved references. For more detailed information, use the "link" command. (UID-341)
 1

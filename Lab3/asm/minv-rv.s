@@ -36,7 +36,7 @@ v:
     .word  20
     .word  15
     .word  7
-    .word  0
+    .word  -8
     .word  6
     .word  -23
     .word  19
@@ -48,7 +48,7 @@ v:
     .word  -25
     .word  23
     .word  -21
-    .word  0
+    .word  -8
     .word  10
     .word  -14
     .word  -22
@@ -105,7 +105,7 @@ v:
     .word  25
     .word  -18
     .word  3
-    .word  0
+    .word  -8
     .word  14
     .word  12
     .word  17
@@ -147,7 +147,7 @@ v:
     .word  2
     .word  13
     .word  21
-    .word  0
+    .word  -8
     .word  -1
     .word  -3
     .word  -18
@@ -177,10 +177,10 @@ v:
     .word  25
     .word  24
     .word  -20
-    .word  0
+    .word  -8
     .word  19
     .word  -1
-    .word  0
+    .word  -8
     .word  1
     .word  -24
     .word  10
@@ -230,7 +230,7 @@ v:
     .word  -20
     .word  -5
     .word  -25
-    .word  0
+    .word  -8
     .word  5
     .word  3
     .word  -4
@@ -242,12 +242,12 @@ v:
     .word  -23
     .word  -12
     .word  -9
-    .word  0
+    .word  -8
     .word  -13
     .word  3
     .word  -20
     .word  -24
-    .word  0
+    .word  -8
     .word  4
     .word  11
     .word  -8
@@ -343,7 +343,7 @@ v:
     .word  22
     .word  -5
     .word  -12
-    .word  0
+    .word  -8
     .word  5
     .word  17
     .word  -3
@@ -352,7 +352,7 @@ v:
     .word  17
     .word  25
     .word  -9
-    .word  0
+    .word  -8
     .word  -20
     .word  -19
     .word  -10
@@ -491,7 +491,7 @@ v:
     .word  14
     .word  21
     .word  -3
-    .word  0
+    .word  -8
     .word  -1
     .word  24
     .word  20

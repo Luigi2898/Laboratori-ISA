@@ -9,8 +9,8 @@ module TB_RISCV_back ();
 
 
 	MAIN_MEM #( 
-		.instr_filename("../code/minrsv.txt"),
-    	.data_filename("../data/data.txt"),
+		.instr_filename("../../code/minrsv.txt"),
+    	.data_filename("../../data/data.txt"),
     	.Entries(32767)
   	)
   	MEMORY(	
@@ -42,6 +42,10 @@ module TB_RISCV_back ();
 		.CLK(CLK),
 		.EXTERNAL_RSTN(RSTN)
 	);
+
+always @(posedge MEM_WR_EN) begin
+	$display("***************************************\nMIN = %d\n***************************************", DATA_OUT);
+end
 
 endmodule
 

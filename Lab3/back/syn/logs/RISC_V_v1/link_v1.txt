@@ -1,0 +1,9 @@
+
+  Linking design 'RISC_V'
+  Using the following designs and libraries:
+  --------------------------------------------------------------------------
+  * (33 designs)              /home/isa50/Desktop/Laboratori-ISA/Lab3/back/syn/RISC_V.db, etc
+  NangateOpenCellLibrary (library) /software/dk/nangate45/synopsys/NangateOpenCellLibrary_typical_ecsm_nowlm.db
+  dw_foundation.sldb (library) /software/synopsys/syn_current_64.18/libraries/syn/dw_foundation.sldb
+
+1
