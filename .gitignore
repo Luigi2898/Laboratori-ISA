@@ -16,3 +16,5 @@ Lab1/src/myfir.vhd
 Lab1/src/myfir_cu.vhd
 Lab1/src/myfir_dp.vhd
 .vscode/PythonImportHelper-v2-Completion.json
+*.sdc
+*.vcd
