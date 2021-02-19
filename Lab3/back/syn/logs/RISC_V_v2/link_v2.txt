@@ -1,0 +1,7 @@
+
+  Linking design 'RISC_V_v2'
+  Using the following designs and libraries:
+  --------------------------------------------------------------------------
+  NangateOpenCellLibrary (library) /home/mg.lowpower/do/libnangate/NangateOpenCellLibrary_typical_ecsm.db
+
+1

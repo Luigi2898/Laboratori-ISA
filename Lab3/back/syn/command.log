@@ -1,6 +1,6 @@
 #@ # 
 #@ # Running dc_shell Version O-2018.06-SP4 for linux64 -- Nov 27, 2018
-#@ # Date:   Thu Feb 18 18:35:54 2021
+#@ # Date:   Fri Feb 19 12:08:46 2021
 #@ # Run by: lp20.19@localhost.localdomain
 #@ 
 
@@ -6681,21 +6681,14 @@ source /home/lp20.19/Desktop/Lab-ISA/Lab3/back/syn/.synopsys_dc.setup
 #@ 
 #@ # -- End source /home/lp20.19/Desktop/Lab-ISA/Lab3/back/syn/.synopsys_dc.setup
 
-source -echo -verbose /home/lp20.19/Desktop/Lab-ISA/Lab3/back/syn/../backward_v1.tcl
-#@ # -- Starting source /home/lp20.19/Desktop/Lab-ISA/Lab3/back/syn/../backward_v1.tcl
+source -echo -verbose /home/lp20.19/Desktop/Lab-ISA/Lab3/back/syn/../backward_v2.tcl
+#@ # -- Starting source /home/lp20.19/Desktop/Lab-ISA/Lab3/back/syn/../backward_v2.tcl
 
-#@ read_ddc ./reports/RISC_V_v1/ddc/RISC_V_v1.ddc
+#@ read_ddc ./reports/RISC_V_v2/ddc/RISC_V_v2.ddc
 #@ create_clock -name "clock" -period 10 {CLK}
-#@ read_saif -input ./saif/RISCV_v1_basic.saif -instance TB_RISCV_back/DUT  -scale 1 -unit_base ns
-#@ report_power > ./reports/power_basic.txt
 #@ 
-#@ read_saif -input ./saif/RISCV_v1_min_src.saif -instance TB_RISCV_back/DUT  -scale 1 -unit_base ns
-#@ report_power > ./reports/power_min_src.txt
-#@ 
-#@ read_saif -input ./saif/RISCV_v1_matrix.saif -instance TB_RISCV_back/DUT  -scale 1 -unit_base ns
-#@ report_power > ./reports/power_matrix.txt
-#@ 
-#@ read_saif -input ./saif/RISCV_v1_neg_cnt.saif -instance TB_RISCV_back/DUT  -scale 1 -unit_base ns
-#@ report_power > ./reports/power_neg_cmt.txt
-#@ # -- End source /home/lp20.19/Desktop/Lab-ISA/Lab3/back/syn/../backward_v1.tcl
+#@ read_saif -input ./saif/RISCV_v2_min_src.saif -instance TB_RISCV_back/DUT  -scale 1 -unit_base ns
+#@ report_power > ./reports/power_min_src_v2.txt
+#@ # -- End source /home/lp20.19/Desktop/Lab-ISA/Lab3/back/syn/../backward_v2.tcl
 
+quit
