@@ -2020,7 +2020,7 @@ __start:
 loop:	
 	beq x16,x0,done   # check all elements have been tested
 	lw x8,0(x4)       # load new element in x8
-	add x11,x8,x0	  # base instr to be modified into abs
+	add x10,x8,x0	  # base instr to be modified into abs
 	addi x4,x4,0x4	  # point to next element
 	addi x16,x16,-1   # decrease x16 by 1
 	slt x11,x10,x13   # x11 = (x10 < x13) ? 1 : 0

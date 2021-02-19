@@ -1,0 +1,2 @@
+MIN_SRC_V1 : 220.690 us
+MIN_SRC_V2 : 160.690 us
