@@ -1,0 +1,133 @@
+Information: Updating design information... (UID-85)
+Warning: Design 'RISC_V' contains 3 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : RISC_V
+Version: O-2018.06-SP4
+Date   : Fri Feb 19 09:39:57 2021
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+  Startpoint: PIPE_REG2/EX_ALUSRC_reg
+              (rising edge-triggered flip-flop clocked by MY_CLK)
+  Endpoint: INSTR_ADDR[4]
+            (output port clocked by MY_CLK)
+  Path Group: MY_CLK
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  RISC_V             5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock MY_CLK (rise edge)                                0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  PIPE_REG2/EX_ALUSRC_reg/CK (DFFR_X1)                    0.00 #     0.00 r
+  PIPE_REG2/EX_ALUSRC_reg/QN (DFFR_X1)                    0.06       0.06 f
+  PIPE_REG2/U3/ZN (INV_X1)                                0.04       0.10 r
+  PIPE_REG2/EX_ALUSRC_OUT (PIPE_ID_EX)                    0.00       0.10 r
+  MUX_ALU_IN2/SEL (MUX_2to1_N32_12)                       0.00       0.10 r
+  MUX_ALU_IN2/U4/Z (BUF_X1)                               0.04       0.15 r
+  MUX_ALU_IN2/U11/Z (MUX2_X1)                             0.08       0.23 f
+  MUX_ALU_IN2/Y[2] (MUX_2to1_N32_12)                      0.00       0.23 f
+  ALU_EXE/DATA2_IN[2] (ALU_N32)                           0.00       0.23 f
+  ALU_EXE/U77/ZN (INV_X1)                                 0.04       0.26 r
+  ALU_EXE/add_0_root_add_42_2_ni/A[2] (ALU_N32_DW01_inc_0)
+                                                          0.00       0.26 r
+  ALU_EXE/add_0_root_add_42_2_ni/U1_1_2/CO (HA_X1)        0.06       0.32 r
+  ALU_EXE/add_0_root_add_42_2_ni/U53/ZN (AND2_X1)         0.04       0.36 r
+  ALU_EXE/add_0_root_add_42_2_ni/U1_1_4/CO (HA_X1)        0.05       0.41 r
+  ALU_EXE/add_0_root_add_42_2_ni/U1/ZN (AND2_X2)          0.04       0.46 r
+  ALU_EXE/add_0_root_add_42_2_ni/U1_1_6/CO (HA_X1)        0.05       0.51 r
+  ALU_EXE/add_0_root_add_42_2_ni/U9/ZN (AND3_X1)          0.05       0.57 r
+  ALU_EXE/add_0_root_add_42_2_ni/U10/ZN (AND2_X1)         0.05       0.61 r
+  ALU_EXE/add_0_root_add_42_2_ni/U11/ZN (AND2_X2)         0.05       0.66 r
+  ALU_EXE/add_0_root_add_42_2_ni/U37/ZN (AND2_X1)         0.04       0.70 r
+  ALU_EXE/add_0_root_add_42_2_ni/U26/ZN (AND2_X1)         0.04       0.74 r
+  ALU_EXE/add_0_root_add_42_2_ni/U36/ZN (AND2_X1)         0.04       0.78 r
+  ALU_EXE/add_0_root_add_42_2_ni/U3/ZN (AND2_X1)          0.05       0.83 r
+  ALU_EXE/add_0_root_add_42_2_ni/U34/ZN (AND3_X2)         0.06       0.89 r
+  ALU_EXE/add_0_root_add_42_2_ni/U29/ZN (AND3_X2)         0.06       0.95 r
+  ALU_EXE/add_0_root_add_42_2_ni/U1_1_26/CO (HA_X1)       0.05       1.00 r
+  ALU_EXE/add_0_root_add_42_2_ni/U39/ZN (AND2_X1)         0.04       1.04 r
+  ALU_EXE/add_0_root_add_42_2_ni/U1_1_28/CO (HA_X1)       0.06       1.10 r
+  ALU_EXE/add_0_root_add_42_2_ni/U1_1_29/CO (HA_X1)       0.06       1.16 r
+  ALU_EXE/add_0_root_add_42_2_ni/U1_1_30/S (HA_X1)        0.04       1.19 f
+  ALU_EXE/add_0_root_add_42_2_ni/SUM[30] (ALU_N32_DW01_inc_0)
+                                                          0.00       1.19 f
+  ALU_EXE/U136/ZN (AOI222_X1)                             0.09       1.28 r
+  ALU_EXE/U137/ZN (INV_X1)                                0.03       1.31 f
+  ALU_EXE/add_47/B[30] (ALU_N32_DW01_add_1)               0.00       1.31 f
+  ALU_EXE/add_47/U176/ZN (NAND2_X1)                       0.04       1.35 r
+  ALU_EXE/add_47/U228/ZN (INV_X1)                         0.02       1.37 f
+  ALU_EXE/add_47/U227/ZN (AOI21_X1)                       0.05       1.42 r
+  ALU_EXE/add_47/U220/ZN (XNOR2_X1)                       0.07       1.49 r
+  ALU_EXE/add_47/SUM[31] (ALU_N32_DW01_add_1)             0.00       1.49 r
+  ALU_EXE/U62/ZN (AOI22_X1)                               0.04       1.53 f
+  ALU_EXE/U352/ZN (OAI211_X1)                             0.04       1.57 r
+  ALU_EXE/RESULT_OUT[31] (ALU_N32)                        0.00       1.57 r
+  MUX_LUI/IN0[31] (MUX_2to1_N32_11)                       0.00       1.57 r
+  MUX_LUI/U56/ZN (NAND2_X1)                               0.03       1.59 f
+  MUX_LUI/U58/ZN (NAND2_X1)                               0.04       1.63 r
+  MUX_LUI/Y[31] (MUX_2to1_N32_11)                         0.00       1.63 r
+  BC_MUX_A/IN1[31] (MUX_4to1_N32_2)                       0.00       1.63 r
+  BC_MUX_A/MUX1/IN1[31] (MUX_2to1_N32_6)                  0.00       1.63 r
+  BC_MUX_A/MUX1/U3/ZN (NAND2_X1)                          0.03       1.66 f
+  BC_MUX_A/MUX1/U5/ZN (NAND2_X1)                          0.03       1.69 r
+  BC_MUX_A/MUX1/Y[31] (MUX_2to1_N32_6)                    0.00       1.69 r
+  BC_MUX_A/MUX3/IN0[31] (MUX_2to1_N32_4)                  0.00       1.69 r
+  BC_MUX_A/MUX3/U7/ZN (NAND2_X1)                          0.03       1.72 f
+  BC_MUX_A/MUX3/U9/ZN (NAND2_X1)                          0.03       1.75 r
+  BC_MUX_A/MUX3/Y[31] (MUX_2to1_N32_4)                    0.00       1.75 r
+  BC_MUX_A/O[31] (MUX_4to1_N32_2)                         0.00       1.75 r
+  BC/DATA_IN1[31] (BRANCH_COMP_word_size32)               0.00       1.75 r
+  BC/U42/ZN (XNOR2_X1)                                    0.06       1.81 r
+  BC/U15/ZN (NAND3_X1)                                    0.03       1.84 f
+  BC/U17/ZN (NOR2_X1)                                     0.04       1.88 r
+  BC/U4/ZN (NAND3_X1)                                     0.04       1.91 f
+  BC/U1/ZN (AOI21_X2)                                     0.05       1.97 r
+  BC/BRANCH_IS_TAKEN (BRANCH_COMP_word_size32)            0.00       1.97 r
+  BRANCH_PREDICTION_UNIT/OUTCOME (BPU)                    0.00       1.97 r
+  BRANCH_PREDICTION_UNIT/U5/ZN (XNOR2_X1)                 0.07       2.03 r
+  BRANCH_PREDICTION_UNIT/MISPREDICTION (BPU)              0.00       2.03 r
+  CONTROL_UNIT/BPU_MISSPRED (CU)                          0.00       2.03 r
+  CONTROL_UNIT/U10/ZN (NOR2_X1)                           0.03       2.07 f
+  CONTROL_UNIT/U4/ZN (INV_X2)                             0.05       2.11 r
+  CONTROL_UNIT/PC_SEL[0] (CU)                             0.00       2.11 r
+  PC_SOURCE_MUX/S[0] (MUX_4to1_N32_0)                     0.00       2.11 r
+  PC_SOURCE_MUX/MUX2/SEL (MUX_2to1_N32_8)                 0.00       2.11 r
+  PC_SOURCE_MUX/MUX2/U2/Z (CLKBUF_X3)                     0.07       2.18 r
+  PC_SOURCE_MUX/MUX2/U8/Z (MUX2_X1)                       0.08       2.26 f
+  PC_SOURCE_MUX/MUX2/Y[4] (MUX_2to1_N32_8)                0.00       2.26 f
+  PC_SOURCE_MUX/MUX3/IN1[4] (MUX_2to1_N32_7)              0.00       2.26 f
+  PC_SOURCE_MUX/MUX3/U8/Z (MUX2_X1)                       0.07       2.33 f
+  PC_SOURCE_MUX/MUX3/Y[4] (MUX_2to1_N32_7)                0.00       2.33 f
+  PC_SOURCE_MUX/O[4] (MUX_4to1_N32_0)                     0.00       2.33 f
+  J_MUX/IN1[4] (MUX_2to1_N32_0)                           0.00       2.33 f
+  J_MUX/U46/Z (MUX2_X2)                                   0.07       2.40 f
+  J_MUX/Y[4] (MUX_2to1_N32_0)                             0.00       2.40 f
+  INSTR_ADDR[4] (out)                                     0.03       2.43 f
+  data arrival time                                                  2.43
+
+  clock MY_CLK (rise edge)                                3.00       3.00
+  clock network delay (ideal)                             0.00       3.00
+  clock uncertainty                                      -0.07       2.93
+  output external delay                                  -0.50       2.43
+  data required time                                                 2.43
+  --------------------------------------------------------------------------
+  data required time                                                 2.43
+  data arrival time                                                 -2.43
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1

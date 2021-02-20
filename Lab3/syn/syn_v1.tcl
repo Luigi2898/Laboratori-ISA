@@ -1,8 +1,8 @@
 #*****************************************************************************
 # This script is used to synthesize the RISC-V 
 #*****************************************************************************
-sh rm -r ./work
-sh mkdir work
+#sh rm -r ./WORK
+sh mkdir WORK
 sh mkdir logs/RISC_V_v1
 sh mkdir reports/RISC_V_v1
 sh mkdir reports/RISC_V_v1/netlist
@@ -25,7 +25,7 @@ analyze -library WORK -format vhdl {../src/components/control/BPU/BHT.vhd}
 analyze -library WORK -format vhdl {../src/components/control/BPU/BPU_CU.vhd}
 analyze -library WORK -format vhdl {../src/components/control/BPU/CACHE_MEM.vhd}
 analyze -library WORK -format vhdl {../src/components/control/BPU/DELAY_CHAIN.vhd}
-analyze -library WORK -format vhdl {../src/components/control/BPU/DELAY_CHAIN1.vhd}
+analyze -library WORK -format vhdl {../src/components/control/BPU/DELAY_CHAIN_1.vhd}
 analyze -library WORK -format vhdl {../src/components/control/BPU/PHT.vhd}
 analyze -library WORK -format vhdl {../src/components/control/BPU/SAT_CNT.vhd}
 analyze -library WORK -format vhdl {../src/components/control/BPU/BPU_32bit/BPU.vhd}
@@ -43,22 +43,23 @@ analyze -library WORK -format vhdl {../src/RISC_V.vhd}
 
 #elaborate top entity, set the variables
 elaborate RISC_V -architecture rtl -library WORK > ./logs/RISC_V_v1/elaborate_v1.txt
+link > ./logs/RISC_V_v1/link_v1.txt
 
 #**************** CONSTRAINT THE SYNTHESIS ****************#
 # setting design constrains
-create_clock -name MY_CLK -period 10 clk
+create_clock -name MY_CLK -period 10 CLK
 set_dont_touch_network MY_CLK
 set_clock_uncertainty 0.07 [get_clocks MY_CLK]
-set_input_delay 0.5 -max -clock MY_CLK [remove_from_collection [all_inputs] clk]
+set_input_delay 0.5 -max -clock MY_CLK [remove_from_collection [all_inputs] CLK]
 set_output_delay 0.5 -max -clock MY_CLK [all_outputs]
 set OLOAD [load_of NangateOpenCellLibrary/BUF_X4/A]
 set_load $OLOAD [all_outputs]
 
 # compiling the RISC_V_v1
 compile -exact_map > ./logs/RISC_V_v1/compile_v1.txt
-report_timing -nworst 10 > ./reports/RISC_V_v1/timing_v1.txt
-report_area > ./reports/RISC_V_v1/area_v1.txt
-report_power > ./reports/RISC_V_v1/power_v1.txt
+#report_timing > ./reports/RISC_V_v1/timing_v1.txt
+#report_area > ./reports/RISC_V_v1/area_v1.txt
+#report_power > ./reports/RISC_V_v1/power_v1.txt
 
 ungroup -all -flatten
 change_names -hierarchy -rules verilog
@@ -66,7 +67,7 @@ write_sdf ./reports/RISC_V_v1/netlist/RISC_V_v1.sdf
 write -f verilog -hierarchy -output ./reports/RISC_V_v1/netlist/RISC_V_v1.v
 write_sdc ./reports/RISC_V_v1/netlist/RISC_V_v1.sdc
 write -hierarchy -format ddc -output ./reports/RISC_V_v1/netlist/RISC_V_v1.ddc
-quit
+#quit
 
 
 
