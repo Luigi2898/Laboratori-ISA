@@ -1,17 +1,17 @@
-#set_global _enable_mmmc_by_default_flow      $CTE::mmmc_default
-#suppressMessage ENCEXT-2799
-#getDrawView
-#loadWorkspace -name Physical
-#win
-#set init_design_netlisttype verilog
-#set init_design_settop 1
-#set init_top_cell RISC_V
-#set init_verilog ../../syn/reports/RISC_V_v2/netlist/RISC_V_v1.v
-#set init_lef_file /software/dk/nangate45/lef/NangateOpenCellLibrary.lef
-#set init_gnd_net VSS
-#set init_pwr_net VDD
-#set init_mmmc_file mmm_design.tcl
-#init_design
+set_global _enable_mmmc_by_default_flow      $CTE::mmmc_default
+suppressMessage ENCEXT-2799
+getDrawView
+loadWorkspace -name Physical
+win
+set init_design_netlisttype verilog
+set init_design_settop 1
+set init_top_cell RISC_V
+set init_verilog ../../syn/reports/RISC_V_v2/netlist/RISC_V_v1.v
+set init_lef_file /software/dk/nangate45/lef/NangateOpenCellLibrary.lef
+set init_gnd_net VSS
+set init_pwr_net VDD
+set init_mmmc_file mmm_design.tcl
+init_design
 getIoFlowFlag
 setIoFlowFlag 0
 floorPlan -coreMarginsBy die -site FreePDK45_38x28_10R_NP_162NW_34O -r 1 0.6 5 5 5 5
@@ -73,7 +73,9 @@ rcOut -setres RISC_V.setres -rc_corner my_rc
 rcOut -spf RISC_V.spf -rc_corner my_rc
 rcOut -spef RISC_V.spef -rc_corner my_rc
 redirect -quiet {set honorDomain [getAnalysisMode -honorClockDomains]} > /dev/null
-timeDesign -postRoute -pathReports -drvReports -slackReports -numPaths 50 -prefix RISC_V_postRoute -outDir timingReports
+timeDesign -postRoute -pathReports -slackReports -numPaths 50 -prefix RISC_V_postRoute -outDir timingReports
+redirect -quiet {set honorDomain [getAnalysisMode -honorClockDomains]} > /dev/null
+timeDesign -postRoute -hold -pathReports -slackReports -numPaths 50 -prefix RISC_V_postRoute -outDir timingReports
 verifyConnectivity -type all -error 1000 -warning 50
 setVerifyGeometryMode -area { 0 0 0 0 } -minWidth true -minSpacing true -minArea true -sameNet true -short true -overlap true -offRGrid false -offMGrid true -mergedMGridCheck true -minHole true -implantCheck true -minimumCut true -minStep true -viaEnclosure true -antenna false -insuffMetalOverlap true -pinInBlkg false -diffCellViol true -sameCellViol false -padFillerCellsOverlap true -routingBlkgPinOverlap true -routingCellBlkgOverlap true -regRoutingOnly false -stackedViasOnRegNet false -wireExt true -useNonDefaultSpacing false -maxWidth true -maxNonPrefLength -1 -error 1000
 verifyGeometry
