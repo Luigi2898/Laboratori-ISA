@@ -1,0 +1,65 @@
+module DUT(dut_if.port_in in_inter, dut_if.port_out out_inter, output enum logic [1:0] {INITIAL,WAIT,SEND} state);
+    
+    integer latency = 4;
+    integer delay_cycles = 0;
+    integer i;
+    integer inputA_FIFO [3:0];
+    integer inputB_FIFO [3:0];
+
+    // adder adder_under_test(.A(in_inter.A),.B(in_inter.B),.OUT(out_inter.data));
+
+    FPmul UUT(.FP_A(in_inter.A), .FP_B(in_inter.B), .clk(in_inter.clk), .FP_Z(out_inter.data));
+
+    always_ff @(posedge in_inter.clk)
+    begin
+        if(in_inter.rst) begin
+            in_inter.ready <= 0;
+            out_inter.data <= 'x;
+            out_inter.valid <= 0;
+            state <= INITIAL;
+        end
+        else case(state)
+                INITIAL: begin
+                    in_inter.ready <= 1;
+                    state <= WAIT;
+                end
+                
+                WAIT: begin
+                  if(in_inter.valid) begin
+                        in_inter.ready <= 0;
+
+                        // compensate for N-stages latency
+                        for (i = 0; i < latency - 1; i = i + 1) begin
+                            inputA_FIFO[i+1] = inputA_FIFO[i];
+                            inputB_FIFO[i+1] = inputB_FIFO[i];
+                        end
+                        inputA_FIFO[0] = in_inter.A;
+                        inputB_FIFO[0] = in_inter.B;
+                        
+                        if (delay_cycles < latency) begin
+                            delay_cycles = delay_cycles + 1;
+                            in_inter.ready <= 1;
+                            state <= WAIT;
+                        end
+                        else begin                          
+                        //out_inter.data <= in_inter.A + in_inter.B;
+                        
+                        $display("FPmult: input A = %b, \t input B = %b, \t output OUT = %b ", inputA_FIFO[latency-1], inputB_FIFO[latency-1], out_inter.data);
+                        $display("FPmult: input A = %f, \t input B = %f, \t output OUT = %f", $bitstoshortreal(inputA_FIFO[latency-1]), $bitstoshortreal(inputB_FIFO[latency-1]), $bitstoshortreal(out_inter.data));
+                        $display("----------------------------------------------------------------------------------------------------------");
+                        out_inter.valid <= 1;
+                        state <= SEND;
+                        end
+                    end
+                end
+                
+                SEND: begin
+                    if(out_inter.ready) begin
+                        out_inter.valid <= 0;
+                        in_inter.ready <= 1;
+                        state <= WAIT;
+                    end
+                end
+        endcase
+    end
+endmodule: DUT

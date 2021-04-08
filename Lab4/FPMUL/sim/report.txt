@@ -1,0 +1,14 @@
+Reading pref.tcl
+
+# 10.7c
+
+# vsim top
+# vsim top 
+# Start time: 13:24:51 on Apr 06,2021
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Break key hit
+# ** Fatal: (SIGINT) Compile interrupted.
+# Vopt Compiler exiting
+# Error loading design
+# End time: 13:24:58 on Apr 06,2021, Elapsed time: 0:00:07
+# Errors: 1, Warnings: 0
